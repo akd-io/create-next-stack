@@ -1,3 +1,4 @@
+// TODO: Remove oclif defaults and add own plugins.
 {
   "extends": ["oclif", "oclif-typescript"],
   "rules": {
