@@ -6,6 +6,7 @@
     "semi": "off",
     "indent": "off",
     "arrow-parens": "off",
+    "semi-style":"off",
     "@typescript-eslint/no-unused-vars": "warn"
   }
 }
