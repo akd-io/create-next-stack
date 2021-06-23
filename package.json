@@ -10,6 +10,8 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
+    "@types/inquirer": "^7.3.2",
+    "inquirer": "^8.1.1",
     "tslib": "^1"
   },
   "devDependencies": {
