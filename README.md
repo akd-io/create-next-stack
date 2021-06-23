@@ -1,21 +1,16 @@
-# boil
+Boil
+====
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/boil.svg)](https://npmjs.org/package/boil)
-[![CircleCI](https://circleci.com/gh/akd-io/boil/tree/master.svg?style=shield)](https://circleci.com/gh/akd-io/boil/tree/master)
-[![Downloads/week](https://img.shields.io/npm/dw/boil.svg)](https://npmjs.org/package/boil)
-[![License](https://img.shields.io/npm/l/boil.svg)](https://github.com/akd-io/boil/blob/master/package.json)
+Boil is an opinionated interactive command to easily setup the boilerplate of your next frontend.
 
 <!-- toc -->
-
-- [Usage](#usage)
-- [Commands](#commands)
+* [Usage](#usage)
+* [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g boil
 $ boil COMMAND
@@ -27,7 +22,6 @@ USAGE
   $ boil COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
