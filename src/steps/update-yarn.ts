@@ -1,5 +1,5 @@
-import * as execa from "execa"
-import Boil = require("..")
+import execa from "execa"
+import Boil from ".."
 
 export async function updateYarn(this: Boil) {
   this.log("Updating Yarn...")
