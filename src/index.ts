@@ -1,4 +1,5 @@
 import { Command, flags } from "@oclif/command"
+import { createNextApp } from "./steps/create-next-app"
 import { getProjectName } from "./steps/get-project-name"
 import { updateYarn } from "./steps/update-yarn"
 
@@ -20,12 +21,14 @@ class Boil extends Command {
   async run() {
     this.parse(Boil)
 
-    const steps = [getProjectName, updateYarn]
+    const steps = [getProjectName, updateYarn, createNextApp]
 
     for (const step of steps) {
       // eslint-disable-next-line no-await-in-loop
       await step.call(this)
     }
+
+    this.log(`Successfully created project ${this.answers.projectName}`)
   }
 }
 
