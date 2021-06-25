@@ -1,5 +1,10 @@
 import { Command, flags } from "@oclif/command"
+import { getProjectName } from "./steps/get-project-name"
 import { updateYarn } from "./steps/update-yarn"
+
+type Answers = {
+  projectName?: string
+}
 
 class Boil extends Command {
   static description =
@@ -10,16 +15,17 @@ class Boil extends Command {
     version: flags.version({ char: "v" }),
   }
 
-  static args = []
+  answers: Answers = {}
 
   async run() {
     this.parse(Boil)
 
-    const steps = [updateYarn]
+    const steps = [getProjectName, updateYarn]
 
-    steps.forEach(async (step) => {
+    for (const step of steps) {
+      // eslint-disable-next-line no-await-in-loop
       await step.call(this)
-    })
+    }
   }
 }
 
