@@ -11,6 +11,7 @@ export async function getProjectName(this: Boil) {
   if (typeof projectName === "string") {
     this.answers.projectName = projectName
   } else {
+    // TODO: Add validation
     this.error(
       "An error occurred while reading project name. The input project name was not a string.",
       {
