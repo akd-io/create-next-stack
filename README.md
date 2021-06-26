@@ -1,31 +1,14 @@
-Boil
-====
+# Boil
 
-Boil is an opinionated interactive command to easily setup the boilerplate of your next frontend.
-
-<!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
+Boil is an opinionated interactive CLI tool to easily set up the boilerplate of a new frontend project.
 
 # Usage
 
-<!-- usage -->
-```sh-session
-$ npm install -g boil
-$ boil COMMAND
-running command...
-$ boil (-v|--version|version)
-boil/0.0.0 win32-x64 node-v14.15.1
-$ boil --help [COMMAND]
-USAGE
-  $ boil COMMAND
-...
 ```
-<!-- usagestop -->
+USAGE
+  $ boil
 
-# Commands
-
-<!-- commands -->
-
-<!-- commandsstop -->
+OPTIONS
+  -h, --help     show CLI help
+  -v, --version  show CLI version
+```

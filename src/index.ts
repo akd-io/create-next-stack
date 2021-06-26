@@ -9,7 +9,7 @@ type Answers = {
 
 class Boil extends Command {
   static description =
-    "Boil is an opinionated interactive command to easily setup the boilerplate of your next frontend."
+    "Boil is an opinionated interactive CLI tool to easily set up the boilerplate of a new frontend project."
 
   static flags = {
     help: flags.help({ char: "h" }),
