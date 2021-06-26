@@ -7,7 +7,7 @@ export async function createNextApp(this: Boil) {
   try {
     await execa(`yarn create next-app ${this.answers.projectName} --typescript`)
   } catch (error) {
-    this.error("An error occurred while updating Yarn.", {
+    this.error("An error occurred while creating Next.js app.", {
       exit: 1,
     })
   }
