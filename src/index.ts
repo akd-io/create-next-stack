@@ -1,12 +1,6 @@
 import { Command, flags } from "@oclif/command"
-import { createNextApp } from "./steps/create-next-app"
-import { getProjectName } from "./steps/get-project-name"
-import { removeOfficialCNAContent } from "./steps/remove-official-cna-content"
-import { updateYarn } from "./steps/update-yarn"
-
-type Answers = {
-  projectName?: string
-}
+import { performQuestionnaire } from "./questionnaire"
+import { performSetupSteps } from "./setup"
 
 class Boil extends Command {
   static description =
@@ -17,27 +11,14 @@ class Boil extends Command {
     version: flags.version({ char: "v" }),
   }
 
-  answers: Answers = {}
-
   async run() {
     this.parse(Boil)
 
-    const steps = [
-      getProjectName,
-      updateYarn,
-      createNextApp,
-      removeOfficialCNAContent,
-    ]
+    const answers = await performQuestionnaire.call(this)
 
-    // TODO: Add custom _app.tsx
-    // TODO: Add custom index.tsx
-    // TODO: Add custom README.tsx
+    await performSetupSteps.call(this, answers)
 
-    for (const step of steps) {
-      await step.call(this)
-    }
-
-    this.log(`Successfully created project ${this.answers.projectName}`)
+    this.log(`Successfully created project ${answers.projectName}`)
   }
 }
 

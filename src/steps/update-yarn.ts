@@ -1,7 +1,7 @@
+import Command from "@oclif/command"
 import execa from "execa"
-import Boil from ".."
 
-export async function updateYarn(this: Boil): Promise<void> {
+export async function updateYarn(this: Command): Promise<void> {
   this.log("Updating Yarn...")
 
   try {
