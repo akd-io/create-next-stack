@@ -34,7 +34,6 @@ class Boil extends Command {
     // TODO: Add custom README.tsx
 
     for (const step of steps) {
-      // eslint-disable-next-line no-await-in-loop
       await step.call(this)
     }
 
