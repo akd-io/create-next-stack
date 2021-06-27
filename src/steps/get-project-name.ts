@@ -1,7 +1,7 @@
 import inquirer from "inquirer"
 import Boil from ".."
 
-export async function getProjectName(this: Boil) {
+export async function getProjectName(this: Boil): Promise<void> {
   const { projectName } = await inquirer.prompt({
     message: "What is the name of your project?",
     name: "projectName",

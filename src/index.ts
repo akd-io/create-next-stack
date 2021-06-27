@@ -1,6 +1,7 @@
 import { Command, flags } from "@oclif/command"
 import { createNextApp } from "./steps/create-next-app"
 import { getProjectName } from "./steps/get-project-name"
+import { removeOfficialCNAContent } from "./steps/remove-official-cna-content"
 import { updateYarn } from "./steps/update-yarn"
 
 type Answers = {
@@ -21,7 +22,16 @@ class Boil extends Command {
   async run() {
     this.parse(Boil)
 
-    const steps = [getProjectName, updateYarn, createNextApp]
+    const steps = [
+      getProjectName,
+      updateYarn,
+      createNextApp,
+      removeOfficialCNAContent,
+    ]
+
+    // TODO: Add custom _app.tsx
+    // TODO: Add custom index.tsx
+    // TODO: Add custom README.tsx
 
     for (const step of steps) {
       // eslint-disable-next-line no-await-in-loop

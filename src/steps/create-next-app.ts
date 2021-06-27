@@ -1,7 +1,7 @@
 import execa from "execa"
 import Boil from ".."
 
-export async function createNextApp(this: Boil) {
+export async function createNextApp(this: Boil): Promise<void> {
   this.log("Creating Next.js app...")
 
   try {

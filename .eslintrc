@@ -9,7 +9,10 @@
     "arrow-parens": "off",
     "semi-style":"off",
     "no-warning-comments": "off",
+    "comma-dangle": "off",
+    "valid-jsdoc":"off",
     "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/member-delimiter-style": "off"
+    "@typescript-eslint/member-delimiter-style": "off",
+    "@typescript-eslint/no-use-before-define": "off"
   }
 }

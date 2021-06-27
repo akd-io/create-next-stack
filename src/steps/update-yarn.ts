@@ -1,7 +1,7 @@
 import execa from "execa"
 import Boil from ".."
 
-export async function updateYarn(this: Boil) {
+export async function updateYarn(this: Boil): Promise<void> {
   this.log("Updating Yarn...")
 
   try {
