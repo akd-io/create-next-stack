@@ -9,10 +9,15 @@ class Boil extends Command {
   static flags = {
     help: flags.help({ char: "h" }),
     version: flags.version({ char: "v" }),
+    debug: flags.boolean({
+      description: "show verbose error messages for debugging purposes",
+    }),
   }
 
   async run() {
-    this.parse(Boil)
+    const { flags } = this.parse(Boil)
+
+    if (flags.debug) process.env.DEBUG = "true"
 
     const answers = await performQuestionnaire.call(this)
 

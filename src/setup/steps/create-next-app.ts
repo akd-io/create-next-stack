@@ -1,5 +1,6 @@
 import Command from "@oclif/command"
 import execa from "execa"
+import { throwError } from "../../error-handling"
 
 export async function createNextApp(
   this: Command,
@@ -10,8 +11,10 @@ export async function createNextApp(
   try {
     await execa(`yarn create next-app ${projectName} --typescript`)
   } catch (error) {
-    this.error("An error occurred while creating Next.js app.", {
-      exit: 1,
-    })
+    throwError.call(
+      this,
+      "An error occurred while creating Next.js app.",
+      error
+    )
   }
 }

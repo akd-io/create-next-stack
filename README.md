@@ -11,4 +11,5 @@ USAGE
 OPTIONS
   -h, --help     show CLI help
   -v, --version  show CLI version
+  --debug        show verbose error messages for debugging purposes
 ```

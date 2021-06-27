@@ -12,6 +12,10 @@
     "comma-dangle": "off",
     "valid-jsdoc":"off",
     "no-await-in-loop": "off",
+    "no-eq-null": "off",
+    "eqeqeq":"off",
+    "no-negated-condition":"off",
+    "operator-linebreak":"off",
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/member-delimiter-style": "off",
     "@typescript-eslint/no-use-before-define": "off"

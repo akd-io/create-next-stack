@@ -1,5 +1,6 @@
 import Command from "@oclif/command"
 import execa from "execa"
+import { throwError } from "../../error-handling"
 
 export async function updateYarn(this: Command): Promise<void> {
   this.log("Updating Yarn...")
@@ -7,8 +8,6 @@ export async function updateYarn(this: Command): Promise<void> {
   try {
     await execa("npm i -g yarn")
   } catch (error) {
-    this.error("An error occurred while updating Yarn.", {
-      exit: 1,
-    })
+    throwError.call(this, "An error occurred while updating Yarn.", error)
   }
 }
