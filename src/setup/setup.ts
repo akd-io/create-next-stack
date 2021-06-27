@@ -1,5 +1,5 @@
 import Command from "@oclif/command"
-import { QuestionnaireAnswers } from "./questionnaire"
+import { QuestionnaireAnswers } from "../questionnaire/questionnaire"
 import { createNextApp } from "./steps/create-next-app"
 import { removeOfficialCNAContent } from "./steps/remove-official-cna-content"
 import { updateYarn } from "./steps/update-yarn"

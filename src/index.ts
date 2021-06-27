@@ -1,6 +1,6 @@
 import { Command, flags } from "@oclif/command"
-import { performQuestionnaire } from "./questionnaire"
-import { performSetupSteps } from "./setup"
+import { performQuestionnaire } from "./questionnaire/questionnaire"
+import { performSetupSteps } from "./setup/setup"
 
 class Boil extends Command {
   static description =
