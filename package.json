@@ -13,12 +13,14 @@
     "@oclif/plugin-help": "^3.2.2",
     "execa": "^5.1.1",
     "inquirer": "^8.1.1",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.26.0",
-    "@types/node": "^15.12.4",
     "@types/inquirer": "^7.3.2",
+    "@types/node": "^15.12.4",
+    "@types/validate-npm-package-name": "^3.0.2",
     "eslint": "^5.16.0",
     "eslint-config-oclif": "^3.1.0",
     "eslint-config-oclif-typescript": "^0.2.0",
