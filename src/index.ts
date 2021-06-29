@@ -23,7 +23,7 @@ class Boil extends Command {
 
     await performSetupSteps.call(this, answers)
 
-    this.log(`Successfully created project ${answers.projectName}`)
+    this.log(`Successfully created project ${answers.projectName}.`)
   }
 }
 
