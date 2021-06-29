@@ -1,5 +1,6 @@
 import Command from "@oclif/command"
 import { QuestionnaireAnswers } from "../questionnaire/questionnaire"
+import { addBaseBabelConfig } from "./steps/add-base-babel-config"
 import { createNextApp } from "./steps/create-next-app"
 import { removeOfficialCNAContent } from "./steps/remove-official-cna-content"
 import { setupEmotion } from "./steps/setup-emotion"
@@ -19,6 +20,8 @@ export const performSetupSteps = async function (
   process.chdir(projectName)
 
   await removeOfficialCNAContent.call(this)
+
+  await addBaseBabelConfig.call(this)
 
   if (styling === "Emotion") {
     await setupEmotion.call(this)
