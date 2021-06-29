@@ -10,13 +10,19 @@ export const performSetupSteps = async function (
   this: Command,
   answers: QuestionnaireAnswers
 ): Promise<void> {
-  await updateYarn.call(this)
-  await createNextApp.call(this, answers.projectName)
-  await removeOfficialCNAContent.call(this, answers.projectName)
+  const { projectName, styling } = answers
 
-  if (answers.styling === "Emotion") {
+  await updateYarn.call(this)
+
+  await createNextApp.call(this, projectName)
+
+  process.chdir(projectName)
+
+  await removeOfficialCNAContent.call(this)
+
+  if (styling === "Emotion") {
     await setupEmotion.call(this)
-  } else if (answers.styling === "styled-components") {
+  } else if (styling === "styled-components") {
     await setupStyledComponents.call(this)
   }
 
