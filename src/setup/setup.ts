@@ -15,17 +15,13 @@ export const performSetupSteps = async function (
   const { projectName } = answers
 
   await updateYarn.call(this)
-
   await createNextApp.call(this, projectName)
 
   process.chdir(projectName)
 
   await removeOfficialCNAContent.call(this)
-
   await addBaseBabelConfig.call(this)
-
   await setupEmotion.call(this)
-
   await setupPrettier.call(this)
 
   // TODO: Add custom _app.tsx
