@@ -1,6 +1,6 @@
 import Command from "@oclif/command"
-import fs from "fs/promises"
 import { throwError } from "../../error-handling"
+import { writeJsonFile } from "../../helpers/write-json-file"
 
 export async function addBaseBabelConfig(this: Command): Promise<void> {
   this.log("Adding custom Babel configuration...")
@@ -12,7 +12,7 @@ export async function addBaseBabelConfig(this: Command): Promise<void> {
   }
 
   try {
-    await fs.writeFile(".babelrc", JSON.stringify(baseBabelConfig))
+    await writeJsonFile(".babelrc", baseBabelConfig)
   } catch (error) {
     throwError.call(
       this,

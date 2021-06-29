@@ -3,6 +3,7 @@ import execa from "execa"
 import fs from "fs/promises"
 import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
+import { writeJsonFile } from "../../helpers/write-json-file"
 
 export async function setupEmotion(this: Command): Promise<void> {
   this.log("Setting up Emotion...")
@@ -48,21 +49,22 @@ export async function setupEmotion(this: Command): Promise<void> {
       babelConfig.plugins = ["@emotion"]
     }
 
-    const newBabelrcString = JSON.stringify(babelConfig)
-    await fs.writeFile(".babelrc", newBabelrcString)
+    await writeJsonFile(".babelrc", babelConfig)
 
     // Add TypeScript support for the css-prop as per the docs: https://emotion.sh/docs/typescript#css-prop
     const tsConfigString = await fs.readFile("tsconfig.json", "utf8")
     const tsConfig = JSON.parse(tsConfigString)
+
     if (!isUnknownObject(tsConfig)) {
       throw new TypeError("Expected tsConfig to be an object.")
     }
     if (!isUnknownObject(tsConfig.compilerOptions)) {
       throw new TypeError("Expected tsConfig.compilerOptions to be an object.")
     }
+
     tsConfig.compilerOptions.jsxImportSource = "@emotion/react"
-    const newTSConfigString = JSON.stringify(tsConfig)
-    await fs.writeFile("tsconfig.json", newTSConfigString)
+
+    await writeJsonFile("tsconfig.json", tsConfig)
   } catch (error) {
     throwError.call(this, "An error occurred while setting up Emotion.", error)
   }
