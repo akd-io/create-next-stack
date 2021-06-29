@@ -6,14 +6,13 @@ import { formatProject } from "./steps/format-project"
 import { removeOfficialCNAContent } from "./steps/remove-official-cna-content"
 import { setupEmotion } from "./steps/setup-emotion"
 import { setupPrettier } from "./steps/setup-prettier"
-import { setupStyledComponents } from "./steps/setup-styled-components"
 import { updateYarn } from "./steps/update-yarn"
 
 export const performSetupSteps = async function (
   this: Command,
   answers: QuestionnaireAnswers
 ): Promise<void> {
-  const { projectName, styling } = answers
+  const { projectName } = answers
 
   await updateYarn.call(this)
 
@@ -25,11 +24,7 @@ export const performSetupSteps = async function (
 
   await addBaseBabelConfig.call(this)
 
-  if (styling === "Emotion") {
-    await setupEmotion.call(this)
-  } else if (styling === "styled-components") {
-    await setupStyledComponents.call(this)
-  }
+  await setupEmotion.call(this)
 
   await setupPrettier.call(this)
 
