@@ -9,7 +9,7 @@ import { setupLintStaged } from "./steps/setup-lint-staged"
 import { setupPrettier } from "./steps/setup-prettier"
 import { updateYarn } from "./steps/update-yarn"
 
-export const performSetupSteps = async function (
+export async function performSetupSteps(
   this: Command,
   answers: QuestionnaireAnswers
 ): Promise<void> {

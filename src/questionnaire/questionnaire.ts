@@ -5,7 +5,7 @@ export type QuestionnaireAnswers = {
   projectName: string
 }
 
-export const performQuestionnaire = async function (
+export async function performQuestionnaire(
   this: Command
 ): Promise<QuestionnaireAnswers> {
   const projectName = await promptProjectName()

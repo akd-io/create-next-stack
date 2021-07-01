@@ -6,7 +6,7 @@ type Options = {
   exit?: number
 } & PrettyPrintableError
 
-export const throwError = function (
+export function throwError(
   this: Command,
   friendlyErrorMessage: string,
   error?: unknown,
