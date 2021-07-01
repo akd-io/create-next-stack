@@ -5,6 +5,7 @@ import { createNextApp } from "./steps/create-next-app"
 import { formatProject } from "./steps/format-project"
 import { removeOfficialCNAContent } from "./steps/remove-official-cna-content"
 import { setupEmotion } from "./steps/setup-emotion"
+import { setupLintStaged } from "./steps/setup-lint-staged"
 import { setupPrettier } from "./steps/setup-prettier"
 import { updateYarn } from "./steps/update-yarn"
 
@@ -23,6 +24,7 @@ export const performSetupSteps = async function (
   await addBaseBabelConfig.call(this)
   await setupEmotion.call(this)
   await setupPrettier.call(this)
+  await setupLintStaged.call(this)
 
   // TODO: Add custom _app.tsx
   // TODO: Add custom index.tsx
