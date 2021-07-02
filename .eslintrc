@@ -17,6 +17,9 @@
     "no-negated-condition": "off",
     "operator-linebreak": "off",
     "unicorn/error-message": "off",
+    "no-labels": "off",
+    "no-constant-condition": "off",
+    "max-depth": "off",
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/member-delimiter-style": "off",
     "@typescript-eslint/no-use-before-define": "off"
