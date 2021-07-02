@@ -4,6 +4,7 @@ import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { remove } from "../../helpers/remove"
 import { writeJsonFile } from "../../helpers/write-json-file"
+import { lintStagedValue } from "../../questionnaire/questions/technologies"
 import { Step } from "../step"
 import { InitializeGitStep } from "./initialize-git"
 import { SetupPrettierStep } from "./setup-prettier"
@@ -11,8 +12,8 @@ import { SetupPrettierStep } from "./setup-prettier"
 export const SetupLintStagedStep: Step = {
   dependencies: [SetupPrettierStep, InitializeGitStep],
 
-  shouldRun: function (this) {
-    return true
+  shouldRun: function (this, answers) {
+    return answers.technologies.includes(lintStagedValue)
   },
 
   run: async function (this) {

@@ -22,5 +22,7 @@ export const CreateNextAppStep: Step = {
         error
       )
     }
+
+    process.chdir(answers.projectName)
   },
 }

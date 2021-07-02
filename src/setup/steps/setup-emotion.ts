@@ -3,14 +3,15 @@ import fs from "fs/promises"
 import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
+import { emotionValue } from "../../questionnaire/questions/technologies"
 import { Step } from "../step"
 import { AddBaseBabelConfigStep } from "./add-base-babel-config"
 
 export const SetupEmotionStep: Step = {
   dependencies: [AddBaseBabelConfigStep],
 
-  shouldRun: function (this) {
-    return true
+  shouldRun: function (this, answers) {
+    return answers.technologies.includes(emotionValue)
   },
 
   run: async function (this) {

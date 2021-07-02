@@ -2,7 +2,6 @@ import Command from "@oclif/command"
 import { QuestionnaireAnswers } from "../questionnaire/questionnaire"
 import { Step } from "./step"
 import { AddBaseBabelConfigStep } from "./steps/add-base-babel-config"
-import { ChangeDirectoryStep } from "./steps/change-directory"
 import { CreateNextAppStep } from "./steps/create-next-app"
 import { FormatProjectStep } from "./steps/format-project"
 import { InitializeGitStep } from "./steps/initialize-git"
@@ -19,8 +18,6 @@ export async function performSetupSteps(
   const steps: Step[] = [
     UpdateYarnStep,
     CreateNextAppStep,
-
-    ChangeDirectoryStep,
 
     InitializeGitStep,
 
