@@ -1,13 +1,44 @@
-import Command from "@oclif/command"
 import execa from "execa"
 import { throwError } from "../../error-handling"
+import { Step } from "../step"
+import { AddBaseBabelConfigStep } from "./add-base-babel-config"
+import { ChangeDirectoryStep } from "./change-directory"
+import { CreateNextAppStep } from "./create-next-app"
+import { InitializeGitStep } from "./initialize-git"
+import { RemoveOfficialCNAContentStep } from "./remove-official-cna-content"
+import { SetupEmotionStep } from "./setup-emotion"
+import { SetupLintStagedStep } from "./setup-lint-staged"
+import { SetupPrettierStep } from "./setup-prettier"
+import { UpdateYarnStep } from "./update-yarn"
 
-export async function formatProject(this: Command): Promise<void> {
-  this.log("Formatting project...")
+export const FormatProjectStep: Step = {
+  dependencies: [
+    SetupLintStagedStep,
+    SetupEmotionStep,
+    AddBaseBabelConfigStep,
+    SetupPrettierStep,
+    RemoveOfficialCNAContentStep,
+    InitializeGitStep,
+    ChangeDirectoryStep,
+    CreateNextAppStep,
+    UpdateYarnStep,
+  ],
 
-  try {
-    await execa("yarn format")
-  } catch (error) {
-    throwError.call(this, "An error occurred while formatting project.", error)
-  }
+  shouldRun: function (this) {
+    return true
+  },
+
+  run: async function (this) {
+    this.log("Formatting project...")
+
+    try {
+      await execa("yarn format")
+    } catch (error) {
+      throwError.call(
+        this,
+        "An error occurred while formatting project.",
+        error
+      )
+    }
+  },
 }

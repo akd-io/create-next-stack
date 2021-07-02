@@ -1,20 +1,26 @@
-import Command from "@oclif/command"
 import execa from "execa"
 import { throwError } from "../../error-handling"
+import { Step } from "../step"
+import { UpdateYarnStep } from "./update-yarn"
 
-export async function createNextApp(
-  this: Command,
-  projectName: string
-): Promise<void> {
-  this.log("Creating Next.js app...")
+export const CreateNextAppStep: Step = {
+  dependencies: [UpdateYarnStep],
 
-  try {
-    await execa(`yarn create next-app ${projectName} --typescript`)
-  } catch (error) {
-    throwError.call(
-      this,
-      "An error occurred while creating Next.js app.",
-      error
-    )
-  }
+  shouldRun: function (this) {
+    return true
+  },
+
+  run: async function (this, answers) {
+    this.log("Creating Next.js app...")
+
+    try {
+      await execa(`yarn create next-app ${answers.projectName} --typescript`)
+    } catch (error) {
+      throwError.call(
+        this,
+        "An error occurred while creating Next.js app.",
+        error
+      )
+    }
+  },
 }
