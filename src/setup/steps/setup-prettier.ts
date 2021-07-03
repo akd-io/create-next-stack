@@ -5,10 +5,10 @@ import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { prettierValue } from "../../questionnaire/questions/technologies"
 import { Step } from "../step"
-import { RemoveOfficialCNAContentStep } from "./remove-official-cna-content"
+import { removeOfficialCNAContentStep } from "./remove-official-cna-content"
 
-export const SetupPrettierStep: Step = {
-  dependencies: [RemoveOfficialCNAContentStep],
+export const setupPrettierStep: Step = {
+  dependencies: [removeOfficialCNAContentStep],
 
   shouldRun: function (this, answers) {
     return answers.technologies.includes(prettierValue)

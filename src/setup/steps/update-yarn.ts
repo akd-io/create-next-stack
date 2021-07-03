@@ -2,7 +2,7 @@ import execa from "execa"
 import { throwError } from "../../error-handling"
 import { Step } from "../step"
 
-export const UpdateYarnStep: Step = {
+export const updateYarnStep: Step = {
   dependencies: [],
 
   shouldRun: function (this) {

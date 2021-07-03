@@ -1,39 +1,39 @@
 import Command from "@oclif/command"
 import { QuestionnaireAnswers } from "../questionnaire/questionnaire"
 import { Step } from "./step"
-import { AddBaseBabelConfigStep } from "./steps/add-base-babel-config"
-import { CreateNextAppStep } from "./steps/create-next-app"
-import { FormatProjectStep } from "./steps/format-project"
-import { InitializeGitStep } from "./steps/initialize-git"
-import { RemoveOfficialCNAContentStep } from "./steps/remove-official-cna-content"
-import { SetupEmotionStep } from "./steps/setup-emotion"
-import { SetupLintStagedStep } from "./steps/setup-lint-staged"
-import { SetupPrettierStep } from "./steps/setup-prettier"
-import { UpdateYarnStep } from "./steps/update-yarn"
+import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
+import { createNextAppStep } from "./steps/create-next-app"
+import { formatProjectStep } from "./steps/format-project"
+import { initializeGitStep } from "./steps/initialize-git"
+import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
+import { setupEmotionStep } from "./steps/setup-emotion"
+import { setupLintStagedStep } from "./steps/setup-lint-staged"
+import { setupPrettierStep } from "./steps/setup-prettier"
+import { updateYarnStep } from "./steps/update-yarn"
 
 export async function performSetupSteps(
   this: Command,
   answers: QuestionnaireAnswers
 ): Promise<void> {
   const steps: Step[] = [
-    UpdateYarnStep,
-    CreateNextAppStep,
+    updateYarnStep,
+    createNextAppStep,
 
-    InitializeGitStep,
+    initializeGitStep,
 
-    RemoveOfficialCNAContentStep,
+    removeOfficialCNAContentStep,
 
-    AddBaseBabelConfigStep,
-    SetupEmotionStep,
+    addBaseBabelConfigStep,
+    setupEmotionStep,
 
-    SetupPrettierStep,
-    SetupLintStagedStep,
+    setupPrettierStep,
+    setupLintStagedStep,
 
     // TODO: Add custom _app.tsx
     // TODO: Add custom index.tsx
     // TODO: Add custom README.md
 
-    FormatProjectStep,
+    formatProjectStep,
   ]
 
   const stepsToRun = generateStepsToRun.call(this, steps, answers)
