@@ -6,7 +6,7 @@ import { writeJsonFile } from "../../helpers/write-json-file"
 import { emotionValue } from "../../questionnaire/questions/technologies"
 import { Step } from "../step"
 
-export const setupEmotionStep: Step = {
+export const setUpEmotionStep: Step = {
   shouldRun: function (this, answers) {
     return answers.technologies.includes(emotionValue)
   },

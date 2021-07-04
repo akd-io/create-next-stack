@@ -6,9 +6,9 @@ import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
 import { initializeGitStep } from "./steps/initialize-git"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
-import { setupEmotionStep } from "./steps/setup-emotion"
-import { setupLintStagedStep } from "./steps/setup-lint-staged"
-import { setupPrettierStep } from "./steps/setup-prettier"
+import { setUpEmotionStep } from "./steps/set-up-emotion"
+import { setUpLintStagedStep } from "./steps/set-up-lint-staged"
+import { setUpPrettierStep } from "./steps/set-up-prettier"
 import { updateYarnStep } from "./steps/update-yarn"
 
 export async function performSetupSteps(
@@ -24,10 +24,10 @@ export async function performSetupSteps(
     removeOfficialCNAContentStep,
 
     addBaseBabelConfigStep,
-    setupEmotionStep,
+    setUpEmotionStep,
 
-    setupPrettierStep,
-    setupLintStagedStep,
+    setUpPrettierStep,
+    setUpLintStagedStep,
 
     // TODO: Add custom _app.tsx
     // TODO: Add custom index.tsx

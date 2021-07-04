@@ -7,7 +7,7 @@ import { writeJsonFile } from "../../helpers/write-json-file"
 import { lintStagedValue } from "../../questionnaire/questions/technologies"
 import { Step } from "../step"
 
-export const setupLintStagedStep: Step = {
+export const setUpLintStagedStep: Step = {
   shouldRun: function (this, answers) {
     return answers.technologies.includes(lintStagedValue)
   },

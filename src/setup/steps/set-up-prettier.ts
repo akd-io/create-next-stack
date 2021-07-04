@@ -6,7 +6,7 @@ import { writeJsonFile } from "../../helpers/write-json-file"
 import { prettierValue } from "../../questionnaire/questions/technologies"
 import { Step } from "../step"
 
-export const setupPrettierStep: Step = {
+export const setUpPrettierStep: Step = {
   shouldRun: function (this, answers) {
     return answers.technologies.includes(prettierValue)
   },
