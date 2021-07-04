@@ -5,11 +5,8 @@ import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { emotionValue } from "../../questionnaire/questions/technologies"
 import { Step } from "../step"
-import { addBaseBabelConfigStep } from "./add-base-babel-config"
 
 export const setupEmotionStep: Step = {
-  dependencies: [addBaseBabelConfigStep],
-
   shouldRun: function (this, answers) {
     return answers.technologies.includes(emotionValue)
   },

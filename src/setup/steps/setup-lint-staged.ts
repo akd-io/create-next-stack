@@ -6,12 +6,8 @@ import { remove } from "../../helpers/remove"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { lintStagedValue } from "../../questionnaire/questions/technologies"
 import { Step } from "../step"
-import { initializeGitStep } from "./initialize-git"
-import { setupPrettierStep } from "./setup-prettier"
 
 export const setupLintStagedStep: Step = {
-  dependencies: [setupPrettierStep, initializeGitStep],
-
   shouldRun: function (this, answers) {
     return answers.technologies.includes(lintStagedValue)
   },

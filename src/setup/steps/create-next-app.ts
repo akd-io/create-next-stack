@@ -1,11 +1,8 @@
 import execa from "execa"
 import { throwError } from "../../error-handling"
 import { Step } from "../step"
-import { updateYarnStep } from "./update-yarn"
 
 export const createNextAppStep: Step = {
-  dependencies: [updateYarnStep],
-
   shouldRun: function (this) {
     return true
   },

@@ -3,8 +3,6 @@ import { throwError } from "../../error-handling"
 import { Step } from "../step"
 
 export const updateYarnStep: Step = {
-  dependencies: [],
-
   shouldRun: function (this) {
     return true
   },

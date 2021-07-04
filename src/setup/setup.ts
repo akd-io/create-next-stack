@@ -36,36 +36,9 @@ export async function performSetupSteps(
     formatProjectStep,
   ]
 
-  const stepsToRun = generateStepsToRun.call(this, steps, answers)
-
-  for (const step of stepsToRun) {
-    await step.run.call(this, answers)
-  }
-}
-
-function generateStepsToRun(
-  this: Command,
-  steps: Step[],
-  answers: QuestionnaireAnswers
-) {
-  const stepsToRun: Step[] = []
-
-  a: while (true) {
-    for (const step of steps) {
-      let requirementsMet = true
-      for (const dependency of step.dependencies) {
-        if (!stepsToRun.includes(dependency)) {
-          requirementsMet = false
-        }
-      }
-      if (requirementsMet && step.shouldRun.call(this, answers)) {
-        stepsToRun.push(step)
-        steps.splice(steps.indexOf(step), 1)
-        continue a
-      }
+  for (const step of steps) {
+    if (step.shouldRun.call(this, answers)) {
+      await step.run.call(this, answers)
     }
-    break
   }
-
-  return stepsToRun
 }

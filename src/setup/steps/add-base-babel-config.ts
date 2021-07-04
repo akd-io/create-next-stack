@@ -1,11 +1,8 @@
 import { throwError } from "../../error-handling"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { Step } from "../step"
-import { createNextAppStep } from "./create-next-app"
 
 export const addBaseBabelConfigStep: Step = {
-  dependencies: [createNextAppStep],
-
   shouldRun: function (this) {
     return true
   },

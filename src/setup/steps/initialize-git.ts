@@ -1,11 +1,8 @@
 import execa from "execa"
 import { throwError } from "../../error-handling"
 import { Step } from "../step"
-import { createNextAppStep } from "./create-next-app"
 
 export const initializeGitStep: Step = {
-  dependencies: [createNextAppStep],
-
   shouldRun: function (this) {
     return true
   },
