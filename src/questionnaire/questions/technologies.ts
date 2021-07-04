@@ -29,7 +29,7 @@ export async function promptTechnologies() {
         value: emotionValue,
       },
       {
-        name: "Pre-commit hook (Lint-staged)",
+        name: "Pre-commit hook (Husky & lint-staged)",
         value: lintStagedValue,
       },
     ],
