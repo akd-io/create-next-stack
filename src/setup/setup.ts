@@ -2,6 +2,7 @@ import Command from "@oclif/command"
 import { QuestionnaireAnswers } from "../questionnaire/questionnaire"
 import { Step } from "./step"
 import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
+import { addReadmeStep } from "./steps/add-readme"
 import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
 import { initializeGitStep } from "./steps/initialize-git"
@@ -31,7 +32,8 @@ export async function performSetupSteps(
 
     // TODO: Add custom _app.tsx
     // TODO: Add custom index.tsx
-    // TODO: Add custom README.md
+
+    addReadmeStep,
 
     formatProjectStep,
   ]

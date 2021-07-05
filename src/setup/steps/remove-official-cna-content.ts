@@ -15,10 +15,10 @@ export const removeOfficialCNAContentStep: Step = {
 
     try {
       await Promise.all([
-        remove(`pages`), // TODO: Remove only files in pages
-        remove(`styles`),
-        remove(`public/vercel.svg`),
-        // TODO: Remove README.md when/if another one is generated.
+        remove("pages/*"), // TODO: Only remove files in pages
+        remove("styles"),
+        remove("public/vercel.svg"),
+        remove("README.md"),
       ])
     } catch (error) {
       throwError.call(
