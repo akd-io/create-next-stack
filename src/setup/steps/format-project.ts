@@ -3,9 +3,7 @@ import { throwError } from "../../error-handling"
 import { Step } from "../step"
 
 export const formatProjectStep: Step = {
-  shouldRun: function (this) {
-    return true
-  },
+  shouldRun: () => true,
 
   run: async function (this) {
     this.log("Formatting project...")

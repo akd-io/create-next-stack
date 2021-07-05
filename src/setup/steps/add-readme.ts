@@ -8,9 +8,7 @@ import { setUpLintStagedStep } from "./set-up-lint-staged"
 import { setUpPrettierStep } from "./set-up-prettier"
 
 export const addReadmeStep: Step = {
-  shouldRun: function (this) {
-    return true
-  },
+  shouldRun: () => true,
 
   run: async function (this, answers) {
     this.log("Adding Readme...")
@@ -81,12 +79,12 @@ function generateScriptTableRows(this: Command, answers: QuestionnaireAnswers) {
     {
       name: /* md */ `\`format\``,
       description: /* md */ `Runs Prettier to format the source code.`,
-      include: setUpPrettierStep.shouldRun.call(this, answers),
+      include: setUpPrettierStep.shouldRun(answers),
     },
     {
       name: /* md */ `\`prepare\``,
       description: /* md */ `The [\`prepare\` life cycle script](https://docs.npmjs.com/cli/v7/using-npm/scripts#life-cycle-scripts) is used to set up Git pre-commit hooks when people run \`yarn install\`. This script should not be run manually.`,
-      include: setUpPrettierStep.shouldRun.call(this, answers),
+      include: setUpPrettierStep.shouldRun(answers),
     },
   ]
 
@@ -127,7 +125,7 @@ function generateTechnologyTableRows(
     {
       name: /* md */ `[Emotion](https://emotion.sh/docs/introduction)`,
       links: /* md */ `[Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)`,
-      include: setUpEmotionStep.shouldRun.call(this, answers),
+      include: setUpEmotionStep.shouldRun(answers),
     },
     {
       name: /* md */ `[ESLint](https://eslint.org/)`,
@@ -137,17 +135,17 @@ function generateTechnologyTableRows(
     {
       name: /* md */ `[Prettier](https://prettier.io/)`,
       links: /* md */ `[Docs](https://prettier.io/docs/en/index.html) - [Options](https://prettier.io/docs/en/options.html) - [GitHub repo](https://github.com/prettier/prettier)`,
-      include: setUpPrettierStep.shouldRun.call(this, answers),
+      include: setUpPrettierStep.shouldRun(answers),
     },
     {
       name: /* md */ `[Husky](https://typicode.github.io/husky/)`,
       links: /* md */ `[Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)`,
-      include: setUpLintStagedStep.shouldRun.call(this, answers),
+      include: setUpLintStagedStep.shouldRun(answers),
     },
     {
       name: /* md */ `[lint-staged](https://github.com/okonet/lint-staged)`,
       links: /* md */ `[GitHub repo](https://github.com/okonet/lint-staged)`,
-      include: setUpLintStagedStep.shouldRun.call(this, answers),
+      include: setUpLintStagedStep.shouldRun(answers),
     },
     {
       name: /* md */ `[Yarn](https://yarnpkg.com/)`,

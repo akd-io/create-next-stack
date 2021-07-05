@@ -7,9 +7,7 @@ import { prettierValue } from "../../questionnaire/questions/technologies"
 import { Step } from "../step"
 
 export const setUpPrettierStep: Step = {
-  shouldRun: function (this, answers) {
-    return answers.technologies.includes(prettierValue)
-  },
+  shouldRun: (answers) => answers.technologies.includes(prettierValue),
 
   run: async function (this) {
     this.log("Setting up Prettier...")

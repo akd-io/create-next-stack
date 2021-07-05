@@ -3,9 +3,7 @@ import { throwError } from "../../error-handling"
 import { Step } from "../step"
 
 export const createNextAppStep: Step = {
-  shouldRun: function (this) {
-    return true
-  },
+  shouldRun: () => true,
 
   run: async function (this, answers) {
     this.log("Creating Next.js app...")

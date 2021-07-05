@@ -3,9 +3,7 @@ import { throwError } from "../../error-handling"
 import { Step } from "../step"
 
 export const initializeGitStep: Step = {
-  shouldRun: function (this) {
-    return true
-  },
+  shouldRun: () => true,
 
   run: async function (this) {
     this.log("Initializing Git...")

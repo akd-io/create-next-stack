@@ -3,9 +3,7 @@ import { writeJsonFile } from "../../helpers/write-json-file"
 import { Step } from "../step"
 
 export const addBaseBabelConfigStep: Step = {
-  shouldRun: function (this) {
-    return true
-  },
+  shouldRun: () => true,
 
   run: async function (this) {
     this.log("Adding custom Babel configuration...")

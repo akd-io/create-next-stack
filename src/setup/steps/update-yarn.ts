@@ -3,9 +3,7 @@ import { throwError } from "../../error-handling"
 import { Step } from "../step"
 
 export const updateYarnStep: Step = {
-  shouldRun: function (this) {
-    return true
-  },
+  shouldRun: () => true,
 
   run: async function (this) {
     this.log("Updating Yarn...")

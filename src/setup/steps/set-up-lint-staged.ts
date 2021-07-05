@@ -11,7 +11,7 @@ import {
 import { Step } from "../step"
 
 export const setUpLintStagedStep: Step = {
-  shouldRun: function (this, answers) {
+  shouldRun: (answers) => {
     return (
       answers.technologies.includes(prettierValue) &&
       answers.technologies.includes(preCommitHookValue)

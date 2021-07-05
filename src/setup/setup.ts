@@ -39,7 +39,7 @@ export async function performSetupSteps(
   ]
 
   for (const step of steps) {
-    if (step.shouldRun.call(this, answers)) {
+    if (step.shouldRun(answers)) {
       await step.run.call(this, answers)
     }
   }
