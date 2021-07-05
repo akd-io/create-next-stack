@@ -2,12 +2,12 @@ import inquirer from "inquirer"
 
 export const prettierValue = "prettier"
 export const emotionValue = "emotion"
-export const lintStagedValue = "lintStaged"
+export const preCommitHookValue = "preCommitHook"
 
 export type TechValue =
   | typeof prettierValue
   | typeof emotionValue
-  | typeof lintStagedValue
+  | typeof preCommitHookValue
 
 export async function promptTechnologies() {
   const answerName = "technologies"
@@ -30,7 +30,7 @@ export async function promptTechnologies() {
       },
       {
         name: "Pre-commit hook (Husky & lint-staged)",
-        value: lintStagedValue,
+        value: preCommitHookValue,
       },
     ],
   })
