@@ -1,4 +1,5 @@
 import execa from "execa"
+import fs from "fs/promises"
 import { throwError } from "../../error-handling"
 import { Step } from "../step"
 
@@ -9,7 +10,10 @@ export const createNextAppStep: Step = {
     this.log("Creating Next.js app...")
 
     try {
-      await execa(`yarn create next-app ${answers.projectName} --typescript`)
+      // Make sure directory exists to avoid error from create-next-app
+      await fs.mkdir(answers.projectPath, { recursive: true })
+
+      await execa(`yarn create next-app ${answers.projectPath} --typescript`)
     } catch (error) {
       throwError.call(
         this,
@@ -18,6 +22,6 @@ export const createNextAppStep: Step = {
       )
     }
 
-    process.chdir(answers.projectName)
+    process.chdir(answers.projectPath)
   },
 }
