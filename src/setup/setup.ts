@@ -6,7 +6,7 @@ import { addReadmeStep } from "./steps/add-readme"
 import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
 import { initializeGitStep } from "./steps/initialize-git"
-import { installReactHookForm } from "./steps/install-react-hook-form"
+import { installReactHookFormStep } from "./steps/install-react-hook-form"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
 import { setUpEmotionStep } from "./steps/set-up-emotion"
 import { setUpLintStagedStep } from "./steps/set-up-lint-staged"
@@ -31,7 +31,7 @@ export async function performSetupSteps(
     setUpPrettierStep,
     setUpLintStagedStep,
 
-    installReactHookForm,
+    installReactHookFormStep,
 
     // TODO: Add custom _app.tsx
     // TODO: Add custom index.tsx

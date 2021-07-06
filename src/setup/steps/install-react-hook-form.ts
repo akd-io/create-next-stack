@@ -3,7 +3,7 @@ import { throwError } from "../../error-handling"
 import { reactHookFormValue } from "../../questionnaire/questions/technologies"
 import { Step } from "../step"
 
-export const installReactHookForm: Step = {
+export const installReactHookFormStep: Step = {
   shouldRun: (answers) => answers.technologies.includes(reactHookFormValue),
 
   run: async function (this) {
