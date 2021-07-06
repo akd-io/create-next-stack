@@ -43,6 +43,15 @@ export async function promptTechnologies() {
         checked: true,
       },
     ],
+    validate: (technologies) => {
+      if (
+        technologies.includes(preCommitHookValue) &&
+        !technologies.includes(prettierValue)
+      ) {
+        return "Pre-commit hook (Husky & lint-staged) requires Formatting (Prettier)"
+      }
+      return true
+    },
   })
 
   return technologies
