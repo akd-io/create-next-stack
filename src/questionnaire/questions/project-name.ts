@@ -17,6 +17,7 @@ export async function promptProjectName(this: Command): Promise<{
     name: answerName,
     type: "input",
     message: "What is your project named?",
+    default: "my-app",
     validate: (projectPath) => {
       try {
         if (typeof projectPath !== "string") {
