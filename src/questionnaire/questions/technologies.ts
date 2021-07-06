@@ -25,18 +25,22 @@ export async function promptTechnologies() {
       {
         name: "Formatting (Prettier)",
         value: prettierValue,
+        checked: true,
       },
       {
         name: "CSS-in-JS (Emotion)",
         value: emotionValue,
+        checked: true,
       },
       {
         name: "Pre-commit hook (Husky & lint-staged)",
         value: preCommitHookValue,
+        checked: true,
       },
       {
         name: "Form library (React Hook Form)",
         value: reactHookFormValue,
+        checked: true,
       },
     ],
   })
