@@ -1,4 +1,4 @@
-import inquirer from "inquirer"
+import inquirer, { Separator } from "inquirer"
 
 export const prettierValue = "prettier"
 export const emotionValue = "emotion"
@@ -21,25 +21,30 @@ export async function promptTechnologies() {
     name: answerName,
     type: "checkbox",
     message: "What technologies are you looking to use?",
+    pageSize: 10,
     choices: [
+      new Separator("Formatting:"),
       {
-        name: "Formatting (Prettier)",
+        name: "Prettier",
         value: prettierValue,
         checked: true,
       },
+      new Separator("Styling:"),
       {
-        name: "CSS-in-JS (Emotion)",
+        name: "Emotion",
         value: emotionValue,
         checked: true,
       },
+      new Separator("Form state management:"),
       {
-        name: "Pre-commit hook (Husky & lint-staged)",
-        value: preCommitHookValue,
+        name: "React Hook Form",
+        value: reactHookFormValue,
         checked: true,
       },
+      new Separator("Miscellaneous:"),
       {
-        name: "Form library (React Hook Form)",
-        value: reactHookFormValue,
+        name: "Formatting pre-commit hook (Husky & lint-staged)",
+        value: preCommitHookValue,
         checked: true,
       },
     ],
@@ -48,7 +53,7 @@ export async function promptTechnologies() {
         technologies.includes(preCommitHookValue) &&
         !technologies.includes(prettierValue)
       ) {
-        return "Pre-commit hook (Husky & lint-staged) requires Formatting (Prettier)"
+        return "Formatting pre-commit hook (Husky & lint-staged) requires Prettier"
       }
       return true
     },
