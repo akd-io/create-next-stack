@@ -3,6 +3,7 @@ import fs from "fs/promises"
 import { throwError } from "../../error-handling"
 import { QuestionnaireAnswers } from "../../questionnaire/questionnaire"
 import { Step } from "../step"
+import { installReactHookForm } from "./install-react-hook-form"
 import { setUpEmotionStep } from "./set-up-emotion"
 import { setUpLintStagedStep } from "./set-up-lint-staged"
 import { setUpPrettierStep } from "./set-up-prettier"
@@ -121,6 +122,11 @@ function generateTechnologyTableRows(
       name: /* md */ `[Emotion](https://emotion.sh/docs/introduction)`,
       links: /* md */ `[Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)`,
       filter: setUpEmotionStep.shouldRun(answers),
+    },
+    {
+      name: /* md */ `[React Hook Form](https://react-hook-form.com/)`,
+      links: /* md */ `[Docs](https://react-hook-form.com/get-started) - [GitHub repo](https://github.com/react-hook-form/react-hook-form)`,
+      filter: installReactHookForm.shouldRun(answers),
     },
     {
       name: /* md */ `[ESLint](https://eslint.org/)`,
