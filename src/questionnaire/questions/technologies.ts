@@ -4,12 +4,14 @@ export const prettierValue = "prettier"
 export const emotionValue = "emotion"
 export const preCommitHookValue = "preCommitHook"
 export const reactHookFormValue = "reactHookForm"
+export const formikValue = "formik"
 
 export type TechValue =
   | typeof prettierValue
   | typeof emotionValue
   | typeof preCommitHookValue
   | typeof reactHookFormValue
+  | typeof formikValue
 
 export async function promptTechnologies() {
   const answerName = "technologies"
@@ -40,6 +42,10 @@ export async function promptTechnologies() {
         name: "React Hook Form",
         value: reactHookFormValue,
         checked: true,
+      },
+      {
+        name: "Formik",
+        value: formikValue,
       },
       new Separator("Miscellaneous:"),
       {

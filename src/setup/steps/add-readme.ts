@@ -3,6 +3,7 @@ import fs from "fs/promises"
 import { throwError } from "../../error-handling"
 import { QuestionnaireAnswers } from "../../questionnaire/questionnaire"
 import { Step } from "../step"
+import { installFormikStep } from "./install-formik"
 import { installReactHookFormStep } from "./install-react-hook-form"
 import { setUpEmotionStep } from "./set-up-emotion"
 import { setUpLintStagedStep } from "./set-up-lint-staged"
@@ -127,6 +128,11 @@ function generateTechnologyTableRows(
       name: /* md */ `[React Hook Form](https://react-hook-form.com/)`,
       links: /* md */ `[Docs](https://react-hook-form.com/get-started) - [GitHub repo](https://github.com/react-hook-form/react-hook-form)`,
       filter: installReactHookFormStep.shouldRun(answers),
+    },
+    {
+      name: /* md */ `[Formik](https://formik.org/)`,
+      links: /* md */ `[Docs](https://formik.org/docs/overview) - [GitHub repo](https://github.com/formium/formik)`,
+      filter: installFormikStep.shouldRun(answers),
     },
     {
       name: /* md */ `[ESLint](https://eslint.org/)`,
