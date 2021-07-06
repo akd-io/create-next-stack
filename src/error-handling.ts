@@ -14,7 +14,7 @@ export function throwError(
     suggestions: [],
     exit: 1,
   }
-) {
+): never {
   if (process.env.DEBUG === "true" && error != null) {
     if (error instanceof Error) {
       this.log(error.message)
