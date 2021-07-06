@@ -20,6 +20,7 @@
     "no-labels": "off",
     "no-constant-condition": "off",
     "max-depth": "off",
+    "no-else-return": "off",
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/member-delimiter-style": "off",
     "@typescript-eslint/no-use-before-define": "off"
