@@ -1,3 +1,4 @@
+import fs from "fs/promises"
 import { throwError } from "../../error-handling"
 import { remove } from "../../helpers/remove"
 import { Step } from "../step"
@@ -13,11 +14,12 @@ export const removeOfficialCNAContentStep: Step = {
 
     try {
       await Promise.all([
-        remove("pages/*"), // TODO: Only remove files in pages
+        remove("pages"),
         remove("styles"),
         remove("public/vercel.svg"),
         remove("README.md"),
       ])
+      await fs.mkdir("pages")
     } catch (error) {
       throwError.call(
         this,
