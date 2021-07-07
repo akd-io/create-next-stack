@@ -1,24 +1,55 @@
 import inquirer, { Separator } from "inquirer"
+import { arrayToKeyToKeyMap } from "../../helpers/array-to-key-to-key-map"
 
-export const prettierValue = "prettier"
-export const emotionValue = "emotion"
-export const preCommitHookValue = "preCommitHook"
-export const reactHookFormValue = "reactHookForm"
-export const formikValue = "formik"
+const techValueArray = <const>[
+  "prettier",
+  "emotion",
+  "reactHookForm",
+  "formik",
+  "preCommitHook",
+]
+export type TechValue = typeof techValueArray[number]
+export const techValues = arrayToKeyToKeyMap(techValueArray)
 
-export type TechValue =
-  | typeof prettierValue
-  | typeof emotionValue
-  | typeof preCommitHookValue
-  | typeof reactHookFormValue
-  | typeof formikValue
+const techChoices: {
+  [K in TechValue]: {
+    name: string
+    value: K
+    checked?: boolean
+  }
+} = {
+  prettier: {
+    value: "prettier",
+    name: "Prettier",
+    checked: true,
+  },
+  emotion: {
+    value: "emotion",
+    name: "Emotion",
+    checked: true,
+  },
+  reactHookForm: {
+    value: "reactHookForm",
+    name: "React Hook Form",
+    checked: true,
+  },
+  formik: {
+    value: "formik",
+    name: "Formik",
+  },
+  preCommitHook: {
+    value: "preCommitHook",
+    name: "Formatting pre-commit hook (Husky & lint-staged)",
+    checked: true,
+  },
+}
+
+const answerName = "technologies"
+type TechnologiesAnswers = {
+  [answerName]: TechValue[]
+}
 
 export async function promptTechnologies() {
-  const answerName = "technologies"
-  type TechnologiesAnswers = {
-    [answerName]: TechValue[]
-  }
-
   const { technologies } = await inquirer.prompt<TechnologiesAnswers>({
     name: answerName,
     type: "checkbox",
@@ -26,40 +57,24 @@ export async function promptTechnologies() {
     pageSize: 10,
     choices: [
       new Separator("Formatting:"),
-      {
-        name: "Prettier",
-        value: prettierValue,
-        checked: true,
-      },
+      techChoices.prettier,
+
       new Separator("Styling:"),
-      {
-        name: "Emotion",
-        value: emotionValue,
-        checked: true,
-      },
+      techChoices.emotion,
+
       new Separator("Form state management:"),
-      {
-        name: "React Hook Form",
-        value: reactHookFormValue,
-        checked: true,
-      },
-      {
-        name: "Formik",
-        value: formikValue,
-      },
+      techChoices.reactHookForm,
+      techChoices.formik,
+
       new Separator("Miscellaneous:"),
-      {
-        name: "Formatting pre-commit hook (Husky & lint-staged)",
-        value: preCommitHookValue,
-        checked: true,
-      },
+      techChoices.preCommitHook,
     ],
     validate: (technologies) => {
       if (
-        technologies.includes(preCommitHookValue) &&
-        !technologies.includes(prettierValue)
+        technologies.includes(techValues.preCommitHook) &&
+        !technologies.includes(techValues.prettier)
       ) {
-        return "Formatting pre-commit hook (Husky & lint-staged) requires Prettier"
+        return `${techChoices.preCommitHook.name} requires ${techChoices.prettier.name}`
       }
       return true
     },

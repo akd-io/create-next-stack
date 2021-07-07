@@ -3,11 +3,11 @@ import fs from "fs/promises"
 import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
-import { emotionValue } from "../../questionnaire/questions/technologies"
+import { techValues } from "../../questionnaire/questions/technologies"
 import { Step } from "../step"
 
 export const setUpEmotionStep: Step = {
-  shouldRun: (answers) => answers.technologies.includes(emotionValue),
+  shouldRun: (answers) => answers.technologies.includes(techValues.emotion),
 
   run: async function (this) {
     this.log("Setting up Emotion...")

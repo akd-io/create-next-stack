@@ -4,17 +4,14 @@ import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { remove } from "../../helpers/remove"
 import { writeJsonFile } from "../../helpers/write-json-file"
-import {
-  preCommitHookValue,
-  prettierValue,
-} from "../../questionnaire/questions/technologies"
+import { techValues } from "../../questionnaire/questions/technologies"
 import { Step } from "../step"
 
 export const setUpLintStagedStep: Step = {
   shouldRun: (answers) => {
     return (
-      answers.technologies.includes(prettierValue) &&
-      answers.technologies.includes(preCommitHookValue)
+      answers.technologies.includes(techValues.prettier) &&
+      answers.technologies.includes(techValues.preCommitHook)
     )
   },
 
