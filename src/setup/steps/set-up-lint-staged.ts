@@ -25,8 +25,6 @@ export const setUpLintStagedStep: Step = {
       await execa("npx mrm@2 lint-staged")
       await remove("6") // Removes the unnecessary log file (named "6") created during the previous command.
 
-      // TODO: Remove linting from pre-commit hook to get formatting only?
-
       // Override "lint-staged" configuration
       const packageJsonString = await fs.readFile("package.json", "utf8")
       const packageJson = JSON.parse(packageJsonString)
