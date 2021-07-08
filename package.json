@@ -1,6 +1,6 @@
 {
   "name": "create-next-stack",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Anders Kjær Damgaard @akd-io",
   "bin": {
     "create-next-stack": "./bin/run"
@@ -54,8 +54,7 @@
     "test": "echo NO TESTS",
     "version": "oclif-dev readme && git add README.md",
     "prepare": "husky install",
-    "format": "prettier --write .",
-    "tmp-test": "cd .\\tmp\\ && ../bin/run"
+    "format": "prettier --write ."
   },
   "types": "lib/index.d.ts",
   "lint-staged": {
