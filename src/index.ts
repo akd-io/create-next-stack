@@ -2,9 +2,9 @@ import { Command, flags } from "@oclif/command"
 import { performQuestionnaire } from "./questionnaire/questionnaire"
 import { performSetupSteps } from "./setup/setup"
 
-class Boil extends Command {
+class CreateNextStack extends Command {
   static description =
-    "Boil is an opinionated interactive CLI tool to easily set up the boilerplate of a new frontend project."
+    "Create Next Stack is an opinionated interactive CLI tool to easily set up the boilerplate of a new Next.js app."
 
   static flags = {
     help: flags.help({ char: "h" }),
@@ -15,7 +15,7 @@ class Boil extends Command {
   }
 
   async run() {
-    const { flags } = this.parse(Boil)
+    const { flags } = this.parse(CreateNextStack)
 
     if (flags.debug) process.env.DEBUG = "true"
 
@@ -27,4 +27,4 @@ class Boil extends Command {
   }
 }
 
-export = Boil
+export = CreateNextStack
