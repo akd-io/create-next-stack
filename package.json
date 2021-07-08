@@ -1,11 +1,11 @@
 {
-  "name": "boil",
-  "version": "0.0.0",
+  "name": "create-next-stack",
+  "version": "0.0.1",
   "author": "Anders Kjær Damgaard @akd-io",
   "bin": {
-    "boil": "./bin/run"
+    "create-next-stack": "./bin/run"
   },
-  "bugs": "https://github.com/akd-io/boil/issues",
+  "bugs": "https://github.com/akd-io/create-next-stack/issues",
   "dependencies": {
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
@@ -38,16 +38,16 @@
     "/bin",
     "/lib"
   ],
-  "homepage": "https://github.com/akd-io/boil",
+  "homepage": "https://github.com/akd-io/create-next-stack",
   "keywords": [
     "oclif"
   ],
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
-    "bin": "boil"
+    "bin": "create-next-stack"
   },
-  "repository": "akd-io/boil",
+  "repository": "akd-io/create-next-stack",
   "scripts": {
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rimraf lib && tsc -b && oclif-dev readme",

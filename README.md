@@ -1,12 +1,12 @@
-# Boil
+# Create Next Stack
 
-Boil is an opinionated interactive CLI tool to easily set up the boilerplate of a new frontend project.
+Create Next Stack is an opinionated interactive CLI tool to easily set up the boilerplate of a new Next.js app.
 
 # Usage
 
 ```
 USAGE
-  $ boil
+  $ create-next-stack
 
 OPTIONS
   -h, --help     show CLI help

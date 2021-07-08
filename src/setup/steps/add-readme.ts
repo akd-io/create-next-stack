@@ -28,7 +28,7 @@ function generateReadme(this: Command, answers: QuestionnaireAnswers) {
   return /* md */ `
 # ${answers.projectName}
 
-This project was bootstrapped with [Boil](https://github.com/akd-io/boil).
+This project was bootstrapped with [Create Next Stack](https://github.com/akd-io/create-next-stack).
 
 ## Scripts
 
