@@ -54,8 +54,7 @@
     "test": "echo NO TESTS",
     "version": "oclif-dev readme && git add README.md",
     "prepare": "husky install",
-    "format": "prettier --write .",
-    "tmp-test": "cd .\\tmp\\ && ../bin/run"
+    "format": "prettier --write ."
   },
   "types": "lib/index.d.ts",
   "lint-staged": {
