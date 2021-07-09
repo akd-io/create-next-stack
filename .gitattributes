@@ -1,0 +1,3 @@
+# Normalize end of line to fix prettier:check in CI.
+# Read more here: https://prettier.io/docs/en/options.html#end-of-line
+* text=auto eol=lf
