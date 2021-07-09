@@ -49,11 +49,11 @@
   },
   "repository": "akd-io/create-next-stack",
   "scripts": {
-    "posttest": "yarn lint",
-    "prepack": "rimraf lib && tsc -b && oclif-dev readme",
+    "prepare": "husky install",
+    "prepack": "yarn build && oclif-dev readme",
+    "build": "rimraf lib && tsc -b",
     "test": "echo NO TESTS",
     "version": "oclif-dev readme && git add README.md",
-    "prepare": "husky install",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint . --ext .ts --config .eslintrc"
