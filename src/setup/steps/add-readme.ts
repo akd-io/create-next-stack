@@ -1,6 +1,7 @@
 import Command from "@oclif/command"
 import fs from "fs/promises"
 import { throwError } from "../../error-handling"
+import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { QuestionnaireAnswers } from "../../questionnaire/questionnaire"
 import { Step } from "../step"
 import { installFormikStep } from "./install-formik"
@@ -17,7 +18,7 @@ export const addReadmeStep: Step = {
     this.log("Adding Readme...")
 
     try {
-      const readmeString = generateReadme.call(this, answers)
+      const readmeString = await generateReadme.call(this, answers)
       await fs.writeFile("README.md", readmeString)
     } catch (error) {
       throwError.call(this, "An error occurred while adding Readme.", error)
@@ -25,7 +26,7 @@ export const addReadmeStep: Step = {
   },
 }
 
-function generateReadme(this: Command, answers: QuestionnaireAnswers) {
+async function generateReadme(this: Command, answers: QuestionnaireAnswers) {
   return /* md */ `
 # ${answers.projectName}
 
@@ -39,7 +40,7 @@ Each script is run using \`yarn <script-name>\`. For example: \`yarn dev\`.
 
 | Name | Description |
 | ---- | ----------- |
-${generateScriptTableRows.call(this, answers)}
+${await generateScriptTableRows.call(this, answers)}
 
 ## Technologies
 
@@ -47,11 +48,14 @@ The table below gives an overview of the technologies used in this project, as w
 
 | Name | Links |
 | ---- | ----- |
-${generateTechnologyTableRows.call(this, answers)}
+${await generateTechnologyTableRows.call(this, answers)}
 `
 }
 
-function generateScriptTableRows(this: Command, answers: QuestionnaireAnswers) {
+async function generateScriptTableRows(
+  this: Command,
+  answers: QuestionnaireAnswers
+): Promise<string> {
   type ScriptTableRow = {
     name: string
     description: string
@@ -83,7 +87,8 @@ function generateScriptTableRows(this: Command, answers: QuestionnaireAnswers) {
     {
       name: /* md */ `\`prepare\``,
       description: /* md */ `The [\`prepare\` life cycle script](https://docs.npmjs.com/cli/v7/using-npm/scripts#life-cycle-scripts) is used to set up Git pre-commit hooks when people run \`yarn install\`. This script should not be run manually.`,
-      filter: setUpPrettierStep.shouldRun(answers),
+      filter:
+        (await isGitInitialized()) && setUpLintStagedStep.shouldRun(answers),
     },
   ]
 
@@ -97,10 +102,10 @@ function generateScriptTableRows(this: Command, answers: QuestionnaireAnswers) {
   return scriptRowsString
 }
 
-function generateTechnologyTableRows(
+async function generateTechnologyTableRows(
   this: Command,
   answers: QuestionnaireAnswers
-) {
+): Promise<string> {
   type TechnologyTableRow = {
     name: string
     links: string
@@ -152,12 +157,14 @@ function generateTechnologyTableRows(
     {
       name: /* md */ `[Husky](https://typicode.github.io/husky/)`,
       links: /* md */ `[Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)`,
-      filter: setUpLintStagedStep.shouldRun(answers),
+      filter:
+        (await isGitInitialized()) && setUpLintStagedStep.shouldRun(answers),
     },
     {
       name: /* md */ `[lint-staged](https://github.com/okonet/lint-staged)`,
       links: /* md */ `[GitHub repo](https://github.com/okonet/lint-staged)`,
-      filter: setUpLintStagedStep.shouldRun(answers),
+      filter:
+        (await isGitInitialized()) && setUpLintStagedStep.shouldRun(answers),
     },
     {
       name: /* md */ `[Yarn](https://yarnpkg.com/)`,
