@@ -5,6 +5,7 @@ import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
 import { addReadmeStep } from "./steps/add-readme"
 import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
+import { gitCommitStep } from "./steps/git-commit"
 import { installFormikStep } from "./steps/install-formik"
 import { installReactHookFormStep } from "./steps/install-react-hook-form"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
@@ -38,6 +39,7 @@ export async function performSetupSteps(
     addReadmeStep,
 
     formatProjectStep,
+    gitCommitStep,
   ]
 
   for (const step of steps) {

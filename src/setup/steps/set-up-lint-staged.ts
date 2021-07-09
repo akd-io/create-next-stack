@@ -1,6 +1,7 @@
 import execa from "execa"
 import fs from "fs/promises"
 import { throwError } from "../../error-handling"
+import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { remove } from "../../helpers/remove"
 import { writeJsonFile } from "../../helpers/write-json-file"
@@ -16,9 +17,16 @@ export const setUpLintStagedStep: Step = {
   },
 
   run: async function (this) {
-    this.log("Setting up lint-staged...")
-
     try {
+      if (!(await isGitInitialized())) {
+        this.log(
+          "Skipping lint-staged setup, as Git is not initialized, because this repository is nested inside another repository."
+        )
+        return
+      }
+
+      this.log("Setting up lint-staged...")
+
       await execa("npx mrm@2 lint-staged")
       await remove("6") // Removes the unnecessary log file (named "6") created during the previous command.
 
