@@ -6,6 +6,7 @@ const techValueArray = <const>[
   "emotion",
   "reactHookForm",
   "formik",
+  "framerMotion",
   "preCommitHook",
 ]
 export type TechValue = typeof techValueArray[number]
@@ -37,6 +38,10 @@ const techChoices: {
     value: "formik",
     name: "Formik",
   },
+  framerMotion: {
+    value: "framerMotion",
+    name: "framer",
+  },
   preCommitHook: {
     value: "preCommitHook",
     name: "Formatting pre-commit hook (Husky & lint-staged)",
@@ -65,6 +70,9 @@ export async function promptTechnologies() {
       new Separator("Form state management:"),
       techChoices.reactHookForm,
       techChoices.formik,
+
+      new Separator("Animation:"),
+      techChoices.framerMotion,
 
       new Separator("Miscellaneous:"),
       techChoices.preCommitHook,

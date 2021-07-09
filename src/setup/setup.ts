@@ -7,6 +7,7 @@ import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
 import { gitCommitStep } from "./steps/git-commit"
 import { installFormikStep } from "./steps/install-formik"
+import { installFramerMotionStep } from "./steps/install-framer-motion"
 import { installReactHookFormStep } from "./steps/install-react-hook-form"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
 import { setUpEmotionStep } from "./steps/set-up-emotion"
@@ -32,6 +33,7 @@ export async function performSetupSteps(
 
     installReactHookFormStep,
     installFormikStep,
+    installFramerMotionStep,
 
     // TODO: Add custom _app.tsx
     // TODO: Add custom index.tsx

@@ -4,6 +4,7 @@ import { throwError } from "../../error-handling"
 import { QuestionnaireAnswers } from "../../questionnaire/questionnaire"
 import { Step } from "../step"
 import { installFormikStep } from "./install-formik"
+import { installFramerMotionStep } from "./install-framer-motion"
 import { installReactHookFormStep } from "./install-react-hook-form"
 import { setUpEmotionStep } from "./set-up-emotion"
 import { setUpLintStagedStep } from "./set-up-lint-staged"
@@ -133,6 +134,11 @@ function generateTechnologyTableRows(
       name: /* md */ `[Formik](https://formik.org/)`,
       links: /* md */ `[Docs](https://formik.org/docs/overview) - [GitHub repo](https://github.com/formium/formik)`,
       filter: installFormikStep.shouldRun(answers),
+    },
+    {
+      name: /* md */ `[Framer Motion](https://www.framer.com/motion/)`,
+      links: /* md */ `[Docs](https://www.framer.com/docs/) - [GitHub repo](https://github.com/framer/motion)`,
+      filter: installFramerMotionStep.shouldRun(answers),
     },
     {
       name: /* md */ `[ESLint](https://eslint.org/)`,
