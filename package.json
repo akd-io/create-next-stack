@@ -55,6 +55,7 @@
     "version": "oclif-dev readme && git add README.md",
     "prepare": "husky install",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint . --ext .ts --config .eslintrc"
   },
   "types": "lib/index.d.ts",
