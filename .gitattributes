@@ -1,0 +1,5 @@
+# Normalize end of line to fix prettier:check in CI.
+# Read more at the links below:
+# https://prettier.io/docs/en/options.html#end-of-line
+# https://git-scm.com/docs/gitattributes#_effects
+* text=auto eol=lf
