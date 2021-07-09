@@ -1,4 +1,4 @@
-# Create Next Stack ![npm](https://img.shields.io/npm/v/create-next-stack?style=flat-square)
+# Create Next Stack ![npm](https://img.shields.io/npm/v/create-next-stack?style=flat-square) ![NPM](https://img.shields.io/npm/l/create-next-stack?style=flat-square)
 
 Create Next Stack is an opinionated interactive CLI tool to easily set up the boilerplate of a new [Next.js](https://github.com/vercel/next.js) app.
 
