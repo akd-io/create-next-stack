@@ -5,7 +5,6 @@ import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
 import { addReadmeStep } from "./steps/add-readme"
 import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
-import { initializeGitStep } from "./steps/initialize-git"
 import { installFormikStep } from "./steps/install-formik"
 import { installReactHookFormStep } from "./steps/install-react-hook-form"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
@@ -21,8 +20,6 @@ export async function performSetupSteps(
   const steps: Step[] = [
     updateYarnStep,
     createNextAppStep,
-
-    initializeGitStep,
 
     removeOfficialCNAContentStep,
 
