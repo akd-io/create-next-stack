@@ -1,4 +1,19 @@
-# Create Next Stack ![npm](https://img.shields.io/npm/v/create-next-stack?style=flat-square) ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/akd-io/create-next-stack/CI/develop?style=flat-square) ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/akd-io/create-next-stack/develop?style=flat-square) ![NPM](https://img.shields.io/npm/l/create-next-stack?color=44cc11&style=flat-square)
+<img width="100%" src="banner.png" alt="Create Next Stack - The ultimate starter kit for Next.js">
+
+<p align="center">
+  <a aria-label="NPM version" href="https://www.npmjs.com/package/create-next-stack">
+    <img alt="" src="https://img.shields.io/npm/v/create-next-stack?style=flat-square">
+  </a>
+  <a aria-label="Build status" href="https://github.com/akd-io/create-next-stack/actions/workflows/main.yml?query=branch%3Adevelop">
+    <img alt="" src="https://img.shields.io/github/workflow/status/akd-io/create-next-stack/CI/develop?style=flat-square">
+  </a>
+  <a aria-label="Last commit" href="https://github.com/akd-io/create-next-stack/commits/develop">
+    <img alt="" src="https://img.shields.io/github/last-commit/akd-io/create-next-stack/develop?style=flat-square">
+  </a>
+  <a aria-label="License" href="https://github.com/akd-io/create-next-stack/blob/develop/LICENSE">
+    <img alt="" src="https://img.shields.io/npm/l/create-next-stack?color=44cc11&style=flat-square">
+  </a>
+</p>
 
 Create Next Stack is an opinionated interactive CLI tool to easily set up the boilerplate of a new [Next.js](https://github.com/vercel/next.js) app.
 
