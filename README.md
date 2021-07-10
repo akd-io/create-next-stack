@@ -43,7 +43,7 @@ These technologies are currently mandatory. If you don't want to use these techn
 
 ### Optional technologies
 
-These technologies are optional, and can chosen to fit your needs.
+These technologies are optional, and can be chosen to fit your needs.
 
 | Name                                                 | Links                                                                                                                                                      |
 | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
