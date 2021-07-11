@@ -7,6 +7,7 @@
     "no-await-in-loop": "off",
     "no-else-return": "off",
     "no-negated-condition": "off",
+    "valid-jsdoc": "off",
     "@typescript-eslint/no-use-before-define": "off"
   }
 }

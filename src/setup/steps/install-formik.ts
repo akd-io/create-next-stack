@@ -1,6 +1,7 @@
 import execa from "execa"
 import { throwError } from "../../error-handling"
 import { techValues } from "../../questionnaire/questions/technologies"
+import { packages } from "../packages"
 import { Step } from "../step"
 
 export const installFormikStep: Step = {
@@ -10,7 +11,7 @@ export const installFormikStep: Step = {
     this.log("Installing Formik...")
 
     try {
-      await execa("yarn add formik")
+      await execa(`yarn add ${packages.formik}`)
     } catch (error) {
       throwError.call(this, "An error occurred while installing Formik.", error)
     }
