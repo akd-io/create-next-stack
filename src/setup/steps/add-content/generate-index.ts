@@ -11,12 +11,12 @@ type PageSectionProps = {
 const PageSection = styled.section<PageSectionProps>\`
   padding: 50px 30px;
 
-  text-align: center;
-  \${(props) => (props.grayBackground ? \`background: hsl(0, 0%, 95%);\` : "")}
-
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  text-align: center;
+  \${(props) => (props.grayBackground ? \`background: hsl(0, 0%, 95%);\` : "")}
 \`;
 
 const ContentContainer = styled.div\`
