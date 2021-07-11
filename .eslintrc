@@ -1,28 +1,13 @@
 // TODO: Remove oclif defaults and add own plugins.
 {
-  "extends": ["oclif", "oclif-typescript"],
+  "extends": ["oclif", "oclif-typescript", "eslint-config-prettier"],
   "rules": {
-    "quotes": "off",
-    "object-curly-spacing": "off",
-    "semi": "off",
-    "indent": "off",
-    "arrow-parens": "off",
-    "semi-style": "off",
-    "no-warning-comments": "off",
-    "comma-dangle": "off",
-    "valid-jsdoc": "off",
-    "no-await-in-loop": "off",
     "no-eq-null": "off",
     "eqeqeq": "off",
-    "no-negated-condition": "off",
-    "operator-linebreak": "off",
-    "unicorn/error-message": "off",
-    "no-labels": "off",
-    "no-constant-condition": "off",
-    "max-depth": "off",
+    "no-await-in-loop": "off",
     "no-else-return": "off",
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/member-delimiter-style": "off",
+    "no-negated-condition": "off",
+    "valid-jsdoc": "off",
     "@typescript-eslint/no-use-before-define": "off"
   }
 }

@@ -1,6 +1,7 @@
 import execa from "execa"
 import { throwError } from "../../error-handling"
 import { techValues } from "../../questionnaire/questions/technologies"
+import { packages } from "../packages"
 import { Step } from "../step"
 
 export const installReactHookFormStep: Step = {
@@ -11,7 +12,7 @@ export const installReactHookFormStep: Step = {
     this.log("Installing React Hook Form...")
 
     try {
-      await execa("yarn add react-hook-form")
+      await execa(`yarn add ${packages["react-hook-form"]}`)
     } catch (error) {
       throwError.call(
         this,

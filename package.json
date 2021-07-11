@@ -1,6 +1,6 @@
 {
   "name": "create-next-stack",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Anders Kjær Damgaard @akd-io",
   "bin": {
     "create-next-stack": "./bin/run"
@@ -24,6 +24,7 @@
     "eslint": "^5.16.0",
     "eslint-config-oclif": "^3.1.0",
     "eslint-config-oclif-typescript": "^0.2.0",
+    "eslint-config-prettier": "^8.3.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.2",
@@ -54,9 +55,9 @@
     "build": "rimraf lib && tsc -b",
     "test": "echo NO TESTS",
     "version": "oclif-dev readme && git add README.md",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "lint": "eslint . --ext .ts --config .eslintrc"
+    "format": "prettier --write --ignore-path=.gitignore .",
+    "format:check": "prettier --check --ignore-path=.gitignore .",
+    "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=.gitignore ."
   },
   "types": "lib/index.d.ts",
   "lint-staged": {
