@@ -1,7 +1,16 @@
-export const generatePage = (): string => /* tsx */ `
+import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
+import { techValues } from "../../../questionnaire/questions/technologies"
+
+export const generatePage = (
+  answers: QuestionnaireAnswers
+): string => /* tsx */ `
 import Head from "next/head";
 import React from "react";
-import WithDefaultGlobalStyles from "./WithDefaultGlobalStyles";
+${
+  answers.technologies.includes(techValues.emotion)
+    ? `import WithDefaultGlobalStyles from "./WithDefaultGlobalStyles";`
+    : ``
+}
 
 type PageProps = {
   title: string;
@@ -9,14 +18,22 @@ type PageProps = {
 };
 const Page: React.FC<PageProps> = ({ title, description, children }) => {
   return (
-    <WithDefaultGlobalStyles>
+    ${
+      answers.technologies.includes(techValues.emotion)
+        ? `<WithDefaultGlobalStyles>`
+        : `<>`
+    }
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {children}
-    </WithDefaultGlobalStyles>
+    ${
+      answers.technologies.includes(techValues.emotion)
+        ? `</WithDefaultGlobalStyles>`
+        : `</>`
+    }
   );
 };
 
