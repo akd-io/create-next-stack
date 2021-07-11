@@ -1,6 +1,8 @@
-import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
+import { QuestionnaireAnswers } from "../../../../questionnaire/questionnaire"
 
-export const generateIndex = (answers: QuestionnaireAnswers) => /* tsx */ `
+export const generateIndexWithEmotion = (
+  answers: QuestionnaireAnswers
+) => /* tsx */ `
 import styled from "@emotion/styled";
 import { NextPage } from "next";
 import Page from "../components/Page";
