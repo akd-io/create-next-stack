@@ -4,6 +4,7 @@ import { arrayToKeyToKeyMap } from "../../helpers/array-to-key-to-key-map"
 const techValueArray = <const>[
   "prettier",
   "emotion",
+  "cssModules",
   "reactHookForm",
   "formik",
   "framerMotion",
@@ -28,6 +29,10 @@ const techChoices: {
     value: "emotion",
     name: "Emotion",
     checked: true,
+  },
+  cssModules: {
+    value: "cssModules",
+    name: "CSS Modules",
   },
   reactHookForm: {
     value: "reactHookForm",
@@ -66,6 +71,7 @@ export async function promptTechnologies() {
 
       new Separator("Styling:"),
       techChoices.emotion,
+      techChoices.cssModules,
 
       new Separator("Form state management:"),
       techChoices.reactHookForm,
@@ -83,6 +89,12 @@ export async function promptTechnologies() {
         !technologies.includes(techValues.prettier)
       ) {
         return `${techChoices.preCommitHook.name} requires ${techChoices.prettier.name}`
+      }
+      if (
+        technologies.includes(techValues.emotion) &&
+        technologies.includes(techValues.cssModules)
+      ) {
+        return `You cannot pick both ${techChoices.emotion.name} and ${techChoices.cssModules.name}`
       }
       return true
     },
