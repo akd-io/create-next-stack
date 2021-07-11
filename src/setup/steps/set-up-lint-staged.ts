@@ -6,6 +6,7 @@ import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { remove } from "../../helpers/remove"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { techValues } from "../../questionnaire/questions/technologies"
+import { packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpLintStagedStep: Step = {
@@ -27,7 +28,7 @@ export const setUpLintStagedStep: Step = {
 
       this.log("Setting up lint-staged...")
 
-      await execa("npx mrm@2 lint-staged")
+      await execa(`npx ${packages.mrm} lint-staged`)
       await remove("6") // Removes the unnecessary log file (named "6") created during the previous command.
 
       // Override "lint-staged" configuration
