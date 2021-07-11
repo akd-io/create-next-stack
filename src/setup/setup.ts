@@ -2,7 +2,8 @@ import Command from "@oclif/command"
 import { QuestionnaireAnswers } from "../questionnaire/questionnaire"
 import { Step } from "./step"
 import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
-import { addReadmeStep } from "./steps/add-readme"
+import { addContentStep } from "./steps/add-content/add-content"
+import { addReadmeStep } from "./steps/add-readme/add-readme"
 import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
 import { gitCommitStep } from "./steps/git-commit"
@@ -35,8 +36,7 @@ export async function performSetupSteps(
     installFormikStep,
     installFramerMotionStep,
 
-    // TODO: Add custom _app.tsx
-    // TODO: Add custom index.tsx
+    addContentStep,
 
     addReadmeStep,
 

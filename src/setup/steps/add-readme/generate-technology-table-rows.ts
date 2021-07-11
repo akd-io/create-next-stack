@@ -1,108 +1,15 @@
 import Command from "@oclif/command"
-import fs from "fs/promises"
-import { throwError } from "../../error-handling"
-import { isGitInitialized } from "../../helpers/is-git-initialized"
-import { QuestionnaireAnswers } from "../../questionnaire/questionnaire"
-import { Step } from "../step"
-import { installFormikStep } from "./install-formik"
-import { installFramerMotionStep } from "./install-framer-motion"
-import { installReactHookFormStep } from "./install-react-hook-form"
-import { setUpEmotionStep } from "./set-up-emotion"
-import { setUpLintStagedStep } from "./set-up-lint-staged"
-import { setUpPrettierStep } from "./set-up-prettier"
+import { isGitInitialized } from "../../../helpers/is-git-initialized"
+import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
+import { techValues } from "../../../questionnaire/questions/technologies"
+import { installFormikStep } from "../install-formik"
+import { installFramerMotionStep } from "../install-framer-motion"
+import { installReactHookFormStep } from "../install-react-hook-form"
+import { setUpEmotionStep } from "../set-up-emotion"
+import { setUpLintStagedStep } from "../set-up-lint-staged"
+import { setUpPrettierStep } from "../set-up-prettier"
 
-export const addReadmeStep: Step = {
-  shouldRun: () => true,
-
-  run: async function (this, answers) {
-    this.log("Adding Readme...")
-
-    try {
-      const readmeString = await generateReadme.call(this, answers)
-      await fs.writeFile("README.md", readmeString)
-    } catch (error) {
-      throwError.call(this, "An error occurred while adding Readme.", error)
-    }
-  },
-}
-
-async function generateReadme(this: Command, answers: QuestionnaireAnswers) {
-  return /* md */ `
-# ${answers.projectName}
-
-This project was bootstrapped with [Create Next Stack](https://github.com/akd-io/create-next-stack).
-
-## Scripts
-
-The table below provides names and descriptions of the NPM scripts available in this project.
-
-Each script is run using \`yarn <script-name>\`. For example: \`yarn dev\`.
-
-| Name | Description |
-| ---- | ----------- |
-${await generateScriptTableRows.call(this, answers)}
-
-## Technologies
-
-The table below gives an overview of the technologies used in this project, as well as places to learn more about them.
-
-| Name | Links |
-| ---- | ----- |
-${await generateTechnologyTableRows.call(this, answers)}
-`
-}
-
-async function generateScriptTableRows(
-  this: Command,
-  answers: QuestionnaireAnswers
-): Promise<string> {
-  type ScriptTableRow = {
-    name: string
-    description: string
-    filter?: boolean
-  }
-
-  const scripts: ScriptTableRow[] = [
-    {
-      name: /* md */ `\`dev\``,
-      description: /* md */ `Runs the Next.js development server.`,
-    },
-    {
-      name: /* md */ `\`build\``,
-      description: /* md */ `Generates a production build.`,
-    },
-    {
-      name: /* md */ `\`start\``,
-      description: /* md */ `Runs the Next.js production server built using \`build\` script.`,
-    },
-    {
-      name: /* md */ `\`lint\``,
-      description: /* md */ `Runs [ESLint](https://eslint.org/) to catch linting errors in the source code.`,
-    },
-    {
-      name: /* md */ `\`format\``,
-      description: /* md */ `Runs Prettier to format the source code.`,
-      filter: setUpPrettierStep.shouldRun(answers),
-    },
-    {
-      name: /* md */ `\`prepare\``,
-      description: /* md */ `The [\`prepare\` life cycle script](https://docs.npmjs.com/cli/v7/using-npm/scripts#life-cycle-scripts) is used to set up Git pre-commit hooks when people run \`yarn install\`. This script should not be run manually.`,
-      filter:
-        (await isGitInitialized()) && setUpLintStagedStep.shouldRun(answers),
-    },
-  ]
-
-  const scriptRowsString = scripts
-    .filter((script) =>
-      typeof script.filter !== "undefined" ? script.filter : true
-    )
-    .map((script) => `|${script.name}|${script.description}|`)
-    .join("\n")
-
-  return scriptRowsString
-}
-
-async function generateTechnologyTableRows(
+export async function generateTechnologyTableRows(
   this: Command,
   answers: QuestionnaireAnswers
 ): Promise<string> {
@@ -129,6 +36,11 @@ async function generateTechnologyTableRows(
       name: /* md */ `[Emotion](https://emotion.sh/docs/introduction)`,
       links: /* md */ `[Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)`,
       filter: setUpEmotionStep.shouldRun(answers),
+    },
+    {
+      name: /* md */ `[CSS Modules](https://github.com/css-modules/css-modules)`,
+      links: /* md */ `[Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css)`,
+      filter: answers.technologies.includes(techValues.cssModules),
     },
     {
       name: /* md */ `[React Hook Form](https://react-hook-form.com/)`,

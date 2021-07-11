@@ -4,6 +4,7 @@ import { arrayToKeyToKeyMap } from "../../helpers/array-to-key-to-key-map"
 const techValueArray = <const>[
   "prettier",
   "emotion",
+  "cssModules",
   "reactHookForm",
   "formik",
   "framerMotion",
@@ -29,6 +30,10 @@ const techChoices: {
     name: "Emotion",
     checked: true,
   },
+  cssModules: {
+    value: "cssModules",
+    name: "CSS Modules",
+  },
   reactHookForm: {
     value: "reactHookForm",
     name: "React Hook Form",
@@ -40,7 +45,7 @@ const techChoices: {
   },
   framerMotion: {
     value: "framerMotion",
-    name: "framer",
+    name: "Framer Motion",
   },
   preCommitHook: {
     value: "preCommitHook",
@@ -66,6 +71,7 @@ export async function promptTechnologies() {
 
       new Separator("Styling:"),
       techChoices.emotion,
+      techChoices.cssModules,
 
       new Separator("Form state management:"),
       techChoices.reactHookForm,
@@ -84,6 +90,17 @@ export async function promptTechnologies() {
       ) {
         return `${techChoices.preCommitHook.name} requires ${techChoices.prettier.name}`
       }
+
+      const bothEmotionAndCSSModules =
+        technologies.includes(techValues.emotion) &&
+        technologies.includes(techValues.cssModules)
+      const neitherEmotionNorCSSModules =
+        !technologies.includes(techValues.emotion) &&
+        !technologies.includes(techValues.cssModules)
+      if (bothEmotionAndCSSModules || neitherEmotionNorCSSModules) {
+        return `You have to pick either ${techChoices.emotion.name} or ${techChoices.cssModules.name}`
+      }
+
       return true
     },
   })
