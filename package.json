@@ -54,9 +54,9 @@
     "build": "rimraf lib && tsc -b",
     "test": "echo NO TESTS",
     "version": "oclif-dev readme && git add README.md",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "lint": "eslint . --ext .ts --config .eslintrc"
+    "format": "prettier --write --ignore-path=.gitignore .",
+    "format:check": "prettier --check --ignore-path=.gitignore .",
+    "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=.gitignore ."
   },
   "types": "lib/index.d.ts",
   "lint-staged": {
