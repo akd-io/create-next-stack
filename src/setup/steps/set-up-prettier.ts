@@ -29,7 +29,7 @@ export const setUpPrettierStep: Step = {
         throw new TypeError("Expected packageJson.scripts to be an object.")
       }
 
-      packageJson.scripts.format = "prettier --write ."
+      packageJson.scripts.format = "prettier --write --ignore-path=.gitignore ."
 
       await writeJsonFile("package.json", packageJson)
     } catch (error) {
