@@ -45,15 +45,16 @@ These technologies are currently mandatory. If you don't want to use these techn
 
 These technologies are optional, and can be chosen to fit your needs.
 
-| Name                                                 | Links                                                                                                                                                      |
-| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Emotion](https://emotion.sh/docs/introduction)      | [Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)                                                        |
-| [React Hook Form](https://react-hook-form.com/)      | [Docs](https://react-hook-form.com/get-started) - [GitHub repo](https://github.com/react-hook-form/react-hook-form)                                        |
-| [Formik](https://formik.org/)                        | [Docs](https://formik.org/docs/overview) - [GitHub repo](https://github.com/formium/formik)                                                                |
-| [Framer Motion](https://www.framer.com/motion/)      | [Docs](https://www.framer.com/docs/) - [GitHub repo](https://github.com/framer/motion)                                                                     |
-| [Prettier](https://prettier.io/)                     | [Docs](https://prettier.io/docs/en/index.html) - [Options](https://prettier.io/docs/en/options.html) - [GitHub repo](https://github.com/prettier/prettier) |
-| [Husky](https://typicode.github.io/husky/)           | [Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)                                                               |
-| [lint-staged](https://github.com/okonet/lint-staged) | [GitHub repo](https://github.com/okonet/lint-staged)                                                                                                       |
+| Name                                                      | Links                                                                                                                                                                |
+| --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Emotion](https://emotion.sh/docs/introduction)           | [Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)                                                                  |
+| [CSS Modules](https://github.com/css-modules/css-modules) | [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
+| [React Hook Form](https://react-hook-form.com/)           | [Docs](https://react-hook-form.com/get-started) - [GitHub repo](https://github.com/react-hook-form/react-hook-form)                                                  |
+| [Formik](https://formik.org/)                             | [Docs](https://formik.org/docs/overview) - [GitHub repo](https://github.com/formium/formik)                                                                          |
+| [Framer Motion](https://www.framer.com/motion/)           | [Docs](https://www.framer.com/docs/) - [GitHub repo](https://github.com/framer/motion)                                                                               |
+| [Prettier](https://prettier.io/)                          | [Docs](https://prettier.io/docs/en/index.html) - [Options](https://prettier.io/docs/en/options.html) - [GitHub repo](https://github.com/prettier/prettier)           |
+| [Husky](https://typicode.github.io/husky/)                | [Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)                                                                         |
+| [lint-staged](https://github.com/okonet/lint-staged)      | [GitHub repo](https://github.com/okonet/lint-staged)                                                                                                                 |
 
 ## CLI Options
 

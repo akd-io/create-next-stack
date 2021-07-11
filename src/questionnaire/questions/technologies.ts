@@ -90,12 +90,17 @@ export async function promptTechnologies() {
       ) {
         return `${techChoices.preCommitHook.name} requires ${techChoices.prettier.name}`
       }
-      if (
+
+      const bothEmotionAndCSSModules =
         technologies.includes(techValues.emotion) &&
         technologies.includes(techValues.cssModules)
-      ) {
-        return `You cannot pick both ${techChoices.emotion.name} and ${techChoices.cssModules.name}`
+      const neitherEmotionNorCSSModules =
+        !technologies.includes(techValues.emotion) &&
+        !technologies.includes(techValues.cssModules)
+      if (bothEmotionAndCSSModules || neitherEmotionNorCSSModules) {
+        return `You have to pick either ${techChoices.emotion.name} or ${techChoices.cssModules.name}`
       }
+
       return true
     },
   })

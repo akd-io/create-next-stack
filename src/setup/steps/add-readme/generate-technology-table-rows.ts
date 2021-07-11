@@ -1,6 +1,7 @@
 import Command from "@oclif/command"
 import { isGitInitialized } from "../../../helpers/is-git-initialized"
 import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
+import { techValues } from "../../../questionnaire/questions/technologies"
 import { installFormikStep } from "../install-formik"
 import { installFramerMotionStep } from "../install-framer-motion"
 import { installReactHookFormStep } from "../install-react-hook-form"
@@ -35,6 +36,11 @@ export async function generateTechnologyTableRows(
       name: /* md */ `[Emotion](https://emotion.sh/docs/introduction)`,
       links: /* md */ `[Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)`,
       filter: setUpEmotionStep.shouldRun(answers),
+    },
+    {
+      name: /* md */ `[CSS Modules](https://github.com/css-modules/css-modules)`,
+      links: /* md */ `[Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css)`,
+      filter: answers.technologies.includes(techValues.cssModules),
     },
     {
       name: /* md */ `[React Hook Form](https://react-hook-form.com/)`,

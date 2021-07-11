@@ -33,7 +33,12 @@ export async function generateScriptTableRows(
     },
     {
       name: /* md */ `\`format\``,
-      description: /* md */ `Runs Prettier to format the source code.`,
+      description: /* md */ `Formats all source code in the project.`,
+      filter: setUpPrettierStep.shouldRun(answers),
+    },
+    {
+      name: /* md */ `\`format:check\``,
+      description: /* md */ `Checks the formatting of all code in the project.`,
       filter: setUpPrettierStep.shouldRun(answers),
     },
     {
