@@ -40,7 +40,7 @@ const techChoices: {
   },
   framerMotion: {
     value: "framerMotion",
-    name: "framer",
+    name: "Framer Motion",
   },
   preCommitHook: {
     value: "preCommitHook",
