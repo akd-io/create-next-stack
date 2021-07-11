@@ -38,8 +38,6 @@ export async function performSetupSteps(
 
     addContentStep,
 
-    // TODO: Add custom _app.tsx
-
     addReadmeStep,
 
     formatProjectStep,
