@@ -25,6 +25,12 @@ To get started, run:
 npx create-next-stack
 ```
 
+Then, pick a project name, and your preferred technologies like so:
+
+<p align="center">
+  <img width="600" alt="Screenshot of Create Next Stack running in a terminal" src="assets/screenshot.png">
+</p>
+
 ## Supported technologies
 
 The table below provides an overview of the technologies currently supported by Create Next Stack.
