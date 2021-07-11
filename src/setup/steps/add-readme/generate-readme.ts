@@ -10,7 +10,13 @@ export async function generateReadme(
   return /* md */ `
 # ${answers.projectName}
 
-This project was bootstrapped with [Create Next Stack](https://github.com/akd-io/create-next-stack).
+🎉 Congratulations, your project was successfully bootstrapped with [Create Next Stack](https://github.com/akd-io/create-next-stack)!
+
+To get started, run:
+
+\`\`\`bash
+yarn dev
+\`\`\`
 
 ## Scripts
 
