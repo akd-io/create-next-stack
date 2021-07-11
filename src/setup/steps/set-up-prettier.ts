@@ -30,6 +30,8 @@ export const setUpPrettierStep: Step = {
       }
 
       packageJson.scripts.format = "prettier --write --ignore-path=.gitignore ."
+      packageJson.scripts["format:check"] =
+        "prettier --check --ignore-path=.gitignore ."
 
       await writeJsonFile("package.json", packageJson)
     } catch (error) {
