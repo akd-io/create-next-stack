@@ -8,6 +8,9 @@
     "no-else-return": "off",
     "no-negated-condition": "off",
     "valid-jsdoc": "off",
+    "dot-notation": "off",
+    "no-process-exit": "off",
+    "unicorn/no-process-exit": "off",
     "@typescript-eslint/no-use-before-define": "off"
   }
 }
