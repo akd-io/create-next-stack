@@ -40,15 +40,6 @@ class CreateNextStack extends Command {
     const answers = await performQuestionnaire.call(this, args)
 
     await performSetupSteps.call(this, answers)
-
-    this.log(``)
-    this.log(`Successfully created project ${answers.projectName}!`)
-    this.log(``)
-    this.log(`To get started, run:`)
-    this.log(``)
-    this.log(`    cd ${answers.projectPath}`)
-    this.log(`    yarn dev`)
-    this.log(``)
   }
 }
 
