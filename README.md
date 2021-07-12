@@ -69,13 +69,16 @@ Technologies marked as _convenience installs_ are technologies that work out of 
 | [Husky](https://typicode.github.io/husky/)                                                                                        | [Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)                                                                         |
 | [lint-staged](https://github.com/okonet/lint-staged)                                                                              | [GitHub repo](https://github.com/okonet/lint-staged)                                                                                                                 |
 
-## CLI Options
+## Usage
 
-Below you see an overview of Create Next Stack's CLI options. The overview is the result of running `create-next-stack --help`
+Below you see an overview of Create Next Stack's usage, including detailed information about arguments and options. The overview is the result of running `create-next-stack --help`
 
 ```
 USAGE
-  $ create-next-stack
+  $ create-next-stack [APPNAME]
+
+ARGUMENTS
+  APPNAME  The name of your app, optionally including a path prefix. Eg.: "my-app" or "path/to/my-app"
 
 OPTIONS
   -h, --help     show CLI help
