@@ -3,7 +3,7 @@ name: "Publish"
 on:
   push:
     branches:
-      - main
+      - release/0.0.7
 
 jobs:
   publish:
@@ -22,6 +22,14 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: "Publish to NPM"
+        id: npmPublish
         uses: JS-DevTools/npm-publish@v1
         with:
+          dry-run: true
           token: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      - name: "Add version tag"
+        if: steps.npmPublish.outputs.type != 'none'
+        run: |
+          git tag v${{ steps.npmPublish.outputs.version }}
+          git push origin v${{ steps.npmPublish.outputs.version }}
