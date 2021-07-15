@@ -22,6 +22,13 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: "Publish to NPM"
+        id: npmPublish
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      - name: "Add version tag"
+        if: steps.npmPublish.outputs.type != 'none'
+        run: |
+          git tag v${{ steps.npmPublish.outputs.version }}
+          git push origin v${{ steps.npmPublish.outputs.version }}
