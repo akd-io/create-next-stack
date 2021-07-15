@@ -3,7 +3,7 @@ name: "Publish"
 on:
   push:
     branches:
-      - release/0.0.7
+      - main
 
 jobs:
   publish:
@@ -25,7 +25,6 @@ jobs:
         id: npmPublish
         uses: JS-DevTools/npm-publish@v1
         with:
-          dry-run: true
           token: ${{ secrets.NPM_AUTH_TOKEN }}
 
       - name: "Add version tag"
