@@ -1,0 +1,27 @@
+name: "Publish"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout repo"
+        uses: actions/checkout@v2
+
+      - name: "Set up Node 14"
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: "Install dependencies (with cache)"
+        uses: bahmutov/npm-install@v1
+
+      - name: "Publish to NPM"
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
