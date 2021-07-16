@@ -1,10 +1,9 @@
-import execa from "execa"
 import fs from "fs/promises"
 import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { techValues } from "../../questionnaire/questions/technologies"
-import { packages } from "../packages"
+import { installNpmPackage, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpStyledComponentsStep: Step = {
@@ -15,10 +14,10 @@ export const setUpStyledComponentsStep: Step = {
     this.log("Setting up styled-components...")
 
     try {
-      await execa(`yarn add ${packages["styled-components"]}`)
-      await execa(
-        `yarn add --dev ${packages["babel-plugin-styled-components"]}`
-      )
+      await installNpmPackage(packages["styled-components"])
+      await installNpmPackage(packages["babel-plugin-styled-components"], {
+        dev: true,
+      })
 
       await addStyledComponentsBabelPlugin()
     } catch (error) {

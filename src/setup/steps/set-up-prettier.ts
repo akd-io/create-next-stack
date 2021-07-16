@@ -1,10 +1,9 @@
-import execa from "execa"
 import fs from "fs/promises"
 import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { techValues } from "../../questionnaire/questions/technologies"
-import { packages } from "../packages"
+import { installNpmPackage, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpPrettierStep: Step = {
@@ -14,9 +13,8 @@ export const setUpPrettierStep: Step = {
     this.log("Setting up Prettier...")
 
     try {
-      await execa(
-        `yarn add --dev ${packages.prettier} ${packages["eslint-config-prettier"]}`
-      )
+      await installNpmPackage(packages.prettier, { dev: true })
+      await installNpmPackage(packages["eslint-config-prettier"], { dev: true })
 
       await Promise.all([
         addPrettierConfig(),
