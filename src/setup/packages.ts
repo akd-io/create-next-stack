@@ -15,7 +15,7 @@ export const yarnAdd = async (
   const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]
 
   const packagesWithVersions = packageArray.map((pkg) =>
-    getNameVersionCombo(pkg)
+    getQuotedNameVersionCombo(pkg)
   )
 
   let yarnAddCommand = "yarn add"
@@ -28,10 +28,8 @@ export const yarnAdd = async (
   return execa(yarnAddCommand)
 }
 
-export const getNameVersionCombo = (npmPackage: Package) => {
-  return process.platform === "win32"
-    ? `${npmPackage.name}@^^${npmPackage.minVersion}` // The caret is an escape character on windows, and therefore needs to be escaped itself.
-    : `${npmPackage.name}@^${npmPackage.minVersion}`
+export const getQuotedNameVersionCombo = (npmPackage: Package) => {
+  return `"${npmPackage.name}@^${npmPackage.minVersion}"`
 }
 
 export const packages = {

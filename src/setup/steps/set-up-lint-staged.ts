@@ -6,7 +6,7 @@ import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { remove } from "../../helpers/remove"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { techValues } from "../../questionnaire/questions/technologies"
-import { getNameVersionCombo, packages } from "../packages"
+import { getQuotedNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpLintStagedStep: Step = {
@@ -29,9 +29,9 @@ export const setUpLintStagedStep: Step = {
       this.log("Setting up lint-staged...")
 
       await execa(
-        `npm install -g ${getNameVersionCombo(
+        `npm install -g ${getQuotedNameVersionCombo(
           packages.mrm
-        )} ${getNameVersionCombo(packages["mrm-task-lint-staged"])}`
+        )} ${getQuotedNameVersionCombo(packages["mrm-task-lint-staged"])}`
       )
       await execa(`mrm lint-staged`) // TODO: Uninstall mrm and mrm-task-lint-staged again if they weren't installed before running create-next-stack.
       await remove("6") // Removes the unnecessary log file (named "6") created during the previous command.

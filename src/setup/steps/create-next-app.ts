@@ -1,7 +1,7 @@
 import execa from "execa"
 import fs from "fs/promises"
 import { throwError } from "../../error-handling"
-import { getNameVersionCombo, packages } from "../packages"
+import { getQuotedNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
 export const createNextAppStep: Step = {
@@ -15,7 +15,7 @@ export const createNextAppStep: Step = {
       await fs.mkdir(answers.projectPath, { recursive: true })
 
       await execa(
-        `npx ${getNameVersionCombo(packages["create-next-app"])} ${
+        `npx ${getQuotedNameVersionCombo(packages["create-next-app"])} ${
           answers.projectPath
         } --typescript`
       )
