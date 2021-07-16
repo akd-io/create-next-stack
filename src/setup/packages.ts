@@ -5,6 +5,8 @@ export const packages = {
   "@emotion/react": "@emotion/react@^11.0.0",
   "@emotion/styled": "@emotion/styled@^11.0.0",
   "@emotion/babel-plugin": "@emotion/babel-plugin@^11.0.0",
+  "styled-components": "styled-components@^5.0.0",
+  "babel-plugin-styled-components": "babel-plugin-styled-components@^1.0.0",
   "react-hook-form": "react-hook-form@^7.0.0",
   formik: "formik@^2.0.0",
   "framer-motion": "framer-motion@^4.0.0",
