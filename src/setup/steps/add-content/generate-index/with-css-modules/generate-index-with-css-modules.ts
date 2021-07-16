@@ -1,9 +1,9 @@
-import { QuestionnaireAnswers } from "../../../../questionnaire/questionnaire"
+import { QuestionnaireAnswers } from "../../../../../questionnaire/questionnaire"
 import {
   confettiImports,
   confettiScriptComponent,
   onConfettiLoadFunction,
-} from "./confetti-script"
+} from "../confetti-script"
 
 export const generateIndexWithCssModules = (
   answers: QuestionnaireAnswers

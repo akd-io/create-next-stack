@@ -1,10 +1,9 @@
-import execa from "execa"
 import fs from "fs/promises"
 import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { techValues } from "../../questionnaire/questions/technologies"
-import { packages } from "../packages"
+import { packages, yarnAdd } from "../packages"
 import { Step } from "../step"
 
 export const setUpEmotionStep: Step = {
@@ -14,10 +13,8 @@ export const setUpEmotionStep: Step = {
     this.log("Setting up Emotion...")
 
     try {
-      await execa(
-        `yarn add ${packages["@emotion/react"]} ${packages["@emotion/styled"]}`
-      )
-      await execa(`yarn add --dev ${packages["@emotion/babel-plugin"]}`)
+      await yarnAdd([packages["@emotion/react"], packages["@emotion/styled"]])
+      await yarnAdd(packages["@emotion/babel-plugin"], { dev: true })
 
       await addCssPropSupportAsPerEmotionDocs()
       await addTypeScriptSupportForTheEmotionCssProp()
@@ -67,12 +64,13 @@ const addCssPropSupportAsPerEmotionDocs = async () => {
   }
 
   // Add Emotion's Babel plugin as per their docs: https://emotion.sh/docs/install#babelrc
-  // Note quote from docs:
+  // Note quote from the docs:
   // > "@emotion" must be the first plugin in your babel config `plugins` list.
+  const emotionEntry = "@emotion"
   if (Array.isArray(babelConfig.plugins)) {
-    babelConfig.plugins = ["@emotion", ...babelConfig.plugins]
+    babelConfig.plugins = [emotionEntry, ...babelConfig.plugins]
   } else {
-    babelConfig.plugins = ["@emotion"]
+    babelConfig.plugins = [emotionEntry]
   }
 
   await writeJsonFile(babelrcFileName, babelConfig)
