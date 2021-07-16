@@ -1,7 +1,7 @@
 import { QuestionnaireAnswers } from "../../../../questionnaire/questionnaire"
 import { techValues } from "../../../../questionnaire/questions/technologies"
 import { generateIndexWithCssModules } from "./generate-index-with-css-modules"
-import { generateIndexWithEmotion } from "./generate-index-with-emotion"
+import { generateIndexWithCssModules } from "./with-css-modules/generate-index-with-css-modules"
 
 export const generateIndex = (answers: QuestionnaireAnswers) => {
   if (answers.technologies.includes(techValues.emotion)) {
