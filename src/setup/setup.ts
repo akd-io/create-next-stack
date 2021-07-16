@@ -16,6 +16,7 @@ import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-conten
 import { setUpEmotionStep } from "./steps/set-up-emotion"
 import { setUpLintStagedStep } from "./steps/set-up-lint-staged"
 import { setUpPrettierStep } from "./steps/set-up-prettier"
+import { setUpStyledComponentsStep } from "./steps/set-up-styled-components"
 import { updateYarnStep } from "./steps/update-yarn"
 
 export async function performSetupSteps(
@@ -30,6 +31,7 @@ export async function performSetupSteps(
 
     addBaseBabelConfigStep,
     setUpEmotionStep,
+    setUpStyledComponentsStep,
 
     setUpPrettierStep,
     setUpLintStagedStep,

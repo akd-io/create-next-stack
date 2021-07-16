@@ -7,7 +7,8 @@ export const generatePage = (
 import Head from "next/head";
 import React from "react";
 ${
-  answers.technologies.includes(techValues.emotion)
+  answers.technologies.includes(techValues.emotion) ||
+  answers.technologies.includes(techValues.styledComponents)
     ? `import WithDefaultGlobalStyles from "./WithDefaultGlobalStyles";`
     : ``
 }
@@ -19,7 +20,8 @@ type PageProps = {
 const Page: React.FC<PageProps> = ({ title, description, children }) => {
   return (
     ${
-      answers.technologies.includes(techValues.emotion)
+      answers.technologies.includes(techValues.emotion) ||
+      answers.technologies.includes(techValues.styledComponents)
         ? `<WithDefaultGlobalStyles>`
         : `<>`
     }
@@ -30,7 +32,8 @@ const Page: React.FC<PageProps> = ({ title, description, children }) => {
       </Head>
       {children}
     ${
-      answers.technologies.includes(techValues.emotion)
+      answers.technologies.includes(techValues.emotion) ||
+      answers.technologies.includes(techValues.styledComponents)
         ? `</WithDefaultGlobalStyles>`
         : `</>`
     }

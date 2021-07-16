@@ -11,6 +11,7 @@
     "dot-notation": "off",
     "no-process-exit": "off",
     "unicorn/no-process-exit": "off",
+    "no-warning-comments": "off",
     "@typescript-eslint/no-use-before-define": "off"
   }
 }

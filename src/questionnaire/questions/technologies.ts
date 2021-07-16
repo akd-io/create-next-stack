@@ -4,6 +4,7 @@ import { arrayToKeyToKeyMap } from "../../helpers/array-to-key-to-key-map"
 const techValueArray = <const>[
   "prettier",
   "emotion",
+  "styledComponents",
   "cssModules",
   "reactHookForm",
   "formik",
@@ -29,6 +30,10 @@ const techChoices: {
     value: "emotion",
     name: "Emotion",
     checked: true,
+  },
+  styledComponents: {
+    value: "styledComponents",
+    name: "Styled Components",
   },
   cssModules: {
     value: "cssModules",
@@ -71,6 +76,7 @@ export async function promptTechnologies() {
 
       new Separator("Styling:"),
       techChoices.emotion,
+      techChoices.styledComponents,
       techChoices.cssModules,
 
       new Separator("Form state management:"),
@@ -91,14 +97,13 @@ export async function promptTechnologies() {
         return `${techChoices.preCommitHook.name} requires ${techChoices.prettier.name}`
       }
 
-      const bothEmotionAndCSSModules =
-        technologies.includes(techValues.emotion) &&
+      const onlyOneStylingSelected = oneOf(
+        technologies.includes(techValues.emotion),
+        technologies.includes(techValues.styledComponents),
         technologies.includes(techValues.cssModules)
-      const neitherEmotionNorCSSModules =
-        !technologies.includes(techValues.emotion) &&
-        !technologies.includes(techValues.cssModules)
-      if (bothEmotionAndCSSModules || neitherEmotionNorCSSModules) {
-        return `You have to pick either ${techChoices.emotion.name} or ${techChoices.cssModules.name}`
+      )
+      if (!onlyOneStylingSelected) {
+        return `You have to pick exactly one styling solution.`
       }
 
       return true
@@ -106,4 +111,11 @@ export async function promptTechnologies() {
   })
 
   return technologies
+}
+
+const oneOf = (...booleans: boolean[]) => {
+  const count = booleans.reduce((previous, current) => {
+    return current ? previous + 1 : previous
+  }, 0)
+  return count === 1
 }
