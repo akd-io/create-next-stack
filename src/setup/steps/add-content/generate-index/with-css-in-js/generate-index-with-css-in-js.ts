@@ -1,14 +1,15 @@
-import { QuestionnaireAnswers } from "../../../../questionnaire/questionnaire"
+import { QuestionnaireAnswers } from "../../../../../questionnaire/questionnaire"
 import {
   confettiImports,
   confettiScriptComponent,
   onConfettiLoadFunction,
-} from "./confetti-script"
+} from "../confetti-script"
+import { getStyledImport } from "./get-styled-import"
 
-export const generateIndexWithEmotion = (
+export const generateIndexWithCssInJs = (
   answers: QuestionnaireAnswers
 ) => /* tsx */ `
-import styled from "@emotion/styled";
+${getStyledImport(answers)}
 import { NextPage } from "next";
 ${confettiImports}
 import Page from "../components/Page";
