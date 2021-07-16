@@ -24,19 +24,24 @@ export const addContentStep: Step = {
         writeFile("pages/_app.tsx", generateApp(answers)),
       ]
 
-      if (answers.technologies.includes(techValues.emotion)) {
+      if (
+        answers.technologies.includes(techValues.emotion) ||
+        answers.technologies.includes(techValues.styledComponents)
+      ) {
         promises.push(
           writeFile(
             "components/WithDefaultGlobalStyles.tsx",
-            generateWithDefaultGlobalStyles()
+            generateWithDefaultGlobalStyles(answers)
           )
         )
-      }
-
-      if (answers.technologies.includes(techValues.cssModules)) {
+      } else if (answers.technologies.includes(techValues.cssModules)) {
         await mkdir("styles")
         promises.push(writeFile("styles/index.module.css", indexCSSModule))
         promises.push(writeFile("styles/global-styles.css", globalStyles))
+      } else {
+        throw new Error(
+          "Unsupported styling technology found in addContentStep, or no styling technology was chosen."
+        )
       }
 
       await Promise.all(promises)
