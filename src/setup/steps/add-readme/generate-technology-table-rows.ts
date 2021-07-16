@@ -8,6 +8,7 @@ import { installReactHookFormStep } from "../install-react-hook-form"
 import { setUpEmotionStep } from "../set-up-emotion"
 import { setUpLintStagedStep } from "../set-up-lint-staged"
 import { setUpPrettierStep } from "../set-up-prettier"
+import { setUpStyledComponentsStep } from "../set-up-styled-components"
 
 export async function generateTechnologyTableRows(
   this: Command,
@@ -36,6 +37,11 @@ export async function generateTechnologyTableRows(
       name: /* md */ `[Emotion](https://emotion.sh/docs/introduction)`,
       links: /* md */ `[Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)`,
       filter: setUpEmotionStep.shouldRun(answers),
+    },
+    {
+      name: /* md */ `[styled-components](https://styled-components.com/)`,
+      links: /* md */ `[Docs](https://styled-components.com/docs) - [GitHub repo](https://github.com/styled-components/styled-components)`,
+      filter: setUpStyledComponentsStep.shouldRun(answers),
     },
     {
       name: /* md */ `[CSS Modules](https://github.com/css-modules/css-modules)`,
