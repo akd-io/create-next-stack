@@ -67,12 +67,13 @@ const addCssPropSupportAsPerEmotionDocs = async () => {
   }
 
   // Add Emotion's Babel plugin as per their docs: https://emotion.sh/docs/install#babelrc
-  // Note quote from docs:
+  // Note quote from the docs:
   // > "@emotion" must be the first plugin in your babel config `plugins` list.
+  const emotionEntry = "@emotion"
   if (Array.isArray(babelConfig.plugins)) {
-    babelConfig.plugins = ["@emotion", ...babelConfig.plugins]
+    babelConfig.plugins = [emotionEntry, ...babelConfig.plugins]
   } else {
-    babelConfig.plugins = ["@emotion"]
+    babelConfig.plugins = [emotionEntry]
   }
 
   await writeJsonFile(babelrcFileName, babelConfig)
