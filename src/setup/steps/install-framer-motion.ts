@@ -1,6 +1,6 @@
 import { throwError } from "../../error-handling"
 import { techValues } from "../../questionnaire/questions/technologies"
-import { installNpmPackage, packages } from "../packages"
+import { packages, yarnAdd } from "../packages"
 import { Step } from "../step"
 
 export const installFramerMotionStep: Step = {
@@ -11,7 +11,7 @@ export const installFramerMotionStep: Step = {
     this.log("Installing Framer Motion...")
 
     try {
-      await installNpmPackage(packages["framer-motion"])
+      await yarnAdd(packages["framer-motion"])
     } catch (error) {
       throwError.call(
         this,

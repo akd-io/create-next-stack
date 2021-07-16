@@ -8,18 +8,24 @@ type Package = {
 type InstallPackageOptions = {
   dev?: boolean
 }
-export const installNpmPackage = async (
-  npmPackage: Package,
+export const yarnAdd = async (
+  npmPackage: Package | Package[],
   options?: InstallPackageOptions
 ) => {
-  const packageWithVersion = getNameVersionCombo(npmPackage)
+  const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]
 
-  let installCommand = "yarn add"
+  const packagesWithVersions = packageArray.map((pkg) =>
+    getNameVersionCombo(pkg)
+  )
+
+  let yarnAddCommand = "yarn add"
   if (options != null && options.dev != null && options.dev) {
-    installCommand += " --dev"
+    yarnAddCommand += " --dev"
   }
-  installCommand += ` ${packageWithVersion}`
-  return execa(installCommand)
+  packagesWithVersions.forEach((packageWithVersion) => {
+    yarnAddCommand += ` ${packageWithVersion}`
+  })
+  return execa(yarnAddCommand)
 }
 
 export const getNameVersionCombo = (npmPackage: Package) => {

@@ -3,7 +3,7 @@ import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { techValues } from "../../questionnaire/questions/technologies"
-import { installNpmPackage, packages } from "../packages"
+import { packages, yarnAdd } from "../packages"
 import { Step } from "../step"
 
 export const setUpEmotionStep: Step = {
@@ -13,9 +13,8 @@ export const setUpEmotionStep: Step = {
     this.log("Setting up Emotion...")
 
     try {
-      await installNpmPackage(packages["@emotion/react"])
-      await installNpmPackage(packages["@emotion/styled"])
-      await installNpmPackage(packages["@emotion/babel-plugin"], { dev: true })
+      await yarnAdd([packages["@emotion/react"], packages["@emotion/styled"]])
+      await yarnAdd(packages["@emotion/babel-plugin"], { dev: true })
 
       await addCssPropSupportAsPerEmotionDocs()
       await addTypeScriptSupportForTheEmotionCssProp()

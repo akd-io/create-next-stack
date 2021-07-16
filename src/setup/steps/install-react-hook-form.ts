@@ -1,6 +1,6 @@
 import { throwError } from "../../error-handling"
 import { techValues } from "../../questionnaire/questions/technologies"
-import { installNpmPackage, packages } from "../packages"
+import { packages, yarnAdd } from "../packages"
 import { Step } from "../step"
 
 export const installReactHookFormStep: Step = {
@@ -11,7 +11,7 @@ export const installReactHookFormStep: Step = {
     this.log("Installing React Hook Form...")
 
     try {
-      await installNpmPackage(packages["react-hook-form"])
+      await yarnAdd(packages["react-hook-form"])
     } catch (error) {
       throwError.call(
         this,

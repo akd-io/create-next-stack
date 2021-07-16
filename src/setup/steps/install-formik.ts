@@ -1,6 +1,6 @@
 import { throwError } from "../../error-handling"
 import { techValues } from "../../questionnaire/questions/technologies"
-import { installNpmPackage, packages } from "../packages"
+import { packages, yarnAdd } from "../packages"
 import { Step } from "../step"
 
 export const installFormikStep: Step = {
@@ -10,7 +10,7 @@ export const installFormikStep: Step = {
     this.log("Installing Formik...")
 
     try {
-      await installNpmPackage(packages.formik)
+      await yarnAdd(packages.formik)
     } catch (error) {
       throwError.call(this, "An error occurred while installing Formik.", error)
     }
