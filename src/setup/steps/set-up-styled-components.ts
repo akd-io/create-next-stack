@@ -15,9 +15,15 @@ export const setUpStyledComponentsStep: Step = {
 
     try {
       await yarnAdd(packages["styled-components"])
-      await yarnAdd(packages["babel-plugin-styled-components"], {
-        dev: true,
-      })
+      await yarnAdd(
+        [
+          packages["@types/styled-components"],
+          packages["babel-plugin-styled-components"],
+        ],
+        {
+          dev: true,
+        }
+      )
 
       await addStyledComponentsBabelPlugin()
     } catch (error) {

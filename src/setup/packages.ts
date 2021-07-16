@@ -61,6 +61,10 @@ export const packages = {
     name: "styled-components",
     minVersion: "5.0.0",
   },
+  "@types/styled-components": {
+    name: "@types/styled-components",
+    minVersion: "5.0.0",
+  },
   "babel-plugin-styled-components": {
     name: "babel-plugin-styled-components",
     minVersion: "1.0.0",
