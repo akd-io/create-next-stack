@@ -2,6 +2,7 @@ import execa from "execa"
 import fs from "fs/promises"
 import { throwError } from "../../error-handling"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
+import { isPackageGloballyInstalled } from "../../helpers/is-package-globally-installed"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { remove } from "../../helpers/remove"
 import { writeJsonFile } from "../../helpers/write-json-file"
@@ -28,13 +29,51 @@ export const setUpLintStagedStep: Step = {
 
       this.log("Setting up lint-staged...")
 
-      await execa(
-        `npm install -g ${getQuotedNameVersionCombo(
-          packages.mrm
-        )} ${getQuotedNameVersionCombo(packages["mrm-task-lint-staged"])}`
+      /*
+        Check if mrm and mrm-task-lint-staged is installed globally already. (If they are not, we need to remove them again later)
+
+        As isPackageGloballyInstalled has false positives is some corner cases,
+        this can result in mrm or mrm-task-lint-staged being left behind installed after setup.
+        This is very unlikely in this specific case though, as these packages are unlikely to be installed by other packages.
+      */
+      const mrmInstalledPreviouslyPromise = isPackageGloballyInstalled(
+        packages.mrm.name
       )
-      await execa(`mrm lint-staged`) // TODO: Uninstall mrm and mrm-task-lint-staged again if they weren't installed before running create-next-stack.
-      await remove("6") // Removes the unnecessary log file (named "6") created during the previous command.
+      const mrmTaskLintStagedInstalledPreviouslyPromise =
+        isPackageGloballyInstalled(packages["mrm-task-lint-staged"].name)
+
+      const [mrmInstalledPreviously, mrmTaskLintStagedInstalledPreviously] =
+        await Promise.all([
+          mrmInstalledPreviouslyPromise,
+          mrmTaskLintStagedInstalledPreviouslyPromise,
+        ])
+
+      // Install packages
+      const mrmPackageWithVersion = getQuotedNameVersionCombo(packages.mrm)
+      const mrmTaskLintStagedPackageWithVersion = getQuotedNameVersionCombo(
+        packages["mrm-task-lint-staged"]
+      )
+      await execa(
+        `npm install -g ${mrmPackageWithVersion} ${mrmTaskLintStagedPackageWithVersion}`
+      )
+
+      // Set up lint-staged using mrm
+      await execa(`mrm lint-staged`)
+
+      // Remove the unnecessary log file (named "6") created by `mrm lint-staged`
+      await remove("6")
+
+      // Remove global packages not installed previous to running create-next-stack
+      const uninstallPromises = []
+      if (!mrmInstalledPreviously) {
+        uninstallPromises.push(execa(`npm uninstall -g ${packages.mrm.name}`))
+      }
+      if (!mrmTaskLintStagedInstalledPreviously) {
+        uninstallPromises.push(
+          execa(`npm uninstall -g ${packages["mrm-task-lint-staged"].name}`)
+        )
+      }
+      await Promise.all(uninstallPromises)
 
       // Override "lint-staged" configuration
       const packageJsonString = await fs.readFile("package.json", "utf8")
