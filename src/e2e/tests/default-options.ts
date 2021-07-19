@@ -3,7 +3,6 @@ import execa from "execa"
 import { promises as fs } from "fs"
 import path from "path"
 import { v4 as uuidv4 } from "uuid"
-import { tryGitInit } from "./try-git-init"
 
 export const testDefaultOptions = async () => {
   const createNextStackDir = process.cwd()
@@ -36,31 +35,6 @@ export const testDefaultOptions = async () => {
   execaProcess.stdin?.write("\n") // Press
 
   await execaProcess
-
-  // TODO: Remove when isGitInitialized bug is fixed
-  console.log("Trying to init Git in " + process.cwd())
-  tryGitInit(process.cwd())
-
-  // TODO: Remove when isGitInitialized bug is fixed
-  if (process.platform === "linux" || process.platform === "darwin") {
-    console.log("List files with ls -la:")
-    const listProcess = execa("ls", ["-la"])
-    listProcess.stdout?.pipe(process.stdout)
-    await listProcess
-  }
-
-  // TODO: Remove when isGitInitialized bug is fixed
-  if (process.platform === "linux" || process.platform === "darwin") {
-    console.log("which git:")
-    const whichProcess = execa("which", ["git"])
-    whichProcess.stdout?.pipe(process.stdout)
-    await whichProcess
-  } else if (process.platform === "win32") {
-    console.log("where.exe git:")
-    const whichProcess = execa("where.exe", ["git"])
-    whichProcess.stdout?.pipe(process.stdout)
-    await whichProcess
-  }
 
   console.log("Checking formatting")
   await execa("npx", ["prettier", "--check", "--ignore-path=.gitignore", "."])
