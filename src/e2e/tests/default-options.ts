@@ -36,6 +36,14 @@ export const testDefaultOptions = async () => {
 
   await execaProcess
 
+  // TODO: Remove when isGitInitialized bug is fixed
+  if (process.platform === "linux" || process.platform === "darwin") {
+    console.log("List files with ls -la:")
+    const listProcess = execa("ls", ["-la"])
+    listProcess.stdout?.pipe(process.stdout)
+    await listProcess
+  }
+
   console.log("Checking formatting")
   await execa("npx", ["prettier", "--check", "--ignore-path=.gitignore", "."])
 
