@@ -1,8 +1,8 @@
-import { promises as fs } from "fs"
+import rimraf from "rimraf"
+import { promisify } from "util"
+
+const rm = promisify(rimraf)
 
 export const remove = (path: string): Promise<void> => {
-  return fs.rm(path, {
-    recursive: true,
-    force: true,
-  })
+  return rm(path)
 }
