@@ -14,11 +14,14 @@ export const testDefaultOptions = async () => {
   const runDirectory = path.resolve(
     `../create-next-stack-tests/run-${testRunId}`
   )
-  await fs.promises.mkdir(runDirectory, { recursive: true }) // Use fs.promises to support Node 12 until tests are compiled
+  fs.mkdirSync(runDirectory, { recursive: true })
   process.chdir(runDirectory)
   console.log(`Created test run directory at ${runDirectory}`)
 
   const pathToCLI = path.resolve(`${createNextStackDir}/bin/run`)
+
+  console.log(`Making /bin/run readable and executable by all.`)
+  fs.chmodSync(pathToCLI, 0o555)
 
   console.log(`Running command: ${pathToCLI} --debug .`)
   const execaProcess = execa(pathToCLI, ["--debug", "."], {
