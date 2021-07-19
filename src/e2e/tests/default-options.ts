@@ -44,6 +44,19 @@ export const testDefaultOptions = async () => {
     await listProcess
   }
 
+  // TODO: Remove when isGitInitialized bug is fixed
+  if (process.platform === "linux" || process.platform === "darwin") {
+    console.log("which git:")
+    const whichProcess = execa("which", ["git"])
+    whichProcess.stdout?.pipe(process.stdout)
+    await whichProcess
+  } else if (process.platform === "win32") {
+    console.log("where.exe git:")
+    const whichProcess = execa("where.exe", ["git"])
+    whichProcess.stdout?.pipe(process.stdout)
+    await whichProcess
+  }
+
   console.log("Checking formatting")
   await execa("npx", ["prettier", "--check", "--ignore-path=.gitignore", "."])
 
