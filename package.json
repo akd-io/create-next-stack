@@ -1,6 +1,6 @@
 {
   "name": "create-next-stack",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "Anders Kjær Damgaard @akd-io",
   "bin": {
     "create-next-stack": "./bin/run"
@@ -13,6 +13,7 @@
     "@oclif/plugin-help": "^3.2.2",
     "execa": "^5.1.1",
     "inquirer": "^8.1.1",
+    "rimraf": "^3.0.2",
     "tslib": "^2.3.0",
     "validate-npm-package-name": "^3.0.0"
   },
@@ -20,6 +21,8 @@
     "@oclif/dev-cli": "^1.26.0",
     "@types/inquirer": "^7.3.2",
     "@types/node": "^15.12.4",
+    "@types/rimraf": "^3.0.1",
+    "@types/uuid": "^8.3.1",
     "@types/validate-npm-package-name": "^3.0.2",
     "eslint": "^5.16.0",
     "eslint-config-oclif": "^3.1.0",
@@ -28,9 +31,9 @@
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.2",
-    "rimraf": "^3.0.2",
     "ts-node": "^10.0.0",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.4",
+    "uuid": "^8.3.2"
   },
   "engines": {
     "node": ">=12.0.0"
@@ -53,7 +56,7 @@
     "prepare": "husky install",
     "prepack": "yarn build && oclif-dev readme",
     "build": "rimraf lib && tsc -b",
-    "test": "echo NO TESTS",
+    "test": "ts-node src/e2e/test.ts",
     "version": "oclif-dev readme && git add README.md",
     "format": "prettier --write --ignore-path=.gitignore .",
     "format:check": "prettier --check --ignore-path=.gitignore .",

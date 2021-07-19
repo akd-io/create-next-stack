@@ -1,4 +1,4 @@
-import fs from "fs/promises"
+import { promises as fs } from "fs"
 import { throwError } from "../../error-handling"
 import { remove } from "../../helpers/remove"
 import { Step } from "../step"

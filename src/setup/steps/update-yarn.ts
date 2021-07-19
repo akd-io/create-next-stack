@@ -1,6 +1,6 @@
 import execa from "execa"
 import { throwError } from "../../error-handling"
-import { getQuotedNameVersionCombo, packages } from "../packages"
+import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
 export const updateYarnStep: Step = {
@@ -10,7 +10,7 @@ export const updateYarnStep: Step = {
     this.log("Updating Yarn...")
 
     try {
-      await execa(`npm i -g ${getQuotedNameVersionCombo(packages.yarn)}`)
+      await execa("npm", ["i", "-g", getNameVersionCombo(packages.yarn)])
     } catch (error) {
       throwError.call(this, "An error occurred while updating Yarn.", error)
     }
