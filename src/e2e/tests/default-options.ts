@@ -1,6 +1,6 @@
 import console from "console"
 import execa from "execa"
-import { mkdir } from "fs/promises"
+import fs from "fs"
 import path from "path"
 import { v4 as uuidv4 } from "uuid"
 
@@ -14,7 +14,7 @@ export const testDefaultOptions = async () => {
   const runDirectory = path.resolve(
     `../create-next-stack-tests/run-${testRunId}`
   )
-  await mkdir(runDirectory, { recursive: true })
+  await fs.promises.mkdir(runDirectory, { recursive: true }) // Use fs.promises to support Node 12 until tests are compiled
   process.chdir(runDirectory)
   console.log(`Created test run directory at ${runDirectory}`)
 
