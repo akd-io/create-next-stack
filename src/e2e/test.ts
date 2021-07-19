@@ -1,11 +1,11 @@
 import console from "console"
-import { isNativeError } from "util/types"
+import util from "util"
 import { testDefaultOptions } from "./tests/default-options"
 ;(async () => {
   try {
     await testDefaultOptions()
   } catch (error) {
-    if (isNativeError(error)) {
+    if (util.types.isNativeError(error)) {
       console.error(error.message)
     } else if (typeof error === "string") {
       console.error(error)
