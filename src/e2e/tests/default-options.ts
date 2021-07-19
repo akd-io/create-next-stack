@@ -21,6 +21,9 @@ export const testDefaultOptions = async () => {
   // Run /bin/run-prod to test against compiled js files in /lib instead of ts-files in /src using ts-node.
   const pathToProdCLI = path.resolve(`${createNextStackDir}/bin/run-prod`)
 
+  console.log(`Making /bin/run readable and executable by all.`)
+  fs.chmodSync(pathToProdCLI, 0o555)
+
   console.log(`Running command: ${pathToProdCLI} --debug .`)
   const execaProcess = execa(pathToProdCLI, ["--debug", "."], {
     timeout: 10 * 60 * 1000,
