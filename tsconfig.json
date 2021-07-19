@@ -10,5 +10,6 @@
     "esModuleInterop": true,
     "noUncheckedIndexedAccess": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["src/e2e/**/*"]
 }

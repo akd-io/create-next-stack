@@ -1,4 +1,4 @@
-import fs from "fs/promises"
+import { promises as fs } from "fs"
 import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"

@@ -1,4 +1,4 @@
-import { writeFile } from "fs/promises"
+import { promises as fs } from "fs"
 import { throwError } from "../../error-handling"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { Step } from "../step"
@@ -19,7 +19,7 @@ export const addGitAttributesStep: Step = {
 
       this.log(`Adding ${filename}...`)
 
-      await writeFile(filename, generateGitAttributes())
+      await fs.writeFile(filename, generateGitAttributes())
     } catch (error) {
       throwError.call(
         this,

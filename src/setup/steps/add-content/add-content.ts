@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "fs/promises"
+import { promises as fs } from "fs"
 import { throwError } from "../../../error-handling"
 import { techValues } from "../../../questionnaire/questions/technologies"
 import { Step } from "../../step"
@@ -16,12 +16,12 @@ export const addContentStep: Step = {
     this.log("Adding content...")
 
     try {
-      await mkdir("components")
+      await fs.mkdir("components")
 
       const promises = [
-        writeFile("components/Page.tsx", generatePage(answers)),
-        writeFile("pages/index.tsx", generateIndex(answers)),
-        writeFile("pages/_app.tsx", generateApp(answers)),
+        fs.writeFile("components/Page.tsx", generatePage(answers)),
+        fs.writeFile("pages/index.tsx", generateIndex(answers)),
+        fs.writeFile("pages/_app.tsx", generateApp(answers)),
       ]
 
       if (
@@ -29,15 +29,15 @@ export const addContentStep: Step = {
         answers.technologies.includes(techValues.styledComponents)
       ) {
         promises.push(
-          writeFile(
+          fs.writeFile(
             "components/WithDefaultGlobalStyles.tsx",
             generateWithDefaultGlobalStyles(answers)
           )
         )
       } else if (answers.technologies.includes(techValues.cssModules)) {
-        await mkdir("styles")
-        promises.push(writeFile("styles/index.module.css", indexCSSModule))
-        promises.push(writeFile("styles/global-styles.css", globalStyles))
+        await fs.mkdir("styles")
+        promises.push(fs.writeFile("styles/index.module.css", indexCSSModule))
+        promises.push(fs.writeFile("styles/global-styles.css", globalStyles))
       } else {
         throw new Error(
           "Unsupported styling technology found in addContentStep, or no styling technology was chosen."

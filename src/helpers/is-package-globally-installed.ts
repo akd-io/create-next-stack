@@ -21,7 +21,12 @@ export const isPackageGloballyInstalled = async (
   packageName: string
 ): Promise<boolean> => {
   try {
-    const execaResult = await execa(`npm list -g --depth=0 ${packageName}`)
+    const execaResult = await execa("npm", [
+      "list",
+      "-g",
+      "--depth=0",
+      packageName,
+    ])
 
     if (!execaResult.stdout.includes(packageName)) {
       return false

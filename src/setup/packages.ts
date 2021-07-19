@@ -15,21 +15,21 @@ export const yarnAdd = async (
   const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]
 
   const packagesWithVersions = packageArray.map((pkg) =>
-    getQuotedNameVersionCombo(pkg)
+    getNameVersionCombo(pkg)
   )
 
-  let yarnAddCommand = "yarn add"
+  const yarnAddCommandArgs = ["add"]
   if (options != null && options.dev != null && options.dev) {
-    yarnAddCommand += " --dev"
+    yarnAddCommandArgs.push("--dev")
   }
   packagesWithVersions.forEach((packageWithVersion) => {
-    yarnAddCommand += ` ${packageWithVersion}`
+    yarnAddCommandArgs.push(packageWithVersion)
   })
-  return execa(yarnAddCommand)
+  return execa("yarn", yarnAddCommandArgs)
 }
 
-export const getQuotedNameVersionCombo = (npmPackage: Package) => {
-  return `"${npmPackage.name}@^${npmPackage.minVersion}"`
+export const getNameVersionCombo = (npmPackage: Package) => {
+  return `${npmPackage.name}@^${npmPackage.minVersion}`
 }
 
 export const packages = {
