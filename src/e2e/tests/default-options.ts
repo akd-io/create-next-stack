@@ -3,6 +3,7 @@ import execa from "execa"
 import { promises as fs } from "fs"
 import path from "path"
 import { v4 as uuidv4 } from "uuid"
+import { tryGitInit } from "./try-git-init"
 
 export const testDefaultOptions = async () => {
   const createNextStackDir = process.cwd()
@@ -35,6 +36,10 @@ export const testDefaultOptions = async () => {
   execaProcess.stdin?.write("\n") // Press
 
   await execaProcess
+
+  // TODO: Remove when isGitInitialized bug is fixed
+  console.log("Trying to init Git in " + process.cwd())
+  tryGitInit(process.cwd())
 
   // TODO: Remove when isGitInitialized bug is fixed
   if (process.platform === "linux" || process.platform === "darwin") {
