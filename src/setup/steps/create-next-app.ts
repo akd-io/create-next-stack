@@ -1,7 +1,7 @@
 import execa from "execa"
 import fs from "fs/promises"
 import { throwError } from "../../error-handling"
-import { getQuotedNameVersionCombo, packages } from "../packages"
+import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
 export const createNextAppStep: Step = {
@@ -14,11 +14,11 @@ export const createNextAppStep: Step = {
       // Make sure directory exists to avoid error from create-next-app
       await fs.mkdir(answers.projectPath, { recursive: true })
 
-      await execa(
-        `npx ${getQuotedNameVersionCombo(packages["create-next-app"])} ${
-          answers.projectPath
-        } --typescript`
-      )
+      await execa("npx", [
+        getNameVersionCombo(packages["create-next-app"]),
+        answers.projectPath,
+        "--typescript",
+      ])
     } catch (error) {
       throwError.call(
         this,

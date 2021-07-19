@@ -33,11 +33,11 @@ export const testDefaultOptions = async () => {
   await execaProcess
 
   console.log("Checking formatting")
-  await execa(`npx prettier --check --ignore-path=.gitignore .`)
+  await execa("npx", ["prettier", "--check", "--ignore-path=.gitignore", "."])
 
   console.log("Checking linting")
-  await execa(`yarn lint`)
+  await execa("yarn", ["lint"])
 
   console.log("Running yarn build")
-  await execa(`yarn build`)
+  await execa("yarn", ["build"])
 }

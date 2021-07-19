@@ -18,10 +18,13 @@ export const gitCommitStep: Step = {
       this.log("Adding initial commit.")
 
       // Create Next App adds an initial commit. This is overridden using --amend below.
-      await execa("git add .")
-      await execa(
-        `git commit --amend -m "Initial commit from Create Next Stack"`
-      )
+      await execa("git", ["add", "."])
+      await execa("git", [
+        "commit",
+        "--amend",
+        "-m",
+        "Initial commit from Create Next Stack",
+      ])
     } catch (error) {
       throwError.call(
         this,
