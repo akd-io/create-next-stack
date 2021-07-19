@@ -8,7 +8,7 @@ import rimraf from "rimraf"
 function isInGitRepository(): boolean {
   try {
     console.log("Running git rev-parse --is-inside-work-tree")
-    execSync("git rev-parse --is-inside-work-tree", { stdio: "ignore" })
+    execSync("git rev-parse --is-inside-work-tree")
     return true
   } catch (_) {}
   return false
@@ -17,7 +17,7 @@ function isInGitRepository(): boolean {
 function isInMercurialRepository(): boolean {
   try {
     console.log("hg --cwd . root")
-    execSync("hg --cwd . root", { stdio: "ignore" })
+    execSync("hg --cwd . root")
     return true
   } catch (_) {}
   return false
@@ -27,7 +27,7 @@ export function tryGitInit(root: string): boolean {
   let didInit = false
   try {
     console.log("git --version")
-    execSync("git --version", { stdio: "ignore" })
+    execSync("git --version")
 
     const inGitRepository = isInGitRepository()
     if (inGitRepository) console.log("Is in Git repository")
@@ -40,25 +40,26 @@ export function tryGitInit(root: string): boolean {
     }
 
     console.log("git init")
-    execSync("git init", { stdio: "ignore" })
+    execSync("git init")
 
     didInit = true
 
     console.log("git checkout -b main")
-    execSync("git checkout -b main", { stdio: "ignore" })
+    execSync("git checkout -b main")
 
     console.log("git add -A")
-    execSync("git add -A", { stdio: "ignore" })
+    execSync("git add -A")
 
     console.log('git commit -m "Initial commit from Create Next App"')
-    execSync('git commit -m "Initial commit from Create Next App"', {
-      stdio: "ignore",
-    })
+    execSync('git commit -m "Initial commit from Create Next App"')
 
     return true
   } catch (e) {
     if (didInit) {
-      console.log("Removing .git")
+      console.log("Removing .git, after receiving the following error:")
+      console.error(e)
+      console.error("e.stderr.toString():")
+      console.error(e.stderr.toString())
       try {
         rimraf.sync(path.join(root, ".git"))
       } catch (_) {}
