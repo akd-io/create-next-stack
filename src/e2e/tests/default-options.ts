@@ -18,13 +18,11 @@ export const testDefaultOptions = async () => {
   process.chdir(runDirectory)
   console.log(`Created test run directory at ${runDirectory}`)
 
-  const pathToCLI = path.resolve(`${createNextStackDir}/bin/run`)
+  // Run /bin/run-prod to test against compiled js files in /lib instead of ts-files in /src using ts-node.
+  const pathToProdCLI = path.resolve(`${createNextStackDir}/bin/run-prod`)
 
-  console.log(`Making /bin/run readable and executable by all.`)
-  fs.chmodSync(pathToCLI, 0o555)
-
-  console.log(`Running command: ${pathToCLI} --debug .`)
-  const execaProcess = execa(pathToCLI, ["--debug", "."], {
+  console.log(`Running command: ${pathToProdCLI} --debug .`)
+  const execaProcess = execa(pathToProdCLI, ["--debug", "."], {
     timeout: 10 * 60 * 1000,
   }) // 10 minutes
   execaProcess.stdout?.pipe(process.stdout)
