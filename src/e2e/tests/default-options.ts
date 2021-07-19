@@ -30,4 +30,13 @@ export const testDefaultOptions = async () => {
   execaProcess.stdin?.write("\n") // Press
 
   await execaProcess
+
+  console.log("Checking formatting")
+  await execa(`npx prettier --check --ignore-path=.gitignore .`)
+
+  console.log("Checking linting")
+  await execa(`yarn lint`)
+
+  console.log("Running yarn build")
+  await execa(`yarn build`)
 }
