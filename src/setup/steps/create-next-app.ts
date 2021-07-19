@@ -1,5 +1,5 @@
 import execa from "execa"
-import fs from "fs/promises"
+import { promises as fs } from "fs"
 import { throwError } from "../../error-handling"
 import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"

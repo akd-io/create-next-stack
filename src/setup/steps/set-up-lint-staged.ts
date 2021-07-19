@@ -1,5 +1,5 @@
 import execa from "execa"
-import fs from "fs/promises"
+import { promises as fs } from "fs"
 import { throwError } from "../../error-handling"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { isPackageGloballyInstalled } from "../../helpers/is-package-globally-installed"

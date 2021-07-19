@@ -1,6 +1,6 @@
 import console from "console"
 import execa from "execa"
-import fs from "fs"
+import { promises as fs } from "fs"
 import path from "path"
 import { v4 as uuidv4 } from "uuid"
 
@@ -14,7 +14,7 @@ export const testDefaultOptions = async () => {
   const runDirectory = path.resolve(
     `../create-next-stack-tests/run-${testRunId}`
   )
-  fs.mkdirSync(runDirectory, { recursive: true })
+  await fs.mkdir(runDirectory, { recursive: true })
   process.chdir(runDirectory)
   console.log(`Created test run directory at ${runDirectory}`)
 
@@ -22,7 +22,7 @@ export const testDefaultOptions = async () => {
   const pathToProdCLI = path.resolve(`${createNextStackDir}/bin/run-prod`)
 
   console.log(`Making /bin/run readable and executable by all.`)
-  fs.chmodSync(pathToProdCLI, 0o555)
+  await fs.chmod(pathToProdCLI, 0o555)
 
   console.log(`Running command: ${pathToProdCLI} --debug .`)
   const execaProcess = execa(pathToProdCLI, ["--debug", "."], {

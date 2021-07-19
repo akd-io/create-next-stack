@@ -1,4 +1,4 @@
-import fs from "fs/promises"
+import { promises as fs } from "fs"
 
 /**
  * `isGitInitialized` checks if Git has been initialized or not.

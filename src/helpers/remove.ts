@@ -1,4 +1,4 @@
-import fs from "fs/promises"
+import { promises as fs } from "fs"
 
 export const remove = (path: string): Promise<void> => {
   return fs.rm(path, {
