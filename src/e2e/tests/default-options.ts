@@ -20,9 +20,10 @@ export const testDefaultOptions = async () => {
 
   const pathToCLI = path.resolve(`${createNextStackDir}/bin/run`)
 
-  const command = `"${pathToCLI}" --debug .`
-  console.log(`Running command: ${command}`)
-  const execaProcess = execa(command, { timeout: 10 * 60 * 1000 }) // 10 minutes
+  console.log(`Running command: ${pathToCLI} --debug .`)
+  const execaProcess = execa(pathToCLI, ["--debug", "."], {
+    timeout: 10 * 60 * 1000,
+  }) // 10 minutes
   execaProcess.stdout?.pipe(process.stdout)
   execaProcess.stderr?.pipe(process.stderr)
 
