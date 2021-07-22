@@ -2,6 +2,8 @@ import { Command, flags } from "@oclif/command"
 import {
   CreateNextStackArgs,
   CreateNextStackFlags,
+  ValidCreateNextStackArgs,
+  ValidCreateNextStackFlags,
   writableStylingOptions,
 } from "./create-next-stack-types"
 import { throwError } from "./error-handling"
@@ -87,8 +89,21 @@ class CreateNextStack extends Command {
       flags = await performFlagsQuestionnaire.call(this)
     }
 
-    validateArgs.call(this, args)
-    validateFlags.call(this, flags)
+    if (!validateArgs(args)) {
+      throwError.call(
+        this,
+        'The non-interactive CLI requires you to specify a name for your application. Read about the "appName" argument using --help.'
+      )
+      process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+    }
+
+    if (!validateFlags(flags)) {
+      throwError.call(
+        this,
+        'The non-interactive CLI requires you to specify a styling method. Read about the "--styling" flag using --help.'
+      )
+      process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+    }
 
     await performSetupSteps.call(this, args, flags)
   }
@@ -103,30 +118,16 @@ const shouldBeInteractive = (flags: CreateNextStackFlags): boolean => {
   return numOfNonGeneralFlags === 0
 }
 
-function validateArgs(
-  this: Command,
+const validateArgs = (
   args: CreateNextStackArgs
-): args is CreateNextStackArgs & { appName: string } {
-  if (typeof args.appName === "string") {
-    return true
-  }
-  throwError.call(
-    this,
-    'The non-interactive CLI requires you to specify a name for your application. Read about the "appName" argument using --help.'
-  )
-  process.exit(1)
+): args is ValidCreateNextStackArgs => {
+  return typeof args.appName === "string"
 }
 
-function validateFlags(
-  this: Command,
+const validateFlags = (
   flags: CreateNextStackFlags
-): void | never {
-  if (flags.styling == null) {
-    throwError.call(
-      this,
-      'The non-interactive CLI requires you to specify a styling method. Read about the "--styling" flag using --help.'
-    )
-  }
+): flags is ValidCreateNextStackFlags => {
+  return flags.styling != null
 }
 
 export = CreateNextStack
