@@ -1,14 +1,16 @@
 import execa from "execa"
 import { promises as fs } from "fs"
 import { throwError } from "../../error-handling"
+import { commandInstance } from "../../instance"
 import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
 export const createNextAppStep: Step = {
   shouldRun: () => true,
 
-  run: async function (this, answers) {
-    this.log("Creating Next.js app...")
+  run: async (answers) => {
+    const instance = commandInstance.get()
+    instance.log("Creating Next.js app...")
 
     try {
       // Make sure directory exists to avoid error from create-next-app
@@ -20,11 +22,7 @@ export const createNextAppStep: Step = {
         "--typescript",
       ])
     } catch (error) {
-      throwError.call(
-        this,
-        "An error occurred while creating Next.js app.",
-        error
-      )
+      throwError("An error occurred while creating Next.js app.", error)
     }
 
     process.chdir(answers.projectPath)

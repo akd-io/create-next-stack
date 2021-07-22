@@ -1,12 +1,8 @@
-import Command from "@oclif/command"
 import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
 import { generateScriptTableRows } from "./generate-script-table-rows"
 import { generateTechnologyTableRows } from "./generate-technology-table-rows"
 
-export async function generateReadme(
-  this: Command,
-  answers: QuestionnaireAnswers
-) {
+export const generateReadme = async (answers: QuestionnaireAnswers) => {
   return /* md */ `
 # ${answers.projectName}
 
@@ -26,7 +22,7 @@ Each script is run using \`yarn <script-name>\`. For example: \`yarn dev\`.
 
 | Name | Description |
 | ---- | ----------- |
-${await generateScriptTableRows.call(this, answers)}
+${await generateScriptTableRows(answers)}
 
 ## Technologies
 
@@ -34,6 +30,6 @@ The table below gives an overview of the technologies used in this project, as w
 
 | Name | Links |
 | ---- | ----- |
-${await generateTechnologyTableRows.call(this, answers)}
+${await generateTechnologyTableRows(answers)}
 `
 }

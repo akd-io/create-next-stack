@@ -1,4 +1,3 @@
-import Command from "@oclif/command"
 import { isGitInitialized } from "../../../helpers/is-git-initialized"
 import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
 import { techValues } from "../../../questionnaire/questions/technologies"
@@ -10,10 +9,9 @@ import { setUpLintStagedStep } from "../set-up-lint-staged"
 import { setUpPrettierStep } from "../set-up-prettier"
 import { setUpStyledComponentsStep } from "../set-up-styled-components"
 
-export async function generateTechnologyTableRows(
-  this: Command,
+export const generateTechnologyTableRows = async (
   answers: QuestionnaireAnswers
-): Promise<string> {
+): Promise<string> => {
   type TechnologyTableRow = {
     name: string
     links: string

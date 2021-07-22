@@ -2,6 +2,7 @@ import { promises as fs } from "fs"
 import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
+import { commandInstance } from "../../instance"
 import { techValues } from "../../questionnaire/questions/technologies"
 import { packages, yarnAdd } from "../packages"
 import { Step } from "../step"
@@ -9,8 +10,9 @@ import { Step } from "../step"
 export const setUpPrettierStep: Step = {
   shouldRun: (answers) => answers.technologies.includes(techValues.prettier),
 
-  run: async function (this) {
-    this.log("Setting up Prettier...")
+  run: async () => {
+    const instance = commandInstance.get()
+    instance.log("Setting up Prettier...")
 
     try {
       await yarnAdd([packages.prettier, packages["eslint-config-prettier"]], {
@@ -23,11 +25,7 @@ export const setUpPrettierStep: Step = {
         setUpEslintConfigPrettier(),
       ])
     } catch (error) {
-      throwError.call(
-        this,
-        "An error occurred while setting up Prettier.",
-        error
-      )
+      throwError("An error occurred while setting up Prettier.", error)
     }
   },
 }

@@ -1,5 +1,6 @@
 import { promises as fs } from "fs"
 import { throwError } from "../../../error-handling"
+import { commandInstance } from "../../../instance"
 import { techValues } from "../../../questionnaire/questions/technologies"
 import { Step } from "../../step"
 import { generateApp } from "./generate-app"
@@ -12,8 +13,9 @@ import { globalStyles } from "./global-styles"
 export const addContentStep: Step = {
   shouldRun: () => true,
 
-  run: async function (this, answers) {
-    this.log("Adding content...")
+  run: async (answers) => {
+    const instance = commandInstance.get()
+    instance.log("Adding content...")
 
     try {
       await fs.mkdir("components")
@@ -46,7 +48,7 @@ export const addContentStep: Step = {
 
       await Promise.all(promises)
     } catch (error) {
-      throwError.call(this, "An error occurred while adding content.", error)
+      throwError("An error occurred while adding content.", error)
     }
   },
 }

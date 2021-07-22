@@ -64,7 +64,7 @@ type TechnologiesAnswers = {
   [answerName]: TechValue[]
 }
 
-export async function promptTechnologies() {
+export const promptTechnologies = async () => {
   const { technologies } = await inquirer.prompt<TechnologiesAnswers>({
     name: answerName,
     type: "checkbox",

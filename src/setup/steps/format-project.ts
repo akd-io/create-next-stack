@@ -1,13 +1,15 @@
 import execa from "execa"
 import { throwError } from "../../error-handling"
+import { commandInstance } from "../../instance"
 import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
 export const formatProjectStep: Step = {
   shouldRun: () => true,
 
-  run: async function (this) {
-    this.log("Formatting project...")
+  run: async () => {
+    const instance = commandInstance.get()
+    instance.log("Formatting project...")
 
     try {
       await execa("npx", [
@@ -16,11 +18,7 @@ export const formatProjectStep: Step = {
         ".",
       ])
     } catch (error) {
-      throwError.call(
-        this,
-        "An error occurred while formatting project.",
-        error
-      )
+      throwError("An error occurred while formatting project.", error)
     }
   },
 }

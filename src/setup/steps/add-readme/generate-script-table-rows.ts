@@ -1,13 +1,11 @@
-import Command from "@oclif/command"
 import { isGitInitialized } from "../../../helpers/is-git-initialized"
 import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
 import { setUpLintStagedStep } from "../set-up-lint-staged"
 import { setUpPrettierStep } from "../set-up-prettier"
 
-export async function generateScriptTableRows(
-  this: Command,
+export const generateScriptTableRows = async (
   answers: QuestionnaireAnswers
-): Promise<string> {
+): Promise<string> => {
   type ScriptTableRow = {
     name: string
     description: string

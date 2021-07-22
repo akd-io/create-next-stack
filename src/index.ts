@@ -7,6 +7,8 @@ import {
   writableStylingOptions,
 } from "./create-next-stack-types"
 import { throwError } from "./error-handling"
+import { performArgsQuestionnaire } from "./questionnaire/args-questionnaire"
+import { performFlagsQuestionnaire } from "./questionnaire/flags-questionnaire"
 import { performSetupSteps } from "./setup/setup"
 
 class CreateNextStack extends Command {
@@ -83,29 +85,25 @@ class CreateNextStack extends Command {
     if (flags.debug) process.env.DEBUG = "true"
 
     if (shouldBeInteractive(flags)) {
-      if (args.appName == null) {
-        args = await performArgsQuestionnaire.call(this)
-      }
-      flags = await performFlagsQuestionnaire.call(this)
+      args = await performArgsQuestionnaire(args)
+      flags = await performFlagsQuestionnaire()
     }
 
     if (!validateArgs(args)) {
-      throwError.call(
-        this,
+      throwError(
         'The non-interactive CLI requires you to specify a name for your application. Read about the "appName" argument using --help.'
       )
       process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
     }
 
     if (!validateFlags(flags)) {
-      throwError.call(
-        this,
+      throwError(
         'The non-interactive CLI requires you to specify a styling method. Read about the "--styling" flag using --help.'
       )
       process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
     }
 
-    await performSetupSteps.call(this, args, flags)
+    await performSetupSteps(args, flags)
   }
 }
 

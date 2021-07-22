@@ -1,6 +1,7 @@
 import { promises as fs } from "fs"
 import { throwError } from "../../error-handling"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
+import { commandInstance } from "../../instance"
 import { Step } from "../step"
 
 const filename = ".gitattributes"
@@ -8,24 +9,22 @@ const filename = ".gitattributes"
 export const addGitAttributesStep: Step = {
   shouldRun: () => true,
 
-  run: async function (this) {
+  run: async () => {
+    const instance = commandInstance.get()
+
     try {
       if (!(await isGitInitialized())) {
-        this.log(
+        instance.log(
           `Skipping ${filename} setup, as Git is not initialized, because this repository is nested inside another repository.`
         )
         return
       }
 
-      this.log(`Adding ${filename}...`)
+      instance.log(`Adding ${filename}...`)
 
       await fs.writeFile(filename, generateGitAttributes())
     } catch (error) {
-      throwError.call(
-        this,
-        `An error occurred while adding ${filename}.`,
-        error
-      )
+      throwError(`An error occurred while adding ${filename}.`, error)
     }
   },
 }

@@ -2,6 +2,7 @@ import { promises as fs } from "fs"
 import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
+import { commandInstance } from "../../instance"
 import { techValues } from "../../questionnaire/questions/technologies"
 import { packages, yarnAdd } from "../packages"
 import { Step } from "../step"
@@ -10,8 +11,9 @@ export const setUpStyledComponentsStep: Step = {
   shouldRun: (answers) =>
     answers.technologies.includes(techValues.styledComponents),
 
-  run: async function (this) {
-    this.log("Setting up styled-components...")
+  run: async () => {
+    const instance = commandInstance.get()
+    instance.log("Setting up styled-components...")
 
     try {
       await yarnAdd(packages["styled-components"])
@@ -27,11 +29,7 @@ export const setUpStyledComponentsStep: Step = {
 
       await addStyledComponentsBabelPlugin()
     } catch (error) {
-      throwError.call(
-        this,
-        "An error occurred while setting up styled-components.",
-        error
-      )
+      throwError("An error occurred while setting up styled-components.", error)
     }
   },
 }
