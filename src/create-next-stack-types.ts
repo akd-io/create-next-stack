@@ -48,3 +48,8 @@ export const validateFlags = (
 ): flags is ValidCreateNextStackFlags => {
   return flags.styling != null
 }
+
+export type ValidCNSInputs = {
+  args: ValidCreateNextStackArgs
+  flags: ValidCreateNextStackFlags
+}

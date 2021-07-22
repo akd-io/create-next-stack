@@ -1,10 +1,9 @@
-import { isGitInitialized } from "../../../helpers/is-git-initialized"
-import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
+import { ValidCNSInputs } from "../../../create-next-stack-types"
 import { setUpLintStagedStep } from "../set-up-lint-staged"
 import { setUpPrettierStep } from "../set-up-prettier"
 
 export const generateScriptTableRows = async (
-  answers: QuestionnaireAnswers
+  inputs: ValidCNSInputs
 ): Promise<string> => {
   type ScriptTableRow = {
     name: string
@@ -32,18 +31,17 @@ export const generateScriptTableRows = async (
     {
       name: /* md */ `\`format\``,
       description: /* md */ `Formats all source code in the project.`,
-      filter: setUpPrettierStep.shouldRun(answers),
+      filter: await setUpPrettierStep.shouldRun(inputs),
     },
     {
       name: /* md */ `\`format:check\``,
       description: /* md */ `Checks the formatting of all code in the project.`,
-      filter: setUpPrettierStep.shouldRun(answers),
+      filter: await setUpPrettierStep.shouldRun(inputs),
     },
     {
       name: /* md */ `\`prepare\``,
       description: /* md */ `The [\`prepare\` life cycle script](https://docs.npmjs.com/cli/v7/using-npm/scripts#life-cycle-scripts) is used to set up Git pre-commit hooks when people run \`yarn install\`. This script should not be run manually.`,
-      filter:
-        (await isGitInitialized()) && setUpLintStagedStep.shouldRun(answers),
+      filter: await setUpLintStagedStep.shouldRun(inputs),
     },
   ]
 

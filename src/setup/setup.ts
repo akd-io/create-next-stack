@@ -1,7 +1,4 @@
-import {
-  CreateNextStackArgs,
-  CreateNextStackFlags,
-} from "../create-next-stack-types"
+import { ValidCNSInputs } from "../create-next-stack-types"
 import { Step } from "./step"
 import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
 import { addContentStep } from "./steps/add-content/add-content"
@@ -22,8 +19,7 @@ import { setUpStyledComponentsStep } from "./steps/set-up-styled-components"
 import { updateYarnStep } from "./steps/update-yarn"
 
 export const performSetupSteps = async (
-  args: CreateNextStackArgs,
-  flags: CreateNextStackFlags
+  inputs: ValidCNSInputs
 ): Promise<void> => {
   const steps: Step[] = [
     updateYarnStep,
@@ -54,8 +50,8 @@ export const performSetupSteps = async (
   ]
 
   for (const step of steps) {
-    if (step.shouldRun(answers)) {
-      await step.run(answers)
+    if (step.shouldRun(inputs)) {
+      await step.run(inputs)
     }
   }
 }

@@ -1,7 +1,6 @@
 import { promises as fs } from "fs"
 import { throwError } from "../../../error-handling"
 import { commandInstance } from "../../../instance"
-import { techValues } from "../../../questionnaire/questions/technologies"
 import { Step } from "../../step"
 import { generateApp } from "./generate-app"
 import { generateIndex } from "./generate-index/generate-index"
@@ -11,9 +10,9 @@ import { generateWithDefaultGlobalStyles } from "./generate-with-default-global-
 import { globalStyles } from "./global-styles"
 
 export const addContentStep: Step = {
-  shouldRun: () => true,
+  shouldRun: async () => true,
 
-  run: async (answers) => {
+  run: async (inputs) => {
     const instance = commandInstance.get()
     instance.log("Adding content...")
 
@@ -21,22 +20,22 @@ export const addContentStep: Step = {
       await fs.mkdir("components")
 
       const promises = [
-        fs.writeFile("components/Page.tsx", generatePage(answers)),
-        fs.writeFile("pages/index.tsx", generateIndex(answers)),
-        fs.writeFile("pages/_app.tsx", generateApp(answers)),
+        fs.writeFile("components/Page.tsx", generatePage(inputs)),
+        fs.writeFile("pages/index.tsx", generateIndex(inputs)),
+        fs.writeFile("pages/_app.tsx", generateApp(inputs)),
       ]
 
       if (
-        answers.technologies.includes(techValues.emotion) ||
-        answers.technologies.includes(techValues.styledComponents)
+        inputs.flags.styling === "emotion" ||
+        inputs.flags.styling === "styled-components"
       ) {
         promises.push(
           fs.writeFile(
             "components/WithDefaultGlobalStyles.tsx",
-            generateWithDefaultGlobalStyles(answers)
+            generateWithDefaultGlobalStyles(inputs)
           )
         )
-      } else if (answers.technologies.includes(techValues.cssModules)) {
+      } else if (inputs.flags.styling === "css-modules") {
         await fs.mkdir("styles")
         promises.push(fs.writeFile("styles/index.module.css", indexCSSModule))
         promises.push(fs.writeFile("styles/global-styles.css", globalStyles))

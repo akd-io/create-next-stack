@@ -1,19 +1,14 @@
-import path from "path"
-import { CreateNextStackArgs } from "../create-next-stack-types"
+import {
+  CreateNextStackArgs,
+  ValidCreateNextStackArgs,
+} from "../create-next-stack-types"
 import { throwError } from "../error-handling"
 import { promptProjectPath } from "./questions/project-name"
-import { promptTechnologies, TechValue } from "./questions/technologies"
 import { validateProjectPathInput } from "./questions/validate-project-path"
 
-export type QuestionnaireAnswers = {
-  projectPath: string
-  projectName: string
-  technologies: TechValue[]
-}
-
-export const performQuestionnaire = async (
+export const performArgsQuestionnaire = async (
   args: CreateNextStackArgs
-): Promise<QuestionnaireAnswers> => {
+): Promise<ValidCreateNextStackArgs> => {
   let projectPath: string | null = null
 
   const appNameArg = args["appName"]
@@ -29,13 +24,7 @@ export const performQuestionnaire = async (
     projectPath = await promptProjectPath()
   }
 
-  const projectName = path.basename(path.resolve(projectPath))
-
-  const technologies = await promptTechnologies()
-
   return {
-    projectPath,
-    projectName,
-    technologies,
+    appName: projectPath,
   }
 }

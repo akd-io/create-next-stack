@@ -1,12 +1,10 @@
 import { throwError } from "../../error-handling"
 import { commandInstance } from "../../instance"
-import { techValues } from "../../questionnaire/questions/technologies"
 import { packages, yarnAdd } from "../packages"
 import { Step } from "../step"
 
 export const installReactHookFormStep: Step = {
-  shouldRun: (answers) =>
-    answers.technologies.includes(techValues.reactHookForm),
+  shouldRun: async (inputs) => Boolean(inputs.flags["react-hook-form"]),
 
   run: async () => {
     const instance = commandInstance.get()

@@ -5,14 +5,14 @@ import { Step } from "../../step"
 import { generateReadme } from "./generate-readme"
 
 export const addReadmeStep: Step = {
-  shouldRun: () => true,
+  shouldRun: async () => true,
 
-  run: async (answers) => {
+  run: async (inputs) => {
     const instance = commandInstance.get()
     instance.log("Adding Readme...")
 
     try {
-      const readmeString = await generateReadme(answers)
+      const readmeString = await generateReadme(inputs)
       await fs.writeFile("README.md", readmeString)
     } catch (error) {
       throwError("An error occurred while adding Readme.", error)

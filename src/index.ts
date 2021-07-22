@@ -103,7 +103,7 @@ class CreateNextStack extends Command {
       process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
     }
 
-    await performSetupSteps(args, flags)
+    await performSetupSteps({ args, flags })
   }
 }
 

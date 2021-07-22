@@ -7,28 +7,29 @@ import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { remove } from "../../helpers/remove"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { commandInstance } from "../../instance"
-import { techValues } from "../../questionnaire/questions/technologies"
 import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpLintStagedStep: Step = {
-  shouldRun: (answers) => {
-    return (
-      answers.technologies.includes(techValues.prettier) &&
-      answers.technologies.includes(techValues.preCommitHook)
-    )
+  shouldRun: async (inputs) => {
+    if (!inputs.flags.prettier || !inputs.flags["formatting-pre-commit-hook"]) {
+      return false
+    }
+
+    if (!(await isGitInitialized())) {
+      const instance = commandInstance.get()
+      instance.log(
+        "Skipping lint-staged setup, as Git is not initialized, because this repository is nested inside another repository."
+      )
+      return false
+    }
+
+    return true
   },
 
   run: async () => {
     const instance = commandInstance.get()
     try {
-      if (!(await isGitInitialized())) {
-        instance.log(
-          "Skipping lint-staged setup, as Git is not initialized, because this repository is nested inside another repository."
-        )
-        return
-      }
-
       instance.log("Setting up lint-staged...")
 
       /*

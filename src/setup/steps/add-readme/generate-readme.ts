@@ -1,10 +1,11 @@
-import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
+import { ValidCNSInputs } from "../../../create-next-stack-types"
+import { getProjectNameOfPath } from "../../../helpers/get-project-name-of-path"
 import { generateScriptTableRows } from "./generate-script-table-rows"
 import { generateTechnologyTableRows } from "./generate-technology-table-rows"
 
-export const generateReadme = async (answers: QuestionnaireAnswers) => {
+export const generateReadme = async (inputs: ValidCNSInputs) => {
   return /* md */ `
-# ${answers.projectName}
+# ${getProjectNameOfPath(inputs.args.appName)}
 
 🎉 Congratulations, your project was successfully bootstrapped with [Create Next Stack](https://github.com/akd-io/create-next-stack)!
 
@@ -22,7 +23,7 @@ Each script is run using \`yarn <script-name>\`. For example: \`yarn dev\`.
 
 | Name | Description |
 | ---- | ----------- |
-${await generateScriptTableRows(answers)}
+${await generateScriptTableRows(inputs)}
 
 ## Technologies
 
@@ -30,6 +31,6 @@ The table below gives an overview of the technologies used in this project, as w
 
 | Name | Links |
 | ---- | ----- |
-${await generateTechnologyTableRows(answers)}
+${await generateTechnologyTableRows(inputs)}
 `
 }

@@ -3,13 +3,11 @@ import { throwError } from "../../error-handling"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { commandInstance } from "../../instance"
-import { techValues } from "../../questionnaire/questions/technologies"
 import { packages, yarnAdd } from "../packages"
 import { Step } from "../step"
 
 export const setUpStyledComponentsStep: Step = {
-  shouldRun: (answers) =>
-    answers.technologies.includes(techValues.styledComponents),
+  shouldRun: async (inputs) => inputs.flags.styling === "styled-components",
 
   run: async () => {
     const instance = commandInstance.get()

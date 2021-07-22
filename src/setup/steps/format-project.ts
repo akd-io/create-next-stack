@@ -5,7 +5,7 @@ import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
 export const formatProjectStep: Step = {
-  shouldRun: () => true,
+  shouldRun: async () => true,
 
   run: async () => {
     const instance = commandInstance.get()

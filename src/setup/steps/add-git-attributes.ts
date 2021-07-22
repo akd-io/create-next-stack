@@ -7,7 +7,7 @@ import { Step } from "../step"
 const filename = ".gitattributes"
 
 export const addGitAttributesStep: Step = {
-  shouldRun: () => true,
+  shouldRun: async () => true,
 
   run: async () => {
     const instance = commandInstance.get()

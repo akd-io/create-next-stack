@@ -4,7 +4,7 @@ import { commandInstance } from "../../instance"
 import { Step } from "../step"
 
 export const addBaseBabelConfigStep: Step = {
-  shouldRun: () => true,
+  shouldRun: async () => true,
 
   run: async () => {
     const instance = commandInstance.get()

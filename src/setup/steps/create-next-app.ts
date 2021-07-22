@@ -6,25 +6,25 @@ import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
 export const createNextAppStep: Step = {
-  shouldRun: () => true,
+  shouldRun: async () => true,
 
-  run: async (answers) => {
+  run: async ({ args }) => {
     const instance = commandInstance.get()
     instance.log("Creating Next.js app...")
 
     try {
       // Make sure directory exists to avoid error from create-next-app
-      await fs.mkdir(answers.projectPath, { recursive: true })
+      await fs.mkdir(args.appName, { recursive: true })
 
       await execa("npx", [
         getNameVersionCombo(packages["create-next-app"]),
-        answers.projectPath,
+        args.appName,
         "--typescript",
       ])
     } catch (error) {
       throwError("An error occurred while creating Next.js app.", error)
     }
 
-    process.chdir(answers.projectPath)
+    process.chdir(args.appName)
   },
 }

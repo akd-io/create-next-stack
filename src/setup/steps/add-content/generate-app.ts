@@ -1,12 +1,9 @@
-import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
-import { techValues } from "../../../questionnaire/questions/technologies"
+import { ValidCNSInputs } from "../../../create-next-stack-types"
 
-export const generateApp = (
-  answers: QuestionnaireAnswers
-): string => /* tsx */ `
+export const generateApp = (inputs: ValidCNSInputs): string => /* tsx */ `
 import { AppType } from "next/dist/next-server/lib/utils";
 ${
-  answers.technologies.includes(techValues.cssModules)
+  inputs.flags.styling === "css-modules"
     ? `import "../styles/global-styles.css";`
     : ""
 }

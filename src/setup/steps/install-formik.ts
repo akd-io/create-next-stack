@@ -1,11 +1,10 @@
 import { throwError } from "../../error-handling"
 import { commandInstance } from "../../instance"
-import { techValues } from "../../questionnaire/questions/technologies"
 import { packages, yarnAdd } from "../packages"
 import { Step } from "../step"
 
 export const installFormikStep: Step = {
-  shouldRun: (answers) => answers.technologies.includes(techValues.formik),
+  shouldRun: async ({ flags }) => Boolean(flags.formik),
 
   run: async () => {
     const instance = commandInstance.get()
