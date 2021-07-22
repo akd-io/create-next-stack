@@ -2,6 +2,7 @@ import { Command, flags } from "@oclif/command"
 import {
   CreateNextStackArgs,
   CreateNextStackFlags,
+  writableStylingOptions,
 } from "./create-next-stack-types"
 import { throwError } from "./error-handling"
 import { performSetupSteps } from "./setup/setup"
@@ -47,7 +48,7 @@ class CreateNextStack extends Command {
 
     // Styling:
     styling: flags.enum({
-      options: ["emotion", "styled-components", "css-modules"],
+      options: writableStylingOptions,
       description: "Sets the preferred styling method.",
     }),
 

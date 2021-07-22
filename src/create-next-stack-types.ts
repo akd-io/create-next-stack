@@ -1,5 +1,6 @@
 import CreateNextStack from "."
 import { UnknownObject } from "./helpers/is-unknown-object"
+import { Writable } from "./helpers/writable"
 
 /**
  * This function is only used to retrieve the ReturnType of a call to `createNextStackInstance.parse(CreateNextStack)`.
@@ -14,5 +15,24 @@ const temporaryWrapperForTypeSafety = () => {
 export type CreateNextStackParserOutput = ReturnType<
   typeof temporaryWrapperForTypeSafety
 >
+
+// Unvalidated Args and Flags types
 export type CreateNextStackArgs = UnknownObject // Change to ParserOutput["args"] if it becomes strongly typed in the future. (Currently a normal object with any-values.)
 export type CreateNextStackFlags = Partial<CreateNextStackParserOutput["flags"]> // Change to CreateNextStackParserOutput["flags"] if it becomes strongly typed in the future. (Currently not a Partial.)
+
+// Styling flag:
+export const stylingOptions = [
+  "emotion",
+  "styled-components",
+  "css-modules",
+] as const
+export type StylingOption = typeof stylingOptions[number]
+export const writableStylingOptions = stylingOptions as Writable<
+  typeof stylingOptions
+>
+
+// Validated Args and Flags types
+export type ValidCreateNextStackArgs = CreateNextStackArgs & { appName: string }
+export type ValidCreateNextStackFlags = CreateNextStackFlags & {
+  styling: StylingOption
+}
