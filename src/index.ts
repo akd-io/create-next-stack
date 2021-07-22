@@ -85,7 +85,10 @@ class CreateNextStack extends Command {
       flags = await performQuestionnaire.call(this, args)
     }
 
-    await performSetupSteps.call(this, answers)
+    validateArgs.call(this, args)
+    validateFlags.call(this, flags)
+
+    await performSetupSteps.call(this, args, flags)
   }
 }
 
@@ -96,6 +99,32 @@ const getNumOfNonGeneralFlags = (flags: CreateNextStackFlags): number => {
   if (flags.debug !== undefined) numOfNonGeneralFlags--
 
   return numOfNonGeneralFlags
+}
+
+function validateArgs(
+  this: Command,
+  args: CreateNextStackArgs
+): args is CreateNextStackArgs & { appName: string } {
+  if (typeof args.appName === "string") {
+    return true
+  }
+  throwError.call(
+    this,
+    'The non-interactive CLI requires you to specify a name for your application. Read about the "appName" argument using --help.'
+  )
+  process.exit(1)
+}
+
+function validateFlags(
+  this: Command,
+  flags: CreateNextStackFlags
+): void | never {
+  if (flags.styling == null) {
+    throwError.call(
+      this,
+      'The non-interactive CLI requires you to specify a styling method. Read about the "--styling" flag using --help.'
+    )
+  }
 }
 
 export = CreateNextStack
