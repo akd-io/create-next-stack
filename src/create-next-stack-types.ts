@@ -36,7 +36,7 @@ export type ValidCreateNextStackArgs = CreateNextStackArgs & { appName: string }
 export const validateArgs = (
   args: CreateNextStackArgs
 ): args is ValidCreateNextStackArgs => {
-  return typeof args.appName === "string"
+  return args.appName === "string"
 }
 
 // Valid Flags type and type guard

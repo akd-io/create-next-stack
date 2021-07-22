@@ -82,31 +82,34 @@ class CreateNextStack extends Command {
 
     commandInstance.set(this)
 
-    let args = weaklyTypedArgs as CreateNextStackArgs
-    let flags = weaklyTypedFlags as CreateNextStackFlags
+    const args = weaklyTypedArgs as CreateNextStackArgs
+    const flags = weaklyTypedFlags as CreateNextStackFlags
 
     if (flags.debug) process.env.DEBUG = "true"
 
-    if (shouldBeInteractive(flags)) {
-      args = await performArgsQuestionnaire(args)
-      flags = await performFlagsQuestionnaire()
-    }
+    const interactive = shouldBeInteractive(flags)
 
-    if (!validateArgs(args)) {
-      throwError(
-        'The non-interactive CLI requires you to specify a name for your application. Read about the "appName" argument using --help.'
-      )
-      process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
-    }
+    if (interactive) {
+      await performSetupSteps({
+        args: await performArgsQuestionnaire(args),
+        flags: await performFlagsQuestionnaire(),
+      })
+    } else {
+      if (!validateArgs(args)) {
+        throwError(
+          'Outside interactive mode, you are required to specify a name for your application. Read about the "appName" argument using --help.'
+        )
+        process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+      }
+      if (!validateFlags(flags)) {
+        throwError(
+          'Outside interactive Mode, you are required to specify a styling method. Read about the "--styling" option using --help.'
+        )
+        process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+      }
 
-    if (!validateFlags(flags)) {
-      throwError(
-        'The non-interactive CLI requires you to specify a styling method. Read about the "--styling" flag using --help.'
-      )
-      process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+      await performSetupSteps({ args, flags })
     }
-
-    await performSetupSteps({ args, flags })
   }
 }
 
