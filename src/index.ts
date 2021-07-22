@@ -4,7 +4,6 @@ import {
   CreateNextStackFlags,
 } from "./create-next-stack-types"
 import { throwError } from "./error-handling"
-import { performQuestionnaire } from "./questionnaire/questionnaire"
 import { performSetupSteps } from "./setup/setup"
 
 class CreateNextStack extends Command {
@@ -75,14 +74,16 @@ class CreateNextStack extends Command {
     const { args: weaklyTypedArgs, flags: weaklyTypedFlags } =
       this.parse(CreateNextStack)
 
-    const args = weaklyTypedArgs as CreateNextStackArgs
+    let args = weaklyTypedArgs as CreateNextStackArgs
     let flags = weaklyTypedFlags as CreateNextStackFlags
 
     if (flags.debug) process.env.DEBUG = "true"
 
-    const numOfNonGeneralFlags = getNumOfNonGeneralFlags(flags)
-    if (numOfNonGeneralFlags === 0) {
-      flags = await performQuestionnaire.call(this, args)
+    if (shouldBeInteractive(flags)) {
+      if (args.appName == null) {
+        args = await performArgsQuestionnaire.call(this)
+      }
+      flags = await performFlagsQuestionnaire.call(this)
     }
 
     validateArgs.call(this, args)
@@ -92,13 +93,13 @@ class CreateNextStack extends Command {
   }
 }
 
-const getNumOfNonGeneralFlags = (flags: CreateNextStackFlags): number => {
+const shouldBeInteractive = (flags: CreateNextStackFlags): boolean => {
   const numOfAllFlags = Object.keys(flags).length
 
   let numOfNonGeneralFlags = numOfAllFlags
   if (flags.debug !== undefined) numOfNonGeneralFlags--
 
-  return numOfNonGeneralFlags
+  return numOfNonGeneralFlags === 0
 }
 
 function validateArgs(
