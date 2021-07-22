@@ -17,10 +17,17 @@ class CreateNextStack extends Command {
   ]
 
   static flags = {
-    help: flags.help({ char: "h" }),
-    version: flags.version({ char: "v" }),
+    // General flags
+    help: flags.help({
+      char: "h",
+      description: "Shows this help information.",
+    }),
+    version: flags.version({
+      char: "v",
+      description: "Shows the CLI version information.",
+    }),
     debug: flags.boolean({
-      description: "show verbose error messages for debugging purposes",
+      description: "Show verbose error messages for debugging purposes",
     }),
   }
 
