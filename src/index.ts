@@ -29,6 +29,35 @@ class CreateNextStack extends Command {
     debug: flags.boolean({
       description: "Show verbose error messages for debugging purposes",
     }),
+
+    // Formatting:
+    prettier: flags.boolean({
+      description: "(R) Adds Prettier. (Code formatting)",
+    }),
+
+    // Styling:
+    styling: flags.enum({
+      options: ["emotion", "styled-components", "css-modules"],
+      description: "Sets the preferred styling method.",
+    }),
+
+    // Form libraries:
+    "react-hook-form": flags.boolean({
+      description: "Adds React Hook Form. (Form library)",
+    }),
+    formik: flags.boolean({
+      description: "Adds Formik. (Form library)",
+    }),
+
+    // Animation
+    "framer-motion": flags.boolean({
+      description: "Adds Framer Motion. (Animation library)",
+    }),
+
+    // Formatting pre-commit hook
+    "formatting-pre-commit-hook": flags.boolean({
+      description: "(R) Adds a formatting pre-commit hook.",
+    }),
   }
 
   async run() {
