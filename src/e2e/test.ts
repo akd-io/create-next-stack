@@ -12,19 +12,21 @@ import { testStyledComponentsOnlyNonInteractive } from "./tests/non-interactive/
     // If not done already, Set Git name and email so `git commit` doesn't fail during create-next-app
     await setGitNameAndEmail()
 
-    await Promise.all([
-      testDefaultOptionsInteractive(),
+    // TODO: Find a way to run tests in parallel. Currently failing because simultaneous calls to `npm i -g yarn` causes a crash.
+    const createNextStackDir = process.cwd()
 
-      // Styling only
-      testEmotionOnlyNonInteractive(),
-      testStyledComponentsOnlyNonInteractive(),
-      testCssModulesOnlyNonInteractive(),
+    // Interactive test
+    await testDefaultOptionsInteractive(createNextStackDir)
 
-      // All flags
-      testEmotionAllFlagsNonInteractive(),
-      testStyledComponentsAllFlagsNonInteractive(),
-      testCssModulesAllFlagsNonInteractive(),
-    ])
+    // Styling only
+    await testEmotionOnlyNonInteractive(createNextStackDir)
+    await testStyledComponentsOnlyNonInteractive(createNextStackDir)
+    await testCssModulesOnlyNonInteractive(createNextStackDir)
+
+    // All flags
+    await testEmotionAllFlagsNonInteractive(createNextStackDir)
+    await testStyledComponentsAllFlagsNonInteractive(createNextStackDir)
+    await testCssModulesAllFlagsNonInteractive(createNextStackDir)
   } catch (error) {
     exitWithError(error)
   }

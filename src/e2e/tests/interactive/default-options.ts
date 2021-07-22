@@ -3,13 +3,15 @@ import execa from "execa"
 import { checkFormattingLintingBuild } from "../../helpers/check-formatting-linting-build"
 import { prepareE2eTest } from "../../helpers/prepare-e2e-test"
 
-export const testDefaultOptionsInteractive = async () => {
-  const { pathToProdCLI } = await prepareE2eTest()
+export const testDefaultOptionsInteractive = async (
+  createNextStackDir: string
+) => {
+  const { pathToProdCLI } = await prepareE2eTest(createNextStackDir)
 
   console.log(`Running command: ${pathToProdCLI} --debug .`)
   const execaProcess = execa(pathToProdCLI, ["--debug", "."], {
-    timeout: 10 * 60 * 1000,
-  }) // 10 minutes
+    timeout: 10 * 60 * 1000, // 10 minutes
+  })
   execaProcess.stdout?.pipe(process.stdout)
   execaProcess.stderr?.pipe(process.stderr)
 

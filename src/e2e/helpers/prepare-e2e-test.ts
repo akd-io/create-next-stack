@@ -3,17 +3,17 @@ import { promises as fs } from "fs"
 import path from "path"
 import { v4 as uuidv4 } from "uuid"
 
-export const prepareE2eTest = async (): Promise<{
+export const prepareE2eTest = async (
+  createNextStackDir: string
+): Promise<{
   pathToProdCLI: string
 }> => {
-  const createNextStackDir = process.cwd()
-
   // Create unique id for this run
   const testRunId = uuidv4()
 
   // Switch to unique test directory
   const runDirectory = path.resolve(
-    `../create-next-stack-tests/run-${testRunId}`
+    `${createNextStackDir}/../create-next-stack-tests/run-${testRunId}`
   )
   await fs.mkdir(runDirectory, { recursive: true })
   process.chdir(runDirectory)
