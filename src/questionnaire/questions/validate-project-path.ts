@@ -1,4 +1,4 @@
-import { throwError } from "../../error-handling"
+import { exitWithError } from "../../helpers/exit-with-error"
 import { getProjectNameOfPath } from "../../helpers/get-project-name-of-path"
 import { validateNpmName } from "../../helpers/validate-npm-name"
 
@@ -28,7 +28,7 @@ export const validateProjectPathInput = (
       )
     }
   } catch (error) {
-    throwError("An error occurred while validating project name.", error)
+    exitWithError("An error occurred while validating project name.", error)
   }
 
   return true

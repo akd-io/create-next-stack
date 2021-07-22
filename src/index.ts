@@ -6,7 +6,7 @@ import {
   validateFlags,
   writableStylingOptions,
 } from "./create-next-stack-types"
-import { throwError } from "./error-handling"
+import { exitWithError } from "./helpers/exit-with-error"
 import { commandInstance } from "./instance"
 import { performArgsQuestionnaire } from "./questionnaire/args-questionnaire"
 import { performFlagsQuestionnaire } from "./questionnaire/flags-questionnaire"
@@ -96,13 +96,13 @@ class CreateNextStack extends Command {
       })
     } else {
       if (!validateArgs(args)) {
-        throwError(
+        exitWithError(
           'Outside interactive mode, you are required to specify a name for your application. Read about the "appName" argument using --help.'
         )
         process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
       }
       if (!validateFlags(flags)) {
-        throwError(
+        exitWithError(
           'Outside interactive Mode, you are required to specify a styling method. Read about the "--styling" option using --help.'
         )
         process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.

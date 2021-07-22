@@ -1,6 +1,6 @@
 import execa from "execa"
 import { promises as fs } from "fs"
-import { throwError } from "../../error-handling"
+import { exitWithError } from "../../helpers/exit-with-error"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { isPackageGloballyInstalled } from "../../helpers/is-package-globally-installed"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
@@ -93,7 +93,7 @@ export const setUpLintStagedStep: Step = {
 
       await writeJsonFile("package.json", packageJson)
     } catch (error) {
-      throwError("An error occurred while setting up lint-staged.", error)
+      exitWithError("An error occurred while setting up lint-staged.", error)
     }
   },
 }

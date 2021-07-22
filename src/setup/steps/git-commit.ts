@@ -1,5 +1,5 @@
 import execa from "execa"
-import { throwError } from "../../error-handling"
+import { exitWithError } from "../../helpers/exit-with-error"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { commandInstance } from "../../instance"
 import { Step } from "../step"
@@ -28,7 +28,7 @@ export const gitCommitStep: Step = {
         "Initial commit from Create Next Stack",
       ])
     } catch (error) {
-      throwError("An error occurred while adding initial commit.", error)
+      exitWithError("An error occurred while adding initial commit.", error)
     }
   },
 }

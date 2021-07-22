@@ -1,5 +1,5 @@
 import { promises as fs } from "fs"
-import { throwError } from "../../error-handling"
+import { exitWithError } from "../../helpers/exit-with-error"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { commandInstance } from "../../instance"
 import { Step } from "../step"
@@ -24,7 +24,7 @@ export const addGitAttributesStep: Step = {
 
       await fs.writeFile(filename, generateGitAttributes())
     } catch (error) {
-      throwError(`An error occurred while adding ${filename}.`, error)
+      exitWithError(`An error occurred while adding ${filename}.`, error)
     }
   },
 }

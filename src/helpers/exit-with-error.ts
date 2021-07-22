@@ -1,12 +1,12 @@
 import { PrettyPrintableError } from "@oclif/errors"
-import { commandInstance } from "./instance"
+import { commandInstance } from "../instance"
 
 type Options = {
   code?: string
   exit?: number
 } & PrettyPrintableError
 
-export const throwError = (
+export const exitWithError = (
   friendlyErrorMessage: string,
   error?: unknown,
   options: Options = {

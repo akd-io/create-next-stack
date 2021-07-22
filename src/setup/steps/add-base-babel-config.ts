@@ -1,4 +1,4 @@
-import { throwError } from "../../error-handling"
+import { exitWithError } from "../../helpers/exit-with-error"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { commandInstance } from "../../instance"
 import { Step } from "../step"
@@ -19,7 +19,7 @@ export const addBaseBabelConfigStep: Step = {
     try {
       await writeJsonFile(".babelrc", baseBabelConfig)
     } catch (error) {
-      throwError(
+      exitWithError(
         "An error occurred while adding custom Babel configuration.",
         error
       )

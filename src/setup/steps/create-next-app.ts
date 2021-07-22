@@ -1,6 +1,6 @@
 import execa from "execa"
 import { promises as fs } from "fs"
-import { throwError } from "../../error-handling"
+import { exitWithError } from "../../helpers/exit-with-error"
 import { commandInstance } from "../../instance"
 import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
@@ -22,7 +22,7 @@ export const createNextAppStep: Step = {
         "--typescript",
       ])
     } catch (error) {
-      throwError("An error occurred while creating Next.js app.", error)
+      exitWithError("An error occurred while creating Next.js app.", error)
     }
 
     process.chdir(args.appName)
