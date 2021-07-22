@@ -15,4 +15,4 @@ export type CreateNextStackParserOutput = ReturnType<
   typeof temporaryWrapperForTypeSafety
 >
 export type CreateNextStackArgs = UnknownObject // Change to ParserOutput["args"] if it becomes strongly typed in the future. (Currently a normal object with any-values.)
-export type CreateNextStackFlags = CreateNextStackParserOutput["flags"]
+export type CreateNextStackFlags = Partial<CreateNextStackParserOutput["flags"]> // Change to CreateNextStackParserOutput["flags"] if it becomes strongly typed in the future. (Currently not a Partial.)
