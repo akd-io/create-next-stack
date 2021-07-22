@@ -7,6 +7,7 @@ import {
   writableStylingOptions,
 } from "./create-next-stack-types"
 import { throwError } from "./error-handling"
+import { commandInstance } from "./instance"
 import { performArgsQuestionnaire } from "./questionnaire/args-questionnaire"
 import { performFlagsQuestionnaire } from "./questionnaire/flags-questionnaire"
 import { performSetupSteps } from "./setup/setup"
@@ -78,6 +79,8 @@ class CreateNextStack extends Command {
   async run() {
     const { args: weaklyTypedArgs, flags: weaklyTypedFlags } =
       this.parse(CreateNextStack)
+
+    commandInstance.set(this)
 
     let args = weaklyTypedArgs as CreateNextStackArgs
     let flags = weaklyTypedFlags as CreateNextStackFlags
