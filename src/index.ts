@@ -73,6 +73,7 @@ class CreateNextStack extends Command {
     // Formatting pre-commit hook
     "formatting-pre-commit-hook": flags.boolean({
       description: "Adds a formatting pre-commit hook.",
+      dependsOn: ["prettier"],
     }),
   }
 
