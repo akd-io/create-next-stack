@@ -14,7 +14,9 @@ export const printSuccessMessageStep: Step = {
     instance.log(``)
     instance.log(`To get started, run:`)
     instance.log(``)
-    instance.log(`    cd ${args.appName}`)
+    if (args.appName !== ".") {
+      instance.log(`    cd ${args.appName}`)
+    }
     instance.log(`    yarn dev`)
     instance.log(``)
   },
