@@ -96,9 +96,6 @@ class CreateNextStack extends Command {
       })
     } else {
       if (!validateArgs(args)) {
-        exitWithError(
-          'Outside interactive mode, you are required to specify a name for your application. Read about the "appName" argument using --help.'
-        )
         process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
       }
       if (!validateFlags(flags)) {

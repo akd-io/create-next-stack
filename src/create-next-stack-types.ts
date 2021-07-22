@@ -1,6 +1,8 @@
 import CreateNextStack from "."
+import { exitWithError } from "./helpers/exit-with-error"
 import { UnknownObject } from "./helpers/is-unknown-object"
 import { Writable } from "./helpers/writable"
+import { validateProjectPathInput } from "./questionnaire/questions/validate-project-path"
 
 /**
  * This function is only used to retrieve the ReturnType of a call to `createNextStackInstance.parse(CreateNextStack)`.
@@ -36,7 +38,21 @@ export type ValidCreateNextStackArgs = CreateNextStackArgs & { appName: string }
 export const validateArgs = (
   args: CreateNextStackArgs
 ): args is ValidCreateNextStackArgs => {
-  return args.appName === "string"
+  if (typeof args.appName !== "string") {
+    exitWithError(
+      'Outside interactive mode, you are required to specify a name for your application. Read about the "appName" argument using --help.'
+    )
+    process.exit() // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+  }
+
+  const appNameValidationResult = validateProjectPathInput(args.appName)
+
+  if (typeof appNameValidationResult === "string") {
+    exitWithError("Invalid app name. " + appNameValidationResult)
+    process.exit() // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+  }
+
+  return true
 }
 
 // Valid Flags type and type guard

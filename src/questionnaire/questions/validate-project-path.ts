@@ -8,13 +8,9 @@ import { validateNpmName } from "../../helpers/validate-npm-name"
  * @returns `true` if valid. If invalid, an error message of type `string` explaining the invalidity.
  */
 export const validateProjectPathInput = (
-  projectPath: unknown
+  projectPath: string
 ): string | true => {
   try {
-    if (typeof projectPath !== "string") {
-      throw new TypeError("Expected projectPath to be a string.")
-    }
-
     const projectName = getProjectNameOfPath(projectPath)
     const validation = validateNpmName(projectName)
 
@@ -28,7 +24,7 @@ export const validateProjectPathInput = (
       )
     }
   } catch (error) {
-    exitWithError("An error occurred while validating project name.", error)
+    exitWithError("An error occurred while validating app name.", error)
   }
 
   return true
