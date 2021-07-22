@@ -48,7 +48,7 @@ class CreateNextStack extends Command {
 
     // Formatting:
     prettier: flags.boolean({
-      description: "(R) Adds Prettier. (Code formatting)",
+      description: "Adds Prettier. (Code formatting)",
     }),
 
     // Styling:
@@ -72,7 +72,7 @@ class CreateNextStack extends Command {
 
     // Formatting pre-commit hook
     "formatting-pre-commit-hook": flags.boolean({
-      description: "(R) Adds a formatting pre-commit hook.",
+      description: "Adds a formatting pre-commit hook.",
     }),
   }
 
