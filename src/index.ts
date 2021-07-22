@@ -1,6 +1,9 @@
 import { Command, flags } from "@oclif/command"
+import {
+  CreateNextStackArgs,
+  CreateNextStackFlags,
+} from "./create-next-stack-types"
 import { throwError } from "./error-handling"
-import { isUnknownObject } from "./helpers/is-unknown-object"
 import { performQuestionnaire } from "./questionnaire/questionnaire"
 import { performSetupSteps } from "./setup/setup"
 
@@ -69,15 +72,11 @@ class CreateNextStack extends Command {
   }
 
   async run() {
-    const { args, flags } = this.parse(CreateNextStack)
+    const { args: weaklyTypedArgs, flags: weaklyTypedFlags } =
+      this.parse(CreateNextStack)
 
-    if (!isUnknownObject(args)) {
-      throwError.call(
-        this,
-        "An error occurred during create-next-stack command initialization.",
-        new TypeError("Expected args to be an object.")
-      )
-    }
+    const args = weaklyTypedArgs as CreateNextStackArgs
+    let flags = weaklyTypedFlags as CreateNextStackFlags
 
     if (flags.debug) process.env.DEBUG = "true"
 
