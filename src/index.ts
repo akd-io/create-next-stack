@@ -80,10 +80,22 @@ class CreateNextStack extends Command {
 
     if (flags.debug) process.env.DEBUG = "true"
 
-    const answers = await performQuestionnaire.call(this, args)
+    const numOfNonGeneralFlags = getNumOfNonGeneralFlags(flags)
+    if (numOfNonGeneralFlags === 0) {
+      flags = await performQuestionnaire.call(this, args)
+    }
 
     await performSetupSteps.call(this, answers)
   }
+}
+
+const getNumOfNonGeneralFlags = (flags: CreateNextStackFlags): number => {
+  const numOfAllFlags = Object.keys(flags).length
+
+  let numOfNonGeneralFlags = numOfAllFlags
+  if (flags.debug !== undefined) numOfNonGeneralFlags--
+
+  return numOfNonGeneralFlags
 }
 
 export = CreateNextStack
