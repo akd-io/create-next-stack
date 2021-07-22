@@ -20,7 +20,7 @@ class CreateNextStack extends Command {
     // General flags
     help: flags.help({
       char: "h",
-      description: "Shows this help information.",
+      description: "Shows the CLI help information.",
     }),
     version: flags.version({
       char: "v",
@@ -29,6 +29,14 @@ class CreateNextStack extends Command {
     debug: flags.boolean({
       description: "Show verbose error messages for debugging purposes",
     }),
+
+    /* TODO: Add support for NPM
+    // Package manager:
+    "package-manager": flags.enum({
+      options: ["yarn", "npm"],
+      description: "Sets the preferred package manager. (Recommended: yarn)",
+    }),
+    */
 
     // Formatting:
     prettier: flags.boolean({
