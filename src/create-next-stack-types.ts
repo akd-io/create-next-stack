@@ -31,8 +31,20 @@ export const writableStylingOptions = stylingOptions as Writable<
   typeof stylingOptions
 >
 
-// Validated Args and Flags types
+// Valid Args type and type guard
 export type ValidCreateNextStackArgs = CreateNextStackArgs & { appName: string }
+export const validateArgs = (
+  args: CreateNextStackArgs
+): args is ValidCreateNextStackArgs => {
+  return typeof args.appName === "string"
+}
+
+// Valid Flags type and type guard
 export type ValidCreateNextStackFlags = CreateNextStackFlags & {
   styling: StylingOption
+}
+export const validateFlags = (
+  flags: CreateNextStackFlags
+): flags is ValidCreateNextStackFlags => {
+  return flags.styling != null
 }

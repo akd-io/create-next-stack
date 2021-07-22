@@ -2,8 +2,8 @@ import { Command, flags } from "@oclif/command"
 import {
   CreateNextStackArgs,
   CreateNextStackFlags,
-  ValidCreateNextStackArgs,
-  ValidCreateNextStackFlags,
+  validateArgs,
+  validateFlags,
   writableStylingOptions,
 } from "./create-next-stack-types"
 import { throwError } from "./error-handling"
@@ -116,18 +116,6 @@ const shouldBeInteractive = (flags: CreateNextStackFlags): boolean => {
   if (flags.debug !== undefined) numOfNonGeneralFlags--
 
   return numOfNonGeneralFlags === 0
-}
-
-const validateArgs = (
-  args: CreateNextStackArgs
-): args is ValidCreateNextStackArgs => {
-  return typeof args.appName === "string"
-}
-
-const validateFlags = (
-  flags: CreateNextStackFlags
-): flags is ValidCreateNextStackFlags => {
-  return flags.styling != null
 }
 
 export = CreateNextStack
