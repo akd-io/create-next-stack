@@ -19,14 +19,15 @@ export const install = async (
     getNameVersionCombo(pkg)
   )
 
-  const yarnAddCommandArgs = ["add"]
+  const installSubCommand = packageManager === "yarn" ? "add" : "install"
+  const installCommandArgs = [installSubCommand]
   if (options != null && options.dev != null && options.dev) {
-    yarnAddCommandArgs.push("--dev")
+    installCommandArgs.push("--dev")
   }
   packagesWithVersions.forEach((packageWithVersion) => {
-    yarnAddCommandArgs.push(packageWithVersion)
+    installCommandArgs.push(packageWithVersion)
   })
-  return execa("yarn", yarnAddCommandArgs)
+  return execa(packageManager, installCommandArgs)
 }
 
 export const getNameVersionCombo = (npmPackage: Package) => {
