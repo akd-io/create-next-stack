@@ -6,7 +6,9 @@ import { prepareE2eTest } from "../../../helpers/prepare-e2e-test"
 export const testEmotionOnlyNonInteractive = async (
   createNextStackDir: string
 ) => {
-  const { pathToProdCLI } = await prepareE2eTest(createNextStackDir)
+  const { pathToProdCLI, runDirectory } = await prepareE2eTest(
+    createNextStackDir
+  )
 
   console.log(
     `Running command: ${pathToProdCLI} --debug --package-manager=npm --styling=emotion .`
@@ -16,6 +18,7 @@ export const testEmotionOnlyNonInteractive = async (
     ["--debug", "--package-manager=npm", "--styling=emotion", "."],
     {
       timeout: 10 * 60 * 1000, // 10 minutes
+      cwd: runDirectory,
     }
   )
   execaProcess.stdout?.pipe(process.stdout)
