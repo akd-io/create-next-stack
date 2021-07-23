@@ -5,7 +5,7 @@ import { Step } from "../step"
 export const printSuccessMessageStep: Step = {
   shouldRun: async () => true,
 
-  run: async ({ args }) => {
+  run: async ({ args, flags }) => {
     const instance = commandInstance.get()
     instance.log(``)
     instance.log(
@@ -17,7 +17,9 @@ export const printSuccessMessageStep: Step = {
     if (args.appName !== ".") {
       instance.log(`    cd ${args.appName}`)
     }
-    instance.log(`    yarn dev`)
+    instance.log(
+      `    ${flags["package-manager"] === "yarn" ? "yarn" : "npm run"} dev`
+    )
     instance.log(``)
   },
 }
