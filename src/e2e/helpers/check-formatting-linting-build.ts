@@ -10,6 +10,6 @@ export const checkFormattingLintingBuild = async (
   console.log("Checking linting")
   await execa(packageManager, ["run", "lint"])
 
-  console.log("Running yarn build")
+  console.log("Running build")
   await execa(packageManager, ["run", "build"])
 }
