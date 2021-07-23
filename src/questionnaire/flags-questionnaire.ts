@@ -7,6 +7,7 @@ export const performFlagsQuestionnaire =
     const technologies = await promptTechnologies()
 
     return {
+      "package-manager": getPackageManager(technologies),
       prettier: technologies.includes("prettier"),
       styling: getStyling(technologies),
       "react-hook-form": technologies.includes("reactHookForm"),
@@ -17,6 +18,20 @@ export const performFlagsQuestionnaire =
   }
 
 type ThenArg<T> = T extends PromiseLike<infer U> ? U : T
+
+const getPackageManager = (
+  technologies: ThenArg<ReturnType<typeof promptTechnologies>>
+) => {
+  if (technologies.includes("yarn")) {
+    return "yarn"
+  } else if (technologies.includes("npm")) {
+    return "npm"
+  } else {
+    exitWithError("No package manager found.")
+    process.exit(1)
+  }
+}
+
 const getStyling = (
   technologies: ThenArg<ReturnType<typeof promptTechnologies>>
 ) => {

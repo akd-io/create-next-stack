@@ -24,7 +24,7 @@ export type CreateNextStackFlags = Partial<CreateNextStackParserOutput["flags"]>
 
 // Package manager flag:
 export const packageManagerOptions = ["yarn", "npm"] as const
-export type PackageManagerOptions = typeof packageManagerOptions[number]
+export type PackageManagerOption = typeof packageManagerOptions[number]
 export const writablePackageManagerOptions = packageManagerOptions as Writable<
   typeof packageManagerOptions
 >
@@ -64,20 +64,21 @@ export const validateArgs = (
 
 // Valid Flags type and type guard
 export type ValidCreateNextStackFlags = CreateNextStackFlags & {
+  "package-manager": PackageManagerOption
   styling: StylingOption
 }
 export const validateFlags = (
   flags: CreateNextStackFlags
 ): flags is ValidCreateNextStackFlags => {
-  if (flags.styling == null) {
-    exitWithError(
-      'Outside interactive mode, you are required to specify a styling method. Read about the "--styling" option using --help.'
-    )
-    process.exit(1)
-  }
   if (flags["package-manager"] == null) {
     exitWithError(
       'Outside interactive mode, you are required to specify a package manager. Read about the "--package-manager" option using --help.'
+    )
+    process.exit(1)
+  }
+  if (flags.styling == null) {
+    exitWithError(
+      'Outside interactive mode, you are required to specify a styling method. Read about the "--styling" option using --help.'
     )
     process.exit(1)
   }
