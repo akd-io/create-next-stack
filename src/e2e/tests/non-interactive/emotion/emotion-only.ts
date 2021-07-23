@@ -9,11 +9,11 @@ export const testEmotionOnlyNonInteractive = async (
   const { pathToProdCLI } = await prepareE2eTest(createNextStackDir)
 
   console.log(
-    `Running command: ${pathToProdCLI} --debug --package-manager=yarn --styling=emotion .`
+    `Running command: ${pathToProdCLI} --debug --package-manager=npm --styling=emotion .`
   )
   const execaProcess = execa(
     pathToProdCLI,
-    ["--debug", "--package-manager=yarn", "--styling=emotion", "."],
+    ["--debug", "--package-manager=npm", "--styling=emotion", "."],
     {
       timeout: 10 * 60 * 1000, // 10 minutes
     }
@@ -23,5 +23,5 @@ export const testEmotionOnlyNonInteractive = async (
 
   await execaProcess
 
-  await checkFormattingLintingBuild("yarn")
+  await checkFormattingLintingBuild("npm")
 }
