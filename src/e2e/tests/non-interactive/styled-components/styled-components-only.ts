@@ -10,17 +10,20 @@ export const testStyledComponentsOnlyNonInteractive = async (
     createNextStackDir
   )
 
-  console.log(
-    `Running command: ${pathToProdCLI} --debug --package-manager=npm --styling=styled-components .`
-  )
-  const execaProcess = execa(
-    pathToProdCLI,
-    ["--debug", "--package-manager=npm", "--styling=styled-components", "."],
-    {
-      timeout: 10 * 60 * 1000, // 10 minutes
-      cwd: runDirectory,
-    }
-  )
+  const args = [
+    "--debug",
+    "--package-manager=npm",
+    "--styling=styled-components",
+    ".",
+  ]
+
+  console.log(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
+
+  const execaProcess = execa(pathToProdCLI, args, {
+    timeout: 10 * 60 * 1000, // 10 minutes
+    cwd: runDirectory,
+  })
+
   execaProcess.stdout?.pipe(process.stdout)
   execaProcess.stderr?.pipe(process.stderr)
 

@@ -10,17 +10,20 @@ export const testCssModulesOnlyNonInteractive = async (
     createNextStackDir
   )
 
-  console.log(
-    `Running command: ${pathToProdCLI} --debug --package-manager=npm --styling=css-modules .`
-  )
-  const execaProcess = execa(
-    pathToProdCLI,
-    ["--debug", "--package-manager=npm", "--styling=css-modules", "."],
-    {
-      timeout: 10 * 60 * 1000, // 10 minutes
-      cwd: runDirectory,
-    }
-  )
+  const args = [
+    "--debug",
+    "--package-manager=npm",
+    "--styling=css-modules",
+    ".",
+  ]
+
+  console.log(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
+
+  const execaProcess = execa(pathToProdCLI, args, {
+    timeout: 10 * 60 * 1000, // 10 minutes
+    cwd: runDirectory,
+  })
+
   execaProcess.stdout?.pipe(process.stdout)
   execaProcess.stderr?.pipe(process.stderr)
 
