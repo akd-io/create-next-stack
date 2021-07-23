@@ -40,7 +40,9 @@ export const generateScriptTableRows = async (
     },
     {
       name: /* md */ `\`prepare\``,
-      description: /* md */ `The [\`prepare\` life cycle script](https://docs.npmjs.com/cli/v7/using-npm/scripts#life-cycle-scripts) is used to set up Git pre-commit hooks when people run \`yarn install\`. This script should not be run manually.`,
+      description: /* md */ `The [\`prepare\` life cycle script](https://docs.npmjs.com/cli/v7/using-npm/scripts#life-cycle-scripts) is used to set up Git pre-commit hooks when people run \`${
+        inputs.flags["package-manager"] === "yarn" ? "yarn" : "npm"
+      } install\`. This script should not be run manually.`,
       filter: await setUpLintStagedStep.shouldRun(inputs),
     },
   ]
