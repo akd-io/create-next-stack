@@ -22,6 +22,13 @@ export type CreateNextStackParserOutput = ReturnType<
 export type CreateNextStackArgs = UnknownObject // Change to ParserOutput["args"] if it becomes strongly typed in the future. (Currently a normal object with any-values.)
 export type CreateNextStackFlags = Partial<CreateNextStackParserOutput["flags"]> // Change to CreateNextStackParserOutput["flags"] if it becomes strongly typed in the future. (Currently not a Partial.)
 
+// Package manager flag:
+export const packageManagerOptions = ["yarn", "npm"] as const
+export type PackageManagerOptions = typeof packageManagerOptions[number]
+export const writablePackageManagerOptions = packageManagerOptions as Writable<
+  typeof packageManagerOptions
+>
+
 // Styling flag:
 export const stylingOptions = [
   "emotion",
