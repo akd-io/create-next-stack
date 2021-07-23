@@ -69,7 +69,19 @@ export type ValidCreateNextStackFlags = CreateNextStackFlags & {
 export const validateFlags = (
   flags: CreateNextStackFlags
 ): flags is ValidCreateNextStackFlags => {
-  return flags.styling != null
+  if (flags.styling == null) {
+    exitWithError(
+      'Outside interactive mode, you are required to specify a styling method. Read about the "--styling" option using --help.'
+    )
+    process.exit(1)
+  }
+  if (flags["package-manager"] == null) {
+    exitWithError(
+      'Outside interactive mode, you are required to specify a package manager. Read about the "--package-manager" option using --help.'
+    )
+    process.exit(1)
+  }
+  return true
 }
 
 export type ValidCNSInputs = {

@@ -7,7 +7,6 @@ import {
   writablePackageManagerOptions,
   writableStylingOptions,
 } from "./create-next-stack-types"
-import { exitWithError } from "./helpers/exit-with-error"
 import { commandInstance } from "./instance"
 import { performArgsQuestionnaire } from "./questionnaire/args-questionnaire"
 import { performFlagsQuestionnaire } from "./questionnaire/flags-questionnaire"
@@ -98,9 +97,6 @@ class CreateNextStack extends Command {
         process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
       }
       if (!validateFlags(flags)) {
-        exitWithError(
-          'Outside interactive Mode, you are required to specify a styling method. Read about the "--styling" option using --help.'
-        )
         process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
       }
 
