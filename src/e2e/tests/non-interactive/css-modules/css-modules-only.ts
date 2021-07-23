@@ -9,11 +9,11 @@ export const testCssModulesOnlyNonInteractive = async (
   const { pathToProdCLI } = await prepareE2eTest(createNextStackDir)
 
   console.log(
-    `Running command: ${pathToProdCLI} --debug --styling=css-modules .`
+    `Running command: ${pathToProdCLI} --debug --package-manager=yarn --styling=css-modules .`
   )
   const execaProcess = execa(
     pathToProdCLI,
-    ["--debug", "--styling=css-modules", "."],
+    ["--debug", "--package-manager=yarn", "--styling=css-modules", "."],
     {
       timeout: 10 * 60 * 1000, // 10 minutes
     }
@@ -23,5 +23,5 @@ export const testCssModulesOnlyNonInteractive = async (
 
   await execaProcess
 
-  await checkFormattingLintingBuild()
+  await checkFormattingLintingBuild("yarn")
 }

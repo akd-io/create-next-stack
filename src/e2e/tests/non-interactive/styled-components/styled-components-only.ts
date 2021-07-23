@@ -9,11 +9,11 @@ export const testStyledComponentsOnlyNonInteractive = async (
   const { pathToProdCLI } = await prepareE2eTest(createNextStackDir)
 
   console.log(
-    `Running command: ${pathToProdCLI} --debug --styling=styled-components .`
+    `Running command: ${pathToProdCLI} --debug --package-manager=yarn --styling=styled-components .`
   )
   const execaProcess = execa(
     pathToProdCLI,
-    ["--debug", "--styling=styled-components", "."],
+    ["--debug", "--package-manager=yarn", "--styling=styled-components", "."],
     {
       timeout: 10 * 60 * 1000, // 10 minutes
     }
@@ -23,5 +23,5 @@ export const testStyledComponentsOnlyNonInteractive = async (
 
   await execaProcess
 
-  await checkFormattingLintingBuild()
+  await checkFormattingLintingBuild("yarn")
 }

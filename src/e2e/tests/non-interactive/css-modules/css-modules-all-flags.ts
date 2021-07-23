@@ -9,12 +9,13 @@ export const testCssModulesAllFlagsNonInteractive = async (
   const { pathToProdCLI } = await prepareE2eTest(createNextStackDir)
 
   console.log(
-    `Running command: ${pathToProdCLI} --debug --prettier --styling=css-modules --react-hook-form --formik --framer-motion --formatting-pre-commit-hook .`
+    `Running command: ${pathToProdCLI} --debug --package-manager=yarn --prettier --styling=css-modules --react-hook-form --formik --framer-motion --formatting-pre-commit-hook .`
   )
   const execaProcess = execa(
     pathToProdCLI,
     [
       "--debug",
+      "--package-manager=yarn",
       "--prettier",
       "--styling=css-modules",
       "--react-hook-form",
@@ -32,5 +33,5 @@ export const testCssModulesAllFlagsNonInteractive = async (
 
   await execaProcess
 
-  await checkFormattingLintingBuild()
+  await checkFormattingLintingBuild("yarn")
 }

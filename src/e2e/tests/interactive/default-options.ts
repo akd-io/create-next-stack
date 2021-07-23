@@ -20,5 +20,5 @@ export const testDefaultOptionsInteractive = async (
 
   await execaProcess
 
-  await checkFormattingLintingBuild()
+  await checkFormattingLintingBuild("yarn")
 }
