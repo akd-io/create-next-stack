@@ -17,7 +17,7 @@ yarn dev
 
 ## Scripts
 
-The table below provides names and descriptions of the NPM scripts available in this project.
+The table below provides names and descriptions of the npm scripts available in this project.
 
 Each script is run using \`yarn <script-name>\`. For example: \`yarn dev\`.
 
