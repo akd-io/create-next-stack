@@ -1,7 +1,15 @@
 import { Command, flags } from "@oclif/command"
-import { throwError } from "./error-handling"
-import { isUnknownObject } from "./helpers/is-unknown-object"
-import { performQuestionnaire } from "./questionnaire/questionnaire"
+import {
+  CreateNextStackArgs,
+  CreateNextStackFlags,
+  validateArgs,
+  validateFlags,
+  writablePackageManagerOptions,
+  writableStylingOptions,
+} from "./create-next-stack-types"
+import { commandInstance } from "./instance"
+import { performArgsQuestionnaire } from "./questionnaire/args-questionnaire"
+import { performFlagsQuestionnaire } from "./questionnaire/flags-questionnaire"
 import { performSetupSteps } from "./setup/setup"
 
 class CreateNextStack extends Command {
@@ -17,30 +25,93 @@ class CreateNextStack extends Command {
   ]
 
   static flags = {
-    help: flags.help({ char: "h" }),
-    version: flags.version({ char: "v" }),
+    // General flags
+    help: flags.help({
+      char: "h",
+      description: "Shows the CLI help information.",
+    }),
+    version: flags.version({
+      char: "v",
+      description: "Shows the CLI version information.",
+    }),
     debug: flags.boolean({
-      description: "show verbose error messages for debugging purposes",
+      description: "Show verbose error messages for debugging purposes.",
+    }),
+
+    // Package manager:
+    "package-manager": flags.enum({
+      options: writablePackageManagerOptions,
+      description: "Sets the preferred package manager.",
+    }),
+
+    // Formatting:
+    prettier: flags.boolean({
+      description: "Adds Prettier. (Code formatting)",
+    }),
+
+    // Styling:
+    styling: flags.enum({
+      options: writableStylingOptions,
+      description: "Sets the preferred styling method.",
+    }),
+
+    // Form libraries:
+    "react-hook-form": flags.boolean({
+      description: "Adds React Hook Form. (Form library)",
+    }),
+    formik: flags.boolean({
+      description: "Adds Formik. (Form library)",
+    }),
+
+    // Animation
+    "framer-motion": flags.boolean({
+      description: "Adds Framer Motion. (Animation library)",
+    }),
+
+    // Formatting pre-commit hook
+    "formatting-pre-commit-hook": flags.boolean({
+      description: "Adds a formatting pre-commit hook.",
+      dependsOn: ["prettier"],
     }),
   }
 
   async run() {
-    const { args, flags } = this.parse(CreateNextStack)
+    const { args: weaklyTypedArgs, flags: weaklyTypedFlags } =
+      this.parse(CreateNextStack)
 
-    if (!isUnknownObject(args)) {
-      throwError.call(
-        this,
-        "An error occurred during create-next-stack command initialization.",
-        new TypeError("Expected args to be an object.")
-      )
-    }
+    commandInstance.set(this)
+
+    const args = weaklyTypedArgs as CreateNextStackArgs
+    const flags = weaklyTypedFlags as CreateNextStackFlags
 
     if (flags.debug) process.env.DEBUG = "true"
 
-    const answers = await performQuestionnaire.call(this, args)
+    const interactive = shouldBeInteractive(flags)
 
-    await performSetupSteps.call(this, answers)
+    if (interactive) {
+      const validArgs = await performArgsQuestionnaire(args)
+      const validFlags = await performFlagsQuestionnaire()
+      await performSetupSteps({ args: validArgs, flags: validFlags })
+    } else {
+      if (!validateArgs(args)) {
+        process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+      }
+      if (!validateFlags(flags)) {
+        process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+      }
+
+      await performSetupSteps({ args, flags })
+    }
   }
+}
+
+const shouldBeInteractive = (flags: CreateNextStackFlags): boolean => {
+  const numOfAllFlags = Object.keys(flags).length
+
+  let numOfNonGeneralFlags = numOfAllFlags
+  if (flags.debug !== undefined) numOfNonGeneralFlags--
+
+  return numOfNonGeneralFlags === 0
 }
 
 export = CreateNextStack

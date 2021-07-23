@@ -2,6 +2,8 @@ import inquirer, { Separator } from "inquirer"
 import { arrayToKeyToKeyMap } from "../../helpers/array-to-key-to-key-map"
 
 const techValueArray = <const>[
+  "yarn",
+  "npm",
   "prettier",
   "emotion",
   "styledComponents",
@@ -21,6 +23,15 @@ const techChoices: {
     checked?: boolean
   }
 } = {
+  yarn: {
+    value: "yarn",
+    name: "Yarn",
+    checked: true,
+  },
+  npm: {
+    value: "npm",
+    name: "npm",
+  },
   prettier: {
     value: "prettier",
     name: "Prettier",
@@ -33,7 +44,7 @@ const techChoices: {
   },
   styledComponents: {
     value: "styledComponents",
-    name: "Styled Components",
+    name: "styled-components",
   },
   cssModules: {
     value: "cssModules",
@@ -64,13 +75,17 @@ type TechnologiesAnswers = {
   [answerName]: TechValue[]
 }
 
-export async function promptTechnologies() {
+export const promptTechnologies = async () => {
   const { technologies } = await inquirer.prompt<TechnologiesAnswers>({
     name: answerName,
     type: "checkbox",
     message: "What technologies are you looking to use?",
     pageSize: 10,
     choices: [
+      new Separator("Package manager:"),
+      techChoices.yarn,
+      techChoices.npm,
+
       new Separator("Formatting:"),
       techChoices.prettier,
 
@@ -90,6 +105,14 @@ export async function promptTechnologies() {
       techChoices.preCommitHook,
     ],
     validate: (technologies) => {
+      const onlyOnePackageManagerSelected = oneOf(
+        technologies.includes(techValues.yarn),
+        technologies.includes(techValues.npm)
+      )
+      if (!onlyOnePackageManagerSelected) {
+        return `You have to pick exactly one package manager.`
+      }
+
       if (
         technologies.includes(techValues.preCommitHook) &&
         !technologies.includes(techValues.prettier)

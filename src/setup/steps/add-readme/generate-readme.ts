@@ -1,32 +1,33 @@
-import Command from "@oclif/command"
-import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
+import { ValidCNSInputs } from "../../../create-next-stack-types"
+import { getProjectNameOfPath } from "../../../helpers/get-project-name-of-path"
 import { generateScriptTableRows } from "./generate-script-table-rows"
 import { generateTechnologyTableRows } from "./generate-technology-table-rows"
 
-export async function generateReadme(
-  this: Command,
-  answers: QuestionnaireAnswers
-) {
+export const generateReadme = async (inputs: ValidCNSInputs) => {
   return /* md */ `
-# ${answers.projectName}
+# ${getProjectNameOfPath(inputs.args.appName)}
 
 🎉 Congratulations, your project was successfully bootstrapped with [Create Next Stack](https://github.com/akd-io/create-next-stack)!
 
 To get started, run:
 
 \`\`\`bash
-yarn dev
+${inputs.flags["package-manager"] === "yarn" ? "yarn dev" : "npm run dev"}
 \`\`\`
 
 ## Scripts
 
-The table below provides names and descriptions of the NPM scripts available in this project.
+The table below provides names and descriptions of the npm scripts available in this project.
 
-Each script is run using \`yarn <script-name>\`. For example: \`yarn dev\`.
+Each script is run using \`${
+    inputs.flags["package-manager"] === "yarn" ? "yarn" : "npm run"
+  } <script-name>\`. For example: \`${
+    inputs.flags["package-manager"] === "yarn" ? "yarn" : "npm run"
+  } dev\`.
 
 | Name | Description |
 | ---- | ----------- |
-${await generateScriptTableRows.call(this, answers)}
+${await generateScriptTableRows(inputs)}
 
 ## Technologies
 
@@ -34,6 +35,6 @@ The table below gives an overview of the technologies used in this project, as w
 
 | Name | Links |
 | ---- | ----- |
-${await generateTechnologyTableRows.call(this, answers)}
+${await generateTechnologyTableRows(inputs)}
 `
 }

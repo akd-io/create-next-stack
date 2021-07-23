@@ -1,33 +1,36 @@
 import execa from "execa"
 import { promises as fs } from "fs"
-import { throwError } from "../../error-handling"
+import { exitWithError } from "../../helpers/exit-with-error"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { isPackageGloballyInstalled } from "../../helpers/is-package-globally-installed"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { remove } from "../../helpers/remove"
 import { writeJsonFile } from "../../helpers/write-json-file"
-import { techValues } from "../../questionnaire/questions/technologies"
+import { commandInstance } from "../../instance"
 import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpLintStagedStep: Step = {
-  shouldRun: (answers) => {
-    return (
-      answers.technologies.includes(techValues.prettier) &&
-      answers.technologies.includes(techValues.preCommitHook)
-    )
+  shouldRun: async (inputs) => {
+    if (!inputs.flags.prettier || !inputs.flags["formatting-pre-commit-hook"]) {
+      return false
+    }
+
+    if (!(await isGitInitialized())) {
+      const instance = commandInstance.get()
+      instance.log(
+        "Skipping lint-staged setup, as Git is not initialized, because this repository is nested inside another repository."
+      )
+      return false
+    }
+
+    return true
   },
 
-  run: async function (this) {
+  run: async () => {
+    const instance = commandInstance.get()
     try {
-      if (!(await isGitInitialized())) {
-        this.log(
-          "Skipping lint-staged setup, as Git is not initialized, because this repository is nested inside another repository."
-        )
-        return
-      }
-
-      this.log("Setting up lint-staged...")
+      instance.log("Setting up lint-staged...")
 
       /*
         Check if mrm and mrm-task-lint-staged is installed globally already. (If they are not, we need to remove them again later)
@@ -90,11 +93,7 @@ export const setUpLintStagedStep: Step = {
 
       await writeJsonFile("package.json", packageJson)
     } catch (error) {
-      throwError.call(
-        this,
-        "An error occurred while setting up lint-staged.",
-        error
-      )
+      exitWithError("An error occurred while setting up lint-staged.", error)
     }
   },
 }

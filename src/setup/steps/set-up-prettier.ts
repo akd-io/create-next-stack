@@ -1,21 +1,26 @@
 import { promises as fs } from "fs"
-import { throwError } from "../../error-handling"
+import { exitWithError } from "../../helpers/exit-with-error"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
-import { techValues } from "../../questionnaire/questions/technologies"
-import { packages, yarnAdd } from "../packages"
+import { commandInstance } from "../../instance"
+import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpPrettierStep: Step = {
-  shouldRun: (answers) => answers.technologies.includes(techValues.prettier),
+  shouldRun: async (inputs) => Boolean(inputs.flags.prettier),
 
-  run: async function (this) {
-    this.log("Setting up Prettier...")
+  run: async ({ flags }) => {
+    const instance = commandInstance.get()
+    instance.log("Setting up Prettier...")
 
     try {
-      await yarnAdd([packages.prettier, packages["eslint-config-prettier"]], {
-        dev: true,
-      })
+      await install(
+        [packages.prettier, packages["eslint-config-prettier"]],
+        flags["package-manager"],
+        {
+          dev: true,
+        }
+      )
 
       await Promise.all([
         addPrettierConfig(),
@@ -23,11 +28,7 @@ export const setUpPrettierStep: Step = {
         setUpEslintConfigPrettier(),
       ])
     } catch (error) {
-      throwError.call(
-        this,
-        "An error occurred while setting up Prettier.",
-        error
-      )
+      exitWithError("An error occurred while setting up Prettier.", error)
     }
   },
 }

@@ -1,10 +1,9 @@
-import { QuestionnaireAnswers } from "../../../../../questionnaire/questionnaire"
-import { techValues } from "../../../../../questionnaire/questions/technologies"
+import { ValidCNSInputs } from "../../../../../create-next-stack-types"
 
-export const getStyledImport = (answers: QuestionnaireAnswers) => {
-  if (answers.technologies.includes(techValues.emotion)) {
+export const getStyledImport = (inputs: ValidCNSInputs) => {
+  if (inputs.flags.styling === "emotion") {
     return `import styled from "@emotion/styled";`
-  } else if (answers.technologies.includes(techValues.styledComponents)) {
+  } else if (inputs.flags.styling === "styled-components") {
     return `import styled from "styled-components";`
   } else {
     throw new Error(

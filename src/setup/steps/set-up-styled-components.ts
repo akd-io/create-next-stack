@@ -1,25 +1,26 @@
 import { promises as fs } from "fs"
-import { throwError } from "../../error-handling"
+import { exitWithError } from "../../helpers/exit-with-error"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
-import { techValues } from "../../questionnaire/questions/technologies"
-import { packages, yarnAdd } from "../packages"
+import { commandInstance } from "../../instance"
+import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpStyledComponentsStep: Step = {
-  shouldRun: (answers) =>
-    answers.technologies.includes(techValues.styledComponents),
+  shouldRun: async (inputs) => inputs.flags.styling === "styled-components",
 
-  run: async function (this) {
-    this.log("Setting up styled-components...")
+  run: async ({ flags }) => {
+    const instance = commandInstance.get()
+    instance.log("Setting up styled-components...")
 
     try {
-      await yarnAdd(packages["styled-components"])
-      await yarnAdd(
+      await install(packages["styled-components"], flags["package-manager"])
+      await install(
         [
           packages["@types/styled-components"],
           packages["babel-plugin-styled-components"],
         ],
+        flags["package-manager"],
         {
           dev: true,
         }
@@ -27,8 +28,7 @@ export const setUpStyledComponentsStep: Step = {
 
       await addStyledComponentsBabelPlugin()
     } catch (error) {
-      throwError.call(
-        this,
+      exitWithError(
         "An error occurred while setting up styled-components.",
         error
       )

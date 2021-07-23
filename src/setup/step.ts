@@ -1,7 +1,6 @@
-import Command from "@oclif/command"
-import { QuestionnaireAnswers } from "../questionnaire/questionnaire"
+import { ValidCNSInputs } from "../create-next-stack-types"
 
 export type Step = {
-  shouldRun: (answers: QuestionnaireAnswers) => boolean
-  run: (this: Command, answers: QuestionnaireAnswers) => Promise<void>
+  shouldRun: (inputs: ValidCNSInputs) => Promise<boolean>
+  run: (inputs: ValidCNSInputs) => Promise<void>
 }

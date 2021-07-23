@@ -1,18 +1,18 @@
-import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
+import { ValidCNSInputs } from "../../../create-next-stack-types"
 import { globalStyles } from "./global-styles"
 
 export const generateWithDefaultGlobalStyles = (
-  answers: QuestionnaireAnswers
+  inputs: ValidCNSInputs
 ): string => /* tsx */ `
-${getImport(answers)}
+${getImport(inputs)}
 import React from "react";
 
-${getGlobalStylesDeclaration(answers)}
+${getGlobalStylesDeclaration(inputs)}
 
 const WithDefaultGlobalStyles: React.FC = ({ children }) => {
   return (
     <>
-      ${getGlobalStylesComponent(answers)}
+      ${getGlobalStylesComponent(inputs)}
       {children}
     </>
   );
@@ -21,24 +21,24 @@ const WithDefaultGlobalStyles: React.FC = ({ children }) => {
 export default WithDefaultGlobalStyles;
 `
 
-const getImport = (answers: QuestionnaireAnswers): string => {
-  if (answers.technologies.includes("emotion")) {
+const getImport = (inputs: ValidCNSInputs): string => {
+  if (inputs.flags.styling === "emotion") {
     return /* tsx */ `import { css, Global } from "@emotion/react";`
-  } else if (answers.technologies.includes("styledComponents")) {
+  } else if (inputs.flags.styling === "styled-components") {
     return /* tsx */ `import { createGlobalStyle } from "styled-components";`
   } else {
     throw new Error("Unsupported styling technology found in getImport.")
   }
 }
 
-const getGlobalStylesDeclaration = (answers: QuestionnaireAnswers): string => {
-  if (answers.technologies.includes("emotion")) {
+const getGlobalStylesDeclaration = (inputs: ValidCNSInputs): string => {
+  if (inputs.flags.styling === "emotion") {
     return /* tsx */ `
 const globalStyles = css\`
 ${globalStyles}
 \`;
 `
-  } else if (answers.technologies.includes("styledComponents")) {
+  } else if (inputs.flags.styling === "styled-components") {
     return /* tsx */ `
 const GlobalStyle = createGlobalStyle\`
 ${globalStyles}
@@ -51,10 +51,10 @@ ${globalStyles}
   }
 }
 
-const getGlobalStylesComponent = (answers: QuestionnaireAnswers): string => {
-  if (answers.technologies.includes("emotion")) {
+const getGlobalStylesComponent = (inputs: ValidCNSInputs): string => {
+  if (inputs.flags.styling === "emotion") {
     return /* tsx */ `<Global styles={globalStyles} />`
-  } else if (answers.technologies.includes("styledComponents")) {
+  } else if (inputs.flags.styling === "styled-components") {
     return /* tsx */ `<GlobalStyle />`
   } else {
     throw new Error(

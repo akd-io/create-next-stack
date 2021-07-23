@@ -1,23 +1,18 @@
-import Command from "@oclif/command"
-import { throwError } from "../../error-handling"
-import { validateProjectPath } from "../../helpers/validate-project-name"
+import { exitWithError } from "../../helpers/exit-with-error"
+import { getProjectNameOfPath } from "../../helpers/get-project-name-of-path"
+import { validateNpmName } from "../../helpers/validate-npm-name"
 
 /**
- *
  * @param this Current Command instance
  * @param projectPath The project path the user input
  * @returns `true` if valid. If invalid, an error message of type `string` explaining the invalidity.
  */
-export function validateProjectPathInput(
-  this: Command,
-  projectPath: unknown
-): string | true {
+export const validateProjectPathInput = (
+  projectPath: string
+): string | true => {
   try {
-    if (typeof projectPath !== "string") {
-      throw new TypeError("Expected projectPath to be a string.")
-    }
-
-    const validation = validateProjectPath(projectPath.trim())
+    const projectName = getProjectNameOfPath(projectPath)
+    const validation = validateNpmName(projectName)
 
     if (!validation.valid) {
       const firstProblem = validation.problems[0]
@@ -29,11 +24,7 @@ export function validateProjectPathInput(
       )
     }
   } catch (error) {
-    throwError.call(
-      this,
-      "An error occurred while validating project name.",
-      error
-    )
+    exitWithError("An error occurred while validating app name.", error)
   }
 
   return true

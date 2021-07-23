@@ -21,7 +21,7 @@ jobs:
       - name: "Install dependencies (with cache)"
         uses: bahmutov/npm-install@v1
 
-      - name: "Publish to NPM"
+      - name: "Publish to npm"
         id: npmPublish
         uses: JS-DevTools/npm-publish@v1
         with:
