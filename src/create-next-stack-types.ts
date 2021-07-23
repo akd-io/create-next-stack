@@ -1,5 +1,8 @@
 import CreateNextStack from "."
+import { exitWithError } from "./helpers/exit-with-error"
 import { UnknownObject } from "./helpers/is-unknown-object"
+import { Writable } from "./helpers/writable"
+import { validateProjectPathInput } from "./questionnaire/questions/validate-project-path"
 
 /**
  * This function is only used to retrieve the ReturnType of a call to `createNextStackInstance.parse(CreateNextStack)`.
@@ -14,5 +17,55 @@ const temporaryWrapperForTypeSafety = () => {
 export type CreateNextStackParserOutput = ReturnType<
   typeof temporaryWrapperForTypeSafety
 >
+
+// Unvalidated Args and Flags types
 export type CreateNextStackArgs = UnknownObject // Change to ParserOutput["args"] if it becomes strongly typed in the future. (Currently a normal object with any-values.)
-export type CreateNextStackFlags = CreateNextStackParserOutput["flags"]
+export type CreateNextStackFlags = Partial<CreateNextStackParserOutput["flags"]> // Change to CreateNextStackParserOutput["flags"] if it becomes strongly typed in the future. (Currently not a Partial.)
+
+// Styling flag:
+export const stylingOptions = [
+  "emotion",
+  "styled-components",
+  "css-modules",
+] as const
+export type StylingOption = typeof stylingOptions[number]
+export const writableStylingOptions = stylingOptions as Writable<
+  typeof stylingOptions
+>
+
+// Valid Args type and type guard
+export type ValidCreateNextStackArgs = CreateNextStackArgs & { appName: string }
+export const validateArgs = (
+  args: CreateNextStackArgs
+): args is ValidCreateNextStackArgs => {
+  if (typeof args.appName !== "string") {
+    exitWithError(
+      'Outside interactive mode, you are required to specify a name for your application. Read about the "appName" argument using --help.'
+    )
+    process.exit() // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+  }
+
+  const appNameValidationResult = validateProjectPathInput(args.appName)
+
+  if (typeof appNameValidationResult === "string") {
+    exitWithError("Invalid app name. " + appNameValidationResult)
+    process.exit() // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+  }
+
+  return true
+}
+
+// Valid Flags type and type guard
+export type ValidCreateNextStackFlags = CreateNextStackFlags & {
+  styling: StylingOption
+}
+export const validateFlags = (
+  flags: CreateNextStackFlags
+): flags is ValidCreateNextStackFlags => {
+  return flags.styling != null
+}
+
+export type ValidCNSInputs = {
+  args: ValidCreateNextStackArgs
+  flags: ValidCreateNextStackFlags
+}

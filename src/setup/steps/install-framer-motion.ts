@@ -1,23 +1,19 @@
-import { throwError } from "../../error-handling"
-import { techValues } from "../../questionnaire/questions/technologies"
+import { exitWithError } from "../../helpers/exit-with-error"
+import { commandInstance } from "../../instance"
 import { packages, yarnAdd } from "../packages"
 import { Step } from "../step"
 
 export const installFramerMotionStep: Step = {
-  shouldRun: (answers) =>
-    answers.technologies.includes(techValues.framerMotion),
+  shouldRun: async ({ flags }) => Boolean(flags["framer-motion"]),
 
-  run: async function (this) {
-    this.log("Installing Framer Motion...")
+  run: async () => {
+    const instance = commandInstance.get()
+    instance.log("Installing Framer Motion...")
 
     try {
       await yarnAdd(packages["framer-motion"])
     } catch (error) {
-      throwError.call(
-        this,
-        "An error occurred while installing Framer Motion.",
-        error
-      )
+      exitWithError("An error occurred while installing Framer Motion.", error)
     }
   },
 }

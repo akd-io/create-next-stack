@@ -1,14 +1,11 @@
-import { QuestionnaireAnswers } from "../../../questionnaire/questionnaire"
-import { techValues } from "../../../questionnaire/questions/technologies"
+import { ValidCNSInputs } from "../../../create-next-stack-types"
 
-export const generatePage = (
-  answers: QuestionnaireAnswers
-): string => /* tsx */ `
+export const generatePage = (inputs: ValidCNSInputs): string => /* tsx */ `
 import Head from "next/head";
 import React from "react";
 ${
-  answers.technologies.includes(techValues.emotion) ||
-  answers.technologies.includes(techValues.styledComponents)
+  inputs.flags.styling === "emotion" ||
+  inputs.flags.styling === "styled-components"
     ? `import WithDefaultGlobalStyles from "./WithDefaultGlobalStyles";`
     : ``
 }
@@ -20,8 +17,8 @@ type PageProps = {
 const Page: React.FC<PageProps> = ({ title, description, children }) => {
   return (
     ${
-      answers.technologies.includes(techValues.emotion) ||
-      answers.technologies.includes(techValues.styledComponents)
+      inputs.flags.styling === "emotion" ||
+      inputs.flags.styling === "styled-components"
         ? `<WithDefaultGlobalStyles>`
         : `<>`
     }
@@ -32,8 +29,8 @@ const Page: React.FC<PageProps> = ({ title, description, children }) => {
       </Head>
       {children}
     ${
-      answers.technologies.includes(techValues.emotion) ||
-      answers.technologies.includes(techValues.styledComponents)
+      inputs.flags.styling === "emotion" ||
+      inputs.flags.styling === "styled-components"
         ? `</WithDefaultGlobalStyles>`
         : `</>`
     }

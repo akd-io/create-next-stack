@@ -1,16 +1,17 @@
 import { promises as fs } from "fs"
-import { throwError } from "../../error-handling"
+import { exitWithError } from "../../helpers/exit-with-error"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
-import { techValues } from "../../questionnaire/questions/technologies"
+import { commandInstance } from "../../instance"
 import { packages, yarnAdd } from "../packages"
 import { Step } from "../step"
 
 export const setUpEmotionStep: Step = {
-  shouldRun: (answers) => answers.technologies.includes(techValues.emotion),
+  shouldRun: async (inputs) => inputs.flags.styling === "emotion",
 
-  run: async function (this) {
-    this.log("Setting up Emotion...")
+  run: async () => {
+    const instance = commandInstance.get()
+    instance.log("Setting up Emotion...")
 
     try {
       await yarnAdd([packages["@emotion/react"], packages["@emotion/styled"]])
@@ -19,11 +20,7 @@ export const setUpEmotionStep: Step = {
       await addCssPropSupportAsPerEmotionDocs()
       await addTypeScriptSupportForTheEmotionCssProp()
     } catch (error) {
-      throwError.call(
-        this,
-        "An error occurred while setting up Emotion.",
-        error
-      )
+      exitWithError("An error occurred while setting up Emotion.", error)
     }
   },
 }

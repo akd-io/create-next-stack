@@ -1,5 +1,4 @@
-import Command from "@oclif/command"
-import { QuestionnaireAnswers } from "../questionnaire/questionnaire"
+import { ValidCNSInputs } from "../create-next-stack-types"
 import { Step } from "./step"
 import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
 import { addContentStep } from "./steps/add-content/add-content"
@@ -19,10 +18,9 @@ import { setUpPrettierStep } from "./steps/set-up-prettier"
 import { setUpStyledComponentsStep } from "./steps/set-up-styled-components"
 import { updateYarnStep } from "./steps/update-yarn"
 
-export async function performSetupSteps(
-  this: Command,
-  answers: QuestionnaireAnswers
-): Promise<void> {
+export const performSetupSteps = async (
+  inputs: ValidCNSInputs
+): Promise<void> => {
   const steps: Step[] = [
     updateYarnStep,
     createNextAppStep,
@@ -52,8 +50,8 @@ export async function performSetupSteps(
   ]
 
   for (const step of steps) {
-    if (step.shouldRun(answers)) {
-      await step.run.call(this, answers)
+    if (await step.shouldRun(inputs)) {
+      await step.run(inputs)
     }
   }
 }

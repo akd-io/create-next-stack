@@ -6,6 +6,6 @@ export type UnknownObject = { [key in PropertyKey]: unknown }
  * @param x The variable under test
  * @returns Whether x is an object and a strongly typed version of the object.
  */
-export function isUnknownObject(x: unknown): x is UnknownObject {
+export const isUnknownObject = (x: unknown): x is UnknownObject => {
   return x !== null && typeof x === "object"
 }

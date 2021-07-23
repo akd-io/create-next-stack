@@ -1,8 +1,7 @@
-import Command from "@oclif/command"
 import inquirer from "inquirer"
 import { validateProjectPathInput } from "./validate-project-path"
 
-export async function promptProjectPath(this: Command): Promise<string> {
+export const promptProjectPath = async (): Promise<string> => {
   const answerName = "projectPath"
   type ProjectNameAnswers = {
     [answerName]: string
