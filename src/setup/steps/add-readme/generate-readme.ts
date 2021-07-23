@@ -12,14 +12,18 @@ export const generateReadme = async (inputs: ValidCNSInputs) => {
 To get started, run:
 
 \`\`\`bash
-yarn dev
+${inputs.flags["package-manager"] === "yarn" ? "yarn dev" : "npm run dev"}
 \`\`\`
 
 ## Scripts
 
-The table below provides names and descriptions of the NPM scripts available in this project.
+The table below provides names and descriptions of the npm scripts available in this project.
 
-Each script is run using \`yarn <script-name>\`. For example: \`yarn dev\`.
+Each script is run using \`${
+    inputs.flags["package-manager"] === "yarn" ? "yarn" : "npm run"
+  } <script-name>\`. For example: \`${
+    inputs.flags["package-manager"] === "yarn" ? "yarn" : "npm run"
+  } dev\`.
 
 | Name | Description |
 | ---- | ----------- |

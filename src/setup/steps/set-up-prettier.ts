@@ -3,20 +3,24 @@ import { exitWithError } from "../../helpers/exit-with-error"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { commandInstance } from "../../instance"
-import { packages, yarnAdd } from "../packages"
+import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpPrettierStep: Step = {
   shouldRun: async (inputs) => Boolean(inputs.flags.prettier),
 
-  run: async () => {
+  run: async ({ flags }) => {
     const instance = commandInstance.get()
     instance.log("Setting up Prettier...")
 
     try {
-      await yarnAdd([packages.prettier, packages["eslint-config-prettier"]], {
-        dev: true,
-      })
+      await install(
+        [packages.prettier, packages["eslint-config-prettier"]],
+        flags["package-manager"],
+        {
+          dev: true,
+        }
+      )
 
       await Promise.all([
         addPrettierConfig(),

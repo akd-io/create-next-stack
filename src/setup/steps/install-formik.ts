@@ -1,17 +1,17 @@
 import { exitWithError } from "../../helpers/exit-with-error"
 import { commandInstance } from "../../instance"
-import { packages, yarnAdd } from "../packages"
+import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const installFormikStep: Step = {
   shouldRun: async ({ flags }) => Boolean(flags.formik),
 
-  run: async () => {
+  run: async ({ flags }) => {
     const instance = commandInstance.get()
     instance.log("Installing Formik...")
 
     try {
-      await yarnAdd(packages.formik)
+      await install(packages.formik, flags["package-manager"])
     } catch (error) {
       exitWithError("An error occurred while installing Formik.", error)
     }

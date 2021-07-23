@@ -6,12 +6,19 @@ import { prepareE2eTest } from "../../helpers/prepare-e2e-test"
 export const testDefaultOptionsInteractive = async (
   createNextStackDir: string
 ) => {
-  const { pathToProdCLI } = await prepareE2eTest(createNextStackDir)
+  const { pathToProdCLI, runDirectory } = await prepareE2eTest(
+    createNextStackDir
+  )
 
-  console.log(`Running command: ${pathToProdCLI} --debug .`)
-  const execaProcess = execa(pathToProdCLI, ["--debug", "."], {
+  const args = ["--debug", "."]
+
+  console.log(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
+
+  const execaProcess = execa(pathToProdCLI, args, {
     timeout: 10 * 60 * 1000, // 10 minutes
+    cwd: runDirectory,
   })
+
   execaProcess.stdout?.pipe(process.stdout)
   execaProcess.stderr?.pipe(process.stderr)
 
@@ -20,5 +27,5 @@ export const testDefaultOptionsInteractive = async (
 
   await execaProcess
 
-  await checkFormattingLintingBuild()
+  await checkFormattingLintingBuild("yarn", runDirectory)
 }

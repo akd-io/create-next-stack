@@ -6,22 +6,28 @@ import { prepareE2eTest } from "../../../helpers/prepare-e2e-test"
 export const testCssModulesOnlyNonInteractive = async (
   createNextStackDir: string
 ) => {
-  const { pathToProdCLI } = await prepareE2eTest(createNextStackDir)
+  const { pathToProdCLI, runDirectory } = await prepareE2eTest(
+    createNextStackDir
+  )
 
-  console.log(
-    `Running command: ${pathToProdCLI} --debug --styling=css-modules .`
-  )
-  const execaProcess = execa(
-    pathToProdCLI,
-    ["--debug", "--styling=css-modules", "."],
-    {
-      timeout: 10 * 60 * 1000, // 10 minutes
-    }
-  )
+  const args = [
+    "--debug",
+    "--package-manager=npm",
+    "--styling=css-modules",
+    ".",
+  ]
+
+  console.log(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
+
+  const execaProcess = execa(pathToProdCLI, args, {
+    timeout: 10 * 60 * 1000, // 10 minutes
+    cwd: runDirectory,
+  })
+
   execaProcess.stdout?.pipe(process.stdout)
   execaProcess.stderr?.pipe(process.stderr)
 
   await execaProcess
 
-  await checkFormattingLintingBuild()
+  await checkFormattingLintingBuild("npm", runDirectory)
 }

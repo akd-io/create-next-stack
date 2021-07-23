@@ -8,8 +8,9 @@ type Package = {
 type InstallPackageOptions = {
   dev?: boolean
 }
-export const yarnAdd = async (
+export const install = async (
   npmPackage: Package | Package[],
+  packageManager: "yarn" | "npm",
   options?: InstallPackageOptions
 ) => {
   const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]
@@ -18,14 +19,15 @@ export const yarnAdd = async (
     getNameVersionCombo(pkg)
   )
 
-  const yarnAddCommandArgs = ["add"]
+  const installSubCommand = packageManager === "yarn" ? "add" : "install"
+  const installCommandArgs = [installSubCommand]
   if (options != null && options.dev != null && options.dev) {
-    yarnAddCommandArgs.push("--dev")
+    installCommandArgs.push("--dev")
   }
   packagesWithVersions.forEach((packageWithVersion) => {
-    yarnAddCommandArgs.push(packageWithVersion)
+    installCommandArgs.push(packageWithVersion)
   })
-  return execa("yarn", yarnAddCommandArgs)
+  return execa(packageManager, installCommandArgs)
 }
 
 export const getNameVersionCombo = (npmPackage: Package) => {

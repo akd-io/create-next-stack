@@ -77,6 +77,12 @@ export const generateTechnologyTableRows = async (
     {
       name: /* md */ `[Yarn](https://yarnpkg.com/)`,
       links: /* md */ `[CLI Docs](https://yarnpkg.com/cli) - [GitHub repo](https://github.com/yarnpkg/berry)`,
+      filter: flags["package-manager"] === "yarn",
+    },
+    {
+      name: /* md */ `[npm](https://www.npmjs.com/)`,
+      links: /* md */ `[CLI Docs](https://docs.npmjs.com/cli/)`,
+      filter: flags["package-manager"] === "npm",
     },
   ]
 

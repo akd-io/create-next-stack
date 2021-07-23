@@ -5,7 +5,7 @@ import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
 export const updateYarnStep: Step = {
-  shouldRun: async () => true,
+  shouldRun: async (inputs) => inputs.flags["package-manager"] === "yarn",
 
   run: async () => {
     const instance = commandInstance.get()

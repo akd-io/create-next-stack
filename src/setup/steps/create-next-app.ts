@@ -8,7 +8,7 @@ import { Step } from "../step"
 export const createNextAppStep: Step = {
   shouldRun: async () => true,
 
-  run: async ({ args }) => {
+  run: async ({ args, flags }) => {
     const instance = commandInstance.get()
     instance.log("Creating Next.js app...")
 
@@ -16,10 +16,14 @@ export const createNextAppStep: Step = {
       // Make sure directory exists to avoid error from create-next-app
       await fs.mkdir(args.appName, { recursive: true })
 
+      const createNextAppArgs = [args.appName, "--typescript"]
+      if (flags["package-manager"] === "npm") {
+        createNextAppArgs.push("--use-npm")
+      }
+
       await execa("npx", [
         getNameVersionCombo(packages["create-next-app"]),
-        args.appName,
-        "--typescript",
+        ...createNextAppArgs,
       ])
     } catch (error) {
       exitWithError("An error occurred while creating Next.js app.", error)

@@ -7,6 +7,7 @@ export const prepareE2eTest = async (
   createNextStackDir: string
 ): Promise<{
   pathToProdCLI: string
+  runDirectory: string
 }> => {
   // Create unique id for this run
   const testRunId = uuidv4()
@@ -16,7 +17,7 @@ export const prepareE2eTest = async (
     `${createNextStackDir}/../create-next-stack-tests/run-${testRunId}`
   )
   await fs.mkdir(runDirectory, { recursive: true })
-  process.chdir(runDirectory)
+
   console.log(`Created test run directory at ${runDirectory}`)
 
   // Run /bin/run-prod to test against compiled js files in /lib instead of ts-files in /src using ts-node.
@@ -27,5 +28,6 @@ export const prepareE2eTest = async (
 
   return {
     pathToProdCLI,
+    runDirectory,
   }
 }
