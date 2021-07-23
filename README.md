@@ -82,9 +82,15 @@ ARGUMENTS
   APPNAME  The name of your app, optionally including a path prefix. Eg.: "my-app" or "path/to/my-app"
 
 OPTIONS
-  -h, --help     show CLI help
-  -v, --version  show CLI version
-  --debug        show verbose error messages for debugging purposes
+  -h, --help                                         Shows the CLI help information.
+  -v, --version                                      Shows the CLI version information.
+  --debug                                            Show verbose error messages for debugging purposes
+  --formatting-pre-commit-hook                       Adds a formatting pre-commit hook.
+  --formik                                           Adds Formik. (Form library)
+  --framer-motion                                    Adds Framer Motion. (Animation library)
+  --prettier                                         Adds Prettier. (Code formatting)
+  --react-hook-form                                  Adds React Hook Form. (Form library)
+  --styling=(emotion|styled-components|css-modules)  Sets the preferred styling method.
 ```
 
 ## License

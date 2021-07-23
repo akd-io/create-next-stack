@@ -35,7 +35,7 @@ class CreateNextStack extends Command {
       description: "Shows the CLI version information.",
     }),
     debug: flags.boolean({
-      description: "Show verbose error messages for debugging purposes",
+      description: "Show verbose error messages for debugging purposes.",
     }),
 
     /* TODO: Add support for NPM
