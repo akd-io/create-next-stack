@@ -59,7 +59,8 @@ Technologies marked as _convenience installs_ are technologies that work out of 
 | [React](https://reactjs.org/) <img width="14" alt="required icon" src="assets/required-icon.png">                                 | [Docs](https://reactjs.org/docs/getting-started.html) - [GitHub repo](https://github.com/facebook/react)                                                             |
 | [TypeScript](https://www.typescriptlang.org/) <img width="14" alt="required icon" src="assets/required-icon.png">                 | [Docs](https://www.typescriptlang.org/docs/) - [GitHub repo](https://github.com/microsoft/TypeScript)                                                                |
 | [ESLint](https://eslint.org/) <img width="14" alt="required icon" src="assets/required-icon.png">                                 | [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub Repo](https://github.com/eslint/eslint)         |
-| [Yarn](https://yarnpkg.com/) <img width="14" alt="required icon" src="assets/required-icon.png">                                  | [CLI Docs](https://yarnpkg.com/cli) - [GitHub repo](https://github.com/yarnpkg/berry)                                                                                |
+| [Yarn](https://yarnpkg.com/)                                                                                                      | [CLI Docs](https://yarnpkg.com/cli) - [GitHub repo](https://github.com/yarnpkg/berry)                                                                                |
+| [NPM](https://www.npmjs.com/)                                                                                                     | [CLI Docs](https://docs.npmjs.com/cli/)                                                                                                                              |
 | [Emotion](https://emotion.sh/docs/introduction)                                                                                   | [Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)                                                                  |
 | [styled-components](https://styled-components.com/)                                                                               | [Docs](https://styled-components.com/docs) - [GitHub repo](https://github.com/styled-components/styled-components)                                                   |
 | [CSS Modules](https://github.com/css-modules/css-modules)                                                                         | [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
@@ -84,10 +85,11 @@ ARGUMENTS
 OPTIONS
   -h, --help                                         Shows the CLI help information.
   -v, --version                                      Shows the CLI version information.
-  --debug                                            Show verbose error messages for debugging purposes
+  --debug                                            Show verbose error messages for debugging purposes.
   --formatting-pre-commit-hook                       Adds a formatting pre-commit hook.
   --formik                                           Adds Formik. (Form library)
   --framer-motion                                    Adds Framer Motion. (Animation library)
+  --package-manager=(yarn|npm)                       Sets the preferred package manager.
   --prettier                                         Adds Prettier. (Code formatting)
   --react-hook-form                                  Adds React Hook Form. (Form library)
   --styling=(emotion|styled-components|css-modules)  Sets the preferred styling method.
