@@ -6,12 +6,12 @@ import { Step } from "../step"
 export const installFormikStep: Step = {
   shouldRun: async ({ flags }) => Boolean(flags.formik),
 
-  run: async () => {
+  run: async ({ flags }) => {
     const instance = commandInstance.get()
     instance.log("Installing Formik...")
 
     try {
-      await install(packages.formik)
+      await install(packages.formik, flags["package-manager"])
     } catch (error) {
       exitWithError("An error occurred while installing Formik.", error)
     }

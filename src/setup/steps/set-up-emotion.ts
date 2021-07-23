@@ -9,13 +9,20 @@ import { Step } from "../step"
 export const setUpEmotionStep: Step = {
   shouldRun: async (inputs) => inputs.flags.styling === "emotion",
 
-  run: async () => {
+  run: async ({ flags }) => {
     const instance = commandInstance.get()
     instance.log("Setting up Emotion...")
 
     try {
-      await install([packages["@emotion/react"], packages["@emotion/styled"]])
-      await install(packages["@emotion/babel-plugin"], { dev: true })
+      await install(
+        [packages["@emotion/react"], packages["@emotion/styled"]],
+        flags["package-manager"]
+      )
+      await install(
+        packages["@emotion/babel-plugin"],
+        flags["package-manager"],
+        { dev: true }
+      )
 
       await addCssPropSupportAsPerEmotionDocs()
       await addTypeScriptSupportForTheEmotionCssProp()

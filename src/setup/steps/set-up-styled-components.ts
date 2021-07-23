@@ -9,17 +9,18 @@ import { Step } from "../step"
 export const setUpStyledComponentsStep: Step = {
   shouldRun: async (inputs) => inputs.flags.styling === "styled-components",
 
-  run: async () => {
+  run: async ({ flags }) => {
     const instance = commandInstance.get()
     instance.log("Setting up styled-components...")
 
     try {
-      await install(packages["styled-components"])
+      await install(packages["styled-components"], flags["package-manager"])
       await install(
         [
           packages["@types/styled-components"],
           packages["babel-plugin-styled-components"],
         ],
+        flags["package-manager"],
         {
           dev: true,
         }

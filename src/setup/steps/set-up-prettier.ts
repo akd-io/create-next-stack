@@ -9,14 +9,18 @@ import { Step } from "../step"
 export const setUpPrettierStep: Step = {
   shouldRun: async (inputs) => Boolean(inputs.flags.prettier),
 
-  run: async () => {
+  run: async ({ flags }) => {
     const instance = commandInstance.get()
     instance.log("Setting up Prettier...")
 
     try {
-      await install([packages.prettier, packages["eslint-config-prettier"]], {
-        dev: true,
-      })
+      await install(
+        [packages.prettier, packages["eslint-config-prettier"]],
+        flags["package-manager"],
+        {
+          dev: true,
+        }
+      )
 
       await Promise.all([
         addPrettierConfig(),

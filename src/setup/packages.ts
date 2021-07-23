@@ -10,6 +10,7 @@ type InstallPackageOptions = {
 }
 export const install = async (
   npmPackage: Package | Package[],
+  packageManager: "yarn" | "npm",
   options?: InstallPackageOptions
 ) => {
   const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]

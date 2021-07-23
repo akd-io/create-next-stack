@@ -6,12 +6,12 @@ import { Step } from "../step"
 export const installReactHookFormStep: Step = {
   shouldRun: async (inputs) => Boolean(inputs.flags["react-hook-form"]),
 
-  run: async () => {
+  run: async ({ flags }) => {
     const instance = commandInstance.get()
     instance.log("Installing React Hook Form...")
 
     try {
-      await install(packages["react-hook-form"])
+      await install(packages["react-hook-form"], flags["package-manager"])
     } catch (error) {
       exitWithError(
         "An error occurred while installing React Hook Form.",
