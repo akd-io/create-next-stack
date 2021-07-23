@@ -91,10 +91,9 @@ class CreateNextStack extends Command {
     const interactive = shouldBeInteractive(flags)
 
     if (interactive) {
-      await performSetupSteps({
-        args: await performArgsQuestionnaire(args),
-        flags: await performFlagsQuestionnaire(),
-      })
+      const validArgs = await performArgsQuestionnaire(args)
+      const validFlags = await performFlagsQuestionnaire()
+      await performSetupSteps({ args: validArgs, flags: validFlags })
     } else {
       if (!validateArgs(args)) {
         process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
