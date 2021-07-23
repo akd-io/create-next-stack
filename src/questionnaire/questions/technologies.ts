@@ -33,7 +33,7 @@ const techChoices: {
   },
   styledComponents: {
     value: "styledComponents",
-    name: "Styled Components",
+    name: "styled-components",
   },
   cssModules: {
     value: "cssModules",
