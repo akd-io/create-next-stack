@@ -34,5 +34,5 @@ export const testEmotionAllFlagsNonInteractive = async (
 
   await execaProcess
 
-  await checkFormattingLintingBuild("npm")
+  await checkFormattingLintingBuild("npm", runDirectory)
 }

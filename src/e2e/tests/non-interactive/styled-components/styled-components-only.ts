@@ -29,5 +29,5 @@ export const testStyledComponentsOnlyNonInteractive = async (
 
   await execaProcess
 
-  await checkFormattingLintingBuild("npm")
+  await checkFormattingLintingBuild("npm", runDirectory)
 }
