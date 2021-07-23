@@ -1,6 +1,6 @@
 import { exitWithError } from "../../helpers/exit-with-error"
 import { commandInstance } from "../../instance"
-import { packages, yarnAdd } from "../packages"
+import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const installReactHookFormStep: Step = {
@@ -11,7 +11,7 @@ export const installReactHookFormStep: Step = {
     instance.log("Installing React Hook Form...")
 
     try {
-      await yarnAdd(packages["react-hook-form"])
+      await install(packages["react-hook-form"])
     } catch (error) {
       exitWithError(
         "An error occurred while installing React Hook Form.",

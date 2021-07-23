@@ -8,7 +8,7 @@ type Package = {
 type InstallPackageOptions = {
   dev?: boolean
 }
-export const yarnAdd = async (
+export const install = async (
   npmPackage: Package | Package[],
   options?: InstallPackageOptions
 ) => {

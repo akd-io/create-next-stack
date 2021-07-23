@@ -3,7 +3,7 @@ import { exitWithError } from "../../helpers/exit-with-error"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { commandInstance } from "../../instance"
-import { packages, yarnAdd } from "../packages"
+import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpStyledComponentsStep: Step = {
@@ -14,8 +14,8 @@ export const setUpStyledComponentsStep: Step = {
     instance.log("Setting up styled-components...")
 
     try {
-      await yarnAdd(packages["styled-components"])
-      await yarnAdd(
+      await install(packages["styled-components"])
+      await install(
         [
           packages["@types/styled-components"],
           packages["babel-plugin-styled-components"],

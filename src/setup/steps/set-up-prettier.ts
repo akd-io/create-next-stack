@@ -3,7 +3,7 @@ import { exitWithError } from "../../helpers/exit-with-error"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { commandInstance } from "../../instance"
-import { packages, yarnAdd } from "../packages"
+import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpPrettierStep: Step = {
@@ -14,7 +14,7 @@ export const setUpPrettierStep: Step = {
     instance.log("Setting up Prettier...")
 
     try {
-      await yarnAdd([packages.prettier, packages["eslint-config-prettier"]], {
+      await install([packages.prettier, packages["eslint-config-prettier"]], {
         dev: true,
       })
 
