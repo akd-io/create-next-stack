@@ -1,6 +1,6 @@
 {
   "name": "create-next-stack",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "author": "Anders Kjær Damgaard @akd-io",
   "bin": {
     "create-next-stack": "./bin/run"
