@@ -90,7 +90,7 @@ export const generateTechnologyTableRows = async (
     .filter((technology) =>
       typeof technology.filter !== "undefined" ? technology.filter : true
     )
-    .map((technology) => `|${technology.name}|${technology.links}|`)
+    .map((technology) => /* md */ `|${technology.name}|${technology.links}|`)
     .join("\n")
 
   return technologyRowsString

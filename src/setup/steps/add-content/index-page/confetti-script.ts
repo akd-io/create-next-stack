@@ -1,6 +1,8 @@
-export const confettiImports = /* tsx */ `import Script from "next/script";`
+import endent from "endent"
 
-export const onConfettiLoadFunction = /* tsx */ `
+export const confettiImports = endent/* tsx */ `import Script from "next/script";`
+
+export const onConfettiLoadFunction = endent/* tsx */ `
   const onConfettiLoad = () => {
     setTimeout(() => {
       const colors = [
@@ -40,7 +42,7 @@ export const onConfettiLoadFunction = /* tsx */ `
   };
 `
 
-export const confettiScriptComponent = /* tsx */ `
+export const confettiScriptComponent = endent/* tsx */ `
   <Script
     src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"
     strategy="afterInteractive"

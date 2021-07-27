@@ -1,3 +1,4 @@
+import endent from "endent"
 import { promises as fs } from "fs"
 import { exitWithError } from "../../helpers/exit-with-error"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
@@ -30,10 +31,10 @@ export const addGitAttributesStep: Step = {
 }
 
 const generateGitAttributes = (): string => {
-  return `
-# Normalize end of line. Read more about why in the links below:
-# https://prettier.io/docs/en/options.html#end-of-line
-# https://git-scm.com/docs/gitattributes#_effects
-* text=auto eol=lf
-`
+  return endent`
+    # Normalize end of line. Read more about why in the links below:
+    # https://prettier.io/docs/en/options.html#end-of-line
+    # https://git-scm.com/docs/gitattributes#_effects
+    * text=auto eol=lf
+  `
 }

@@ -1,4 +1,6 @@
-export const globalStyles = /* css */ `
+import endent from "endent"
+
+export const globalStyles = endent/* css */ `
   html,
   body {
     padding: 0;

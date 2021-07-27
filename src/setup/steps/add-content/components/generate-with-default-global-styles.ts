@@ -1,9 +1,10 @@
+import endent from "endent"
 import { ValidCNSInputs } from "../../../../create-next-stack-types"
 import { globalStyles } from "../global-styles"
 
 export const generateWithDefaultGlobalStyles = (
   inputs: ValidCNSInputs
-): string => /* tsx */ `
+): string => endent/* tsx */ `
   ${getImportsForGlobalStyling(inputs)}
   import React from "react";
 
@@ -23,9 +24,9 @@ export const generateWithDefaultGlobalStyles = (
 
 const getImportsForGlobalStyling = (inputs: ValidCNSInputs): string => {
   if (inputs.flags.styling === "emotion") {
-    return /* tsx */ `import { css, Global } from "@emotion/react";`
+    return endent/* tsx */ `import { css, Global } from "@emotion/react";`
   } else if (inputs.flags.styling === "styled-components") {
-    return /* tsx */ `import { createGlobalStyle } from "styled-components";`
+    return endent/* tsx */ `import { createGlobalStyle } from "styled-components";`
   } else {
     throw new Error("Unsupported styling technology found in getImport.")
   }
@@ -33,15 +34,15 @@ const getImportsForGlobalStyling = (inputs: ValidCNSInputs): string => {
 
 const getGlobalStylesDeclaration = (inputs: ValidCNSInputs): string => {
   if (inputs.flags.styling === "emotion") {
-    return /* tsx */ `
+    return endent/* tsx */ `
       const globalStyles = css\`
-      ${globalStyles}
+        ${globalStyles}
       \`;
     `
   } else if (inputs.flags.styling === "styled-components") {
-    return /* tsx */ `
+    return endent/* tsx */ `
       const GlobalStyle = createGlobalStyle\`
-      ${globalStyles}
+        ${globalStyles}
       \`;
     `
   } else {
@@ -53,9 +54,9 @@ const getGlobalStylesDeclaration = (inputs: ValidCNSInputs): string => {
 
 const getGlobalStylesComponent = (inputs: ValidCNSInputs): string => {
   if (inputs.flags.styling === "emotion") {
-    return /* tsx */ `<Global styles={globalStyles} />`
+    return endent/* tsx */ `<Global styles={globalStyles} />`
   } else if (inputs.flags.styling === "styled-components") {
-    return /* tsx */ `<GlobalStyle />`
+    return endent/* tsx */ `<GlobalStyle />`
   } else {
     throw new Error(
       "Unsupported styling technology found in getGlobalStylesComponent."

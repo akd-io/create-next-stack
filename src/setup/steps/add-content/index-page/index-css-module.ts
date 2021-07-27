@@ -1,54 +1,56 @@
-export const indexCSSModule = /* css */ `
-.pageSection {
-  padding: 50px 30px;
+import endent from "endent"
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+export const indexCSSModule = endent/* css */ `
+  .pageSection {
+    padding: 50px 30px;
 
-  text-align: center;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-.grayBackground {
-  background: hsl(0, 0%, 95%);
-}
+    text-align: center;
+  }
 
-.contentContainer {
-  max-width: 800px;
+  .grayBackground {
+    background: hsl(0, 0%, 95%);
+  }
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .contentContainer {
+    max-width: 800px;
 
-.title {
-  margin: 0;
-  margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-  font-size: 3rem;
-}
+  .title {
+    margin: 0;
+    margin-bottom: 20px;
 
-.subtitle {
-  margin: 0;
+    font-size: 3rem;
+  }
 
-  font-size: 1.5rem;
-}
+  .subtitle {
+    margin: 0;
 
-.inlineCode {
-  border-radius: 0.4em;
-  padding: 0.4em;
+    font-size: 1.5rem;
+  }
 
-  font-size: 0.8em;
-  background-color: hsl(0, 0%, 95%);
-}
+  .inlineCode {
+    border-radius: 0.4em;
+    padding: 0.4em;
 
-.h2 {
-  margin: 0;
-  margin-bottom: 20px;
-}
+    font-size: 0.8em;
+    background-color: hsl(0, 0%, 95%);
+  }
 
-.paragraph {
-  margin: 0;
-  max-width: 600px;
-}
+  .h2 {
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  .paragraph {
+    margin: 0;
+    max-width: 600px;
+  }
 `
