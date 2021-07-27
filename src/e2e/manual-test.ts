@@ -4,9 +4,6 @@ import { logTestInfo } from "./helpers/test-logging"
 ;(async () => {
   const projectName = uuidv4()
 
-  logTestInfo("Preparing production build of Create Next Stack...")
-  await execa("yarn", ["build"], { stdio: "inherit" })
-
   logTestInfo(`Running Create Next Stack...`)
   await execa("./bin/run-prod", [`../create-next-stack-tests/${projectName}`], {
     stdio: "inherit",

@@ -58,7 +58,7 @@
     "prepack": "yarn build && oclif-dev readme",
     "build": "rimraf lib && tsc -b",
     "test": "ts-node src/e2e/test.ts",
-    "manual-test": "ts-node src/e2e/manual-test.ts",
+    "manual-test": "yarn build && ts-node src/e2e/manual-test.ts",
     "version": "oclif-dev readme && git add README.md",
     "format": "prettier --write --ignore-path=.gitignore .",
     "format:check": "prettier --check --ignore-path=.gitignore .",
