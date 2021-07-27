@@ -6,16 +6,16 @@ export const checkFormattingLintingBuild = async (runDirectory: string) => {
     cwd: runDirectory,
   }
 
-  logTestInfo("Checking formatting")
+  logTestInfo("Checking formatting...")
   await execa(
     "npx",
     ["prettier", "--check", "--ignore-path=.gitignore", "."],
     options
   )
 
-  logTestInfo("Checking linting")
+  logTestInfo("Checking linting...")
   await execa("npm", ["run", "lint"], options)
 
-  logTestInfo("Running build")
+  logTestInfo("Running build...")
   await execa("npm", ["run", "build"], options)
 }
