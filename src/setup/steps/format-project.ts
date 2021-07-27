@@ -7,6 +7,8 @@ import { Step } from "../step"
 export const formatProjectStep: Step = {
   shouldRun: async () => true,
 
+  didRun: false,
+
   run: async () => {
     const instance = commandInstance.get()
     instance.log("Formatting project...")

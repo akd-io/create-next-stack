@@ -6,6 +6,8 @@ import { Step } from "../step"
 export const installFormikStep: Step = {
   shouldRun: async ({ flags }) => Boolean(flags.formik),
 
+  didRun: false,
+
   run: async ({ flags }) => {
     const instance = commandInstance.get()
     instance.log("Installing Formik...")

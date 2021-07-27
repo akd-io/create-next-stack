@@ -10,6 +10,8 @@ import { Step } from "../step"
 export const removeOfficialCNAContentStep: Step = {
   shouldRun: async () => true,
 
+  didRun: false,
+
   run: async () => {
     const instance = commandInstance.get()
     instance.log("Cleaning up official Next.js boilerplate...")

@@ -9,6 +9,8 @@ import { Step } from "../step"
 export const setUpEmotionStep: Step = {
   shouldRun: async (inputs) => inputs.flags.styling === "emotion",
 
+  didRun: false,
+
   run: async ({ flags }) => {
     const instance = commandInstance.get()
     instance.log("Setting up Emotion...")

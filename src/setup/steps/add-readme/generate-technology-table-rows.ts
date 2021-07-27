@@ -67,12 +67,12 @@ export const generateTechnologyTableRows = async (
     {
       name: /* md */ `[Husky](https://typicode.github.io/husky/)`,
       links: /* md */ `[Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)`,
-      filter: await setUpLintStagedStep.shouldRun(inputs),
+      filter: setUpLintStagedStep.didRun,
     },
     {
       name: /* md */ `[lint-staged](https://github.com/okonet/lint-staged)`,
       links: /* md */ `[GitHub repo](https://github.com/okonet/lint-staged)`,
-      filter: await setUpLintStagedStep.shouldRun(inputs),
+      filter: setUpLintStagedStep.didRun,
     },
     {
       name: /* md */ `[Yarn](https://yarnpkg.com/)`,

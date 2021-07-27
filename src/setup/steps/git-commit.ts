@@ -5,18 +5,22 @@ import { commandInstance } from "../../instance"
 import { Step } from "../step"
 
 export const gitCommitStep: Step = {
-  shouldRun: async () => true,
+  shouldRun: async () => {
+    if (!(await isGitInitialized())) {
+      const instance = commandInstance.get()
+      instance.log(
+        "Warning: Skipping initial commit, as Git was not initialized."
+      )
+      return false
+    }
+    return true
+  },
+
+  didRun: false,
 
   run: async () => {
-    const instance = commandInstance.get()
     try {
-      if (!(await isGitInitialized())) {
-        instance.log(
-          "Warning: Skipping initial commit, as Git was not initialized."
-        )
-        return
-      }
-
+      const instance = commandInstance.get()
       instance.log("Adding initial commit.")
 
       // Create Next App adds an initial commit. This is overridden using --amend below.

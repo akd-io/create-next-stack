@@ -54,6 +54,7 @@ export const performSetupSteps = async (
   for (const step of steps) {
     if (await step.shouldRun(inputs)) {
       await step.run(inputs)
+      step.didRun = true
     }
   }
 }

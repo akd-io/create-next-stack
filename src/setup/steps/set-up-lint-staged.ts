@@ -27,9 +27,11 @@ export const setUpLintStagedStep: Step = {
     return true
   },
 
+  didRun: false,
+
   run: async () => {
-    const instance = commandInstance.get()
     try {
+      const instance = commandInstance.get()
       instance.log("Setting up lint-staged...")
 
       /*

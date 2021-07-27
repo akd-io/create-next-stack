@@ -12,6 +12,8 @@ import { indexCSSModule } from "./index-page/index-css-module"
 export const addContentStep: Step = {
   shouldRun: async () => true,
 
+  didRun: false,
+
   run: async (inputs) => {
     const instance = commandInstance.get()
     instance.log("Adding content...")

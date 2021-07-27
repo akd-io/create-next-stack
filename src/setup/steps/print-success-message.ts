@@ -5,6 +5,8 @@ import { Step } from "../step"
 export const printSuccessMessageStep: Step = {
   shouldRun: async () => true,
 
+  didRun: false,
+
   run: async ({ args, flags }) => {
     const instance = commandInstance.get()
     instance.log(``)
