@@ -16,7 +16,6 @@ export const prepareE2eTest = async (
   const runDirectory = path.resolve(
     `${createNextStackDir}/../create-next-stack-tests/run-${testRunId}`
   )
-  await fs.mkdir(runDirectory, { recursive: true })
 
   logTestInfo(`Created test run directory at ${runDirectory}`)
 
