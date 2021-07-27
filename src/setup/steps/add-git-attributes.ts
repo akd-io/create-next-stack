@@ -15,7 +15,9 @@ export const addGitAttributesStep: Step = {
 
     try {
       if (!(await isGitInitialized())) {
-        instance.log(`Skipping ${filename} setup, as Git was not initialized.`)
+        instance.log(
+          `Warning: Skipping ${filename} setup, as Git was not initialized.`
+        )
         return
       }
 

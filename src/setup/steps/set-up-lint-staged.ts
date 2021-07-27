@@ -18,7 +18,9 @@ export const setUpLintStagedStep: Step = {
 
     if (!(await isGitInitialized())) {
       const instance = commandInstance.get()
-      instance.log("Skipping lint-staged setup, as Git was not initialized.")
+      instance.log(
+        "Warning: Skipping lint-staged setup, as Git was not initialized."
+      )
       return false
     }
 

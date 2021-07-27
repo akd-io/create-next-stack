@@ -11,7 +11,9 @@ export const gitCommitStep: Step = {
     const instance = commandInstance.get()
     try {
       if (!(await isGitInitialized())) {
-        instance.log("Skipping initial commit, as Git was not initialized.")
+        instance.log(
+          "Warning: Skipping initial commit, as Git was not initialized."
+        )
         return
       }
 
