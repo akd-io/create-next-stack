@@ -48,7 +48,6 @@
     "oclif"
   ],
   "license": "MIT",
-  "main": "lib/index.js",
   "oclif": {
     "bin": "create-next-stack"
   },
@@ -69,5 +68,8 @@
   "types": "lib/index.d.ts",
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"
+  },
+  "exports": {
+    "./package.json": "./package.json"
   }
 }
