@@ -4,6 +4,7 @@ import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
 import { addContentStep } from "./steps/add-content/add-content"
 import { addGitAttributesStep } from "./steps/add-git-attributes"
 import { addReadmeStep } from "./steps/add-readme/add-readme"
+import { copyAssetsStep } from "./steps/copy-assets"
 import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
 import { gitCommitStep } from "./steps/git-commit"
@@ -27,6 +28,7 @@ export const performSetupSteps = async (
     createNextAppStep,
 
     removeOfficialCNAContentStep,
+    copyAssetsStep,
 
     addBaseBabelConfigStep,
     setUpEmotionStep,

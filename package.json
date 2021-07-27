@@ -41,7 +41,8 @@
   },
   "files": [
     "/bin",
-    "/lib"
+    "/lib",
+    "/prod-assets"
   ],
   "homepage": "https://github.com/akd-io/create-next-stack",
   "keywords": [
