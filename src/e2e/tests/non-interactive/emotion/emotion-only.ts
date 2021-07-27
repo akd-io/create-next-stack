@@ -14,15 +14,12 @@ export const testEmotionOnlyNonInteractive = async (
 
   logTestInfo(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
 
-  const execaProcess = execa(pathToProdCLI, args, {
+  await execa(pathToProdCLI, args, {
     timeout: 10 * 60 * 1000, // 10 minutes
     cwd: runDirectory,
+    stdout: "inherit",
+    stderr: "inherit",
   })
-
-  execaProcess.stdout?.pipe(process.stdout)
-  execaProcess.stderr?.pipe(process.stderr)
-
-  await execaProcess
 
   await checkFormattingLintingBuild("npm", runDirectory)
 }

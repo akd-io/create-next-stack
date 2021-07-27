@@ -17,10 +17,9 @@ export const testDefaultOptionsInteractive = async (
   const execaProcess = execa(pathToProdCLI, args, {
     timeout: 10 * 60 * 1000, // 10 minutes
     cwd: runDirectory,
+    stdout: "inherit",
+    stderr: "inherit",
   })
-
-  execaProcess.stdout?.pipe(process.stdout)
-  execaProcess.stderr?.pipe(process.stderr)
 
   logTestInfo("Sending \\n to accept default options.")
   execaProcess.stdin?.write("\n") // Press
