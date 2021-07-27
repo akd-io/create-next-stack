@@ -26,5 +26,5 @@ export const testCssModulesOnlyNonInteractive = async (
     stderr: "inherit",
   })
 
-  await checkFormattingLintingBuild("npm", runDirectory)
+  await checkFormattingLintingBuild(runDirectory)
 }

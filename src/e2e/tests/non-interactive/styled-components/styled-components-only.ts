@@ -26,5 +26,5 @@ export const testStyledComponentsOnlyNonInteractive = async (
     stderr: "inherit",
   })
 
-  await checkFormattingLintingBuild("npm", runDirectory)
+  await checkFormattingLintingBuild(runDirectory)
 }

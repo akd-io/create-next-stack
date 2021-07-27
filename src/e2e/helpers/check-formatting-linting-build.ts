@@ -1,10 +1,7 @@
 import execa, { Options } from "execa"
 import { logTestInfo } from "./test-logging"
 
-export const checkFormattingLintingBuild = async (
-  packageManager: "yarn" | "npm",
-  runDirectory: string
-) => {
+export const checkFormattingLintingBuild = async (runDirectory: string) => {
   const options: Options = {
     cwd: runDirectory,
   }
@@ -17,8 +14,8 @@ export const checkFormattingLintingBuild = async (
   )
 
   logTestInfo("Checking linting")
-  await execa(packageManager, ["run", "lint"], options)
+  await execa("npm", ["run", "lint"], options)
 
   logTestInfo("Running build")
-  await execa(packageManager, ["run", "build"], options)
+  await execa("npm", ["run", "build"], options)
 }

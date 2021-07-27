@@ -31,5 +31,5 @@ export const testEmotionAllFlagsNonInteractive = async (
     stderr: "inherit",
   })
 
-  await checkFormattingLintingBuild("npm", runDirectory)
+  await checkFormattingLintingBuild(runDirectory)
 }
