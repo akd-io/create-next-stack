@@ -4,21 +4,21 @@ import { globalStyles } from "../global-styles"
 export const generateWithDefaultGlobalStyles = (
   inputs: ValidCNSInputs
 ): string => /* tsx */ `
-${getImportsForGlobalStyling(inputs)}
-import React from "react";
+  ${getImportsForGlobalStyling(inputs)}
+  import React from "react";
 
-${getGlobalStylesDeclaration(inputs)}
+  ${getGlobalStylesDeclaration(inputs)}
 
-const WithDefaultGlobalStyles: React.FC = ({ children }) => {
-  return (
-    <>
-      ${getGlobalStylesComponent(inputs)}
-      {children}
-    </>
-  );
-};
+  const WithDefaultGlobalStyles: React.FC = ({ children }) => {
+    return (
+      <>
+        ${getGlobalStylesComponent(inputs)}
+        {children}
+      </>
+    );
+  };
 
-export default WithDefaultGlobalStyles;
+  export default WithDefaultGlobalStyles;
 `
 
 const getImportsForGlobalStyling = (inputs: ValidCNSInputs): string => {
@@ -34,16 +34,16 @@ const getImportsForGlobalStyling = (inputs: ValidCNSInputs): string => {
 const getGlobalStylesDeclaration = (inputs: ValidCNSInputs): string => {
   if (inputs.flags.styling === "emotion") {
     return /* tsx */ `
-const globalStyles = css\`
-${globalStyles}
-\`;
-`
+      const globalStyles = css\`
+      ${globalStyles}
+      \`;
+    `
   } else if (inputs.flags.styling === "styled-components") {
     return /* tsx */ `
-const GlobalStyle = createGlobalStyle\`
-${globalStyles}
-\`;
-`
+      const GlobalStyle = createGlobalStyle\`
+      ${globalStyles}
+      \`;
+    `
   } else {
     throw new Error(
       "Unsupported styling technology found in getGlobalStylesDeclaration."

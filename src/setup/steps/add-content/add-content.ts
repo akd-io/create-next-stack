@@ -5,9 +5,9 @@ import { Step } from "../../step"
 import { generatePage } from "./components/generate-page"
 import { generateWithDefaultGlobalStyles } from "./components/generate-with-default-global-styles"
 import { generateApp } from "./generate-app"
-import { generateIndex } from "./generate-index/generate-index"
-import { indexCSSModule } from "./generate-index/with-css-modules/index-css-module"
 import { globalStyles } from "./global-styles"
+import { generateIndexPage } from "./index-page/generate-index"
+import { indexCSSModule } from "./index-page/index-css-module"
 
 export const addContentStep: Step = {
   shouldRun: async () => true,
@@ -21,7 +21,7 @@ export const addContentStep: Step = {
 
       const promises = [
         fs.writeFile("components/Page.tsx", generatePage(inputs)),
-        fs.writeFile("pages/index.tsx", generateIndex(inputs)),
+        fs.writeFile("pages/index.tsx", generateIndexPage(inputs)),
         fs.writeFile("pages/_app.tsx", generateApp(inputs)),
       ]
 
