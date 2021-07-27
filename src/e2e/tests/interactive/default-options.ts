@@ -1,7 +1,7 @@
-import console from "console"
 import execa from "execa"
 import { checkFormattingLintingBuild } from "../../helpers/check-formatting-linting-build"
 import { prepareE2eTest } from "../../helpers/prepare-e2e-test"
+import { logTestInfo } from "../../helpers/test-logging"
 
 export const testDefaultOptionsInteractive = async (
   createNextStackDir: string
@@ -12,7 +12,7 @@ export const testDefaultOptionsInteractive = async (
 
   const args = ["--debug", "."]
 
-  console.log(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
+  logTestInfo(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
 
   const execaProcess = execa(pathToProdCLI, args, {
     timeout: 10 * 60 * 1000, // 10 minutes
@@ -22,7 +22,7 @@ export const testDefaultOptionsInteractive = async (
   execaProcess.stdout?.pipe(process.stdout)
   execaProcess.stderr?.pipe(process.stderr)
 
-  console.log("Sending \\n to accept default options.")
+  logTestInfo("Sending \\n to accept default options.")
   execaProcess.stdin?.write("\n") // Press
 
   await execaProcess

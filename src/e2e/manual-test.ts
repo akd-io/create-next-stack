@@ -1,17 +1,17 @@
-import console from "console"
 import execa from "execa"
 import { v4 as uuidv4 } from "uuid"
+import { logTestInfo } from "./helpers/test-logging"
 ;(async () => {
   const projectName = uuidv4()
 
-  console.log("Preparing production build of Create Next Stack...")
+  logTestInfo("Preparing production build of Create Next Stack...")
   await execa("yarn", ["build"], { stdio: "inherit" })
 
-  console.log(`Running Create Next Stack...`)
+  logTestInfo(`Running Create Next Stack...`)
   await execa("./bin/run-prod", [`../create-next-stack-tests/${projectName}`], {
     stdio: "inherit",
   })
 
-  console.log(`Open in vscode with:`)
-  console.log(`    code ../create-next-stack-tests/${projectName}`)
+  logTestInfo(`Open in vscode with:`)
+  logTestInfo(`    code ../create-next-stack-tests/${projectName}`)
 })()
