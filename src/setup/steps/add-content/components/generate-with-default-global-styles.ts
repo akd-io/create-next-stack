@@ -1,10 +1,10 @@
-import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { globalStyles } from "./global-styles"
+import { ValidCNSInputs } from "../../../../create-next-stack-types"
+import { globalStyles } from "../global-styles"
 
 export const generateWithDefaultGlobalStyles = (
   inputs: ValidCNSInputs
 ): string => /* tsx */ `
-${getImport(inputs)}
+${getImportsForGlobalStyling(inputs)}
 import React from "react";
 
 ${getGlobalStylesDeclaration(inputs)}
@@ -21,7 +21,7 @@ const WithDefaultGlobalStyles: React.FC = ({ children }) => {
 export default WithDefaultGlobalStyles;
 `
 
-const getImport = (inputs: ValidCNSInputs): string => {
+const getImportsForGlobalStyling = (inputs: ValidCNSInputs): string => {
   if (inputs.flags.styling === "emotion") {
     return /* tsx */ `import { css, Global } from "@emotion/react";`
   } else if (inputs.flags.styling === "styled-components") {

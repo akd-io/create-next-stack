@@ -41,9 +41,9 @@ export const onConfettiLoadFunction = /* tsx */ `
 `
 
 export const confettiScriptComponent = /* tsx */ `
-      <Script
-        src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"
-        strategy="afterInteractive"
-        onLoad={onConfettiLoad}
-      />
+  <Script
+    src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"
+    strategy="afterInteractive"
+    onLoad={onConfettiLoad}
+  />
 `

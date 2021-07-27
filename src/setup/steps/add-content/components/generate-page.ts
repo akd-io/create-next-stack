@@ -1,4 +1,4 @@
-import { ValidCNSInputs } from "../../../create-next-stack-types"
+import { ValidCNSInputs } from "../../../../create-next-stack-types"
 
 export const generatePage = (inputs: ValidCNSInputs): string => /* tsx */ `
 import Head from "next/head";
