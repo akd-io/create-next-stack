@@ -10,6 +10,7 @@ import { gitCommitStep } from "./steps/git-commit"
 import { installFormikStep } from "./steps/install-formik"
 import { installFramerMotionStep } from "./steps/install-framer-motion"
 import { installReactHookFormStep } from "./steps/install-react-hook-form"
+import { printGitInitializationWarningStep } from "./steps/print-git-initialization-warning"
 import { printSuccessMessageStep } from "./steps/print-success-message"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
 import { setUpEmotionStep } from "./steps/set-up-emotion"
@@ -46,6 +47,7 @@ export const performSetupSteps = async (
     addGitAttributesStep,
     gitCommitStep,
 
+    printGitInitializationWarningStep,
     printSuccessMessageStep,
   ]
 

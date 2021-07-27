@@ -15,9 +15,7 @@ export const addGitAttributesStep: Step = {
 
     try {
       if (!(await isGitInitialized())) {
-        instance.log(
-          `Skipping ${filename} setup, as Git is not initialized, because this repository is nested inside another repository.`
-        )
+        instance.log(`Skipping ${filename} setup, as Git was not initialized.`)
         return
       }
 

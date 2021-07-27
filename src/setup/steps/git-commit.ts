@@ -11,9 +11,7 @@ export const gitCommitStep: Step = {
     const instance = commandInstance.get()
     try {
       if (!(await isGitInitialized())) {
-        instance.log(
-          "Skipping initial commit, as Git is not initialized, because this repository is nested inside another repository."
-        )
+        instance.log("Skipping initial commit, as Git was not initialized.")
         return
       }
 
