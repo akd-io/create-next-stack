@@ -22,6 +22,7 @@ export const addContentStep: Step = {
       const promises = [
         fs.writeFile("components/Page.tsx", generatePage(inputs)),
         fs.writeFile("pages/index.tsx", generateIndexPage(inputs)),
+        fs.writeFile("pages/index.module.css", indexCSSModule),
         fs.writeFile("pages/_app.tsx", generateApp(inputs)),
       ]
 
@@ -37,7 +38,6 @@ export const addContentStep: Step = {
         )
       } else if (inputs.flags.styling === "css-modules") {
         await fs.mkdir("styles")
-        promises.push(fs.writeFile("styles/index.module.css", indexCSSModule))
         promises.push(fs.writeFile("styles/global-styles.css", globalStyles))
       } else {
         throw new Error(

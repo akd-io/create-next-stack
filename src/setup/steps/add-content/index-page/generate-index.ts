@@ -11,11 +11,11 @@ export const generateIndexPage = (inputs: ValidCNSInputs) => endent/* tsx */ `
   import { NextPage } from "next";
   ${confettiImports}
   import Page from "../components/Page";
-  import styles from "../styles/index.module.css";
-  
+  import styles from "./index.module.css";
+
   const Index: NextPage = () => {
     ${onConfettiLoadFunction}
-    
+
     return (
       <Page
       title="${getProjectNameOfPath(inputs.args.appName)}"
@@ -50,6 +50,6 @@ export const generateIndexPage = (inputs: ValidCNSInputs) => endent/* tsx */ `
       </Page>
     );
   };
-  
+
   export default Index;
 `
