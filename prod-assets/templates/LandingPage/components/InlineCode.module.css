@@ -1,0 +1,7 @@
+.inlineCode {
+  border-radius: 0.4em;
+  padding: 0.4em;
+
+  font-size: 0.8em;
+  background-color: hsl(0, 0%, 95%);
+}

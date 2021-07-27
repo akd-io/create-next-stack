@@ -1,0 +1,8 @@
+.grayBackground {
+  background: hsl(0, 0%, 95%);
+}
+
+.h2 {
+  margin: 0;
+  margin-bottom: 20px;
+}
