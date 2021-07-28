@@ -1,8 +1,10 @@
 import Script from "next/script";
+import { H1 } from "./components/H1";
+import { H2 } from "./components/H2";
+import { InlineCode } from "./components/InlineCode";
 import { Paragraph } from "./components/Paragraph";
 import { Section } from "./components/Section";
 import { Subtitle } from "./components/Subtitle";
-import { Title } from "./components/Title";
 import styles from "./LandingPageTemplate.module.css";
 
 const LandingPageTemplate = () => {
@@ -17,7 +19,7 @@ const LandingPageTemplate = () => {
         "#ffa62d",
         "#ff36ff",
       ];
-      var end = Date.now() + 5 * 1000;
+      const end = Date.now() + 5 * 1000;
 
       (function frame() {
         (window as any).confetti({
@@ -53,19 +55,17 @@ const LandingPageTemplate = () => {
       />
       <main>
         <Section>
-          <Title>Your project is a go! 🎉</Title>
+          <H1>Your project is a go! 🎉</H1>
           <Subtitle>
-            Get started by editing{" "}
-            <code className={styles.inlineCode}>pages/index.tsx</code>
+            Get started by editing <InlineCode>pages/index.tsx</InlineCode>
           </Subtitle>
         </Section>
         <Section className={styles.grayBackground}>
-          <h2 className={styles.h2}>Learning resources</h2>
+          <H2>Learning resources</H2>
           <Paragraph>
             If you are using a technology for the first time, you can find
-            related links in the generated{" "}
-            <code className={styles.inlineCode}>README.md</code> file that might
-            prove helpful.
+            related links in the generated <InlineCode>README.md</InlineCode>{" "}
+            file that might prove helpful.
           </Paragraph>
         </Section>
       </main>
