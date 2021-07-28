@@ -23,7 +23,7 @@ export const testDefaultOptionsInteractive = async (
   })
 
   logTestInfo("Sending \\n to accept default options.")
-  execaProcess.stdin?.write("\n") // Press
+  execaProcess.stdin?.write("\n")
 
   await execaProcess
 
