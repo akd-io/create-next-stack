@@ -1,7 +1,8 @@
-import console from "console"
 import execa from "execa"
 import { checkFormattingLintingBuild } from "../../../helpers/check-formatting-linting-build"
+import { minutesToMilliseconds } from "../../../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../../../helpers/prepare-e2e-test"
+import { logTestInfo } from "../../../helpers/test-logging"
 
 export const testCssModulesOnlyNonInteractive = async (
   createNextStackDir: string
@@ -17,17 +18,14 @@ export const testCssModulesOnlyNonInteractive = async (
     ".",
   ]
 
-  console.log(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
+  logTestInfo(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
 
-  const execaProcess = execa(pathToProdCLI, args, {
-    timeout: 10 * 60 * 1000, // 10 minutes
+  await execa(pathToProdCLI, args, {
+    timeout: minutesToMilliseconds(10),
     cwd: runDirectory,
+    stdout: "inherit",
+    stderr: "inherit",
   })
 
-  execaProcess.stdout?.pipe(process.stdout)
-  execaProcess.stderr?.pipe(process.stderr)
-
-  await execaProcess
-
-  await checkFormattingLintingBuild("npm", runDirectory)
+  await checkFormattingLintingBuild(runDirectory)
 }

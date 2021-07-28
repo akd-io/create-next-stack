@@ -1,38 +1,30 @@
 import { promises as fs } from "fs"
-import { exitWithError } from "../../helpers/exit-with-error"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
-import { commandInstance } from "../../instance"
 import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpStyledComponentsStep: Step = {
+  description: "setting up styled-components",
+
   shouldRun: async (inputs) => inputs.flags.styling === "styled-components",
 
+  didRun: false,
+
   run: async ({ flags }) => {
-    const instance = commandInstance.get()
-    instance.log("Setting up styled-components...")
+    await install(packages["styled-components"], flags["package-manager"])
+    await install(
+      [
+        packages["@types/styled-components"],
+        packages["babel-plugin-styled-components"],
+      ],
+      flags["package-manager"],
+      {
+        dev: true,
+      }
+    )
 
-    try {
-      await install(packages["styled-components"], flags["package-manager"])
-      await install(
-        [
-          packages["@types/styled-components"],
-          packages["babel-plugin-styled-components"],
-        ],
-        flags["package-manager"],
-        {
-          dev: true,
-        }
-      )
-
-      await addStyledComponentsBabelPlugin()
-    } catch (error) {
-      exitWithError(
-        "An error occurred while setting up styled-components.",
-        error
-      )
-    }
+    await addStyledComponentsBabelPlugin()
   },
 }
 

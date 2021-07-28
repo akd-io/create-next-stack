@@ -1,24 +1,21 @@
-import console from "console"
 import execa, { Options } from "execa"
+import { logTestInfo } from "./test-logging"
 
-export const checkFormattingLintingBuild = async (
-  packageManager: "yarn" | "npm",
-  runDirectory: string
-) => {
+export const checkFormattingLintingBuild = async (runDirectory: string) => {
   const options: Options = {
     cwd: runDirectory,
   }
 
-  console.log("Checking formatting")
+  logTestInfo("Checking formatting...")
   await execa(
     "npx",
     ["prettier", "--check", "--ignore-path=.gitignore", "."],
     options
   )
 
-  console.log("Checking linting")
-  await execa(packageManager, ["run", "lint"], options)
+  logTestInfo("Checking linting...")
+  await execa("npm", ["run", "lint"], options)
 
-  console.log("Running build")
-  await execa(packageManager, ["run", "build"], options)
+  logTestInfo("Running build...")
+  await execa("npm", ["run", "build"], options)
 }

@@ -1,22 +1,14 @@
-import { exitWithError } from "../../helpers/exit-with-error"
-import { commandInstance } from "../../instance"
 import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const installReactHookFormStep: Step = {
+  description: "installing React Hook Form",
+
   shouldRun: async (inputs) => Boolean(inputs.flags["react-hook-form"]),
 
-  run: async ({ flags }) => {
-    const instance = commandInstance.get()
-    instance.log("Installing React Hook Form...")
+  didRun: false,
 
-    try {
-      await install(packages["react-hook-form"], flags["package-manager"])
-    } catch (error) {
-      exitWithError(
-        "An error occurred while installing React Hook Form.",
-        error
-      )
-    }
+  run: async ({ flags }) => {
+    await install(packages["react-hook-form"], flags["package-manager"])
   },
 }

@@ -8,11 +8,12 @@ import { testEmotionOnlyNonInteractive } from "./tests/non-interactive/emotion/e
 import { testStyledComponentsAllFlagsNonInteractive } from "./tests/non-interactive/styled-components/styled-components-all-flags"
 import { testStyledComponentsOnlyNonInteractive } from "./tests/non-interactive/styled-components/styled-components-only"
 ;(async () => {
+  // TODO: Find a way to run tests in parallel. Currently failing because simultaneous calls to `npm i -g yarn` or `npm install -g mrm@^3.0.0 mrm-task-lint-staged@^6.0.0` cause crashes.
+
   try {
     // If not done already, Set Git name and email so `git commit` doesn't fail during create-next-app
     await setGitNameAndEmail()
 
-    // TODO: Find a way to run tests in parallel. Currently failing because simultaneous calls to `npm i -g yarn` or `npm install -g mrm@^3.0.0 mrm-task-lint-staged@^6.0.0` cause crashes.
     const createNextStackDir = process.cwd()
 
     // Interactive test

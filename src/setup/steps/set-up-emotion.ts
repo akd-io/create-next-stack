@@ -1,34 +1,27 @@
 import { promises as fs } from "fs"
-import { exitWithError } from "../../helpers/exit-with-error"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
-import { commandInstance } from "../../instance"
 import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpEmotionStep: Step = {
+  description: "setting up Emotion",
+
   shouldRun: async (inputs) => inputs.flags.styling === "emotion",
 
+  didRun: false,
+
   run: async ({ flags }) => {
-    const instance = commandInstance.get()
-    instance.log("Setting up Emotion...")
+    await install(
+      [packages["@emotion/react"], packages["@emotion/styled"]],
+      flags["package-manager"]
+    )
+    await install(packages["@emotion/babel-plugin"], flags["package-manager"], {
+      dev: true,
+    })
 
-    try {
-      await install(
-        [packages["@emotion/react"], packages["@emotion/styled"]],
-        flags["package-manager"]
-      )
-      await install(
-        packages["@emotion/babel-plugin"],
-        flags["package-manager"],
-        { dev: true }
-      )
-
-      await addCssPropSupportAsPerEmotionDocs()
-      await addTypeScriptSupportForTheEmotionCssProp()
-    } catch (error) {
-      exitWithError("An error occurred while setting up Emotion.", error)
-    }
+    await addCssPropSupportAsPerEmotionDocs()
+    await addTypeScriptSupportForTheEmotionCssProp()
   },
 }
 

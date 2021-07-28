@@ -1,35 +1,30 @@
 import { promises as fs } from "fs"
-import { exitWithError } from "../../helpers/exit-with-error"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { writeJsonFile } from "../../helpers/write-json-file"
-import { commandInstance } from "../../instance"
 import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpPrettierStep: Step = {
+  description: "setting up Prettier",
+
   shouldRun: async (inputs) => Boolean(inputs.flags.prettier),
 
+  didRun: false,
+
   run: async ({ flags }) => {
-    const instance = commandInstance.get()
-    instance.log("Setting up Prettier...")
+    await install(
+      [packages.prettier, packages["eslint-config-prettier"]],
+      flags["package-manager"],
+      {
+        dev: true,
+      }
+    )
 
-    try {
-      await install(
-        [packages.prettier, packages["eslint-config-prettier"]],
-        flags["package-manager"],
-        {
-          dev: true,
-        }
-      )
-
-      await Promise.all([
-        addPrettierConfig(),
-        addFormatScriptsToPackageJson(),
-        setUpEslintConfigPrettier(),
-      ])
-    } catch (error) {
-      exitWithError("An error occurred while setting up Prettier.", error)
-    }
+    await Promise.all([
+      addPrettierConfig(),
+      addFormatScriptsToPackageJson(),
+      setUpEslintConfigPrettier(),
+    ])
   },
 }
 

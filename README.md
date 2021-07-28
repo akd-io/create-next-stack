@@ -28,7 +28,7 @@ npx create-next-stack
 Then, pick a project name, and your preferred technologies like so:
 
 <p align="center">
-  <img width="600" alt="Screenshot of Create Next Stack running in a terminal" src="assets/screenshot.svg">
+  <img width="600" alt="Screenshot of Create Next Stack running in a terminal" src="assets/screenshot.png">
 </p>
 
 ## Supported technologies

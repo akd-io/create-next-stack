@@ -18,11 +18,11 @@ export const exitWithError = (
 
   if (process.env.DEBUG === "true" && error != null) {
     if (error instanceof Error) {
-      command.log(error.message)
+      command.error(error.message)
     } else if (typeof error === "string") {
-      command.log(error)
+      command.error(error)
     } else {
-      command.log("Error: An error object of unknown type was thrown.")
+      command.error("Error: An error object of unknown type was thrown.")
     }
   }
 
