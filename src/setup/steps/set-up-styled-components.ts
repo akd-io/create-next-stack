@@ -9,6 +9,8 @@ import { Step } from "../step"
 export const setUpStyledComponentsStep: Step = {
   shouldRun: async (inputs) => inputs.flags.styling === "styled-components",
 
+  didRun: false,
+
   run: async ({ flags }) => {
     const instance = commandInstance.get()
     instance.log("Setting up styled-components...")

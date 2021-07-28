@@ -7,6 +7,8 @@ import { Step } from "../step"
 export const updateYarnStep: Step = {
   shouldRun: async (inputs) => inputs.flags["package-manager"] === "yarn",
 
+  didRun: false,
+
   run: async () => {
     const instance = commandInstance.get()
     instance.log("Updating Yarn...")

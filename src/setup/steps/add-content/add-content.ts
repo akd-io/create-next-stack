@@ -2,15 +2,16 @@ import { promises as fs } from "fs"
 import { exitWithError } from "../../../helpers/exit-with-error"
 import { commandInstance } from "../../../instance"
 import { Step } from "../../step"
+import { generatePage } from "./components/generate-page"
+import { generateWithDefaultGlobalStyles } from "./components/generate-with-default-global-styles"
 import { generateApp } from "./generate-app"
-import { generateIndex } from "./generate-index/generate-index"
-import { indexCSSModule } from "./generate-index/with-css-modules/generate-index-module"
-import { generatePage } from "./generate-page"
-import { generateWithDefaultGlobalStyles } from "./generate-with-default-global-styles"
 import { globalStyles } from "./global-styles"
+import { generateIndexPage } from "./index-page/generate-index"
 
 export const addContentStep: Step = {
   shouldRun: async () => true,
+
+  didRun: false,
 
   run: async (inputs) => {
     const instance = commandInstance.get()
@@ -21,7 +22,7 @@ export const addContentStep: Step = {
 
       const promises = [
         fs.writeFile("components/Page.tsx", generatePage(inputs)),
-        fs.writeFile("pages/index.tsx", generateIndex(inputs)),
+        fs.writeFile("pages/index.tsx", generateIndexPage(inputs)),
         fs.writeFile("pages/_app.tsx", generateApp(inputs)),
       ]
 
@@ -37,7 +38,6 @@ export const addContentStep: Step = {
         )
       } else if (inputs.flags.styling === "css-modules") {
         await fs.mkdir("styles")
-        promises.push(fs.writeFile("styles/index.module.css", indexCSSModule))
         promises.push(fs.writeFile("styles/global-styles.css", globalStyles))
       } else {
         throw new Error(

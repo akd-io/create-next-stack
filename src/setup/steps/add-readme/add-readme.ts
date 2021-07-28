@@ -7,6 +7,8 @@ import { generateReadme } from "./generate-readme"
 export const addReadmeStep: Step = {
   shouldRun: async () => true,
 
+  didRun: false,
+
   run: async (inputs) => {
     const instance = commandInstance.get()
     instance.log("Adding Readme...")

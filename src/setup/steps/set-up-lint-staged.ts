@@ -19,7 +19,7 @@ export const setUpLintStagedStep: Step = {
     if (!(await isGitInitialized())) {
       const instance = commandInstance.get()
       instance.log(
-        "Skipping lint-staged setup, as Git is not initialized, because this repository is nested inside another repository."
+        "Warning: Skipping lint-staged setup, as Git was not initialized."
       )
       return false
     }
@@ -27,9 +27,11 @@ export const setUpLintStagedStep: Step = {
     return true
   },
 
+  didRun: false,
+
   run: async () => {
-    const instance = commandInstance.get()
     try {
+      const instance = commandInstance.get()
       instance.log("Setting up lint-staged...")
 
       /*

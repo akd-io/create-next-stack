@@ -6,6 +6,8 @@ import { Step } from "../step"
 export const installFramerMotionStep: Step = {
   shouldRun: async ({ flags }) => Boolean(flags["framer-motion"]),
 
+  didRun: false,
+
   run: async ({ flags }) => {
     const instance = commandInstance.get()
     instance.log("Installing Framer Motion...")

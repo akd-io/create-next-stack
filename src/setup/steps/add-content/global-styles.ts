@@ -1,24 +1,26 @@
-export const globalStyles = /* css */ `
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+import endent from "endent"
 
-code {
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
+export const globalStyles = endent/* css */ `
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-  font-weight: bold;
-}
+  code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+      Bitstream Vera Sans Mono, Courier New, monospace;
+  }
 
-* {
-  box-sizing: border-box;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
 `

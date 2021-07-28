@@ -9,6 +9,8 @@ import { Step } from "../step"
 export const setUpPrettierStep: Step = {
   shouldRun: async (inputs) => Boolean(inputs.flags.prettier),
 
+  didRun: false,
+
   run: async ({ flags }) => {
     const instance = commandInstance.get()
     instance.log("Setting up Prettier...")

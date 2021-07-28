@@ -6,6 +6,8 @@ import { Step } from "../step"
 export const addBaseBabelConfigStep: Step = {
   shouldRun: async () => true,
 
+  didRun: false,
+
   run: async () => {
     const instance = commandInstance.get()
     instance.log("Adding custom Babel configuration...")

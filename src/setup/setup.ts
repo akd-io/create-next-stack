@@ -4,12 +4,14 @@ import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
 import { addContentStep } from "./steps/add-content/add-content"
 import { addGitAttributesStep } from "./steps/add-git-attributes"
 import { addReadmeStep } from "./steps/add-readme/add-readme"
+import { copyAssetsStep } from "./steps/copy-assets"
 import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
 import { gitCommitStep } from "./steps/git-commit"
 import { installFormikStep } from "./steps/install-formik"
 import { installFramerMotionStep } from "./steps/install-framer-motion"
 import { installReactHookFormStep } from "./steps/install-react-hook-form"
+import { printGitInitializationWarningStep } from "./steps/print-git-initialization-warning"
 import { printSuccessMessageStep } from "./steps/print-success-message"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
 import { setUpEmotionStep } from "./steps/set-up-emotion"
@@ -26,6 +28,7 @@ export const performSetupSteps = async (
     createNextAppStep,
 
     removeOfficialCNAContentStep,
+    copyAssetsStep,
 
     addBaseBabelConfigStep,
     setUpEmotionStep,
@@ -46,12 +49,14 @@ export const performSetupSteps = async (
     addGitAttributesStep,
     gitCommitStep,
 
+    printGitInitializationWarningStep,
     printSuccessMessageStep,
   ]
 
   for (const step of steps) {
     if (await step.shouldRun(inputs)) {
       await step.run(inputs)
+      step.didRun = true
     }
   }
 }
