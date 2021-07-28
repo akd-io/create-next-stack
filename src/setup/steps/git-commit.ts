@@ -21,7 +21,7 @@ export const gitCommitStep: Step = {
   run: async () => {
     try {
       const instance = commandInstance.get()
-      instance.log("Adding initial commit.")
+      instance.log("Adding initial commit...")
 
       // Create Next App adds an initial commit. This is overridden using --amend below.
       await execa("git", ["add", "."])
