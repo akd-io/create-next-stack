@@ -1,4 +1,7 @@
 import { ValidCNSInputs } from "../create-next-stack-types"
+import { capitalizeFirstLetter } from "../helpers/capitalize-first-letter"
+import { exitWithError } from "../helpers/exit-with-error"
+import { commandInstance } from "../instance"
 import { Step } from "./step"
 import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
 import { addContentStep } from "./steps/add-content/add-content"
@@ -23,6 +26,8 @@ import { updateYarnStep } from "./steps/update-yarn"
 export const performSetupSteps = async (
   inputs: ValidCNSInputs
 ): Promise<void> => {
+  const instance = commandInstance.get()
+
   const steps: Step[] = [
     updateYarnStep,
     createNextAppStep,
@@ -55,7 +60,14 @@ export const performSetupSteps = async (
 
   for (const step of steps) {
     if (await step.shouldRun(inputs)) {
-      await step.run(inputs)
+      instance.log(`${capitalizeFirstLetter(step.description)}...`)
+
+      try {
+        await step.run(inputs)
+      } catch (error) {
+        exitWithError(`An error occurred while ${step.description}.`, error)
+      }
+
       step.didRun = true
     }
   }
