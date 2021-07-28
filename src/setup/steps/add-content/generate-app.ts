@@ -2,16 +2,16 @@ import endent from "endent"
 import { ValidCNSInputs } from "../../../create-next-stack-types"
 
 export const generateApp = (inputs: ValidCNSInputs): string => endent/* tsx */ `
-  import { AppType } from "next/dist/next-server/lib/utils";
+  import { AppProps } from "next/app";
   ${
     inputs.flags.styling === "css-modules"
       ? endent/* jsx */ `import "../styles/global-styles.css";`
       : ""
   }
 
-  const MyApp: AppType = ({ Component, pageProps }) => {
+  const CustomApp = ({ Component, pageProps }: AppProps) => {
     return <Component {...pageProps} />;
   };
 
-  export default MyApp;
+  export default CustomApp;
 `
