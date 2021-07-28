@@ -1,6 +1,5 @@
 import endent from "endent"
 import { promises as fs } from "fs"
-import { exitWithError } from "../../helpers/exit-with-error"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { commandInstance } from "../../instance"
 import { Step } from "../step"
@@ -8,6 +7,8 @@ import { Step } from "../step"
 const filename = ".gitattributes"
 
 export const addGitAttributesStep: Step = {
+  description: `adding ${filename}`,
+
   shouldRun: async () => {
     if (!(await isGitInitialized())) {
       const instance = commandInstance.get()
@@ -22,14 +23,7 @@ export const addGitAttributesStep: Step = {
   didRun: false,
 
   run: async () => {
-    try {
-      const instance = commandInstance.get()
-      instance.log(`Adding ${filename}...`)
-
-      await fs.writeFile(filename, generateGitAttributes())
-    } catch (error) {
-      exitWithError(`An error occurred while adding ${filename}.`, error)
-    }
+    await fs.writeFile(filename, generateGitAttributes())
   },
 }
 
