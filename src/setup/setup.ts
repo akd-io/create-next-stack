@@ -1,4 +1,7 @@
 import { ValidCNSInputs } from "../create-next-stack-types"
+import { capitalizeFirstLetter } from "../helpers/capitalize-first-letter"
+import { exitWithError } from "../helpers/exit-with-error"
+import { commandInstance } from "../instance"
 import { Step } from "./step"
 import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
 import { addContentStep } from "./steps/add-content/add-content"
@@ -11,8 +14,7 @@ import { gitCommitStep } from "./steps/git-commit"
 import { installFormikStep } from "./steps/install-formik"
 import { installFramerMotionStep } from "./steps/install-framer-motion"
 import { installReactHookFormStep } from "./steps/install-react-hook-form"
-import { printGitInitializationWarningStep } from "./steps/print-git-initialization-warning"
-import { printSuccessMessageStep } from "./steps/print-success-message"
+import { printFinalMessagesStep } from "./steps/print-final-messages"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
 import { setUpEmotionStep } from "./steps/set-up-emotion"
 import { setUpLintStagedStep } from "./steps/set-up-lint-staged"
@@ -23,6 +25,8 @@ import { updateYarnStep } from "./steps/update-yarn"
 export const performSetupSteps = async (
   inputs: ValidCNSInputs
 ): Promise<void> => {
+  const instance = commandInstance.get()
+
   const steps: Step[] = [
     updateYarnStep,
     createNextAppStep,
@@ -49,13 +53,19 @@ export const performSetupSteps = async (
     addGitAttributesStep,
     gitCommitStep,
 
-    printGitInitializationWarningStep,
-    printSuccessMessageStep,
+    printFinalMessagesStep,
   ]
 
   for (const step of steps) {
     if (await step.shouldRun(inputs)) {
-      await step.run(inputs)
+      instance.log(`${capitalizeFirstLetter(step.description)}...`)
+
+      try {
+        await step.run(inputs)
+      } catch (error) {
+        exitWithError(`An error occurred while ${step.description}.`, error)
+      }
+
       step.didRun = true
     }
   }

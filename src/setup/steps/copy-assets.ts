@@ -4,6 +4,8 @@ import { getCreateNextStackDir } from "../../helpers/get-create-next-stack-dir"
 import { Step } from "../step"
 
 export const copyAssetsStep: Step = {
+  description: "copying static assets",
+
   shouldRun: async () => true,
 
   didRun: false,
