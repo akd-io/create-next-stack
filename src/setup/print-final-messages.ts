@@ -1,4 +1,4 @@
-import endent from "endent"
+import chalk from "chalk"
 import { ValidCNSInputs } from "../create-next-stack-types"
 import { getProjectNameOfPath } from "../helpers/get-project-name-of-path"
 import { isGitInitialized } from "../helpers/is-git-initialized"
@@ -11,17 +11,21 @@ export const printFinalMessages = ({ args, flags }: ValidCNSInputs) => {
     )
   }
   logInfo("")
-  logInfo(endent`
-    Successfully created project ${getProjectNameOfPath(args.appName)}!
-
-    To get started, run:
-  `)
+  logInfo(
+    chalk.green(
+      `Successfully created project ${getProjectNameOfPath(args.appName)}!`
+    )
+  )
+  logInfo("")
+  logInfo("To get started, run:")
   logInfo("")
   if (args.appName !== ".") {
-    logInfo(`    cd ${args.appName}`)
+    logInfo(chalk.cyan(`    cd ${args.appName}`))
   }
   logInfo(
-    `    ${flags["package-manager"] === "yarn" ? "yarn dev" : "npm run dev"}`
+    chalk.cyan(
+      `    ${flags["package-manager"] === "yarn" ? "yarn dev" : "npm run dev"}`
+    )
   )
   logInfo("")
 }
