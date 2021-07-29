@@ -1,12 +1,15 @@
-import console from "console"
+import { logTestError } from "./test-logging"
 
 export const exitWithError = async (error: unknown) => {
   if (error instanceof Error) {
-    console.error(error.message)
-  } else if (typeof error === "string") {
-    console.error(error)
+    logTestError(error.message)
+    if (error.stack != null) {
+      logTestError("")
+      logTestError(error.stack)
+    }
   } else {
-    console.error("Error: An error object of unknown type was thrown.")
+    logTestError("An unknown error occurred.")
   }
+
   process.exit(1)
 }
