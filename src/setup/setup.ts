@@ -15,6 +15,7 @@ import { installFormikStep } from "./steps/install-formik"
 import { installFramerMotionStep } from "./steps/install-framer-motion"
 import { installReactHookFormStep } from "./steps/install-react-hook-form"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
+import { setUpCssModulesWithSassStep } from "./steps/set-up-css-modules-with-sass"
 import { setUpEmotionStep } from "./steps/set-up-emotion"
 import { setUpLintStagedStep } from "./steps/set-up-lint-staged"
 import { setUpPrettierStep } from "./steps/set-up-prettier"
@@ -39,6 +40,7 @@ export const performSetupSteps = async (
     // Styling
     setUpEmotionStep,
     setUpStyledComponentsStep,
+    setUpCssModulesWithSassStep,
 
     // Formatting
     setUpPrettierStep,

@@ -33,6 +33,7 @@ export const stylingOptions = [
   "emotion",
   "styled-components",
   "css-modules",
+  "css-modules-with-sass",
 ] as const
 export type StylingOption = typeof stylingOptions[number]
 export const writableStylingOptions = stylingOptions as Writable<

@@ -8,6 +8,7 @@ const techValueArray = <const>[
   "emotion",
   "styledComponents",
   "cssModules",
+  "cssModulesWithSass",
   "reactHookForm",
   "formik",
   "framerMotion",
@@ -49,6 +50,10 @@ const techChoices: {
   cssModules: {
     value: "cssModules",
     name: "CSS Modules",
+  },
+  cssModulesWithSass: {
+    value: "cssModulesWithSass",
+    name: "CSS Modules with Sass",
   },
   reactHookForm: {
     value: "reactHookForm",
@@ -93,6 +98,7 @@ export const promptTechnologies = async () => {
       techChoices.emotion,
       techChoices.styledComponents,
       techChoices.cssModules,
+      techChoices.cssModulesWithSass,
 
       new Separator("Form state management:"),
       techChoices.reactHookForm,
@@ -123,7 +129,8 @@ export const promptTechnologies = async () => {
       const onlyOneStylingSelected = oneOf(
         technologies.includes(techValues.emotion),
         technologies.includes(techValues.styledComponents),
-        technologies.includes(techValues.cssModules)
+        technologies.includes(techValues.cssModules),
+        technologies.includes(techValues.cssModulesWithSass)
       )
       if (!onlyOneStylingSelected) {
         return `You have to pick exactly one styling solution.`

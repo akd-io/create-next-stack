@@ -32,13 +32,14 @@ export const addContentStep: Step = {
           generateWithDefaultGlobalStyles(inputs)
         )
       )
-    } else if (inputs.flags.styling === "css-modules") {
+    }
+
+    if (
+      inputs.flags.styling === "css-modules" ||
+      inputs.flags.styling === "css-modules-with-sass"
+    ) {
       await fs.mkdir("styles")
       promises.push(fs.writeFile("styles/global-styles.css", globalStyles))
-    } else {
-      throw new Error(
-        "Unsupported styling technology found in addContentStep, or no styling technology was chosen."
-      )
     }
 
     await Promise.all(promises)
