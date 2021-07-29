@@ -19,10 +19,10 @@ export const prepareE2eTest = async (
   logTestInfo(`Creating test run directory at ${runDirectory}`)
   await fs.mkdir(runDirectory, { recursive: true })
 
-  // Run /bin/run-prod to test against compiled js files in /lib instead of ts-files in /src using ts-node.
-  const pathToProdCLI = path.resolve(`${createNextStackDir}/bin/run-prod`)
+  // Run /bin-test/run-prod to test against compiled js files in /lib instead of ts-files in /src using ts-node.
+  const pathToProdCLI = path.resolve(`${createNextStackDir}/bin-test/run-prod`)
 
-  logTestInfo(`Making /bin/run-prod readable and executable by all...`)
+  logTestInfo(`Making /bin-test/run-prod readable and executable by all...`)
   await fs.chmod(pathToProdCLI, 0o555)
 
   return {

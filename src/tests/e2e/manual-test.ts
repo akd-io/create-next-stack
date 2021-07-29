@@ -10,7 +10,7 @@ import { logTestInfo } from "./test-logging"
     const projectName = uuidv4()
     const runDirectory = `../create-next-stack-tests/${projectName}`
 
-    const command = "./bin/run-prod"
+    const command = "./bin-test/run-prod"
     const args = [...process.argv.slice(2), runDirectory]
 
     logTestInfo(`Running command: ${command} ${args.join(" ")}`)

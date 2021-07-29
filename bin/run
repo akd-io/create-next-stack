@@ -9,6 +9,6 @@ if (dev) {
   require("ts-node").register({ project })
 }
 
-require(`../${dev ? "src" : "lib"}`)
+require(`../${dev ? "src/main" : "lib/main"}`)
   .run()
   .catch(require("@oclif/errors/handle"))
