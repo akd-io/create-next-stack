@@ -4,9 +4,7 @@ import { minutesToMilliseconds } from "../../../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../../../helpers/prepare-e2e-test"
 import { logTestInfo } from "../../../test-logging"
 
-export const testEmotionOnlyNonInteractive = async (
-  createNextStackDir: string
-) => {
+export const testEmotionOnly = async (createNextStackDir: string) => {
   const { pathToProdCLI, runDirectory } = await prepareE2eTest(
     createNextStackDir
   )
