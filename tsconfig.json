@@ -8,7 +8,8 @@
     "strict": true,
     "target": "es2019",
     "esModuleInterop": true,
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["src/e2e/**/*"]
