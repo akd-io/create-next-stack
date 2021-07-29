@@ -13,6 +13,7 @@
     "unicorn/no-process-exit": "off",
     "no-warning-comments": "off",
     "unicorn/filename-case": "off",
+    "no-console": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-unused-vars": "warn"
   }
