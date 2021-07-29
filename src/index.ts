@@ -7,6 +7,7 @@ import {
   writablePackageManagerOptions,
   writableStylingOptions,
 } from "./create-next-stack-types"
+import { exitWithError } from "./helpers/exit-with-error"
 import { commandInstance } from "./instance"
 import { performArgsQuestionnaire } from "./questionnaire/args-questionnaire"
 import { performFlagsQuestionnaire } from "./questionnaire/flags-questionnaire"
@@ -86,22 +87,23 @@ class CreateNextStack extends Command {
 
     if (flags.debug) process.env.DEBUG = "true"
 
-    const interactive = shouldBeInteractive(flags)
-
-    if (interactive) {
+    if (shouldBeInteractive(flags)) {
       const validArgs = await performArgsQuestionnaire(args)
       const validFlags = await performFlagsQuestionnaire()
       await performSetupSteps({ args: validArgs, flags: validFlags })
     } else {
       if (!validateArgs(args)) {
-        process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+        process.exit(1) // This tells TypeScript that this block is unreachable. validateArgs(args) either throws or returns true.
       }
       if (!validateFlags(flags)) {
-        process.exit(1) // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+        process.exit(1) // This tells TypeScript that this block is unreachable. validateFlags(flags) either throws or returns true.
       }
-
       await performSetupSteps({ args, flags })
     }
+  }
+
+  async catch(error: unknown) {
+    exitWithError(error)
   }
 }
 

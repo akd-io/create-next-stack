@@ -1,6 +1,5 @@
 import execa from "execa"
-import { exitWithError } from "./exit-with-error"
-import { logTestInfo } from "./test-logging"
+import { logTestError, logTestInfo } from "../test-logging"
 
 export const setGitNameAndEmail = async () => {
   try {
@@ -28,6 +27,7 @@ export const setGitNameAndEmail = async () => {
         ])
       })
   } catch (error) {
-    exitWithError(error)
+    logTestError("An error occurred while setting git name and email.")
+    throw error
   }
 }

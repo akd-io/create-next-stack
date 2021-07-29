@@ -1,5 +1,5 @@
 import execa, { Options } from "execa"
-import { logTestInfo } from "./test-logging"
+import { logTestInfo } from "../test-logging"
 
 export const checkFormattingLintingBuild = async (runDirectory: string) => {
   const options: Options = {

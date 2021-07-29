@@ -2,7 +2,7 @@ import execa from "execa"
 import { checkFormattingLintingBuild } from "../../../helpers/check-formatting-linting-build"
 import { minutesToMilliseconds } from "../../../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../../../helpers/prepare-e2e-test"
-import { logTestInfo } from "../../../helpers/test-logging"
+import { logTestInfo } from "../../../test-logging"
 
 export const testEmotionOnlyNonInteractive = async (
   createNextStackDir: string

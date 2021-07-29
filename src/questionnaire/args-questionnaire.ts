@@ -2,7 +2,6 @@ import {
   CreateNextStackArgs,
   ValidCreateNextStackArgs,
 } from "../create-next-stack-types"
-import { exitWithError } from "../helpers/exit-with-error"
 import { promptProjectPath } from "./questions/project-name"
 import { validateProjectPathInput } from "./questions/validate-project-path"
 
@@ -17,8 +16,7 @@ export const performArgsQuestionnaire = async (
     if (validationResult === true) {
       projectPath = appNameArg
     } else {
-      exitWithError("Invalid project name. " + validationResult)
-      process.exit() // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+      throw new Error("Invalid project name: " + validationResult)
     }
   } else {
     projectPath = await promptProjectPath()

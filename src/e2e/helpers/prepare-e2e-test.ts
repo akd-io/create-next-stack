@@ -1,7 +1,7 @@
 import { promises as fs } from "fs"
 import path from "path"
 import { v4 as uuidv4 } from "uuid"
-import { logTestInfo } from "./test-logging"
+import { logTestInfo } from "../test-logging"
 
 export const prepareE2eTest = async (
   createNextStackDir: string
