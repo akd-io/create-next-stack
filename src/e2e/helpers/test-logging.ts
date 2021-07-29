@@ -1,14 +1,22 @@
-import console from "console"
 import { prefixLines } from "../../helpers/prefix-lines"
 
+const testInfoPrefix = "[TEST INFO] "
+const testDebugPrefix = "[TEST DEBUG] "
+const testWarningPrefix = "[TEST WARNING] "
+const testErrorPrefix = "[TEST ERROR] "
+
 export const logTestInfo = (str: string) => {
-  console.log(prefixLines("[TEST INFO] ", str))
+  console.info(prefixLines(testInfoPrefix, str))
+}
+
+export const logTestDebug = (str: string) => {
+  console.debug(prefixLines(testDebugPrefix, str))
 }
 
 export const logTestWarning = (str: string) => {
-  console.log(prefixLines("[TEST WARNING] ", str))
+  console.warn(prefixLines(testWarningPrefix, str))
 }
 
 export const logTestError = (str: string) => {
-  console.error(prefixLines("[TEST ERROR] ", str))
+  console.error(prefixLines(testErrorPrefix, str))
 }
