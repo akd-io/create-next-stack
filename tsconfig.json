@@ -12,6 +12,5 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["src/e2e/**/*"]
+  "include": ["src"]
 }
