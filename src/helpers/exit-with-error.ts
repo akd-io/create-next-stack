@@ -3,9 +3,7 @@ import { inDebugMode } from "./is-debug-enabled"
 
 export const exitWithError = (error: unknown): never => {
   if (error instanceof Error) {
-    logError(error.message)
     if (error.stack != null) {
-      logError("")
       logError(error.stack)
     }
   } else {
