@@ -7,6 +7,7 @@ import {
   writablePackageManagerOptions,
   writableStylingOptions,
 } from "./create-next-stack-types"
+import { exitWithError } from "./helpers/exit-with-error"
 import { commandInstance } from "./instance"
 import { performArgsQuestionnaire } from "./questionnaire/args-questionnaire"
 import { performFlagsQuestionnaire } from "./questionnaire/flags-questionnaire"
@@ -102,6 +103,10 @@ class CreateNextStack extends Command {
 
       await performSetupSteps({ args, flags })
     }
+  }
+
+  async catch(error: unknown) {
+    exitWithError(error)
   }
 }
 

@@ -1,7 +1,7 @@
 import endent from "endent"
 import { promises as fs } from "fs"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
-import { commandInstance } from "../../instance"
+import { logWarning } from "../../logging"
 import { Step } from "../step"
 
 const filename = ".gitattributes"
@@ -11,10 +11,7 @@ export const addGitAttributesStep: Step = {
 
   shouldRun: async () => {
     if (!(await isGitInitialized())) {
-      const instance = commandInstance.get()
-      instance.log(
-        `Warning: Skipping ${filename} setup, as Git was not initialized.`
-      )
+      logWarning(`Skipping ${filename} setup, as Git was not initialized.`)
       return false
     }
     return true

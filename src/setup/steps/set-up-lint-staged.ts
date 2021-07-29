@@ -5,7 +5,7 @@ import { isPackageGloballyInstalled } from "../../helpers/is-package-globally-in
 import { isUnknownObject } from "../../helpers/is-unknown-object"
 import { remove } from "../../helpers/remove"
 import { writeJsonFile } from "../../helpers/write-json-file"
-import { commandInstance } from "../../instance"
+import { logWarning } from "../../logging"
 import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
@@ -18,10 +18,7 @@ export const setUpLintStagedStep: Step = {
     }
 
     if (!(await isGitInitialized())) {
-      const instance = commandInstance.get()
-      instance.log(
-        "Warning: Skipping lint-staged setup, as Git was not initialized."
-      )
+      logWarning("Skipping lint-staged setup, as Git was not initialized.")
       return false
     }
 

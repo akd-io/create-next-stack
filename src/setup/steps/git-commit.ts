@@ -1,6 +1,6 @@
 import execa from "execa"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
-import { commandInstance } from "../../instance"
+import { logWarning } from "../../logging"
 import { Step } from "../step"
 
 export const gitCommitStep: Step = {
@@ -8,10 +8,7 @@ export const gitCommitStep: Step = {
 
   shouldRun: async () => {
     if (!(await isGitInitialized())) {
-      const instance = commandInstance.get()
-      instance.log(
-        "Warning: Skipping initial commit, as Git was not initialized."
-      )
+      logWarning("Skipping initial commit, as Git was not initialized.")
       return false
     }
     return true
