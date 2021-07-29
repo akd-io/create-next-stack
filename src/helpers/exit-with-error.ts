@@ -1,4 +1,5 @@
 import { logError } from "../logging"
+import { inDebugMode } from "./is-debug-enabled"
 
 export const exitWithError = (error: unknown): never => {
   if (error instanceof Error) {
@@ -11,7 +12,7 @@ export const exitWithError = (error: unknown): never => {
     logError("An unknown error occurred.")
   }
 
-  if (process.env.DEBUG == null) {
+  if (!inDebugMode()) {
     logError("")
     logError("Note: Debugging logs can be enabled with the --debug flag.")
   }

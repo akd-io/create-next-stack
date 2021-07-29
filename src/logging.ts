@@ -1,4 +1,5 @@
 import chalk from "chalk"
+import { inDebugMode } from "./helpers/is-debug-enabled"
 import { prefixLines } from "./helpers/prefix-lines"
 
 const infoPrefix = chalk.cyan("info ")
@@ -11,7 +12,9 @@ export const logInfo = (str: string) => {
 }
 
 export const logDebug = (str: string) => {
-  console.debug(prefixLines(debugPrefix, chalk.white(str)))
+  if (inDebugMode()) {
+    console.debug(prefixLines(debugPrefix, chalk.white(str)))
+  }
 }
 
 export const logWarning = (str: string) => {
