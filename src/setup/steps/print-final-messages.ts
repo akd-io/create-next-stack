@@ -1,3 +1,4 @@
+import endent from "endent"
 import { getProjectNameOfPath } from "../../helpers/get-project-name-of-path"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { logInfo, logWarning } from "../../logging"
@@ -16,19 +17,19 @@ export const printFinalMessagesStep: Step = {
         "Git was not initialized by Create Next App. This can happen for a number of reasons. Most commonly because this repository is nested inside another repository, or because you haven't set a global name and email with git."
       )
     }
-    logInfo(``)
-    logInfo(
-      `Successfully created project ${getProjectNameOfPath(args.appName)}!`
-    )
-    logInfo(``)
-    logInfo(`To get started, run:`)
-    logInfo(``)
+    logInfo("")
+    logInfo(endent`
+      Successfully created project ${getProjectNameOfPath(args.appName)}!
+
+      To get started, run:
+    `)
+    logInfo("")
     if (args.appName !== ".") {
       logInfo(`    cd ${args.appName}`)
     }
     logInfo(
-      `    ${flags["package-manager"] === "yarn" ? "yarn" : "npm run"} dev`
+      `    ${flags["package-manager"] === "yarn" ? "yarn dev" : "npm run dev"}`
     )
-    logInfo(``)
+    logInfo("")
   },
 }
