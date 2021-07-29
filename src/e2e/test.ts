@@ -1,5 +1,7 @@
+import chalk from "chalk"
 import { exitWithError } from "./helpers/exit-with-error"
 import { setGitNameAndEmail } from "./helpers/set-git-name-and-email"
+import { logTestInfo } from "./test-logging"
 import { testDefaultOptionsInteractive } from "./tests/interactive/default-options"
 import { testCssModulesAllFlagsNonInteractive } from "./tests/non-interactive/css-modules/css-modules-all-flags"
 import { testCssModulesOnlyNonInteractive } from "./tests/non-interactive/css-modules/css-modules-only"
@@ -28,6 +30,10 @@ import { testStyledComponentsOnlyNonInteractive } from "./tests/non-interactive/
     await testEmotionAllFlagsNonInteractive(createNextStackDir)
     await testStyledComponentsAllFlagsNonInteractive(createNextStackDir)
     await testCssModulesAllFlagsNonInteractive(createNextStackDir)
+
+    logTestInfo("")
+    logTestInfo(chalk.green("Tests successful!"))
+    logTestInfo("")
   } catch (error) {
     exitWithError(error)
   }

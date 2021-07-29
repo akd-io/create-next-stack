@@ -1,3 +1,5 @@
+import chalk from "chalk"
+import endent from "endent"
 import execa from "execa"
 import { v4 as uuidv4 } from "uuid"
 import { checkFormattingLintingBuild } from "./helpers/check-formatting-linting-build"
@@ -16,8 +18,12 @@ import { logTestInfo } from "./test-logging"
   await checkFormattingLintingBuild(runDirectory)
 
   logTestInfo("")
-  logTestInfo(`To open project in vscode, run:`)
-  logTestInfo("")
-  logTestInfo(`    code ${runDirectory}`)
+  logTestInfo(endent`
+    ${chalk.green("Test successful!")}
+
+    To open the project in vscode, run:
+
+        ${chalk.cyan(`code ${runDirectory}`)}
+  `)
   logTestInfo("")
 })()
