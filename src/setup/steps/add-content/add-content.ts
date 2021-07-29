@@ -22,10 +22,9 @@ export const addContentStep: Step = {
       fs.writeFile("pages/_app.tsx", generateApp(inputs)),
     ]
 
-    if (
-      inputs.flags.styling === "emotion" ||
-      inputs.flags.styling === "styled-components"
-    ) {
+    const { styling } = inputs.flags
+
+    if (styling === "emotion" || styling === "styled-components") {
       promises.push(
         fs.writeFile(
           "components/WithDefaultGlobalStyles.tsx",
@@ -34,12 +33,12 @@ export const addContentStep: Step = {
       )
     }
 
-    if (
-      inputs.flags.styling === "css-modules" ||
-      inputs.flags.styling === "css-modules-with-sass"
-    ) {
+    if (styling === "css-modules" || styling === "css-modules-with-sass") {
       await fs.mkdir("styles")
-      promises.push(fs.writeFile("styles/global-styles.css", globalStyles))
+      const extension = styling === "css-modules" ? "css" : "scss"
+      promises.push(
+        fs.writeFile(`styles/global-styles.${extension}`, globalStyles)
+      )
     }
 
     await Promise.all(promises)

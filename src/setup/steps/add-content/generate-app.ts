@@ -3,12 +3,7 @@ import { ValidCNSInputs } from "../../../create-next-stack-types"
 
 export const generateApp = (inputs: ValidCNSInputs): string => endent/* tsx */ `
   import { AppProps } from "next/app";
-  ${
-    inputs.flags.styling === "css-modules" ||
-    inputs.flags.styling === "css-modules-with-sass"
-      ? endent/* jsx */ `import "../styles/global-styles.css";`
-      : ""
-  }
+  ${getGlobalStylesImport(inputs)}
 
   const CustomApp = ({ Component, pageProps }: AppProps) => {
     return <Component {...pageProps} />;
@@ -16,3 +11,13 @@ export const generateApp = (inputs: ValidCNSInputs): string => endent/* tsx */ `
 
   export default CustomApp;
 `
+
+const getGlobalStylesImport = (inputs: ValidCNSInputs) => {
+  const { styling } = inputs.flags
+  if (styling === "css-modules" || styling === "css-modules-with-sass") {
+    const extension = styling === "css-modules" ? "css" : "scss"
+    return /* jsx */ `import "../styles/global-styles.${extension}";`
+  } else {
+    return ""
+  }
+}
