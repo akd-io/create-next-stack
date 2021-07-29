@@ -42,7 +42,7 @@
   },
   "files": [
     "/bin",
-    "/lib",
+    "/lib/main",
     "/prod-assets"
   ],
   "homepage": "https://github.com/akd-io/create-next-stack",
