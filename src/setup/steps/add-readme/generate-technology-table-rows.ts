@@ -38,7 +38,14 @@ export const generateTechnologyTableRows = async (
     {
       name: /* md */ `[CSS Modules](https://github.com/css-modules/css-modules)`,
       links: /* md */ `[Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css)`,
-      filter: flags.styling === "css-modules",
+      filter:
+        flags.styling === "css-modules" ||
+        flags.styling === "css-modules-with-sass",
+    },
+    {
+      name: /* md */ `[Sass](https://sass-lang.com/)`,
+      links: /* md */ `[Docs](https://sass-lang.com/documentation) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support)`,
+      filter: flags.styling === "css-modules-with-sass",
     },
     {
       name: /* md */ `[React Hook Form](https://react-hook-form.com/)`,
