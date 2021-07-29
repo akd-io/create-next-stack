@@ -18,4 +18,7 @@ export const checkFormattingLintingBuild = async (runDirectory: string) => {
 
   logTestInfo("Running build...")
   await execa("npm", ["run", "build"], options)
+
+  logTestInfo("")
+  logTestInfo("Formatting, linting and build successful!")
 }

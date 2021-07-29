@@ -15,6 +15,9 @@ import { logTestInfo } from "./helpers/test-logging"
 
   await checkFormattingLintingBuild(runDirectory)
 
-  logTestInfo(`Open in vscode with:`)
+  logTestInfo("")
+  logTestInfo(`To open project in vscode, run:`)
+  logTestInfo("")
   logTestInfo(`    code ${runDirectory}`)
+  logTestInfo("")
 })()
