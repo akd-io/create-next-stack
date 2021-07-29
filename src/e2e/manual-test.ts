@@ -1,7 +1,7 @@
 import execa from "execa"
 import { v4 as uuidv4 } from "uuid"
 import { checkFormattingLintingBuild } from "./helpers/check-formatting-linting-build"
-import { logTestInfo } from "./helpers/test-logging"
+import { logTestInfo } from "./test-logging"
 ;(async () => {
   const projectName = uuidv4()
   const runDirectory = `../create-next-stack-tests/${projectName}`

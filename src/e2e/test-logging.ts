@@ -1,4 +1,4 @@
-import { prefixLines } from "../../helpers/prefix-lines"
+import { prefixLines } from "../helpers/prefix-lines"
 
 const testInfoPrefix = "[TEST INFO] "
 const testDebugPrefix = "[TEST DEBUG] "
