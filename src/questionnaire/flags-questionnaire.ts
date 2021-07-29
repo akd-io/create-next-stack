@@ -1,5 +1,4 @@
 import { ValidCreateNextStackFlags } from "../create-next-stack-types"
-import { exitWithError } from "../helpers/exit-with-error"
 import { promptTechnologies } from "./questions/technologies"
 
 export const performFlagsQuestionnaire =
@@ -27,8 +26,7 @@ const getPackageManager = (
   } else if (technologies.includes("npm")) {
     return "npm"
   } else {
-    exitWithError("No package manager found.")
-    process.exit(1)
+    throw new Error("No package manager found.")
   }
 }
 
@@ -42,7 +40,6 @@ const getStyling = (
   } else if (technologies.includes("cssModules")) {
     return "css-modules"
   } else {
-    exitWithError("No styling method found.")
-    process.exit(1)
+    throw new Error("No styling method found.")
   }
 }

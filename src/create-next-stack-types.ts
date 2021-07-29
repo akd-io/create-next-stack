@@ -1,5 +1,4 @@
 import CreateNextStack from "."
-import { exitWithError } from "./helpers/exit-with-error"
 import { UnknownObject } from "./helpers/is-unknown-object"
 import { Writable } from "./helpers/writable"
 import { validateProjectPathInput } from "./questionnaire/questions/validate-project-path"
@@ -46,17 +45,15 @@ export const validateArgs = (
   args: CreateNextStackArgs
 ): args is ValidCreateNextStackArgs => {
   if (typeof args.appName !== "string") {
-    exitWithError(
+    throw new TypeError(
       'Outside interactive mode, you are required to specify a name for your application. Read about the "appName" argument using --help.'
     )
-    process.exit() // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
   }
 
   const appNameValidationResult = validateProjectPathInput(args.appName)
 
   if (typeof appNameValidationResult === "string") {
-    exitWithError("Invalid app name. " + appNameValidationResult)
-    process.exit() // This tells TypeScript that the throwError function exits, and lets it infer types correctly below.
+    throw new TypeError("Invalid app name: " + appNameValidationResult)
   }
 
   return true
@@ -70,17 +67,15 @@ export type ValidCreateNextStackFlags = CreateNextStackFlags & {
 export const validateFlags = (
   flags: CreateNextStackFlags
 ): flags is ValidCreateNextStackFlags => {
-  if (flags["package-manager"] == null) {
-    exitWithError(
+  if (typeof flags["package-manager"] !== "string") {
+    throw new TypeError(
       'Outside interactive mode, you are required to specify a package manager. Read about the "--package-manager" option using --help.'
     )
-    process.exit(1)
   }
-  if (flags.styling == null) {
-    exitWithError(
+  if (typeof flags.styling !== "string") {
+    throw new TypeError(
       'Outside interactive mode, you are required to specify a styling method. Read about the "--styling" option using --help.'
     )
-    process.exit(1)
   }
   return true
 }

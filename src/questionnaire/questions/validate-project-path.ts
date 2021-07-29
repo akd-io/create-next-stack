@@ -1,6 +1,6 @@
-import { exitWithError } from "../../helpers/exit-with-error"
 import { getProjectNameOfPath } from "../../helpers/get-project-name-of-path"
 import { validateNpmName } from "../../helpers/validate-npm-name"
+import { logError } from "../../logging"
 
 /**
  * @param this Current Command instance
@@ -24,7 +24,8 @@ export const validateProjectPathInput = (
       )
     }
   } catch (error) {
-    exitWithError("An error occurred while validating app name.", error)
+    logError("An error occurred while validating app name.")
+    throw error
   }
 
   return true
