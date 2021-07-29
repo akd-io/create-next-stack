@@ -1,22 +1,25 @@
+import chalk from "chalk"
 import { prefixLines } from "../helpers/prefix-lines"
 
-const testInfoPrefix = "[TEST INFO] "
-const testDebugPrefix = "[TEST DEBUG] "
-const testWarningPrefix = "[TEST WARNING] "
-const testErrorPrefix = "[TEST ERROR] "
+const testPrefix = chalk.magenta("test ")
+
+const testInfoPrefix = testPrefix + chalk.cyan("info ")
+const testDebugPrefix = testPrefix + chalk.white("debug ")
+const testWarningPrefix = testPrefix + chalk.yellow("warning ")
+const testErrorPrefix = testPrefix + chalk.red("error ")
 
 export const logTestInfo = (str: string) => {
-  console.info(prefixLines(testInfoPrefix, str))
+  console.info(prefixLines(testInfoPrefix, chalk.white(str)))
 }
 
 export const logTestDebug = (str: string) => {
-  console.debug(prefixLines(testDebugPrefix, str))
+  console.debug(prefixLines(testDebugPrefix, chalk.white(str)))
 }
 
 export const logTestWarning = (str: string) => {
-  console.warn(prefixLines(testWarningPrefix, str))
+  console.warn(prefixLines(testWarningPrefix, chalk.yellow(str)))
 }
 
 export const logTestError = (str: string) => {
-  console.error(prefixLines(testErrorPrefix, str))
+  console.error(prefixLines(testErrorPrefix, chalk.red(str)))
 }

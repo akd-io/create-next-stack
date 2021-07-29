@@ -1,5 +1,5 @@
 import execa from "execa"
-import { logTestError, logTestInfo } from "./test-logging"
+import { logTestError, logTestInfo } from "../test-logging"
 
 export const setGitNameAndEmail = async () => {
   try {
