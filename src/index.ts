@@ -53,7 +53,10 @@ class CreateNextStack extends Command {
     // Styling:
     styling: flags.enum({
       options: writableStylingOptions,
-      description: "Sets the preferred styling method.",
+      description: `Sets the preferred styling method. <styling-method> = ${writableStylingOptions.join(
+        "|"
+      )}`,
+      helpValue: "<styling-method>",
     }),
 
     // Form libraries:
@@ -77,33 +80,33 @@ class CreateNextStack extends Command {
   }
 
   async run() {
-    const { args: weaklyTypedArgs, flags: weaklyTypedFlags } =
-      this.parse(CreateNextStack)
-
     commandInstance.set(this)
 
-    const args = weaklyTypedArgs as CreateNextStackArgs
-    const flags = weaklyTypedFlags as CreateNextStackFlags
+    try {
+      const { args: weaklyTypedArgs, flags: weaklyTypedFlags } =
+        this.parse(CreateNextStack)
 
-    if (flags.debug) process.env.DEBUG = "true"
+      const args = weaklyTypedArgs as CreateNextStackArgs
+      const flags = weaklyTypedFlags as CreateNextStackFlags
 
-    if (shouldBeInteractive(flags)) {
-      const validArgs = await performArgsQuestionnaire(args)
-      const validFlags = await performFlagsQuestionnaire()
-      await performSetupSteps({ args: validArgs, flags: validFlags })
-    } else {
-      if (!validateArgs(args)) {
-        process.exit(1) // This tells TypeScript that this block is unreachable. validateArgs(args) either throws or returns true.
+      if (flags.debug) process.env.DEBUG = "true"
+
+      if (shouldBeInteractive(flags)) {
+        const validArgs = await performArgsQuestionnaire(args)
+        const validFlags = await performFlagsQuestionnaire()
+        await performSetupSteps({ args: validArgs, flags: validFlags })
+      } else {
+        if (!validateArgs(args)) {
+          process.exit(1) // This tells TypeScript that this block is unreachable. validateArgs(args) either throws or returns true.
+        }
+        if (!validateFlags(flags)) {
+          process.exit(1) // This tells TypeScript that this block is unreachable. validateFlags(flags) either throws or returns true.
+        }
+        await performSetupSteps({ args, flags })
       }
-      if (!validateFlags(flags)) {
-        process.exit(1) // This tells TypeScript that this block is unreachable. validateFlags(flags) either throws or returns true.
-      }
-      await performSetupSteps({ args, flags })
+    } catch (error) {
+      exitWithError(error)
     }
-  }
-
-  async catch(error: unknown) {
-    exitWithError(error)
   }
 }
 
