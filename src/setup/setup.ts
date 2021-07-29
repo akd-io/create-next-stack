@@ -25,31 +25,42 @@ export const performSetupSteps = async (
   inputs: ValidCNSInputs
 ): Promise<void> => {
   const steps: Step[] = [
+    // Package management
     updateYarnStep,
+
+    // Create Next App
     createNextAppStep,
-
     removeOfficialCNAContentStep,
-    copyAssetsStep,
 
+    // Configuration
     addBaseBabelConfigStep,
+    addGitAttributesStep,
+
+    // Styling
     setUpEmotionStep,
     setUpStyledComponentsStep,
 
+    // Formatting
     setUpPrettierStep,
     setUpLintStagedStep,
 
+    // Form state management
     installReactHookFormStep,
     installFormikStep,
+
+    // Animation
     installFramerMotionStep,
 
+    // Add/generate content
+    copyAssetsStep,
     addContentStep,
-
     addReadmeStep,
 
+    // Format & initial commit
     formatProjectStep,
-    addGitAttributesStep,
     gitCommitStep,
 
+    // Print success message
     printFinalMessagesStep,
   ]
 
