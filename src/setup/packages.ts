@@ -67,6 +67,10 @@ export const packages = {
     name: "@types/styled-components",
     minVersion: "5.0.0",
   },
+  sass: {
+    name: "sass",
+    minVersion: "1.0.0",
+  },
   "babel-plugin-styled-components": {
     name: "babel-plugin-styled-components",
     minVersion: "1.0.0",
