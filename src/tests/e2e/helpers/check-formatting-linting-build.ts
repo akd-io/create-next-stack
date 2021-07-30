@@ -1,7 +1,9 @@
 import execa, { Options } from "execa"
 import { logTestInfo } from "../test-logging"
 
-export const checkFormattingLintingBuild = async (runDirectory: string) => {
+export const checkFormattingLintingBuild = async (
+  runDirectory: string
+): Promise<void> => {
   const options: Options = {
     cwd: runDirectory,
   }

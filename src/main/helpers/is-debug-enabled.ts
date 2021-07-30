@@ -1,1 +1,1 @@
-export const inDebugMode = () => process.env.debug === "true"
+export const inDebugMode = (): boolean => process.env.debug === "true"
