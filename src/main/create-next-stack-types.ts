@@ -44,18 +44,25 @@ export const writableStylingOptions = stylingOptions as Writable<
   typeof stylingOptions
 >
 
+// Continuous integration flag:
+export const continuousIntegrationOptions = ["github-actions"] as const
+export type ContinuousIntegrationOption =
+  typeof continuousIntegrationOptions[number]
+export const writableContinuousIntegrationOptions =
+  continuousIntegrationOptions as Writable<typeof continuousIntegrationOptions>
+
 // Valid Args type and type guard
 export type ValidCreateNextStackArgs = CreateNextStackArgs & { appName: string }
 export const validateArgs = (
   args: CreateNextStackArgs
 ): args is ValidCreateNextStackArgs => {
-  if (typeof args.appName !== "string") {
+  if (typeof args["appName"] !== "string") {
     throw new TypeError(
       'Outside interactive mode, you are required to specify a name for your application. Read about the "appName" argument using --help.'
     )
   }
 
-  const appNameValidationResult = validateProjectPathInput(args.appName)
+  const appNameValidationResult = validateProjectPathInput(args["appName"])
 
   if (typeof appNameValidationResult === "string") {
     throw new TypeError("Invalid app name: " + appNameValidationResult)

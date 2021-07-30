@@ -1,4 +1,9 @@
-import { ValidCreateNextStackFlags } from "../create-next-stack-types"
+import {
+  ContinuousIntegrationOption,
+  PackageManagerOption,
+  StylingOption,
+  ValidCreateNextStackFlags,
+} from "../create-next-stack-types"
 import { promptTechnologies } from "./questions/technologies"
 
 export const performFlagsQuestionnaire =
@@ -12,6 +17,7 @@ export const performFlagsQuestionnaire =
       "react-hook-form": technologies.includes("reactHookForm"),
       formik: technologies.includes("formik"),
       "framer-motion": technologies.includes("framerMotion"),
+      "continuous-integration": getContinuousIntegration(technologies),
       "formatting-pre-commit-hook": technologies.includes("preCommitHook"),
     }
   }
@@ -20,7 +26,7 @@ type ThenArg<T> = T extends PromiseLike<infer U> ? U : T
 
 const getPackageManager = (
   technologies: ThenArg<ReturnType<typeof promptTechnologies>>
-) => {
+): PackageManagerOption => {
   // TODO: Strengthen typing. TypeScript throw error here when new package manager is added in promptTechnologies.
   if (technologies.includes("yarn")) {
     return "yarn"
@@ -33,7 +39,7 @@ const getPackageManager = (
 
 const getStyling = (
   technologies: ThenArg<ReturnType<typeof promptTechnologies>>
-) => {
+): StylingOption => {
   // TODO: Strengthen typing. TypeScript throw error here when new styling method is added in promptTechnologies.
   if (technologies.includes("emotion")) {
     return "emotion"
@@ -45,5 +51,16 @@ const getStyling = (
     return "css-modules-with-sass"
   } else {
     throw new Error("Styling method not found or not supported.")
+  }
+}
+
+const getContinuousIntegration = (
+  technologies: ThenArg<ReturnType<typeof promptTechnologies>>
+): ContinuousIntegrationOption => {
+  // TODO: Strengthen typing. TypeScript throw error here when new styling method is added in promptTechnologies.
+  if (technologies.includes("githubActions")) {
+    return "github-actions"
+  } else {
+    throw new Error("Continuous Integration method not found or not supported.")
   }
 }

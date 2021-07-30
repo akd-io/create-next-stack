@@ -4,6 +4,7 @@ import {
   CreateNextStackFlags,
   validateArgs,
   validateFlags,
+  writableContinuousIntegrationOptions,
   writablePackageManagerOptions,
   writableStylingOptions,
 } from "./create-next-stack-types"
@@ -72,6 +73,12 @@ class CreateNextStack extends Command {
       description: "Adds Framer Motion. (Animation library)",
     }),
 
+    // Continuous integration
+    "continuous-integration": flags.enum({
+      options: writableContinuousIntegrationOptions,
+      description: "Adds continuous integration.",
+    }),
+
     // Formatting pre-commit hook
     "formatting-pre-commit-hook": flags.boolean({
       description: "Adds a formatting pre-commit hook.",
@@ -89,7 +96,7 @@ class CreateNextStack extends Command {
       const args = weaklyTypedArgs as CreateNextStackArgs
       const flags = weaklyTypedFlags as CreateNextStackFlags
 
-      if (flags.debug) process.env.DEBUG = "true"
+      if (flags.debug) process.env["DEBUG"] = "true"
 
       if (shouldBeInteractive(flags)) {
         const validArgs = await performArgsQuestionnaire(args)
