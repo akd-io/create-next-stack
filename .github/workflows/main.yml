@@ -13,7 +13,8 @@ jobs:
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
-      - id: skip_check
+      - name: "Check Skip Duplicate Actions"
+        id: skip_check
         uses: fkirc/skip-duplicate-actions@master
         with:
           cancel_others: "true"
