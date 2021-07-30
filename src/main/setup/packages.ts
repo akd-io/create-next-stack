@@ -12,7 +12,7 @@ export const install = async (
   npmPackage: Package | Package[],
   packageManager: "yarn" | "npm",
   options?: InstallPackageOptions
-) => {
+): Promise<void> => {
   const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]
 
   const packagesWithVersions = packageArray.map((pkg) =>
@@ -27,10 +27,10 @@ export const install = async (
   packagesWithVersions.forEach((packageWithVersion) => {
     installCommandArgs.push(packageWithVersion)
   })
-  return execa(packageManager, installCommandArgs)
+  await execa(packageManager, installCommandArgs)
 }
 
-export const getNameVersionCombo = (npmPackage: Package) => {
+export const getNameVersionCombo = (npmPackage: Package): string => {
   return `${npmPackage.name}@^${npmPackage.minVersion}`
 }
 

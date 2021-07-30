@@ -1,3 +1,4 @@
+import { IConfig } from "@oclif/config"
 import CreateNextStack from "."
 import { UnknownObject } from "./helpers/is-unknown-object"
 import { Writable } from "./helpers/writable"
@@ -9,7 +10,10 @@ import { validateProjectPathInput } from "./questionnaire/questions/validate-pro
  * **Do NOT call this function!**
  */
 const temporaryWrapperForTypeSafety = () => {
-  const createNextStackInstance = new CreateNextStack([], {} as unknown as any)
+  const createNextStackInstance = new CreateNextStack(
+    [],
+    {} as unknown as IConfig
+  )
   return createNextStackInstance["parse"](CreateNextStack)
 }
 

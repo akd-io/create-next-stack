@@ -79,7 +79,7 @@ class CreateNextStack extends Command {
     }),
   }
 
-  async run() {
+  async run(): Promise<void> {
     commandInstance.set(this)
 
     try {

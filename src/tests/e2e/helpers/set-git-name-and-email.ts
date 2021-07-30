@@ -1,7 +1,7 @@
 import execa from "execa"
 import { logTestError, logTestInfo } from "../test-logging"
 
-export const setGitNameAndEmail = async () => {
+export const setGitNameAndEmail = async (): Promise<void> => {
   try {
     await execa("git", ["config", "--global", "user.name"])
       .then((result) => {

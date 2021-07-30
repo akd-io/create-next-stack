@@ -4,7 +4,9 @@ import { getProjectNameOfPath } from "../../../helpers/get-project-name-of-path"
 import { generateScriptTableRows } from "./generate-script-table-rows"
 import { generateTechnologyTableRows } from "./generate-technology-table-rows"
 
-export const generateReadme = async (inputs: ValidCNSInputs) => endent/* md */ `
+export const generateReadme = async (
+  inputs: ValidCNSInputs
+): Promise<string> => endent/* md */ `
   # ${getProjectNameOfPath(inputs.args.appName)}
 
   🎉 Congratulations, your project was successfully bootstrapped with [Create Next Stack](https://github.com/akd-io/create-next-stack)!
