@@ -6,21 +6,5 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "eslint-config-prettier"
-  ],
-  "rules": {
-    "no-eq-null": "off",
-    "eqeqeq": "off",
-    "no-await-in-loop": "off",
-    "no-else-return": "off",
-    "no-negated-condition": "off",
-    "valid-jsdoc": "off",
-    "dot-notation": "off",
-    "no-process-exit": "off",
-    "unicorn/no-process-exit": "off",
-    "no-warning-comments": "off",
-    "unicorn/filename-case": "off",
-    "no-console": "off",
-    "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/no-unused-vars": "warn"
-  }
+  ]
 }
