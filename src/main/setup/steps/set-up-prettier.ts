@@ -7,7 +7,7 @@ import { Step } from "../step"
 export const setUpPrettierStep: Step = {
   description: "setting up Prettier",
 
-  shouldRun: async (inputs) => Boolean(inputs.flags.prettier),
+  shouldRun: async ({ flags }) => Boolean(flags.prettier),
 
   didRun: false,
 

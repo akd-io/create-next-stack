@@ -12,8 +12,8 @@ import { Step } from "../step"
 export const setUpLintStagedStep: Step = {
   description: "setting up lint-staged",
 
-  shouldRun: async (inputs) => {
-    if (!inputs.flags.prettier || !inputs.flags["formatting-pre-commit-hook"]) {
+  shouldRun: async ({ flags }) => {
+    if (!flags.prettier || !flags["formatting-pre-commit-hook"]) {
       return false
     }
 

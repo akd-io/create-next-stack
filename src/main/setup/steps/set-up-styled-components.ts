@@ -7,7 +7,7 @@ import { Step } from "../step"
 export const setUpStyledComponentsStep: Step = {
   description: "setting up styled-components",
 
-  shouldRun: async (inputs) => inputs.flags.styling === "styled-components",
+  shouldRun: async ({ flags }) => flags.styling === "styled-components",
 
   didRun: false,
 

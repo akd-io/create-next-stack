@@ -7,7 +7,7 @@ import { Step } from "../step"
 export const setUpEmotionStep: Step = {
   description: "setting up Emotion",
 
-  shouldRun: async (inputs) => inputs.flags.styling === "emotion",
+  shouldRun: async ({ flags }) => flags.styling === "emotion",
 
   didRun: false,
 

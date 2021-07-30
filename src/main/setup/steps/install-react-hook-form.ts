@@ -4,7 +4,7 @@ import { Step } from "../step"
 export const installReactHookFormStep: Step = {
   description: "installing React Hook Form",
 
-  shouldRun: async (inputs) => Boolean(inputs.flags["react-hook-form"]),
+  shouldRun: async ({ flags }) => Boolean(flags["react-hook-form"]),
 
   didRun: false,
 
