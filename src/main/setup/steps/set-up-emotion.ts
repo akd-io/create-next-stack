@@ -1,6 +1,6 @@
+import { isUnknownArray } from "../../helpers/is-unknown-array"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
-import { readJsonFile } from "../../helpers/read-json-file"
-import { writeJsonFile } from "../../helpers/write-json-file"
+import { modifyJsonFile, toArray, toObject } from "../../helpers/json-files"
 import { install, packages } from "../packages"
 import { Step } from "../step"
 
@@ -29,57 +29,49 @@ export const setUpEmotionStep: Step = {
  * Add `css` prop support as per the Emotion docs.
  */
 const addCssPropSupportAsPerEmotionDocs = async () => {
-  const babelrcFilePath = ".babelrc"
-  const babelConfig = await readJsonFile(babelrcFilePath)
+  await modifyJsonFile(".babelrc", (babelConfig) => {
+    // Add css-prop support as per Next.js-specific Emotion docs: https://emotion.sh/docs/css-prop#babel-preset
+    const { presets } = babelConfig
+    if (!isUnknownArray(presets)) {
+      throw new TypeError("Expected babelConfig.presets to be an array.")
+    }
+    const [nextBabelPresetTuple] = presets
+    if (!isUnknownArray(nextBabelPresetTuple)) {
+      throw new TypeError("Expected babelConfig.presets[0] to be an array.")
+    }
+    const [nextBabelTextField, nextBabelConfig] = nextBabelPresetTuple
+    if (nextBabelTextField !== "next/babel") {
+      throw new TypeError(
+        `Expected babelConfig.presets[0][0] to be "next/babel".`
+      )
+    }
+    if (!isUnknownObject(nextBabelConfig)) {
+      throw new TypeError("Expected babelConfig.presets[0][1] to be an object.")
+    }
+    const presetNameToConfigMap = nextBabelConfig
+    presetNameToConfigMap["preset-react"] = {
+      runtime: "automatic",
+      importSource: "@emotion/react",
+    }
 
-  // Add css-prop support as per Next.js-specific Emotion docs: https://emotion.sh/docs/css-prop#babel-preset
-  if (!Array.isArray(babelConfig.presets)) {
-    throw new TypeError("Expected babelConfig.presets to be an array.")
-  }
-  const presets = babelConfig.presets
-  if (!Array.isArray(presets[0])) {
-    throw new TypeError("Expected babelConfig.presets[0] to be an array.")
-  }
-  if (presets[0][0] !== "next/babel") {
-    throw new TypeError(
-      `Expected babelConfig.presets[0][0] to be "next/babel".`
-    )
-  }
-  const nextBabelPresetTuple = presets[0]
-  if (!isUnknownObject(nextBabelPresetTuple[1])) {
-    throw new TypeError("Expected babelConfig.presets[0][1] to be an object.")
-  }
-  const presetNameToConfigMap = nextBabelPresetTuple[1]
-  presetNameToConfigMap["preset-react"] = {
-    runtime: "automatic",
-    importSource: "@emotion/react",
-  }
+    // Add Emotion's Babel plugin as per their docs: https://emotion.sh/docs/install#babelrc
+    // Note quote from the docs:
+    // > "@emotion" must be the first plugin in your babel config `plugins` list.
+    babelConfig["plugins"] = ["@emotion", ...toArray(babelConfig["plugins"])]
 
-  // Add Emotion's Babel plugin as per their docs: https://emotion.sh/docs/install#babelrc
-  // Note quote from the docs:
-  // > "@emotion" must be the first plugin in your babel config `plugins` list.
-  const emotionEntry = "@emotion"
-  if (Array.isArray(babelConfig.plugins)) {
-    babelConfig.plugins = [emotionEntry, ...babelConfig.plugins]
-  } else {
-    babelConfig.plugins = [emotionEntry]
-  }
-
-  await writeJsonFile(babelrcFilePath, babelConfig)
+    return babelConfig
+  })
 }
 
 /**
  *  Add TypeScript support for the css-prop as per the docs: https://emotion.sh/docs/typescript#css-prop
  */
 const addTypeScriptSupportForTheEmotionCssProp = async () => {
-  const tsConfigFilePath = "tsconfig.json"
-  const tsConfig = await readJsonFile(tsConfigFilePath)
-
-  if (!isUnknownObject(tsConfig.compilerOptions)) {
-    throw new TypeError("Expected tsConfig.compilerOptions to be an object.")
-  }
-
-  tsConfig.compilerOptions.jsxImportSource = "@emotion/react"
-
-  await writeJsonFile(tsConfigFilePath, tsConfig)
+  await modifyJsonFile("tsconfig.json", (tsConfig) => ({
+    ...tsConfig,
+    compilerOptions: {
+      ...toObject(tsConfig["compilerOptions"]),
+      jsxImportSource: "@emotion/react",
+    },
+  }))
 }
