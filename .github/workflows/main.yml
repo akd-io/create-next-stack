@@ -13,25 +13,40 @@ jobs:
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
+      - name: "Check Skip Duplicate Actions"
+        id: skip_check
+        uses: fkirc/skip-duplicate-actions@master
+        with:
+          cancel_others: "true"
+          skip_after_successful_duplicate: "true"
+          paths_ignore: '["**/README.md"]'
+
       - name: "Checkout repo"
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         uses: actions/checkout@v2
 
       - name: "Use Node ${{ matrix.node }}"
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
 
       - name: "Install dependencies (with cache)"
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         uses: bahmutov/npm-install@v1
 
       - name: "Build"
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         run: yarn build
 
       - name: "Check formatting"
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         run: yarn format:check
 
       - name: "Lint"
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         run: yarn lint
 
       - name: "Test"
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         run: yarn test-only
