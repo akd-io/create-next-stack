@@ -1,7 +1,6 @@
 import execa from "execa"
-import { promises as fs } from "fs"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
-import { isUnknownObject } from "../../helpers/is-unknown-object"
+import { readJsonFile } from "../../helpers/read-json-file"
 import { remove } from "../../helpers/remove"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { logWarning } from "../../logging"
@@ -44,18 +43,13 @@ export const setUpLintStagedStep: Step = {
     await uninstall(temporaryPackages, flags["package-manager"])
 
     // Override "lint-staged" configuration
-    const packageJsonFileName = "package.json"
-    const packageJsonString = await fs.readFile(packageJsonFileName, "utf8")
-    const packageJson = JSON.parse(packageJsonString)
-
-    if (!isUnknownObject(packageJson)) {
-      throw new TypeError("Expected packageJson to be an object.")
-    }
+    const packageJsonFilePath = "package.json"
+    const packageJson = await readJsonFile(packageJsonFilePath)
 
     packageJson["lint-staged"] = {
       "*": "prettier --write --ignore-unknown",
     }
 
-    await writeJsonFile(packageJsonFileName, packageJson)
+    await writeJsonFile(packageJsonFilePath, packageJson)
   },
 }

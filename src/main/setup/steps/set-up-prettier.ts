@@ -1,5 +1,5 @@
-import { promises as fs } from "fs"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
+import { readJsonFile } from "../../helpers/read-json-file"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { install, packages } from "../packages"
 import { Step } from "../step"
@@ -34,13 +34,9 @@ const addPrettierConfig = async () => {
 }
 
 const addFormatScriptsToPackageJson = async () => {
-  const packageJsonFileName = "package.json"
-  const packageJsonString = await fs.readFile(packageJsonFileName, "utf8")
-  const packageJson = JSON.parse(packageJsonString)
+  const packageJsonFilePath = "package.json"
+  const packageJson = await readJsonFile(packageJsonFilePath)
 
-  if (!isUnknownObject(packageJson)) {
-    throw new TypeError("Expected packageJson to be an object.")
-  }
   if (!isUnknownObject(packageJson.scripts)) {
     throw new TypeError("Expected packageJson.scripts to be an object.")
   }
@@ -49,22 +45,18 @@ const addFormatScriptsToPackageJson = async () => {
   packageJson.scripts["format:check"] =
     "prettier --check --ignore-path=.gitignore ."
 
-  await writeJsonFile(packageJsonFileName, packageJson)
+  await writeJsonFile(packageJsonFilePath, packageJson)
 }
 
 const setUpEslintConfigPrettier = async () => {
-  const eslintFileName = ".eslintrc"
-  const eslintrcString = await fs.readFile(eslintFileName, "utf8")
-  const eslintrc = JSON.parse(eslintrcString)
+  const eslintFilePath = ".eslintrc"
+  const eslintrc = await readJsonFile(eslintFilePath)
 
-  if (!isUnknownObject(eslintrc)) {
-    throw new TypeError("Expected packageJson to be an object.")
-  }
   if (!Array.isArray(eslintrc.extends)) {
     throw new TypeError("Expected packageJson.scripts to be an array.")
   }
 
   eslintrc.extends.push("eslint-config-prettier")
 
-  await writeJsonFile(eslintFileName, eslintrc)
+  await writeJsonFile(eslintFilePath, eslintrc)
 }

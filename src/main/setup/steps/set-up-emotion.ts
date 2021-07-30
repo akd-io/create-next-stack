@@ -1,5 +1,5 @@
-import { promises as fs } from "fs"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
+import { readJsonFile } from "../../helpers/read-json-file"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { install, packages } from "../packages"
 import { Step } from "../step"
@@ -29,13 +29,8 @@ export const setUpEmotionStep: Step = {
  * Add `css` prop support as per the Emotion docs.
  */
 const addCssPropSupportAsPerEmotionDocs = async () => {
-  const babelrcFileName = ".babelrc"
-  const babelrcString = await fs.readFile(babelrcFileName, "utf8")
-  const babelConfig = JSON.parse(babelrcString)
-
-  if (!isUnknownObject(babelConfig)) {
-    throw new TypeError("Expected babelConfig to be an object.")
-  }
+  const babelrcFilePath = ".babelrc"
+  const babelConfig = await readJsonFile(babelrcFilePath)
 
   // Add css-prop support as per Next.js-specific Emotion docs: https://emotion.sh/docs/css-prop#babel-preset
   if (!Array.isArray(babelConfig.presets)) {
@@ -70,25 +65,21 @@ const addCssPropSupportAsPerEmotionDocs = async () => {
     babelConfig.plugins = [emotionEntry]
   }
 
-  await writeJsonFile(babelrcFileName, babelConfig)
+  await writeJsonFile(babelrcFilePath, babelConfig)
 }
 
 /**
  *  Add TypeScript support for the css-prop as per the docs: https://emotion.sh/docs/typescript#css-prop
  */
 const addTypeScriptSupportForTheEmotionCssProp = async () => {
-  const tsConfigFileName = "tsconfig.json"
-  const tsConfigString = await fs.readFile(tsConfigFileName, "utf8")
-  const tsConfig = JSON.parse(tsConfigString)
+  const tsConfigFilePath = "tsconfig.json"
+  const tsConfig = await readJsonFile(tsConfigFilePath)
 
-  if (!isUnknownObject(tsConfig)) {
-    throw new TypeError("Expected tsConfig to be an object.")
-  }
   if (!isUnknownObject(tsConfig.compilerOptions)) {
     throw new TypeError("Expected tsConfig.compilerOptions to be an object.")
   }
 
   tsConfig.compilerOptions.jsxImportSource = "@emotion/react"
 
-  await writeJsonFile(tsConfigFileName, tsConfig)
+  await writeJsonFile(tsConfigFilePath, tsConfig)
 }

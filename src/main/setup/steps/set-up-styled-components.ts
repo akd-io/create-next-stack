@@ -1,5 +1,4 @@
-import { promises as fs } from "fs"
-import { isUnknownObject } from "../../helpers/is-unknown-object"
+import { readJsonFile } from "../../helpers/read-json-file"
 import { writeJsonFile } from "../../helpers/write-json-file"
 import { install, packages } from "../packages"
 import { Step } from "../step"
@@ -36,13 +35,8 @@ export const setUpStyledComponentsStep: Step = {
  *   to maintain it being executed first. See [this](https://github.com/styled-components/babel-plugin-styled-components/issues/78) for more information.
  */
 const addStyledComponentsBabelPlugin = async () => {
-  const babelrcFileName = ".babelrc"
-  const babelrcString = await fs.readFile(babelrcFileName, "utf8")
-  const babelConfig = JSON.parse(babelrcString)
-
-  if (!isUnknownObject(babelConfig)) {
-    throw new TypeError("Expected babelConfig to be an object.")
-  }
+  const babelrcFilePath = ".babelrc"
+  const babelConfig = await readJsonFile(babelrcFilePath)
 
   const styledComponentsEntry = ["babel-plugin-styled-components"]
   if (Array.isArray(babelConfig.plugins)) {
@@ -51,5 +45,5 @@ const addStyledComponentsBabelPlugin = async () => {
     babelConfig.plugins = [styledComponentsEntry]
   }
 
-  await writeJsonFile(babelrcFileName, babelConfig)
+  await writeJsonFile(babelrcFilePath, babelConfig)
 }
