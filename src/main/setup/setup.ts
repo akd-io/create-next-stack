@@ -4,6 +4,7 @@ import { logInfo } from "../logging"
 import { printFinalMessages } from "./print-final-messages"
 import { Step } from "./step"
 import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
+import { addBaseTestScriptStep } from "./steps/add-base-test-script"
 import { addContentStep } from "./steps/add-content/add-content"
 import { addGitAttributesStep } from "./steps/add-git-attributes"
 import { addGithubWorkflowStep } from "./steps/add-github-workflow"
@@ -35,8 +36,9 @@ export const performSetupSteps = async (
     removeOfficialCNAContentStep,
 
     // Configuration
-    addBaseBabelConfigStep,
     addGitAttributesStep,
+    addBaseBabelConfigStep,
+    addBaseTestScriptStep,
 
     // Styling
     setUpEmotionStep,
