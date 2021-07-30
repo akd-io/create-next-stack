@@ -96,7 +96,7 @@ class CreateNextStack extends Command {
       const args = weaklyTypedArgs as CreateNextStackArgs
       const flags = weaklyTypedFlags as CreateNextStackFlags
 
-      if (flags.debug) process.env.DEBUG = "true"
+      if (flags.debug) process.env["DEBUG"] = "true"
 
       if (shouldBeInteractive(flags)) {
         const validArgs = await performArgsQuestionnaire(args)

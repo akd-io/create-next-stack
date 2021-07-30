@@ -8,9 +8,10 @@
     "strict": true,
     "target": "es2019",
     "esModuleInterop": true,
-    "noUncheckedIndexedAccess": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": true
   },
   "include": ["src"]
 }

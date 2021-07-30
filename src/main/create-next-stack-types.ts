@@ -56,13 +56,13 @@ export type ValidCreateNextStackArgs = CreateNextStackArgs & { appName: string }
 export const validateArgs = (
   args: CreateNextStackArgs
 ): args is ValidCreateNextStackArgs => {
-  if (typeof args.appName !== "string") {
+  if (typeof args["appName"] !== "string") {
     throw new TypeError(
       'Outside interactive mode, you are required to specify a name for your application. Read about the "appName" argument using --help.'
     )
   }
 
-  const appNameValidationResult = validateProjectPathInput(args.appName)
+  const appNameValidationResult = validateProjectPathInput(args["appName"])
 
   if (typeof appNameValidationResult === "string") {
     throw new TypeError("Invalid app name: " + appNameValidationResult)
