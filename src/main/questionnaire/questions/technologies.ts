@@ -13,6 +13,7 @@ const techValueArray = <const>[
   "formik",
   "framerMotion",
   "preCommitHook",
+  "githubActions",
 ]
 export type TechValue = typeof techValueArray[number]
 export const techValues = arrayToKeyToKeyMap(techValueArray)
@@ -73,6 +74,11 @@ const techChoices: {
     name: "Formatting pre-commit hook (Husky & lint-staged)",
     checked: true,
   },
+  githubActions: {
+    value: "githubActions",
+    name: "GitHub Actions",
+    checked: true,
+  },
 }
 
 const answerName = "technologies"
@@ -108,6 +114,9 @@ export const promptTechnologies = async (): Promise<
 
       new Separator("Animation:"),
       techChoices.framerMotion,
+
+      new Separator("Continuous Integration:"),
+      techChoices.githubActions,
 
       new Separator("Miscellaneous:"),
       techChoices.preCommitHook,
