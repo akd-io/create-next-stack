@@ -6,7 +6,7 @@ import { logTestInfo } from "../../../test-logging"
 
 export const testStyledComponentsAllFlags = async (
   createNextStackDir: string
-) => {
+): Promise<void> => {
   const { pathToProdCLI, runDirectory } = await prepareE2eTest(
     createNextStackDir
   )
