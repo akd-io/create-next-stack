@@ -30,6 +30,18 @@ export const install = async (
   await execa(packageManager, installCommandArgs)
 }
 
+export const uninstall = async (
+  npmPackage: Package | Package[],
+  packageManager: "yarn" | "npm"
+): Promise<void> => {
+  const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]
+  const packageNames = packageArray.map((npmPackage) => npmPackage.name)
+
+  const uninstallSubCommand = packageManager === "yarn" ? "remove" : "uninstall"
+  const uninstallCommandArgs = [uninstallSubCommand, ...packageNames]
+  await execa(packageManager, uninstallCommandArgs)
+}
+
 export const getNameVersionCombo = (npmPackage: Package): string => {
   return `${npmPackage.name}@^${npmPackage.minVersion}`
 }
