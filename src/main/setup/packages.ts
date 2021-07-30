@@ -15,6 +15,8 @@ export const install = async (
 ): Promise<void> => {
   const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]
 
+  if (packageArray.length < 1) return
+
   const packagesWithVersions = packageArray.map((pkg) =>
     getNameVersionCombo(pkg)
   )
@@ -35,6 +37,9 @@ export const uninstall = async (
   packageManager: "yarn" | "npm"
 ): Promise<void> => {
   const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]
+
+  if (packageArray.length < 1) return
+
   const packageNames = packageArray.map((npmPackage) => npmPackage.name)
 
   const uninstallSubCommand = packageManager === "yarn" ? "remove" : "uninstall"
