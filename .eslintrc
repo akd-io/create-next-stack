@@ -1,6 +1,6 @@
 // TODO: Remove oclif defaults and add own plugins.
 {
-  "extends": ["oclif", "oclif-typescript", "eslint-config-prettier"],
+  "extends": ["eslint-config-prettier"],
   "rules": {
     "no-eq-null": "off",
     "eqeqeq": "off",

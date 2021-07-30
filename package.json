@@ -27,8 +27,6 @@
     "@types/uuid": "^8.3.1",
     "@types/validate-npm-package-name": "^3.0.2",
     "eslint": "^5.16.0",
-    "eslint-config-oclif": "^3.1.0",
-    "eslint-config-oclif-typescript": "^0.2.0",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.1",
     "lint-staged": "^11.0.0",
