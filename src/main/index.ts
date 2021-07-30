@@ -4,6 +4,7 @@ import {
   CreateNextStackFlags,
   validateArgs,
   validateFlags,
+  writableContinuousIntegrationOptions,
   writablePackageManagerOptions,
   writableStylingOptions,
 } from "./create-next-stack-types"
@@ -70,6 +71,12 @@ class CreateNextStack extends Command {
     // Animation
     "framer-motion": flags.boolean({
       description: "Adds Framer Motion. (Animation library)",
+    }),
+
+    // Continuous integration
+    "continuous-integration": flags.enum({
+      options: writableContinuousIntegrationOptions,
+      description: "Adds continuous integration.",
     }),
 
     // Formatting pre-commit hook
