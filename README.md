@@ -71,6 +71,7 @@ Technologies marked as _convenience installs_ are technologies that work out of 
 | [Prettier](https://prettier.io/)                                                                                                  | [Docs](https://prettier.io/docs/en/index.html) - [Options](https://prettier.io/docs/en/options.html) - [GitHub repo](https://github.com/prettier/prettier)           |
 | [Husky](https://typicode.github.io/husky/)                                                                                        | [Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)                                                                         |
 | [lint-staged](https://github.com/okonet/lint-staged)                                                                              | [GitHub repo](https://github.com/okonet/lint-staged)                                                                                                                 |
+| [GitHub Actions](https://github.com/features/actions)                                                                             | [Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)                      |
 
 ## Usage
 
@@ -84,16 +85,17 @@ ARGUMENTS
   APPNAME  The name of your app, optionally including a path prefix. Eg.: "my-app" or "path/to/my-app"
 
 OPTIONS
-  -h, --help                    Shows the CLI help information.
-  -v, --version                 Shows the CLI version information.
-  --debug                       Show verbose error messages for debugging purposes.
-  --formatting-pre-commit-hook  Adds a formatting pre-commit hook.
-  --formik                      Adds Formik. (Form library)
-  --framer-motion               Adds Framer Motion. (Animation library)
-  --package-manager=(yarn|npm)  Sets the preferred package manager.
-  --prettier                    Adds Prettier. (Code formatting)
-  --react-hook-form             Adds React Hook Form. (Form library)
-  --styling=<styling-method>    Sets the preferred styling method. <styling-method> = emotion|styled-components|css-modules|css-modules-with-sass
+  -h, --help                                 Shows the CLI help information.
+  -v, --version                              Shows the CLI version information.
+  --continuous-integration=(github-actions)  Adds continuous integration.
+  --debug                                    Show verbose error messages for debugging purposes.
+  --formatting-pre-commit-hook               Adds a formatting pre-commit hook.
+  --formik                                   Adds Formik. (Form library)
+  --framer-motion                            Adds Framer Motion. (Animation library)
+  --package-manager=(yarn|npm)               Sets the preferred package manager.
+  --prettier                                 Adds Prettier. (Code formatting)
+  --react-hook-form                          Adds React Hook Form. (Form library)
+  --styling=<styling-method>                 Sets the preferred styling method. <styling-method> = emotion|styled-components|css-modules|css-modules-with-sass
 ```
 
 ## License

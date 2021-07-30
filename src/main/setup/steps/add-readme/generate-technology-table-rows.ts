@@ -91,6 +91,11 @@ export const generateTechnologyTableRows = async (
       links: /* md */ `[CLI Docs](https://docs.npmjs.com/cli/)`,
       filter: flags["package-manager"] === "npm",
     },
+    {
+      name: /* md */ `[GitHub Actions](https://github.com/features/actions)`,
+      links: /* md */ `[Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)`,
+      filter: flags["continuous-integration"] === "github-actions",
+    },
   ]
 
   const technologyRowsString = technologies
