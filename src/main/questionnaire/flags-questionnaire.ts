@@ -3,25 +3,54 @@ import {
   StylingOption,
   ValidCreateNextStackFlags,
 } from "../create-next-stack-types"
+import { ThenArg } from "../helpers/then-arg"
+import { withKeyConstraint } from "../helpers/with-key-constraint"
+import { Writable } from "../helpers/writable"
+import { CategoryValue, promptCategories } from "./questions/categories"
+import { promptContinuousIntegration } from "./questions/categories/continuous-integration"
 import { promptTechnologies } from "./questions/technologies"
+
+const categoryToPromptFunction = withKeyConstraint<CategoryValue>()({
+  styling: async () => ["placeholder"] as const, // TODO: Implement
+  animation: async () => ["placeholder"] as const, // TODO: Implement
+  continuousIntegration: promptContinuousIntegration,
+  formStateManagement: async () => ["placeholder"] as const, // TODO: Implement
+  formatting: async () => ["placeholder"] as const, // TODO: Implement
+  miscellaneous: async () => ["placeholder"] as const, // TODO: Implement
+  packageManagement: async () => ["placeholder"] as const, // TODO: Implement
+} as const)
+
+type PromptReturnType = Writable<
+  // TODO: Remove Writable when all functions above are added.
+  ThenArg<ReturnType<typeof categoryToPromptFunction[CategoryValue]>>
+>
+type TechnologyOption = PromptReturnType extends Array<unknown>
+  ? PromptReturnType[number]
+  : PromptReturnType
 
 export const performFlagsQuestionnaire =
   async (): Promise<ValidCreateNextStackFlags> => {
-    const technologies = await promptTechnologies()
+    const categories = await promptCategories()
+
+    const technologies = new Set<TechnologyOption>()
+    for (const category of categories) {
+      const additionalTechnologies = await categoryToPromptFunction[category]()
+      additionalTechnologies.forEach((tech) => technologies.add(tech))
+    }
+
+    const oldTechnologies = await promptTechnologies()
 
     return {
-      "package-manager": getPackageManager(technologies),
-      prettier: technologies.includes("prettier"),
-      styling: getStyling(technologies),
-      "react-hook-form": technologies.includes("reactHookForm"),
-      formik: technologies.includes("formik"),
-      "framer-motion": technologies.includes("framerMotion"),
-      "github-actions": technologies.includes("githubActions"),
-      "formatting-pre-commit-hook": technologies.includes("preCommitHook"),
+      "package-manager": getPackageManager(oldTechnologies),
+      styling: getStyling(oldTechnologies),
+      prettier: oldTechnologies.includes("prettier"),
+      "formatting-pre-commit-hook": oldTechnologies.includes("preCommitHook"),
+      "react-hook-form": oldTechnologies.includes("reactHookForm"),
+      formik: oldTechnologies.includes("formik"),
+      "framer-motion": oldTechnologies.includes("framerMotion"),
+      "github-actions": technologies.has("githubActions"),
     }
   }
-
-type ThenArg<T> = T extends PromiseLike<infer U> ? U : T
 
 const getPackageManager = (
   technologies: ThenArg<ReturnType<typeof promptTechnologies>>
