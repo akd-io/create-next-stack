@@ -8,6 +8,7 @@ import { withKeyConstraint } from "../helpers/with-key-constraint"
 import { Writable } from "../helpers/writable"
 import { CategoryValue, promptCategories } from "./questions/categories"
 import { promptContinuousIntegration } from "./questions/categories/continuous-integration"
+import { promptFormatting } from "./questions/categories/formatting"
 import { promptTechnologies } from "./questions/technologies"
 
 const categoryToPromptFunction = withKeyConstraint<CategoryValue>()({
@@ -15,7 +16,7 @@ const categoryToPromptFunction = withKeyConstraint<CategoryValue>()({
   animation: async () => ["placeholder"] as const, // TODO: Implement
   continuousIntegration: promptContinuousIntegration,
   formStateManagement: async () => ["placeholder"] as const, // TODO: Implement
-  formatting: async () => ["placeholder"] as const, // TODO: Implement
+  formatting: promptFormatting,
   miscellaneous: async () => ["placeholder"] as const, // TODO: Implement
   packageManagement: async () => ["placeholder"] as const, // TODO: Implement
 } as const)
@@ -43,7 +44,7 @@ export const performFlagsQuestionnaire =
     return {
       "package-manager": getPackageManager(oldTechnologies),
       styling: getStyling(oldTechnologies),
-      prettier: oldTechnologies.includes("prettier"),
+      prettier: technologies.has("prettier"),
       "formatting-pre-commit-hook": oldTechnologies.includes("preCommitHook"),
       "react-hook-form": oldTechnologies.includes("reactHookForm"),
       formik: oldTechnologies.includes("formik"),
