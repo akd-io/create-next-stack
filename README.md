@@ -85,17 +85,17 @@ ARGUMENTS
   APPNAME  The name of your app, optionally including a path prefix. Eg.: "my-app" or "path/to/my-app"
 
 OPTIONS
-  -h, --help                                 Shows the CLI help information.
-  -v, --version                              Shows the CLI version information.
-  --continuous-integration=(github-actions)  Adds continuous integration.
-  --debug                                    Show verbose error messages for debugging purposes.
-  --formatting-pre-commit-hook               Adds a formatting pre-commit hook.
-  --formik                                   Adds Formik. (Form library)
-  --framer-motion                            Adds Framer Motion. (Animation library)
-  --package-manager=(yarn|npm)               Sets the preferred package manager.
-  --prettier                                 Adds Prettier. (Code formatting)
-  --react-hook-form                          Adds React Hook Form. (Form library)
-  --styling=<styling-method>                 Sets the preferred styling method. <styling-method> = emotion|styled-components|css-modules|css-modules-with-sass
+  -h, --help                    Shows the CLI help information.
+  -v, --version                 Shows the CLI version information.
+  --debug                       Show verbose error messages for debugging purposes.
+  --formatting-pre-commit-hook  Adds a formatting pre-commit hook.
+  --formik                      Adds Formik. (Form library)
+  --framer-motion               Adds Framer Motion. (Animation library)
+  --github-actions              Adds a GitHub Actions continuous integration workflow.
+  --package-manager=(yarn|npm)  Sets the preferred package manager.
+  --prettier                    Adds Prettier. (Code formatting)
+  --react-hook-form             Adds React Hook Form. (Form library)
+  --styling=<styling-method>    Sets the preferred styling method. <styling-method> = emotion|styled-components|css-modules|css-modules-with-sass
 ```
 
 ## License
