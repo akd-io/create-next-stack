@@ -5,7 +5,7 @@ import {
 import { ThenArg } from "../helpers/then-arg"
 import { withKeyConstraint } from "../helpers/with-key-constraint"
 import { Writable } from "../helpers/writable"
-import { CategoryValue, promptCategories } from "./questions/categories"
+import { CategoryValue, promptOptionalCategories } from "./questions/categories"
 import { promptContinuousIntegration } from "./questions/categories/continuous-integration"
 import { promptFormatting } from "./questions/categories/formatting"
 import { promptPackageManager } from "./questions/categories/package-manager"
@@ -30,10 +30,11 @@ export const performFlagsQuestionnaire =
   async (): Promise<ValidCreateNextStackFlags> => {
     const packageManager = await promptPackageManager()
 
-    const categories = await promptCategories()
+    // Optional categories prompt
+    const optionalCategories = await promptOptionalCategories()
 
     const technologies = new Set<TechnologyOption>()
-    for (const category of categories) {
+    for (const category of optionalCategories) {
       const additionalTechnologies = await categoryToPromptFunction[category]()
       additionalTechnologies.forEach((tech) => technologies.add(tech))
     }
