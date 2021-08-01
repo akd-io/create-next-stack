@@ -1,12 +1,7 @@
 import inquirer, { Separator } from "inquirer"
 import { arrayToKeyToKeyMap } from "../../helpers/array-to-key-to-key-map"
 
-const techValueArray = [
-  "reactHookForm",
-  "formik",
-  "framerMotion",
-  "preCommitHook",
-] as const
+const techValueArray = ["framerMotion", "preCommitHook"] as const
 export type TechValue = typeof techValueArray[number]
 export const techValues = arrayToKeyToKeyMap(techValueArray)
 
@@ -17,15 +12,6 @@ const techChoices: {
     checked?: boolean
   }
 } = {
-  reactHookForm: {
-    value: "reactHookForm",
-    name: "React Hook Form",
-    checked: true,
-  },
-  formik: {
-    value: "formik",
-    name: "Formik",
-  },
   framerMotion: {
     value: "framerMotion",
     name: "Framer Motion",
@@ -51,10 +37,6 @@ export const promptTechnologies = async (): Promise<
     message: "What technologies are you looking to use?",
     pageSize: 10,
     choices: [
-      new Separator("Form state management:"),
-      techChoices.reactHookForm,
-      techChoices.formik,
-
       new Separator("Animation:"),
       techChoices.framerMotion,
 
