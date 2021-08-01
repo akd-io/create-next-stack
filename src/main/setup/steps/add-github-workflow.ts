@@ -7,8 +7,7 @@ import { Step } from "../step"
 export const addGithubWorkflowStep: Step = {
   description: "adding GitHub workflow",
 
-  shouldRun: async ({ flags }) =>
-    flags["continuous-integration"] === "github-actions",
+  shouldRun: async ({ flags }) => Boolean(flags["github-actions"]),
 
   didRun: false,
 
