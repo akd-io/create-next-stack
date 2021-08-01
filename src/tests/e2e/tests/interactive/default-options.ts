@@ -22,8 +22,16 @@ export const testDefaultOptionsInteractive = async (
     stderr: "inherit",
   })
 
-  logTestInfo("Sending \\n to accept default options.")
-  execaProcess.stdin?.write("\n")
+  logTestInfo("Sending 3 x \\n to accept default options.")
+  setTimeout(() => {
+    execaProcess.stdin?.write("\n")
+    setTimeout(() => {
+      execaProcess.stdin?.write("\n")
+      setTimeout(() => {
+        execaProcess.stdin?.write("\n")
+      }, 1000)
+    }, 1000)
+  }, 1000)
 
   await execaProcess
 
