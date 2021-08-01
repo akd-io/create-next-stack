@@ -12,13 +12,10 @@ import { promptFormatting } from "./questions/categories/formatting"
 import { promptTechnologies } from "./questions/technologies"
 
 const categoryToPromptFunction = withKeyConstraint<CategoryValue>()({
-  styling: async () => ["placeholder"] as const, // TODO: Implement
+  formatting: promptFormatting,
   animation: async () => ["placeholder"] as const, // TODO: Implement
   continuousIntegration: promptContinuousIntegration,
   formStateManagement: async () => ["placeholder"] as const, // TODO: Implement
-  formatting: promptFormatting,
-  miscellaneous: async () => ["placeholder"] as const, // TODO: Implement
-  packageManagement: async () => ["placeholder"] as const, // TODO: Implement
 } as const)
 
 type PromptReturnType = Writable<

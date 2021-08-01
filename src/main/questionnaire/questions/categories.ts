@@ -2,13 +2,10 @@ import inquirer from "inquirer"
 import { arrayToKeyToKeyMap } from "../../helpers/array-to-key-to-key-map"
 
 const categoryValuesArray = [
-  "packageManagement",
-  "styling",
+  "formatting",
   "formStateManagement",
   "animation",
   "continuousIntegration",
-  "formatting",
-  "miscellaneous",
 ] as const
 export type CategoryValue = typeof categoryValuesArray[number]
 const categoryValues = arrayToKeyToKeyMap(categoryValuesArray)
@@ -27,16 +24,12 @@ export const promptCategories = async (): Promise<CategoryValue[]> => {
     message: "What categories of technologies are you looking to use?",
     choices: [
       {
-        value: categoryValues.packageManagement,
-        name: "Package management",
-      },
-      {
-        value: categoryValues.styling,
-        name: "Styling",
-      },
-      {
         value: categoryValues.formatting,
         name: "Formatting",
+      },
+      {
+        value: categoryValues.formStateManagement,
+        name: "Form state management",
       },
       {
         value: categoryValues.animation,
@@ -45,10 +38,6 @@ export const promptCategories = async (): Promise<CategoryValue[]> => {
       {
         value: categoryValues.continuousIntegration,
         name: "Continuous integration",
-      },
-      {
-        value: categoryValues.formStateManagement,
-        name: "Form state management",
       },
     ],
   })
