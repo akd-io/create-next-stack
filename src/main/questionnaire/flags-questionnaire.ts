@@ -1,7 +1,4 @@
-import {
-  StylingOption,
-  ValidCreateNextStackFlags,
-} from "../create-next-stack-types"
+import { ValidCreateNextStackFlags } from "../create-next-stack-types"
 import { ThenArg } from "../helpers/then-arg"
 import { withKeyConstraint } from "../helpers/with-key-constraint"
 import { Writable } from "../helpers/writable"
@@ -9,6 +6,7 @@ import { CategoryValue, promptOptionalCategories } from "./questions/categories"
 import { promptContinuousIntegration } from "./questions/categories/continuous-integration"
 import { promptFormatting } from "./questions/categories/formatting"
 import { promptPackageManager } from "./questions/categories/package-manager"
+import { promptStyling } from "./questions/categories/styling"
 import { promptTechnologies } from "./questions/technologies"
 
 const categoryToPromptFunction = withKeyConstraint<CategoryValue>()({
@@ -28,7 +26,9 @@ type TechnologyOption = PromptReturnType extends Array<unknown>
 
 export const performFlagsQuestionnaire =
   async (): Promise<ValidCreateNextStackFlags> => {
+    // Mandatory prompts
     const packageManager = await promptPackageManager()
+    const stylingMethod = await promptStyling()
 
     // Optional categories prompt
     const optionalCategories = await promptOptionalCategories()
@@ -43,7 +43,7 @@ export const performFlagsQuestionnaire =
 
     return {
       "package-manager": packageManager,
-      styling: getStyling(oldTechnologies),
+      styling: stylingMethod,
       prettier: technologies.has("prettier"),
       "formatting-pre-commit-hook": oldTechnologies.includes("preCommitHook"),
       "react-hook-form": oldTechnologies.includes("reactHookForm"),
@@ -52,20 +52,3 @@ export const performFlagsQuestionnaire =
       "github-actions": technologies.has("githubActions"),
     }
   }
-
-const getStyling = (
-  technologies: ThenArg<ReturnType<typeof promptTechnologies>>
-): StylingOption => {
-  // TODO: Strengthen typing. TypeScript throw error here when new styling method is added in promptTechnologies.
-  if (technologies.includes("emotion")) {
-    return "emotion"
-  } else if (technologies.includes("styledComponents")) {
-    return "styled-components"
-  } else if (technologies.includes("cssModules")) {
-    return "css-modules"
-  } else if (technologies.includes("cssModulesWithSass")) {
-    return "css-modules-with-sass"
-  } else {
-    throw new Error("Styling method not found or not supported.")
-  }
-}
