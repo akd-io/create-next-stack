@@ -2,8 +2,6 @@ import inquirer, { Separator } from "inquirer"
 import { arrayToKeyToKeyMap } from "../../helpers/array-to-key-to-key-map"
 
 const techValueArray = [
-  "yarn",
-  "npm",
   "emotion",
   "styledComponents",
   "cssModules",
@@ -23,15 +21,6 @@ const techChoices: {
     checked?: boolean
   }
 } = {
-  yarn: {
-    value: "yarn",
-    name: "Yarn",
-    checked: true,
-  },
-  npm: {
-    value: "npm",
-    name: "npm",
-  },
   emotion: {
     value: "emotion",
     name: "Emotion",
@@ -83,10 +72,6 @@ export const promptTechnologies = async (): Promise<
     message: "What technologies are you looking to use?",
     pageSize: 10,
     choices: [
-      new Separator("Package manager:"),
-      techChoices.yarn,
-      techChoices.npm,
-
       new Separator("Styling:"),
       techChoices.emotion,
       techChoices.styledComponents,
@@ -104,14 +89,6 @@ export const promptTechnologies = async (): Promise<
       techChoices.preCommitHook,
     ],
     validate: (technologies) => {
-      const onlyOnePackageManagerSelected = oneOf(
-        technologies.includes(techValues.yarn),
-        technologies.includes(techValues.npm)
-      )
-      if (!onlyOnePackageManagerSelected) {
-        return `You have to pick exactly one package manager.`
-      }
-
       // TODO: Remember to validate preCommitHook. It requires Prettier.
 
       const onlyOneStylingSelected = oneOf(

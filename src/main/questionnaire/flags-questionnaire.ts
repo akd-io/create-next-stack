@@ -1,5 +1,4 @@
 import {
-  PackageManagerOption,
   StylingOption,
   ValidCreateNextStackFlags,
 } from "../create-next-stack-types"
@@ -9,13 +8,14 @@ import { Writable } from "../helpers/writable"
 import { CategoryValue, promptCategories } from "./questions/categories"
 import { promptContinuousIntegration } from "./questions/categories/continuous-integration"
 import { promptFormatting } from "./questions/categories/formatting"
+import { promptPackageManager } from "./questions/categories/package-manager"
 import { promptTechnologies } from "./questions/technologies"
 
 const categoryToPromptFunction = withKeyConstraint<CategoryValue>()({
   formatting: promptFormatting,
+  formStateManagement: async () => ["placeholder"] as const, // TODO: Implement
   animation: async () => ["placeholder"] as const, // TODO: Implement
   continuousIntegration: promptContinuousIntegration,
-  formStateManagement: async () => ["placeholder"] as const, // TODO: Implement
 } as const)
 
 type PromptReturnType = Writable<
@@ -28,6 +28,8 @@ type TechnologyOption = PromptReturnType extends Array<unknown>
 
 export const performFlagsQuestionnaire =
   async (): Promise<ValidCreateNextStackFlags> => {
+    const packageManager = await promptPackageManager()
+
     const categories = await promptCategories()
 
     const technologies = new Set<TechnologyOption>()
@@ -39,7 +41,7 @@ export const performFlagsQuestionnaire =
     const oldTechnologies = await promptTechnologies()
 
     return {
-      "package-manager": getPackageManager(oldTechnologies),
+      "package-manager": packageManager,
       styling: getStyling(oldTechnologies),
       prettier: technologies.has("prettier"),
       "formatting-pre-commit-hook": oldTechnologies.includes("preCommitHook"),
@@ -49,19 +51,6 @@ export const performFlagsQuestionnaire =
       "github-actions": technologies.has("githubActions"),
     }
   }
-
-const getPackageManager = (
-  technologies: ThenArg<ReturnType<typeof promptTechnologies>>
-): PackageManagerOption => {
-  // TODO: Strengthen typing. TypeScript throw error here when new package manager is added in promptTechnologies.
-  if (technologies.includes("yarn")) {
-    return "yarn"
-  } else if (technologies.includes("npm")) {
-    return "npm"
-  } else {
-    throw new Error("Package manager not found or not supported.")
-  }
-}
 
 const getStyling = (
   technologies: ThenArg<ReturnType<typeof promptTechnologies>>
