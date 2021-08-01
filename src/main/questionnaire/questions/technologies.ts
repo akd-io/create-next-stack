@@ -1,7 +1,7 @@
 import inquirer, { Separator } from "inquirer"
 import { arrayToKeyToKeyMap } from "../../helpers/array-to-key-to-key-map"
 
-const techValueArray = ["framerMotion", "preCommitHook"] as const
+const techValueArray = ["preCommitHook"] as const
 export type TechValue = typeof techValueArray[number]
 export const techValues = arrayToKeyToKeyMap(techValueArray)
 
@@ -12,10 +12,6 @@ const techChoices: {
     checked?: boolean
   }
 } = {
-  framerMotion: {
-    value: "framerMotion",
-    name: "Framer Motion",
-  },
   preCommitHook: {
     value: "preCommitHook",
     name: "Formatting pre-commit hook (Husky & lint-staged)",
@@ -36,13 +32,7 @@ export const promptTechnologies = async (): Promise<
     type: "checkbox",
     message: "What technologies are you looking to use?",
     pageSize: 10,
-    choices: [
-      new Separator("Animation:"),
-      techChoices.framerMotion,
-
-      new Separator("Miscellaneous:"),
-      techChoices.preCommitHook,
-    ],
+    choices: [new Separator("Miscellaneous:"), techChoices.preCommitHook],
     validate: () => {
       // TODO: Remember to validate preCommitHook. It requires Prettier.
 

@@ -1,8 +1,8 @@
 import { ValidCreateNextStackFlags } from "../create-next-stack-types"
 import { ThenArg } from "../helpers/then-arg"
 import { withKeyConstraint } from "../helpers/with-key-constraint"
-import { Writable } from "../helpers/writable"
 import { CategoryValue, promptOptionalCategories } from "./questions/categories"
+import { promptAnimation } from "./questions/categories/animation"
 import { promptContinuousIntegration } from "./questions/categories/continuous-integration"
 import { promptFormStateManagement } from "./questions/categories/form-state-management"
 import { promptFormatting } from "./questions/categories/formatting"
@@ -13,13 +13,12 @@ import { promptTechnologies } from "./questions/technologies"
 const categoryToPromptFunction = withKeyConstraint<CategoryValue>()({
   formatting: promptFormatting,
   formStateManagement: promptFormStateManagement,
-  animation: async () => ["placeholder"] as const, // TODO: Implement
+  animation: promptAnimation,
   continuousIntegration: promptContinuousIntegration,
 } as const)
 
-type PromptReturnType = Writable<
-  // TODO: Remove Writable when all functions above are added.
-  ThenArg<ReturnType<typeof categoryToPromptFunction[CategoryValue]>>
+type PromptReturnType = ThenArg<
+  ReturnType<typeof categoryToPromptFunction[CategoryValue]>
 >
 type TechnologyOption = PromptReturnType extends Array<unknown>
   ? PromptReturnType[number]
@@ -33,7 +32,6 @@ export const performFlagsQuestionnaire =
 
     // Optional categories prompt
     const optionalCategories = await promptOptionalCategories()
-
     const technologies = new Set<TechnologyOption>()
     for (const category of optionalCategories) {
       const additionalTechnologies = await categoryToPromptFunction[category]()
@@ -49,7 +47,7 @@ export const performFlagsQuestionnaire =
       "formatting-pre-commit-hook": oldTechnologies.includes("preCommitHook"),
       "react-hook-form": technologies.has("reactHookForm"),
       formik: technologies.has("formik"),
-      "framer-motion": oldTechnologies.includes("framerMotion"),
+      "framer-motion": technologies.has("framerMotion"),
       "github-actions": technologies.has("githubActions"),
     }
   }
