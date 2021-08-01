@@ -6,9 +6,12 @@ import { promptAnimation } from "./questions/categories/animation"
 import { promptContinuousIntegration } from "./questions/categories/continuous-integration"
 import { promptFormStateManagement } from "./questions/categories/form-state-management"
 import { promptFormatting } from "./questions/categories/formatting"
+import {
+  MiscellaneousValue,
+  promptMiscellaneous,
+} from "./questions/categories/miscellaneous"
 import { promptPackageManager } from "./questions/categories/package-manager"
 import { promptStyling } from "./questions/categories/styling"
-import { promptTechnologies } from "./questions/technologies"
 
 const categoryToPromptFunction = withKeyConstraint<CategoryValue>()({
   formatting: promptFormatting,
@@ -20,7 +23,7 @@ const categoryToPromptFunction = withKeyConstraint<CategoryValue>()({
 type PromptReturnType = ThenArg<
   ReturnType<typeof categoryToPromptFunction[CategoryValue]>
 >
-type TechnologyOption = PromptReturnType extends Array<unknown>
+export type OptionalTechnology = PromptReturnType extends Array<unknown>
   ? PromptReturnType[number]
   : PromptReturnType
 
@@ -32,22 +35,26 @@ export const performFlagsQuestionnaire =
 
     // Optional categories prompt
     const optionalCategories = await promptOptionalCategories()
-    const technologies = new Set<TechnologyOption>()
+    const optionalTechnologies = new Set<OptionalTechnology>()
     for (const category of optionalCategories) {
       const additionalTechnologies = await categoryToPromptFunction[category]()
-      additionalTechnologies.forEach((tech) => technologies.add(tech))
+      additionalTechnologies.forEach((tech) => optionalTechnologies.add(tech))
     }
 
-    const oldTechnologies = await promptTechnologies()
+    // TODO: Remove prettier-check when promptMiscellaneous adds more options
+    let miscellaneous: Set<MiscellaneousValue> = new Set()
+    if (optionalTechnologies.has("prettier")) {
+      miscellaneous = await promptMiscellaneous(optionalTechnologies)
+    }
 
     return {
       "package-manager": packageManager,
       styling: stylingMethod,
-      prettier: technologies.has("prettier"),
-      "formatting-pre-commit-hook": oldTechnologies.includes("preCommitHook"),
-      "react-hook-form": technologies.has("reactHookForm"),
-      formik: technologies.has("formik"),
-      "framer-motion": technologies.has("framerMotion"),
-      "github-actions": technologies.has("githubActions"),
+      prettier: optionalTechnologies.has("prettier"),
+      "formatting-pre-commit-hook": miscellaneous.has("preCommitHook"),
+      "react-hook-form": optionalTechnologies.has("reactHookForm"),
+      formik: optionalTechnologies.has("formik"),
+      "framer-motion": optionalTechnologies.has("framerMotion"),
+      "github-actions": optionalTechnologies.has("githubActions"),
     }
   }
