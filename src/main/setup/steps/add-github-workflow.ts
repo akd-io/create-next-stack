@@ -32,7 +32,11 @@ const generateCiYml = ({ flags }: ValidCNSInputs): string => {
 
     jobs:
       build:
-        name: "Check format, lint, build, and test"
+        name: ${
+          flags.prettier
+            ? "Check format, lint, build, and test"
+            : "Lint, build, and test"
+        }
 
         runs-on: ubuntu-latest
 
