@@ -1,5 +1,4 @@
 import {
-  ContinuousIntegrationOption,
   PackageManagerOption,
   StylingOption,
   ValidCreateNextStackFlags,
@@ -17,7 +16,7 @@ export const performFlagsQuestionnaire =
       "react-hook-form": technologies.includes("reactHookForm"),
       formik: technologies.includes("formik"),
       "framer-motion": technologies.includes("framerMotion"),
-      "continuous-integration": getContinuousIntegration(technologies),
+      "github-actions": technologies.includes("githubActions"),
       "formatting-pre-commit-hook": technologies.includes("preCommitHook"),
     }
   }
@@ -51,16 +50,5 @@ const getStyling = (
     return "css-modules-with-sass"
   } else {
     throw new Error("Styling method not found or not supported.")
-  }
-}
-
-const getContinuousIntegration = (
-  technologies: ThenArg<ReturnType<typeof promptTechnologies>>
-): ContinuousIntegrationOption => {
-  // TODO: Strengthen typing. TypeScript throw error here when new styling method is added in promptTechnologies.
-  if (technologies.includes("githubActions")) {
-    return "github-actions"
-  } else {
-    throw new Error("Continuous Integration method not found or not supported.")
   }
 }

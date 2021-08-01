@@ -4,7 +4,6 @@ import {
   CreateNextStackFlags,
   validateArgs,
   validateFlags,
-  writableContinuousIntegrationOptions,
   writablePackageManagerOptions,
   writableStylingOptions,
 } from "./create-next-stack-types"
@@ -74,9 +73,8 @@ class CreateNextStack extends Command {
     }),
 
     // Continuous integration
-    "continuous-integration": flags.enum({
-      options: writableContinuousIntegrationOptions,
-      description: "Adds continuous integration.",
+    "github-actions": flags.boolean({
+      description: "Adds a GitHub Actions continuous integration workflow.",
     }),
 
     // Formatting pre-commit hook

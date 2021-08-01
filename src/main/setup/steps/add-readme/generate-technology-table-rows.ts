@@ -9,21 +9,24 @@ export const generateTechnologyTableRows = async (
   type TechnologyTableRow = {
     name: string
     links: string
-    filter?: boolean
+    filter: boolean
   }
 
   const technologies: TechnologyTableRow[] = [
     {
       name: /* md */ `[Next.js](https://nextjs.org/)`,
       links: /* md */ `[Docs](https://nextjs.org/docs) - [Learn Next.js](https://nextjs.org/learn) - [GitHub repo](https://github.com/vercel/next.js)`,
+      filter: true,
     },
     {
       name: /* md */ `[React](https://reactjs.org/)`,
       links: /* md */ `[Docs](https://reactjs.org/docs/getting-started.html) - [GitHub repo](https://github.com/facebook/react)`,
+      filter: true,
     },
     {
       name: /* md */ `[TypeScript](https://www.typescriptlang.org/)`,
       links: /* md */ `[Docs](https://www.typescriptlang.org/docs/) - [GitHub repo](https://github.com/microsoft/TypeScript)`,
+      filter: true,
     },
     {
       name: /* md */ `[Emotion](https://emotion.sh/docs/introduction)`,
@@ -65,6 +68,7 @@ export const generateTechnologyTableRows = async (
     {
       name: /* md */ `[ESLint](https://eslint.org/)`,
       links: /* md */ `[Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub Repo](https://github.com/eslint/eslint)`,
+      filter: true,
     },
     {
       name: /* md */ `[Prettier](https://prettier.io/)`,
@@ -94,14 +98,12 @@ export const generateTechnologyTableRows = async (
     {
       name: /* md */ `[GitHub Actions](https://github.com/features/actions)`,
       links: /* md */ `[Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)`,
-      filter: flags["continuous-integration"] === "github-actions",
+      filter: Boolean(flags["github-actions"]),
     },
   ]
 
   const technologyRowsString = technologies
-    .filter((technology) =>
-      typeof technology.filter !== "undefined" ? technology.filter : true
-    )
+    .filter((technology) => technology.filter)
     .map((technology) => /* md */ `|${technology.name}|${technology.links}|`)
     .join("\n")
 

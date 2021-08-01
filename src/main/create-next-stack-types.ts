@@ -44,13 +44,6 @@ export const writableStylingOptions = stylingOptions as Writable<
   typeof stylingOptions
 >
 
-// Continuous integration flag:
-export const continuousIntegrationOptions = ["github-actions"] as const
-export type ContinuousIntegrationOption =
-  typeof continuousIntegrationOptions[number]
-export const writableContinuousIntegrationOptions =
-  continuousIntegrationOptions as Writable<typeof continuousIntegrationOptions>
-
 // Valid Args type and type guard
 export type ValidCreateNextStackArgs = CreateNextStackArgs & { appName: string }
 export const validateArgs = (

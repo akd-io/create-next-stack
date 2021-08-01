@@ -115,7 +115,7 @@ export const promptTechnologies = async (): Promise<
       new Separator("Animation:"),
       techChoices.framerMotion,
 
-      new Separator("Continuous Integration:"),
+      new Separator("Continuous integration:"),
       techChoices.githubActions,
 
       new Separator("Miscellaneous:"),
