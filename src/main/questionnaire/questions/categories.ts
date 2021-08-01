@@ -13,7 +13,9 @@ const categoryValuesArray = [
 export type CategoryValue = typeof categoryValuesArray[number]
 const categoryValues = arrayToKeyToKeyMap(categoryValuesArray)
 
-export const promptCategories = async (): Promise<Set<CategoryValue>> => {
+// TODO: You can strengthen typings by turning the choices array into an object located here, as in technologies.ts
+
+export const promptCategories = async (): Promise<CategoryValue[]> => {
   const answerName = "categories"
   type ProjectNameAnswers = {
     [answerName]: CategoryValue[]
@@ -25,35 +27,31 @@ export const promptCategories = async (): Promise<Set<CategoryValue>> => {
     message: "What categories of technologies are you looking to use?",
     choices: [
       {
-        key: categoryValues.styling,
-        name: "styling",
-      },
-      {
-        key: categoryValues.packageManagement,
+        value: categoryValues.packageManagement,
         name: "Package management",
       },
       {
-        key: categoryValues.animation,
-        name: "Animation",
+        value: categoryValues.styling,
+        name: "Styling",
       },
       {
-        key: categoryValues.continuousIntegration,
-        name: "Continuous integration",
-      },
-      {
-        key: categoryValues.formStateManagement,
-        name: "Form state management",
-      },
-      {
-        key: categoryValues.formatting,
+        value: categoryValues.formatting,
         name: "Formatting",
       },
       {
-        key: categoryValues.miscellaneous,
-        name: "Miscellaneous",
+        value: categoryValues.animation,
+        name: "Animation",
+      },
+      {
+        value: categoryValues.continuousIntegration,
+        name: "Continuous integration",
+      },
+      {
+        value: categoryValues.formStateManagement,
+        name: "Form state management",
       },
     ],
   })
 
-  return new Set(categories)
+  return categories
 }
