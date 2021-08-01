@@ -22,16 +22,17 @@ export const testDefaultOptionsInteractive = async (
     stderr: "inherit",
   })
 
-  logTestInfo("Sending 3 x \\n to accept default options.")
-  setTimeout(() => {
+  logTestInfo("Sending 7 x \\n to accept default options.")
+
+  const delay = (ms: number): Promise<void> => {
+    return new Promise((resolve) => setTimeout(resolve, ms))
+  }
+
+  await delay(1000)
+  for (let i = 0; i < 7; i++) {
     execaProcess.stdin?.write("\n")
-    setTimeout(() => {
-      execaProcess.stdin?.write("\n")
-      setTimeout(() => {
-        execaProcess.stdin?.write("\n")
-      }, 1000)
-    }, 1000)
-  }, 1000)
+    await delay(500)
+  }
 
   await execaProcess
 

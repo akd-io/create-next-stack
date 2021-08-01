@@ -51,10 +51,10 @@ export const performFlagsQuestionnaire =
       "package-manager": packageManager,
       styling: stylingMethod,
       prettier: optionalTechnologies.has("prettier"),
-      "formatting-pre-commit-hook": miscellaneous.has("preCommitHook"),
       "react-hook-form": optionalTechnologies.has("reactHookForm"),
       formik: optionalTechnologies.has("formik"),
       "framer-motion": optionalTechnologies.has("framerMotion"),
       "github-actions": optionalTechnologies.has("githubActions"),
+      "formatting-pre-commit-hook": miscellaneous.has("preCommitHook"),
     }
   }

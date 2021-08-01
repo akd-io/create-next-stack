@@ -26,10 +26,12 @@ export const promptOptionalCategories = async (): Promise<CategoryValue[]> => {
       {
         value: categoryValues.formatting,
         name: "Formatting",
+        checked: true,
       },
       {
         value: categoryValues.formStateManagement,
         name: "Form state management",
+        checked: true,
       },
       {
         value: categoryValues.animation,
@@ -38,6 +40,7 @@ export const promptOptionalCategories = async (): Promise<CategoryValue[]> => {
       {
         value: categoryValues.continuousIntegration,
         name: "Continuous integration",
+        checked: true,
       },
     ],
   })
