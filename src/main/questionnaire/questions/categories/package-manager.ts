@@ -1,9 +1,9 @@
 import inquirer from "inquirer"
+import { packageManagerOptions } from "../../../create-next-stack-types"
 import { arrayToKeyToKeyMap } from "../../../helpers/array-to-key-to-key-map"
 
-const packageManagerValuesArray = ["yarn", "npm"] as const
-type PackageManagerValue = typeof packageManagerValuesArray[number]
-const packageManagerValues = arrayToKeyToKeyMap(packageManagerValuesArray)
+type PackageManagerValue = typeof packageManagerOptions[number]
+const packageManagerValues = arrayToKeyToKeyMap(packageManagerOptions)
 
 const answerName = "packageManager"
 type Answers = {
