@@ -1,6 +1,6 @@
-import { getProjectNameOfPath } from "../../helpers/get-project-name-of-path"
-import { validateNpmName } from "../../helpers/validate-npm-name"
-import { logError } from "../../logging"
+import { logError } from "../logging"
+import { getProjectNameOfPath } from "./get-project-name-of-path"
+import { validateNpmName } from "./validate-npm-name"
 
 /**
  * @param this Current Command instance

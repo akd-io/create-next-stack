@@ -2,8 +2,8 @@ import {
   CreateNextStackArgs,
   ValidCreateNextStackArgs,
 } from "../create-next-stack-types"
+import { validateProjectPathInput } from "../helpers/validate-project-path"
 import { promptProjectPath } from "./questions/project-name"
-import { validateProjectPathInput } from "./questions/validate-project-path"
 
 export const performArgsQuestionnaire = async (
   args: CreateNextStackArgs
