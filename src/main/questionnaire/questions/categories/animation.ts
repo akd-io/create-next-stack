@@ -21,6 +21,7 @@ export const promptAnimation = async (): Promise<AnimationValue[]> => {
       {
         value: animationValues.framerMotion,
         name: "Framer Motion",
+        checked: true,
       },
     ],
   })

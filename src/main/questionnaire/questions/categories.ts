@@ -36,6 +36,7 @@ export const promptOptionalCategories = async (): Promise<CategoryValue[]> => {
       {
         value: categoryValues.animation,
         name: "Animation",
+        checked: true,
       },
       {
         value: categoryValues.continuousIntegration,
