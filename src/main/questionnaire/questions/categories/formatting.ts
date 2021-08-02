@@ -14,7 +14,7 @@ export const promptFormatting = async (): Promise<FormattingValue[]> => {
   const { formatting } = await inquirer.prompt<Answers>({
     name: answerName,
     type: "checkbox",
-    message: "Pick your preferred formatting technology",
+    message: "Formatting:",
     choices: [
       {
         value: formattingValues.prettier,

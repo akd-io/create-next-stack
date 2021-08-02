@@ -16,7 +16,7 @@ export const promptAnimation = async (): Promise<AnimationValue[]> => {
   const { animation } = await inquirer.prompt<Answers>({
     name: answerName,
     type: "checkbox",
-    message: "What continuous integration technologies are you looking to use?",
+    message: "Animation:",
     choices: [
       {
         value: animationValues.framerMotion,

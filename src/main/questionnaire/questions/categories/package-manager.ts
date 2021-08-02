@@ -14,7 +14,7 @@ export const promptPackageManager = async (): Promise<PackageManagerValue> => {
   const { packageManager } = await inquirer.prompt<Answers>({
     name: answerName,
     type: "list",
-    message: "Pick your preferred package manager",
+    message: "Pick your preferred package manager:",
     choices: [
       {
         value: packageManagerValues.yarn,

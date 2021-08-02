@@ -19,7 +19,7 @@ export const promptContinuousIntegration = async (): Promise<
   const { continuousIntegrations } = await inquirer.prompt<Answers>({
     name: answerName,
     type: "checkbox",
-    message: "What continuous integration technologies are you looking to use?",
+    message: "Continuous integration:",
     choices: [
       {
         value: continuousIntegrationValues["githubActions"],

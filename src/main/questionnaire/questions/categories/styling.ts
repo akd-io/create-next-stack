@@ -14,7 +14,7 @@ export const promptStyling = async (): Promise<StylingValue> => {
   const { styling } = await inquirer.prompt<Answers>({
     name: answerName,
     type: "list",
-    message: "Pick your preferred styling method",
+    message: "Pick your preferred styling method:",
     choices: [
       {
         value: stylingValues.emotion,

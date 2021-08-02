@@ -18,7 +18,7 @@ export const promptFormStateManagement = async (): Promise<
   const { formStateManagement } = await inquirer.prompt<Answers>({
     name: answerName,
     type: "checkbox",
-    message: "Pick form state management library",
+    message: "Form state management:",
     choices: [
       {
         value: formStateManagementValues.reactHookForm,
