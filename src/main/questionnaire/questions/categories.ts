@@ -3,6 +3,7 @@ import { arrayToKeyToKeyMap } from "../../helpers/array-to-key-to-key-map"
 
 const categoryValuesArray = [
   "formatting",
+  "componentLibraries",
   "formStateManagement",
   "animation",
   "continuousIntegration",
@@ -24,6 +25,11 @@ export const promptOptionalCategories = async (): Promise<CategoryValue[]> => {
       {
         value: categoryValues.formatting,
         name: "Formatting",
+        checked: true,
+      },
+      {
+        value: categoryValues.componentLibraries,
+        name: "Component libraries",
         checked: true,
       },
       {

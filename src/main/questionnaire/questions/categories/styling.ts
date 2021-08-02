@@ -1,8 +1,8 @@
 import inquirer from "inquirer"
-import { stylingOptions } from "../../../create-next-stack-types"
+import { StylingOption, stylingOptions } from "../../../create-next-stack-types"
 import { arrayToKeyToKeyMap } from "../../../helpers/array-to-key-to-key-map"
 
-type StylingValue = typeof stylingOptions[number]
+export type StylingValue = StylingOption
 const stylingValues = arrayToKeyToKeyMap(stylingOptions)
 
 const answerName = "styling"
