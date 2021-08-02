@@ -2,7 +2,7 @@ import inquirer from "inquirer"
 import { arrayToKeyToKeyMap } from "../../../helpers/array-to-key-to-key-map"
 import { OptionalTechnology } from "../../flags-questionnaire"
 
-const miscellaneousValueArray = ["preCommitHook"] as const
+const miscellaneousValueArray = ["formattingPreCommitHook"] as const
 export type MiscellaneousValue = typeof miscellaneousValueArray[number]
 export const miscellaneousValues = arrayToKeyToKeyMap(miscellaneousValueArray)
 
@@ -17,14 +17,15 @@ export const promptMiscellaneous = async (
   const { technologies } = await inquirer.prompt<Answers>({
     name: answerName,
     type: "checkbox",
-    message: "Miscellaneous",
+    message: "Miscellaneous:",
     pageSize: 10,
     choices: [
       {
-        value: "preCommitHook",
+        value: "formattingPreCommitHook",
         name: "Formatting pre-commit hook (Husky & lint-staged)",
         checked: optionalTechnologies.has("prettier"),
         disabled: !optionalTechnologies.has("prettier"),
+        short: "Formatting pre-commit hook",
       },
       // TODO: When adding more options, remove prettier-check in flags-questionnaire.ts
     ],

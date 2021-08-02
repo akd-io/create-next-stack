@@ -55,6 +55,8 @@ export const performFlagsQuestionnaire =
       formik: optionalTechnologies.has("formik"),
       "framer-motion": optionalTechnologies.has("framerMotion"),
       "github-actions": optionalTechnologies.has("githubActions"),
-      "formatting-pre-commit-hook": miscellaneous.has("preCommitHook"),
+      "formatting-pre-commit-hook": miscellaneous.has(
+        "formattingPreCommitHook"
+      ),
     }
   }
