@@ -10,8 +10,6 @@ const categoryValuesArray = [
 export type CategoryValue = typeof categoryValuesArray[number]
 const categoryValues = arrayToKeyToKeyMap(categoryValuesArray)
 
-// TODO: You can strengthen typings by turning the choices array into an object located here, as in technologies.ts
-
 export const promptOptionalCategories = async (): Promise<CategoryValue[]> => {
   const answerName = "categories"
   type ProjectNameAnswers = {
