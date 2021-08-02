@@ -3,7 +3,7 @@ import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpStyledComponentsStep: Step = {
-  description: "setting up styled-components",
+  description: "setting up Styled Components",
 
   shouldRun: async ({ flags }) => flags.styling === "styled-components",
 

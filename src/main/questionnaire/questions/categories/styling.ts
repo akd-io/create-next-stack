@@ -23,7 +23,7 @@ export const promptStyling = async (): Promise<StylingValue> => {
       },
       {
         value: stylingValues["styled-components"],
-        name: "styled-components",
+        name: "Styled Components",
       },
       {
         value: stylingValues["css-modules"],
