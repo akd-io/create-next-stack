@@ -59,6 +59,11 @@ class CreateNextStack extends Command {
       helpValue: "<styling-method>",
     }),
 
+    // Component libraries:
+    chakra: flags.boolean({
+      description: "Adds Chakra UI. (Component library)",
+    }),
+
     // Form libraries:
     "react-hook-form": flags.boolean({
       description: "Adds React Hook Form. (Form library)",
