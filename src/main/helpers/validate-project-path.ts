@@ -1,6 +1,6 @@
-import { getProjectNameOfPath } from "../../helpers/get-project-name-of-path"
-import { validateNpmName } from "../../helpers/validate-npm-name"
-import { logError } from "../../logging"
+import validateNpmPackageName from "validate-npm-package-name"
+import { logError } from "../logging"
+import { getProjectNameOfPath } from "./get-project-name-of-path"
 
 /**
  * @param this Current Command instance
@@ -29,4 +29,28 @@ export const validateProjectPathInput = (
   }
 
   return true
+}
+
+/**
+ * This code is a slightly modified version of the same code from the Create Next App repository.
+ * From: https://github.com/vercel/next.js/blob/e8a9bd19967c9f78575faa7d38e90a1270ffa519/packages/create-next-app/helpers/validate-pkg.ts
+ */
+const validateNpmName = (
+  name: string
+): {
+  valid: boolean
+  problems: string[]
+} => {
+  const nameValidation = validateNpmPackageName(name)
+  if (nameValidation.validForNewPackages) {
+    return { valid: true, problems: [] }
+  }
+
+  return {
+    valid: false,
+    problems: [
+      ...(nameValidation.errors ?? []),
+      ...(nameValidation.warnings ?? []),
+    ],
+  }
 }

@@ -1,8 +1,8 @@
 import { IConfig } from "@oclif/config"
 import CreateNextStack from "."
 import { UnknownObject } from "./helpers/is-unknown-object"
+import { validateProjectPathInput } from "./helpers/validate-project-path"
 import { Writable } from "./helpers/writable"
-import { validateProjectPathInput } from "./questionnaire/questions/validate-project-path"
 
 /**
  * This function is only used to retrieve the ReturnType of a call to `createNextStackInstance.parse(CreateNextStack)`.

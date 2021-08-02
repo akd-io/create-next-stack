@@ -1,54 +1,62 @@
+import { ValidCreateNextStackFlags } from "../create-next-stack-types"
+import { ThenArg } from "../helpers/then-arg"
+import { withKeyConstraint } from "../helpers/with-key-constraint"
+import { CategoryValue, promptOptionalCategories } from "./questions/categories"
+import { promptAnimation } from "./questions/categories/animation"
+import { promptContinuousIntegration } from "./questions/categories/continuous-integration"
+import { promptFormStateManagement } from "./questions/categories/form-state-management"
+import { promptFormatting } from "./questions/categories/formatting"
 import {
-  PackageManagerOption,
-  StylingOption,
-  ValidCreateNextStackFlags,
-} from "../create-next-stack-types"
-import { promptTechnologies } from "./questions/technologies"
+  MiscellaneousValue,
+  promptMiscellaneous,
+} from "./questions/categories/miscellaneous"
+import { promptPackageManager } from "./questions/categories/package-manager"
+import { promptStyling } from "./questions/categories/styling"
+
+const categoryToPromptFunction = withKeyConstraint<CategoryValue>()({
+  formatting: promptFormatting,
+  formStateManagement: promptFormStateManagement,
+  animation: promptAnimation,
+  continuousIntegration: promptContinuousIntegration,
+} as const)
+
+type PromptReturnType = ThenArg<
+  ReturnType<typeof categoryToPromptFunction[CategoryValue]>
+>
+export type OptionalTechnology = PromptReturnType extends Array<unknown>
+  ? PromptReturnType[number]
+  : PromptReturnType
 
 export const performFlagsQuestionnaire =
   async (): Promise<ValidCreateNextStackFlags> => {
-    const technologies = await promptTechnologies()
+    // Mandatory prompts
+    const packageManager = await promptPackageManager()
+    const stylingMethod = await promptStyling()
+
+    // Optional categories prompt
+    const optionalCategories = await promptOptionalCategories()
+    const optionalTechnologies = new Set<OptionalTechnology>()
+    for (const category of optionalCategories) {
+      const additionalTechnologies = await categoryToPromptFunction[category]()
+      additionalTechnologies.forEach((tech) => optionalTechnologies.add(tech))
+    }
+
+    // TODO: Remove prettier-check when promptMiscellaneous adds more options
+    let miscellaneous: Set<MiscellaneousValue> = new Set()
+    if (optionalTechnologies.has("prettier")) {
+      miscellaneous = await promptMiscellaneous(optionalTechnologies)
+    }
 
     return {
-      "package-manager": getPackageManager(technologies),
-      prettier: technologies.includes("prettier"),
-      styling: getStyling(technologies),
-      "react-hook-form": technologies.includes("reactHookForm"),
-      formik: technologies.includes("formik"),
-      "framer-motion": technologies.includes("framerMotion"),
-      "github-actions": technologies.includes("githubActions"),
-      "formatting-pre-commit-hook": technologies.includes("preCommitHook"),
+      "package-manager": packageManager,
+      styling: stylingMethod,
+      prettier: optionalTechnologies.has("prettier"),
+      "react-hook-form": optionalTechnologies.has("reactHookForm"),
+      formik: optionalTechnologies.has("formik"),
+      "framer-motion": optionalTechnologies.has("framerMotion"),
+      "github-actions": optionalTechnologies.has("githubActions"),
+      "formatting-pre-commit-hook": miscellaneous.has(
+        "formattingPreCommitHook"
+      ),
     }
   }
-
-type ThenArg<T> = T extends PromiseLike<infer U> ? U : T
-
-const getPackageManager = (
-  technologies: ThenArg<ReturnType<typeof promptTechnologies>>
-): PackageManagerOption => {
-  // TODO: Strengthen typing. TypeScript throw error here when new package manager is added in promptTechnologies.
-  if (technologies.includes("yarn")) {
-    return "yarn"
-  } else if (technologies.includes("npm")) {
-    return "npm"
-  } else {
-    throw new Error("Package manager not found or not supported.")
-  }
-}
-
-const getStyling = (
-  technologies: ThenArg<ReturnType<typeof promptTechnologies>>
-): StylingOption => {
-  // TODO: Strengthen typing. TypeScript throw error here when new styling method is added in promptTechnologies.
-  if (technologies.includes("emotion")) {
-    return "emotion"
-  } else if (technologies.includes("styledComponents")) {
-    return "styled-components"
-  } else if (technologies.includes("cssModules")) {
-    return "css-modules"
-  } else if (technologies.includes("cssModulesWithSass")) {
-    return "css-modules-with-sass"
-  } else {
-    throw new Error("Styling method not found or not supported.")
-  }
-}

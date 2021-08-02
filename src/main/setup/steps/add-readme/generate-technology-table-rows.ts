@@ -34,7 +34,7 @@ export const generateTechnologyTableRows = async (
       filter: flags.styling === "emotion",
     },
     {
-      name: /* md */ `[styled-components](https://styled-components.com/)`,
+      name: /* md */ `[Styled Components](https://styled-components.com/)`,
       links: /* md */ `[Docs](https://styled-components.com/docs) - [GitHub repo](https://github.com/styled-components/styled-components)`,
       filter: flags.styling === "styled-components",
     },
