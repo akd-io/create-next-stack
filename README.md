@@ -62,7 +62,7 @@ Technologies marked as _convenience installs_ are technologies that work out of 
 | [Yarn](https://yarnpkg.com/)                                                                                                      | [CLI Docs](https://yarnpkg.com/cli) - [GitHub repo](https://github.com/yarnpkg/berry)                                                                                |
 | [npm](https://www.npmjs.com/)                                                                                                     | [CLI Docs](https://docs.npmjs.com/cli/)                                                                                                                              |
 | [Emotion](https://emotion.sh/docs/introduction)                                                                                   | [Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)                                                                  |
-| [styled-components](https://styled-components.com/)                                                                               | [Docs](https://styled-components.com/docs) - [GitHub repo](https://github.com/styled-components/styled-components)                                                   |
+| [Styled Components](https://styled-components.com/)                                                                               | [Docs](https://styled-components.com/docs) - [GitHub repo](https://github.com/styled-components/styled-components)                                                   |
 | [CSS Modules](https://github.com/css-modules/css-modules)                                                                         | [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
 | [Sass](https://sass-lang.com/) <img width="14" alt="convenience install icon" src="assets/convenience-icon.png">                  | [Docs](https://sass-lang.com/documentation) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support)                      |
 | [React Hook Form](https://react-hook-form.com/) <img width="14" alt="convenience install icon" src="assets/convenience-icon.png"> | [Docs](https://react-hook-form.com/get-started) - [GitHub repo](https://github.com/react-hook-form/react-hook-form)                                                  |
@@ -71,6 +71,7 @@ Technologies marked as _convenience installs_ are technologies that work out of 
 | [Prettier](https://prettier.io/)                                                                                                  | [Docs](https://prettier.io/docs/en/index.html) - [Options](https://prettier.io/docs/en/options.html) - [GitHub repo](https://github.com/prettier/prettier)           |
 | [Husky](https://typicode.github.io/husky/)                                                                                        | [Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)                                                                         |
 | [lint-staged](https://github.com/okonet/lint-staged)                                                                              | [GitHub repo](https://github.com/okonet/lint-staged)                                                                                                                 |
+| [GitHub Actions](https://github.com/features/actions)                                                                             | [Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)                      |
 
 ## Usage
 
@@ -90,6 +91,7 @@ OPTIONS
   --formatting-pre-commit-hook  Adds a formatting pre-commit hook.
   --formik                      Adds Formik. (Form library)
   --framer-motion               Adds Framer Motion. (Animation library)
+  --github-actions              Adds a GitHub Actions continuous integration workflow.
   --package-manager=(yarn|npm)  Sets the preferred package manager.
   --prettier                    Adds Prettier. (Code formatting)
   --react-hook-form             Adds React Hook Form. (Form library)

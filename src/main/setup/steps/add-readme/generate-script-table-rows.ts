@@ -8,25 +8,29 @@ export const generateScriptTableRows = async (
   type ScriptTableRow = {
     name: string
     description: string
-    filter?: boolean
+    filter: boolean
   }
 
   const scripts: ScriptTableRow[] = [
     {
       name: /* md */ `\`dev\``,
       description: /* md */ `Runs the Next.js development server.`,
+      filter: true,
     },
     {
       name: /* md */ `\`build\``,
       description: /* md */ `Generates a production build.`,
+      filter: true,
     },
     {
       name: /* md */ `\`start\``,
       description: /* md */ `Runs the Next.js production server built using \`build\` script.`,
+      filter: true,
     },
     {
       name: /* md */ `\`lint\``,
       description: /* md */ `Runs [ESLint](https://eslint.org/) to catch linting errors in the source code.`,
+      filter: true,
     },
     {
       name: /* md */ `\`format\``,
@@ -48,9 +52,7 @@ export const generateScriptTableRows = async (
   ]
 
   const scriptRowsString = scripts
-    .filter((script) =>
-      typeof script.filter !== "undefined" ? script.filter : true
-    )
+    .filter((script) => script.filter)
     .map((script) => `|${script.name}|${script.description}|`)
     .join("\n")
 

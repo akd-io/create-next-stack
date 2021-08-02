@@ -1,4 +1,4 @@
-import { writeJsonFile } from "../../helpers/write-json-file"
+import { writeJsonFile } from "../../helpers/json-files"
 import { Step } from "../step"
 
 export const addBaseBabelConfigStep: Step = {
@@ -10,11 +10,9 @@ export const addBaseBabelConfigStep: Step = {
 
   run: async () => {
     // The base Babel config is ready for custom preset configurations to be added onto the `next/babel` preset as per the Next.js docs: https://nextjs.org/docs/advanced-features/customizing-babel-config
-    const baseBabelConfig = {
+    await writeJsonFile(".babelrc", {
       presets: [["next/babel", {}]],
       plugins: [],
-    }
-
-    await writeJsonFile(".babelrc", baseBabelConfig)
+    })
   },
 }

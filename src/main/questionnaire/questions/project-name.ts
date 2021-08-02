@@ -1,5 +1,5 @@
 import inquirer from "inquirer"
-import { validateProjectPathInput } from "./validate-project-path"
+import { validateProjectPathInput } from "../../helpers/validate-project-path"
 
 export const promptProjectPath = async (): Promise<string> => {
   const answerName = "projectPath"

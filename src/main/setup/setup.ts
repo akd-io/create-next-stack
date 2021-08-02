@@ -4,8 +4,10 @@ import { logInfo } from "../logging"
 import { printFinalMessages } from "./print-final-messages"
 import { Step } from "./step"
 import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
+import { addBaseTestScriptStep } from "./steps/add-base-test-script"
 import { addContentStep } from "./steps/add-content/add-content"
 import { addGitAttributesStep } from "./steps/add-git-attributes"
+import { addGithubWorkflowStep } from "./steps/add-github-workflow"
 import { addReadmeStep } from "./steps/add-readme/add-readme"
 import { copyAssetsStep } from "./steps/copy-assets"
 import { createNextAppStep } from "./steps/create-next-app"
@@ -34,8 +36,9 @@ export const performSetupSteps = async (
     removeOfficialCNAContentStep,
 
     // Configuration
-    addBaseBabelConfigStep,
     addGitAttributesStep,
+    addBaseBabelConfigStep,
+    addBaseTestScriptStep,
 
     // Styling
     setUpEmotionStep,
@@ -52,6 +55,9 @@ export const performSetupSteps = async (
 
     // Animation
     installFramerMotionStep,
+
+    // Continuous integration
+    addGithubWorkflowStep,
 
     // Add/generate content
     copyAssetsStep,

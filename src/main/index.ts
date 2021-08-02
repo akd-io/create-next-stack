@@ -72,6 +72,11 @@ class CreateNextStack extends Command {
       description: "Adds Framer Motion. (Animation library)",
     }),
 
+    // Continuous integration
+    "github-actions": flags.boolean({
+      description: "Adds a GitHub Actions continuous integration workflow.",
+    }),
+
     // Formatting pre-commit hook
     "formatting-pre-commit-hook": flags.boolean({
       description: "Adds a formatting pre-commit hook.",
@@ -89,7 +94,7 @@ class CreateNextStack extends Command {
       const args = weaklyTypedArgs as CreateNextStackArgs
       const flags = weaklyTypedFlags as CreateNextStackFlags
 
-      if (flags.debug) process.env.DEBUG = "true"
+      if (flags.debug) process.env["DEBUG"] = "true"
 
       if (shouldBeInteractive(flags)) {
         const validArgs = await performArgsQuestionnaire(args)

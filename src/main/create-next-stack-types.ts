@@ -1,8 +1,8 @@
 import { IConfig } from "@oclif/config"
 import CreateNextStack from "."
 import { UnknownObject } from "./helpers/is-unknown-object"
+import { validateProjectPathInput } from "./helpers/validate-project-path"
 import { Writable } from "./helpers/writable"
-import { validateProjectPathInput } from "./questionnaire/questions/validate-project-path"
 
 /**
  * This function is only used to retrieve the ReturnType of a call to `createNextStackInstance.parse(CreateNextStack)`.
@@ -49,13 +49,13 @@ export type ValidCreateNextStackArgs = CreateNextStackArgs & { appName: string }
 export const validateArgs = (
   args: CreateNextStackArgs
 ): args is ValidCreateNextStackArgs => {
-  if (typeof args.appName !== "string") {
+  if (typeof args["appName"] !== "string") {
     throw new TypeError(
       'Outside interactive mode, you are required to specify a name for your application. Read about the "appName" argument using --help.'
     )
   }
 
-  const appNameValidationResult = validateProjectPathInput(args.appName)
+  const appNameValidationResult = validateProjectPathInput(args["appName"])
 
   if (typeof appNameValidationResult === "string") {
     throw new TypeError("Invalid app name: " + appNameValidationResult)
