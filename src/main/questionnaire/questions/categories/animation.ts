@@ -11,8 +11,6 @@ type Answers = {
   [answerName]: AnimationValue[]
 }
 
-// TODO: Make Framer Motion disabled when Chakra UI has been selected.
-
 export const promptAnimation = async (
   technologies: Set<Technology>
 ): Promise<AnimationValue[]> => {
