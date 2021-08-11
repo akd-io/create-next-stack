@@ -73,13 +73,18 @@ export const validateFlags = (
   flags: CreateNextStackFlags
 ): flags is ValidCreateNextStackFlags => {
   if (typeof flags["package-manager"] !== "string") {
-    throw new TypeError(
+    throw new Error(
       'Outside interactive mode, you are required to specify a package manager. Read about the "--package-manager" option using --help.'
     )
   }
   if (typeof flags.styling !== "string") {
-    throw new TypeError(
+    throw new Error(
       'Outside interactive mode, you are required to specify a styling method. Read about the "--styling" option using --help.'
+    )
+  }
+  if (flags.chakra && flags.styling !== "emotion") {
+    throw new Error(
+      "Chakra UI (category: Component library, flag: --chakra) requires Emotion (category: Styling, flag: --styling=emotion)"
     )
   }
   return true
