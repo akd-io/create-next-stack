@@ -1,3 +1,4 @@
+import { install, packages } from "../packages"
 import { Step } from "../step"
 
 export const setUpChakraUIStep: Step = {
@@ -7,7 +8,10 @@ export const setUpChakraUIStep: Step = {
 
   didRun: false,
 
-  run: async () => {
-    // TODO: Set up Chakra UI
+  run: async ({ flags }) => {
+    await install(
+      [packages["@chakra-ui/react"], packages["@chakra-ui/icons"]],
+      flags["package-manager"]
+    )
   },
 }
