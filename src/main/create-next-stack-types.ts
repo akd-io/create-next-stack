@@ -87,6 +87,11 @@ export const validateFlags = (
       "Chakra UI (category: Component library, flag: --chakra) requires Emotion (category: Styling, flag: --styling=emotion)"
     )
   }
+  if (flags.chakra && !flags["framer-motion"]) {
+    throw new Error(
+      "Chakra UI (category: Component library, flag: --chakra) requires Framer Motion (category: Animation, flag: --framer-motion)"
+    )
+  }
   return true
 }
 

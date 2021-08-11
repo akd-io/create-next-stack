@@ -22,10 +22,23 @@ export const promptAnimation = async (
       {
         value: animationValues.framerMotion,
         name: "Framer Motion",
-        checked: true, // Important! If this is changed to false, make sure to add the Chakra UI case, where it should still be checked.
-        disabled: technologies.has("chakra"),
+        checked: true,
       },
     ],
+    validate: (input: unknown): string | true => {
+      if (!Array.isArray(input)) {
+        throw new TypeError("Expected input to be an array.")
+      }
+
+      if (
+        technologies.has("chakra") &&
+        !input.includes(animationValues.framerMotion)
+      ) {
+        return "Framer Motion is required by Chakra UI."
+      }
+
+      return true
+    },
   })
 
   return animation
