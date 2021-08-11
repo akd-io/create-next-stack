@@ -75,7 +75,9 @@ export const performFlagsQuestionnaire =
       miscellaneous.forEach((tech) => technologies.add(tech))
     }
 
-    return {
+    const result: Required<
+      Omit<ValidCreateNextStackFlags, "help" | "version" | "debug">
+    > = {
       "package-manager": packageManager,
       styling: stylingMethod,
       prettier: technologies.has("prettier"),
@@ -86,5 +88,8 @@ export const performFlagsQuestionnaire =
       "formatting-pre-commit-hook": miscellaneous.has(
         "formattingPreCommitHook"
       ),
+      chakra: technologies.has("chakra"),
     }
+
+    return result
   }
