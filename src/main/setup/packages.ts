@@ -51,6 +51,7 @@ export const getNameVersionCombo = (npmPackage: Package): string => {
   return `${npmPackage.name}@^${npmPackage.minVersion}`
 }
 
+// TODO: Strengthen packages type using a Constrained Identity Function
 export const packages = {
   yarn: {
     name: "yarn",
@@ -115,5 +116,13 @@ export const packages = {
   "mrm-task-lint-staged": {
     name: "mrm-task-lint-staged",
     minVersion: "6.0.0",
+  },
+  "@chakra-ui/icons": {
+    name: "@chakra-ui/icons",
+    minVersion: "1.0.0",
+  },
+  "@chakra-ui/react": {
+    name: "@chakra-ui/react",
+    minVersion: "1.0.0",
   },
 } as const
