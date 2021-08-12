@@ -42,7 +42,7 @@ class CreateNextStack extends Command {
     // Package manager:
     "package-manager": flags.enum({
       options: writablePackageManagerOptions,
-      description: "Sets the preferred package manager.",
+      description: "Sets the preferred package manager. (Required)",
     }),
 
     // Formatting:
@@ -53,7 +53,7 @@ class CreateNextStack extends Command {
     // Styling:
     styling: flags.enum({
       options: writableStylingOptions,
-      description: `Sets the preferred styling method. <styling-method> = ${writableStylingOptions.join(
+      description: `Sets the preferred styling method. (Required) <styling-method> = ${writableStylingOptions.join(
         "|"
       )}`,
       helpValue: "<styling-method>",
@@ -61,7 +61,8 @@ class CreateNextStack extends Command {
 
     // Component libraries:
     chakra: flags.boolean({
-      description: "Adds Chakra UI. (Component library)",
+      description:
+        "Adds Chakra UI. (Component library) (Requires Emotion and Framer Motion)",
     }),
 
     // Form libraries:
@@ -84,8 +85,7 @@ class CreateNextStack extends Command {
 
     // Formatting pre-commit hook
     "formatting-pre-commit-hook": flags.boolean({
-      description: "Adds a formatting pre-commit hook.",
-      dependsOn: ["prettier"],
+      description: "Adds a formatting pre-commit hook. (Requires Prettier)",
     }),
   }
 
