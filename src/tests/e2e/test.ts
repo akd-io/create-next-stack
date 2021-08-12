@@ -1,4 +1,5 @@
 import chalk from "chalk"
+import execa from "execa"
 import { exitWithError } from "./helpers/exit-with-error"
 import { setGitNameAndEmail } from "./helpers/set-git-name-and-email"
 import { logTestInfo } from "./test-logging"
@@ -22,6 +23,12 @@ import { testVersionFlag } from "./tests/non-interactive/test-version-flag"
     await setGitNameAndEmail()
 
     const createNextStackDir = process.cwd()
+
+    const { stdout: createNextAppVersion } = await execa("npx", [
+      "create-next-app",
+      "--version",
+    ])
+    logTestInfo("Create Next App version: " + createNextAppVersion)
 
     // Help and Version commands
     await testHelpFlag(createNextStackDir)
