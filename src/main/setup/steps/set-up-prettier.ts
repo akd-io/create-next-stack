@@ -51,6 +51,10 @@ const addFormatScriptsToPackageJson = async () => {
 const setUpEslintConfigPrettier = async () => {
   await modifyJsonFile(".eslintrc.json", (eslintrc) => ({
     ...eslintrc,
-    extends: [...toArray(eslintrc["extends"]), "eslint-config-prettier"],
+    extends: [
+      //
+      ...toArray(eslintrc["extends"]),
+      "eslint-config-prettier",
+    ],
   }))
 }

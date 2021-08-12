@@ -20,10 +20,10 @@ import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-conten
 import { setUpChakraUIStep } from "./steps/set-up-chakra-ui"
 import { setUpCssModulesWithSassStep } from "./steps/set-up-css-modules-with-sass"
 import { setUpEmotionStep } from "./steps/set-up-emotion"
+import { setUpEslintStep } from "./steps/set-up-eslint"
 import { setUpLintStagedStep } from "./steps/set-up-lint-staged"
 import { setUpPrettierStep } from "./steps/set-up-prettier"
 import { setUpStyledComponentsStep } from "./steps/set-up-styled-components"
-import { setUpEslintStep } from "./steps/set-up-eslint"
 import { updateYarnStep } from "./steps/update-yarn"
 
 export const performSetupSteps = async (
@@ -35,13 +35,13 @@ export const performSetupSteps = async (
 
     // Create Next App
     createNextAppStep,
+    setUpEslintStep, // eslint is set up before content removal because it requires content in /pages
     removeOfficialCNAContentStep,
 
     // Configuration
     addGitAttributesStep,
     addBaseBabelConfigStep,
     addBaseTestScriptStep,
-    setUpEslintStep,
 
     // Styling
     setUpEmotionStep,
