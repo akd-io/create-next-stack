@@ -23,6 +23,7 @@ import { setUpEmotionStep } from "./steps/set-up-emotion"
 import { setUpLintStagedStep } from "./steps/set-up-lint-staged"
 import { setUpPrettierStep } from "./steps/set-up-prettier"
 import { setUpStyledComponentsStep } from "./steps/set-up-styled-components"
+import { setUpEslintStep } from "./steps/setup-eslint"
 import { updateYarnStep } from "./steps/update-yarn"
 
 export const performSetupSteps = async (
@@ -40,6 +41,7 @@ export const performSetupSteps = async (
     addGitAttributesStep,
     addBaseBabelConfigStep,
     addBaseTestScriptStep,
+    setUpEslintStep,
 
     // Styling
     setUpEmotionStep,
