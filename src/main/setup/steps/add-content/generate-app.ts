@@ -19,6 +19,7 @@ const wrapperComponents: WrapperComponent[] = [
     openingTag: endent/* tsx */ `
       <ColorModeProvider
         options={{
+          initialColorMode: theme.config.initialColorMode,
           useSystemColorMode: theme.config.useSystemColorMode,
         }}
       >
