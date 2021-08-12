@@ -44,7 +44,7 @@ export const generateApp = (inputs: ValidCNSInputs): string => {
     const CustomApp = ({ Component, pageProps }: AppProps) => {
       return (
         ${openingTags}
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
         ${closingTags}
       )
     };
@@ -70,7 +70,7 @@ const getChakraUIImports = ({ flags }: ValidCNSInputs) => {
           ChakraProvider,
           ColorModeProvider,
         } from "@chakra-ui/react";
-        import { theme } from "../theme.ts"
+        import { theme } from "../theme";
       `
     : ""
 }
