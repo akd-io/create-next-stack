@@ -3,9 +3,13 @@ import { ValidCNSInputs } from "../../../create-next-stack-types"
 
 export const generateDocument = ({ flags }: ValidCNSInputs): string => {
   return endent/* tsx */ `
-    import { ColorModeScript } from "@chakra-ui/react";
+    ${
+      flags.chakra
+        ? /* tsx */ `import { ColorModeScript } from "@chakra-ui/react";`
+        : ""
+    }
     import NextDocument, { Html, Head, Main, NextScript } from "next/document";
-    import { theme } from "../theme";
+    ${flags.chakra ? /* tsx */ `import { theme } from "../theme";` : ""}
 
     export default class Document extends NextDocument {
       render() {
@@ -15,7 +19,7 @@ export const generateDocument = ({ flags }: ValidCNSInputs): string => {
             <body>
               ${
                 flags.chakra
-                  ? `<ColorModeScript initialColorMode={theme.config.initialColorMode} />`
+                  ? /* tsx */ `<ColorModeScript initialColorMode={theme.config.initialColorMode} />`
                   : ""
               }
               <Main />
