@@ -3,6 +3,8 @@ import { Step } from "../../step"
 import { generatePage } from "./components/generate-page"
 import { generateWithDefaultGlobalStyles } from "./components/generate-with-default-global-styles"
 import { generateApp } from "./generate-app"
+import { generateDocument } from "./generate-document"
+import { generateTheme } from "./generate-theme"
 import { globalStyles } from "./global-styles"
 import { generateIndexPage } from "./index-page/generate-index"
 
@@ -20,6 +22,7 @@ export const addContentStep: Step = {
       fs.writeFile("components/Page.tsx", generatePage(inputs)),
       fs.writeFile("pages/index.tsx", generateIndexPage(inputs)),
       fs.writeFile("pages/_app.tsx", generateApp(inputs)),
+      fs.writeFile("pages/_document.tsx", generateDocument(inputs)),
     ]
 
     const { styling } = inputs.flags
@@ -39,6 +42,10 @@ export const addContentStep: Step = {
       promises.push(
         fs.writeFile(`styles/global-styles.${extension}`, globalStyles)
       )
+    }
+
+    if (styling === "emotion" && inputs.flags.chakra) {
+      promises.push(fs.writeFile("theme.ts", generateTheme()))
     }
 
     await Promise.all(promises)

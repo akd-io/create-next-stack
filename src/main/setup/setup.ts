@@ -17,8 +17,10 @@ import { installFormikStep } from "./steps/install-formik"
 import { installFramerMotionStep } from "./steps/install-framer-motion"
 import { installReactHookFormStep } from "./steps/install-react-hook-form"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
+import { setUpChakraUIStep } from "./steps/set-up-chakra-ui"
 import { setUpCssModulesWithSassStep } from "./steps/set-up-css-modules-with-sass"
 import { setUpEmotionStep } from "./steps/set-up-emotion"
+import { setUpEslintStep } from "./steps/set-up-eslint"
 import { setUpLintStagedStep } from "./steps/set-up-lint-staged"
 import { setUpPrettierStep } from "./steps/set-up-prettier"
 import { setUpStyledComponentsStep } from "./steps/set-up-styled-components"
@@ -33,6 +35,7 @@ export const performSetupSteps = async (
 
     // Create Next App
     createNextAppStep,
+    setUpEslintStep, // eslint is set up before content removal because it requires content in /pages
     removeOfficialCNAContentStep,
 
     // Configuration
@@ -44,6 +47,9 @@ export const performSetupSteps = async (
     setUpEmotionStep,
     setUpStyledComponentsStep,
     setUpCssModulesWithSassStep,
+
+    // Component libraries
+    setUpChakraUIStep,
 
     // Formatting
     setUpPrettierStep,
@@ -74,7 +80,6 @@ export const performSetupSteps = async (
       logInfo(`${capitalizeFirstLetter(step.description)}...`)
 
       await step.run(inputs)
-
       step.didRun = true
     }
   }

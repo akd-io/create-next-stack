@@ -3,14 +3,13 @@ import { arrayToKeyToKeyMap } from "../../helpers/array-to-key-to-key-map"
 
 const categoryValuesArray = [
   "formatting",
+  "componentLibraries",
   "formStateManagement",
   "animation",
   "continuousIntegration",
 ] as const
 export type CategoryValue = typeof categoryValuesArray[number]
 const categoryValues = arrayToKeyToKeyMap(categoryValuesArray)
-
-// TODO: You can strengthen typings by turning the choices array into an object located here, as in technologies.ts
 
 export const promptOptionalCategories = async (): Promise<CategoryValue[]> => {
   const answerName = "categories"
@@ -26,6 +25,11 @@ export const promptOptionalCategories = async (): Promise<CategoryValue[]> => {
       {
         value: categoryValues.formatting,
         name: "Formatting",
+        checked: true,
+      },
+      {
+        value: categoryValues.componentLibraries,
+        name: "Component libraries",
         checked: true,
       },
       {

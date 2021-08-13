@@ -1,8 +1,10 @@
 import inquirer from "inquirer"
 import { arrayToKeyToKeyMap } from "../../../helpers/array-to-key-to-key-map"
+import { Technology } from "../../flags-questionnaire"
 
 const formStateManagementValuesArray = ["reactHookForm", "formik"] as const
-type FormStateManagementValue = typeof formStateManagementValuesArray[number]
+export type FormStateManagementValue =
+  typeof formStateManagementValuesArray[number]
 const formStateManagementValues = arrayToKeyToKeyMap(
   formStateManagementValuesArray
 )
@@ -12,9 +14,9 @@ type Answers = {
   [answerName]: FormStateManagementValue[]
 }
 
-export const promptFormStateManagement = async (): Promise<
-  FormStateManagementValue[]
-> => {
+export const promptFormStateManagement = async (
+  technologies: Set<Technology>
+): Promise<FormStateManagementValue[]> => {
   const { formStateManagement } = await inquirer.prompt<Answers>({
     name: answerName,
     type: "checkbox",

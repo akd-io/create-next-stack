@@ -73,13 +73,28 @@ export const validateFlags = (
   flags: CreateNextStackFlags
 ): flags is ValidCreateNextStackFlags => {
   if (typeof flags["package-manager"] !== "string") {
-    throw new TypeError(
+    throw new Error(
       'Outside interactive mode, you are required to specify a package manager. Read about the "--package-manager" option using --help.'
     )
   }
   if (typeof flags.styling !== "string") {
-    throw new TypeError(
+    throw new Error(
       'Outside interactive mode, you are required to specify a styling method. Read about the "--styling" option using --help.'
+    )
+  }
+  if (flags.chakra && flags.styling !== "emotion") {
+    throw new Error(
+      "Chakra UI (category: Component library, flag: --chakra) requires Emotion (category: Styling, flag: --styling=emotion)."
+    )
+  }
+  if (flags.chakra && !flags["framer-motion"]) {
+    throw new Error(
+      "Chakra UI (category: Component library, flag: --chakra) requires Framer Motion (category: Animation, flag: --framer-motion)."
+    )
+  }
+  if (flags["formatting-pre-commit-hook"] && !flags["prettier"]) {
+    throw new Error(
+      "Formatting pre-commit hook (category: Miscellaneous, flag: --formatting-pre-commit-hook) requires Prettier (category: Formatting, flag: --prettier)."
     )
   }
   return true
