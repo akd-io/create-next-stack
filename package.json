@@ -1,6 +1,6 @@
 {
   "name": "create-next-stack",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "Anders Kjær Damgaard @akd-io",
   "bin": {
     "create-next-stack": "./bin/run"
@@ -58,7 +58,7 @@
     "prepare": "husky install",
     "prepack": "yarn build && oclif-dev readme",
     "build": "rimraf lib && tsc -b",
-    "test": "yarn build && node lib/tests/e2e/test.js",
+    "test": "yarn build && yarn run test-only",
     "test-only": "node lib/tests/e2e/test.js",
     "manual-test": "yarn build && node lib/tests/e2e/manual-test.js --debug",
     "quick-test": "yarn build && node lib/tests/e2e/manual-test.js --debug --package-manager=npm --styling=css-modules",

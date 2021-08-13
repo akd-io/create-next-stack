@@ -12,7 +12,8 @@ import { testEmotionOnly } from "./tests/non-interactive/emotion/emotion-only"
 import { testStyledComponentsAllFlags } from "./tests/non-interactive/styled-components/styled-components-all-flags"
 import { testStyledComponentsOnly } from "./tests/non-interactive/styled-components/styled-components-only"
 import { testHelpFlag } from "./tests/non-interactive/test-help-flag"
-import { testInvalidName } from "./tests/non-interactive/test-invalid-name"
+import { testInvalidInputs } from "./tests/non-interactive/test-invalid-inputs"
+import { testVersionFlag } from "./tests/non-interactive/test-version-flag"
 ;(async () => {
   // TODO: Find a way to run tests in parallel. Currently failing because simultaneous calls to `npm i -g yarn` or `npm install -g mrm@^3.0.0 mrm-task-lint-staged@^6.0.0` cause crashes.
 
@@ -22,11 +23,12 @@ import { testInvalidName } from "./tests/non-interactive/test-invalid-name"
 
     const createNextStackDir = process.cwd()
 
-    // Help command
+    // Help and Version commands
     await testHelpFlag(createNextStackDir)
+    await testVersionFlag(createNextStackDir)
 
     // Invalid name
-    await testInvalidName(createNextStackDir)
+    await testInvalidInputs(createNextStackDir)
 
     // Interactive test
     await testDefaultOptionsInteractive(createNextStackDir)

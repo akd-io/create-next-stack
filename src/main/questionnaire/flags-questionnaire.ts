@@ -1,62 +1,95 @@
 import { ValidCreateNextStackFlags } from "../create-next-stack-types"
-import { ThenArg } from "../helpers/then-arg"
 import { withKeyConstraint } from "../helpers/with-key-constraint"
 import { CategoryValue, promptOptionalCategories } from "./questions/categories"
-import { promptAnimation } from "./questions/categories/animation"
-import { promptContinuousIntegration } from "./questions/categories/continuous-integration"
-import { promptFormStateManagement } from "./questions/categories/form-state-management"
-import { promptFormatting } from "./questions/categories/formatting"
+import {
+  AnimationValue,
+  promptAnimation,
+} from "./questions/categories/animation"
+import {
+  ComponentLibraryValue,
+  promptComponentLibraries,
+} from "./questions/categories/component-libraries"
+import {
+  ContinuousIntegrationValue,
+  promptContinuousIntegration,
+} from "./questions/categories/continuous-integration"
+import {
+  FormStateManagementValue,
+  promptFormStateManagement,
+} from "./questions/categories/form-state-management"
+import {
+  FormattingValue,
+  promptFormatting,
+} from "./questions/categories/formatting"
 import {
   MiscellaneousValue,
   promptMiscellaneous,
 } from "./questions/categories/miscellaneous"
-import { promptPackageManager } from "./questions/categories/package-manager"
-import { promptStyling } from "./questions/categories/styling"
+import {
+  PackageManagerValue,
+  promptPackageManager,
+} from "./questions/categories/package-manager"
+import { promptStyling, StylingValue } from "./questions/categories/styling"
 
 const categoryToPromptFunction = withKeyConstraint<CategoryValue>()({
   formatting: promptFormatting,
+  componentLibraries: promptComponentLibraries,
   formStateManagement: promptFormStateManagement,
   animation: promptAnimation,
   continuousIntegration: promptContinuousIntegration,
 } as const)
 
-type PromptReturnType = ThenArg<
-  ReturnType<typeof categoryToPromptFunction[CategoryValue]>
->
-export type OptionalTechnology = PromptReturnType extends Array<unknown>
-  ? PromptReturnType[number]
-  : PromptReturnType
+export type Technology =
+  | AnimationValue
+  | ComponentLibraryValue
+  | ContinuousIntegrationValue
+  | FormStateManagementValue
+  | FormattingValue
+  | MiscellaneousValue
+  | PackageManagerValue
+  | StylingValue
 
 export const performFlagsQuestionnaire =
   async (): Promise<ValidCreateNextStackFlags> => {
+    const technologies = new Set<Technology>()
+
     // Mandatory prompts
     const packageManager = await promptPackageManager()
+    technologies.add(packageManager)
     const stylingMethod = await promptStyling()
+    technologies.add(stylingMethod)
 
     // Optional categories prompt
     const optionalCategories = await promptOptionalCategories()
-    const optionalTechnologies = new Set<OptionalTechnology>()
     for (const category of optionalCategories) {
-      const additionalTechnologies = await categoryToPromptFunction[category]()
-      additionalTechnologies.forEach((tech) => optionalTechnologies.add(tech))
+      const optionalTechnologies = await categoryToPromptFunction[category](
+        technologies
+      )
+      optionalTechnologies.forEach((tech) => technologies.add(tech))
     }
 
     // TODO: Remove prettier-check when promptMiscellaneous adds more options
     let miscellaneous: Set<MiscellaneousValue> = new Set()
-    if (optionalTechnologies.has("prettier")) {
-      miscellaneous = await promptMiscellaneous(optionalTechnologies)
+    if (technologies.has("prettier")) {
+      miscellaneous = await promptMiscellaneous(technologies)
+      miscellaneous.forEach((tech) => technologies.add(tech))
     }
 
-    return {
+    const result: Required<
+      Omit<ValidCreateNextStackFlags, "help" | "version" | "debug">
+    > = {
       "package-manager": packageManager,
       styling: stylingMethod,
-      prettier: optionalTechnologies.has("prettier"),
-      "react-hook-form": optionalTechnologies.has("reactHookForm"),
-      formik: optionalTechnologies.has("formik"),
-      "framer-motion": optionalTechnologies.has("framerMotion"),
-      "github-actions": optionalTechnologies.has("githubActions"),
+      prettier: technologies.has("prettier"),
+      "react-hook-form": technologies.has("reactHookForm"),
+      formik: technologies.has("formik"),
+      "framer-motion": technologies.has("framerMotion"),
+      "github-actions": technologies.has("githubActions"),
       "formatting-pre-commit-hook": miscellaneous.has(
         "formattingPreCommitHook"
       ),
+      chakra: technologies.has("chakra"),
     }
+
+    return result
   }

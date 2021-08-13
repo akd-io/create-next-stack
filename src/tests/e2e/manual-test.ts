@@ -21,12 +21,12 @@ import { logTestInfo } from "./test-logging"
 
     logTestInfo("")
     logTestInfo(endent`
-    ${chalk.green("Test successful!")}
+      ${chalk.green("Test successful!")}
 
-    To open the project in vscode, run:
+      To open the project in vscode, run:
 
-        ${chalk.cyan(`code ${runDirectory}`)}
-  `)
+          ${chalk.cyan(`code ${runDirectory}`)}
+    `)
     logTestInfo("")
   } catch (error) {
     exitWithError(error)

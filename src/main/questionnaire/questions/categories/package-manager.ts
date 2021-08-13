@@ -1,8 +1,11 @@
 import inquirer from "inquirer"
-import { packageManagerOptions } from "../../../create-next-stack-types"
+import {
+  PackageManagerOption,
+  packageManagerOptions,
+} from "../../../create-next-stack-types"
 import { arrayToKeyToKeyMap } from "../../../helpers/array-to-key-to-key-map"
 
-type PackageManagerValue = typeof packageManagerOptions[number]
+export type PackageManagerValue = PackageManagerOption
 const packageManagerValues = arrayToKeyToKeyMap(packageManagerOptions)
 
 const answerName = "packageManager"

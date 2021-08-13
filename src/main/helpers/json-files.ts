@@ -74,9 +74,11 @@ export const toObject = (object: unknown): Record<string, unknown> => {
  * @param object
  * @returns
  */
-export const toArray = (array: unknown): unknown[] => {
-  if (isUnknownArray(array)) {
-    return array
+export const toArray = (value: unknown): unknown[] => {
+  if (isUnknownArray(value)) {
+    return value
+  } else if (typeof value === "string") {
+    return [value]
   } else {
     return []
   }

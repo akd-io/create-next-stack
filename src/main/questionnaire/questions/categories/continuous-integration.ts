@@ -1,8 +1,9 @@
 import inquirer from "inquirer"
 import { arrayToKeyToKeyMap } from "../../../helpers/array-to-key-to-key-map"
+import { Technology } from "../../flags-questionnaire"
 
 const continuousIntegrationValuesArray = ["githubActions"] as const
-type ContinuousIntegrationValue =
+export type ContinuousIntegrationValue =
   typeof continuousIntegrationValuesArray[number]
 const continuousIntegrationValues = arrayToKeyToKeyMap(
   continuousIntegrationValuesArray
@@ -13,9 +14,9 @@ type Answers = {
   [answerName]: ContinuousIntegrationValue[]
 }
 
-export const promptContinuousIntegration = async (): Promise<
-  ContinuousIntegrationValue[]
-> => {
+export const promptContinuousIntegration = async (
+  technologies: Set<Technology>
+): Promise<ContinuousIntegrationValue[]> => {
   const { continuousIntegrations } = await inquirer.prompt<Answers>({
     name: answerName,
     type: "checkbox",

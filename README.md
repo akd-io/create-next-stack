@@ -65,6 +65,7 @@ Technologies marked as _convenience installs_ are technologies that work out of 
 | [Styled Components](https://styled-components.com/)                                                                               | [Docs](https://styled-components.com/docs) - [GitHub repo](https://github.com/styled-components/styled-components)                                                   |
 | [CSS Modules](https://github.com/css-modules/css-modules)                                                                         | [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
 | [Sass](https://sass-lang.com/) <img width="14" alt="convenience install icon" src="assets/convenience-icon.png">                  | [Docs](https://sass-lang.com/documentation) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support)                      |
+| [Chakra UI](https://chakra-ui.com/)                                                                                               | [Docs](https://chakra-ui.com/docs/getting-started) - [GitHub repo](https://github.com/chakra-ui/chakra-ui)                                                           |
 | [React Hook Form](https://react-hook-form.com/) <img width="14" alt="convenience install icon" src="assets/convenience-icon.png"> | [Docs](https://react-hook-form.com/get-started) - [GitHub repo](https://github.com/react-hook-form/react-hook-form)                                                  |
 | [Formik](https://formik.org/) <img width="14" alt="convenience install icon" src="assets/convenience-icon.png">                   | [Docs](https://formik.org/docs/overview) - [GitHub repo](https://github.com/formium/formik)                                                                          |
 | [Framer Motion](https://www.framer.com/motion/) <img width="14" alt="convenience install icon" src="assets/convenience-icon.png"> | [Docs](https://www.framer.com/docs/) - [GitHub repo](https://github.com/framer/motion)                                                                               |
@@ -87,15 +88,16 @@ ARGUMENTS
 OPTIONS
   -h, --help                    Shows the CLI help information.
   -v, --version                 Shows the CLI version information.
+  --chakra                      Adds Chakra UI. (Component library) (Requires Emotion and Framer Motion)
   --debug                       Show verbose error messages for debugging purposes.
-  --formatting-pre-commit-hook  Adds a formatting pre-commit hook.
+  --formatting-pre-commit-hook  Adds a formatting pre-commit hook. (Requires Prettier)
   --formik                      Adds Formik. (Form library)
   --framer-motion               Adds Framer Motion. (Animation library)
   --github-actions              Adds a GitHub Actions continuous integration workflow.
-  --package-manager=(yarn|npm)  Sets the preferred package manager.
+  --package-manager=(yarn|npm)  Sets the preferred package manager. (Required)
   --prettier                    Adds Prettier. (Code formatting)
   --react-hook-form             Adds React Hook Form. (Form library)
-  --styling=<styling-method>    Sets the preferred styling method. <styling-method> = emotion|styled-components|css-modules|css-modules-with-sass
+  --styling=<styling-method>    Sets the preferred styling method. (Required) <styling-method> = emotion|styled-components|css-modules|css-modules-with-sass
 ```
 
 ## License

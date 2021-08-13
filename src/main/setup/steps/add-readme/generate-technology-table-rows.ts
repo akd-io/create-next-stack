@@ -51,6 +51,11 @@ export const generateTechnologyTableRows = async (
       filter: flags.styling === "css-modules-with-sass",
     },
     {
+      name: /* md */ `[Chakra UI](https://chakra-ui.com/)`,
+      links: /* md */ `[Docs](https://chakra-ui.com/docs/getting-started) - [GitHub repo](https://github.com/chakra-ui/chakra-ui)`,
+      filter: Boolean(flags.chakra),
+    },
+    {
       name: /* md */ `[React Hook Form](https://react-hook-form.com/)`,
       links: /* md */ `[Docs](https://react-hook-form.com/get-started) - [GitHub repo](https://github.com/react-hook-form/react-hook-form)`,
       filter: Boolean(flags["react-hook-form"]),
