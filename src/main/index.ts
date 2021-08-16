@@ -5,7 +5,7 @@ import {
   validateArgs,
   validateFlags,
   writablePackageManagerOptions,
-  writableStylingOptions
+  writableStylingOptions,
 } from "./create-next-stack-types"
 import { exitWithError } from "./helpers/exit-with-error"
 import { commandInstance } from "./instance"
