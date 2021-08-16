@@ -5,7 +5,7 @@ import {
   validateArgs,
   validateFlags,
   writablePackageManagerOptions,
-  writableStylingOptions,
+  writableStylingOptions
 } from "./create-next-stack-types"
 import { exitWithError } from "./helpers/exit-with-error"
 import { commandInstance } from "./instance"
@@ -15,7 +15,7 @@ import { performSetupSteps } from "./setup/setup"
 
 class CreateNextStack extends Command {
   static description =
-    "Create Next Stack is an opinionated interactive CLI tool to easily set up the boilerplate of a new Next.js app."
+    "Create Next Stack is a website and CLI tool used to easily set up the boilerplate of new Next.js apps."
 
   static args = [
     {

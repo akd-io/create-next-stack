@@ -13,19 +13,24 @@
   <a aria-label="License" href="https://github.com/akd-io/create-next-stack/blob/develop/LICENSE">
     <img alt="" src="https://img.shields.io/npm/l/create-next-stack?color=44cc11&style=flat-square">
   </a>
+  <a aria-label="GitHub Repo stars" href="https://github.com/akd-io/create-next-stack">
+    <img alt="" src="https://img.shields.io/github/stars/akd-io/create-next-stack?style=social">
+  </a>
 </p>
 
-Create Next Stack is an opinionated interactive CLI tool to easily set up the boilerplate of a new [Next.js](https://github.com/vercel/next.js) app.
+Create Next Stack is a website and CLI tool used to easily set up the boilerplate of new [Next.js](https://github.com/vercel/next.js) apps. 
 
 Where [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) lets you choose a single template only, Create Next Stack lets you pick and choose an array of technologies often used alongside Next.js, and free you of the pain of making them work together.
 
-To get started, run:
+This repository covers the CLI tool, while [create-next-stack-website](https://github.com/akd-io/create-next-stack-website) covers the site.
+
+To get started, go to [create-next-stack.com](https://www.create-next-stack.com) or run:
 
 ```bash
 npx create-next-stack
 ```
 
-Then, pick a project name, and your preferred technologies like so:
+If using the CLI, you'll be prompted to pick a project name, and your preferred technologies like so:
 
 <p align="center">
   <img width="600" alt="Screenshot of Create Next Stack running in a terminal" src="assets/screenshot.png">
