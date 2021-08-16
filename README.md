@@ -35,18 +35,6 @@ Then, pick a project name, and your preferred technologies like so:
 
 The table below provides an overview of the technologies currently supported by Create Next Stack.
 
-### Icons
-
-A few icons are used to label different properties of these technologies. We describe these here:
-
-#### ⚠ Required
-
-Technologies marked with ⚠ are required. If you don't want to use these technologies, you have three options:
-
-1. Set up your project using Create Next Stack anyway, and make the necessary adjustments manually.
-1. Set up your project manually with Create Next App.
-1. Find and use a template repo you can clone here on GitHub.
-
 ### Technologies table
 
 | Name                                                      | Links                                                                                                                                                                |
@@ -69,6 +57,14 @@ Technologies marked with ⚠ are required. If you don't want to use these techno
 | [Husky](https://typicode.github.io/husky/)                | [Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)                                                                         |
 | [lint-staged](https://github.com/okonet/lint-staged)      | [GitHub repo](https://github.com/okonet/lint-staged)                                                                                                                 |
 | [GitHub Actions](https://github.com/features/actions)     | [Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)                      |
+
+#### ⚠ Required
+
+Technologies marked with ⚠ are required. If you don't want to use these technologies, you have three options:
+
+1. Set up your project using Create Next Stack anyway, and make the necessary adjustments manually.
+1. Set up your project manually with Create Next App.
+1. Find and use a template repo you can clone here on GitHub.
 
 ## Usage
 
