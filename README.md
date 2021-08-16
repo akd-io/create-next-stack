@@ -13,6 +13,9 @@
   <a aria-label="License" href="https://github.com/akd-io/create-next-stack/blob/develop/LICENSE">
     <img alt="" src="https://img.shields.io/npm/l/create-next-stack?color=44cc11&style=flat-square">
   </a>
+  <a aria-label="GitHub Repo stars" href="https://github.com/akd-io/create-next-stack">
+    <img alt="" src="https://img.shields.io/github/stars/akd-io/create-next-stack?style=social">
+  </a>
 </p>
 
 Create Next Stack is an opinionated interactive CLI tool to easily set up the boilerplate of a new [Next.js](https://github.com/vercel/next.js) app.
