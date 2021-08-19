@@ -7,8 +7,6 @@ import type {
 const getImports = (flags: ValidCreateNextStackFlags) => {
   if (flags.chakra) {
     return endent/* tsx */ `import { ColorModeScript } from "@chakra-ui/react";`
-  } else if (flags.mUI) {
-    return endent/* tsx */ `import { theme } from ../theme;`
   } else {
     return ""
   }
@@ -30,7 +28,11 @@ export const generateDocument = ({ flags }: ValidCNSInputs): string => {
   return endent/* tsx */ `
     ${getImports(flags)}
     import NextDocument, { Html, Head, Main, NextScript } from "next/document";
-    ${flags.chakra ? /* tsx */ `import { theme } from "../theme";` : ""}
+    ${
+      flags.mUI || flags.chakra
+        ? endent/* tsx */ `import { theme } from "../theme";`
+        : ""
+    }
 
     export default class Document extends NextDocument {
       render() {
