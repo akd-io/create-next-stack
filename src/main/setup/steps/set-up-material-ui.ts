@@ -1,10 +1,10 @@
 import { install, packages } from "../packages"
 import { Step } from "../step"
 
-export const setUpMUIStep: Step = {
+export const setUpMaterialUIStep: Step = {
   description: "setting up Material UI",
 
-  shouldRun: async ({ flags }) => Boolean(flags["mUI"]),
+  shouldRun: async ({ flags }) => Boolean(flags["material-ui"]),
 
   didRun: false,
 

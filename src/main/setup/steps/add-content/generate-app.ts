@@ -32,7 +32,7 @@ const wrapperComponents: WrapperComponent[] = [
     openingTag: endent/* tsx */ `<ThemeProvider theme={theme}>
                                     <CssBaseline />`,
     closingTag: endent/* tsx */ `</ThemeProvider>`,
-    filter: ({ flags }) => Boolean(flags.mUI),
+    filter: ({ flags }) => Boolean(flags["material-ui"]),
   },
 ]
 
@@ -80,7 +80,7 @@ const getChakraUIImports = ({ flags }: ValidCNSInputs) => {
         } from "@chakra-ui/react";
         import { theme } from "../theme";
       `
-  } else if (flags.mUI) {
+  } else if (flags["material-ui"]) {
     return endent/* tsx */ `
         import { ThemeProvider } from "@material-ui/core/styles";
         import CssBaseline from '@material-ui/core/CssBaseline';

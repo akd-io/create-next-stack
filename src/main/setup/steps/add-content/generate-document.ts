@@ -13,7 +13,7 @@ const getImports = (flags: ValidCreateNextStackFlags) => {
 }
 
 const getHeadElements = (flags: ValidCreateNextStackFlags) => {
-  if (flags.mUI) {
+  if (flags["material-ui"]) {
     return endent/* tsx */ `<meta name="theme-color" content={theme.palette.primary.main} />
           <link
             rel="stylesheet"
@@ -29,7 +29,7 @@ export const generateDocument = ({ flags }: ValidCNSInputs): string => {
     ${getImports(flags)}
     import NextDocument, { Html, Head, Main, NextScript } from "next/document";
     ${
-      flags.mUI || flags.chakra
+      flags["material-ui"] || flags.chakra
         ? endent/* tsx */ `import { theme } from "../theme";`
         : ""
     }

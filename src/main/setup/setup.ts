@@ -18,7 +18,7 @@ import { installFramerMotionStep } from "./steps/install-framer-motion"
 import { installReactHookFormStep } from "./steps/install-react-hook-form"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
 import { setUpChakraUIStep } from "./steps/set-up-chakra-ui"
-import { setUpMUIStep } from "./steps/set-up-material-ui"
+import { setUpMaterialUIStep } from "./steps/set-up-material-ui"
 import { setUpCssModulesWithSassStep } from "./steps/set-up-css-modules-with-sass"
 import { setUpEmotionStep } from "./steps/set-up-emotion"
 import { setUpEslintStep } from "./steps/set-up-eslint"
@@ -51,7 +51,7 @@ export const performSetupSteps = async (
 
     // Component libraries
     setUpChakraUIStep,
-    setUpMUIStep,
+    setUpMaterialUIStep,
 
     // Formatting
     setUpPrettierStep,

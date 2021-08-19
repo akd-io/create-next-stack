@@ -58,7 +58,7 @@ export const generateTechnologyTableRows = async (
     {
       name: /* md */ `[Material UI](https://material-ui.com/)`,
       links: /* md */ `[Docs](https://material-ui.com/getting-started/installation/) - [GitHub repo](https://github.com/mui-org/material-ui)`,
-      filter: Boolean(flags.mUI),
+      filter: Boolean(flags["material-ui"]),
     },
     {
       name: /* md */ `[React Hook Form](https://react-hook-form.com/)`,
