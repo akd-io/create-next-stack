@@ -125,4 +125,12 @@ export const packages = {
     name: "@chakra-ui/react",
     version: "^1.0.0",
   },
+  "@material-ui/core": {
+    name: "@material-ui/core",
+    version: "^4.0.0",
+  },
+  "@material-ui/icons": {
+    name: "@material-ui/icons",
+    version: "^4.0.0",
+  },
 } as const

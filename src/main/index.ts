@@ -65,6 +65,10 @@ class CreateNextStack extends Command {
         "Adds Chakra UI. (Component library) (Requires Emotion and Framer Motion)",
     }),
 
+    mUI: flags.boolean({
+      description: "Adds Material UI. (Component library)",
+    }),
+
     // Form libraries:
     "react-hook-form": flags.boolean({
       description: "Adds React Hook Form. (Form library)",

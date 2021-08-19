@@ -2,7 +2,7 @@ import inquirer from "inquirer"
 import { arrayToKeyToKeyMap } from "../../../helpers/array-to-key-to-key-map"
 import { Technology } from "../../flags-questionnaire"
 
-const componentLibraryOptions = ["chakra"] as const
+const componentLibraryOptions = ["chakra", "material-ui"] as const
 export type ComponentLibraryValue = typeof componentLibraryOptions[number]
 const componentLibraryValues = arrayToKeyToKeyMap(componentLibraryOptions)
 
@@ -24,6 +24,11 @@ export const promptComponentLibraries = async (
         name: "Chakra UI",
         checked: technologies.has("emotion"),
         disabled: !technologies.has("emotion"),
+      },
+      {
+        value: componentLibraryValues.chakra,
+        name: "Material UI",
+        checked: false,
       },
     ],
   })

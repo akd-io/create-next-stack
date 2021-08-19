@@ -89,6 +89,7 @@ export const performFlagsQuestionnaire =
         "formattingPreCommitHook"
       ),
       chakra: technologies.has("chakra"),
+      mUI: technologies.has("material-ui"),
     }
 
     return result
