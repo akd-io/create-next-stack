@@ -26,7 +26,7 @@ export const promptComponentLibraries = async (
         disabled: !technologies.has("emotion"),
       },
       {
-        value: componentLibraryValues.chakra,
+        value: componentLibraryValues["material-ui"],
         name: "Material UI",
         checked: false,
       },
