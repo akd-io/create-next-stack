@@ -1,7 +1,9 @@
 import endent from "endent"
+import type { ValidCNSInputs } from "../../../create-next-stack-types"
 
-export const generateTheme = (): string => {
-  return endent/* tsx */ `
+export const generateTheme = ({ flags }: ValidCNSInputs): string => {
+  if (flags.chakra) {
+    return endent/* tsx */ `
     import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 
     const colors = {
@@ -19,4 +21,31 @@ export const generateTheme = (): string => {
 
     export const theme = extendTheme({ colors, config });
   `
+  } else if (flags.mUI) {
+    return endent/* tsx */ `
+    import { createTheme } from '@material-ui/core/styles';
+    import { red } from '@material-ui/core/colors';
+
+    const theme = createTheme({
+      palette: {
+        primary: {
+          main: '#556cd6',
+        },
+        secondary: {
+          main: '#19857b',
+        },
+        error: {
+          main: red.A400,
+        },
+        background: {
+          default: '#fff',
+        },
+      },
+    });
+
+    export theme;
+    `
+  } else {
+    return ""
+  }
 }

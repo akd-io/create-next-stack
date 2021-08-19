@@ -1,13 +1,34 @@
 import endent from "endent"
-import { ValidCNSInputs } from "../../../create-next-stack-types"
+import type {
+  ValidCNSInputs,
+  ValidCreateNextStackFlags,
+} from "../../../create-next-stack-types"
+
+const getImports = (flags: ValidCreateNextStackFlags) => {
+  if (flags.chakra) {
+    return endent/* tsx */ `import { ColorModeScript } from "@chakra-ui/react";`
+  } else if (flags.mUI) {
+    return endent/* tsx */ `import { theme } from ../theme;`
+  } else {
+    return ""
+  }
+}
+
+const getHeadElements = (flags: ValidCreateNextStackFlags) => {
+  if (flags.mUI) {
+    return endent/* tsx */ `<meta name="theme-color" content={theme.palette.primary.main} />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />`
+  } else {
+    return ""
+  }
+}
 
 export const generateDocument = ({ flags }: ValidCNSInputs): string => {
   return endent/* tsx */ `
-    ${
-      flags.chakra
-        ? /* tsx */ `import { ColorModeScript } from "@chakra-ui/react";`
-        : ""
-    }
+    ${getImports(flags)}
     import NextDocument, { Html, Head, Main, NextScript } from "next/document";
     ${flags.chakra ? /* tsx */ `import { theme } from "../theme";` : ""}
 
@@ -15,7 +36,9 @@ export const generateDocument = ({ flags }: ValidCNSInputs): string => {
       render() {
         return (
           <Html lang="en">
-            <Head />
+            <Head>
+              ${getHeadElements(flags)}
+            </Head>
             <body>
               ${
                 flags.chakra

@@ -45,7 +45,7 @@ export const addContentStep: Step = {
     }
 
     if (styling === "emotion" && inputs.flags.chakra) {
-      promises.push(fs.writeFile("theme.ts", generateTheme()))
+      promises.push(fs.writeFile("theme.ts", generateTheme(inputs)))
     }
 
     await Promise.all(promises)

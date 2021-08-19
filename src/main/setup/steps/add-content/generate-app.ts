@@ -27,6 +27,13 @@ const wrapperComponents: WrapperComponent[] = [
     closingTag: endent/* tsx */ `</ColorModeProvider>`,
     filter: ({ flags }) => Boolean(flags.chakra),
   },
+  {
+    //Material UI Theme Provider
+    openingTag: endent/* tsx */ `<ThemeProvider theme={theme}>
+                                    <CssBaseline />`,
+    closingTag: endent/* tsx */ `</ThemeProvider>`,
+    filter: ({ flags }) => Boolean(flags.mUI),
+  },
 ]
 
 export const generateApp = (inputs: ValidCNSInputs): string => {
@@ -65,13 +72,19 @@ const getGlobalStylesImport = ({ flags }: ValidCNSInputs) => {
 }
 
 const getChakraUIImports = ({ flags }: ValidCNSInputs) => {
-  return flags.chakra
-    ? endent/* tsx */ `
+  if (flags.chakra) {
+    return endent/* tsx */ `
         import {
           ChakraProvider,
           ColorModeProvider,
         } from "@chakra-ui/react";
         import { theme } from "../theme";
       `
-    : ""
+  } else if (flags.mUI) {
+    return endent/* tsx */ `
+        import { ThemeProvider } from "@material-ui/core/styles";
+        import CssBaseline from '@material-ui/core/CssBaseline';
+        import { theme } from "../theme"; // TODO Add the theme
+    `
+  }
 }
