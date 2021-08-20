@@ -47,6 +47,7 @@ export const generateApp = (inputs: ValidCNSInputs): string => {
   return endent/* tsx */ `
     import { AppProps } from "next/app";
     ${getChakraUIImports(inputs)}
+    ${getMaterialUIImports(inputs)}
     ${getGlobalStylesImport(inputs)}
 
     const CustomApp = ({ Component, pageProps }: AppProps) => {
@@ -72,19 +73,23 @@ const getGlobalStylesImport = ({ flags }: ValidCNSInputs) => {
 }
 
 const getChakraUIImports = ({ flags }: ValidCNSInputs) => {
-  if (flags.chakra) {
-    return endent/* tsx */ `
+  return flags.chakra
+    ? endent/* tsx */ `
         import {
           ChakraProvider,
           ColorModeProvider,
         } from "@chakra-ui/react";
         import { theme } from "../theme";
       `
-  } else if (flags["material-ui"]) {
-    return endent/* tsx */ `
+    : ""
+}
+
+const getMaterialUIImports = ({ flags }: ValidCNSInputs) => {
+  return flags["material-ui"]
+    ? endent/* tsx */ `
         import { ThemeProvider } from "@material-ui/core/styles";
         import CssBaseline from '@material-ui/core/CssBaseline';
         import { theme } from "../theme";
     `
-  }
+    : ""
 }
