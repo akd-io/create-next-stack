@@ -12,6 +12,14 @@ const getImports = (flags: ValidCreateNextStackFlags) => {
   }
 }
 
+const getThemeImport = (flags: ValidCreateNextStackFlags) => {
+  if (flags["material-ui"] || flags.chakra) {
+    return endent/* tsx */ `import { theme } from "../theme";`
+  } else {
+    return ""
+  }
+}
+
 const getHeadElements = (flags: ValidCreateNextStackFlags) => {
   if (flags["material-ui"]) {
     return endent/* tsx */ `<meta name="theme-color" content={theme.palette.primary.main} />
@@ -28,11 +36,7 @@ export const generateDocument = ({ flags }: ValidCNSInputs): string => {
   return endent/* tsx */ `
     ${getImports(flags)}
     import NextDocument, { Html, Head, Main, NextScript } from "next/document";
-    ${
-      flags["material-ui"] || flags.chakra
-        ? endent/* tsx */ `import { theme } from "../theme";`
-        : ""
-    }
+    ${getThemeImport(flags)}
 
     export default class Document extends NextDocument {
       render() {
