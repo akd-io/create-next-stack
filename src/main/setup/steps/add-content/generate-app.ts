@@ -10,7 +10,7 @@ type WrapperComponent = {
 const wrapperComponents: WrapperComponent[] = [
   {
     //Chakra Provider
-    openingTag: endent/* tsx */ `<ChakraProvider resetCSS theme={theme}>`,
+    openingTag: endent/* tsx */ `<ChakraProvider resetCSS theme={chakraTheme}>`,
     closingTag: endent/* tsx */ `</ChakraProvider>`,
     filter: ({ flags }) => Boolean(flags.chakra),
   },
@@ -19,8 +19,8 @@ const wrapperComponents: WrapperComponent[] = [
     openingTag: endent/* tsx */ `
       <ColorModeProvider
         options={{
-          initialColorMode: theme.config.initialColorMode,
-          useSystemColorMode: theme.config.useSystemColorMode,
+          initialColorMode: chakraTheme.config.initialColorMode,
+          useSystemColorMode: chakraTheme.config.useSystemColorMode,
         }}
       >
     `,
@@ -29,7 +29,7 @@ const wrapperComponents: WrapperComponent[] = [
   },
   {
     //Material UI Theme Provider
-    openingTag: endent/* tsx */ `<ThemeProvider theme={theme}>
+    openingTag: endent/* tsx */ `<ThemeProvider theme={materialTheme}>
                                     <CssBaseline />`,
     closingTag: endent/* tsx */ `</ThemeProvider>`,
     filter: ({ flags }) => Boolean(flags["material-ui"]),
@@ -79,7 +79,7 @@ const getChakraUIImports = ({ flags }: ValidCNSInputs) => {
           ChakraProvider,
           ColorModeProvider,
         } from "@chakra-ui/react";
-        import { theme } from "../theme";
+        import { chakraTheme } from "../chakra-theme";
       `
     : ""
 }
@@ -89,7 +89,7 @@ const getMaterialUIImports = ({ flags }: ValidCNSInputs) => {
     ? endent/* tsx */ `
         import { ThemeProvider } from "@material-ui/core/styles";
         import CssBaseline from '@material-ui/core/CssBaseline';
-        import { theme } from "../theme";
+        import { materialTheme } from "../material-theme";
     `
     : ""
 }

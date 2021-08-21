@@ -4,17 +4,22 @@ import type {
   ValidCreateNextStackFlags,
 } from "../../../create-next-stack-types"
 
-const getImports = (flags: ValidCreateNextStackFlags) => {
+const getChakraImports = (flags: ValidCreateNextStackFlags) => {
   if (flags.chakra) {
-    return endent/* tsx */ `import { ColorModeScript } from "@chakra-ui/react";`
+    return endent/* tsx */ `
+      import { ColorModeScript } from "@chakra-ui/react";
+      import { chakraTheme } from "../chakra-theme";
+    `
   } else {
     return ""
   }
 }
 
-const getThemeImport = (flags: ValidCreateNextStackFlags) => {
-  if (flags["material-ui"] || flags.chakra) {
-    return endent/* tsx */ `import { theme } from "../theme";`
+const getMaterialImports = (flags: ValidCreateNextStackFlags) => {
+  if (flags["material-ui"]) {
+    return endent/* tsx */ `
+      import { materialTheme } from "../material-theme";
+    `
   } else {
     return ""
   }
@@ -23,7 +28,7 @@ const getThemeImport = (flags: ValidCreateNextStackFlags) => {
 const getHeadElements = (flags: ValidCreateNextStackFlags) => {
   if (flags["material-ui"]) {
     return endent/* tsx */ `
-      <meta name="theme-color" content={theme.palette.primary.main} />
+      <meta name="theme-color" content={materialTheme.palette.primary.main} />
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -36,9 +41,9 @@ const getHeadElements = (flags: ValidCreateNextStackFlags) => {
 
 export const generateDocument = ({ flags }: ValidCNSInputs): string => {
   return endent/* tsx */ `
-    ${getImports(flags)}
+    ${getChakraImports(flags)}
+    ${getMaterialImports(flags)}
     import NextDocument, { Html, Head, Main, NextScript } from "next/document";
-    ${getThemeImport(flags)}
 
     export default class Document extends NextDocument {
       render() {
@@ -50,7 +55,7 @@ export const generateDocument = ({ flags }: ValidCNSInputs): string => {
             <body>
               ${
                 flags.chakra
-                  ? /* tsx */ `<ColorModeScript initialColorMode={theme.config.initialColorMode} />`
+                  ? /* tsx */ `<ColorModeScript initialColorMode={chakraTheme.config.initialColorMode} />`
                   : ""
               }
               <Main />
