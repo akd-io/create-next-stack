@@ -1,9 +1,8 @@
+import { promises as fs } from "fs"
 import endent from "endent"
 import type { ValidCNSInputs } from "../../../create-next-stack-types"
 
-export const generateTheme = ({ flags }: ValidCNSInputs): string => {
-  if (flags.chakra) {
-    return endent/* tsx */ `
+const chakraUITheme = endent/* tsx */ `
     import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 
     const colors = {
@@ -21,8 +20,8 @@ export const generateTheme = ({ flags }: ValidCNSInputs): string => {
 
     export const theme = extendTheme({ colors, config });
   `
-  } else if (flags["material-ui"]) {
-    return endent/* tsx */ `
+
+const materialUITheme = endent/* tsx */ `
     import { createTheme } from '@material-ui/core/styles';
     import { red } from '@material-ui/core/colors';
 
@@ -43,7 +42,19 @@ export const generateTheme = ({ flags }: ValidCNSInputs): string => {
       },
     });
     `
-  } else {
-    return ""
+
+export const generateTheme = ({ flags }: ValidCNSInputs): Promise<void>[] => {
+  const promises: Promise<void>[] = []
+  if (flags.chakra && flags["material-ui"]) {
+    promises.push(
+      fs.writeFile("chakra-theme.ts", chakraUITheme),
+      fs.writeFile("material-theme.ts", materialUITheme)
+    )
+  } else if (flags.chakra) {
+    promises.push(fs.writeFile("theme.ts", chakraUITheme))
+  } else if (flags["material-ui"]) {
+    promises.push(fs.writeFile("theme.ts", materialUITheme))
   }
+
+  return promises
 }
