@@ -44,8 +44,11 @@ export const addContentStep: Step = {
       )
     }
 
-    if (styling === "emotion" && inputs.flags.chakra) {
-      promises.push(fs.writeFile("theme.ts", generateTheme()))
+    if (
+      (styling === "emotion" && inputs.flags.chakra) ||
+      inputs.flags["material-ui"]
+    ) {
+      promises.push(...generateTheme(inputs))
     }
 
     await Promise.all(promises)
