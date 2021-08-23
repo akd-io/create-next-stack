@@ -20,7 +20,7 @@ export const createNextAppStep: Step = {
     }
 
     await execa("npx", [
-      getNameVersionCombo(packages["create-next-app"]),
+      getNameVersionCombo(packages["create-next-app"]), // Note: npx ignores version ranges. So the tilde in packages["create-next-app"] is ignored and the exact version is used.
       ...createNextAppArgs,
     ])
 
