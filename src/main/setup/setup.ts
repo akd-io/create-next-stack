@@ -9,6 +9,7 @@ import { addGitAttributesStep } from "./steps/add-git-attributes"
 import { addGithubWorkflowStep } from "./steps/add-github-workflow"
 import { addReadmeStep } from "./steps/add-readme/add-readme"
 import { addBaseBabelConfigStep } from "./steps/babel/add-base-babel-config"
+import { removeBaseBabelConfigStep } from "./steps/babel/remove-base-babel-config copy"
 import { copyAssetsStep } from "./steps/copy-assets"
 import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
@@ -71,6 +72,9 @@ export const performSetupSteps = async (
     copyAssetsStep,
     addContentStep,
     addReadmeStep,
+
+    // Cleanup
+    removeBaseBabelConfigStep,
 
     // Format & initial commit
     formatProjectStep,
