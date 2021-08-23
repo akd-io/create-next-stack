@@ -16,10 +16,12 @@ export const testEmotionAllFlags = async (
     "--package-manager=npm",
     "--prettier",
     "--styling=emotion",
+    "--material-ui",
     "--react-hook-form",
     "--formik",
     "--framer-motion",
     "--formatting-pre-commit-hook",
+    "--chakra",
     ".",
   ]
 
