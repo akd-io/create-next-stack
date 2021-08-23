@@ -1,5 +1,5 @@
-import { writeJsonFile } from "../../helpers/json-files"
-import { Step } from "../step"
+import { writeJsonFile } from "../../../helpers/json-files"
+import { Step } from "../../step"
 
 export const addBaseBabelConfigStep: Step = {
   description: "adding custom Babel configuration",
