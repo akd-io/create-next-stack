@@ -107,7 +107,7 @@ export const packages = {
   },
   "create-next-app": {
     name: "create-next-app",
-    version: "~11.1.0", // Note: Create Next App uses an exact minor
+    version: "~11.1.0", // Note: Equivalent to 11.1.x. However, when used with npx, the version range is interpreted exactly instead.
   },
   mrm: {
     name: "mrm",
@@ -124,5 +124,13 @@ export const packages = {
   "@chakra-ui/react": {
     name: "@chakra-ui/react",
     version: "^1.0.0",
+  },
+  "@material-ui/core": {
+    name: "@material-ui/core",
+    version: "^4.0.0",
+  },
+  "@material-ui/icons": {
+    name: "@material-ui/icons",
+    version: "^4.0.0",
   },
 } as const

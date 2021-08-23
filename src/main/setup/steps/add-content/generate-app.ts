@@ -10,7 +10,7 @@ type WrapperComponent = {
 const wrapperComponents: WrapperComponent[] = [
   {
     //Chakra Provider
-    openingTag: endent/* tsx */ `<ChakraProvider resetCSS theme={theme}>`,
+    openingTag: endent/* tsx */ `<ChakraProvider resetCSS theme={chakraTheme}>`,
     closingTag: endent/* tsx */ `</ChakraProvider>`,
     filter: ({ flags }) => Boolean(flags.chakra),
   },
@@ -19,13 +19,20 @@ const wrapperComponents: WrapperComponent[] = [
     openingTag: endent/* tsx */ `
       <ColorModeProvider
         options={{
-          initialColorMode: theme.config.initialColorMode,
-          useSystemColorMode: theme.config.useSystemColorMode,
+          initialColorMode: chakraTheme.config.initialColorMode,
+          useSystemColorMode: chakraTheme.config.useSystemColorMode,
         }}
       >
     `,
     closingTag: endent/* tsx */ `</ColorModeProvider>`,
     filter: ({ flags }) => Boolean(flags.chakra),
+  },
+  {
+    //Material UI Theme Provider
+    openingTag: endent/* tsx */ `<ThemeProvider theme={materialTheme}>
+                                    <CssBaseline />`,
+    closingTag: endent/* tsx */ `</ThemeProvider>`,
+    filter: ({ flags }) => Boolean(flags["material-ui"]),
   },
 ]
 
@@ -40,6 +47,7 @@ export const generateApp = (inputs: ValidCNSInputs): string => {
   return endent/* tsx */ `
     import { AppProps } from "next/app";
     ${getChakraUIImports(inputs)}
+    ${getMaterialUIImports(inputs)}
     ${getGlobalStylesImport(inputs)}
 
     const CustomApp = ({ Component, pageProps }: AppProps) => {
@@ -71,7 +79,17 @@ const getChakraUIImports = ({ flags }: ValidCNSInputs) => {
           ChakraProvider,
           ColorModeProvider,
         } from "@chakra-ui/react";
-        import { theme } from "../theme";
+        import { chakraTheme } from "../chakra-theme";
       `
+    : ""
+}
+
+const getMaterialUIImports = ({ flags }: ValidCNSInputs) => {
+  return flags["material-ui"]
+    ? endent/* tsx */ `
+        import { ThemeProvider } from "@material-ui/core/styles";
+        import CssBaseline from '@material-ui/core/CssBaseline';
+        import { materialTheme } from "../material-theme";
+    `
     : ""
 }

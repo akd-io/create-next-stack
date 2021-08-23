@@ -15,7 +15,7 @@ import { performSetupSteps } from "./setup/setup"
 
 class CreateNextStack extends Command {
   static description =
-    "Create Next Stack is an opinionated interactive CLI tool to easily set up the boilerplate of a new Next.js app."
+    "Create Next Stack is a website and CLI tool used to easily set up the boilerplate of new Next.js apps."
 
   static args = [
     {
@@ -63,6 +63,10 @@ class CreateNextStack extends Command {
     chakra: flags.boolean({
       description:
         "Adds Chakra UI. (Component library) (Requires Emotion and Framer Motion)",
+    }),
+
+    "material-ui": flags.boolean({
+      description: "Adds Material UI. (Component library)",
     }),
 
     // Form libraries:

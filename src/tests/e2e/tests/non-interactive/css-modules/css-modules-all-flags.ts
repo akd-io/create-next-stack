@@ -16,6 +16,7 @@ export const testCssModulesAllFlags = async (
     "--package-manager=npm",
     "--prettier",
     "--styling=css-modules",
+    "--material-ui",
     "--react-hook-form",
     "--formik",
     "--framer-motion",

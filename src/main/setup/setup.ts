@@ -3,12 +3,13 @@ import { capitalizeFirstLetter } from "../helpers/capitalize-first-letter"
 import { logInfo } from "../logging"
 import { printFinalMessages } from "./print-final-messages"
 import { Step } from "./step"
-import { addBaseBabelConfigStep } from "./steps/add-base-babel-config"
 import { addBaseTestScriptStep } from "./steps/add-base-test-script"
 import { addContentStep } from "./steps/add-content/add-content"
 import { addGitAttributesStep } from "./steps/add-git-attributes"
 import { addGithubWorkflowStep } from "./steps/add-github-workflow"
 import { addReadmeStep } from "./steps/add-readme/add-readme"
+import { addBaseBabelConfigStep } from "./steps/babel/add-base-babel-config"
+import { removeBaseBabelConfigStep } from "./steps/babel/remove-base-babel-config copy"
 import { copyAssetsStep } from "./steps/copy-assets"
 import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
@@ -22,6 +23,7 @@ import { setUpCssModulesWithSassStep } from "./steps/set-up-css-modules-with-sas
 import { setUpEmotionStep } from "./steps/set-up-emotion"
 import { setUpEslintStep } from "./steps/set-up-eslint"
 import { setUpLintStagedStep } from "./steps/set-up-lint-staged"
+import { setUpMaterialUIStep } from "./steps/set-up-material-ui"
 import { setUpPrettierStep } from "./steps/set-up-prettier"
 import { setUpStyledComponentsStep } from "./steps/set-up-styled-components"
 import { updateYarnStep } from "./steps/update-yarn"
@@ -50,6 +52,7 @@ export const performSetupSteps = async (
 
     // Component libraries
     setUpChakraUIStep,
+    setUpMaterialUIStep,
 
     // Formatting
     setUpPrettierStep,
@@ -69,6 +72,9 @@ export const performSetupSteps = async (
     copyAssetsStep,
     addContentStep,
     addReadmeStep,
+
+    // Cleanup
+    removeBaseBabelConfigStep,
 
     // Format & initial commit
     formatProjectStep,
