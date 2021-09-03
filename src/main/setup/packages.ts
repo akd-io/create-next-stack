@@ -133,4 +133,16 @@ export const packages = {
     name: "@material-ui/icons",
     version: "^4.0.0",
   },
+  autoprefixer: {
+    name: "autoprefixer",
+    version: "^10.0.0",
+  },
+  postcss: {
+    name: "postcss",
+    version: "^8.0.0",
+  },
+  tailwindcss: {
+    name: "tailwindcss",
+    version: "^2.0.0",
+  },
 } as const
