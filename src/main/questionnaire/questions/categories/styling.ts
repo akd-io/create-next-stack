@@ -26,6 +26,10 @@ export const promptStyling = async (): Promise<StylingValue> => {
         name: "Styled Components",
       },
       {
+        value: stylingValues["tailwind-css"],
+        name: "Tailwind CSS",
+      },
+      {
         value: stylingValues["css-modules"],
         name: "CSS Modules",
       },
