@@ -93,10 +93,11 @@ OPTIONS
   --formik                      Adds Formik. (Form library)
   --framer-motion               Adds Framer Motion. (Animation library)
   --github-actions              Adds a GitHub Actions continuous integration workflow.
+  --material-ui                 Adds Material UI. (Component library)
   --package-manager=(yarn|npm)  Sets the preferred package manager. (Required)
   --prettier                    Adds Prettier. (Code formatting)
   --react-hook-form             Adds React Hook Form. (Form library)
-  --styling=<styling-method>    Sets the preferred styling method. (Required) <styling-method> = emotion|styled-components|css-modules|css-modules-with-sass
+  --styling=<styling-method>    Sets the preferred styling method. (Required) <styling-method> = emotion|styled-components|tailwind-css|css-modules|css-modules-with-sass
 ```
 
 ## License
