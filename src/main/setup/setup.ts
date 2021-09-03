@@ -26,6 +26,7 @@ import { setUpLintStagedStep } from "./steps/set-up-lint-staged"
 import { setUpMaterialUIStep } from "./steps/set-up-material-ui"
 import { setUpPrettierStep } from "./steps/set-up-prettier"
 import { setUpStyledComponentsStep } from "./steps/set-up-styled-components"
+import { setUpTailwindCssStep } from "./steps/set-up-tailwind-css"
 import { updateYarnStep } from "./steps/update-yarn"
 
 export const performSetupSteps = async (
@@ -48,6 +49,7 @@ export const performSetupSteps = async (
     // Styling
     setUpEmotionStep,
     setUpStyledComponentsStep,
+    setUpTailwindCssStep,
     setUpCssModulesWithSassStep,
 
     // Component libraries
