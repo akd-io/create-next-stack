@@ -18,6 +18,7 @@ export const setUpTailwindCssStep: Step = {
     )
 
     await addTailwindConfig()
+    await addPostcssConfig()
   },
 }
 
@@ -37,4 +38,18 @@ const addTailwindConfig = async () => {
     }
   `
   await fs.writeFile("tailwind.config.js", tailwindConfigString)
+}
+
+const addPostcssConfig = async () => {
+  const postcssConfigString = endent/* js */ `
+    // If you want to use other PostCSS plugins, see the following:
+    // https://tailwindcss.com/docs/using-with-preprocessors
+    module.exports = {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    }
+  `
+  await fs.writeFile("postcss.config.js", postcssConfigString)
 }
