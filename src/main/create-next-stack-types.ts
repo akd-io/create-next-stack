@@ -36,6 +36,7 @@ export const writablePackageManagerOptions = packageManagerOptions as Writable<
 export const stylingOptions = [
   "emotion",
   "styled-components",
+  "tailwind-css",
   "css-modules",
   "css-modules-with-sass",
 ] as const
