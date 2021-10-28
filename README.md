@@ -52,6 +52,7 @@ The table below provides an overview of the technologies currently supported by 
 | [npm](https://www.npmjs.com/)                             | [CLI Docs](https://docs.npmjs.com/cli/)                                                                                                                              |
 | [Emotion](https://emotion.sh/docs/introduction)           | [Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)                                                                  |
 | [Styled Components](https://styled-components.com/)       | [Docs](https://styled-components.com/docs) - [GitHub repo](https://github.com/styled-components/styled-components)                                                   |
+| [Tailwind CSS](https://tailwindcss.com/)                  | [Docs](https://tailwindcss.com/docs) - [GitHub repo](https://github.com/tailwindlabs/tailwindcss)                                                                    |
 | [CSS Modules](https://github.com/css-modules/css-modules) | [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
 | [Sass](https://sass-lang.com/)                            | [Docs](https://sass-lang.com/documentation) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support)                      |
 | [Chakra UI](https://chakra-ui.com/)                       | [Docs](https://chakra-ui.com/docs/getting-started) - [GitHub repo](https://github.com/chakra-ui/chakra-ui)                                                           |
@@ -92,10 +93,11 @@ OPTIONS
   --formik                      Adds Formik. (Form library)
   --framer-motion               Adds Framer Motion. (Animation library)
   --github-actions              Adds a GitHub Actions continuous integration workflow.
+  --material-ui                 Adds Material UI. (Component library)
   --package-manager=(yarn|npm)  Sets the preferred package manager. (Required)
   --prettier                    Adds Prettier. (Code formatting)
   --react-hook-form             Adds React Hook Form. (Form library)
-  --styling=<styling-method>    Sets the preferred styling method. (Required) <styling-method> = emotion|styled-components|css-modules|css-modules-with-sass
+  --styling=<styling-method>    Sets the preferred styling method. (Required) <styling-method> = emotion|styled-components|tailwind-css|css-modules|css-modules-with-sass
 ```
 
 ## License

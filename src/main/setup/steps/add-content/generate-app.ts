@@ -49,6 +49,7 @@ export const generateApp = (inputs: ValidCNSInputs): string => {
     ${getChakraUIImports(inputs)}
     ${getMaterialUIImports(inputs)}
     ${getGlobalStylesImport(inputs)}
+    ${getTailwindCssImport(inputs)}
 
     const CustomApp = ({ Component, pageProps }: AppProps) => {
       return (
@@ -90,6 +91,12 @@ const getMaterialUIImports = ({ flags }: ValidCNSInputs) => {
         import { ThemeProvider } from "@material-ui/core/styles";
         import CssBaseline from '@material-ui/core/CssBaseline';
         import { materialTheme } from "../material-theme";
-    `
+      `
+    : ""
+}
+
+const getTailwindCssImport = ({ flags }: ValidCNSInputs) => {
+  return flags.styling === "tailwind-css"
+    ? /* tsx */ `import "tailwindcss/tailwind.css";`
     : ""
 }
