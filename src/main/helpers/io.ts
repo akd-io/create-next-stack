@@ -20,6 +20,7 @@ export const modifyJsonFile = async (
 export const readJsonFile = async (
   path: string
 ): Promise<Record<string, unknown>> => {
+  logDebug("Reading json file:", path)
   const jsonString = await fs.readFile(path, "utf8")
   const jsonObject = JSON.parse(jsonString)
 
@@ -34,6 +35,7 @@ export const writeJsonFile = async (
   fileName: string,
   object: Record<string, unknown>
 ): Promise<void> => {
+  logDebug("Writing json file:", fileName)
   const objectString = JSON.stringify(object, null, 2)
   await fs.writeFile(fileName, objectString)
 }
