@@ -107,7 +107,7 @@ export const packages = {
   },
   "create-next-app": {
     name: "create-next-app",
-    version: "~12.0.1", // Note: Equivalent to 12.0.x. However, when used with npx, the version is interpreted exactly instead of as a range.
+    version: "~12.1.5", // Note: Equivalent to 12.0.x. However, when used with npx, the version is interpreted exactly instead of as a range.
   },
   mrm: {
     name: "mrm",
