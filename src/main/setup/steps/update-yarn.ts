@@ -1,4 +1,4 @@
-import execa from "execa"
+import { runCommand } from "../../run-command"
 import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
@@ -10,6 +10,6 @@ export const updateYarnStep: Step = {
   didRun: false,
 
   run: async () => {
-    await execa("npm", ["i", "-g", getNameVersionCombo(packages.yarn)])
+    await runCommand("npm", ["i", "-g", getNameVersionCombo(packages.yarn)])
   },
 }

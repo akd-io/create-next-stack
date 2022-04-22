@@ -1,5 +1,5 @@
-import execa from "execa"
 import { promises as fs } from "fs"
+import { runCommand } from "../../run-command"
 import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
@@ -19,7 +19,7 @@ export const createNextAppStep: Step = {
       createNextAppArgs.push("--use-npm")
     }
 
-    await execa("npx", [
+    await runCommand("npx", [
       getNameVersionCombo(packages["create-next-app"]), // Note: npx ignores version ranges. So the tilde in packages["create-next-app"] is ignored and the exact version is used.
       ...createNextAppArgs,
     ])

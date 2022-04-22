@@ -1,4 +1,4 @@
-import execa from "execa"
+import { runCommand } from "../../../../../main/run-command"
 import { checkFormattingLintingBuild } from "../../../helpers/check-formatting-linting-build"
 import { minutesToMilliseconds } from "../../../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../../../helpers/prepare-e2e-test"
@@ -20,7 +20,7 @@ export const testStyledComponentsOnly = async (
 
   logTestInfo(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
 
-  await execa(pathToProdCLI, args, {
+  await runCommand(pathToProdCLI, args, {
     timeout: minutesToMilliseconds(10),
     cwd: runDirectory,
     stdout: "inherit",

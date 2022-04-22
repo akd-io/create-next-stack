@@ -1,4 +1,4 @@
-import execa from "execa"
+import { runCommand } from "../run-command"
 
 type Package = {
   readonly name: string
@@ -29,7 +29,8 @@ export const install = async (
   packagesWithVersions.forEach((packageWithVersion) => {
     installCommandArgs.push(packageWithVersion)
   })
-  await execa(packageManager, installCommandArgs)
+
+  await runCommand(packageManager, installCommandArgs)
 }
 
 export const uninstall = async (
@@ -44,7 +45,8 @@ export const uninstall = async (
 
   const uninstallSubCommand = packageManager === "yarn" ? "remove" : "uninstall"
   const uninstallCommandArgs = [uninstallSubCommand, ...packageNames]
-  await execa(packageManager, uninstallCommandArgs)
+
+  await runCommand(packageManager, uninstallCommandArgs)
 }
 
 export const getNameVersionCombo = (npmPackage: Package): string => {

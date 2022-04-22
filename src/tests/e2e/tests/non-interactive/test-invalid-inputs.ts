@@ -1,4 +1,4 @@
-import execa from "execa"
+import { runCommand } from "../../../../main/run-command"
 import { minutesToMilliseconds } from "../../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../../helpers/prepare-e2e-test"
 import { logTestInfo } from "../../test-logging"
@@ -37,7 +37,7 @@ export const testInvalidInputs = async (
     logTestInfo(`Running command: ${pathToProdCLI} ${prettyArgs}`)
 
     let didThrowError = false
-    await execa(pathToProdCLI, args, {
+    await runCommand(pathToProdCLI, args, {
       timeout: minutesToMilliseconds(1),
       cwd: runDirectory,
       stdout: "inherit",

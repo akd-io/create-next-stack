@@ -1,8 +1,8 @@
-import execa from "execa"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { modifyJsonFile } from "../../helpers/json-files"
 import { remove } from "../../helpers/remove"
 import { logWarning } from "../../logging"
+import { runCommand } from "../../run-command"
 import { install, packages, uninstall } from "../packages"
 import { Step } from "../step"
 
@@ -33,7 +33,7 @@ export const setUpLintStagedStep: Step = {
     })
 
     // Set up lint-staged using mrm
-    await execa("npx", ["mrm", "lint-staged"])
+    await runCommand("npx", ["mrm", "lint-staged"])
 
     // Remove the unnecessary log file (named "7") created by `mrm lint-staged`
     await remove("7")
