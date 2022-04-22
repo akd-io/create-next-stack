@@ -91,7 +91,7 @@ export const packages = {
   },
   "babel-plugin-styled-components": {
     name: "babel-plugin-styled-components",
-    version: "^1.0.0",
+    version: "^2.0.0",
   },
   "react-hook-form": {
     name: "react-hook-form",
@@ -103,7 +103,7 @@ export const packages = {
   },
   "framer-motion": {
     name: "framer-motion",
-    version: "^4.0.0",
+    version: "^6.0.0",
   },
   "create-next-app": {
     name: "create-next-app",
@@ -111,11 +111,11 @@ export const packages = {
   },
   mrm: {
     name: "mrm",
-    version: "^3.0.0",
+    version: "^4.0.0",
   },
   "mrm-task-lint-staged": {
     name: "mrm-task-lint-staged",
-    version: "^6.0.0",
+    version: "^7.0.0",
   },
   "@chakra-ui/icons": {
     name: "@chakra-ui/icons",
@@ -143,6 +143,6 @@ export const packages = {
   },
   tailwindcss: {
     name: "tailwindcss",
-    version: "^2.0.0",
+    version: "^3.0.0",
   },
 } as const
