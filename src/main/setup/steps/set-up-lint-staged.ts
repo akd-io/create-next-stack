@@ -35,8 +35,8 @@ export const setUpLintStagedStep: Step = {
     // Set up lint-staged using mrm
     await execa("npx", ["mrm", "lint-staged"])
 
-    // Remove the unnecessary log file (named "6") created by `mrm lint-staged`
-    await remove("6")
+    // Remove the unnecessary log file (named "7") created by `mrm lint-staged`
+    await remove("7")
 
     // Remove temporary packages
     await uninstall(temporaryPackages, flags["package-manager"])
