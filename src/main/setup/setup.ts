@@ -83,11 +83,12 @@ export const performSetupSteps = async (
     gitCommitStep,
   ]
 
+  // TODO: Remove this when Material UI supports React 18. See https://github.com/mui/material-ui/milestone/45
   if (inputs.flags["material-ui"]) {
     logWarning(
       "Skipping Material UI, as it currently doesn't support React 18."
     )
-    inputs.flags["material-ui"] = false // TODO: Remove this when Material UI supports React 18
+    inputs.flags["material-ui"] = false
   }
 
   for (const step of steps) {
