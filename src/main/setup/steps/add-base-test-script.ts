@@ -1,4 +1,4 @@
-import { modifyJsonFile, toObject } from "../../helpers/json-files"
+import { modifyJsonFile, toObject } from "../../helpers/io"
 import { Step } from "../step"
 
 export const addBaseTestScriptStep: Step = {

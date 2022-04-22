@@ -1,4 +1,4 @@
-import { modifyJsonFile, toArray } from "../../helpers/json-files"
+import { modifyJsonFile, toArray } from "../../helpers/io"
 import { install, packages } from "../packages"
 import { Step } from "../step"
 

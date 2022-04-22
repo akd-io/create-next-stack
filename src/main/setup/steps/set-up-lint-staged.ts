@@ -1,5 +1,5 @@
 import { isGitInitialized } from "../../helpers/is-git-initialized"
-import { modifyJsonFile } from "../../helpers/json-files"
+import { modifyJsonFile } from "../../helpers/io"
 import { remove } from "../../helpers/remove"
 import { logWarning } from "../../logging"
 import { runCommand } from "../../run-command"
