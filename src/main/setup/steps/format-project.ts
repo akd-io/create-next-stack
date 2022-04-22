@@ -1,4 +1,4 @@
-import execa from "execa"
+import { runCommand } from "../../run-command"
 import { getNameVersionCombo, packages } from "../packages"
 import { Step } from "../step"
 
@@ -10,6 +10,10 @@ export const formatProjectStep: Step = {
   didRun: false,
 
   run: async () => {
-    await execa("npx", [getNameVersionCombo(packages.prettier), "--write", "."])
+    await runCommand("npx", [
+      getNameVersionCombo(packages.prettier),
+      "--write",
+      ".",
+    ])
   },
 }

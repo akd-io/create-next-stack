@@ -1,17 +1,22 @@
-import execa from "execa"
+import { runCommand } from "../../../main/run-command"
 import { logTestError, logTestInfo } from "../test-logging"
 
 export const setGitNameAndEmail = async (): Promise<void> => {
   try {
-    await execa("git", ["config", "--global", "user.name"])
+    await runCommand("git", ["config", "--global", "user.name"])
       .then((result) => {
         logTestInfo(`user.name found: ${result.stdout}`)
       })
       .catch(async () => {
         logTestInfo(`user.name didn't exist. Setting user.name="Test user"`)
-        await execa("git", ["config", "--global", "user.name", "Test user"])
+        await runCommand("git", [
+          "config",
+          "--global",
+          "user.name",
+          "Test user",
+        ])
       })
-    await execa("git", ["config", "--global", "user.email"])
+    await runCommand("git", ["config", "--global", "user.email"])
       .then((result) => {
         logTestInfo(`user.email found: ${result.stdout}`)
       })
@@ -19,7 +24,7 @@ export const setGitNameAndEmail = async (): Promise<void> => {
         logTestInfo(
           `user.email didn't exist. Setting user.email="test-user@create-next-stack.com"`
         )
-        await execa("git", [
+        await runCommand("git", [
           "config",
           "--global",
           "user.email",

@@ -39,6 +39,11 @@ export const generateTechnologyTableRows = async (
       filter: flags.styling === "styled-components",
     },
     {
+      name: /* md */ `[Tailwind CSS](https://tailwindcss.com/)`,
+      links: /* md */ `[Docs](https://tailwindcss.com/docs) - [GitHub repo](https://github.com/tailwindlabs/tailwindcss)`,
+      filter: flags.styling === "tailwind-css",
+    },
+    {
       name: /* md */ `[CSS Modules](https://github.com/css-modules/css-modules)`,
       links: /* md */ `[Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css)`,
       filter:

@@ -1,4 +1,4 @@
-import execa from "execa"
+import { runCommand } from "../run-command"
 
 type Package = {
   readonly name: string
@@ -29,7 +29,8 @@ export const install = async (
   packagesWithVersions.forEach((packageWithVersion) => {
     installCommandArgs.push(packageWithVersion)
   })
-  await execa(packageManager, installCommandArgs)
+
+  await runCommand(packageManager, installCommandArgs)
 }
 
 export const uninstall = async (
@@ -44,7 +45,8 @@ export const uninstall = async (
 
   const uninstallSubCommand = packageManager === "yarn" ? "remove" : "uninstall"
   const uninstallCommandArgs = [uninstallSubCommand, ...packageNames]
-  await execa(packageManager, uninstallCommandArgs)
+
+  await runCommand(packageManager, uninstallCommandArgs)
 }
 
 export const getNameVersionCombo = (npmPackage: Package): string => {
@@ -91,7 +93,7 @@ export const packages = {
   },
   "babel-plugin-styled-components": {
     name: "babel-plugin-styled-components",
-    version: "^1.0.0",
+    version: "^2.0.0",
   },
   "react-hook-form": {
     name: "react-hook-form",
@@ -103,19 +105,19 @@ export const packages = {
   },
   "framer-motion": {
     name: "framer-motion",
-    version: "^4.0.0",
+    version: "^6.0.0",
   },
   "create-next-app": {
     name: "create-next-app",
-    version: "~11.1.0", // Note: Equivalent to 11.1.x. However, when used with npx, the version range is interpreted exactly instead.
+    version: "~12.1.5", // Note: Equivalent to 12.0.x. However, when used with npx, the version is interpreted exactly instead of as a range.
   },
   mrm: {
     name: "mrm",
-    version: "^3.0.0",
+    version: "^4.0.0",
   },
   "mrm-task-lint-staged": {
     name: "mrm-task-lint-staged",
-    version: "^6.0.0",
+    version: "^7.0.0",
   },
   "@chakra-ui/icons": {
     name: "@chakra-ui/icons",
@@ -132,5 +134,17 @@ export const packages = {
   "@material-ui/icons": {
     name: "@material-ui/icons",
     version: "^4.0.0",
+  },
+  autoprefixer: {
+    name: "autoprefixer",
+    version: "^10.0.0",
+  },
+  postcss: {
+    name: "postcss",
+    version: "^8.0.0",
+  },
+  tailwindcss: {
+    name: "tailwindcss",
+    version: "^3.0.0",
   },
 } as const

@@ -16,6 +16,7 @@ export const generatePage = (
   type PageProps = {
     title: string;
     description: string;
+    children: React.ReactNode;
   };
   const Page: React.FC<PageProps> = ({ title, description, children }) => {
     return (

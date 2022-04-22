@@ -1,4 +1,5 @@
-import execa, { Options } from "execa"
+import { Options } from "execa"
+import { runCommand } from "../../../main/run-command"
 import { logTestInfo } from "../test-logging"
 
 export const checkFormattingLintingBuild = async (
@@ -9,15 +10,15 @@ export const checkFormattingLintingBuild = async (
   }
 
   logTestInfo("Checking formatting...")
-  await execa(
+  await runCommand(
     "npx",
     ["prettier", "--check", "--ignore-path=.gitignore", "."],
     options
   )
 
   logTestInfo("Checking linting...")
-  await execa("npm", ["run", "lint"], options)
+  await runCommand("npm", ["run", "lint"], options)
 
   logTestInfo("Running build...")
-  await execa("npm", ["run", "build"], options)
+  await runCommand("npm", ["run", "build"], options)
 }

@@ -1,5 +1,5 @@
 import endent from "endent"
-import { promises as fs } from "fs"
+import { writeFile } from "../../helpers/io"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { logWarning } from "../../logging"
 import { Step } from "../step"
@@ -20,7 +20,7 @@ export const addGitAttributesStep: Step = {
   didRun: false,
 
   run: async () => {
-    await fs.writeFile(filename, generateGitAttributes())
+    await writeFile(filename, generateGitAttributes())
   },
 }
 

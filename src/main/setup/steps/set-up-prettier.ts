@@ -3,7 +3,7 @@ import {
   toArray,
   toObject,
   writeJsonFile,
-} from "../../helpers/json-files"
+} from "../../helpers/io"
 import { install, packages } from "../packages"
 import { Step } from "../step"
 

@@ -1,6 +1,12 @@
 import { promises as fs } from "fs"
+import { logDebug } from "../logging"
 import { isUnknownArray } from "./is-unknown-array"
 import { isUnknownObject } from "./is-unknown-object"
+
+export const writeFile: typeof fs.writeFile = async (file, data, options) => {
+  logDebug("Writing file:", file.toString())
+  return fs.writeFile(file, data, options)
+}
 
 export const modifyJsonFile = async (
   path: string,
@@ -14,6 +20,7 @@ export const modifyJsonFile = async (
 export const readJsonFile = async (
   path: string
 ): Promise<Record<string, unknown>> => {
+  logDebug("Reading json file:", path)
   const jsonString = await fs.readFile(path, "utf8")
   const jsonObject = JSON.parse(jsonString)
 
@@ -28,6 +35,7 @@ export const writeJsonFile = async (
   fileName: string,
   object: Record<string, unknown>
 ): Promise<void> => {
+  logDebug("Writing json file:", fileName)
   const objectString = JSON.stringify(object, null, 2)
   await fs.writeFile(fileName, objectString)
 }

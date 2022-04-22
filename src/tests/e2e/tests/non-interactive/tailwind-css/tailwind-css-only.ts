@@ -4,7 +4,7 @@ import { minutesToMilliseconds } from "../../../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../../../helpers/prepare-e2e-test"
 import { logTestInfo } from "../../../test-logging"
 
-export const testStyledComponentsAllFlags = async (
+export const testTailwindCssOnly = async (
   createNextStackDir: string
 ): Promise<void> => {
   const { pathToProdCLI, runDirectory } = await prepareE2eTest(
@@ -14,13 +14,7 @@ export const testStyledComponentsAllFlags = async (
   const args = [
     "--debug",
     "--package-manager=npm",
-    "--prettier",
-    "--styling=styled-components",
-    "--material-ui",
-    "--react-hook-form",
-    "--formik",
-    "--framer-motion",
-    "--formatting-pre-commit-hook",
+    "--styling=tailwind-css",
     ".",
   ]
 

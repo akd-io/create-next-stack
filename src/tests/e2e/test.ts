@@ -11,6 +11,8 @@ import { testEmotionAllFlags } from "./tests/non-interactive/emotion/emotion-all
 import { testEmotionOnly } from "./tests/non-interactive/emotion/emotion-only"
 import { testStyledComponentsAllFlags } from "./tests/non-interactive/styled-components/styled-components-all-flags"
 import { testStyledComponentsOnly } from "./tests/non-interactive/styled-components/styled-components-only"
+import { testTailwindCssAllFlags } from "./tests/non-interactive/tailwind-css/tailwind-css-all-flags"
+import { testTailwindCssOnly } from "./tests/non-interactive/tailwind-css/tailwind-css-only"
 import { testHelpFlag } from "./tests/non-interactive/test-help-flag"
 import { testInvalidInputs } from "./tests/non-interactive/test-invalid-inputs"
 import { testVersionFlag } from "./tests/non-interactive/test-version-flag"
@@ -36,12 +38,14 @@ import { testVersionFlag } from "./tests/non-interactive/test-version-flag"
     // Styling only
     await testEmotionOnly(createNextStackDir)
     await testStyledComponentsOnly(createNextStackDir)
+    await testTailwindCssOnly(createNextStackDir)
     await testCssModulesOnly(createNextStackDir)
     await testCssModulesWithSassOnly(createNextStackDir)
 
     // All flags
     await testEmotionAllFlags(createNextStackDir)
     await testStyledComponentsAllFlags(createNextStackDir)
+    await testTailwindCssAllFlags(createNextStackDir)
     await testCssModulesAllFlags(createNextStackDir)
     await testCssModulesWithSassAllFlags(createNextStackDir)
 
