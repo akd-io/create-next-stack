@@ -97,6 +97,6 @@ const getMaterialUIImports = ({ flags }: ValidCNSInputs) => {
 
 const getTailwindCssImport = ({ flags }: ValidCNSInputs) => {
   return flags.styling === "tailwind-css"
-    ? /* tsx */ `import "tailwindcss/tailwind.css";`
+    ? /* tsx */ `import '../styles/globals.css';`
     : ""
 }
