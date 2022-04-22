@@ -1,6 +1,12 @@
 import { promises as fs } from "fs"
+import { logDebug } from "../logging"
 import { isUnknownArray } from "./is-unknown-array"
 import { isUnknownObject } from "./is-unknown-object"
+
+export const writeFile: typeof fs.writeFile = async (file, data, options) => {
+  logDebug("Writing file:", file.toString())
+  return fs.writeFile(file, data, options)
+}
 
 export const modifyJsonFile = async (
   path: string,

@@ -1,5 +1,5 @@
 import endent from "endent"
-import { promises as fs } from "fs"
+import { writeFile } from "../../helpers/io"
 import { install, packages } from "../packages"
 import { Step } from "../step"
 
@@ -37,7 +37,7 @@ const addTailwindConfig = async () => {
       plugins: [],
     }
   `
-  await fs.writeFile("tailwind.config.js", tailwindConfigString)
+  await writeFile("tailwind.config.js", tailwindConfigString)
 }
 
 const addPostcssConfig = async () => {
@@ -51,5 +51,5 @@ const addPostcssConfig = async () => {
       },
     }
   `
-  await fs.writeFile("postcss.config.js", postcssConfigString)
+  await writeFile("postcss.config.js", postcssConfigString)
 }

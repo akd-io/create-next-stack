@@ -1,4 +1,5 @@
 import { promises as fs } from "fs"
+import { writeFile } from "../../../helpers/io"
 import { Step } from "../../step"
 import { generatePage } from "./components/generate-page"
 import { generateWithDefaultGlobalStyles } from "./components/generate-with-default-global-styles"
@@ -19,17 +20,17 @@ export const addContentStep: Step = {
     await fs.mkdir("components")
 
     const promises = [
-      fs.writeFile("components/Page.tsx", generatePage(inputs)),
-      fs.writeFile("pages/index.tsx", generateIndexPage(inputs)),
-      fs.writeFile("pages/_app.tsx", generateApp(inputs)),
-      fs.writeFile("pages/_document.tsx", generateDocument(inputs)),
+      writeFile("components/Page.tsx", generatePage(inputs)),
+      writeFile("pages/index.tsx", generateIndexPage(inputs)),
+      writeFile("pages/_app.tsx", generateApp(inputs)),
+      writeFile("pages/_document.tsx", generateDocument(inputs)),
     ]
 
     const { styling } = inputs.flags
 
     if (styling === "emotion" || styling === "styled-components") {
       promises.push(
-        fs.writeFile(
+        writeFile(
           "components/WithDefaultGlobalStyles.tsx",
           generateWithDefaultGlobalStyles(inputs)
         )
@@ -40,7 +41,7 @@ export const addContentStep: Step = {
       await fs.mkdir("styles")
       const extension = styling === "css-modules" ? "css" : "scss"
       promises.push(
-        fs.writeFile(`styles/global-styles.${extension}`, globalStyles)
+        writeFile(`styles/global-styles.${extension}`, globalStyles)
       )
     }
 

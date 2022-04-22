@@ -1,4 +1,4 @@
-import { promises as fs } from "fs"
+import { writeFile } from "../../../helpers/io"
 import { Step } from "../../step"
 import { generateReadme } from "./generate-readme"
 
@@ -11,6 +11,6 @@ export const addReadmeStep: Step = {
 
   run: async (inputs) => {
     const readmeString = await generateReadme(inputs)
-    await fs.writeFile("README.md", readmeString)
+    await writeFile("README.md", readmeString)
   },
 }
