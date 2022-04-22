@@ -2,6 +2,7 @@ import endent from "endent"
 import { promises as fs } from "fs"
 import path from "path"
 import { ValidCNSInputs } from "../../create-next-stack-types"
+import { writeFile } from "../../helpers/io"
 import { Step } from "../step"
 
 export const addGithubWorkflowStep: Step = {
@@ -16,7 +17,7 @@ export const addGithubWorkflowStep: Step = {
     const filename = "ci.yml"
     await fs.mkdir(directory, { recursive: true })
     const filePath = path.resolve(`${directory}/${filename}`)
-    await fs.writeFile(filePath, generateCiYml(inputs))
+    await writeFile(filePath, generateCiYml(inputs))
   },
 }
 

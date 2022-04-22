@@ -1,4 +1,4 @@
-import { promises as fs } from "fs"
+import { writeFile } from "../../../helpers/io"
 import { Step } from "../../step"
 
 const baseBabelConfig = {
@@ -16,6 +16,6 @@ export const addBaseBabelConfigStep: Step = {
 
   run: async () => {
     // The base Babel config is ready for custom preset configurations to be added onto the `next/babel` preset as per the Next.js docs: https://nextjs.org/docs/advanced-features/customizing-babel-config
-    await fs.writeFile(".babelrc", baseBabelConfigString)
+    await writeFile(".babelrc", baseBabelConfigString)
   },
 }

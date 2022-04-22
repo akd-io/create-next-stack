@@ -1,6 +1,6 @@
-import execa from "execa"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { logWarning } from "../../logging"
+import { runCommand } from "../../run-command"
 import { Step } from "../step"
 
 export const gitCommitStep: Step = {
@@ -18,8 +18,8 @@ export const gitCommitStep: Step = {
 
   run: async () => {
     // Create Next App adds an initial commit. This is overridden using --amend below.
-    await execa("git", ["add", "."])
-    await execa("git", [
+    await runCommand("git", ["add", "."])
+    await runCommand("git", [
       "commit",
       "--amend",
       "-m",

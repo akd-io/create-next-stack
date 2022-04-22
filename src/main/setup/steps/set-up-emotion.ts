@@ -1,6 +1,6 @@
 import { isUnknownArray } from "../../helpers/is-unknown-array"
 import { isUnknownObject } from "../../helpers/is-unknown-object"
-import { modifyJsonFile, toArray, toObject } from "../../helpers/json-files"
+import { modifyJsonFile, toArray, toObject } from "../../helpers/io"
 import { install, packages } from "../packages"
 import { Step } from "../step"
 

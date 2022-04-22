@@ -1,7 +1,7 @@
 import chalk from "chalk"
 import endent from "endent"
-import execa from "execa"
 import { v4 as uuidv4 } from "uuid"
+import { runCommand } from "../../main/run-command"
 import { checkFormattingLintingBuild } from "./helpers/check-formatting-linting-build"
 import { exitWithError } from "./helpers/exit-with-error"
 import { logTestInfo } from "./test-logging"
@@ -15,7 +15,7 @@ import { logTestInfo } from "./test-logging"
 
     logTestInfo(`Running command: ${command} ${args.join(" ")}`)
 
-    await execa(command, args, { stdio: "inherit" })
+    await runCommand(command, args, { stdio: "inherit" })
 
     await checkFormattingLintingBuild(runDirectory)
 

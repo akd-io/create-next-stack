@@ -1,4 +1,4 @@
-import execa from "execa"
+import { runCommand } from "../../run-command"
 import { Step } from "../step"
 
 export const setUpEslintStep: Step = {
@@ -9,6 +9,6 @@ export const setUpEslintStep: Step = {
   didRun: false,
 
   run: async ({ flags }) => {
-    await execa(flags["package-manager"], ["run", "lint", "--strict"])
+    await runCommand(flags["package-manager"], ["run", "lint", "--strict"])
   },
 }

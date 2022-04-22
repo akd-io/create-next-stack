@@ -10,7 +10,12 @@ export const generateWithDefaultGlobalStyles = (
 
   ${getGlobalStylesDeclaration(inputs)}
 
-  const WithDefaultGlobalStyles: React.FC = ({ children }) => {
+  type WithDefaultGlobalStylesProps = {
+    children: React.ReactNode;
+  };
+  const WithDefaultGlobalStyles: React.FC<WithDefaultGlobalStylesProps> = ({
+    children,
+  }) => {
     return (
       <>
         ${getGlobalStylesComponent(inputs)}

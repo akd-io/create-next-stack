@@ -1,8 +1,15 @@
 import endent from "endent"
 import { promises as fs } from "fs"
+import { writeFile } from "../../helpers/io"
 import { install, packages } from "../packages"
 import { Step } from "../step"
 
+/**
+ * Follows a combination of the official Next.js template:
+ * https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss
+ * and the official Tailwind guide for Next.js:
+ * https://tailwindcss.com/docs/guides/nextjs
+ */
 export const setUpTailwindCssStep: Step = {
   description: "setting up Tailwind CSS",
 
@@ -19,31 +26,33 @@ export const setUpTailwindCssStep: Step = {
 
     await addTailwindConfig()
     await addPostcssConfig()
+    await addStylesGlobalsCss()
   },
 }
 
 const addTailwindConfig = async () => {
+  // From running `npx tailwind init -p --types` and adding globs to the content array according to https://tailwindcss.com/docs/guides/nextjs
   const tailwindConfigString = endent/* js */ `
-    module.exports = {
-      mode: 'jit',
-      purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-      darkMode: false, // or 'media' or 'class'
+    /** @type {import('tailwindcss/types').Config} */
+    const config = {
+      content: [
+        './pages/**/*.{js,ts,jsx,tsx}',
+        './components/**/*.{js,ts,jsx,tsx}',
+      ],
       theme: {
-        extend: {},
-      },
-      variants: {
         extend: {},
       },
       plugins: [],
     }
+
+    module.exports = config;
   `
-  await fs.writeFile("tailwind.config.js", tailwindConfigString)
+  await writeFile("tailwind.config.js", tailwindConfigString)
 }
 
 const addPostcssConfig = async () => {
+  // From https://github.com/vercel/next.js/blob/canary/examples/with-tailwindcss/postcss.config.js
   const postcssConfigString = endent/* js */ `
-    // If you want to use other PostCSS plugins, see the following:
-    // https://tailwindcss.com/docs/using-with-preprocessors
     module.exports = {
       plugins: {
         tailwindcss: {},
@@ -51,5 +60,16 @@ const addPostcssConfig = async () => {
       },
     }
   `
-  await fs.writeFile("postcss.config.js", postcssConfigString)
+  await writeFile("postcss.config.js", postcssConfigString)
+}
+
+const addStylesGlobalsCss = async () => {
+  // From https://github.com/vercel/next.js/blob/canary/examples/with-tailwindcss/styles/globals.css
+  const stylesGlobalsCssString = endent/* css */ `
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+  `
+  await fs.mkdir("styles", { recursive: true })
+  await writeFile("styles/globals.css", stylesGlobalsCssString)
 }
