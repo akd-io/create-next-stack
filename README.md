@@ -1,4 +1,4 @@
-<img width="100%" src="assets/banner.png" alt="Create Next Stack - The ultimate starter kit for Next.js">
+<img width="100%" src="assets/banner.png" alt="A screenshot of the Create Next Stack website">
 
 <p align="center">
   <a aria-label="NPM version" href="https://www.npmjs.com/package/create-next-stack">
@@ -13,12 +13,18 @@
   <a aria-label="License" href="https://github.com/akd-io/create-next-stack/blob/develop/LICENSE">
     <img alt="" src="https://img.shields.io/npm/l/create-next-stack?color=44cc11&style=flat-square">
   </a>
+  <a aria-label="Create Next Stack Website GitHub Repository" href="https://github.com/akd-io/create-next-stack-website">
+    <img alt="" src="https://img.shields.io/badge/Website-gray?style=flat-square&logo=github">
+  </a>
   <a aria-label="GitHub Repo stars" href="https://github.com/akd-io/create-next-stack">
     <img alt="" src="https://img.shields.io/github/stars/akd-io/create-next-stack?style=social">
   </a>
+  <a aria-label="Community Discord" href="https://discord.gg/7Ns5WwGjjZ">
+    <img alt="" src="https://img.shields.io/badge/Discord-gray?style=flat-square&logo=discord">
+  </a>
 </p>
 
-Create Next Stack is a website and CLI tool used to easily set up the boilerplate of new [Next.js](https://github.com/vercel/next.js) apps.
+[Create Next Stack](https://www.create-next-stack.com/) is a website and CLI tool used to easily set up the boilerplate of new [Next.js](https://github.com/vercel/next.js) apps.
 
 Where [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) lets you choose a single template only, Create Next Stack lets you pick and choose an array of technologies often used alongside Next.js, and free you of the pain of making them work together.
 
