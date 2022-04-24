@@ -22,6 +22,9 @@
   <a aria-label="Community Discord" href="https://discord.gg/7Ns5WwGjjZ">
     <img alt="" src="https://img.shields.io/badge/Discord-gray?style=flat-square&logo=discord">
   </a>
+  <a aria-label="Twitter profile of the creator of Create Next Stack" href="https://twitter.com/akd_io">
+    <img alt="" src="https://img.shields.io/badge/Twitter-gray?style=flat-square&logo=twitter">
+  </a>
 </p>
 
 [Create Next Stack](https://www.create-next-stack.com/) is a website and CLI tool used to easily set up the boilerplate of new [Next.js](https://github.com/vercel/next.js) apps.
