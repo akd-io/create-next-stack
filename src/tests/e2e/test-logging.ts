@@ -7,14 +7,14 @@ const testInfoPrefix = testPrefix + chalk.cyan("info ")
 const testWarningPrefix = testPrefix + chalk.yellow("warning ")
 const testErrorPrefix = testPrefix + chalk.red("error ")
 
-export const logTestInfo = (str: string): void => {
-  console.info(prefixLines(testInfoPrefix, chalk.white(str)))
+export const logTestInfo = (...strings: string[]): void => {
+  console.info(prefixLines(testInfoPrefix, chalk.white(strings.join(" "))))
 }
 
-export const logTestWarning = (str: string): void => {
-  console.warn(prefixLines(testWarningPrefix, chalk.yellow(str)))
+export const logTestWarning = (...strings: string[]): void => {
+  console.warn(prefixLines(testWarningPrefix, chalk.yellow(strings.join(" "))))
 }
 
-export const logTestError = (str: string): void => {
-  console.error(prefixLines(testErrorPrefix, chalk.red(str)))
+export const logTestError = (...strings: string[]): void => {
+  console.error(prefixLines(testErrorPrefix, chalk.red(strings.join(" "))))
 }

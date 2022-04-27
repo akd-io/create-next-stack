@@ -1,7 +1,8 @@
-import { runCommand } from "../../../../main/run-command"
-import { minutesToMilliseconds } from "../../helpers/minutes-to-milliseconds"
-import { prepareE2eTest } from "../../helpers/prepare-e2e-test"
-import { logTestInfo } from "../../test-logging"
+import { prettyCommand } from "../../../main/helpers/pretty-command"
+import { runCommand } from "../../../main/run-command"
+import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
+import { prepareE2eTest } from "../helpers/prepare-e2e-test"
+import { logTestInfo } from "../test-logging"
 
 export const testInvalidInputs = async (
   createNextStackDir: string
@@ -11,7 +12,11 @@ export const testInvalidInputs = async (
   )
 
   const argsArrays = {
-    invalidName: ["INVALID-NAME"],
+    invalidName: [
+      "INVALID-NAME",
+      "--package-manager=npm",
+      "--styling=css-modules",
+    ],
     noStyling: ["--package-manager=npm"],
     noPackageManager: ["--styling=css-modules"],
     preCommitHookRequiresPrettier: [
@@ -33,8 +38,7 @@ export const testInvalidInputs = async (
   }
 
   for (const args of Object.values(argsArrays)) {
-    const prettyArgs = args.join(" ")
-    logTestInfo(`Running command: ${pathToProdCLI} ${prettyArgs}`)
+    logTestInfo("Running command:", prettyCommand(pathToProdCLI, args))
 
     let didThrowError = false
     await runCommand(pathToProdCLI, args, {
@@ -47,9 +51,7 @@ export const testInvalidInputs = async (
     })
 
     if (!didThrowError) {
-      throw new Error(
-        "Expected the following arguments to cause an error: " + prettyArgs
-      )
+      throw new Error("Expected the command to throw an error.")
     }
   }
 }
