@@ -52,7 +52,7 @@ export const validateArgs = (
 ): args is ValidCreateNextStackArgs => {
   if (typeof args["appName"] !== "string") {
     throw new TypeError(
-      'Outside interactive mode, you are required to specify a name for your application. Read about the "appName" argument using --help.'
+      'You are required to specify a name for your application. Read about the "appName" argument using --help.'
     )
   }
 
@@ -75,12 +75,12 @@ export const validateFlags = (
 ): flags is ValidCreateNextStackFlags => {
   if (typeof flags["package-manager"] !== "string") {
     throw new Error(
-      'Outside interactive mode, you are required to specify a package manager. Read about the "--package-manager" option using --help.'
+      'You are required to specify a package manager. Read about the "--package-manager" option using --help.'
     )
   }
   if (typeof flags.styling !== "string") {
     throw new Error(
-      'Outside interactive mode, you are required to specify a styling method. Read about the "--styling" option using --help.'
+      'You are required to specify a styling method. Read about the "--styling" option using --help.'
     )
   }
   if (flags.chakra && flags.styling !== "emotion") {
