@@ -7,20 +7,20 @@ const debugPrefix = chalk.white("debug ")
 const warningPrefix = chalk.yellow("warning ")
 const errorPrefix = chalk.red("error ")
 
-export const logInfo = (...str: string[]): void => {
-  console.info(prefixLines(infoPrefix, chalk.white(str.join(" "))))
+export const logInfo = (...strings: string[]): void => {
+  console.info(prefixLines(infoPrefix, chalk.white(strings)))
 }
 
-export const logDebug = (...str: string[]): void => {
+export const logDebug = (...strings: string[]): void => {
   if (inDebugMode()) {
-    console.debug(prefixLines(debugPrefix, chalk.white(str.join(" "))))
+    console.debug(prefixLines(debugPrefix, chalk.white(strings)))
   }
 }
 
-export const logWarning = (...str: string[]): void => {
-  console.warn(prefixLines(warningPrefix, chalk.yellow(str.join(" "))))
+export const logWarning = (...strings: string[]): void => {
+  console.warn(prefixLines(warningPrefix, chalk.yellow(strings)))
 }
 
-export const logError = (...str: string[]): void => {
-  console.error(prefixLines(errorPrefix, chalk.red(str.join(" "))))
+export const logError = (...strings: string[]): void => {
+  console.error(prefixLines(errorPrefix, chalk.red(strings)))
 }
