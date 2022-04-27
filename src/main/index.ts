@@ -11,7 +11,7 @@ import {
 } from "./create-next-stack-types"
 import { exitWithError } from "./helpers/exit-with-error"
 import { commandInstance } from "./instance"
-import { logDebug, logInfo } from "./logging"
+import { logInfo } from "./logging"
 import { performSetupSteps } from "./setup/setup"
 
 class CreateNextStack extends Command {
