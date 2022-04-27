@@ -1,3 +1,4 @@
+import { prettyCommand } from "../../../../../main/helpers/pretty-command"
 import { runCommand } from "../../../../../main/run-command"
 import { checkFormattingLintingBuild } from "../../../helpers/check-formatting-linting-build"
 import { minutesToMilliseconds } from "../../../helpers/minutes-to-milliseconds"
@@ -25,7 +26,7 @@ export const testEmotionAllFlags = async (
     ".",
   ]
 
-  logTestInfo(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
+  logTestInfo("Running command:", prettyCommand(pathToProdCLI, args))
 
   await runCommand(pathToProdCLI, args, {
     timeout: minutesToMilliseconds(10),

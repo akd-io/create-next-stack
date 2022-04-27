@@ -1,3 +1,4 @@
+import { prettyCommand } from "../../../../main/helpers/pretty-command"
 import { runCommand } from "../../../../main/run-command"
 import { minutesToMilliseconds } from "../../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../../helpers/prepare-e2e-test"
@@ -12,7 +13,7 @@ export const testHelpFlag = async (
 
   const args = ["--help"]
 
-  logTestInfo(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
+  logTestInfo("Running command:", prettyCommand(pathToProdCLI, args))
 
   await runCommand(pathToProdCLI, args, {
     timeout: minutesToMilliseconds(1),

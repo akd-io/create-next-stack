@@ -1,3 +1,4 @@
+import { prettyCommand } from "../../../../../main/helpers/pretty-command"
 import { runCommand } from "../../../../../main/run-command"
 import { checkFormattingLintingBuild } from "../../../helpers/check-formatting-linting-build"
 import { minutesToMilliseconds } from "../../../helpers/minutes-to-milliseconds"
@@ -13,7 +14,7 @@ export const testEmotionOnly = async (
 
   const args = ["--debug", "--package-manager=npm", "--styling=emotion", "."]
 
-  logTestInfo(`Running command: ${pathToProdCLI} ${args.join(" ")}`)
+  logTestInfo("Running command:", prettyCommand(pathToProdCLI, args))
 
   await runCommand(pathToProdCLI, args, {
     timeout: minutesToMilliseconds(10),
