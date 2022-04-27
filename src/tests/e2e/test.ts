@@ -2,7 +2,7 @@ import chalk from "chalk"
 import { exitWithError } from "./helpers/exit-with-error"
 import { setGitNameAndEmail } from "./helpers/set-git-name-and-email"
 import { logTestInfo } from "./test-logging"
-import { testDefaultOptionsInteractive } from "./tests/interactive/default-options"
+import { testNoFlags } from "./tests/non-interactive/test-no-flags"
 import { testCssModulesWithSassAllFlags } from "./tests/non-interactive/css-modules-with-sass/css-modules-with-sass-all-flags"
 import { testCssModulesWithSassOnly } from "./tests/non-interactive/css-modules-with-sass/css-modules-with-sass-only"
 import { testCssModulesAllFlags } from "./tests/non-interactive/css-modules/css-modules-all-flags"
@@ -29,11 +29,11 @@ import { testVersionFlag } from "./tests/non-interactive/test-version-flag"
     await testHelpFlag(createNextStackDir)
     await testVersionFlag(createNextStackDir)
 
-    // Invalid name
+    // Invalid inputs
     await testInvalidInputs(createNextStackDir)
 
-    // Interactive test
-    await testDefaultOptionsInteractive(createNextStackDir)
+    // No flags test
+    await testNoFlags(createNextStackDir)
 
     // Styling only
     await testEmotionOnly(createNextStackDir)
