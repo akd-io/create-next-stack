@@ -137,9 +137,6 @@ const calledWithoutFlags = (flags: CreateNextStackFlags): boolean => {
   let numOfNonGeneralFlags = numOfAllFlags
   if (flags.debug != null) numOfNonGeneralFlags--
 
-  logDebug(`numOfAllFlags: ${numOfAllFlags}`)
-  logDebug(`numOfNonGeneralFlags: ${numOfNonGeneralFlags}`)
-
   return numOfNonGeneralFlags === 0
 }
 
