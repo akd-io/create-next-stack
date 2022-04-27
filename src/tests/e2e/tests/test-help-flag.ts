@@ -1,8 +1,8 @@
-import { prettyCommand } from "../../../../main/helpers/pretty-command"
-import { runCommand } from "../../../../main/run-command"
-import { minutesToMilliseconds } from "../../helpers/minutes-to-milliseconds"
-import { prepareE2eTest } from "../../helpers/prepare-e2e-test"
-import { logTestInfo } from "../../test-logging"
+import { prettyCommand } from "../../../main/helpers/pretty-command"
+import { runCommand } from "../../../main/run-command"
+import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
+import { prepareE2eTest } from "../helpers/prepare-e2e-test"
+import { logTestInfo } from "../test-logging"
 
 export const testHelpFlag = async (
   createNextStackDir: string

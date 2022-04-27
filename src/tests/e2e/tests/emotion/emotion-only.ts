@@ -1,9 +1,9 @@
-import { prettyCommand } from "../../../../../main/helpers/pretty-command"
-import { runCommand } from "../../../../../main/run-command"
-import { checkFormattingLintingBuild } from "../../../helpers/check-formatting-linting-build"
-import { minutesToMilliseconds } from "../../../helpers/minutes-to-milliseconds"
-import { prepareE2eTest } from "../../../helpers/prepare-e2e-test"
-import { logTestInfo } from "../../../test-logging"
+import { prettyCommand } from "../../../../main/helpers/pretty-command"
+import { runCommand } from "../../../../main/run-command"
+import { checkFormattingLintingBuild } from "../../helpers/check-formatting-linting-build"
+import { minutesToMilliseconds } from "../../helpers/minutes-to-milliseconds"
+import { prepareE2eTest } from "../../helpers/prepare-e2e-test"
+import { logTestInfo } from "../../test-logging"
 
 export const testEmotionOnly = async (
   createNextStackDir: string
