@@ -1,4 +1,6 @@
 import { Command, flags } from "@oclif/command"
+import chalk from "chalk"
+import endent from "endent"
 import {
   CreateNextStackArgs,
   CreateNextStackFlags,
@@ -9,8 +11,7 @@ import {
 } from "./create-next-stack-types"
 import { exitWithError } from "./helpers/exit-with-error"
 import { commandInstance } from "./instance"
-import { performArgsQuestionnaire } from "./questionnaire/args-questionnaire"
-import { performFlagsQuestionnaire } from "./questionnaire/flags-questionnaire"
+import { logDebug, logInfo } from "./logging"
 import { performSetupSteps } from "./setup/setup"
 
 class CreateNextStack extends Command {
@@ -105,10 +106,16 @@ class CreateNextStack extends Command {
 
       if (flags.debug) process.env["DEBUG"] = "true"
 
-      if (shouldBeInteractive(flags)) {
-        const validArgs = await performArgsQuestionnaire(args)
-        const validFlags = await performFlagsQuestionnaire()
-        await performSetupSteps({ args: validArgs, flags: validFlags })
+      if (calledWithoutFlags(flags)) {
+        logInfo()
+        logInfo(endent`
+          Create Next Stack doesn't support running without any flags.
+          
+              ${chalk.cyan`Please visit ${chalk.bold`https://create-next-stack.com/`} to pick your technologies.`}
+          
+              You can also use the --help flag for a list of all available flags.
+        `)
+        logInfo()
       } else {
         if (!validateArgs(args)) {
           process.exit(1) // This tells TypeScript that this block is unreachable. validateArgs(args) either throws or returns true.
@@ -124,11 +131,14 @@ class CreateNextStack extends Command {
   }
 }
 
-const shouldBeInteractive = (flags: CreateNextStackFlags): boolean => {
+const calledWithoutFlags = (flags: CreateNextStackFlags): boolean => {
   const numOfAllFlags = Object.keys(flags).length
 
   let numOfNonGeneralFlags = numOfAllFlags
-  if (flags.debug !== undefined) numOfNonGeneralFlags--
+  if (flags.debug != null) numOfNonGeneralFlags--
+
+  logDebug(`numOfAllFlags: ${numOfAllFlags}`)
+  logDebug(`numOfNonGeneralFlags: ${numOfNonGeneralFlags}`)
 
   return numOfNonGeneralFlags === 0
 }
