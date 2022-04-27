@@ -12,7 +12,11 @@ export const testInvalidInputs = async (
   )
 
   const argsArrays = {
-    invalidName: ["INVALID-NAME"],
+    invalidName: [
+      "INVALID-NAME",
+      "--package-manager=npm",
+      "--styling=css-modules",
+    ],
     noStyling: ["--package-manager=npm"],
     noPackageManager: ["--styling=css-modules"],
     preCommitHookRequiresPrettier: [
