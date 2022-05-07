@@ -9,7 +9,7 @@ export const generateReadme = async (
 ): Promise<string> => endent/* md */ `
   # ${getProjectNameOfPath(inputs.args.appName)}
 
-  🎉 Congratulations, your project was successfully bootstrapped with [Create Next Stack](https://github.com/akd-io/create-next-stack)!
+  🎉 Congratulations, your project was successfully generated with [Create Next Stack](https://www.create-next-stack.com/)!
 
   To get started, run:
 
