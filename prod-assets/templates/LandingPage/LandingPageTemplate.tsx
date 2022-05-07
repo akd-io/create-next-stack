@@ -72,7 +72,7 @@ const LandingPageTemplate = () => {
       <footer>
         <Section>
           <Paragraph>
-            Bootstrapped using{" "}
+            Built using{" "}
             <a href="https://www.create-next-stack.com/">
               Create Next Stack
             </a>
