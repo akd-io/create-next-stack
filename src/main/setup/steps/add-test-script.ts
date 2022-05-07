@@ -1,8 +1,8 @@
 import { modifyJsonFile, toObject } from "../../helpers/io"
 import { Step } from "../step"
 
-export const addBaseTestScriptStep: Step = {
-  description: "adding base test script",
+export const addTestScriptStep: Step = {
+  description: "adding test script",
 
   shouldRun: async () => true,
 
