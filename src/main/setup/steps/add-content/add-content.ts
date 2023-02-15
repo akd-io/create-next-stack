@@ -3,11 +3,11 @@ import { writeFile } from "../../../helpers/io"
 import { Step } from "../../step"
 import { generatePage } from "./components/generate-page"
 import { generateWithDefaultGlobalStyles } from "./components/generate-with-default-global-styles"
-import { generateApp } from "./generate-app"
-import { generateDocument } from "./generate-document"
 import { generateTheme } from "./generate-theme"
-import { globalStyles } from "./global-styles"
-import { generateIndexPage } from "./index-page/generate-index"
+import { generateApp } from "./pages/generate-app"
+import { generateDocument } from "./pages/generate-document"
+import { generateIndexPage } from "./pages/generate-index"
+import { globalStyles } from "./styles/global-styles"
 
 export const addContentStep: Step = {
   description: "adding content",

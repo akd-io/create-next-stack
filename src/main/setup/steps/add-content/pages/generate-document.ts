@@ -2,7 +2,7 @@ import endent from "endent"
 import type {
   ValidCNSInputs,
   ValidCreateNextStackFlags,
-} from "../../../create-next-stack-types"
+} from "../../../../create-next-stack-types"
 
 const getChakraImports = (flags: ValidCreateNextStackFlags) => {
   if (flags.chakra) {
