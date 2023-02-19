@@ -73,6 +73,7 @@ export type ValidCreateNextStackFlags = CreateNextStackFlags & {
 export const validateFlags = (
   flags: CreateNextStackFlags
 ): flags is ValidCreateNextStackFlags => {
+  // TODO: Define validator using zod.
   if (typeof flags["package-manager"] !== "string") {
     throw new Error(
       'You are required to specify a package manager. Read about the "--package-manager" option using --help.'
@@ -86,6 +87,14 @@ export const validateFlags = (
   if (flags.chakra && flags.styling !== "emotion") {
     throw new Error(
       "Chakra UI (category: Component library, flag: --chakra) requires Emotion (category: Styling, flag: --styling=emotion)."
+    )
+  }
+  if (
+    flags["material-ui"] &&
+    !["emotion", "styled-components"].includes(flags.styling)
+  ) {
+    throw new Error(
+      "Material UI (category: Component library, flag: --material-ui) requires either Emotion (category: Styling, flag: --styling=emotion) or Styled Components (category: Styling, flag: --styling=styled-components)."
     )
   }
   if (flags.chakra && !flags["framer-motion"]) {

@@ -1,5 +1,5 @@
 import { promises as fs } from "fs"
-import { logDebug } from "../logging"
+import { logDebug, logError } from "../logging"
 import { isUnknownArray } from "./is-unknown-array"
 import { isUnknownObject } from "./is-unknown-object"
 
@@ -22,7 +22,16 @@ export const readJsonFile = async (
 ): Promise<Record<string, unknown>> => {
   logDebug("Reading json file:", path)
   const jsonString = await fs.readFile(path, "utf8")
-  const jsonObject = JSON.parse(jsonString)
+
+  let jsonObject
+  try {
+    jsonObject = JSON.parse(jsonString)
+  } catch {
+    logError("Error passing json file.")
+    logError("path:", path)
+    logError("jsonString:", jsonString)
+    throw new Error("Expected json file to be valid JSON.")
+  }
 
   if (!isUnknownObject(jsonObject)) {
     throw new TypeError("Expected json object to be an object.")

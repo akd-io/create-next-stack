@@ -9,9 +9,9 @@ export const setUpMaterialUIStep: Step = {
   didRun: false,
 
   run: async ({ flags }) => {
-    await install(
-      [packages["@material-ui/core"], packages["@material-ui/icons"]],
-      flags["package-manager"]
-    )
+    await install(packages["@mui/material"], flags["package-manager"])
+    if (flags.styling === "styled-components") {
+      await install(packages["@mui/styled-engine-sc"], flags["package-manager"])
+    }
   },
 }

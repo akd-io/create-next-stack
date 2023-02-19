@@ -58,7 +58,7 @@
   "scripts": {
     "prepare": "husky install",
     "prepack": "yarn build && oclif-dev readme",
-    "build": "rimraf lib && tsc -b",
+    "build": "rimraf lib && tsc --build",
     "test": "yarn build && yarn run test-only",
     "test-only": "node lib/tests/e2e/test.js",
     "test:manual": "yarn build && node lib/tests/e2e/manual-test.js --debug",

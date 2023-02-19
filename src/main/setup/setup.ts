@@ -1,6 +1,6 @@
 import { ValidCNSInputs } from "../create-next-stack-types"
 import { capitalizeFirstLetter } from "../helpers/capitalize-first-letter"
-import { logInfo, logWarning } from "../logging"
+import { logInfo } from "../logging"
 import { printFinalMessages } from "./print-final-messages"
 import { Step } from "./step"
 import { addBaseTestScriptStep } from "./steps/add-base-test-script"
@@ -82,14 +82,6 @@ export const performSetupSteps = async (
     formatProjectStep,
     gitCommitStep,
   ]
-
-  // TODO: Remove this when Material UI supports React 18. See https://github.com/mui/material-ui/milestone/45
-  if (inputs.flags["material-ui"]) {
-    logWarning(
-      "Skipping Material UI, as it currently doesn't support React 18."
-    )
-    inputs.flags["material-ui"] = false
-  }
 
   for (const step of steps) {
     if (await step.shouldRun(inputs)) {

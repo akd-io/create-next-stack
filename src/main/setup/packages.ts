@@ -131,6 +131,10 @@ export const packages = {
     name: "@mui/material",
     version: "^5.0.0",
   },
+  "@mui/styled-engine-sc": {
+    name: "@mui/styled-engine-sc",
+    version: "^5.0.0",
+  },
   autoprefixer: {
     name: "autoprefixer",
     version: "^10.0.0",
