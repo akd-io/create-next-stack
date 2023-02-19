@@ -9,7 +9,7 @@ export const Section: FC<ComponentProps<"section">> = ({
 }) => {
   return (
     <section className={classNames(styles.section, className)} {...props}>
-      <div className={styles.contentContainer}>{children}</div>
+      {children}
     </section>
   );
 };
