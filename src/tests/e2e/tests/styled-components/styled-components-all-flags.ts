@@ -17,7 +17,6 @@ export const testStyledComponentsAllFlags = async (
     "--package-manager=npm",
     "--prettier",
     "--styling=styled-components",
-    "--material-ui",
     "--react-hook-form",
     "--formik",
     "--framer-motion",

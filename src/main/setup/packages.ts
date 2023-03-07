@@ -75,10 +75,6 @@ export const packages = {
     name: "@emotion/styled",
     version: "^11.0.0",
   },
-  "@emotion/babel-plugin": {
-    name: "@emotion/babel-plugin",
-    version: "^11.0.0",
-  },
   "styled-components": {
     name: "styled-components",
     version: "^5.0.0",
@@ -91,10 +87,6 @@ export const packages = {
     name: "sass",
     version: "^1.0.0",
   },
-  "babel-plugin-styled-components": {
-    name: "babel-plugin-styled-components",
-    version: "^2.0.0",
-  },
   "react-hook-form": {
     name: "react-hook-form",
     version: "^7.0.0",
@@ -105,11 +97,11 @@ export const packages = {
   },
   "framer-motion": {
     name: "framer-motion",
-    version: "^6.0.0",
+    version: "^9.0.0",
   },
   "create-next-app": {
     name: "create-next-app",
-    version: "~12.1.5", // Note: Equivalent to 12.0.x. However, when used with npx, the version is interpreted exactly instead of as a range.
+    version: "~13.2.3", // Note: Equivalent to 13.0.x. However, when used with npx, the version is interpreted exactly instead of as a range.
   },
   mrm: {
     name: "mrm",
@@ -121,19 +113,15 @@ export const packages = {
   },
   "@chakra-ui/icons": {
     name: "@chakra-ui/icons",
-    version: "^1.0.0",
+    version: "^2.0.0",
   },
   "@chakra-ui/react": {
     name: "@chakra-ui/react",
-    version: "^1.0.0",
+    version: "^2.0.0",
   },
-  "@material-ui/core": {
-    name: "@material-ui/core",
-    version: "^4.0.0",
-  },
-  "@material-ui/icons": {
-    name: "@material-ui/icons",
-    version: "^4.0.0",
+  "@mui/material": {
+    name: "@mui/material",
+    version: "^5.0.0",
   },
   autoprefixer: {
     name: "autoprefixer",

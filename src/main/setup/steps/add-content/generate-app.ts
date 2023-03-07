@@ -30,7 +30,7 @@ const wrapperComponents: WrapperComponent[] = [
   {
     //Material UI Theme Provider
     openingTag: endent/* tsx */ `<ThemeProvider theme={materialTheme}>
-                                    <CssBaseline />`,
+                                  <CssBaseline />`,
     closingTag: endent/* tsx */ `</ThemeProvider>`,
     filter: ({ flags }) => Boolean(flags["material-ui"]),
   },
@@ -54,7 +54,7 @@ export const generateApp = (inputs: ValidCNSInputs): string => {
     const CustomApp = ({ Component, pageProps }: AppProps) => {
       return (
         ${openingTags}
-        <Component {...pageProps} />
+          <Component {...pageProps} />
         ${closingTags}
       )
     };
@@ -88,9 +88,9 @@ const getChakraUIImports = ({ flags }: ValidCNSInputs) => {
 const getMaterialUIImports = ({ flags }: ValidCNSInputs) => {
   return flags["material-ui"]
     ? endent/* tsx */ `
-        import { ThemeProvider } from "@material-ui/core/styles";
-        import CssBaseline from '@material-ui/core/CssBaseline';
-        import { materialTheme } from "../material-theme";
+        import { ThemeProvider } from "@mui/material/styles";
+        import CssBaseline from '@mui/material/CssBaseline';
+        import materialTheme from "../material-theme";
       `
     : ""
 }

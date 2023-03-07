@@ -17,7 +17,6 @@ export const testCssModulesWithSassAllFlags = async (
     "--package-manager=npm",
     "--prettier",
     "--styling=css-modules-with-sass",
-    "--material-ui",
     "--react-hook-form",
     "--formik",
     "--framer-motion",

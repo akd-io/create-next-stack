@@ -1,13 +1,14 @@
 import { promises as fs } from "fs"
 import { writeFile } from "../../../helpers/io"
 import { Step } from "../../step"
+import { chakraTheme } from "./chakra-theme"
 import { generatePage } from "./components/generate-page"
 import { generateWithDefaultGlobalStyles } from "./components/generate-with-default-global-styles"
 import { generateApp } from "./generate-app"
 import { generateDocument } from "./generate-document"
-import { generateTheme } from "./generate-theme"
 import { globalStyles } from "./global-styles"
 import { generateIndexPage } from "./index-page/generate-index"
+import { materialTheme } from "./material-theme"
 
 export const addContentStep: Step = {
   description: "adding content",
@@ -45,11 +46,12 @@ export const addContentStep: Step = {
       )
     }
 
-    if (
-      (styling === "emotion" && inputs.flags.chakra) ||
-      inputs.flags["material-ui"]
-    ) {
-      promises.push(...generateTheme(inputs))
+    if (inputs.flags.chakra) {
+      promises.push(writeFile("chakra-theme.ts", chakraTheme))
+    }
+
+    if (inputs.flags["material-ui"]) {
+      promises.push(writeFile("material-theme.ts", materialTheme))
     }
 
     await Promise.all(promises)

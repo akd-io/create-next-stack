@@ -18,7 +18,7 @@ const getChakraImports = (flags: ValidCreateNextStackFlags) => {
 const getMaterialImports = (flags: ValidCreateNextStackFlags) => {
   if (flags["material-ui"]) {
     return endent/* tsx */ `
-      import { materialTheme } from "../material-theme";
+      import materialTheme, { roboto } from "../material-theme";
     `
   } else {
     return ""
@@ -29,10 +29,6 @@ const getHeadElements = (flags: ValidCreateNextStackFlags) => {
   if (flags["material-ui"]) {
     return endent/* tsx */ `
       <meta name="theme-color" content={materialTheme.palette.primary.main} />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-      />
     `
   } else {
     return ""
@@ -48,7 +44,9 @@ export const generateDocument = ({ flags }: ValidCNSInputs): string => {
     export default class Document extends NextDocument {
       render() {
         return (
-          <Html lang="en">
+          <Html lang="en" ${
+            flags["material-ui"] ? "className={roboto.className}" : ""
+          }>
             <Head>
               ${getHeadElements(flags)}
             </Head>
