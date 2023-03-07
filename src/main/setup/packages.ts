@@ -75,10 +75,6 @@ export const packages = {
     name: "@emotion/styled",
     version: "^11.0.0",
   },
-  "@emotion/babel-plugin": {
-    name: "@emotion/babel-plugin",
-    version: "^11.0.0",
-  },
   "styled-components": {
     name: "styled-components",
     version: "^5.0.0",
@@ -90,10 +86,6 @@ export const packages = {
   sass: {
     name: "sass",
     version: "^1.0.0",
-  },
-  "babel-plugin-styled-components": {
-    name: "babel-plugin-styled-components",
-    version: "^2.0.0",
   },
   "react-hook-form": {
     name: "react-hook-form",
@@ -109,7 +101,7 @@ export const packages = {
   },
   "create-next-app": {
     name: "create-next-app",
-    version: "~13.1.6", // Note: Equivalent to 12.0.x. However, when used with npx, the version is interpreted exactly instead of as a range.
+    version: "~13.2.3", // Note: Equivalent to 13.0.x. However, when used with npx, the version is interpreted exactly instead of as a range.
   },
   mrm: {
     name: "mrm",

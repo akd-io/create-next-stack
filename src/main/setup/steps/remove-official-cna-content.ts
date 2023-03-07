@@ -17,7 +17,6 @@ export const removeOfficialCNAContentStep: Step = {
       remove("pages"),
       remove("styles"),
       remove("public/vercel.svg"),
-      remove("README.md"),
     ])
     await fs.mkdir("pages")
   },

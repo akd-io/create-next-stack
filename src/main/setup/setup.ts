@@ -8,8 +8,6 @@ import { addContentStep } from "./steps/add-content/add-content"
 import { addGitAttributesStep } from "./steps/add-git-attributes"
 import { addGithubWorkflowStep } from "./steps/add-github-workflow"
 import { addReadmeStep } from "./steps/add-readme/add-readme"
-import { addBaseBabelConfigStep } from "./steps/babel/add-base-babel-config"
-import { removeBaseBabelConfigStep } from "./steps/babel/remove-base-babel-config copy"
 import { copyAssetsStep } from "./steps/copy-assets"
 import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
@@ -17,6 +15,7 @@ import { gitCommitStep } from "./steps/git-commit"
 import { installFormikStep } from "./steps/install-formik"
 import { installFramerMotionStep } from "./steps/install-framer-motion"
 import { installReactHookFormStep } from "./steps/install-react-hook-form"
+import { addNextConfigStep } from "./steps/next-config/add-next-config"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
 import { setUpChakraUIStep } from "./steps/set-up-chakra-ui"
 import { setUpCssModulesWithSassStep } from "./steps/set-up-css-modules-with-sass"
@@ -43,7 +42,7 @@ export const performSetupSteps = async (
 
     // Configuration
     addGitAttributesStep,
-    addBaseBabelConfigStep,
+    addNextConfigStep,
     addBaseTestScriptStep,
 
     // Styling
@@ -74,9 +73,6 @@ export const performSetupSteps = async (
     copyAssetsStep,
     addContentStep,
     addReadmeStep,
-
-    // Cleanup
-    removeBaseBabelConfigStep,
 
     // Format & initial commit
     formatProjectStep,
