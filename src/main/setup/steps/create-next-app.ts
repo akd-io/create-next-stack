@@ -26,7 +26,14 @@ export const createNextAppStep: Step = {
           ${chalk.cyan(`code ${path.resolve(args.appName)}`)}
     `)
 
-    const createNextAppArgs = [args.appName, "--typescript"]
+    const createNextAppArgs = [
+      args.appName,
+      "--typescript",
+      "--eslint",
+      "--no-experimental-app",
+      "--no-src-dir",
+      "--import-alias=@/*",
+    ]
     if (flags["package-manager"] === "npm") {
       createNextAppArgs.push("--use-npm")
     }

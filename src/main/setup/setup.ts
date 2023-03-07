@@ -1,6 +1,6 @@
 import { ValidCNSInputs } from "../create-next-stack-types"
 import { capitalizeFirstLetter } from "../helpers/capitalize-first-letter"
-import { logInfo, logWarning } from "../logging"
+import { logInfo } from "../logging"
 import { printFinalMessages } from "./print-final-messages"
 import { Step } from "./step"
 import { addTestScriptStep } from "./steps/add-test-script"
@@ -8,8 +8,6 @@ import { addContentStep } from "./steps/add-content/add-content"
 import { addGitAttributesStep } from "./steps/add-git-attributes"
 import { addGithubWorkflowStep } from "./steps/add-github-workflow"
 import { addReadmeStep } from "./steps/add-readme/add-readme"
-import { addBaseBabelConfigStep } from "./steps/babel/add-base-babel-config"
-import { removeBaseBabelConfigStep } from "./steps/babel/remove-base-babel-config copy"
 import { copyAssetsStep } from "./steps/copy-assets"
 import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
@@ -17,6 +15,7 @@ import { gitCommitStep } from "./steps/git-commit"
 import { installFormikStep } from "./steps/install-formik"
 import { installFramerMotionStep } from "./steps/install-framer-motion"
 import { installReactHookFormStep } from "./steps/install-react-hook-form"
+import { addNextConfigStep } from "./steps/next-config/add-next-config"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
 import { setUpChakraUIStep } from "./steps/set-up-chakra-ui"
 import { setUpCssModulesWithSassStep } from "./steps/set-up-css-modules-with-sass"
@@ -43,7 +42,7 @@ export const performSetupSteps = async (
 
     // Configuration
     addGitAttributesStep,
-    addBaseBabelConfigStep,
+    addNextConfigStep,
     addTestScriptStep,
 
     // Styling
@@ -75,21 +74,10 @@ export const performSetupSteps = async (
     addContentStep,
     addReadmeStep,
 
-    // Cleanup
-    removeBaseBabelConfigStep,
-
     // Format & initial commit
     formatProjectStep,
     gitCommitStep,
   ]
-
-  // TODO: Remove this when Material UI supports React 18. See https://github.com/mui/material-ui/milestone/45
-  if (inputs.flags["material-ui"]) {
-    logWarning(
-      "Skipping Material UI, as it currently doesn't support React 18."
-    )
-    inputs.flags["material-ui"] = false
-  }
 
   for (const step of steps) {
     if (await step.shouldRun(inputs)) {
