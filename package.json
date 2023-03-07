@@ -3,10 +3,60 @@
   "description": "Create Next Stack is a website and CLI tool used to easily set up the boilerplate of new Next.js apps.",
   "version": "0.1.6",
   "author": "Anders Kjær Damgaard @akd-io",
+  "bugs": "https://github.com/akd-io/create-next-stack/issues",
+  "homepage": "https://github.com/akd-io/create-next-stack",
+  "repository": "akd-io/create-next-stack",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "cli",
+    "template",
+    "boilerplate",
+    "typescript",
+    "web",
+    "eslint",
+    "frontend",
+    "nextjs",
+    "prettier",
+    "starter",
+    "starter-kit",
+    "scaffolding"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "oclif": {
+    "bin": "create-next-stack"
+  },
   "bin": {
     "create-next-stack": "./bin/run"
   },
-  "bugs": "https://github.com/akd-io/create-next-stack/issues",
+  "files": [
+    "/bin",
+    "/lib/main",
+    "/prod-assets"
+  ],
+  "exports": {
+    "./package.json": "./package.json"
+  },
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "prepare": "husky install",
+    "prepack": "yarn build && oclif-dev readme",
+    "build": "rimraf lib && tsc --build",
+    "test": "yarn build && yarn run test-only",
+    "test-only": "node lib/tests/e2e/test.js",
+    "test:manual": "yarn build && node lib/tests/e2e/manual-test.js --debug",
+    "test:small": "yarn build && node lib/tests/e2e/manual-test.js --debug --package-manager=npm --styling=css-modules",
+    "test:large": "yarn build && node lib/tests/e2e/manual-test.js --debug --package-manager=yarn --styling=emotion --react-hook-form --formik --prettier --formatting-pre-commit-hook --chakra --framer-motion --github-actions",
+    "version": "oclif-dev readme && git add README.md",
+    "format": "prettier --write --ignore-path=.prettierignore .",
+    "format:check": "prettier --check --ignore-path=.prettierignore .",
+    "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=.gitignore ."
+  },
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown"
+  },
   "dependencies": {
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
@@ -37,43 +87,5 @@
     "ts-node": "^10.0.0",
     "typescript": "^4.3.5",
     "uuid": "^8.3.2"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "files": [
-    "/bin",
-    "/lib/main",
-    "/prod-assets"
-  ],
-  "homepage": "https://github.com/akd-io/create-next-stack",
-  "keywords": [
-    "oclif"
-  ],
-  "license": "MIT",
-  "oclif": {
-    "bin": "create-next-stack"
-  },
-  "repository": "akd-io/create-next-stack",
-  "scripts": {
-    "prepare": "husky install",
-    "prepack": "yarn build && oclif-dev readme",
-    "build": "rimraf lib && tsc --build",
-    "test": "yarn build && yarn run test-only",
-    "test-only": "node lib/tests/e2e/test.js",
-    "test:manual": "yarn build && node lib/tests/e2e/manual-test.js --debug",
-    "test:small": "yarn build && node lib/tests/e2e/manual-test.js --debug --package-manager=npm --styling=css-modules",
-    "test:large": "yarn build && node lib/tests/e2e/manual-test.js --debug --package-manager=yarn --styling=emotion --react-hook-form --formik --prettier --formatting-pre-commit-hook --chakra --framer-motion --github-actions",
-    "version": "oclif-dev readme && git add README.md",
-    "format": "prettier --write --ignore-path=.prettierignore .",
-    "format:check": "prettier --check --ignore-path=.prettierignore .",
-    "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=.gitignore ."
-  },
-  "types": "lib/index.d.ts",
-  "lint-staged": {
-    "*": "prettier --write --ignore-unknown"
-  },
-  "exports": {
-    "./package.json": "./package.json"
   }
 }
