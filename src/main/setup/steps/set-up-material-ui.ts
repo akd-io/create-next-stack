@@ -10,8 +10,5 @@ export const setUpMaterialUIStep: Step = {
 
   run: async ({ flags }) => {
     await install(packages["@mui/material"], flags["package-manager"])
-    if (flags.styling === "styled-components") {
-      await install(packages["@mui/styled-engine-sc"], flags["package-manager"])
-    }
   },
 }

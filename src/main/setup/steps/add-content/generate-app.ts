@@ -30,7 +30,7 @@ const wrapperComponents: WrapperComponent[] = [
   {
     //Material UI Theme Provider
     openingTag: endent/* tsx */ `<ThemeProvider theme={materialTheme}>
-                                    <CssBaseline />`,
+                                  <CssBaseline />`,
     closingTag: endent/* tsx */ `</ThemeProvider>`,
     filter: ({ flags }) => Boolean(flags["material-ui"]),
   },

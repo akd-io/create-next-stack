@@ -89,12 +89,9 @@ export const validateFlags = (
       "Chakra UI (category: Component library, flag: --chakra) requires Emotion (category: Styling, flag: --styling=emotion)."
     )
   }
-  if (
-    flags["material-ui"] &&
-    !["emotion", "styled-components"].includes(flags.styling)
-  ) {
+  if (flags["material-ui"] && flags.styling !== "emotion") {
     throw new Error(
-      "Material UI (category: Component library, flag: --material-ui) requires either Emotion (category: Styling, flag: --styling=emotion) or Styled Components (category: Styling, flag: --styling=styled-components)."
+      "Material UI (category: Component library, flag: --material-ui) requires Emotion (category: Styling, flag: --styling=emotion)."
     )
   }
   if (flags.chakra && !flags["framer-motion"]) {
