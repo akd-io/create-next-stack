@@ -35,6 +35,11 @@ export const testInvalidInputs = async (
       "--styling=emotion",
       "--chakra",
     ],
+    materialUiWithoutEmotion: [
+      "--package-manager=npm",
+      "--styling=css-modules",
+      "--material-ui",
+    ],
   }
 
   for (const args of Object.values(argsArrays)) {
