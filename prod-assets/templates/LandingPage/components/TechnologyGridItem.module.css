@@ -1,0 +1,19 @@
+.technologyGridItem {
+  padding: 30px;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.linksContainer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  row-gap: 10px;
+}

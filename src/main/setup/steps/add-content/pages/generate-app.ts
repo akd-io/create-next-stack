@@ -1,5 +1,5 @@
 import endent from "endent"
-import { ValidCNSInputs } from "../../../create-next-stack-types"
+import { ValidCNSInputs } from "../../../../create-next-stack-types"
 
 type WrapperComponent = {
   openingTag: string
