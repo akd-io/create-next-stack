@@ -1,3 +1,25 @@
-.grayBackground {
-  background: hsl(0, 0%, 95%);
+.landingPageTemplate {
+  color: black;
+}
+
+.textGradient {
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(to top right, #6838f1, #dc51f2);
+}
+
+.headerSection {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  gap: 40px;
+}
+
+.technologyGridIntro {
+  max-width: 600px;
+  gap: 0.5rem;
+}
+
+.technologyGrid {
+  margin-top: 50px;
 }

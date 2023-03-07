@@ -4,11 +4,12 @@ import { Step } from "../../step"
 import { chakraTheme } from "./chakra-theme"
 import { generatePage } from "./components/generate-page"
 import { generateWithDefaultGlobalStyles } from "./components/generate-with-default-global-styles"
-import { generateApp } from "./generate-app"
-import { generateDocument } from "./generate-document"
-import { globalStyles } from "./global-styles"
-import { generateIndexPage } from "./index-page/generate-index"
 import { materialTheme } from "./material-theme"
+import { generateApp } from "./pages/generate-app"
+import { generateDocument } from "./pages/generate-document"
+import { generateIndexPage } from "./pages/generate-index"
+import { globalStyles } from "./styles/global-styles"
+import { generateTechnologies } from "./templates/LandingPage/generate-technologies"
 
 export const addContentStep: Step = {
   description: "adding content",
@@ -25,6 +26,10 @@ export const addContentStep: Step = {
       writeFile("pages/index.tsx", generateIndexPage(inputs)),
       writeFile("pages/_app.tsx", generateApp(inputs)),
       writeFile("pages/_document.tsx", generateDocument(inputs)),
+      writeFile(
+        "templates/LandingPage/technologies.ts",
+        generateTechnologies(inputs)
+      ),
     ]
 
     const { styling } = inputs.flags

@@ -1,0 +1,6 @@
+.technologyGrid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 30px;
+}
