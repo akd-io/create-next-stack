@@ -22,26 +22,35 @@ const chakraUITheme = endent/* tsx */ `
   `
 
 const materialUITheme = endent/* tsx */ `
-    import { createTheme } from '@material-ui/core/styles';
-    import { red } from '@material-ui/core/colors';
+  import { Roboto } from 'next/font/google';
+  import { createTheme } from '@mui/material/styles';
+  import { red } from '@mui/material/colors';
 
-    export const materialTheme = createTheme({
-      palette: {
-        primary: {
-          main: '#556cd6',
-        },
-        secondary: {
-          main: '#19857b',
-        },
-        error: {
-          main: red.A400,
-        },
-        background: {
-          default: '#fff',
-        },
+  export const roboto = Roboto({
+    weight: ['300', '400', '500', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+    fallback: ['Helvetica', 'Arial', 'sans-serif'],
+  });
+
+  // Create a theme instance.
+  export default createTheme({
+    palette: {
+      primary: {
+        main: '#556cd6',
       },
-    });
-    `
+      secondary: {
+        main: '#19857b',
+      },
+      error: {
+        main: red.A400,
+      },
+    },
+    typography: {
+      fontFamily: roboto.style.fontFamily,
+    },
+  });
+`
 
 export const generateTheme = ({ flags }: ValidCNSInputs): Promise<void>[] => {
   const promises: Promise<void>[] = []
