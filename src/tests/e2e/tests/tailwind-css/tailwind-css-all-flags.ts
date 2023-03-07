@@ -17,7 +17,6 @@ export const testTailwindCssAllFlags = async (
     "--package-manager=npm",
     "--prettier",
     "--styling=tailwind-css",
-    "--material-ui",
     "--react-hook-form",
     "--formik",
     "--framer-motion",
