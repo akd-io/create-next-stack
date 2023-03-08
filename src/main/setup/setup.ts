@@ -3,6 +3,7 @@ import { ValidCNSInputs } from "../create-next-stack-types"
 import { capitalizeFirstLetter } from "../helpers/capitalize-first-letter"
 import { getDiffString } from "../helpers/diff-string"
 import { inDebugMode } from "../helpers/in-debug-mode"
+import { time } from "../helpers/time"
 import { logDebug, logInfo } from "../logging"
 import {
   createStep,
@@ -121,39 +122,31 @@ export const performSetupSteps = async (
 
   const enhancedSteps: InitializedStep[] = steps.map((step) => createStep(step))
 
-  const allStepsStartTime = Date.now()
-  for (const step of enhancedSteps) {
-    const shouldRun =
-      typeof step.shouldRun === "function"
-        ? await step.shouldRun(inputs)
-        : step.shouldRun
+  const allStepsDiff = await time(async () => {
+    for (const step of enhancedSteps) {
+      const shouldRun =
+        typeof step.shouldRun === "function"
+          ? await step.shouldRun(inputs)
+          : step.shouldRun
 
-    if (shouldRun) {
+      if (!shouldRun) continue
+
       logInfo(`${capitalizeFirstLetter(step.description)}...`)
 
-      const startTime = Date.now()
-      await step.run(inputs)
-      const endTime = Date.now()
+      const diff = await time(async () => {
+        await step.run(inputs)
+      })
 
-      if (inDebugMode()) {
-        const diff = endTime - startTime
-        if (diff > 1000) {
-          logDebug(
-            chalk.yellow(
-              `Step took ${getDiffString(diff)} (${step.description})`
-            )
-          )
-        }
+      if (inDebugMode() && diff > 1000) {
+        logDebug(
+          chalk.yellow(`Step took ${getDiffString(diff)} (${step.description})`)
+        )
       }
     }
-  }
-  const allStepsEndTime = Date.now()
+  })
 
-  if (inDebugMode()) {
-    const diff = allStepsEndTime - allStepsStartTime
-    if (diff > 1000) {
-      logDebug(chalk.yellow(`All steps took ${getDiffString(diff)}`))
-    }
+  if (inDebugMode() && allStepsDiff > 1000) {
+    logDebug(chalk.yellow(`All steps took ${getDiffString(allStepsDiff)}`))
   }
 
   printFinalMessages(inputs)
