@@ -27,27 +27,27 @@ export const generateWithDefaultGlobalStyles = (
   export default WithDefaultGlobalStyles;
 `
 
-const getImportsForGlobalStyling = (inputs: ValidCNSInputs): string => {
-  if (inputs.flags.styling === "emotion") {
+const getImportsForGlobalStyling = ({ flags }: ValidCNSInputs): string => {
+  if (flags.styling === "emotion") {
     return endent/* tsx */ `import { css, Global } from "@emotion/react";`
-  } else if (inputs.flags.styling === "styled-components") {
+  } else if (flags.styling === "styled-components") {
     return endent/* tsx */ `import { createGlobalStyle } from "styled-components";`
   } else {
     throw new Error("Unsupported styling technology found in getImport.")
   }
 }
 
-const getGlobalStylesDeclaration = (inputs: ValidCNSInputs): string => {
-  if (inputs.flags.styling === "emotion") {
+const getGlobalStylesDeclaration = ({ flags }: ValidCNSInputs): string => {
+  if (flags.styling === "emotion") {
     return endent/* tsx */ `
       const globalStyles = css\`
-        ${generateGlobalStyles}
+        ${generateGlobalStyles()}
       \`;
     `
-  } else if (inputs.flags.styling === "styled-components") {
+  } else if (flags.styling === "styled-components") {
     return endent/* tsx */ `
       const GlobalStyle = createGlobalStyle\`
-        ${generateGlobalStyles}
+        ${generateGlobalStyles()}
       \`;
     `
   } else {
@@ -57,10 +57,10 @@ const getGlobalStylesDeclaration = (inputs: ValidCNSInputs): string => {
   }
 }
 
-const getGlobalStylesComponent = (inputs: ValidCNSInputs): string => {
-  if (inputs.flags.styling === "emotion") {
+const getGlobalStylesComponent = ({ flags }: ValidCNSInputs): string => {
+  if (flags.styling === "emotion") {
     return endent/* tsx */ `<Global styles={globalStyles} />`
-  } else if (inputs.flags.styling === "styled-components") {
+  } else if (flags.styling === "styled-components") {
     return endent/* tsx */ `<GlobalStyle />`
   } else {
     throw new Error(
