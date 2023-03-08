@@ -1,6 +1,7 @@
 import { promises as fs } from "fs"
+import { constrain } from "../../../helpers/constrain"
 import { writeFile } from "../../../helpers/io"
-import { Step } from "../../step"
+import { Step } from "../../../plugin"
 import { chakraTheme } from "./chakra-theme"
 import { generatePage } from "./components/generate-page"
 import { generateWithDefaultGlobalStyles } from "./components/generate-with-default-global-styles"
@@ -8,16 +9,11 @@ import { materialTheme } from "./material-theme"
 import { generateApp } from "./pages/generate-app"
 import { generateDocument } from "./pages/generate-document"
 import { generateIndexPage } from "./pages/generate-index"
-import { globalStyles } from "./styles/global-styles"
+import { generateGlobalStyles } from "./styles/global-styles"
 import { generateTechnologies } from "./templates/LandingPage/generate-technologies"
 
-export const addContentStep: Step = {
+export const addContentStep = constrain<Step>()({
   description: "adding content",
-
-  shouldRun: async () => true,
-
-  didRun: false,
-
   run: async (inputs) => {
     await fs.mkdir("components")
 
@@ -47,7 +43,7 @@ export const addContentStep: Step = {
       await fs.mkdir("styles")
       const extension = styling === "css-modules" ? "css" : "scss"
       promises.push(
-        writeFile(`styles/global-styles.${extension}`, globalStyles)
+        writeFile(`styles/global-styles.${extension}`, generateGlobalStyles())
       )
     }
 
@@ -61,4 +57,4 @@ export const addContentStep: Step = {
 
     await Promise.all(promises)
   },
-}
+})

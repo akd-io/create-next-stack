@@ -43,6 +43,7 @@
   "scripts": {
     "prepare": "husky install",
     "prepack": "yarn build && oclif-dev readme",
+    "check-types": "tsc --noEmit",
     "build": "rimraf lib && tsc --build",
     "test": "yarn build && yarn run test-only",
     "test-only": "node lib/tests/e2e/test.js",
@@ -85,7 +86,7 @@
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.2",
     "ts-node": "^10.0.0",
-    "typescript": "^4.3.5",
+    "typescript": "^4.9.0",
     "uuid": "^8.3.2"
   }
 }

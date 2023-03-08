@@ -1,15 +1,18 @@
+import { Step } from "../../plugin"
+import { yarnPlugin } from "../../plugins/yarn"
 import { runCommand } from "../../run-command"
-import { getNameVersionCombo, packages } from "../packages"
-import { Step } from "../step"
+import { getNameVersionCombo } from "../packages"
 
 export const updateYarnStep: Step = {
   description: "updating Yarn",
 
   shouldRun: async ({ flags }) => flags["package-manager"] === "yarn",
 
-  didRun: false,
-
   run: async () => {
-    await runCommand("npm", ["i", "-g", getNameVersionCombo(packages.yarn)])
+    await runCommand("npm", [
+      "i",
+      "-g",
+      getNameVersionCombo(yarnPlugin.dependencies.yarn),
+    ])
   },
 }

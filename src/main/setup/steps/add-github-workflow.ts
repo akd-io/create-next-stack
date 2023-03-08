@@ -2,15 +2,14 @@ import endent from "endent"
 import { promises as fs } from "fs"
 import path from "path"
 import { ValidCNSInputs } from "../../create-next-stack-types"
+import { constrain } from "../../helpers/constrain"
 import { writeFile } from "../../helpers/io"
-import { Step } from "../step"
+import { Step } from "../../plugin"
 
-export const addGithubWorkflowStep: Step = {
+export const addGithubWorkflowStep = constrain<Step>()({
   description: "adding GitHub workflow",
 
   shouldRun: async ({ flags }) => Boolean(flags["github-actions"]),
-
-  didRun: false,
 
   run: async (inputs) => {
     const directory = ".github/workflows"
@@ -19,7 +18,7 @@ export const addGithubWorkflowStep: Step = {
     const filePath = path.resolve(`${directory}/${filename}`)
     await writeFile(filePath, generateCiYml(inputs))
   },
-}
+})
 
 const generateCiYml = ({ flags }: ValidCNSInputs): string => {
   const packageManager: "yarn" | "npm" = flags["package-manager"]

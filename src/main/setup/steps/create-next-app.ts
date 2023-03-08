@@ -2,17 +2,15 @@ import chalk from "chalk"
 import endent from "endent"
 import { promises as fs } from "fs"
 import path from "path"
+import { constrain } from "../../helpers/constrain"
 import { logDebug } from "../../logging"
+import { Step } from "../../plugin"
+import { nextPlugin } from "../../plugins/next"
 import { runCommand } from "../../run-command"
-import { getNameVersionCombo, packages } from "../packages"
-import { Step } from "../step"
+import { getNameVersionCombo } from "../packages"
 
-export const createNextAppStep: Step = {
+export const createNextAppStep = constrain<Step>()({
   description: "creating Next.js app",
-
-  shouldRun: async () => true,
-
-  didRun: false,
 
   run: async ({ args, flags }) => {
     // Make sure directory exists to avoid error from create-next-app
@@ -39,11 +37,11 @@ export const createNextAppStep: Step = {
     }
 
     await runCommand("npx", [
-      getNameVersionCombo(packages["create-next-app"]), // Note: npx ignores version ranges. So the tilde in packages["create-next-app"] is ignored and the exact version is used.
+      getNameVersionCombo(nextPlugin.extDependencies["create-next-app"]), // Note: npx ignores version ranges. So the tilde in packages["create-next-app"] is ignored and the exact version is used.
       ...createNextAppArgs,
     ])
 
     logDebug("Changing directory to", args.appName)
     process.chdir(args.appName)
   },
-}
+})

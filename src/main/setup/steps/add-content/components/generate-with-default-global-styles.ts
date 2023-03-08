@@ -1,6 +1,6 @@
 import endent from "endent"
 import { ValidCNSInputs } from "../../../../create-next-stack-types"
-import { globalStyles } from "../styles/global-styles"
+import { generateGlobalStyles } from "../styles/global-styles"
 
 export const generateWithDefaultGlobalStyles = (
   inputs: ValidCNSInputs
@@ -41,13 +41,13 @@ const getGlobalStylesDeclaration = (inputs: ValidCNSInputs): string => {
   if (inputs.flags.styling === "emotion") {
     return endent/* tsx */ `
       const globalStyles = css\`
-        ${globalStyles}
+        ${generateGlobalStyles}
       \`;
     `
   } else if (inputs.flags.styling === "styled-components") {
     return endent/* tsx */ `
       const GlobalStyle = createGlobalStyle\`
-        ${globalStyles}
+        ${generateGlobalStyles}
       \`;
     `
   } else {

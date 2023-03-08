@@ -1,9 +1,10 @@
+import { constrain } from "../../helpers/constrain"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { logWarning } from "../../logging"
+import { Step } from "../../plugin"
 import { runCommand } from "../../run-command"
-import { Step } from "../step"
 
-export const gitCommitStep: Step = {
+export const gitCommitStep = constrain<Step>()({
   description: "adding initial commit",
 
   shouldRun: async () => {
@@ -13,8 +14,6 @@ export const gitCommitStep: Step = {
     }
     return true
   },
-
-  didRun: false,
 
   run: async () => {
     // Create Next App adds an initial commit. This is overridden using --amend below.
@@ -26,4 +25,4 @@ export const gitCommitStep: Step = {
       "Initial commit from Create Next Stack",
     ])
   },
-}
+})

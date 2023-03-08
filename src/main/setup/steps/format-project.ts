@@ -1,19 +1,16 @@
+import { constrain } from "../../helpers/constrain"
+import { Step } from "../../plugin"
+import { prettierPlugin } from "../../plugins/prettier"
 import { runCommand } from "../../run-command"
-import { getNameVersionCombo, packages } from "../packages"
-import { Step } from "../step"
+import { getNameVersionCombo } from "../packages"
 
-export const formatProjectStep: Step = {
+export const formatProjectStep = constrain<Step>()({
   description: "formatting project",
-
-  shouldRun: async () => true,
-
-  didRun: false,
-
   run: async () => {
     await runCommand("npx", [
-      getNameVersionCombo(packages.prettier),
+      getNameVersionCombo(prettierPlugin.devDependencies.prettier),
       "--write",
       ".",
     ])
   },
-}
+})

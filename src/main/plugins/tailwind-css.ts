@@ -1,8 +1,8 @@
 import endent from "endent"
 import { promises as fs } from "fs"
-import { writeFile } from "../../helpers/io"
-import { install, packages } from "../packages"
-import { Step } from "../step"
+import { constrain } from "../helpers/constrain"
+import { writeFile } from "../helpers/io"
+import { Plugin } from "../plugin"
 
 /**
  * Follows a combination of the official Next.js template:
@@ -10,25 +10,52 @@ import { Step } from "../step"
  * and the official Tailwind guide for Next.js:
  * https://tailwindcss.com/docs/guides/nextjs
  */
-export const setUpTailwindCssStep: Step = {
-  description: "setting up Tailwind CSS",
 
-  shouldRun: async ({ flags }) => flags["styling"] === "tailwind-css",
-
-  didRun: false,
-
-  run: async ({ flags }) => {
-    await install(
-      [packages.tailwindcss, packages.autoprefixer, packages.postcss],
-      flags["package-manager"],
-      { dev: true }
-    )
-
-    await addTailwindConfig()
-    await addPostcssConfig()
-    await addStylesGlobalsCss()
+export const tailwindCSSPlugin = constrain<Plugin>()({
+  name: "Tailwind CSS",
+  description: "Adds support for Tailwind CSS",
+  devDependencies: {
+    tailwindcss: {
+      name: "tailwindcss",
+      version: "^3.0.0",
+    },
+    autoprefixer: {
+      name: "autoprefixer",
+      version: "^10.0.0",
+    },
+    postcss: {
+      name: "postcss",
+      version: "^8.0.0",
+    },
   },
-}
+  technologies: [
+    {
+      name: "Tailwind CSS",
+      description:
+        "Tailwind CSS is a utility-first CSS framework for rapidly building custom designs. Its utilities come as helper classes that function as shorthands for the most common CSS patterns that developers use all the time.",
+      links: [
+        { title: "Website", url: "https://tailwindcss.com/" },
+        { title: "Docs", url: "https://tailwindcss.com/docs" },
+        { title: "GitHub", url: "https://github.com/tailwindlabs/tailwindcss" },
+      ],
+    },
+  ],
+  steps: {
+    setup: {
+      description: "setting up Tailwind CSS",
+
+      shouldRun: async ({ flags }) => flags["styling"] === "tailwind-css",
+
+      run: async () => {
+        await Promise.all([
+          addTailwindConfig(),
+          addPostcssConfig(),
+          addStylesGlobalsCss(),
+        ])
+      },
+    },
+  },
+} as const)
 
 const addTailwindConfig = async () => {
   // From running `npx tailwind init -p --types` and adding globs to the content array according to https://tailwindcss.com/docs/guides/nextjs

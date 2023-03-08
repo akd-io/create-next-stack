@@ -1,5 +1,5 @@
 import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { setUpLintStagedStep } from "../set-up-lint-staged"
+import { lintStagedPlugin } from "../../../plugins/lint-staged"
 
 export const generateTechnologyTableRows = async (
   inputs: ValidCNSInputs
@@ -93,12 +93,12 @@ export const generateTechnologyTableRows = async (
     {
       name: /* md */ `[Husky](https://typicode.github.io/husky/)`,
       links: /* md */ `[Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)`,
-      filter: setUpLintStagedStep.didRun,
+      filter: await lintStagedPlugin.steps.setup.shouldRun(inputs),
     },
     {
       name: /* md */ `[lint-staged](https://github.com/okonet/lint-staged)`,
       links: /* md */ `[GitHub repo](https://github.com/okonet/lint-staged)`,
-      filter: setUpLintStagedStep.didRun,
+      filter: await lintStagedPlugin.steps.setup.shouldRun(inputs),
     },
     {
       name: /* md */ `[Yarn](https://yarnpkg.com/)`,
