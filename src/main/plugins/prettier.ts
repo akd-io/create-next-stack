@@ -1,6 +1,8 @@
 import { constrain } from "../helpers/constrain"
 import { modifyJsonFile, toArray, writeJsonFile } from "../helpers/io"
 import { Plugin } from "../plugin"
+import { runCommand } from "../run-command"
+import { getNameVersionCombo } from "../setup/packages"
 
 export const prettierPlugin = constrain<Plugin>()({
   name: "Prettier",
@@ -43,6 +45,17 @@ export const prettierPlugin = constrain<Plugin>()({
       shouldRun: async ({ flags }) => Boolean(flags.prettier),
       run: async () => {
         await Promise.all([addPrettierConfig(), setUpEslintConfigPrettier()])
+      },
+    },
+    formatProject: {
+      description: "formatting project",
+      shouldRun: true, // Always run this step, even if the user didn't select Prettier.
+      run: async () => {
+        await runCommand("npx", [
+          getNameVersionCombo(prettierPlugin.devDependencies.prettier),
+          "--write",
+          ".",
+        ])
       },
     },
   },

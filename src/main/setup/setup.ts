@@ -38,7 +38,6 @@ import { printFinalMessages } from "./print-final-messages"
 import { addContentStep } from "./steps/add-content/add-content"
 import { addReadmeStep } from "./steps/add-readme/add-readme"
 import { copyAssetsStep } from "./steps/copy-assets"
-import { formatProjectStep } from "./steps/format-project"
 import { gitCommitStep } from "./steps/git-commit"
 import { installDependenciesStep } from "./steps/install-dependencies"
 import { uninstallTemporaryDependenciesStep } from "./steps/uninstall-temporary-dependencies"
@@ -115,7 +114,7 @@ export const performSetupSteps = async (
     uninstallTemporaryDependenciesStep,
 
     // Format & initial commit
-    formatProjectStep,
+    prettierPlugin.steps.formatProject,
     gitCommitStep,
   ]
 
