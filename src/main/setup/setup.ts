@@ -13,6 +13,7 @@ import {
   Step,
 } from "../plugin"
 import { chakraUIPlugin } from "../plugins/chakra-ui"
+import { createNextStackPlugin } from "../plugins/create-next-stack"
 import { cssModulesPlugin } from "../plugins/css-modules"
 import { emotionPlugin } from "../plugins/emotion"
 import { eslintPlugin } from "../plugins/eslint"
@@ -28,7 +29,6 @@ import { prettierPlugin } from "../plugins/prettier"
 import { reactPlugin } from "../plugins/react"
 import { reactHookFormPlugin } from "../plugins/react-hook-form"
 import { sassPlugin } from "../plugins/sass"
-import { scriptsPlugin } from "../plugins/scripts"
 import { styledComponentsPlugin } from "../plugins/styled-components"
 import { tailwindCSSPlugin } from "../plugins/tailwind-css"
 import { typescriptPlugin } from "../plugins/typescript"
@@ -43,6 +43,7 @@ import { uninstallTemporaryDependenciesStep } from "./steps/uninstall-temporary-
 
 // Ordered by relevance to the user for use in technology lists // TODO: Fix this by having separate ordered lists of plugins where other sortings are needed.
 const rawPlugins = [
+  createNextStackPlugin,
   nextPlugin,
   reactPlugin,
   typescriptPlugin,
@@ -63,7 +64,6 @@ const rawPlugins = [
   npmPlugin,
   githubActionsPlugin,
   gitAttributesPlugin,
-  scriptsPlugin,
 ]
 export const plugins = rawPlugins.map((plugin) => initializePlugin(plugin))
 
@@ -89,7 +89,7 @@ export const performSetupSteps = async (
     nextPlugin.steps.removeOfficialCNAContent,
 
     // Configuration
-    scriptsPlugin.steps.addScripts,
+    createNextStackPlugin.steps.addScripts,
     gitAttributesPlugin.steps.addGitAttributes,
     nextPlugin.steps.addNextConfig,
 

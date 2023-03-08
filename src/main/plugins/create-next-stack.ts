@@ -3,11 +3,10 @@ import { modifyJsonFile, toObject } from "../helpers/io"
 import { Plugin } from "../plugin"
 import { filterPlugins } from "../setup/setup"
 
-// TODO: Add a scripts sort order here. Use TypeScript to force setting all plugin scripts.
-
-export const scriptsPlugin = constrain<Plugin>()({
-  name: "Scripts",
-  description: "Adds plugin scripts to package.json",
+export const createNextStackPlugin = constrain<Plugin>()({
+  name: "Create Next Stack",
+  description:
+    "Adds various miscellaneous steps. Some necessities, some niceties.",
   steps: {
     addScripts: {
       description: "adding scripts to package.json",
@@ -15,6 +14,8 @@ export const scriptsPlugin = constrain<Plugin>()({
         const scripts = filterPlugins(inputs).flatMap(
           (plugin) => plugin.scripts ?? []
         )
+
+        // TODO: Add a scripts sort order here. Use TypeScript to force setting all plugin scripts.
 
         await modifyJsonFile("package.json", (packageJson) => ({
           ...packageJson,
