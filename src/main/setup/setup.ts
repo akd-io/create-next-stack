@@ -37,15 +37,13 @@ import { printFinalMessages } from "./print-final-messages"
 import { addContentStep } from "./steps/add-content/add-content"
 import { addReadmeStep } from "./steps/add-readme/add-readme"
 import { copyAssetsStep } from "./steps/copy-assets"
-import { createNextAppStep } from "./steps/create-next-app"
 import { formatProjectStep } from "./steps/format-project"
 import { gitCommitStep } from "./steps/git-commit"
 import { installDependenciesStep } from "./steps/install-dependencies"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
-import { setUpEslintStep } from "./steps/set-up-eslint"
 import { uninstallTemporaryDependenciesStep } from "./steps/uninstall-temporary-dependencies"
 
-// Ordered by relevance to the user for use in technology lists
+// Ordered by relevance to the user for use in technology lists // TODO: Fix this by having separate ordered lists of plugins where other sortings are needed.
 const rawPlugins = [
   nextPlugin,
   reactPlugin,
@@ -84,14 +82,14 @@ export const performSetupSteps = async (
 ): Promise<void> => {
   const steps: Step[] = [
     // Create Next App
-    createNextAppStep,
+    nextPlugin.steps.createNextApp,
 
     // Package management
     yarnPlugin.steps.updateYarn,
     installDependenciesStep,
 
     // Remove official CNA content
-    setUpEslintStep, // eslint is set up before content removal because it requires content in /pages // TODO: Test if this is still the case.
+    eslintPlugin.steps.setup, // eslint is set up before content removal because it requires content in /pages // TODO: Test if this is still the case.
     removeOfficialCNAContentStep,
 
     // Configuration
