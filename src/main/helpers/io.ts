@@ -1,4 +1,4 @@
-import { promises as fs } from "fs"
+import fs from "fs/promises"
 import { logDebug, logError } from "../logging"
 import { isUnknownArray } from "./is-unknown-array"
 import { isUnknownObject } from "./is-unknown-object"

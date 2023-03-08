@@ -1,4 +1,4 @@
-import { promises as fs } from "fs"
+import fs from "fs/promises"
 import { constrain } from "../../helpers/constrain"
 import { remove } from "../../helpers/remove"
 import { Step } from "../../plugin"

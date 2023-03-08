@@ -1,5 +1,5 @@
 import endent from "endent"
-import { promises as fs } from "fs"
+import fs from "fs/promises"
 import { constrain } from "../helpers/constrain"
 import { writeFile } from "../helpers/io"
 import { Plugin } from "../plugin"
