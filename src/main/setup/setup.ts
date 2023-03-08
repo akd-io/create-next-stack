@@ -41,7 +41,6 @@ import { copyAssetsStep } from "./steps/copy-assets"
 import { formatProjectStep } from "./steps/format-project"
 import { gitCommitStep } from "./steps/git-commit"
 import { installDependenciesStep } from "./steps/install-dependencies"
-import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
 import { uninstallTemporaryDependenciesStep } from "./steps/uninstall-temporary-dependencies"
 
 // Ordered by relevance to the user for use in technology lists // TODO: Fix this by having separate ordered lists of plugins where other sortings are needed.
@@ -91,7 +90,7 @@ export const performSetupSteps = async (
 
     // Remove official CNA content
     eslintPlugin.steps.setup, // eslint is set up before content removal because it requires content in /pages // TODO: Test if this is still the case.
-    removeOfficialCNAContentStep,
+    nextPlugin.steps.removeOfficialCNAContent,
 
     // Configuration
     scriptsPlugin.steps.addScripts,

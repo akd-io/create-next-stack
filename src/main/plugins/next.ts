@@ -95,6 +95,17 @@ export const nextPlugin = constrain<Plugin>()({
         process.chdir(args.appName)
       },
     },
+    removeOfficialCNAContent: {
+      description: "removing content added by Create Next App",
+      run: async () => {
+        await Promise.all([
+          remove("pages"),
+          remove("styles"),
+          remove("public/vercel.svg"),
+        ])
+        await fs.mkdir("pages")
+      },
+    },
     addNextConfig: {
       description: "adding next.config.js",
       run: async (inputs) => {
