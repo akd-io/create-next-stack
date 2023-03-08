@@ -82,13 +82,15 @@ export const performSetupSteps = async (
   inputs: ValidCNSInputs
 ): Promise<void> => {
   const steps: Step[] = [
+    // Create Next App
+    createNextAppStep,
+
     // Package management
     updateYarnStep,
     installDependenciesStep,
 
-    // Create Next App
-    createNextAppStep,
-    setUpEslintStep, // eslint is set up before content removal because it requires content in /pages
+    // Remove official CNA content
+    setUpEslintStep, // eslint is set up before content removal because it requires content in /pages // TODO: Test if this is still the case.
     removeOfficialCNAContentStep,
 
     // Configuration
