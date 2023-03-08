@@ -12,7 +12,7 @@ export const uninstallTemporaryDependenciesStep: Step = {
     })
 
     if (tmpDeps.length > 0) {
-      uninstall(tmpDeps, flags["package-manager"])
+      await uninstall(tmpDeps, flags["package-manager"])
     }
   },
 }

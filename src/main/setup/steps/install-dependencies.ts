@@ -26,10 +26,10 @@ export const installDependenciesStep = constrain<Step>()({
     })
 
     if (depsAndTmpDeps.length > 0) {
-      install(depsAndTmpDeps, flags["package-manager"])
+      await install(depsAndTmpDeps, flags["package-manager"])
     }
     if (devDeps.length > 0) {
-      install(devDeps, flags["package-manager"], { dev: true })
+      await install(devDeps, flags["package-manager"], { dev: true })
     }
   },
 } as const)
