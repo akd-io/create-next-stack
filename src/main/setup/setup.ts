@@ -91,6 +91,7 @@ export const performSetupSteps = async (
     tailwindCSSPlugin.steps.setup,
     cssModulesPlugin.steps.setup,
     sassPlugin.steps.setup,
+    emotionPlugin.steps.setup,
 
     // Formatting
     lintStagedPlugin.steps.setup,
