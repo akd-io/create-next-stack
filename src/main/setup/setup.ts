@@ -12,7 +12,7 @@ import {
   initializePlugin,
   Step,
 } from "../plugin"
-import { chakraUIPlugin } from "../plugins/chakra-ui"
+import { chakraUIPlugin } from "../plugins/chakra-ui/chakra-ui"
 import { createNextStackPlugin } from "../plugins/create-next-stack/create-next-stack"
 import { cssModulesPlugin } from "../plugins/css-modules"
 import { emotionPlugin } from "../plugins/emotion"
@@ -22,7 +22,7 @@ import { framerMotionPlugin } from "../plugins/framer-motion"
 import { gitAttributesPlugin } from "../plugins/git-attributes"
 import { githubActionsPlugin } from "../plugins/github-actions"
 import { lintStagedPlugin } from "../plugins/lint-staged"
-import { materialUIPlugin } from "../plugins/material-ui"
+import { materialUIPlugin } from "../plugins/material-ui/material-ui"
 import { nextPlugin } from "../plugins/next"
 import { npmPlugin } from "../plugins/npm"
 import { prettierPlugin } from "../plugins/prettier"
@@ -89,6 +89,8 @@ export const performSetupSteps = async (
 
     // Styling
     tailwindCSSPlugin.steps.setup,
+    chakraUIPlugin.steps.setup,
+    materialUIPlugin.steps.setup,
 
     // Formatting
     lintStagedPlugin.steps.setup,
@@ -100,6 +102,10 @@ export const performSetupSteps = async (
     createNextStackPlugin.steps.copyAssets,
     createNextStackPlugin.steps.addContent,
     createNextStackPlugin.steps.addReadme,
+
+    // Component libraries
+    chakraUIPlugin.steps.setup,
+    materialUIPlugin.steps.setup,
 
     // Uninstall temporary dependencies
     createNextStackPlugin.steps.uninstallTemporaryDependencies,

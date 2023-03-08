@@ -1,5 +1,7 @@
-import { constrain } from "../helpers/constrain"
-import { Plugin } from "../plugin"
+import { constrain } from "../../helpers/constrain"
+import { writeFile } from "../../helpers/io"
+import { Plugin } from "../../plugin"
+import { materialTheme } from "./setup/material-theme"
 
 export const materialUIPlugin = constrain<Plugin>()({
   name: "Material UI",
@@ -25,4 +27,13 @@ export const materialUIPlugin = constrain<Plugin>()({
       ],
     },
   ],
+  steps: {
+    setup: {
+      description: "setting up Material UI",
+      shouldRun: async (inputs) => Boolean(inputs.flags["material-ui"]),
+      run: async () => {
+        await writeFile("material-theme.ts", materialTheme)
+      },
+    },
+  },
 } as const)

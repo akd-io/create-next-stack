@@ -11,10 +11,8 @@ import { Plugin } from "../../plugin"
 import { runCommand } from "../../run-command"
 import { install, uninstall } from "../../setup/packages"
 import { filterPlugins, plugins } from "../../setup/setup"
-import { chakraTheme } from "./add-content/chakra-theme"
 import { generatePage } from "./add-content/components/generate-page"
 import { generateWithDefaultGlobalStyles } from "./add-content/components/generate-with-default-global-styles"
-import { materialTheme } from "./add-content/material-theme"
 import { generateApp } from "./add-content/pages/generate-app"
 import { generateDocument } from "./add-content/pages/generate-document"
 import { generateIndexPage } from "./add-content/pages/generate-index"
@@ -96,14 +94,6 @@ export const createNextStackPlugin = constrain<Plugin>()({
               generateGlobalStyles()
             )
           )
-        }
-
-        if (inputs.flags.chakra) {
-          promises.push(writeFile("chakra-theme.ts", chakraTheme))
-        }
-
-        if (inputs.flags["material-ui"]) {
-          promises.push(writeFile("material-theme.ts", materialTheme))
         }
 
         await Promise.all(promises)
