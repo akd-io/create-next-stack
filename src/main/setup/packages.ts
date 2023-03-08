@@ -1,3 +1,4 @@
+import { prettyCommand } from "../helpers/pretty-command"
 import { logDebug } from "../logging"
 import { runCommand } from "../run-command"
 
@@ -33,8 +34,7 @@ export const install = async (
 
   logDebug(
     `Installing dependencies with command:`,
-    packageManager,
-    installCommandArgs.join(" ")
+    prettyCommand(packageManager, installCommandArgs)
   )
   await runCommand(packageManager, installCommandArgs)
 }
@@ -52,6 +52,10 @@ export const uninstall = async (
   const uninstallSubCommand = packageManager === "yarn" ? "remove" : "uninstall"
   const uninstallCommandArgs = [uninstallSubCommand, ...packageNames]
 
+  logDebug(
+    `Uninstalling dependencies with command:`,
+    prettyCommand(packageManager, uninstallCommandArgs)
+  )
   await runCommand(packageManager, uninstallCommandArgs)
 }
 
