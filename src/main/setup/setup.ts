@@ -1,6 +1,9 @@
+import chalk from "chalk"
 import { ValidCNSInputs } from "../create-next-stack-types"
 import { capitalizeFirstLetter } from "../helpers/capitalize-first-letter"
-import { logInfo } from "../logging"
+import { getDiffString } from "../helpers/diff-string"
+import { inDebugMode } from "../helpers/in-debug-mode"
+import { logDebug, logInfo } from "../logging"
 import {
   createStep,
   evalShouldRun,
@@ -121,6 +124,7 @@ export const performSetupSteps = async (
 
   const enhancedSteps: InitializedStep[] = steps.map((step) => createStep(step))
 
+  const allStepsStartTime = Date.now()
   for (const step of enhancedSteps) {
     const shouldRun =
       typeof step.shouldRun === "function"
@@ -130,7 +134,28 @@ export const performSetupSteps = async (
     if (shouldRun) {
       logInfo(`${capitalizeFirstLetter(step.description)}...`)
 
+      const startTime = Date.now()
       await step.run(inputs)
+      const endTime = Date.now()
+
+      if (inDebugMode()) {
+        const diff = endTime - startTime
+        if (diff > 1000) {
+          logDebug(
+            chalk.yellow(
+              `Step took ${getDiffString(diff)} (${step.description})`
+            )
+          )
+        }
+      }
+    }
+  }
+  const allStepsEndTime = Date.now()
+
+  if (inDebugMode()) {
+    const diff = allStepsEndTime - allStepsStartTime
+    if (diff > 1000) {
+      logDebug(chalk.yellow(`All steps took ${getDiffString(diff)}`))
     }
   }
 
