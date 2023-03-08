@@ -44,7 +44,6 @@ import { installDependenciesStep } from "./steps/install-dependencies"
 import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
 import { setUpEslintStep } from "./steps/set-up-eslint"
 import { uninstallTemporaryDependenciesStep } from "./steps/uninstall-temporary-dependencies"
-import { updateYarnStep } from "./steps/update-yarn"
 
 // Ordered by relevance to the user for use in technology lists
 const rawPlugins = [
@@ -88,7 +87,7 @@ export const performSetupSteps = async (
     createNextAppStep,
 
     // Package management
-    updateYarnStep,
+    yarnPlugin.steps.updateYarn,
     installDependenciesStep,
 
     // Remove official CNA content

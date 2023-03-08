@@ -1,5 +1,7 @@
 import { constrain } from "../helpers/constrain"
 import { Plugin } from "../plugin"
+import { runCommand } from "../run-command"
+import { getNameVersionCombo } from "../setup/packages"
 
 export const yarnPlugin = constrain<Plugin>()({
   name: "Yarn",
@@ -17,4 +19,17 @@ export const yarnPlugin = constrain<Plugin>()({
       ],
     },
   ],
+  steps: {
+    updateYarn: {
+      description: "updating Yarn",
+      shouldRun: async ({ flags }) => flags["package-manager"] === "yarn",
+      run: async () => {
+        await runCommand("npm", [
+          "i",
+          "-g",
+          getNameVersionCombo(yarnPlugin.dependencies.yarn),
+        ])
+      },
+    },
+  },
 } as const)
