@@ -1,3 +1,4 @@
+import { logDebug } from "../logging"
 import { runCommand } from "../run-command"
 
 type Package<T = string> = Readonly<{
@@ -30,6 +31,11 @@ export const install = async (
     installCommandArgs.push(packageWithVersion)
   })
 
+  logDebug(
+    `Installing dependencies with command:`,
+    packageManager,
+    installCommandArgs.join(" ")
+  )
   await runCommand(packageManager, installCommandArgs)
 }
 
