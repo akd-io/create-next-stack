@@ -16,7 +16,6 @@ import { generateWithDefaultGlobalStyles } from "./add-content/components/genera
 import { generateApp } from "./add-content/pages/generate-app"
 import { generateDocument } from "./add-content/pages/generate-document"
 import { generateIndexPage } from "./add-content/pages/generate-index"
-import { generateGlobalStyles } from "./add-content/styles/global-styles"
 import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
 import { generateReadme } from "./add-readme/generate-readme"
 
@@ -74,24 +73,13 @@ export const createNextStackPlugin = constrain<Plugin>()({
           ),
         ]
 
+        // TODO: Move to Emotion and Styled Components plugins.
         const { styling } = inputs.flags
-
         if (styling === "emotion" || styling === "styled-components") {
           promises.push(
             writeFile(
               "components/WithDefaultGlobalStyles.tsx",
               generateWithDefaultGlobalStyles(inputs)
-            )
-          )
-        }
-
-        if (styling === "css-modules" || styling === "css-modules-with-sass") {
-          await fs.mkdir("styles")
-          const extension = styling === "css-modules" ? "css" : "scss"
-          promises.push(
-            writeFile(
-              `styles/global-styles.${extension}`,
-              generateGlobalStyles()
             )
           )
         }

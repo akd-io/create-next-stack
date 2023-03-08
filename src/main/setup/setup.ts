@@ -14,7 +14,7 @@ import {
 } from "../plugin"
 import { chakraUIPlugin } from "../plugins/chakra-ui/chakra-ui"
 import { createNextStackPlugin } from "../plugins/create-next-stack/create-next-stack"
-import { cssModulesPlugin } from "../plugins/css-modules"
+import { cssModulesPlugin } from "../plugins/css-modules/css-modules"
 import { emotionPlugin } from "../plugins/emotion"
 import { eslintPlugin } from "../plugins/eslint"
 import { formikPlugin } from "../plugins/formik"
@@ -28,7 +28,7 @@ import { npmPlugin } from "../plugins/npm"
 import { prettierPlugin } from "../plugins/prettier"
 import { reactPlugin } from "../plugins/react"
 import { reactHookFormPlugin } from "../plugins/react-hook-form"
-import { sassPlugin } from "../plugins/sass"
+import { sassPlugin } from "../plugins/sass/sass"
 import { styledComponentsPlugin } from "../plugins/styled-components"
 import { tailwindCSSPlugin } from "../plugins/tailwind-css"
 import { typescriptPlugin } from "../plugins/typescript"
@@ -89,8 +89,8 @@ export const performSetupSteps = async (
 
     // Styling
     tailwindCSSPlugin.steps.setup,
-    chakraUIPlugin.steps.setup,
-    materialUIPlugin.steps.setup,
+    cssModulesPlugin.steps.setup,
+    sassPlugin.steps.setup,
 
     // Formatting
     lintStagedPlugin.steps.setup,

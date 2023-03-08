@@ -1,9 +1,12 @@
-import { constrain } from "../helpers/constrain"
-import { Plugin } from "../plugin"
+import fs from "fs/promises"
+import { constrain } from "../../helpers/constrain"
+import { writeFile } from "../../helpers/io"
+import { Plugin } from "../../plugin"
+import { generateGlobalStyles } from "./add-content/styles/global-styles"
 
 export const cssModulesPlugin = constrain<Plugin>()({
   name: "CSS Modules",
-  description: "Adds relevant CSS Modules documentation",
+  description: "Adds relevant CSS Modules boilerplate and documentation",
   technologies: [
     {
       name: "CSS Modules",
@@ -19,4 +22,14 @@ export const cssModulesPlugin = constrain<Plugin>()({
       ],
     },
   ],
+  steps: {
+    setup: {
+      description: "setting up CSS Modules",
+      shouldRun: async ({ flags }) => Boolean(flags.styling === "css-modules"),
+      run: async () => {
+        await fs.mkdir("styles")
+        await writeFile("styles/global-styles.css", generateGlobalStyles())
+      },
+    },
+  },
 } as const)

@@ -60,7 +60,7 @@ export const nextPlugin = constrain<Plugin>()({
   ],
   steps: {
     createNextApp: {
-      description: "creating Next.js app",
+      description: "running Create Next App",
 
       run: async ({ args, flags }) => {
         // Make sure directory exists to avoid error from create-next-app

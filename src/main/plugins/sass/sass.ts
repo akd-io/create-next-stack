@@ -1,5 +1,8 @@
-import { constrain } from "../helpers/constrain"
-import { Plugin } from "../plugin"
+import fs from "fs/promises"
+import { constrain } from "../../helpers/constrain"
+import { writeFile } from "../../helpers/io"
+import { Plugin } from "../../plugin"
+import { generateGlobalStyles } from "./add-content/styles/global-styles"
 
 export const sassPlugin = constrain<Plugin>()({
   name: "Sass",
@@ -20,4 +23,15 @@ export const sassPlugin = constrain<Plugin>()({
       ],
     },
   ],
+  steps: {
+    setup: {
+      description: "setting up Sass",
+      shouldRun: async ({ flags }) =>
+        Boolean(flags.styling === "css-modules-with-sass"),
+      run: async () => {
+        await fs.mkdir("styles")
+        await writeFile("styles/global-styles.scss", generateGlobalStyles())
+      },
+    },
+  },
 } as const)
