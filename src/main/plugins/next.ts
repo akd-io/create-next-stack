@@ -9,7 +9,7 @@ import { logDebug } from "../logging"
 import { Plugin } from "../plugin"
 import { runCommand } from "../run-command"
 import { getNameVersionCombo } from "../setup/packages"
-import { generateNextConfig } from "../setup/steps/next-config/generate-next-config"
+import { generateNextConfig } from "./create-next-stack/add-next-config/generate-next-config"
 
 export const nextPlugin = constrain<Plugin>()({
   name: "Next.js",

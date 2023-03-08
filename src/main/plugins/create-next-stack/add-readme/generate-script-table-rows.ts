@@ -1,5 +1,5 @@
 import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { filterPlugins } from "../../setup"
+import { filterPlugins } from "../../../setup/setup"
 
 export const generateScriptTableRows = async (
   inputs: ValidCNSInputs

@@ -13,7 +13,7 @@ import {
   Step,
 } from "../plugin"
 import { chakraUIPlugin } from "../plugins/chakra-ui"
-import { createNextStackPlugin } from "../plugins/create-next-stack"
+import { createNextStackPlugin } from "../plugins/create-next-stack/create-next-stack"
 import { cssModulesPlugin } from "../plugins/css-modules"
 import { emotionPlugin } from "../plugins/emotion"
 import { eslintPlugin } from "../plugins/eslint"
@@ -34,12 +34,6 @@ import { tailwindCSSPlugin } from "../plugins/tailwind-css"
 import { typescriptPlugin } from "../plugins/typescript"
 import { yarnPlugin } from "../plugins/yarn"
 import { printFinalMessages } from "./print-final-messages"
-import { addContentStep } from "./steps/add-content/add-content"
-import { addReadmeStep } from "./steps/add-readme/add-readme"
-import { copyAssetsStep } from "./steps/copy-assets"
-import { gitCommitStep } from "./steps/git-commit"
-import { installDependenciesStep } from "./steps/install-dependencies"
-import { uninstallTemporaryDependenciesStep } from "./steps/uninstall-temporary-dependencies"
 
 // Ordered by relevance to the user for use in technology lists // TODO: Fix this by having separate ordered lists of plugins where other sortings are needed.
 const rawPlugins = [
@@ -83,7 +77,7 @@ export const performSetupSteps = async (
 
     // Package management
     yarnPlugin.steps.updateYarn,
-    installDependenciesStep,
+    createNextStackPlugin.steps.installDependencies,
 
     // Remove official CNA content
     nextPlugin.steps.removeOfficialCNAContent,
@@ -103,16 +97,16 @@ export const performSetupSteps = async (
     githubActionsPlugin.steps.addGithubWorkflowStep,
 
     // Add/generate content
-    copyAssetsStep,
-    addContentStep,
-    addReadmeStep,
+    createNextStackPlugin.steps.copyAssets,
+    createNextStackPlugin.steps.addContent,
+    createNextStackPlugin.steps.addReadme,
 
     // Uninstall temporary dependencies
-    uninstallTemporaryDependenciesStep,
+    createNextStackPlugin.steps.uninstallTemporaryDependencies,
 
     // Format & initial commit
     prettierPlugin.steps.formatProject,
-    gitCommitStep,
+    createNextStackPlugin.steps.initialCommit,
   ]
 
   const enhancedSteps: InitializedStep[] = steps.map((step) => createStep(step))

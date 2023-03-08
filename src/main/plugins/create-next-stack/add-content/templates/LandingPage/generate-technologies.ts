@@ -1,7 +1,7 @@
 import endent from "endent"
 import { ValidCNSInputs } from "../../../../../create-next-stack-types"
 import { DeeplyReadonly } from "../../../../../helpers/deeply-readonly"
-import { filterPlugins } from "../../../../setup"
+import { filterPlugins } from "../../../../../setup/setup"
 
 // TODO: Add a technologies sort order here. Use TypeScript to force setting all plugin technologies.
 

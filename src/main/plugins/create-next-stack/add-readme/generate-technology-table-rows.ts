@@ -1,5 +1,5 @@
 import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { lintStagedPlugin } from "../../../plugins/lint-staged"
+import { lintStagedPlugin } from "../../lint-staged"
 
 export const generateTechnologyTableRows = async (
   inputs: ValidCNSInputs
