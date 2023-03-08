@@ -31,7 +31,6 @@ import { sassPlugin } from "../plugins/sass"
 import { scriptsPlugin } from "../plugins/scripts"
 import { styledComponentsPlugin } from "../plugins/styled-components"
 import { tailwindCSSPlugin } from "../plugins/tailwind-css"
-import { testScriptPlugin } from "../plugins/test-script"
 import { typescriptPlugin } from "../plugins/typescript"
 import { yarnPlugin } from "../plugins/yarn"
 import { printFinalMessages } from "./print-final-messages"
@@ -64,7 +63,6 @@ const rawPlugins = [
   npmPlugin,
   githubActionsPlugin,
   gitAttributesPlugin,
-  testScriptPlugin,
   scriptsPlugin,
 ]
 export const plugins = rawPlugins.map((plugin) => initializePlugin(plugin))

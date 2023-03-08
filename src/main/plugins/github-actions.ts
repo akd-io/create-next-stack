@@ -30,6 +30,14 @@ export const githubActionsPlugin = constrain<Plugin>()({
       ],
     },
   ],
+  scripts: [
+    {
+      // TODO: When testing libraries are supported, make them add the test script. Somehow make this plugin only add `test` script if no other testing plugin has done so. Currently added so the github-actions workflow won't fail when calling the `test` npm script.
+      name: "test",
+      description: "Runs tests",
+      command: "echo No tests found.",
+    },
+  ],
   steps: {
     addGithubWorkflowStep: {
       description: "adding GitHub workflow",
