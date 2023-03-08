@@ -1,10 +1,9 @@
 import { constrain } from "../helpers/constrain"
 import { Plugin } from "../plugin"
-import { runCommand } from "../run-command"
 
 export const eslintPlugin = constrain<Plugin>()({
   name: "ESLint",
-  description: "Adds support for ESLint",
+  description: "Adds relevant documentation for ESLint",
   technologies: [
     {
       name: "ESLint",
@@ -21,12 +20,4 @@ export const eslintPlugin = constrain<Plugin>()({
       ],
     },
   ],
-  steps: {
-    setup: {
-      description: "setting up ESLint",
-      run: async ({ flags }) => {
-        await runCommand(flags["package-manager"], ["run", "lint", "--strict"])
-      },
-    },
-  },
 } as const)

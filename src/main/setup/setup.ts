@@ -88,7 +88,6 @@ export const performSetupSteps = async (
     installDependenciesStep,
 
     // Remove official CNA content
-    eslintPlugin.steps.setup, // eslint is set up before content removal because it requires content in /pages // TODO: Test if this is still the case.
     nextPlugin.steps.removeOfficialCNAContent,
 
     // Configuration
