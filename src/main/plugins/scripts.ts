@@ -20,10 +20,13 @@ export const scriptsPlugin = constrain<Plugin>()({
           ...packageJson,
           scripts: {
             ...toObject(packageJson["scripts"]),
-            ...scripts.reduce((acc, script) => ({
-              ...acc,
-              [script.name]: script.command,
-            })),
+            ...scripts.reduce(
+              (acc, script) => ({
+                ...acc,
+                [script.name]: script.command,
+              }),
+              {}
+            ),
           },
         }))
       },
