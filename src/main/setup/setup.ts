@@ -32,7 +32,6 @@ import { typescriptPlugin } from "../plugins/typescript"
 import { yarnPlugin } from "../plugins/yarn"
 import { printFinalMessages } from "./print-final-messages"
 import { addContentStep } from "./steps/add-content/add-content"
-import { addGithubWorkflowStep } from "./steps/add-github-workflow"
 import { addReadmeStep } from "./steps/add-readme/add-readme"
 import { copyAssetsStep } from "./steps/copy-assets"
 import { createNextAppStep } from "./steps/create-next-app"
@@ -105,7 +104,7 @@ export const performSetupSteps = async (
     lintStagedPlugin.steps.setup,
 
     // Continuous integration
-    addGithubWorkflowStep,
+    githubActionsPlugin.steps.addGithubWorkflowStep,
 
     // Add/generate content
     copyAssetsStep,
