@@ -50,6 +50,7 @@
     "test:manual": "yarn build && node lib/tests/e2e/manual-test.js --debug",
     "test:small": "yarn build && node lib/tests/e2e/manual-test.js --debug --package-manager=npm --styling=css-modules",
     "test:large": "yarn build && node lib/tests/e2e/manual-test.js --debug --package-manager=yarn --styling=emotion --react-hook-form --formik --prettier --formatting-pre-commit-hook --chakra --framer-motion --github-actions",
+    "test:cna": "yarn build && node lib/tests/e2e/test-cna.js",
     "version": "oclif-dev readme && git add README.md",
     "format": "prettier --write --ignore-path=.prettierignore .",
     "format:check": "prettier --check --ignore-path=.prettierignore .",
