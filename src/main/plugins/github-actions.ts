@@ -1,8 +1,7 @@
 import endent from "endent"
-import fs from "fs/promises"
 import path from "path"
 import { ValidCNSInputs } from "../create-next-stack-types"
-import { writeFile } from "../helpers/io"
+import { makeDirectory, writeFile } from "../helpers/io"
 import { createPlugin } from "../plugin"
 
 export const githubActionsPlugin = createPlugin({
@@ -44,7 +43,7 @@ export const githubActionsPlugin = createPlugin({
       run: async (inputs) => {
         const directory = ".github/workflows"
         const filename = "ci.yml"
-        await fs.mkdir(directory, { recursive: true })
+        await makeDirectory(directory)
         const filePath = path.resolve(`${directory}/${filename}`)
         await writeFile(filePath, generateCiYml(inputs))
       },

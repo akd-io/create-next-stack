@@ -1,6 +1,5 @@
 import endent from "endent"
-import fs from "fs/promises"
-import { writeFile } from "../helpers/io"
+import { makeDirectory, writeFile } from "../helpers/io"
 import { createPlugin } from "../plugin"
 
 /**
@@ -94,6 +93,6 @@ const addStylesGlobalsCss = async () => {
     @tailwind components;
     @tailwind utilities;
   `
-  await fs.mkdir("styles", { recursive: true })
+  await makeDirectory("styles")
   await writeFile("styles/globals.css", stylesGlobalsCssString)
 }

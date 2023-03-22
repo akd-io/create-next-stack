@@ -1,6 +1,7 @@
 import fs from "fs/promises"
 import path from "path"
 import { v4 as uuidv4 } from "uuid"
+import { makeDirectory } from "../../../main/helpers/io"
 import { logTestInfo } from "../test-logging"
 
 export const prepareE2eTest = async (
@@ -17,7 +18,7 @@ export const prepareE2eTest = async (
     `${createNextStackDir}/../create-next-stack-tests/run-${testRunId}`
   )
   logTestInfo(`Creating test run directory at ${runDirectory}`)
-  await fs.mkdir(runDirectory, { recursive: true })
+  await makeDirectory(runDirectory)
 
   // Run /bin-test/run-prod to test against compiled js files in /lib instead of ts-files in /src using ts-node.
   const pathToProdCLI = path.resolve(`${createNextStackDir}/bin-test/run-prod`)

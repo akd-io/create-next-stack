@@ -1,7 +1,15 @@
+import { existsSync } from "fs"
 import fs from "fs/promises"
 import { logDebug, logError } from "../logging"
 import { isUnknownArray } from "./is-unknown-array"
 import { isUnknownObject } from "./is-unknown-object"
+
+export const makeDirectory = async (path: string): Promise<void> => {
+  logDebug("Making directory:", path)
+  if (!existsSync(path)) {
+    await fs.mkdir(path, { recursive: true })
+  }
+}
 
 export const writeFile: typeof fs.writeFile = async (file, data, options) => {
   logDebug("Writing file:", file.toString())

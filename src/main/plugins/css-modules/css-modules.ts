@@ -1,5 +1,4 @@
-import fs from "fs/promises"
-import { writeFile } from "../../helpers/io"
+import { makeDirectory, writeFile } from "../../helpers/io"
 import { createPlugin } from "../../plugin"
 import { generateGlobalStyles } from "./add-content/styles/global-styles"
 
@@ -26,7 +25,7 @@ export const cssModulesPlugin = createPlugin({
     setup: {
       description: "setting up CSS Modules",
       run: async () => {
-        await fs.mkdir("styles")
+        await makeDirectory("styles")
         await writeFile("styles/global-styles.css", generateGlobalStyles())
       },
     },

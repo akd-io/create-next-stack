@@ -1,9 +1,13 @@
 import endent from "endent"
-import fs from "fs/promises"
 import path from "path"
 import { copyDirectory } from "../../helpers/copy-directory"
 import { getCreateNextStackDir } from "../../helpers/get-create-next-stack-dir"
-import { modifyJsonFile, toObject, writeFile } from "../../helpers/io"
+import {
+  makeDirectory,
+  modifyJsonFile,
+  toObject,
+  writeFile,
+} from "../../helpers/io"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { remove } from "../../helpers/remove"
 import { logWarning } from "../../logging"
@@ -64,7 +68,7 @@ export const createNextStackPlugin = createPlugin({
     addContent: {
       description: "adding content",
       run: async (inputs) => {
-        await fs.mkdir("components")
+        await makeDirectory("components")
 
         const promises = [
           writeFile("components/Page.tsx", generatePage(inputs)),

@@ -1,8 +1,7 @@
 import chalk from "chalk"
 import endent from "endent"
-import fs from "fs/promises"
 import path from "path"
-import { writeFile } from "../helpers/io"
+import { makeDirectory, writeFile } from "../helpers/io"
 import { remove } from "../helpers/remove"
 import { logDebug } from "../logging"
 import { createPlugin, Package } from "../plugin"
@@ -63,7 +62,7 @@ export const nextPlugin = createPlugin({
 
       run: async ({ args, flags }) => {
         // Make sure directory exists to avoid error from create-next-app
-        await fs.mkdir(args.appName, { recursive: true })
+        await makeDirectory(args.appName)
 
         logDebug(endent`
           Directory created: ${args.appName}
@@ -102,7 +101,7 @@ export const nextPlugin = createPlugin({
           remove("styles"),
           remove("public/vercel.svg"),
         ])
-        await fs.mkdir("pages")
+        await makeDirectory("pages")
       },
     },
     addNextConfig: {
