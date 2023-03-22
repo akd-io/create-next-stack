@@ -1,61 +1,34 @@
 import endent from "endent"
-import type {
-  ValidCNSInputs,
-  ValidCreateNextStackFlags,
-} from "../../../../create-next-stack-types"
+import type { ValidCNSInputs } from "../../../../create-next-stack-types"
+import { filterPlugins } from "../../../../setup/setup"
 
-const getChakraImports = (flags: ValidCreateNextStackFlags) => {
-  if (flags.chakra) {
-    return endent/* tsx */ `
-      import { ColorModeScript } from "@chakra-ui/react";
-      import { chakraTheme } from "../chakra-theme";
-    `
-  } else {
-    return ""
-  }
-}
+export const generateDocument = (inputs: ValidCNSInputs): string => {
+  const documentImports = filterPlugins(inputs).flatMap(
+    (plugin) => plugin.slots?.document?.imports ?? []
+  )
+  const htmlAttributes = filterPlugins(inputs).flatMap(
+    (plugin) => plugin.slots?.document?.htmlAttributes ?? []
+  )
+  const headTags = filterPlugins(inputs).flatMap(
+    (plugin) => plugin.slots?.document?.headTags ?? []
+  )
+  const bodyComponents = filterPlugins(inputs).flatMap(
+    (plugin) => plugin.slots?.document?.bodyComponents ?? []
+  )
 
-const getMaterialImports = (flags: ValidCreateNextStackFlags) => {
-  if (flags["material-ui"]) {
-    return endent/* tsx */ `
-      import materialTheme, { roboto } from "../material-theme";
-    `
-  } else {
-    return ""
-  }
-}
-
-const getHeadElements = (flags: ValidCreateNextStackFlags) => {
-  if (flags["material-ui"]) {
-    return endent/* tsx */ `
-      <meta name="theme-color" content={materialTheme.palette.primary.main} />
-    `
-  } else {
-    return ""
-  }
-}
-
-export const generateDocument = ({ flags }: ValidCNSInputs): string => {
   return endent/* tsx */ `
-    ${getChakraImports(flags)}
-    ${getMaterialImports(flags)}
     import NextDocument, { Html, Head, Main, NextScript } from "next/document";
+    ${documentImports.join("\n")}
 
     export default class Document extends NextDocument {
       render() {
         return (
-          <Html lang="en" ${
-            flags["material-ui"] ? "className={roboto.className}" : ""
-          }>
+          <Html lang="en" ${htmlAttributes.join(" ")}>
             <Head>
-              ${getHeadElements(flags)}
+              ${headTags.join("\n")}
             </Head>
             <body>
-              ${
-                flags.chakra
-                  ? /* tsx */ `<ColorModeScript initialColorMode={chakraTheme.config.initialColorMode} />`
-                  : ""
-              }
+              ${bodyComponents.join("\n")}
               <Main />
               <NextScript />
             </body>

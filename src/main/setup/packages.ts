@@ -25,7 +25,7 @@ export const install = async (
 
   const installSubCommand = packageManager === "yarn" ? "add" : "install"
   const installCommandArgs = [installSubCommand]
-  if (options != null && options.dev != null && options.dev) {
+  if (typeof options?.dev == "boolean" && options.dev) {
     installCommandArgs.push("--dev")
   }
   packagesWithVersions.forEach((packageWithVersion) => {

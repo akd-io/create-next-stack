@@ -36,4 +36,15 @@ export const chakraUIPlugin = createPlugin({
       },
     },
   },
+  slots: {
+    document: {
+      imports: [
+        `import { ColorModeScript } from "@chakra-ui/react";`,
+        `import { chakraTheme } from "../chakra-theme";`,
+      ],
+      bodyComponents: [
+        `<ColorModeScript initialColorMode={chakraTheme.config.initialColorMode} />`,
+      ],
+    },
+  },
 } as const)

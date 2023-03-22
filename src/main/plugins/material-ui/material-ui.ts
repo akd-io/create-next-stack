@@ -35,4 +35,13 @@ export const materialUIPlugin = createPlugin({
       },
     },
   },
+  slots: {
+    document: {
+      imports: [`import materialTheme, { roboto } from "../material-theme";`],
+      htmlAttributes: [`className={roboto.className}`],
+      headTags: [
+        `<meta name="theme-color" content={materialTheme.palette.primary.main} />`,
+      ],
+    },
+  },
 } as const)

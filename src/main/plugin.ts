@@ -78,7 +78,35 @@ type PluginConfig = DeeplyReadonly<{
   steps?: Record<string, RawStep>
   /** Compiler options to set. */
   compilerOptions?: NextConfig["compiler"] // TODO: Strength type
+  /** Slots to fill in the generated files. */
+  slots?: {
+    /** Slots to fill in the _app.tsx file. */
+    app?: {
+      /** Imports to add to the _app.tsx file. */
+      imports?: string[]
+      /** Components to add to the _app.tsx file. */
+      components?: Component[]
+    }
+    /** Slots to fill in the _document.tsx file. */
+    document?: {
+      /** Imports to add to the _document.tsx file. */
+      imports?: string[]
+      /** Attributes to add to the <Html> tag of the _document.tsx file. */
+      htmlAttributes?: string[]
+      /** Tags to add to the <Head> tag of the _document.tsx file. */
+      headTags?: string[]
+      /** Components to add to the start of the <body> tag of the _document.tsx file. */
+      bodyComponents?: string[]
+    }
+  }
 }>
+
+type Component = SelfClosingComponent | ComponentWithChildren
+type SelfClosingComponent = string
+type ComponentWithChildren = {
+  open: string
+  close: string
+}
 
 export type Package = {
   /** Name of the package. */
