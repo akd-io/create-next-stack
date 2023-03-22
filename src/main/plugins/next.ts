@@ -2,24 +2,23 @@ import chalk from "chalk"
 import endent from "endent"
 import fs from "fs/promises"
 import path from "path"
-import { constrain } from "../helpers/constrain"
 import { writeFile } from "../helpers/io"
 import { remove } from "../helpers/remove"
 import { logDebug } from "../logging"
-import { Plugin } from "../plugin"
+import { createPlugin, Package } from "../plugin"
 import { runCommand } from "../run-command"
 import { getNameVersionCombo } from "../setup/packages"
 import { generateNextConfig } from "./create-next-stack/add-next-config/generate-next-config"
 
-export const nextPlugin = constrain<Plugin>()({
+const createNextAppPackage: Package = {
+  name: "create-next-app",
+  version: "~13.2.3", // Note: Equivalent to 13.2.x. However, when used with npx, the version is interpreted exactly instead of as a range.
+}
+
+export const nextPlugin = createPlugin({
   name: "Next.js",
   description: "Adds Next.js foundation",
-  extDependencies: {
-    "create-next-app": {
-      name: "create-next-app",
-      version: "~13.2.3", // Note: Equivalent to 13.2.x. However, when used with npx, the version is interpreted exactly instead of as a range.
-    },
-  },
+  active: true,
   technologies: [
     {
       name: "Next.js",
@@ -87,7 +86,7 @@ export const nextPlugin = constrain<Plugin>()({
         }
 
         await runCommand("npx", [
-          getNameVersionCombo(nextPlugin.extDependencies["create-next-app"]), // Note: npx ignores version ranges. So the tilde in packages["create-next-app"] is ignored and the exact version is used.
+          getNameVersionCombo(createNextAppPackage), // Note: npx ignores version ranges. So the tilde in packages["create-next-app"] is ignored and the exact version is used.
           ...createNextAppArgs,
         ])
 

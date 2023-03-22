@@ -15,7 +15,7 @@ export const commandInstance: CommandInstance = {
     if (commandInstance._instance != null) {
       return commandInstance._instance
     } else {
-      throw new Error("commandInstance.get() called before it was set.")
+      throw new Error("commandInstance accessed before it was set.")
     }
   },
 }

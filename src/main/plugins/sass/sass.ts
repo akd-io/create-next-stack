@@ -1,14 +1,16 @@
 import fs from "fs/promises"
-import { constrain } from "../../helpers/constrain"
 import { writeFile } from "../../helpers/io"
-import { Plugin } from "../../plugin"
+import { createPlugin } from "../../plugin"
+import { cssModulesPlugin } from "../css-modules/css-modules"
 import { generateGlobalStyles } from "./add-content/styles/global-styles"
 
-export const sassPlugin = constrain<Plugin>()({
+export const sassPlugin = createPlugin({
   name: "Sass",
   description: "Adds support for Sass",
+  active: ({ flags }) => flags.styling === "css-modules-with-sass",
   dependencies: { sass: { name: "sass", version: "^1.0.0" } },
   technologies: [
+    cssModulesPlugin.technologies[0],
     {
       name: "Sass",
       description:
@@ -26,8 +28,6 @@ export const sassPlugin = constrain<Plugin>()({
   steps: {
     setup: {
       description: "setting up Sass",
-      shouldRun: async ({ flags }) =>
-        Boolean(flags.styling === "css-modules-with-sass"),
       run: async () => {
         await fs.mkdir("styles")
         await writeFile("styles/global-styles.scss", generateGlobalStyles())

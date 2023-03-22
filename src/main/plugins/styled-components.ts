@@ -1,10 +1,9 @@
-import { constrain } from "../helpers/constrain"
-import { Plugin } from "../plugin"
+import { createPlugin } from "../plugin"
 
-export const styledComponentsPlugin = constrain<Plugin>()({
+export const styledComponentsPlugin = createPlugin({
   name: "Styled Components",
   description: "Adds support for Styled Components",
-  stylingMethodArg: "styled-components",
+  active: ({ flags }) => Boolean(flags.styling === "styled-components"),
   dependencies: {
     "styled-components": { name: "styled-components", version: "^5.0.0" },
   },
@@ -29,4 +28,7 @@ export const styledComponentsPlugin = constrain<Plugin>()({
       ],
     },
   ],
+  swcCompilerOptions: {
+    styledComponents: true,
+  },
 } as const)

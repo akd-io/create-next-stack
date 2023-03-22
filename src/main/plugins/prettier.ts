@@ -1,12 +1,10 @@
-import { constrain } from "../helpers/constrain"
 import { modifyJsonFile, toArray, writeJsonFile } from "../helpers/io"
-import { Plugin } from "../plugin"
-import { runCommand } from "../run-command"
-import { getNameVersionCombo } from "../setup/packages"
+import { createPlugin } from "../plugin"
 
-export const prettierPlugin = constrain<Plugin>()({
+export const prettierPlugin = createPlugin({
   name: "Prettier",
   description: "Adds support for Prettier",
+  active: ({ flags }) => Boolean(flags.prettier),
   devDependencies: {
     prettier: { name: "prettier", version: "^2.0.0" },
     "eslint-config-prettier": {
@@ -42,20 +40,8 @@ export const prettierPlugin = constrain<Plugin>()({
   steps: {
     setup: {
       description: "setting up Prettier",
-      shouldRun: async ({ flags }) => Boolean(flags.prettier),
       run: async () => {
         await Promise.all([addPrettierConfig(), setUpEslintConfigPrettier()])
-      },
-    },
-    formatProject: {
-      description: "formatting project",
-      shouldRun: true, // Always run this step, even if the user didn't select Prettier.
-      run: async () => {
-        await runCommand("npx", [
-          getNameVersionCombo(prettierPlugin.devDependencies.prettier),
-          "--write",
-          ".",
-        ])
       },
     },
   },

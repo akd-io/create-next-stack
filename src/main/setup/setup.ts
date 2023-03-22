@@ -5,23 +5,16 @@ import { getDiffString } from "../helpers/diff-string"
 import { inDebugMode } from "../helpers/in-debug-mode"
 import { time } from "../helpers/time"
 import { logDebug, logInfo } from "../logging"
-import {
-  createStep,
-  evalShouldRun,
-  InitializedStep,
-  initializePlugin,
-  Step,
-} from "../plugin"
+import { evalActive, evalShouldRun, Plugin } from "../plugin"
 import { chakraUIPlugin } from "../plugins/chakra-ui/chakra-ui"
 import { createNextStackPlugin } from "../plugins/create-next-stack/create-next-stack"
 import { cssModulesPlugin } from "../plugins/css-modules/css-modules"
 import { emotionPlugin } from "../plugins/emotion"
 import { eslintPlugin } from "../plugins/eslint"
+import { formattingPreCommitHookPlugin } from "../plugins/formatting-pre-commit-hook"
 import { formikPlugin } from "../plugins/formik"
 import { framerMotionPlugin } from "../plugins/framer-motion"
-import { gitAttributesPlugin } from "../plugins/git-attributes"
 import { githubActionsPlugin } from "../plugins/github-actions"
-import { lintStagedPlugin } from "../plugins/lint-staged"
 import { materialUIPlugin } from "../plugins/material-ui/material-ui"
 import { nextPlugin } from "../plugins/next"
 import { npmPlugin } from "../plugins/npm"
@@ -36,7 +29,7 @@ import { yarnPlugin } from "../plugins/yarn"
 import { printFinalMessages } from "./print-final-messages"
 
 // Ordered by relevance to the user for use in technology lists // TODO: Fix this by having separate ordered lists of plugins where other sortings are needed.
-const rawPlugins = [
+export const plugins: Plugin[] = [
   createNextStackPlugin,
   nextPlugin,
   reactPlugin,
@@ -53,26 +46,19 @@ const rawPlugins = [
   framerMotionPlugin,
   eslintPlugin,
   prettierPlugin,
-  lintStagedPlugin,
+  formattingPreCommitHookPlugin,
   yarnPlugin,
   npmPlugin,
   githubActionsPlugin,
-  gitAttributesPlugin,
-] as const
+]
 
-export const plugins = rawPlugins.map((plugin) => initializePlugin(plugin))
-
-export const filterPlugins = (inputs: ValidCNSInputs): typeof plugins =>
-  plugins.filter((plugin) => {
-    // TODO: Fix this hack. We shouldn't rely on the first step of a plugin to determine whether to include the plugin or not.
-    const firstStep = plugin.steps?.[0]
-    return firstStep == null ? true : evalShouldRun(firstStep.shouldRun, inputs)
-  })
+export const filterPlugins = (inputs: ValidCNSInputs): Plugin[] =>
+  plugins.filter((plugin) => evalActive(plugin.active, inputs))
 
 export const performSetupSteps = async (
   inputs: ValidCNSInputs
 ): Promise<void> => {
-  const steps: Step[] = [
+  const steps = [
     // Create Next App
     nextPlugin.steps.createNextApp,
 
@@ -85,7 +71,7 @@ export const performSetupSteps = async (
 
     // Configuration
     createNextStackPlugin.steps.addScripts,
-    gitAttributesPlugin.steps.addGitAttributes,
+    createNextStackPlugin.steps.addGitAttributes,
     nextPlugin.steps.addNextConfig,
 
     // Styling
@@ -96,7 +82,7 @@ export const performSetupSteps = async (
 
     // Formatting
     prettierPlugin.steps.setup,
-    lintStagedPlugin.steps.setup,
+    formattingPreCommitHookPlugin.steps.setup,
 
     // Continuous integration
     githubActionsPlugin.steps.addGithubWorkflowStep,
@@ -114,20 +100,18 @@ export const performSetupSteps = async (
     createNextStackPlugin.steps.uninstallTemporaryDependencies,
 
     // Format & initial commit
-    prettierPlugin.steps.formatProject,
+    createNextStackPlugin.steps.formatProject,
     createNextStackPlugin.steps.initialCommit,
-  ]
-
-  const enhancedSteps: InitializedStep[] = steps.map((step) => createStep(step))
+  ] as const
 
   const allStepsDiff = await time(async () => {
-    for (const step of enhancedSteps) {
-      const shouldRun =
-        typeof step.shouldRun === "function"
-          ? await step.shouldRun(inputs)
-          : step.shouldRun
-
-      if (!shouldRun) continue
+    for (const step of steps) {
+      if (
+        !evalActive(step.plugin.active, inputs) ||
+        !evalShouldRun(step.shouldRun, inputs)
+      ) {
+        continue
+      }
 
       logInfo(`${capitalizeFirstLetter(step.description)}...`)
 

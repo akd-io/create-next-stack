@@ -1,11 +1,11 @@
-import { constrain } from "../../helpers/constrain"
 import { writeFile } from "../../helpers/io"
-import { Plugin } from "../../plugin"
+import { createPlugin } from "../../plugin"
 import { materialTheme } from "./setup/material-theme"
 
-export const materialUIPlugin = constrain<Plugin>()({
+export const materialUIPlugin = createPlugin({
   name: "Material UI",
   description: "Adds support for Material UI",
+  active: ({ flags }) => Boolean(flags["material-ui"]),
   dependencies: {
     "@mui/material": {
       name: "@mui/material",
@@ -30,7 +30,6 @@ export const materialUIPlugin = constrain<Plugin>()({
   steps: {
     setup: {
       description: "setting up Material UI",
-      shouldRun: async (inputs) => Boolean(inputs.flags["material-ui"]),
       run: async () => {
         await writeFile("material-theme.ts", materialTheme)
       },

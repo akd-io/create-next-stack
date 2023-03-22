@@ -1,9 +1,9 @@
-import { constrain } from "../helpers/constrain"
-import { Plugin } from "../plugin"
+import { createPlugin } from "../plugin"
 
-export const typescriptPlugin = constrain<Plugin>()({
+export const typescriptPlugin = createPlugin({
   name: "Typescript",
   description: "Adds relevant Typescript documentation",
+  active: true,
   technologies: [
     {
       name: "TypeScript",

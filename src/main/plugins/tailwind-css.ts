@@ -1,8 +1,7 @@
 import endent from "endent"
 import fs from "fs/promises"
-import { constrain } from "../helpers/constrain"
 import { writeFile } from "../helpers/io"
-import { Plugin } from "../plugin"
+import { createPlugin } from "../plugin"
 
 /**
  * Follows a combination of the official Next.js template:
@@ -11,9 +10,10 @@ import { Plugin } from "../plugin"
  * https://tailwindcss.com/docs/guides/nextjs
  */
 
-export const tailwindCSSPlugin = constrain<Plugin>()({
+export const tailwindCSSPlugin = createPlugin({
   name: "Tailwind CSS",
   description: "Adds support for Tailwind CSS",
+  active: ({ flags }) => flags["styling"] === "tailwind-css",
   devDependencies: {
     tailwindcss: {
       name: "tailwindcss",
@@ -43,7 +43,6 @@ export const tailwindCSSPlugin = constrain<Plugin>()({
   steps: {
     setup: {
       description: "setting up Tailwind CSS",
-      shouldRun: async ({ flags }) => flags["styling"] === "tailwind-css",
       run: async () => {
         await Promise.all([
           addTailwindConfig(),

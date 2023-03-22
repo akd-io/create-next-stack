@@ -1,11 +1,10 @@
-import { constrain } from "../helpers/constrain"
 import { modifyJsonFile, toObject } from "../helpers/io"
-import { Plugin } from "../plugin"
+import { createPlugin } from "../plugin"
 
-export const emotionPlugin = constrain<Plugin>()({
+export const emotionPlugin = createPlugin({
   name: "Emotion",
-  stylingMethodArg: "emotion",
   description: "Adds support for Emotion",
+  active: ({ flags }) => flags.styling === "emotion",
   dependencies: {
     "@emotion/react": { name: "@emotion/react", version: "^11.0.0" },
     "@emotion/styled": { name: "@emotion/styled", version: "^11.0.0" },
@@ -29,6 +28,9 @@ export const emotionPlugin = constrain<Plugin>()({
         await addTypeScriptSupportForTheEmotionCssProp()
       },
     },
+  },
+  swcCompilerOptions: {
+    emotion: true,
   },
 } as const)
 

@@ -1,9 +1,9 @@
-import { constrain } from "../helpers/constrain"
-import { Plugin } from "../plugin"
+import { createPlugin } from "../plugin"
 
-export const eslintPlugin = constrain<Plugin>()({
+export const eslintPlugin = createPlugin({
   name: "ESLint",
   description: "Adds relevant documentation for ESLint",
+  active: true,
   technologies: [
     {
       name: "ESLint",

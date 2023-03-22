@@ -1,11 +1,11 @@
-import { constrain } from "../helpers/constrain"
-import { Plugin } from "../plugin"
+import { createPlugin } from "../plugin"
 import { runCommand } from "../run-command"
 import { getNameVersionCombo } from "../setup/packages"
 
-export const yarnPlugin = constrain<Plugin>()({
+export const yarnPlugin = createPlugin({
   name: "Yarn",
   description: "Adds support for Yarn",
+  active: ({ flags }) => Boolean(flags["package-manager"] === "yarn"),
   dependencies: { yarn: { name: "yarn", version: "^1.0.0" } },
   technologies: [
     {
@@ -22,7 +22,6 @@ export const yarnPlugin = constrain<Plugin>()({
   steps: {
     updateYarn: {
       description: "updating Yarn",
-      shouldRun: async ({ flags }) => flags["package-manager"] === "yarn",
       run: async () => {
         await runCommand("npm", [
           "i",

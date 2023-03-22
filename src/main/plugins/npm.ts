@@ -1,9 +1,9 @@
-import { constrain } from "../helpers/constrain"
-import { Plugin } from "../plugin"
+import { createPlugin } from "../plugin"
 
-export const npmPlugin = constrain<Plugin>()({
+export const npmPlugin = createPlugin({
   name: "npm",
   description: "Adds relevant npm documentation",
+  active: ({ flags }) => Boolean(flags["package-manager"] === "npm"),
   technologies: [
     {
       name: "npm",

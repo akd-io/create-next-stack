@@ -1,9 +1,9 @@
-import { constrain } from "../helpers/constrain"
-import { Plugin } from "../plugin"
+import { createPlugin } from "../plugin"
 
-export const formikPlugin = constrain<Plugin>()({
+export const formikPlugin = createPlugin({
   name: "Formik",
   description: "Adds support for Formik",
+  active: ({ flags }) => Boolean(flags["formik"]),
   dependencies: {
     formik: {
       name: "formik",

@@ -1,9 +1,9 @@
-import { constrain } from "../helpers/constrain"
-import { Plugin } from "../plugin"
+import { createPlugin } from "../plugin"
 
-export const framerMotionPlugin = constrain<Plugin>()({
+export const framerMotionPlugin = createPlugin({
   name: "Framer Motion",
   description: "Adds support for Framer Motion",
+  active: ({ flags }) => Boolean(flags["framer-motion"]),
   dependencies: {
     "framer-motion": {
       name: "framer-motion",

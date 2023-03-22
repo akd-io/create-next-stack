@@ -1,9 +1,9 @@
-import { constrain } from "../helpers/constrain"
-import { Plugin } from "../plugin"
+import { createPlugin } from "../plugin"
 
-export const reactHookFormPlugin = constrain<Plugin>()({
+export const reactHookFormPlugin = createPlugin({
   name: "React Hook Form",
   description: "Adds support for React Hook Form",
+  active: ({ flags }) => Boolean(flags["react-hook-form"]),
   dependencies: {
     "react-hook-form": {
       name: "react-hook-form",

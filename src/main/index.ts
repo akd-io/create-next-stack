@@ -1,6 +1,7 @@
 import { Command, flags } from "@oclif/command"
 import chalk from "chalk"
 import endent from "endent"
+import { commandInstance } from "./command-instance"
 import {
   CreateNextStackArgs,
   CreateNextStackFlags,
@@ -10,7 +11,6 @@ import {
   writableStylingOptions,
 } from "./create-next-stack-types"
 import { exitWithError } from "./helpers/exit-with-error"
-import { commandInstance } from "./instance"
 import { logInfo } from "./logging"
 import { performSetupSteps } from "./setup/setup"
 

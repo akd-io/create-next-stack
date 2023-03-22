@@ -2,13 +2,13 @@ import endent from "endent"
 import fs from "fs/promises"
 import path from "path"
 import { ValidCNSInputs } from "../create-next-stack-types"
-import { constrain } from "../helpers/constrain"
 import { writeFile } from "../helpers/io"
-import { Plugin } from "../plugin"
+import { createPlugin } from "../plugin"
 
-export const githubActionsPlugin = constrain<Plugin>()({
+export const githubActionsPlugin = createPlugin({
   name: "GitHub Actions",
   description: "Adds support for GitHub Actions",
+  active: ({ flags }) => Boolean(flags["github-actions"]),
   technologies: [
     {
       name: "GitHub Actions",
@@ -41,7 +41,6 @@ export const githubActionsPlugin = constrain<Plugin>()({
   steps: {
     addGithubWorkflowStep: {
       description: "adding GitHub workflow",
-      shouldRun: async ({ flags }) => Boolean(flags["github-actions"]),
       run: async (inputs) => {
         const directory = ".github/workflows"
         const filename = "ci.yml"

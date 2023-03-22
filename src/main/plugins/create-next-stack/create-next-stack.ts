@@ -1,16 +1,17 @@
+import endent from "endent"
 import fs from "fs/promises"
 import path from "path"
-import { constrain } from "../../helpers/constrain"
 import { copyDirectory } from "../../helpers/copy-directory"
 import { getCreateNextStackDir } from "../../helpers/get-create-next-stack-dir"
 import { modifyJsonFile, toObject, writeFile } from "../../helpers/io"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { remove } from "../../helpers/remove"
 import { logWarning } from "../../logging"
-import { Plugin } from "../../plugin"
+import { createPlugin } from "../../plugin"
 import { runCommand } from "../../run-command"
-import { install, uninstall } from "../../setup/packages"
+import { getNameVersionCombo, install, uninstall } from "../../setup/packages"
 import { filterPlugins, plugins } from "../../setup/setup"
+import { prettierPlugin } from "../prettier"
 import { generatePage } from "./add-content/components/generate-page"
 import { generateWithDefaultGlobalStyles } from "./add-content/components/generate-with-default-global-styles"
 import { generateApp } from "./add-content/pages/generate-app"
@@ -19,10 +20,13 @@ import { generateIndexPage } from "./add-content/pages/generate-index"
 import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
 import { generateReadme } from "./add-readme/generate-readme"
 
-export const createNextStackPlugin = constrain<Plugin>()({
+const gitAttributesFilename = ".gitattributes"
+
+export const createNextStackPlugin = createPlugin({
   name: "Create Next Stack",
   description:
     "Adds various miscellaneous steps. Some necessities, some niceties.",
+  active: true,
   steps: {
     addScripts: {
       description: "adding scripts to package.json",
@@ -158,6 +162,39 @@ export const createNextStackPlugin = constrain<Plugin>()({
         if (tmpDeps.length > 0) {
           await uninstall(tmpDeps, flags["package-manager"])
         }
+      },
+    },
+    formatProject: {
+      description: "formatting project",
+      run: async () => {
+        await runCommand("npx", [
+          getNameVersionCombo(prettierPlugin.devDependencies.prettier),
+          "--write",
+          ".",
+        ])
+      },
+    },
+    addGitAttributes: {
+      description: `adding ${gitAttributesFilename}`,
+      shouldRun: async () => {
+        if (!(await isGitInitialized())) {
+          logWarning(
+            `Skipping ${gitAttributesFilename} setup, as Git was not initialized.`
+          )
+          return false
+        }
+        return true
+      },
+      run: async () => {
+        await writeFile(
+          gitAttributesFilename,
+          endent`
+            # Normalize end of line. Read more about why in the links below:
+            # https://prettier.io/docs/en/options.html#end-of-line
+            # https://git-scm.com/docs/gitattributes#_effects
+            * text=auto eol=lf
+          `
+        )
       },
     },
   },

@@ -1,11 +1,11 @@
-import { constrain } from "../../helpers/constrain"
 import { writeFile } from "../../helpers/io"
-import { Plugin } from "../../plugin"
+import { createPlugin } from "../../plugin"
 import { chakraTheme } from "./setup/chakra-theme"
 
-export const chakraUIPlugin = constrain<Plugin>()({
+export const chakraUIPlugin = createPlugin({
   name: "Chakra UI",
   description: "Adds support for Chakra UI",
+  active: ({ flags }) => Boolean(flags.chakra),
   dependencies: {
     "@chakra-ui/icons": {
       name: "@chakra-ui/icons",
@@ -31,7 +31,6 @@ export const chakraUIPlugin = constrain<Plugin>()({
   steps: {
     setup: {
       description: "setting up Chakra UI",
-      shouldRun: async (inputs) => Boolean(inputs.flags.chakra),
       run: async () => {
         await writeFile("chakra-theme.ts", chakraTheme)
       },

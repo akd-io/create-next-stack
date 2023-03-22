@@ -1,14 +1,16 @@
-import { constrain } from "../helpers/constrain"
 import { modifyJsonFile } from "../helpers/io"
 import { isGitInitialized } from "../helpers/is-git-initialized"
 import { remove } from "../helpers/remove"
 import { logWarning } from "../logging"
-import { Plugin } from "../plugin"
+import { createPlugin } from "../plugin"
 import { runCommand } from "../run-command"
 
-export const lintStagedPlugin = constrain<Plugin>()({
-  name: "lint-staged",
-  description: "Adds support for Husky and lint-staged using mrm",
+export const formattingPreCommitHookPlugin = createPlugin({
+  name: "formatting-pre-commit-hook",
+  description:
+    "Adds support for a formatting pre-commit hook by setting up Husky and lint-staged using mrm",
+  active: ({ flags }) =>
+    Boolean(flags.prettier && flags["formatting-pre-commit-hook"]),
   tmpDependencies: {
     mrm: {
       name: "mrm",
@@ -50,13 +52,12 @@ export const lintStagedPlugin = constrain<Plugin>()({
   ],
   steps: {
     setup: {
-      description: "setting up lint-staged",
-      shouldRun: async ({ flags }) => {
-        if (!flags.prettier || !flags["formatting-pre-commit-hook"]) {
-          return false
-        }
+      description: "setting up formatting pre-commit hook",
+      shouldRun: async () => {
         if (!(await isGitInitialized())) {
-          logWarning("Skipping lint-staged setup, as Git was not initialized.")
+          logWarning(
+            "Skipping formatting pre-commit hook setup, as Git was not initialized."
+          )
           return false
         }
         return true

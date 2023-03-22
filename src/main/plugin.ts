@@ -1,69 +1,86 @@
+import { NextConfig } from "next"
 import { ValidCNSInputs } from "./create-next-stack-types"
 import { DeeplyReadonly } from "./helpers/deeply-readonly"
 
-export const initializePlugin = (plugin: Plugin): InitializedPlugin => {
-  return {
-    // defaults
-    // n/a
-
-    // plugin
-    ...plugin,
-
-    // enhancements
+export const createPlugin = <TPluginConfig extends PluginConfig>(
+  pluginConfig: TPluginConfig
+): Plugin<TPluginConfig> => {
+  const plugin = {
+    ...pluginConfig,
+  }
+  const enhancements = {
     steps:
-      plugin.steps != null
-        ? Object.entries(plugin.steps).reduce(
+      pluginConfig.steps != null
+        ? Object.entries(pluginConfig.steps).reduce(
             (acc, [key, value]) => ({
               ...acc,
-              [key]: createStep(value),
+              [key]: createStep(value, plugin as Plugin<TPluginConfig>),
             }),
-            {} as Record<string, InitializedStep>
+            {} as Record<string, Step>
           )
         : undefined,
   }
+  for (const [key, value] of Object.entries(enhancements)) {
+    Object.defineProperty(plugin, key, {
+      value,
+      enumerable: true,
+    })
+  }
+  return plugin as Plugin<TPluginConfig>
 }
 
-export const createStep = (step: Step): InitializedStep => {
+export const createStep = <TRawStep extends RawStep = RawStep>(
+  step: TRawStep,
+  plugin: Plugin
+): Step<TRawStep> => {
   return {
     // defaults
     shouldRun: true,
 
     // step
     ...step,
+
+    // enhancements
+    plugin,
   }
 }
 
-export type InitializedPlugin = Plugin & {
-  steps?: Record<string, InitializedStep>
-}
-export type InitializedStep = Step & {
-  shouldRun: NonNullable<Step["shouldRun"]>
+export type Plugin<TPluginConfig extends PluginConfig = PluginConfig> =
+  TPluginConfig & {
+    steps?: {
+      [key in keyof TPluginConfig["steps"]]: Step<RawStep> // TODO: Fix type. This should be Step<TPluginConfig["steps"][key]>, but that doesn't work.
+    }
+  }
+
+export type Step<TStep extends RawStep = RawStep> = TStep & {
+  shouldRun: NonNullable<RawStep["shouldRun"]>
+  plugin: Plugin
 }
 
-export type Plugin = DeeplyReadonly<{
+type PluginConfig = DeeplyReadonly<{
   /** Name of the plugin */
   name: string
   /** Description of the plugin */
   description: string
-  /** The name of the styling method argument. Eg. "css-modules-with-sass" */
-  stylingMethodArg?: string
+  /** Whether the plugin is active or not. This determines if dependencies are installed, technologies and scripts added, steps run, and more. */
+  active: boolean | ((inputs: ValidCNSInputs) => Promise<boolean> | boolean)
   /** Dependencies that are added to the package.json file. */
   dependencies?: Record<string, Package>
   /** Dev dependencies that are added to the package.json file. */
   devDependencies?: Record<string, Package>
   /** Temporary dependencies uninstalled when Create Next Stack is done. */
   tmpDependencies?: Record<string, Package>
-  /** External dependencies not installed by Create Next Stack, but used as references for custom run functions. For example used by Next.js plugin to call `npx create-next-app`. */
-  extDependencies?: Record<string, Package>
   /** Technology descriptions */
   technologies?: Technology[]
   /** Scripts that are added to the package.json file. */
   scripts?: Script[]
   /** A series of functions that are run by Create Next Stack. */
-  steps?: Record<string, Step>
+  steps?: Record<string, RawStep>
+  /** Compiler options to set. */
+  compilerOptions?: NextConfig["compiler"] // TODO: Strength type
 }>
 
-type Package = {
+export type Package = {
   /** Name of the package. */
   name: string
   /** Version of the package */
@@ -105,28 +122,38 @@ type Script = {
   command: string
 }
 
-export type Step = {
+type RawStep = {
   /**
    * `description` should be written in present continuous tense, without punctuation, and with a lowercase first letter unless the description starts with a name or similar.
    *
    * Eg. "setting up Prettier" or "adding ESLint"
    */
   description: string
+
   // TODO: Consider memoizing shouldRun, as it is sometimes called multiple times. See the lint-staged setup step.
   /**
    * A boolean or function that determines whether the custom run function should run.
    *
-   * Default is true.
+   * Default is true
    */
-  shouldRun?: boolean | ((inputs: ValidCNSInputs) => Promise<boolean>)
+  shouldRun?: boolean | ((inputs: ValidCNSInputs) => Promise<boolean> | boolean)
+
   /** Custom run function. */
   run: (inputs: ValidCNSInputs) => Promise<void>
 }
 
-export const evalShouldRun = async (
-  shouldRun: InitializedStep["shouldRun"],
+export const evalActive = async (
+  active: PluginConfig["active"],
   inputs: ValidCNSInputs
 ): Promise<boolean> => {
-  if (typeof shouldRun === "function") return shouldRun(inputs)
+  if (typeof active === "function") return await active(inputs)
+  return active
+}
+
+export const evalShouldRun = async (
+  shouldRun: Step["shouldRun"],
+  inputs: ValidCNSInputs
+): Promise<boolean> => {
+  if (typeof shouldRun === "function") return await shouldRun(inputs)
   return shouldRun
 }
