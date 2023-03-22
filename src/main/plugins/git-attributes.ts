@@ -13,7 +13,6 @@ export const gitAttributesPlugin = constrain<Plugin>()({
   steps: {
     addGitAttributes: {
       description: `adding ${filename}`,
-
       shouldRun: async () => {
         if (!(await isGitInitialized())) {
           logWarning(`Skipping ${filename} setup, as Git was not initialized.`)
@@ -21,7 +20,6 @@ export const gitAttributesPlugin = constrain<Plugin>()({
         }
         return true
       },
-
       run: async () => {
         await writeFile(
           filename,

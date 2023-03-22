@@ -51,20 +51,16 @@ export const lintStagedPlugin = constrain<Plugin>()({
   steps: {
     setup: {
       description: "setting up lint-staged",
-
       shouldRun: async ({ flags }) => {
         if (!flags.prettier || !flags["formatting-pre-commit-hook"]) {
           return false
         }
-
         if (!(await isGitInitialized())) {
           logWarning("Skipping lint-staged setup, as Git was not initialized.")
           return false
         }
-
         return true
       },
-
       run: async () => {
         await runCommand("npx", ["mrm", "lint-staged"])
         await remove("7")

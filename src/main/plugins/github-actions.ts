@@ -41,9 +41,7 @@ export const githubActionsPlugin = constrain<Plugin>()({
   steps: {
     addGithubWorkflowStep: {
       description: "adding GitHub workflow",
-
       shouldRun: async ({ flags }) => Boolean(flags["github-actions"]),
-
       run: async (inputs) => {
         const directory = ".github/workflows"
         const filename = "ci.yml"

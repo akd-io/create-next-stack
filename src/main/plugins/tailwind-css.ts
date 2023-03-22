@@ -43,9 +43,7 @@ export const tailwindCSSPlugin = constrain<Plugin>()({
   steps: {
     setup: {
       description: "setting up Tailwind CSS",
-
       shouldRun: async ({ flags }) => flags["styling"] === "tailwind-css",
-
       run: async () => {
         await Promise.all([
           addTailwindConfig(),
