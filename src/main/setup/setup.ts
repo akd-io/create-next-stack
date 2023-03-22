@@ -58,7 +58,8 @@ const rawPlugins = [
   npmPlugin,
   githubActionsPlugin,
   gitAttributesPlugin,
-]
+] as const
+
 export const plugins = rawPlugins.map((plugin) => initializePlugin(plugin))
 
 export const filterPlugins = (inputs: ValidCNSInputs): typeof plugins =>
@@ -67,6 +68,50 @@ export const filterPlugins = (inputs: ValidCNSInputs): typeof plugins =>
     const firstStep = plugin.steps?.[0]
     return firstStep == null ? true : evalShouldRun(firstStep.shouldRun, inputs)
   })
+
+/*
+  Failed attempt at making the steps array strongly typed.
+  Required step function names to be unique across all plugins, which is not ideal.
+  And TypeScript error message was not helpful.
+  Committed here to be in git history.
+
+  ```
+  type RawPlugins = typeof rawPlugins
+  type StepsBatches = {
+    [I in keyof RawPlugins]: RawPlugins[I] extends {
+      steps: unknown
+    }
+      ? RawPlugins[I]["steps"]
+      : null
+  }
+  type StepsBatchesUnion = NonNullable<StepsBatches[keyof StepsBatches]>
+  
+  type UnionToIntersection<T> = (
+    T extends any ? (x: T) => any : never
+  ) extends (x: infer R) => any
+    ? R
+    : never
+
+  type StepsBatchesIntersection = UnionToIntersection<StepsBatchesUnion>
+  type ActualStep = StepsBatchesIntersection[keyof StepsBatchesIntersection]
+
+  const arrayOfAll =
+    <T>() =>
+    <U extends T[]>(
+      array: U & ([T] extends [U[number]] ? unknown : "Invalid") & { 0: T }
+    ) =>
+      array
+
+  const arrayOfAllSteps = arrayOfAll<ActualStep>()
+  ```
+
+  Usage:
+  ```
+  const steps = arrayOfAllSteps([
+    ...
+  ])
+  ```
+*/
 
 export const performSetupSteps = async (
   inputs: ValidCNSInputs
