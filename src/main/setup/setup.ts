@@ -94,6 +94,7 @@ export const performSetupSteps = async (
     emotionPlugin.steps.setup,
 
     // Formatting
+    prettierPlugin.steps.setup,
     lintStagedPlugin.steps.setup,
 
     // Continuous integration
