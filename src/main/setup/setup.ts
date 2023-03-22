@@ -53,7 +53,7 @@ export const plugins: Plugin[] = [
 ]
 
 export const filterPlugins = (inputs: ValidCNSInputs): Plugin[] =>
-  plugins.filter((plugin) => evalActive(plugin.active, inputs))
+  plugins.filter(async (plugin) => await evalActive(plugin.active, inputs))
 
 export const performSetupSteps = async (
   inputs: ValidCNSInputs
@@ -106,10 +106,9 @@ export const performSetupSteps = async (
 
   const allStepsDiff = await time(async () => {
     for (const step of steps) {
-      if (
-        !evalActive(step.plugin.active, inputs) ||
-        !evalShouldRun(step.shouldRun, inputs)
-      ) {
+      const pluginActive = await evalActive(step.plugin.active, inputs)
+      const stepShouldRun = await evalShouldRun(step.shouldRun, inputs)
+      if (!pluginActive || !stepShouldRun) {
         continue
       }
 
