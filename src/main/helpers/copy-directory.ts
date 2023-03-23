@@ -1,5 +1,6 @@
-import { promises as fs } from "fs"
+import fs from "fs/promises"
 import path from "path"
+import { makeDirectory } from "./io"
 
 export const copyDirectory = async (
   src: string,
@@ -7,7 +8,7 @@ export const copyDirectory = async (
 ): Promise<void> => {
   const [entries] = await Promise.all([
     fs.readdir(src, { withFileTypes: true }),
-    fs.mkdir(dest, { recursive: true }),
+    makeDirectory(dest),
   ])
 
   await Promise.all(

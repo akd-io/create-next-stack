@@ -1,7 +1,16 @@
-import { promises as fs } from "fs"
+import { existsSync } from "fs"
+import fs from "fs/promises"
 import { logDebug, logError } from "../logging"
 import { isUnknownArray } from "./is-unknown-array"
 import { isUnknownObject } from "./is-unknown-object"
+import { stringify } from "./stringify"
+
+export const makeDirectory = async (path: string): Promise<void> => {
+  logDebug("Making directory:", path)
+  if (!existsSync(path)) {
+    await fs.mkdir(path, { recursive: true })
+  }
+}
 
 export const writeFile: typeof fs.writeFile = async (file, data, options) => {
   logDebug("Writing file:", file.toString())
@@ -45,7 +54,7 @@ export const writeJsonFile = async (
   object: Record<string, unknown>
 ): Promise<void> => {
   logDebug("Writing json file:", fileName)
-  const objectString = JSON.stringify(object, null, 2)
+  const objectString = stringify(object)
   await fs.writeFile(fileName, objectString)
 }
 

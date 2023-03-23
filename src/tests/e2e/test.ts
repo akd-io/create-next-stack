@@ -2,7 +2,6 @@ import chalk from "chalk"
 import { exitWithError } from "./helpers/exit-with-error"
 import { setGitNameAndEmail } from "./helpers/set-git-name-and-email"
 import { logTestInfo } from "./test-logging"
-import { testNoFlags } from "./tests/test-no-flags"
 import { testCssModulesWithSassAllFlags } from "./tests/css-modules-with-sass/css-modules-with-sass-all-flags"
 import { testCssModulesWithSassOnly } from "./tests/css-modules-with-sass/css-modules-with-sass-only"
 import { testCssModulesAllFlags } from "./tests/css-modules/css-modules-all-flags"
@@ -15,9 +14,12 @@ import { testTailwindCssAllFlags } from "./tests/tailwind-css/tailwind-css-all-f
 import { testTailwindCssOnly } from "./tests/tailwind-css/tailwind-css-only"
 import { testHelpFlag } from "./tests/test-help-flag"
 import { testInvalidInputs } from "./tests/test-invalid-inputs"
+import { testNoFlags } from "./tests/test-no-flags"
 import { testVersionFlag } from "./tests/test-version-flag"
 ;(async () => {
   // TODO: Find a way to run tests in parallel. Currently failing because simultaneous calls to `npm i -g yarn` or `npm install -g mrm@^3.0.0 mrm-task-lint-staged@^6.0.0` cause crashes.
+  // TODO: Switch all tests to use pnpm instead of npm. This will make tests faster and more reliable. Try running in parallel with pnpm, it might work.
+  // TODO: Add test with package-manager=yarn
 
   try {
     // If not done already, Set Git name and email so `git commit` doesn't fail during create-next-app

@@ -1,4 +1,4 @@
-import { promises as fs } from "fs"
+import fs from "fs/promises"
 
 /**
  * `isGitInitialized` checks if Git was initialized by Create Next App or not.
