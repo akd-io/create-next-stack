@@ -2,7 +2,12 @@ import endent from "endent"
 import path from "path"
 import { ValidCNSInputs } from "../create-next-stack-types"
 import { makeDirectory, writeFile } from "../helpers/io"
-import { createPlugin } from "../plugin"
+import {
+  cleanInstallCommand,
+  runCommand,
+} from "../helpers/package-manager-utils"
+import { createPlugin, evalActive } from "../plugin"
+import { prettierPlugin } from "./prettier"
 
 export const githubActionsPlugin = createPlugin({
   name: "GitHub Actions",
@@ -51,10 +56,9 @@ export const githubActionsPlugin = createPlugin({
   },
 } as const)
 
-const generateCiYml = ({ flags }: ValidCNSInputs): string => {
-  const packageManager: "yarn" | "npm" = flags["package-manager"]
-  const installCommand = packageManager === "yarn" ? "yarn install" : "npm ci"
-  const runCommand = packageManager === "yarn" ? "yarn" : "npm run"
+const generateCiYml = (inputs: ValidCNSInputs): string => {
+  const { flags } = inputs
+  const packageManager = flags["package-manager"]
 
   return endent`
     name: "CI"
@@ -63,11 +67,7 @@ const generateCiYml = ({ flags }: ValidCNSInputs): string => {
 
     jobs:
       build:
-        name: ${
-          flags.prettier
-            ? "Check format, lint, build, and test"
-            : "Lint, build, and test"
-        }
+        name: "Lint, build, and test"
 
         runs-on: ubuntu-latest
 
@@ -82,24 +82,24 @@ const generateCiYml = ({ flags }: ValidCNSInputs): string => {
               cache: "${packageManager}"
 
           - name: "Install dependencies"
-            run: ${installCommand}
+            run: ${cleanInstallCommand[packageManager]}
 
           ${
-            flags.prettier
+            evalActive(prettierPlugin.active, inputs)
               ? endent`
                   - name: "Check format"
-                    run: ${runCommand} format:check
+                    run: ${runCommand[packageManager]} format:check
                 `
               : ""
           }
 
           - name: "Lint"
-            run: ${runCommand} lint
+            run: ${runCommand[packageManager]} lint
 
           - name: "Build"
-            run: ${runCommand} build
+            run: ${runCommand[packageManager]} build
 
           - name: "Test"
-            run: ${runCommand} test
+            run: ${runCommand[packageManager]} test
   `
 }

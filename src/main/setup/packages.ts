@@ -1,3 +1,7 @@
+import {
+  installSubCommand,
+  uninstallSubCommand,
+} from "../helpers/package-manager-utils"
 import { prettyCommand } from "../helpers/pretty-command"
 import { logDebug } from "../logging"
 import { runCommand } from "../run-command"
@@ -23,8 +27,7 @@ export const install = async (
     getNameVersionCombo(pkg)
   )
 
-  const installSubCommand = packageManager === "yarn" ? "add" : "install"
-  const installCommandArgs = [installSubCommand]
+  const installCommandArgs = [installSubCommand[packageManager]]
   if (typeof options?.dev == "boolean" && options.dev) {
     installCommandArgs.push("--dev")
   }
@@ -49,8 +52,10 @@ export const uninstall = async (
 
   const packageNames = packageArray.map((npmPackage) => npmPackage.name)
 
-  const uninstallSubCommand = packageManager === "yarn" ? "remove" : "uninstall"
-  const uninstallCommandArgs = [uninstallSubCommand, ...packageNames]
+  const uninstallCommandArgs = [
+    uninstallSubCommand[packageManager],
+    ...packageNames,
+  ]
 
   logDebug(
     `Uninstalling dependencies with command:`,
