@@ -53,10 +53,10 @@ The table below provides an overview of the technologies currently supported by 
 
 | Name                                                      | Links                                                                                                                                                                |
 | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Next.js](https://nextjs.org/) ⚠                          | [Docs](https://nextjs.org/docs) - [Learn Next.js](https://nextjs.org/learn) - [GitHub repo](https://github.com/vercel/next.js)                                       |
-| [React](https://reactjs.org/) ⚠                           | [Docs](https://reactjs.org/docs/getting-started.html) - [GitHub repo](https://github.com/facebook/react)                                                             |
-| [TypeScript](https://www.typescriptlang.org/) ⚠           | [Docs](https://www.typescriptlang.org/docs/) - [GitHub repo](https://github.com/microsoft/TypeScript)                                                                |
-| [ESLint](https://eslint.org/) ⚠                           | [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub Repo](https://github.com/eslint/eslint)         |
+| [Next.js](https://nextjs.org/) (Mandatory)                | [Docs](https://nextjs.org/docs) - [Learn Next.js](https://nextjs.org/learn) - [GitHub repo](https://github.com/vercel/next.js)                                       |
+| [React](https://reactjs.org/) (Mandatory)                 | [Docs](https://reactjs.org/docs/getting-started.html) - [GitHub repo](https://github.com/facebook/react)                                                             |
+| [TypeScript](https://www.typescriptlang.org/) (Mandatory) | [Docs](https://www.typescriptlang.org/docs/) - [GitHub repo](https://github.com/microsoft/TypeScript)                                                                |
+| [ESLint](https://eslint.org/) (Mandatory)                 | [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub Repo](https://github.com/eslint/eslint)         |
 | [Yarn](https://yarnpkg.com/)                              | [CLI Docs](https://yarnpkg.com/cli) - [GitHub repo](https://github.com/yarnpkg/berry)                                                                                |
 | [npm](https://www.npmjs.com/)                             | [CLI Docs](https://docs.npmjs.com/cli/)                                                                                                                              |
 | [Emotion](https://emotion.sh/docs/introduction)           | [Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)                                                                  |
@@ -73,14 +73,6 @@ The table below provides an overview of the technologies currently supported by 
 | [Husky](https://typicode.github.io/husky/)                | [Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)                                                                         |
 | [lint-staged](https://github.com/okonet/lint-staged)      | [GitHub repo](https://github.com/okonet/lint-staged)                                                                                                                 |
 | [GitHub Actions](https://github.com/features/actions)     | [Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)                      |
-
-#### ⚠ Required
-
-Technologies marked with ⚠ are required. If you don't want to use these technologies, you have three options:
-
-1. Set up your project using Create Next Stack anyway, and make the necessary adjustments manually.
-1. Set up your project manually with Create Next App.
-1. Find and use a template repo you can clone here on GitHub.
 
 ## Usage
 
@@ -108,6 +100,10 @@ OPTIONS
   --react-hook-form             Adds React Hook Form. (Form library)
   --styling=<styling-method>    Sets the preferred styling method. (Required) <styling-method> = emotion|styled-components|tailwind-css|css-modules|css-modules-with-sass
 ```
+
+## Contributing
+
+Contributions are welcome! Please see the [contributing guidelines](CONTRIBUTING.md) for more information.
 
 ## License
 
