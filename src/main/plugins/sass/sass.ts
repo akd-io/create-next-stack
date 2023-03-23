@@ -35,7 +35,7 @@ export const sassPlugin = createPlugin({
   },
   slots: {
     app: {
-      imports: [`import "../styles/global-styles.scss";`],
+      imports: `import "../styles/global-styles.scss";`,
     },
   },
 } as const)

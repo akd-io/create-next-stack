@@ -56,7 +56,7 @@ const generateCiYml = ({ flags }: ValidCNSInputs): string => {
   const installCommand = packageManager === "yarn" ? "yarn install" : "npm ci"
   const runCommand = packageManager === "yarn" ? "yarn" : "npm run"
 
-  return endent/* yml */ `
+  return endent`
     name: "CI"
 
     on: [pull_request]
@@ -86,7 +86,7 @@ const generateCiYml = ({ flags }: ValidCNSInputs): string => {
 
           ${
             flags.prettier
-              ? endent/* yml */ `
+              ? endent`
                   - name: "Check format"
                     run: ${runCommand} format:check
                 `

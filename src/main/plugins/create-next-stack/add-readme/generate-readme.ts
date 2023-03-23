@@ -6,7 +6,7 @@ import { generateTechnologyTableRows } from "./generate-technology-table-rows"
 
 export const generateReadme = async (
   inputs: ValidCNSInputs
-): Promise<string> => endent/* md */ `
+): Promise<string> => endent`
   # ${getProjectNameOfPath(inputs.args.appName)}
 
   🎉 Congratulations, your project was successfully generated with [Create Next Stack](https://www.create-next-stack.com/)!

@@ -1,6 +1,6 @@
 import endent from "endent"
 
-export const materialTheme = endent/* tsx */ `
+export const materialTheme = endent`
   import { Roboto } from 'next/font/google';
   import { createTheme } from '@mui/material/styles';
   import { red } from '@mui/material/colors';

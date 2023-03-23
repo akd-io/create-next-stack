@@ -17,7 +17,7 @@ export const generateDocument = (inputs: ValidCNSInputs): string => {
     .map((plugin) => plugin.slots?.document?.body)
     .filter(nonNull)
 
-  return endent/* tsx */ `
+  return endent`
     import NextDocument, { Html, Head, Main, NextScript } from "next/document";
     ${documentImports.join("\n")}
 

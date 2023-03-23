@@ -53,14 +53,14 @@ export const tailwindCSSPlugin = createPlugin({
   },
   slots: {
     app: {
-      imports: [`import "../styles/globals.css";`],
+      imports: `import "../styles/globals.css";`,
     },
   },
 } as const)
 
 const addTailwindConfig = async () => {
   // From running `npx tailwind init -p --types` and adding globs to the content array according to https://tailwindcss.com/docs/guides/nextjs
-  const tailwindConfigString = endent/* js */ `
+  const tailwindConfigString = endent`
     /** @type {import('tailwindcss/types').Config} */
     const config = {
       content: [
@@ -80,7 +80,7 @@ const addTailwindConfig = async () => {
 
 const addPostcssConfig = async () => {
   // From https://github.com/vercel/next.js/blob/canary/examples/with-tailwindcss/postcss.config.js
-  const postcssConfigString = endent/* js */ `
+  const postcssConfigString = endent`
     module.exports = {
       plugins: {
         tailwindcss: {},
@@ -93,7 +93,7 @@ const addPostcssConfig = async () => {
 
 const addStylesGlobalsCss = async () => {
   // From https://github.com/vercel/next.js/blob/canary/examples/with-tailwindcss/styles/globals.css
-  const stylesGlobalsCssString = endent/* css */ `
+  const stylesGlobalsCssString = endent`
     @tailwind base;
     @tailwind components;
     @tailwind utilities;

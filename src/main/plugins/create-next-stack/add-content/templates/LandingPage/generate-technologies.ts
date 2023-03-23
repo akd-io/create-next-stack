@@ -1,6 +1,7 @@
 import endent from "endent"
 import { ValidCNSInputs } from "../../../../../create-next-stack-types"
 import { DeeplyReadonly } from "../../../../../helpers/deeply-readonly"
+import { stringify } from "../../../../../helpers/stringify"
 import { filterPlugins } from "../../../../../setup/setup"
 
 // TODO: Add a technologies sort order here. Use TypeScript to force setting all plugin technologies.
@@ -20,7 +21,7 @@ export const generateTechnologies = (inputs: ValidCNSInputs): string => {
     (plugin): DeeplyReadonly<Technology[]> => plugin.technologies ?? []
   )
 
-  return endent/* tsx */ `
+  return endent`
     export type Technology = {
       name: string;
       description: string;
@@ -29,10 +30,6 @@ export const generateTechnologies = (inputs: ValidCNSInputs): string => {
         url: string;
       }>;
     };
-    export const technologies: Technology[] = ${JSON.stringify(
-      pluginTechnologies,
-      null,
-      2
-    )};
+    export const technologies: Technology[] = ${stringify(pluginTechnologies)};
   `
 }

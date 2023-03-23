@@ -2,9 +2,7 @@ import endent from "endent"
 import { ValidCNSInputs } from "../../../../create-next-stack-types"
 import { getProjectNameOfPath } from "../../../../helpers/get-project-name-of-path"
 
-export const generateIndexPage = ({
-  args,
-}: ValidCNSInputs): string => endent/* tsx */ `
+export const generateIndexPage = ({ args }: ValidCNSInputs): string => endent`
   import { NextPage } from "next";
   import Page from "../components/Page";
   import LandingPageTemplate from "../templates/LandingPage/LandingPageTemplate";

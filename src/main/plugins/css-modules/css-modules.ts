@@ -32,7 +32,7 @@ export const cssModulesPlugin = createPlugin({
   },
   slots: {
     app: {
-      imports: [`import "../styles/global-styles.css";`],
+      imports: `import "../styles/global-styles.css";`,
     },
   },
 } as const)

@@ -77,7 +77,7 @@ type PluginConfig = DeeplyReadonly<{
   /** A series of functions that are run by Create Next Stack. */
   steps?: Record<string, RawStep>
   /** Compiler options to set. */
-  compilerOptions?: NextConfig["compiler"] // TODO: Strength type
+  compilerOptions?: NextConfig["compiler"]
   /** Slots to fill in the generated files. */
   slots?: {
     /** Slots to fill in the _app.tsx file. */
@@ -102,13 +102,6 @@ type PluginConfig = DeeplyReadonly<{
     }
   }
 }>
-
-type Component = SelfClosingComponent | ComponentWithChildren
-type SelfClosingComponent = string
-type ComponentWithChildren = {
-  open: string
-  close: string
-}
 
 export type Package = {
   /** Name of the package. */

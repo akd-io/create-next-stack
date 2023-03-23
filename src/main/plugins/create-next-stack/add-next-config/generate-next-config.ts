@@ -1,5 +1,6 @@
 import endent from "endent"
 import { ValidCNSInputs } from "../../../create-next-stack-types"
+import { stringify } from "../../../helpers/stringify"
 import { filterPlugins } from "../../../setup/setup"
 
 export const generateNextConfig = async (
@@ -13,13 +14,11 @@ export const generateNextConfig = async (
     {}
   )
 
-  const compilerOptionsString = JSON.stringify(compilerOptions, null, 2)
-
-  return endent/* js */ `
+  return endent`
     /** @type {import('next').NextConfig} */
     const nextConfig = {
       reactStrictMode: true,
-      compiler: ${compilerOptionsString},
+      compiler: ${stringify(compilerOptions)},
     };
     
     module.exports = nextConfig;  

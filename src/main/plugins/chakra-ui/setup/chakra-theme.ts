@@ -1,6 +1,6 @@
 import endent from "endent"
 
-export const chakraTheme = endent/* tsx */ `
+export const chakraTheme = endent`
   import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 
   const colors = {

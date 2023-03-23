@@ -1,9 +1,7 @@
 import endent from "endent"
 import { ValidCNSInputs } from "../../../../create-next-stack-types"
 
-export const generatePage = (
-  inputs: ValidCNSInputs
-): string => endent/* tsx */ `
+export const generatePage = (inputs: ValidCNSInputs): string => endent`
   import Head from "next/head";
   import React from "react";
   ${

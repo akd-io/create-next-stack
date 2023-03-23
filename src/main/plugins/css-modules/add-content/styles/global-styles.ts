@@ -1,6 +1,6 @@
 import endent from "endent"
 
-export const generateGlobalStyles = (): string => endent/* css */ `
+export const generateGlobalStyles = (): string => endent`
   html,
   body {
     padding: 0;
