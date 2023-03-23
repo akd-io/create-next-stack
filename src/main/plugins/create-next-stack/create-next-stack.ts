@@ -16,8 +16,6 @@ import { runCommand } from "../../run-command"
 import { getNameVersionCombo, install, uninstall } from "../../setup/packages"
 import { filterPlugins, plugins } from "../../setup/setup"
 import { prettierPlugin } from "../prettier"
-import { generatePage } from "./add-content/components/generate-page"
-import { generateWithDefaultGlobalStyles } from "./add-content/components/generate-with-default-global-styles"
 import { generateApp } from "./add-content/pages/generate-app"
 import { generateDocument } from "./add-content/pages/generate-document"
 import { generateIndexPage } from "./add-content/pages/generate-index"
@@ -69,9 +67,7 @@ export const createNextStackPlugin = createPlugin({
       description: "adding content",
       run: async (inputs) => {
         await makeDirectory("components")
-
-        const promises = [
-          writeFile("components/Page.tsx", generatePage(inputs)),
+        await Promise.all([
           writeFile("pages/index.tsx", generateIndexPage(inputs)),
           writeFile("pages/_app.tsx", generateApp(inputs)),
           writeFile("pages/_document.tsx", generateDocument(inputs)),
@@ -79,20 +75,7 @@ export const createNextStackPlugin = createPlugin({
             "templates/LandingPage/technologies.ts",
             generateTechnologies(inputs)
           ),
-        ]
-
-        // TODO: Move to Emotion and Styled Components plugins.
-        const { styling } = inputs.flags
-        if (styling === "emotion" || styling === "styled-components") {
-          promises.push(
-            writeFile(
-              "components/WithDefaultGlobalStyles.tsx",
-              generateWithDefaultGlobalStyles(inputs)
-            )
-          )
-        }
-
-        await Promise.all(promises)
+        ])
       },
     },
     addReadme: {

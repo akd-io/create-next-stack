@@ -27,14 +27,16 @@ export const generateApp = (inputs: ValidCNSInputs): string => {
     import { AppProps } from "next/app";
     ${appImports.join("\n")}
 
-    const CustomApp = ({ Component, pageProps }: AppProps) => {
+    const App = ({ Component, pageProps }: AppProps) => {
       return (
-        ${componentsStart}
-          <Component {...pageProps} />
-        ${componentsEnd}
+        <>
+          ${componentsStart}
+            <Component {...pageProps} />
+          ${componentsEnd}
+        </>
       )
     };
 
-    export default CustomApp;
+    export default App;
   `
 }
