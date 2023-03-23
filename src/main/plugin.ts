@@ -82,21 +82,23 @@ type PluginConfig = DeeplyReadonly<{
   slots?: {
     /** Slots to fill in the _app.tsx file. */
     app?: {
-      /** Imports to add to the _app.tsx file. */
-      imports?: string[]
-      /** Components to add to the _app.tsx file. */
-      components?: Component[]
+      /** Code to add to the imports section of the _app.tsx file. */
+      imports?: string
+      /** Code to add to the start of the components section of the _app.tsx file. */
+      componentsStart?: string
+      /** Code to add to the end of the components section of the _app.tsx file. */
+      componentsEnd?: string
     }
     /** Slots to fill in the _document.tsx file. */
     document?: {
-      /** Imports to add to the _document.tsx file. */
-      imports?: string[]
-      /** Attributes to add to the <Html> tag of the _document.tsx file. */
-      htmlAttributes?: string[]
-      /** Tags to add to the <Head> tag of the _document.tsx file. */
-      headTags?: string[]
-      /** Components to add to the start of the <body> tag of the _document.tsx file. */
-      bodyComponents?: string[]
+      /** Code to add to the imports section of the _document.tsx file. */
+      imports?: string
+      /** Code to add to the attributes of the <Html> tag of the _document.tsx file. */
+      htmlAttributes?: string
+      /** Code to add to the <Head> tag of the _document.tsx file. */
+      headTags?: string
+      /** Code to add to the <body> tag of the _document.tsx file. */
+      body?: string
     }
   }
 }>

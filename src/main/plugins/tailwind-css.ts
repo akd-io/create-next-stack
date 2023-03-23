@@ -51,6 +51,11 @@ export const tailwindCSSPlugin = createPlugin({
       },
     },
   },
+  slots: {
+    app: {
+      imports: [`import "../styles/globals.css";`],
+    },
+  },
 } as const)
 
 const addTailwindConfig = async () => {

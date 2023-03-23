@@ -1,20 +1,21 @@
 import endent from "endent"
 import type { ValidCNSInputs } from "../../../../create-next-stack-types"
+import { nonNull } from "../../../../helpers/non-null"
 import { filterPlugins } from "../../../../setup/setup"
 
 export const generateDocument = (inputs: ValidCNSInputs): string => {
-  const documentImports = filterPlugins(inputs).flatMap(
-    (plugin) => plugin.slots?.document?.imports ?? []
-  )
-  const htmlAttributes = filterPlugins(inputs).flatMap(
-    (plugin) => plugin.slots?.document?.htmlAttributes ?? []
-  )
-  const headTags = filterPlugins(inputs).flatMap(
-    (plugin) => plugin.slots?.document?.headTags ?? []
-  )
-  const bodyComponents = filterPlugins(inputs).flatMap(
-    (plugin) => plugin.slots?.document?.bodyComponents ?? []
-  )
+  const documentImports = filterPlugins(inputs)
+    .map((plugin) => plugin.slots?.document?.imports)
+    .filter(nonNull)
+  const htmlAttributes = filterPlugins(inputs)
+    .map((plugin) => plugin.slots?.document?.htmlAttributes)
+    .filter(nonNull)
+  const headTags = filterPlugins(inputs)
+    .map((plugin) => plugin.slots?.document?.headTags)
+    .filter(nonNull)
+  const bodyComponents = filterPlugins(inputs)
+    .map((plugin) => plugin.slots?.document?.body)
+    .filter(nonNull)
 
   return endent/* tsx */ `
     import NextDocument, { Html, Head, Main, NextScript } from "next/document";

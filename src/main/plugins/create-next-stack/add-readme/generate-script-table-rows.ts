@@ -4,9 +4,9 @@ import { filterPlugins } from "../../../setup/setup"
 export const generateScriptTableRows = async (
   inputs: ValidCNSInputs
 ): Promise<string> => {
-  const pluginScripts = filterPlugins(inputs)
-    .map((plugin) => plugin.scripts ?? [])
-    .flat()
+  const pluginScripts = filterPlugins(inputs).flatMap(
+    (plugin) => plugin.scripts ?? []
+  )
 
   const scriptRowsString = pluginScripts
     .map((script) => `|\`${script.name}\`|${script.description}|`)

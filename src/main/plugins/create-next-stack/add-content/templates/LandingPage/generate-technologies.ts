@@ -16,9 +16,9 @@ export type Technology = {
 }
 
 export const generateTechnologies = (inputs: ValidCNSInputs): string => {
-  const pluginTechnologies = filterPlugins(inputs)
-    .map((plugin): DeeplyReadonly<Technology[]> => plugin.technologies ?? [])
-    .flat()
+  const pluginTechnologies = filterPlugins(inputs).flatMap(
+    (plugin): DeeplyReadonly<Technology[]> => plugin.technologies ?? []
+  )
 
   return endent/* tsx */ `
     export type Technology = {

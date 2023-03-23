@@ -1,3 +1,4 @@
+import endent from "endent"
 import { writeFile } from "../../helpers/io"
 import { createPlugin } from "../../plugin"
 import { materialTheme } from "./setup/material-theme"
@@ -36,12 +37,22 @@ export const materialUIPlugin = createPlugin({
     },
   },
   slots: {
+    app: {
+      imports: endent`
+        import { ThemeProvider } from "@mui/material/styles";
+        import CssBaseline from '@mui/material/CssBaseline';
+        import materialTheme from "../material-theme";
+      `,
+      componentsStart: endent`
+        <ThemeProvider theme={materialTheme}>
+          <CssBaseline />
+      `,
+      componentsEnd: `</ThemeProvider>`,
+    },
     document: {
-      imports: [`import materialTheme, { roboto } from "../material-theme";`],
-      htmlAttributes: [`className={roboto.className}`],
-      headTags: [
-        `<meta name="theme-color" content={materialTheme.palette.primary.main} />`,
-      ],
+      imports: `import materialTheme, { roboto } from "../material-theme";`,
+      htmlAttributes: `className={roboto.className}`,
+      headTags: `<meta name="theme-color" content={materialTheme.palette.primary.main} />`,
     },
   },
 } as const)

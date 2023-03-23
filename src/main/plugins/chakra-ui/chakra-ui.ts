@@ -1,3 +1,4 @@
+import endent from "endent"
 import { writeFile } from "../../helpers/io"
 import { createPlugin } from "../../plugin"
 import { chakraTheme } from "./setup/chakra-theme"
@@ -37,14 +38,31 @@ export const chakraUIPlugin = createPlugin({
     },
   },
   slots: {
+    app: {
+      imports: endent`
+        import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react";
+        import { chakraTheme } from "../chakra-theme";
+      `,
+      componentsStart: endent`
+        <ChakraProvider resetCSS theme={chakraTheme}>
+          <ColorModeProvider
+            options={{
+              initialColorMode: chakraTheme.config.initialColorMode,
+              useSystemColorMode: chakraTheme.config.useSystemColorMode,
+            }}
+          >
+      `,
+      componentsEnd: endent`
+          </ChakraProvider>
+        </ColorModeProvider>
+      `,
+    },
     document: {
-      imports: [
-        `import { ColorModeScript } from "@chakra-ui/react";`,
-        `import { chakraTheme } from "../chakra-theme";`,
-      ],
-      bodyComponents: [
-        `<ColorModeScript initialColorMode={chakraTheme.config.initialColorMode} />`,
-      ],
+      imports: endent`
+        import { ColorModeScript } from "@chakra-ui/react";
+        import { chakraTheme } from "../chakra-theme";
+      `,
+      body: `<ColorModeScript initialColorMode={chakraTheme.config.initialColorMode} />`,
     },
   },
 } as const)
