@@ -1,6 +1,8 @@
+import { PackageManager } from "../create-next-stack-types"
 import {
-  installSubCommand,
-  uninstallSubCommand,
+  installSubCommandMap,
+  saveDevModifierMap,
+  uninstallSubCommandMap,
 } from "../helpers/package-manager-utils"
 import { prettyCommand } from "../helpers/pretty-command"
 import { logDebug } from "../logging"
@@ -16,7 +18,7 @@ type InstallPackageOptions = {
 }
 export const install = async (
   npmPackage: Package | Package[],
-  packageManager: "yarn" | "npm",
+  packageManager: PackageManager,
   options?: InstallPackageOptions
 ): Promise<void> => {
   const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]
@@ -27,9 +29,9 @@ export const install = async (
     getNameVersionCombo(pkg)
   )
 
-  const installCommandArgs = [installSubCommand[packageManager]]
+  const installCommandArgs = [installSubCommandMap[packageManager]]
   if (typeof options?.dev == "boolean" && options.dev) {
-    installCommandArgs.push("--dev")
+    installCommandArgs.push(saveDevModifierMap[packageManager])
   }
   packagesWithVersions.forEach((packageWithVersion) => {
     installCommandArgs.push(packageWithVersion)
@@ -44,7 +46,7 @@ export const install = async (
 
 export const uninstall = async (
   npmPackage: Package | Package[],
-  packageManager: "yarn" | "npm"
+  packageManager: PackageManager
 ): Promise<void> => {
   const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]
 
@@ -53,7 +55,7 @@ export const uninstall = async (
   const packageNames = packageArray.map((npmPackage) => npmPackage.name)
 
   const uninstallCommandArgs = [
-    uninstallSubCommand[packageManager],
+    uninstallSubCommandMap[packageManager],
     ...packageNames,
   ]
 

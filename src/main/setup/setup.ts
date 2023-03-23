@@ -18,6 +18,7 @@ import { githubActionsPlugin } from "../plugins/github-actions"
 import { materialUIPlugin } from "../plugins/material-ui/material-ui"
 import { nextPlugin } from "../plugins/next"
 import { npmPlugin } from "../plugins/npm"
+import { pnpmPlugin } from "../plugins/pnpm"
 import { prettierPlugin } from "../plugins/prettier"
 import { reactPlugin } from "../plugins/react"
 import { reactHookFormPlugin } from "../plugins/react-hook-form"
@@ -47,6 +48,7 @@ export const plugins: Plugin[] = [
   eslintPlugin,
   prettierPlugin,
   formattingPreCommitHookPlugin,
+  pnpmPlugin,
   yarnPlugin,
   npmPlugin,
   githubActionsPlugin,
@@ -63,6 +65,7 @@ export const performSetupSteps = async (
     nextPlugin.steps.createNextApp,
 
     // Package management
+    pnpmPlugin.steps.updatePnpm,
     yarnPlugin.steps.updateYarn,
     createNextStackPlugin.steps.installDependencies,
 

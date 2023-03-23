@@ -1,20 +1,18 @@
-import { prettyCommand } from "../../../../main/helpers/pretty-command"
-import { runCommand } from "../../../../main/run-command"
-import { checkFormattingLintingBuild } from "../../helpers/check-formatting-linting-build"
-import { minutesToMilliseconds } from "../../helpers/minutes-to-milliseconds"
-import { prepareE2eTest } from "../../helpers/prepare-e2e-test"
-import { logTestInfo } from "../../test-logging"
+import { prettyCommand } from "../../../main/helpers/pretty-command"
+import { runCommand } from "../../../main/run-command"
+import { checkFormattingLintingBuild } from "../helpers/check-formatting-linting-build"
+import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
+import { prepareE2eTest } from "../helpers/prepare-e2e-test"
+import { logTestInfo } from "../test-logging"
 
-export const testEmotionAllFlags = async (
-  createNextStackDir: string
-): Promise<void> => {
+export const testNpm = async (createNextStackDir: string): Promise<void> => {
   const { pathToProdCLI, runDirectory } = await prepareE2eTest(
     createNextStackDir
   )
 
   const args = [
     "--debug",
-    "--package-manager=pnpm",
+    "--package-manager=npm",
     "--prettier",
     "--styling=emotion",
     "--material-ui",

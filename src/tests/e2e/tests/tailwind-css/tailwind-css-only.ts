@@ -14,7 +14,7 @@ export const testTailwindCssOnly = async (
 
   const args = [
     "--debug",
-    "--package-manager=npm",
+    "--package-manager=pnpm",
     "--styling=tailwind-css",
     ".",
   ]

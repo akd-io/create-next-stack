@@ -14,7 +14,7 @@ export const testStyledComponentsAllFlags = async (
 
   const args = [
     "--debug",
-    "--package-manager=npm",
+    "--package-manager=pnpm",
     "--prettier",
     "--styling=styled-components",
     "--react-hook-form",

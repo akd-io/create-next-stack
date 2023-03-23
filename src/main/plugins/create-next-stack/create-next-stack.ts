@@ -14,7 +14,7 @@ import { logWarning } from "../../logging"
 import { createPlugin } from "../../plugin"
 import { runCommand } from "../../run-command"
 import { getNameVersionCombo, install, uninstall } from "../../setup/packages"
-import { filterPlugins, plugins } from "../../setup/setup"
+import { filterPlugins } from "../../setup/setup"
 import { prettierPlugin } from "../prettier"
 import { generateApp } from "./add-content/pages/generate-app"
 import { generateDocument } from "./add-content/pages/generate-document"
@@ -123,7 +123,7 @@ export const createNextStackPlugin = createPlugin({
           ]
         })
 
-        const devDeps = plugins.flatMap((plugin) => {
+        const devDeps = filterPlugins(inputs).flatMap((plugin) => {
           return plugin.devDependencies != null
             ? Object.values(plugin.devDependencies)
             : []
@@ -139,15 +139,15 @@ export const createNextStackPlugin = createPlugin({
     },
     uninstallTemporaryDependencies: {
       description: "uninstalling temporary dependencies",
-      run: async ({ flags }) => {
-        const tmpDeps = plugins.flatMap((plugin) => {
+      run: async (inputs) => {
+        const tmpDeps = filterPlugins(inputs).flatMap((plugin) => {
           return plugin.tmpDependencies != null
             ? Object.values(plugin.tmpDependencies)
             : []
         })
 
         if (tmpDeps.length > 0) {
-          await uninstall(tmpDeps, flags["package-manager"])
+          await uninstall(tmpDeps, inputs.flags["package-manager"])
         }
       },
     },

@@ -26,8 +26,8 @@ export type CreateNextStackArgs = UnknownObject // Change to ParserOutput["args"
 export type CreateNextStackFlags = Partial<CreateNextStackParserOutput["flags"]> // Change to CreateNextStackParserOutput["flags"] if it becomes strongly typed in the future. (Currently not a Partial.)
 
 // Package manager flag:
-export const packageManagerOptions = ["yarn", "npm"] as const
-export type PackageManagerOption = typeof packageManagerOptions[number]
+export const packageManagerOptions = ["yarn", "npm", "pnpm"] as const
+export type PackageManager = typeof packageManagerOptions[number]
 export const writablePackageManagerOptions = packageManagerOptions as Writable<
   typeof packageManagerOptions
 >
@@ -67,7 +67,7 @@ export const validateArgs = (
 
 // Valid Flags type and type guard
 export type ValidCreateNextStackFlags = CreateNextStackFlags & {
-  "package-manager": PackageManagerOption
+  "package-manager": PackageManager
   styling: StylingOption
 }
 export const validateFlags = (

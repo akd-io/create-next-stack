@@ -6,7 +6,7 @@ export const yarnPlugin = createPlugin({
   name: "Yarn",
   description: "Adds support for Yarn",
   active: ({ flags }) => Boolean(flags["package-manager"] === "yarn"),
-  dependencies: { yarn: { name: "yarn", version: "^1.0.0" } },
+  dependencies: { yarn: { name: "yarn", version: "latest" } },
   technologies: [
     {
       name: "Yarn",
