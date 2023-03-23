@@ -57,6 +57,7 @@ The table below provides an overview of the technologies currently supported by 
 | [React](https://reactjs.org/) ⚠                           | [Docs](https://reactjs.org/docs/getting-started.html) - [GitHub repo](https://github.com/facebook/react)                                                             |
 | [TypeScript](https://www.typescriptlang.org/) ⚠           | [Docs](https://www.typescriptlang.org/docs/) - [GitHub repo](https://github.com/microsoft/TypeScript)                                                                |
 | [ESLint](https://eslint.org/) ⚠                           | [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub Repo](https://github.com/eslint/eslint)         |
+| [pnpm](https://pnpm.io/)                                  | [Docs](https://pnpm.io/motivation) - [GitHub repo](https://github.com/pnpm/pnpm)                                                                                     |
 | [Yarn](https://yarnpkg.com/)                              | [CLI Docs](https://yarnpkg.com/cli) - [GitHub repo](https://github.com/yarnpkg/berry)                                                                                |
 | [npm](https://www.npmjs.com/)                             | [CLI Docs](https://docs.npmjs.com/cli/)                                                                                                                              |
 | [Emotion](https://emotion.sh/docs/introduction)           | [Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)                                                                  |
@@ -94,19 +95,19 @@ ARGUMENTS
   APPNAME  The name of your app, optionally including a path prefix. Eg.: "my-app" or "path/to/my-app"
 
 OPTIONS
-  -h, --help                    Shows the CLI help information.
-  -v, --version                 Shows the CLI version information.
-  --chakra                      Adds Chakra UI. (Component library) (Requires Emotion and Framer Motion)
-  --debug                       Show verbose error messages for debugging purposes.
-  --formatting-pre-commit-hook  Adds a formatting pre-commit hook. (Requires Prettier)
-  --formik                      Adds Formik. (Form library)
-  --framer-motion               Adds Framer Motion. (Animation library)
-  --github-actions              Adds a GitHub Actions continuous integration workflow.
-  --material-ui                 Adds Material UI. (Component library)
-  --package-manager=(yarn|npm)  Sets the preferred package manager. (Required)
-  --prettier                    Adds Prettier. (Code formatting)
-  --react-hook-form             Adds React Hook Form. (Form library)
-  --styling=<styling-method>    Sets the preferred styling method. (Required) <styling-method> = emotion|styled-components|tailwind-css|css-modules|css-modules-with-sass
+  -h, --help                         Shows the CLI help information.
+  -v, --version                      Shows the CLI version information.
+  --chakra                           Adds Chakra UI. (Component library) (Requires Emotion and Framer Motion)
+  --debug                            Show verbose error messages for debugging purposes.
+  --formatting-pre-commit-hook       Adds a formatting pre-commit hook. (Requires Prettier)
+  --formik                           Adds Formik. (Form library)
+  --framer-motion                    Adds Framer Motion. (Animation library)
+  --github-actions                   Adds a GitHub Actions continuous integration workflow.
+  --material-ui                      Adds Material UI. (Component library)
+  --package-manager=(pnpm|yarn|npm)  Sets the preferred package manager. (Required)
+  --prettier                         Adds Prettier. (Code formatting)
+  --react-hook-form                  Adds React Hook Form. (Form library)
+  --styling=<styling-method>         Sets the preferred styling method. (Required) <styling-method> = emotion|styled-components|tailwind-css|css-modules|css-modules-with-sass
 ```
 
 ## License

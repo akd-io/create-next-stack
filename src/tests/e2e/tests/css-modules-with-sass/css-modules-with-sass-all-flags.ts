@@ -14,7 +14,7 @@ export const testCssModulesWithSassAllFlags = async (
 
   const args = [
     "--debug",
-    "--package-manager=npm",
+    "--package-manager=pnpm",
     "--prettier",
     "--styling=css-modules-with-sass",
     "--react-hook-form",

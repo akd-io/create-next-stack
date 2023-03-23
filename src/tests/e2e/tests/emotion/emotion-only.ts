@@ -12,7 +12,7 @@ export const testEmotionOnly = async (
     createNextStackDir
   )
 
-  const args = ["--debug", "--package-manager=npm", "--styling=emotion", "."]
+  const args = ["--debug", "--package-manager=pnpm", "--styling=emotion", "."]
 
   logTestInfo("Running command:", prettyCommand(pathToProdCLI, args))
 

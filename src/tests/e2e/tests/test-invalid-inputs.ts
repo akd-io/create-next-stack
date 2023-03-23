@@ -14,29 +14,29 @@ export const testInvalidInputs = async (
   const argsArrays = {
     invalidName: [
       "INVALID-NAME",
-      "--package-manager=npm",
+      "--package-manager=pnpm",
       "--styling=css-modules",
     ],
     noStyling: ["--package-manager=npm"],
     noPackageManager: ["--styling=css-modules"],
     preCommitHookRequiresPrettier: [
-      "--package-manager=npm",
+      "--package-manager=pnpm",
       "--styling=css-modules",
       "--formatting-pre-commit-hook",
     ],
     chakraWithoutEmotion: [
-      "--package-manager=npm",
+      "--package-manager=pnpm",
       "--styling=css-modules",
       "--chakra",
       "--framer-motion",
     ],
     chakraWithoutFramerMotion: [
-      "--package-manager=npm",
+      "--package-manager=pnpm",
       "--styling=emotion",
       "--chakra",
     ],
     materialUiWithoutEmotion: [
-      "--package-manager=npm",
+      "--package-manager=pnpm",
       "--styling=css-modules",
       "--material-ui",
     ],

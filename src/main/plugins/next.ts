@@ -11,7 +11,7 @@ import { generateNextConfig } from "./create-next-stack/add-next-config/generate
 
 const createNextAppPackage: Package = {
   name: "create-next-app",
-  version: "~13.2.3", // Note: Equivalent to 13.2.x. However, when used with npx, the version is interpreted exactly instead of as a range.
+  version: "13.2.3",
 }
 
 export const nextPlugin = createPlugin({
@@ -85,7 +85,7 @@ export const nextPlugin = createPlugin({
         }
 
         await runCommand("npx", [
-          getNameVersionCombo(createNextAppPackage), // Note: npx ignores version ranges. So the tilde in packages["create-next-app"] is ignored and the exact version is used.
+          getNameVersionCombo(createNextAppPackage),
           ...createNextAppArgs,
         ])
 

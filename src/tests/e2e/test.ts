@@ -15,7 +15,9 @@ import { testTailwindCssOnly } from "./tests/tailwind-css/tailwind-css-only"
 import { testHelpFlag } from "./tests/test-help-flag"
 import { testInvalidInputs } from "./tests/test-invalid-inputs"
 import { testNoFlags } from "./tests/test-no-flags"
+import { testNpm } from "./tests/test-npm"
 import { testVersionFlag } from "./tests/test-version-flag"
+import { testYarn } from "./tests/test-yarn"
 ;(async () => {
   // TODO: Find a way to run tests in parallel. Currently failing because simultaneous calls to `npm i -g yarn` or `npm install -g mrm@^3.0.0 mrm-task-lint-staged@^6.0.0` cause crashes.
   // TODO: Switch all tests to use pnpm instead of npm. This will make tests faster and more reliable. Try running in parallel with pnpm, it might work.
@@ -30,6 +32,11 @@ import { testVersionFlag } from "./tests/test-version-flag"
     // Help and Version commands
     await testHelpFlag(createNextStackDir)
     await testVersionFlag(createNextStackDir)
+
+    // Package manager tests
+    // pnpm is used in all other tests, so not tested here.
+    await testNpm(createNextStackDir)
+    await testYarn(createNextStackDir)
 
     // Invalid inputs
     await testInvalidInputs(createNextStackDir)
