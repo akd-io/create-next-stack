@@ -3,8 +3,8 @@ import path from "path"
 import { ValidCNSInputs } from "../create-next-stack-types"
 import { makeDirectory, writeFile } from "../helpers/io"
 import {
-  cleanInstallCommand,
-  runCommand,
+  cleanInstallCommandMap,
+  runCommandMap,
 } from "../helpers/package-manager-utils"
 import { createPlugin, evalActive } from "../plugin"
 import { prettierPlugin } from "./prettier"
@@ -82,24 +82,24 @@ const generateCiYml = (inputs: ValidCNSInputs): string => {
               cache: "${packageManager}"
 
           - name: "Install dependencies"
-            run: ${cleanInstallCommand[packageManager]}
+            run: ${cleanInstallCommandMap[packageManager]}
 
           ${
             evalActive(prettierPlugin.active, inputs)
               ? endent`
                   - name: "Check format"
-                    run: ${runCommand[packageManager]} format:check
+                    run: ${runCommandMap[packageManager]} format:check
                 `
               : ""
           }
 
           - name: "Lint"
-            run: ${runCommand[packageManager]} lint
+            run: ${runCommandMap[packageManager]} lint
 
           - name: "Build"
-            run: ${runCommand[packageManager]} build
+            run: ${runCommandMap[packageManager]} build
 
           - name: "Test"
-            run: ${runCommand[packageManager]} test
+            run: ${runCommandMap[packageManager]} test
   `
 }

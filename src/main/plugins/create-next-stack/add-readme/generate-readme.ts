@@ -1,41 +1,44 @@
 import endent from "endent"
 import { ValidCNSInputs } from "../../../create-next-stack-types"
 import { getProjectNameOfPath } from "../../../helpers/get-project-name-of-path"
+import { runCommandMap } from "../../../helpers/package-manager-utils"
 import { generateScriptTableRows } from "./generate-script-table-rows"
 import { generateTechnologyTableRows } from "./generate-technology-table-rows"
 
 export const generateReadme = async (
   inputs: ValidCNSInputs
-): Promise<string> => endent`
-  # ${getProjectNameOfPath(inputs.args.appName)}
+): Promise<string> => {
+  const { args, flags } = inputs
 
-  🎉 Congratulations, your project was successfully generated with [Create Next Stack](https://www.create-next-stack.com/)!
+  const runCommand = runCommandMap[flags["package-manager"]]
 
-  To get started, run:
+  return endent`
+    # ${getProjectNameOfPath(args.appName)}
 
-  \`\`\`bash
-  ${inputs.flags["package-manager"] === "yarn" ? "yarn dev" : "npm run dev"}
-  \`\`\`
+    🎉 Congratulations, your project was successfully generated with [Create Next Stack](https://www.create-next-stack.com/)!
 
-  ## Scripts
+    To get started, run:
 
-  The table below provides names and descriptions of the npm scripts available in this project.
+    \`\`\`bash
+    ${runCommand} dev
+    \`\`\`
 
-  Each script is run using \`${
-    inputs.flags["package-manager"] === "yarn" ? "yarn" : "npm run"
-  } <script-name>\`. For example: \`${
-  inputs.flags["package-manager"] === "yarn" ? "yarn" : "npm run"
-} dev\`.
+    ## Scripts
 
-  | Name | Description |
-  | ---- | ----------- |
-  ${await generateScriptTableRows(inputs)}
+    The table below provides names and descriptions of the npm scripts available in this project.
 
-  ## Technologies
+    Each script is run using \`${runCommand} <script-name>\`. For example: \`${runCommand} dev\`.
 
-  The table below gives an overview of the technologies used in this project, as well as places to learn more about them.
+    | Name | Description |
+    | ---- | ----------- |
+    ${await generateScriptTableRows(inputs)}
 
-  | Name | Links |
-  | ---- | ----- |
-  ${await generateTechnologyTableRows(inputs)}
-`
+    ## Technologies
+
+    The table below gives an overview of the technologies used in this project, as well as places to learn more about them.
+
+    | Name | Links |
+    | ---- | ----- |
+    ${await generateTechnologyTableRows(inputs)}
+  `
+}

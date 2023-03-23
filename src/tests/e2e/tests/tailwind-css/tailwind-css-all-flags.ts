@@ -14,7 +14,7 @@ export const testTailwindCssAllFlags = async (
 
   const args = [
     "--debug",
-    "--package-manager=npm",
+    "--package-manager=pnpm",
     "--prettier",
     "--styling=tailwind-css",
     "--react-hook-form",
