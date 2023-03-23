@@ -99,6 +99,8 @@ export const nextPlugin = createPlugin({
         await Promise.all([
           remove("pages"),
           remove("styles"),
+          remove("public/next.svg"),
+          remove("public/thirteen.svg"),
           remove("public/vercel.svg"),
         ])
         await makeDirectory("pages")
