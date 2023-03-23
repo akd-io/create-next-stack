@@ -53,8 +53,8 @@ export const chakraUIPlugin = createPlugin({
           >
       `,
       componentsEnd: endent`
-          </ChakraProvider>
-        </ColorModeProvider>
+          </ColorModeProvider>
+        </ChakraProvider>
       `,
     },
     document: {
