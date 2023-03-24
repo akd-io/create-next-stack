@@ -80,8 +80,16 @@ export const nextPlugin = createPlugin({
           "--no-src-dir",
           "--import-alias=@/*",
         ]
-        if (flags["package-manager"] === "npm") {
-          createNextAppArgs.push("--use-npm")
+        switch (flags["package-manager"]) {
+          case "pnpm":
+            createNextAppArgs.push("--use-pnpm")
+            break
+          case "yarn":
+            // default is yarn. And there's no flag for it.
+            break
+          case "npm":
+            createNextAppArgs.push("--use-npm")
+            break
         }
 
         await runCommand("npx", [
