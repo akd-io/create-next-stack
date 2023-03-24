@@ -25,24 +25,20 @@ export const emotionPlugin = createPlugin({
     setup: {
       description: "setting up Emotion",
       run: async () => {
-        await addTypeScriptSupportForTheEmotionCssProp()
+        /*
+         *  Add TypeScript support for the css-prop as per the Emotion docs: https://emotion.sh/docs/typescript#css-prop
+         */
+        await modifyJsonFile("tsconfig.json", (tsConfig) => ({
+          ...tsConfig,
+          compilerOptions: {
+            ...toObject(tsConfig["compilerOptions"]),
+            jsxImportSource: "@emotion/react",
+          },
+        }))
       },
     },
   },
-  swcCompilerOptions: {
+  compilerOptions: {
     emotion: true,
   },
 } as const)
-
-/**
- *  Add TypeScript support for the css-prop as per the Emotion docs: https://emotion.sh/docs/typescript#css-prop
- */
-const addTypeScriptSupportForTheEmotionCssProp = async () => {
-  await modifyJsonFile("tsconfig.json", (tsConfig) => ({
-    ...tsConfig,
-    compilerOptions: {
-      ...toObject(tsConfig["compilerOptions"]),
-      jsxImportSource: "@emotion/react",
-    },
-  }))
-}
