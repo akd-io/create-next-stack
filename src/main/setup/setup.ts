@@ -61,16 +61,16 @@ export const performSetupSteps = async (
   inputs: ValidCNSInputs
 ): Promise<void> => {
   const steps = [
-    // Create Next App
-    nextPlugin.steps.createNextApp,
-
-    // Package management
+    // Update package manager
     pnpmPlugin.steps.updatePnpm,
     yarnPlugin.steps.updateYarn,
-    createNextStackPlugin.steps.installDependencies,
 
-    // Remove official CNA content
+    // Create Next App
+    nextPlugin.steps.createNextApp,
     nextPlugin.steps.removeOfficialCNAContent,
+
+    // Install dependencies
+    createNextStackPlugin.steps.installDependencies,
 
     // Configuration
     createNextStackPlugin.steps.addScripts,
