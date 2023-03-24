@@ -2,6 +2,7 @@ import chalk from "chalk"
 import { ValidCNSInputs } from "../create-next-stack-types"
 import { getProjectNameOfPath } from "../helpers/get-project-name-of-path"
 import { isGitInitialized } from "../helpers/is-git-initialized"
+import { runCommandMap } from "../helpers/package-manager-utils"
 import { logInfo, logWarning } from "../logging"
 
 export const printFinalMessages = ({ args, flags }: ValidCNSInputs): void => {
@@ -22,10 +23,6 @@ export const printFinalMessages = ({ args, flags }: ValidCNSInputs): void => {
   if (args.appName !== ".") {
     logInfo(chalk.cyan(`    cd ${args.appName}`))
   }
-  logInfo(
-    chalk.cyan(
-      `    ${flags["package-manager"] === "yarn" ? "yarn dev" : "npm run dev"}`
-    )
-  )
+  logInfo(chalk.cyan(`    ${runCommandMap[flags["package-manager"]]} dev`))
   logInfo("")
 }

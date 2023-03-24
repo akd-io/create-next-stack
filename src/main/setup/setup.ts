@@ -1,103 +1,136 @@
+import chalk from "chalk"
 import { ValidCNSInputs } from "../create-next-stack-types"
 import { capitalizeFirstLetter } from "../helpers/capitalize-first-letter"
-import { logInfo, logWarning } from "../logging"
+import { getDiffString } from "../helpers/diff-string"
+import { inDebugMode } from "../helpers/in-debug-mode"
+import { time } from "../helpers/time"
+import { logDebug, logInfo } from "../logging"
+import { evalActive, evalShouldRun, Plugin } from "../plugin"
+import { chakraUIPlugin } from "../plugins/chakra-ui/chakra-ui"
+import { createNextStackPlugin } from "../plugins/create-next-stack/create-next-stack"
+import { cssModulesPlugin } from "../plugins/css-modules/css-modules"
+import { emotionPlugin } from "../plugins/emotion"
+import { eslintPlugin } from "../plugins/eslint"
+import { formattingPreCommitHookPlugin } from "../plugins/formatting-pre-commit-hook"
+import { formikPlugin } from "../plugins/formik"
+import { framerMotionPlugin } from "../plugins/framer-motion"
+import { githubActionsPlugin } from "../plugins/github-actions"
+import { materialUIPlugin } from "../plugins/material-ui/material-ui"
+import { nextPlugin } from "../plugins/next"
+import { npmPlugin } from "../plugins/npm"
+import { pnpmPlugin } from "../plugins/pnpm"
+import { prettierPlugin } from "../plugins/prettier"
+import { reactPlugin } from "../plugins/react"
+import { reactHookFormPlugin } from "../plugins/react-hook-form"
+import { sassPlugin } from "../plugins/sass/sass"
+import { styledComponentsPlugin } from "../plugins/styled-components"
+import { tailwindCSSPlugin } from "../plugins/tailwind-css"
+import { typescriptPlugin } from "../plugins/typescript"
+import { yarnPlugin } from "../plugins/yarn"
 import { printFinalMessages } from "./print-final-messages"
-import { Step } from "./step"
-import { addBaseTestScriptStep } from "./steps/add-base-test-script"
-import { addContentStep } from "./steps/add-content/add-content"
-import { addGitAttributesStep } from "./steps/add-git-attributes"
-import { addGithubWorkflowStep } from "./steps/add-github-workflow"
-import { addReadmeStep } from "./steps/add-readme/add-readme"
-import { addBaseBabelConfigStep } from "./steps/babel/add-base-babel-config"
-import { removeBaseBabelConfigStep } from "./steps/babel/remove-base-babel-config copy"
-import { copyAssetsStep } from "./steps/copy-assets"
-import { createNextAppStep } from "./steps/create-next-app"
-import { formatProjectStep } from "./steps/format-project"
-import { gitCommitStep } from "./steps/git-commit"
-import { installFormikStep } from "./steps/install-formik"
-import { installFramerMotionStep } from "./steps/install-framer-motion"
-import { installReactHookFormStep } from "./steps/install-react-hook-form"
-import { removeOfficialCNAContentStep } from "./steps/remove-official-cna-content"
-import { setUpChakraUIStep } from "./steps/set-up-chakra-ui"
-import { setUpCssModulesWithSassStep } from "./steps/set-up-css-modules-with-sass"
-import { setUpEmotionStep } from "./steps/set-up-emotion"
-import { setUpEslintStep } from "./steps/set-up-eslint"
-import { setUpLintStagedStep } from "./steps/set-up-lint-staged"
-import { setUpMaterialUIStep } from "./steps/set-up-material-ui"
-import { setUpPrettierStep } from "./steps/set-up-prettier"
-import { setUpStyledComponentsStep } from "./steps/set-up-styled-components"
-import { setUpTailwindCssStep } from "./steps/set-up-tailwind-css"
-import { updateYarnStep } from "./steps/update-yarn"
+
+// Ordered by relevance to the user for use in technology lists // TODO: Fix this by having separate ordered lists of plugins where other sortings are needed.
+export const plugins: Plugin[] = [
+  createNextStackPlugin,
+  nextPlugin,
+  reactPlugin,
+  typescriptPlugin,
+  emotionPlugin,
+  styledComponentsPlugin,
+  tailwindCSSPlugin,
+  cssModulesPlugin,
+  sassPlugin,
+  chakraUIPlugin,
+  materialUIPlugin,
+  reactHookFormPlugin,
+  formikPlugin,
+  framerMotionPlugin,
+  eslintPlugin,
+  prettierPlugin,
+  formattingPreCommitHookPlugin,
+  pnpmPlugin,
+  yarnPlugin,
+  npmPlugin,
+  githubActionsPlugin,
+]
+
+export const filterPlugins = (inputs: ValidCNSInputs): Plugin[] =>
+  plugins.filter((plugin) => evalActive(plugin.active, inputs))
 
 export const performSetupSteps = async (
   inputs: ValidCNSInputs
 ): Promise<void> => {
-  const steps: Step[] = [
-    // Package management
-    updateYarnStep,
+  const steps = [
+    // Update package manager
+    pnpmPlugin.steps.updatePnpm,
+    yarnPlugin.steps.updateYarn,
 
     // Create Next App
-    createNextAppStep,
-    setUpEslintStep, // eslint is set up before content removal because it requires content in /pages
-    removeOfficialCNAContentStep,
+    nextPlugin.steps.createNextApp,
+    nextPlugin.steps.removeOfficialCNAContent,
+
+    // Install dependencies
+    createNextStackPlugin.steps.installDependencies,
 
     // Configuration
-    addGitAttributesStep,
-    addBaseBabelConfigStep,
-    addBaseTestScriptStep,
+    createNextStackPlugin.steps.addScripts,
+    createNextStackPlugin.steps.addGitAttributes,
+    nextPlugin.steps.addNextConfig,
 
     // Styling
-    setUpEmotionStep,
-    setUpStyledComponentsStep,
-    setUpTailwindCssStep,
-    setUpCssModulesWithSassStep,
-
-    // Component libraries
-    setUpChakraUIStep,
-    setUpMaterialUIStep,
+    tailwindCSSPlugin.steps.setup,
+    cssModulesPlugin.steps.setup,
+    sassPlugin.steps.setup,
+    emotionPlugin.steps.setup,
 
     // Formatting
-    setUpPrettierStep,
-    setUpLintStagedStep,
-
-    // Form state management
-    installReactHookFormStep,
-    installFormikStep,
-
-    // Animation
-    installFramerMotionStep,
+    prettierPlugin.steps.setup,
+    formattingPreCommitHookPlugin.steps.setup,
 
     // Continuous integration
-    addGithubWorkflowStep,
+    githubActionsPlugin.steps.addGithubWorkflowStep,
 
     // Add/generate content
-    copyAssetsStep,
-    addContentStep,
-    addReadmeStep,
+    createNextStackPlugin.steps.copyAssets,
+    createNextStackPlugin.steps.addContent,
+    createNextStackPlugin.steps.addReadme,
 
-    // Cleanup
-    removeBaseBabelConfigStep,
+    // Component libraries
+    chakraUIPlugin.steps.setup,
+    materialUIPlugin.steps.setup,
+
+    // Uninstall temporary dependencies
+    createNextStackPlugin.steps.uninstallTemporaryDependencies,
 
     // Format & initial commit
-    formatProjectStep,
-    gitCommitStep,
-  ]
+    createNextStackPlugin.steps.formatProject,
+    createNextStackPlugin.steps.initialCommit,
+  ] as const
 
-  // TODO: Remove this when Material UI supports React 18. See https://github.com/mui/material-ui/milestone/45
-  if (inputs.flags["material-ui"]) {
-    logWarning(
-      "Skipping Material UI, as it currently doesn't support React 18."
-    )
-    inputs.flags["material-ui"] = false
-  }
+  const allStepsDiff = await time(async () => {
+    for (const step of steps) {
+      const pluginActive = evalActive(step.plugin.active, inputs)
+      const stepShouldRun = await evalShouldRun(step.shouldRun, inputs)
+      if (!pluginActive || !stepShouldRun) {
+        continue
+      }
 
-  for (const step of steps) {
-    if (await step.shouldRun(inputs)) {
       logInfo(`${capitalizeFirstLetter(step.description)}...`)
 
-      await step.run(inputs)
-      step.didRun = true
+      const diff = await time(async () => {
+        await step.run(inputs)
+      })
+
+      if (inDebugMode() && diff > 1000) {
+        logDebug(
+          chalk.yellow(`Step took ${getDiffString(diff)} (${step.description})`)
+        )
+      }
     }
+  })
+
+  if (inDebugMode() && allStepsDiff > 1000) {
+    logDebug(chalk.yellow(`All steps took ${getDiffString(allStepsDiff)}`))
   }
 
   printFinalMessages(inputs)

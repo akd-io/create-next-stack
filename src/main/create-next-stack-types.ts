@@ -26,8 +26,8 @@ export type CreateNextStackArgs = UnknownObject // Change to ParserOutput["args"
 export type CreateNextStackFlags = Partial<CreateNextStackParserOutput["flags"]> // Change to CreateNextStackParserOutput["flags"] if it becomes strongly typed in the future. (Currently not a Partial.)
 
 // Package manager flag:
-export const packageManagerOptions = ["yarn", "npm"] as const
-export type PackageManagerOption = typeof packageManagerOptions[number]
+export const packageManagerOptions = ["yarn", "npm", "pnpm"] as const
+export type PackageManager = typeof packageManagerOptions[number]
 export const writablePackageManagerOptions = packageManagerOptions as Writable<
   typeof packageManagerOptions
 >
@@ -52,7 +52,7 @@ export const validateArgs = (
 ): args is ValidCreateNextStackArgs => {
   if (typeof args["appName"] !== "string") {
     throw new TypeError(
-      'Outside interactive mode, you are required to specify a name for your application. Read about the "appName" argument using --help.'
+      'You are required to specify a name for your application. Read about the "appName" argument using --help.'
     )
   }
 
@@ -67,25 +67,31 @@ export const validateArgs = (
 
 // Valid Flags type and type guard
 export type ValidCreateNextStackFlags = CreateNextStackFlags & {
-  "package-manager": PackageManagerOption
+  "package-manager": PackageManager
   styling: StylingOption
 }
 export const validateFlags = (
   flags: CreateNextStackFlags
 ): flags is ValidCreateNextStackFlags => {
+  // TODO: Define validator using zod.
   if (typeof flags["package-manager"] !== "string") {
     throw new Error(
-      'Outside interactive mode, you are required to specify a package manager. Read about the "--package-manager" option using --help.'
+      'You are required to specify a package manager. Read about the "--package-manager" option using --help.'
     )
   }
   if (typeof flags.styling !== "string") {
     throw new Error(
-      'Outside interactive mode, you are required to specify a styling method. Read about the "--styling" option using --help.'
+      'You are required to specify a styling method. Read about the "--styling" option using --help.'
     )
   }
   if (flags.chakra && flags.styling !== "emotion") {
     throw new Error(
       "Chakra UI (category: Component library, flag: --chakra) requires Emotion (category: Styling, flag: --styling=emotion)."
+    )
+  }
+  if (flags["material-ui"] && flags.styling !== "emotion") {
+    throw new Error(
+      "Material UI (category: Component library, flag: --material-ui) requires Emotion (category: Styling, flag: --styling=emotion)."
     )
   }
   if (flags.chakra && !flags["framer-motion"]) {

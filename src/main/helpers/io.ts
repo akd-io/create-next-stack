@@ -1,7 +1,16 @@
-import { promises as fs } from "fs"
-import { logDebug } from "../logging"
+import { existsSync } from "fs"
+import fs from "fs/promises"
+import { logDebug, logError } from "../logging"
 import { isUnknownArray } from "./is-unknown-array"
 import { isUnknownObject } from "./is-unknown-object"
+import { stringify } from "./stringify"
+
+export const makeDirectory = async (path: string): Promise<void> => {
+  logDebug("Making directory:", path)
+  if (!existsSync(path)) {
+    await fs.mkdir(path, { recursive: true })
+  }
+}
 
 export const writeFile: typeof fs.writeFile = async (file, data, options) => {
   logDebug("Writing file:", file.toString())
@@ -22,7 +31,16 @@ export const readJsonFile = async (
 ): Promise<Record<string, unknown>> => {
   logDebug("Reading json file:", path)
   const jsonString = await fs.readFile(path, "utf8")
-  const jsonObject = JSON.parse(jsonString)
+
+  let jsonObject
+  try {
+    jsonObject = JSON.parse(jsonString)
+  } catch {
+    logError("Error passing json file.")
+    logError("path:", path)
+    logError("jsonString:", jsonString)
+    throw new Error("Expected json file to be valid JSON.")
+  }
 
   if (!isUnknownObject(jsonObject)) {
     throw new TypeError("Expected json object to be an object.")
@@ -36,30 +54,31 @@ export const writeJsonFile = async (
   object: Record<string, unknown>
 ): Promise<void> => {
   logDebug("Writing json file:", fileName)
-  const objectString = JSON.stringify(object, null, 2)
+  const objectString = stringify(object)
   await fs.writeFile(fileName, objectString)
 }
 
 /**
- * `toObject` takes an unknown variable, `object` and returns `object` if it's an object, or `{}` otherwise.
- * This makes it very easy to spread several layers of a JSON object, for example in combination with `modifyJsonFile`:
+ * `toObject` takes an unknown variable, `value` and returns `value` if it's an object, or `{}` otherwise.
+ * This makes it possible to spread a nullable object, for example in combination with `modifyJsonFile`:
  *
  * ```typescript
- * await modifyJsonFile("tsconfig.json", (tsConfig) => ({
- *   ...tsConfig,
- *   compilerOptions: {
- *     ...toObject(tsConfig.compilerOptions),
- *     jsxImportSource: "@emotion/react",
+ * await modifyJsonFile("package.json", (packageJson) => ({
+ *   ...packageJson,
+ *   scripts: {
+ *     ...toObject(packageJson["scripts"]),
+ *     format: "prettier --write --ignore-path=.gitignore .",
+ *     ["format:check"]: "prettier --check --ignore-path=.gitignore .",
  *   },
  * }))
  * ```
  *
- * @param object
+ * @param value
  * @returns
  */
-export const toObject = (object: unknown): Record<string, unknown> => {
-  if (isUnknownObject(object)) {
-    return object
+export const toObject = (value: unknown): Record<string, unknown> => {
+  if (isUnknownObject(value)) {
+    return value
   } else {
     return {}
   }
@@ -67,20 +86,20 @@ export const toObject = (object: unknown): Record<string, unknown> => {
 
 /**
  * `toArray` takes an unknown variable, `array` and returns `array` if it's an array, or `[]` otherwise.
- * This makes it very easy to spread several layers of a JSON object, for example in combination with `modifyJsonFile`:
+ * This makes it possible to spread a nullable array, for example in combination with `modifyJsonFile`:
  *
  * ```typescript
- * await modifyJsonFile(".babelrc", (babelConfig) => ({
- *   ...babelConfig,
- *   plugins: [
- *     ["babel-plugin-styled-components"],
- *     ...toArray(babelConfig.plugins),
+ * await modifyJsonFile(".eslintrc.json", (eslintrc) => ({
+ *   ...eslintrc,
+ *   extends: [
+ *     ...toArray(eslintrc["extends"]),
+ *     "eslint-config-prettier",
  *   ],
  * }))
  * ```
  *
- * @param object
- * @returns
+ * @param value
+ * @returns value if it's an array, or `[]` otherwise.
  */
 export const toArray = (value: unknown): unknown[] => {
   if (isUnknownArray(value)) {

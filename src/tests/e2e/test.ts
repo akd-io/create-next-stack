@@ -2,22 +2,26 @@ import chalk from "chalk"
 import { exitWithError } from "./helpers/exit-with-error"
 import { setGitNameAndEmail } from "./helpers/set-git-name-and-email"
 import { logTestInfo } from "./test-logging"
-import { testDefaultOptionsInteractive } from "./tests/interactive/default-options"
-import { testCssModulesWithSassAllFlags } from "./tests/non-interactive/css-modules-with-sass/css-modules-with-sass-all-flags"
-import { testCssModulesWithSassOnly } from "./tests/non-interactive/css-modules-with-sass/css-modules-with-sass-only"
-import { testCssModulesAllFlags } from "./tests/non-interactive/css-modules/css-modules-all-flags"
-import { testCssModulesOnly } from "./tests/non-interactive/css-modules/css-modules-only"
-import { testEmotionAllFlags } from "./tests/non-interactive/emotion/emotion-all-flags"
-import { testEmotionOnly } from "./tests/non-interactive/emotion/emotion-only"
-import { testStyledComponentsAllFlags } from "./tests/non-interactive/styled-components/styled-components-all-flags"
-import { testStyledComponentsOnly } from "./tests/non-interactive/styled-components/styled-components-only"
-import { testTailwindCssAllFlags } from "./tests/non-interactive/tailwind-css/tailwind-css-all-flags"
-import { testTailwindCssOnly } from "./tests/non-interactive/tailwind-css/tailwind-css-only"
-import { testHelpFlag } from "./tests/non-interactive/test-help-flag"
-import { testInvalidInputs } from "./tests/non-interactive/test-invalid-inputs"
-import { testVersionFlag } from "./tests/non-interactive/test-version-flag"
+import { testCssModulesWithSassAllFlags } from "./tests/css-modules-with-sass/css-modules-with-sass-all-flags"
+import { testCssModulesWithSassOnly } from "./tests/css-modules-with-sass/css-modules-with-sass-only"
+import { testCssModulesAllFlags } from "./tests/css-modules/css-modules-all-flags"
+import { testCssModulesOnly } from "./tests/css-modules/css-modules-only"
+import { testEmotionAllFlags } from "./tests/emotion/emotion-all-flags"
+import { testEmotionOnly } from "./tests/emotion/emotion-only"
+import { testStyledComponentsAllFlags } from "./tests/styled-components/styled-components-all-flags"
+import { testStyledComponentsOnly } from "./tests/styled-components/styled-components-only"
+import { testTailwindCssAllFlags } from "./tests/tailwind-css/tailwind-css-all-flags"
+import { testTailwindCssOnly } from "./tests/tailwind-css/tailwind-css-only"
+import { testHelpFlag } from "./tests/test-help-flag"
+import { testInvalidInputs } from "./tests/test-invalid-inputs"
+import { testNoFlags } from "./tests/test-no-flags"
+import { testNpm } from "./tests/test-npm"
+import { testVersionFlag } from "./tests/test-version-flag"
+import { testYarn } from "./tests/test-yarn"
 ;(async () => {
   // TODO: Find a way to run tests in parallel. Currently failing because simultaneous calls to `npm i -g yarn` or `npm install -g mrm@^3.0.0 mrm-task-lint-staged@^6.0.0` cause crashes.
+  // TODO: Switch all tests to use pnpm instead of npm. This will make tests faster and more reliable. Try running in parallel with pnpm, it might work.
+  // TODO: Add test with package-manager=yarn
 
   try {
     // If not done already, Set Git name and email so `git commit` doesn't fail during create-next-app
@@ -29,11 +33,16 @@ import { testVersionFlag } from "./tests/non-interactive/test-version-flag"
     await testHelpFlag(createNextStackDir)
     await testVersionFlag(createNextStackDir)
 
-    // Invalid name
+    // Package manager tests
+    // pnpm is used in all other tests, so not tested here.
+    await testNpm(createNextStackDir)
+    await testYarn(createNextStackDir)
+
+    // Invalid inputs
     await testInvalidInputs(createNextStackDir)
 
-    // Interactive test
-    await testDefaultOptionsInteractive(createNextStackDir)
+    // No flags test
+    await testNoFlags(createNextStackDir)
 
     // Styling only
     await testEmotionOnly(createNextStackDir)
