@@ -5,7 +5,7 @@
     <img alt="" src="https://img.shields.io/npm/v/create-next-stack?style=flat-square">
   </a>
   <a aria-label="Build status" href="https://github.com/akd-io/create-next-stack/actions/workflows/main.yml?query=branch%3Adevelop">
-    <img alt="" src="https://img.shields.io/github/workflow/status/akd-io/create-next-stack/CI/develop?style=flat-square">
+    <img alt="" src="https://img.shields.io/github/actions/workflow/status/akd-io/create-next-stack/main.yml?branch=develop&style=flat-square">
   </a>
   <a aria-label="Last commit" href="https://github.com/akd-io/create-next-stack/commits/develop">
     <img alt="" src="https://img.shields.io/github/last-commit/akd-io/create-next-stack/develop?style=flat-square">
