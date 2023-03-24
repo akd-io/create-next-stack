@@ -28,7 +28,7 @@ export const styledComponentsPlugin = createPlugin({
       ],
     },
   ],
-  swcCompilerOptions: {
+  compilerOptions: {
     styledComponents: true,
   },
 } as const)
