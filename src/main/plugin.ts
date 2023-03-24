@@ -2,61 +2,6 @@ import { NextConfig } from "next"
 import { ValidCNSInputs } from "./create-next-stack-types"
 import { DeeplyReadonly } from "./helpers/deeply-readonly"
 
-export const createPlugin = <TPluginConfig extends PluginConfig>(
-  pluginConfig: TPluginConfig
-): Plugin<TPluginConfig> => {
-  const plugin = {
-    ...pluginConfig,
-  }
-  const enhancements = {
-    steps:
-      pluginConfig.steps != null
-        ? Object.entries(pluginConfig.steps).reduce(
-            (acc, [key, value]) => ({
-              ...acc,
-              [key]: createStep(value, plugin as Plugin<TPluginConfig>),
-            }),
-            {} as Record<string, Step>
-          )
-        : undefined,
-  }
-  for (const [key, value] of Object.entries(enhancements)) {
-    Object.defineProperty(plugin, key, {
-      value,
-      enumerable: true,
-    })
-  }
-  return plugin as Plugin<TPluginConfig>
-}
-
-export const createStep = <TRawStep extends RawStep = RawStep>(
-  step: TRawStep,
-  plugin: Plugin
-): Step<TRawStep> => {
-  return {
-    // defaults
-    shouldRun: true,
-
-    // step
-    ...step,
-
-    // enhancements
-    plugin,
-  }
-}
-
-export type Plugin<TPluginConfig extends PluginConfig = PluginConfig> =
-  TPluginConfig & {
-    steps?: {
-      [key in keyof TPluginConfig["steps"]]: Step<RawStep> // TODO: Fix type. This should be Step<TPluginConfig["steps"][key]>, but that doesn't work.
-    }
-  }
-
-export type Step<TStep extends RawStep = RawStep> = TStep & {
-  shouldRun: NonNullable<RawStep["shouldRun"]>
-  plugin: Plugin
-}
-
 type PluginConfig = DeeplyReadonly<{
   /** Name of the plugin */
   name: string
@@ -70,7 +15,7 @@ type PluginConfig = DeeplyReadonly<{
   devDependencies?: Record<string, Package>
   /** Temporary dependencies uninstalled when Create Next Stack is done. */
   tmpDependencies?: Record<string, Package>
-  /** Technology descriptions */
+  /** Descriptions of the technologies supported by the plugin. */
   technologies?: Technology[]
   /** Scripts that are added to the package.json file. */
   scripts?: Script[]
@@ -153,7 +98,6 @@ type RawStep = {
    */
   description: string
 
-  // TODO: Consider memoizing shouldRun, as it is sometimes called multiple times. See the lint-staged setup step.
   /**
    * A boolean or function that determines whether the custom run function should run.
    *
@@ -163,6 +107,63 @@ type RawStep = {
 
   /** Custom run function. */
   run: (inputs: ValidCNSInputs) => Promise<void>
+}
+
+export const createPlugin = <TPluginConfig extends PluginConfig>(
+  pluginConfig: TPluginConfig
+): Plugin<TPluginConfig> => {
+  const plugin = {
+    ...pluginConfig,
+  }
+  const enhancements = {
+    steps:
+      pluginConfig.steps != null
+        ? Object.entries(pluginConfig.steps).reduce(
+            (acc, [key, value]) => ({
+              ...acc,
+              [key]: createStep(value, plugin as Plugin<TPluginConfig>),
+            }),
+            {} as Record<string, Step>
+          )
+        : undefined,
+  }
+  for (const [key, value] of Object.entries(enhancements)) {
+    Object.defineProperty(plugin, key, {
+      value,
+      enumerable: true,
+    })
+  }
+  return plugin as Plugin<TPluginConfig>
+}
+
+export const createStep = <TRawStep extends RawStep = RawStep>(
+  step: TRawStep,
+  plugin: Plugin
+): Step<TRawStep> => {
+  return {
+    // defaults
+    shouldRun: true,
+
+    // TODO: Consider memoizing shouldRun, as it is sometimes called multiple times. See the lint-staged setup step.
+
+    // step
+    ...step,
+
+    // enhancements
+    plugin,
+  }
+}
+
+export type Plugin<TPluginConfig extends PluginConfig = PluginConfig> =
+  TPluginConfig & {
+    steps?: {
+      [key in keyof TPluginConfig["steps"]]: Step<RawStep> // TODO: Fix type. This should be Step<TPluginConfig["steps"][key]>, but that doesn't work.
+    }
+  }
+
+export type Step<TStep extends RawStep = RawStep> = TStep & {
+  shouldRun: NonNullable<RawStep["shouldRun"]>
+  plugin: Plugin
 }
 
 export const evalActive = (
