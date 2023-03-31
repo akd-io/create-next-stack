@@ -33,13 +33,7 @@ Where [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/c
 
 This repository covers the CLI tool, while [create-next-stack-website](https://github.com/akd-io/create-next-stack-website) covers the site.
 
-To get started, go to [create-next-stack.com](https://www.create-next-stack.com) or run:
-
-```bash
-npx create-next-stack
-```
-
-If using the CLI, you'll be prompted to pick a project name, and your preferred technologies like so:
+To get started, go to [create-next-stack.com](https://www.create-next-stack.com). Here you'll be able to choose the technologies you want to use and get the corresponding CLI command.
 
 <p align="center">
   <img width="600" alt="Screenshot of Create Next Stack running in a terminal" src="assets/screenshot.png">
