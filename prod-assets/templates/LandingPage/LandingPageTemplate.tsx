@@ -1,59 +1,60 @@
 import Script from "next/script";
+import styles from "./LandingPageTemplate.module.css";
 import { Container } from "./components/Container";
-import { H1, H2 } from "./components/headings";
 import { InlineCode } from "./components/InlineCode";
 import { Link } from "./components/Link";
 import { Paragraph } from "./components/Paragraph";
 import { Section } from "./components/Section";
 import { Subtitle } from "./components/Subtitle";
 import { TechnologyGrid } from "./components/TechnologyGrid";
-import styles from "./LandingPageTemplate.module.css";
+import { H1, H2 } from "./components/headings";
 import { technologies } from "./technologies";
 
 const LandingPageTemplate = () => {
   const onConfettiLoad = () => {
-    setTimeout(() => {
-      const colors = [
-        "#26ccff",
-        "#a25afd",
-        "#ff5e7e",
-        "#88ff5a",
-        "#fcff42",
-        "#ffa62d",
-        "#ff36ff",
-      ];
-      const end = Date.now() + 5 * 1000;
+    const duration = 10 * 1000;
+    const animationEnd = Date.now() + duration;
 
-      (function frame() {
-        (window as any).confetti({
-          particleCount: colors.length,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0, y: 0.6 },
-          colors,
-        });
-        (window as any).confetti({
-          particleCount: colors.length,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1, y: 0.6 },
-          colors,
-        });
+    const randomInRange = (min: number, max: number) => {
+      return Math.random() * (max - min) + min;
+    };
 
-        if (Date.now() < end) {
-          setTimeout(() => {
-            requestAnimationFrame(frame);
-          }, 50);
-        }
-      })();
-    }, 1000);
+    (function frame() {
+      const timeLeft = animationEnd - Date.now();
+
+      (window as any).confetti({
+        particleCount: 1,
+        startVelocity: 0,
+        ticks: Math.max(200, 500 * (timeLeft / duration)),
+        origin: {
+          x: Math.random(),
+          y: Math.random() - 0.2,
+        },
+        colors: [
+          "#26ccff",
+          "#a25afd",
+          "#ff5e7e",
+          "#88ff5a",
+          "#fcff42",
+          "#ffa62d",
+          "#ff36ff",
+        ],
+        shapes: ["square", "circle"],
+        gravity: randomInRange(0.4, 0.6),
+        scalar: randomInRange(0.8, 1.2),
+        drift: randomInRange(-0.1, 0.1),
+      });
+
+      if (timeLeft > 0) {
+        requestAnimationFrame(frame);
+      }
+    })();
   };
 
   return (
     <div className={styles.landingPageTemplate}>
       <Script
-        src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"
-        strategy="afterInteractive"
+        src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.9.3/tsparticles.confetti.bundle.min.js"
         onLoad={onConfettiLoad}
       />
       <style>
