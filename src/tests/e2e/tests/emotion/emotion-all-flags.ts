@@ -23,6 +23,7 @@ export const testEmotionAllFlags = async (
     "--framer-motion",
     "--formatting-pre-commit-hook",
     "--chakra",
+    "--react-icons",
     ".",
   ]
 

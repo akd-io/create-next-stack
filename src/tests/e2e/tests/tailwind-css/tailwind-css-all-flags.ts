@@ -21,6 +21,7 @@ export const testTailwindCssAllFlags = async (
     "--formik",
     "--framer-motion",
     "--formatting-pre-commit-hook",
+    "--react-icons",
     ".",
   ]
 
