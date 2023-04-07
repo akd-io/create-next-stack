@@ -19,6 +19,7 @@ import { prettierPlugin } from "../prettier"
 import { generateApp } from "./add-content/pages/generate-app"
 import { generateDocument } from "./add-content/pages/generate-document"
 import { generateIndexPage } from "./add-content/pages/generate-index"
+import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate"
 import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
 import { generateReadme } from "./add-readme/generate-readme"
 
@@ -74,6 +75,10 @@ export const createNextStackPlugin = createPlugin({
           writeFile(
             "templates/LandingPage/technologies.ts",
             generateTechnologies(inputs)
+          ),
+          writeFile(
+            "templates/LandingPage/LandingPageTemplate.tsx",
+            generateLandingPageTemplate(inputs)
           ),
         ])
       },
