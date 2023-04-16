@@ -6,6 +6,8 @@ import { prepareE2eTest } from "../helpers/prepare-e2e-test"
 import { logTestInfo } from "../test-logging"
 
 export const testNpm = async (createNextStackDir: string): Promise<void> => {
+  logTestInfo(`Running test: ${testNpm.name}`)
+
   const { pathToProdCLI, runDirectory } = await prepareE2eTest(
     createNextStackDir
   )

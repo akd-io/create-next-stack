@@ -5,7 +5,7 @@
     <img alt="" src="https://img.shields.io/npm/v/create-next-stack?style=flat-square">
   </a>
   <a aria-label="Build status" href="https://github.com/akd-io/create-next-stack/actions/workflows/main.yml?query=branch%3Adevelop">
-    <img alt="" src="https://img.shields.io/github/workflow/status/akd-io/create-next-stack/CI/develop?style=flat-square">
+    <img alt="" src="https://img.shields.io/github/actions/workflow/status/akd-io/create-next-stack/main.yml?branch=develop&style=flat-square">
   </a>
   <a aria-label="Last commit" href="https://github.com/akd-io/create-next-stack/commits/develop">
     <img alt="" src="https://img.shields.io/github/last-commit/akd-io/create-next-stack/develop?style=flat-square">
@@ -33,13 +33,7 @@ Where [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/c
 
 This repository covers the CLI tool, while [create-next-stack-website](https://github.com/akd-io/create-next-stack-website) covers the site.
 
-To get started, go to [create-next-stack.com](https://www.create-next-stack.com) or run:
-
-```bash
-npx create-next-stack
-```
-
-If using the CLI, you'll be prompted to pick a project name, and your preferred technologies like so:
+To get started, go to [create-next-stack.com](https://www.create-next-stack.com). Here you'll be able to choose the technologies you want to use and get the corresponding CLI command.
 
 <p align="center">
   <img width="600" alt="Screenshot of Create Next Stack running in a terminal" src="assets/screenshot.png">
@@ -74,6 +68,7 @@ The table below provides an overview of the technologies currently supported by 
 | [Husky](https://typicode.github.io/husky/)                | [Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)                                                                         |
 | [lint-staged](https://github.com/okonet/lint-staged)      | [GitHub repo](https://github.com/okonet/lint-staged)                                                                                                                 |
 | [GitHub Actions](https://github.com/features/actions)     | [Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)                      |
+| [React Icons](https://react-icons.github.io/react-icons/) | [GitHub repo](https://github.com/react-icons/react-icons)                                                                                                            |
 
 ## Usage
 
@@ -99,6 +94,7 @@ OPTIONS
   --package-manager=(pnpm|yarn|npm)  Sets the preferred package manager. (Required)
   --prettier                         Adds Prettier. (Code formatting)
   --react-hook-form                  Adds React Hook Form. (Form library)
+  --react-icons                      Adds React Icons. (Icon library)
   --styling=<styling-method>         Sets the preferred styling method. (Required) <styling-method> = emotion|styled-components|tailwind-css|css-modules|css-modules-with-sass
 ```
 

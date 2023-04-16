@@ -26,7 +26,7 @@ export type CreateNextStackArgs = UnknownObject // Change to ParserOutput["args"
 export type CreateNextStackFlags = Partial<CreateNextStackParserOutput["flags"]> // Change to CreateNextStackParserOutput["flags"] if it becomes strongly typed in the future. (Currently not a Partial.)
 
 // Package manager flag:
-export const packageManagerOptions = ["yarn", "npm", "pnpm"] as const
+export const packageManagerOptions = ["pnpm", "yarn", "npm"] as const
 export type PackageManager = typeof packageManagerOptions[number]
 export const writablePackageManagerOptions = packageManagerOptions as Writable<
   typeof packageManagerOptions

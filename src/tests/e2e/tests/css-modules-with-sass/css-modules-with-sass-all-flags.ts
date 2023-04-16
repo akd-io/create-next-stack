@@ -8,6 +8,8 @@ import { logTestInfo } from "../../test-logging"
 export const testCssModulesWithSassAllFlags = async (
   createNextStackDir: string
 ): Promise<void> => {
+  logTestInfo(`Running test: ${testCssModulesWithSassAllFlags.name}`)
+
   const { pathToProdCLI, runDirectory } = await prepareE2eTest(
     createNextStackDir
   )
@@ -21,6 +23,7 @@ export const testCssModulesWithSassAllFlags = async (
     "--formik",
     "--framer-motion",
     "--formatting-pre-commit-hook",
+    "--react-icons",
     ".",
   ]
 

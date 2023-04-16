@@ -40,20 +40,13 @@ export const chakraUIPlugin = createPlugin({
   slots: {
     app: {
       imports: endent`
-        import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react";
+        import { ChakraProvider } from "@chakra-ui/react";
         import { chakraTheme } from "../chakra-theme";
       `,
       componentsStart: endent`
-        <ChakraProvider resetCSS theme={chakraTheme}>
-          <ColorModeProvider
-            options={{
-              initialColorMode: chakraTheme.config.initialColorMode,
-              useSystemColorMode: chakraTheme.config.useSystemColorMode,
-            }}
-          >
+        <ChakraProvider theme={chakraTheme}>
       `,
       componentsEnd: endent`
-          </ColorModeProvider>
         </ChakraProvider>
       `,
     },
