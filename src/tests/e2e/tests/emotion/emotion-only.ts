@@ -8,6 +8,8 @@ import { logTestInfo } from "../../test-logging"
 export const testEmotionOnly = async (
   createNextStackDir: string
 ): Promise<void> => {
+  logTestInfo(`Running test: ${testEmotionOnly.name}`)
+
   const { pathToProdCLI, runDirectory } = await prepareE2eTest(
     createNextStackDir
   )

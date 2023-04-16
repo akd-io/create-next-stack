@@ -68,6 +68,7 @@ The table below provides an overview of the technologies currently supported by 
 | [Husky](https://typicode.github.io/husky/)                | [Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)                                                                         |
 | [lint-staged](https://github.com/okonet/lint-staged)      | [GitHub repo](https://github.com/okonet/lint-staged)                                                                                                                 |
 | [GitHub Actions](https://github.com/features/actions)     | [Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)                      |
+| [React Icons](https://react-icons.github.io/react-icons/) | [GitHub repo](https://github.com/react-icons/react-icons)                                                                                                            |
 
 ## Usage
 
@@ -93,6 +94,7 @@ OPTIONS
   --package-manager=(pnpm|yarn|npm)  Sets the preferred package manager. (Required)
   --prettier                         Adds Prettier. (Code formatting)
   --react-hook-form                  Adds React Hook Form. (Form library)
+  --react-icons                      Adds React Icons. (Icon library)
   --styling=<styling-method>         Sets the preferred styling method. (Required) <styling-method> = emotion|styled-components|tailwind-css|css-modules|css-modules-with-sass
 ```
 

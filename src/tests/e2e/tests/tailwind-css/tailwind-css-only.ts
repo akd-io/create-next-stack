@@ -8,6 +8,8 @@ import { logTestInfo } from "../../test-logging"
 export const testTailwindCssOnly = async (
   createNextStackDir: string
 ): Promise<void> => {
+  logTestInfo(`Running test: ${testTailwindCssOnly.name}`)
+
   const { pathToProdCLI, runDirectory } = await prepareE2eTest(
     createNextStackDir
   )

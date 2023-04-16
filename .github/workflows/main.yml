@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: "Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}"
+    name: "${{ matrix.os }}"
 
     strategy:
       matrix:

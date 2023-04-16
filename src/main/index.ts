@@ -92,6 +92,11 @@ class CreateNextStack extends Command {
     "formatting-pre-commit-hook": flags.boolean({
       description: "Adds a formatting pre-commit hook. (Requires Prettier)",
     }),
+
+    // Icons
+    "react-icons": flags.boolean({
+      description: "Adds React Icons. (Icon library)",
+    }),
   }
 
   async run(): Promise<void> {
