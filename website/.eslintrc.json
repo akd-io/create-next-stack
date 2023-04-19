@@ -1,0 +1,6 @@
+{
+  "extends": ["next/core-web-vitals", "eslint-config-prettier"],
+  "rules": {
+    "@next/next/no-page-custom-font": "off"
+  }
+}
