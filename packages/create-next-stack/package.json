@@ -41,7 +41,6 @@
   },
   "types": "lib/index.d.ts",
   "scripts": {
-    "prepare": "husky install",
     "prepack": "yarn build && oclif-dev readme",
     "check-types": "tsc --noEmit",
     "build": "rimraf lib && tsc --build",
@@ -55,12 +54,7 @@
     "print:help": "yarn build && ./bin-test/run-prod --help",
     "print:version": "yarn build && ./bin-test/run-prod --help",
     "version": "oclif-dev readme && git add README.md",
-    "format": "prettier --write --ignore-path=.prettierignore .",
-    "format:check": "prettier --check --ignore-path=.prettierignore .",
     "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=.gitignore ."
-  },
-  "lint-staged": {
-    "*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "@oclif/command": "^1.8.0",
@@ -86,10 +80,7 @@
     "@typescript-eslint/parser": "^4.28.5",
     "eslint": "^7.31.0",
     "eslint-config-prettier": "^8.3.0",
-    "husky": "^7.0.1",
-    "lint-staged": "^11.0.0",
     "next": "^13.2.4",
-    "prettier": "^2.3.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.9.0",
     "uuid": "^8.3.2"

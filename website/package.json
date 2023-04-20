@@ -7,10 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "check-types": "tsc --noEmit",
-    "format": "prettier --write --ignore-path=.gitignore .",
-    "format:check": "prettier --check --ignore-path=.gitignore .",
-    "prepare": "husky install"
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.17",
@@ -33,12 +30,6 @@
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "eslint-config-prettier": "^8.0.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.0",
-    "prettier": "^2.0.0",
     "typescript": "^4.6.3"
-  },
-  "lint-staged": {
-    "*": "prettier --write --ignore-unknown"
   }
 }
