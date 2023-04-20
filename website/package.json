@@ -29,7 +29,6 @@
     "@types/validate-npm-package-name": "^3.0.3",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
-    "eslint-config-prettier": "^8.0.0",
-    "typescript": "^4.6.3"
+    "eslint-config-prettier": "^8.0.0"
   }
 }
