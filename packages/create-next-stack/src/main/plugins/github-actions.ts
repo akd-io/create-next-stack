@@ -79,9 +79,9 @@ const generateCiYml = (inputs: ValidCNSInputs): string => {
             packageManager === "pnpm" &&
             endent`
             - name: "Set up pnpm"
-            uses: pnpm/action-setup@v2
-            with:
-              version: 8
+              uses: pnpm/action-setup@v2
+              with:
+                version: 8
           `
           }
 
