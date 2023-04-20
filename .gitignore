@@ -1,28 +1,31 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
+**/node_modules
+.pnp
 .pnp.js
 
 # testing
-/coverage
+**/coverage
 
 # next.js
-/.next/
-/out/
+**/.next/
+**/out/
 
 # production
-/build
+**/build
+**/dist
+**/lib
+**/tmp
+
 
 # misc
 .DS_Store
-*.pem
+**/*.pem
 
 # debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+**/*-debug.log*
+**/*-error.log*
 
 # local env files
 .env.local
@@ -31,7 +34,7 @@ yarn-error.log*
 .env.production.local
 
 # vercel
-.vercel
+**/.vercel
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode
