@@ -73,7 +73,7 @@ const generateCiYml = (inputs: ValidCNSInputs): string => {
 
         steps:
           - name: "Checkout repo"
-            uses: actions/checkout@v2
+            uses: actions/checkout@v3
 
           - name: "Use latest Node LTS"
             uses: actions/setup-node@v2
