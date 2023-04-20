@@ -1,0 +1,36 @@
+name: "Web - CI"
+
+on: [pull_request]
+
+jobs:
+  build:
+    name: format, lint, build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout repo"
+        uses: actions/checkout@v3
+
+      - name: "Set up pnpm"
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: "Use latest Node LTS"
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+          cache: "pnpm"
+
+      - name: "Install dependencies"
+        run: pnpm install
+
+      - name: "Check formatting"
+        run: pnpm format:check
+
+      - name: "Lint"
+        run: pnpm lint
+
+      - name: "Build"
+        run: pnpm build
