@@ -10,25 +10,25 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.17",
-    "@chakra-ui/react": "^2.5.3",
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
-    "framer-motion": "^10.8.5",
-    "next": "13.2.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-hook-form": "^7.0.0",
-    "react-icons": "^4.3.1",
+    "@chakra-ui/icons": "^2.0.18",
+    "@chakra-ui/react": "^2.5.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "framer-motion": "^10.12.4",
+    "next": "^13.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
+    "react-icons": "^4.8.0",
     "validate-npm-package-name": "^4.0.0"
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "^11.0.0",
-    "@types/node": "^18.15.7",
-    "@types/react": "18.0.28",
+    "@emotion/babel-plugin": "^11.10.6",
+    "@types/node": "^18.15.12",
+    "@types/react": "^18.0.37",
     "@types/validate-npm-package-name": "^3.0.3",
-    "eslint": "8.36.0",
-    "eslint-config-next": "13.2.4",
-    "eslint-config-prettier": "^8.0.0"
+    "eslint": "^8.38.0",
+    "eslint-config-next": "^13.3.0",
+    "eslint-config-prettier": "^8.8.0"
   }
 }
