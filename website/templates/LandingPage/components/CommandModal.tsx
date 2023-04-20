@@ -2,6 +2,7 @@ import { CheckIcon } from "@chakra-ui/icons"
 import {
   Button,
   Code,
+  Flex,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -9,7 +10,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Stack,
   Text,
 } from "@chakra-ui/react"
 import { ComponentProps, FC, useEffect, useState } from "react"
@@ -47,14 +47,12 @@ export const CommandModal: FC<PopupProps> = ({
         <ModalHeader>Almost there...</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Stack spacing="4">
+          <Flex direction="column" gap="4">
             <Text>Run the following command in your terminal:</Text>
-            <Stack>
-              <Code padding="4" background="gray.100">
-                {command}
-              </Code>
-            </Stack>
-          </Stack>
+            <Code padding="4" background="gray.100">
+              {command}
+            </Code>
+          </Flex>
         </ModalBody>
         <ModalFooter>
           {!copyFailed && (

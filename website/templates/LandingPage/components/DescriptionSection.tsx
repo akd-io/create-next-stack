@@ -1,11 +1,10 @@
 import { ExternalLinkIcon } from "@chakra-ui/icons"
-import { Stack, Text } from "@chakra-ui/react"
-import React from "react"
+import { Flex, Text } from "@chakra-ui/react"
 import { Anchor } from "../../../components/Anchor"
 
 export const Description = () => {
   return (
-    <Stack maxWidth="600" spacing="4">
+    <Flex direction="column" maxWidth="600" gap="4">
       <Text>
         <b>Create Next Stack</b> is a website and CLI tool used to easily set up
         the boilerplate of new{" "}
@@ -26,6 +25,6 @@ export const Description = () => {
         and choose an array of technologies often used alongside Next.js,
         freeing you of the pain of making them work together.
       </Text>
-    </Stack>
+    </Flex>
   )
 }

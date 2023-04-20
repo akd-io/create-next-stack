@@ -1,4 +1,4 @@
-import { Box, Stack } from "@chakra-ui/react"
+import { Box, Flex } from "@chakra-ui/react"
 import { css, Global } from "@emotion/react"
 import { ComponentProps, FC } from "react"
 import { Section } from "../../components/Section"
@@ -28,9 +28,15 @@ const LandingPageTemplate = () => {
   return (
     <>
       <Global styles={globalStyles} />
-      <Stack spacing="16" align="center" py="16">
+      <Flex direction="column" gap="16" alignItems="center" py="16">
         <HeaderSection />
-        <Stack as="main" spacing="16" align="center" width="100%">
+        <Flex
+          as="main"
+          direction="column"
+          gap="16"
+          alignItems="center"
+          width="100%"
+        >
           <Section>
             <Description />
           </Section>
@@ -39,9 +45,9 @@ const LandingPageTemplate = () => {
               <TechnologiesForm />
             </Card>
           </Section>
-        </Stack>
+        </Flex>
         <Footer />
-      </Stack>
+      </Flex>
     </>
   )
 }

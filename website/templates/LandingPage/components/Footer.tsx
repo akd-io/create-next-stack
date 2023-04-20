@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
   return (
     <Section
       as="footer"
-      boxProps={{
+      innerProps={{
         alignItems: "left",
         gap: "32px",
       }}

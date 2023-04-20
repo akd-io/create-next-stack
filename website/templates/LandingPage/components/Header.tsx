@@ -1,12 +1,12 @@
-import { Heading, Stack, Text } from "@chakra-ui/react"
+import { Flex, Heading, Text } from "@chakra-ui/react"
 import { Section } from "../../../components/Section"
 import { SocialIcons } from "../../../components/SocialIcons"
 
 export const HeaderSection = () => {
   return (
     <Section as="header">
-      <Stack align={["left", "center"]} spacing="6">
-        <Stack align={["left", "center"]} spacing="1">
+      <Flex direction="column" alignItems={["left", "center"]} gap="6">
+        <Flex direction="column" alignItems={["left", "center"]} gap="1">
           <Heading
             as="h1"
             size="3xl"
@@ -26,9 +26,9 @@ export const HeaderSection = () => {
           >
             The ultimate starter kit for Next.js
           </Text>
-        </Stack>
+        </Flex>
         <SocialIcons />
-      </Stack>
+      </Flex>
     </Section>
   )
 }
