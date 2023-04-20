@@ -1,0 +1,11 @@
+{
+  "name": "create-next-stack-root",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Create Next Stack monorepo",
+  "author": "Anders Kjær Damgaard",
+  "license": "MIT",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm"
+  }
+}
