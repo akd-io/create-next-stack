@@ -13,10 +13,10 @@ jobs:
       - name: "Checkout repo"
         uses: actions/checkout@v3
 
-      #      - name: "Set up pnpm"
-      #        uses: pnpm/action-setup@v2
-      #        with:
-      #          version: 8
+      - name: "Set up pnpm"
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
       - name: "Set up latest Node LTS"
         uses: actions/setup-node@v3
