@@ -67,7 +67,7 @@ const generateCiYml = (inputs: ValidCNSInputs): string => {
 
     jobs:
       build:
-        name: "Lint, build, and test"
+        name: "Build, lint, and test"
 
         runs-on: ubuntu-latest
 
@@ -75,7 +75,17 @@ const generateCiYml = (inputs: ValidCNSInputs): string => {
           - name: "Checkout repo"
             uses: actions/checkout@v3
 
-          - name: "Use latest Node LTS"
+          ${
+            packageManager === "pnpm" &&
+            endent`
+            - name: "Set up pnpm"
+            uses: pnpm/action-setup@v2
+            with:
+              version: 8
+          `
+          }
+
+          - name: "Set up latest Node LTS"
             uses: actions/setup-node@v2
             with:
               node-version: "lts/*"
@@ -93,11 +103,11 @@ const generateCiYml = (inputs: ValidCNSInputs): string => {
               : ""
           }
 
-          - name: "Lint"
-            run: ${runCommandMap[packageManager]} lint
-
           - name: "Build"
             run: ${runCommandMap[packageManager]} build
+
+          - name: "Lint"
+            run: ${runCommandMap[packageManager]} lint
 
           - name: "Test"
             run: ${runCommandMap[packageManager]} test
