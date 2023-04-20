@@ -76,13 +76,14 @@ const generateCiYml = (inputs: ValidCNSInputs): string => {
             uses: actions/checkout@v3
 
           ${
-            packageManager === "pnpm" &&
-            endent`
-            - name: "Set up pnpm"
-              uses: pnpm/action-setup@v2
-              with:
-                version: 8
-          `
+            packageManager === "pnpm"
+              ? endent`
+                  - name: "Set up pnpm"
+                    uses: pnpm/action-setup@v2
+                    with:
+                      version: 8
+                `
+              : ""
           }
 
           - name: "Set up latest Node LTS"
