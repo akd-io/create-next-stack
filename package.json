@@ -9,7 +9,17 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
     "format": "prettier --write --ignore-path=.gitignore .",
-    "format:check": "prettier --check --ignore-path=.gitignore ."
+    "format:check": "prettier --check --ignore-path=.gitignore .",
+    "build": "pnpm prr build",
+    "build:cns": "pnpm prr --filter create-next-stack build",
+    "build:web": "pnpm prr --filter create-next-stack-website build",
+    "lint": "pnpm prr lint",
+    "lint:cns": "pnpm prr --filter create-next-stack lint",
+    "lint:web": "pnpm prr --filter create-next-stack-website lint",
+    "test": "pnpm prr test",
+    "test:cns": "pnpm prr --filter create-next-stack test",
+    "test:web": "pnpm prr --filter create-next-stack-website test",
+    "prr": "pnpm recursive run"
   },
   "devDependencies": {
     "husky": "^8.0.3",
