@@ -8,8 +8,8 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
-    "format": "prettier --write --ignore-path=.gitignore .",
-    "format:check": "prettier --check --ignore-path=.gitignore .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "build": "pnpm prr build",
     "build:cli": "pnpm prr --filter create-next-stack build",
     "build:web": "pnpm prr --filter create-next-stack-website build",
@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.0",
-    "prettier": "^2.3.2",
-    "typescript": "^4.9.5"
+    "lint-staged": "^13.2.1",
+    "prettier": "^2.8.7",
+    "typescript": "^5.0.4"
   },
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"

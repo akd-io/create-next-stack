@@ -1,9 +1,9 @@
-import { ExitError } from "@oclif/errors"
+import { Errors } from "@oclif/core"
 import { logError } from "../logging"
 import { inDebugMode } from "./in-debug-mode"
 
 export const exitWithError = (error: unknown): never => {
-  if (error instanceof ExitError && error.oclif.exit === 0) {
+  if (error instanceof Errors.ExitError && error.oclif.exit === 0) {
     process.exit(0)
   } else if (error instanceof Error) {
     if (error.stack != null) {

@@ -26,7 +26,12 @@
     "node": ">=18.0.0"
   },
   "oclif": {
-    "bin": "create-next-stack"
+    "bin": "create-next-stack",
+    "commands": "./lib/main/commands",
+    "default": "create-next-stack",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
   },
   "bin": {
     "create-next-stack": "./bin/run"
@@ -44,15 +49,15 @@
     "prepack": "pnpm build && oclif-dev readme",
     "check-types": "tsc --noEmit",
     "build": "rimraf lib && tsc --build",
-    "test": "pnpm build && pnpm run test-only",
-    "test-only": "node lib/tests/e2e/test.js",
+    "clean": "rimraf lib && rimraf ../../../create-next-stack-tests",
+    "test": "pnpm build && node lib/tests/e2e/test.js",
     "test:manual": "pnpm build && node lib/tests/e2e/manual-test.js --debug",
     "test:small": "pnpm build && node lib/tests/e2e/manual-test.js --debug --package-manager=pnpm --styling=css-modules",
     "test:large": "pnpm build && node lib/tests/e2e/manual-test.js --debug --package-manager=pnpm --styling=emotion --react-hook-form --formik --prettier --formatting-pre-commit-hook --chakra --framer-motion --github-actions",
-    "test:cna": "pnpm build && node lib/tests/e2e/test-cna.js",
-    "test:live": "pnpm build && node lib/tests/e2e/test-live.js",
-    "print:help": "pnpm build && ./bin-test/run-prod --help",
-    "print:version": "pnpm build && ./bin-test/run-prod --help",
+    "test:cna": "pnpm build && node lib/tests/e2e/test-live-cna.js",
+    "test:cns": "pnpm build && node lib/tests/e2e/test-live-cns.js",
+    "print:help": "pnpm build && ./bin/dev --help",
+    "print:version": "pnpm build && ./bin/dev --help",
     "version": "oclif-dev readme && git add README.md",
     "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=.gitignore ."
   },

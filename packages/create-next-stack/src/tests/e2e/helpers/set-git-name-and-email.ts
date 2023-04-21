@@ -1,4 +1,4 @@
-import { runCommand } from "../../../main/run-command"
+import { runCommand } from "../../../main/helpers/run-command"
 import { logTestError, logTestInfo } from "../test-logging"
 
 export const setGitNameAndEmail = async (): Promise<void> => {

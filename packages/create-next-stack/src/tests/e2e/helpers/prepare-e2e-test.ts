@@ -7,27 +7,26 @@ import { logTestInfo } from "../test-logging"
 export const prepareE2eTest = async (
   createNextStackDir: string
 ): Promise<{
-  pathToProdCLI: string
+  pathToCLI: string
   runDirectory: string
 }> => {
-  // Create unique id for this run
   const testRunId = uuidv4()
 
-  // Switch to unique test directory
   const runDirectory = path.resolve(
-    `${createNextStackDir}/../create-next-stack-tests/run-${testRunId}`
+    createNextStackDir,
+    `../../../create-next-stack-tests/run-${testRunId}`
   )
   logTestInfo(`Creating test run directory at ${runDirectory}`)
   await makeDirectory(runDirectory)
 
-  // Run /bin-test/run-prod to test against compiled js files in /lib instead of ts-files in /src using ts-node.
-  const pathToProdCLI = path.resolve(`${createNextStackDir}/bin-test/run-prod`)
+  const relPathToCLI = "./bin/dev"
+  const pathToCLI = path.resolve(createNextStackDir, relPathToCLI)
 
-  logTestInfo(`Making /bin-test/run-prod readable and executable by all...`)
-  await fs.chmod(pathToProdCLI, 0o555)
+  logTestInfo(`Making ${relPathToCLI} readable and executable by all...`)
+  await fs.chmod(pathToCLI, 0o555)
 
   return {
-    pathToProdCLI,
+    pathToCLI,
     runDirectory,
   }
 }

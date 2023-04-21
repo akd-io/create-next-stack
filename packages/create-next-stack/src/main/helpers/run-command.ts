@@ -1,6 +1,6 @@
 import execa, { ExecaChildProcess, Options } from "execa"
-import { prettyCommand } from "./helpers/pretty-command"
-import { logDebug } from "./logging"
+import { logDebug } from "../logging"
+import { prettyCommand } from "./pretty-command"
 
 export const runCommand = (
   file: string,
