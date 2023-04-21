@@ -1,4 +1,4 @@
-import execa, { ExecaChildProcess, Options } from "execa"
+import { execa, ExecaChildProcess, Options } from "execa"
 import { logDebug } from "../logging"
 import { prettyCommand } from "./pretty-command"
 

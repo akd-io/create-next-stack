@@ -59,32 +59,31 @@
     "print:help": "pnpm build && ./bin/dev --help",
     "print:version": "pnpm build && ./bin/dev --help",
     "version": "oclif-dev readme && git add README.md",
-    "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=../../.gitignore ."
+    "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=../../.prettierignore ."
   },
   "dependencies": {
     "@oclif/core": "^2.8.2",
-    "@oclif/plugin-help": "^3.3.1",
-    "chalk": "^4.1.2",
+    "@oclif/plugin-help": "^5.2.9",
+    "chalk": "^5.2.0",
     "endent": "^2.1.0",
-    "execa": "^5.1.1",
-    "inquirer": "^8.2.5",
-    "rimraf": "^3.0.2",
+    "execa": "^7.1.1",
+    "inquirer": "^9.1.5",
+    "rimraf": "^5.0.0",
     "tslib": "^2.5.0",
-    "validate-npm-package-name": "^3.0.0"
+    "validate-npm-package-name": "^5.0.0"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.26.10",
-    "@types/inquirer": "^7.3.3",
-    "@types/node": "^16.18.24",
-    "@types/rimraf": "^3.0.2",
-    "@types/uuid": "^8.3.4",
-    "@types/validate-npm-package-name": "^3.0.3",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.33.0",
-    "eslint": "^7.32.0",
+    "@types/inquirer": "^9.0.3",
+    "@types/node": "^18.15.13",
+    "@types/uuid": "^9.0.1",
+    "@types/validate-npm-package-name": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
     "next": "^13.3.0",
     "ts-node": "^10.9.1",
-    "uuid": "^8.3.2"
+    "uuid": "^9.0.0"
   }
 }

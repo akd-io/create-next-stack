@@ -1,4 +1,9 @@
+# Prettier
 **/prod-assets
+
+##############################################
+### REST SHOULD BE IDENTICAL TO .gitignore ###
+##############################################
 
 # dependencies
 **/node_modules

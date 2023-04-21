@@ -1,4 +1,3 @@
-import rimraf from "rimraf"
-import { promisify } from "util"
+import { rimraf } from "rimraf"
 
-export const remove = promisify(rimraf)
+export const remove = rimraf
