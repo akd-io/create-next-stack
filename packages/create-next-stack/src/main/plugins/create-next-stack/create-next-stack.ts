@@ -10,9 +10,9 @@ import {
 } from "../../helpers/io"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { remove } from "../../helpers/remove"
+import { runCommand } from "../../helpers/run-command"
 import { logWarning } from "../../logging"
 import { createPlugin } from "../../plugin"
-import { runCommand } from "../../run-command"
 import { getNameVersionCombo, install, uninstall } from "../../setup/packages"
 import { filterPlugins } from "../../setup/setup"
 import { prettierPlugin } from "../prettier"
@@ -59,7 +59,7 @@ export const createNextStackPlugin = createPlugin({
       description: "copying static assets",
       run: async (): Promise<void> => {
         const createNextStackDir = getCreateNextStackDir()
-        const source = path.resolve(`${createNextStackDir}/prod-assets`)
+        const source = path.resolve(createNextStackDir, "prod-assets")
         const destination = path.resolve(".")
         await copyDirectory(source, destination)
       },

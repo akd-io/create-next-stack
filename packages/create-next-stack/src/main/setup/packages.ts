@@ -5,8 +5,8 @@ import {
   uninstallSubCommandMap,
 } from "../helpers/package-manager-utils"
 import { prettyCommand } from "../helpers/pretty-command"
+import { runCommand } from "../helpers/run-command"
 import { logDebug } from "../logging"
-import { runCommand } from "../run-command"
 
 type Package<T = string> = Readonly<{
   name: T

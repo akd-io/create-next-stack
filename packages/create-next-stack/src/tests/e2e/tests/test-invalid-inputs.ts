@@ -1,5 +1,5 @@
 import { prettyCommand } from "../../../main/helpers/pretty-command"
-import { runCommand } from "../../../main/run-command"
+import { runCommand } from "../../../main/helpers/run-command"
 import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../helpers/prepare-e2e-test"
 import { logTestInfo } from "../test-logging"
@@ -9,9 +9,7 @@ export const testInvalidInputs = async (
 ): Promise<void> => {
   logTestInfo(`Running test: ${testInvalidInputs.name}`)
 
-  const { pathToProdCLI, runDirectory } = await prepareE2eTest(
-    createNextStackDir
-  )
+  const { pathToCLI, runDirectory } = await prepareE2eTest(createNextStackDir)
 
   const argsArrays = {
     invalidName: [
@@ -45,10 +43,15 @@ export const testInvalidInputs = async (
   }
 
   for (const args of Object.values(argsArrays)) {
-    logTestInfo("Running command:", prettyCommand(pathToProdCLI, args))
+    logTestInfo(
+      "Running command:",
+      prettyCommand(pathToCLI, args),
+      "in directory:",
+      runDirectory
+    )
 
     let didThrowError = false
-    await runCommand(pathToProdCLI, args, {
+    await runCommand(pathToCLI, args, {
       timeout: minutesToMilliseconds(1),
       cwd: runDirectory,
       stdout: "inherit",

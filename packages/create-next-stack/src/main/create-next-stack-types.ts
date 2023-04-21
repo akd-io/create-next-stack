@@ -1,5 +1,5 @@
-import { IConfig } from "@oclif/config"
-import CreateNextStack from "."
+import { Config } from "@oclif/core"
+import CreateNextStack from "./commands/create-next-stack"
 import { UnknownObject } from "./helpers/is-unknown-object"
 import { validateProjectPathInput } from "./helpers/validate-project-path"
 import { Writable } from "./helpers/writable"
@@ -12,7 +12,7 @@ import { Writable } from "./helpers/writable"
 const temporaryWrapperForTypeSafety = () => {
   const createNextStackInstance = new CreateNextStack(
     [],
-    {} as unknown as IConfig
+    {} as unknown as Config
   )
   return createNextStackInstance["parse"](CreateNextStack)
 }
@@ -23,11 +23,13 @@ export type CreateNextStackParserOutput = ReturnType<
 
 // Unvalidated Args and Flags types
 export type CreateNextStackArgs = UnknownObject // Change to ParserOutput["args"] if it becomes strongly typed in the future. (Currently a normal object with any-values.)
-export type CreateNextStackFlags = Partial<CreateNextStackParserOutput["flags"]> // Change to CreateNextStackParserOutput["flags"] if it becomes strongly typed in the future. (Currently not a Partial.)
+export type CreateNextStackFlags = Partial<
+  Awaited<CreateNextStackParserOutput>["flags"]
+> // Change to CreateNextStackParserOutput["flags"] if it becomes strongly typed in the future. (Currently not a Partial.)
 
 // Package manager flag:
 export const packageManagerOptions = ["pnpm", "yarn", "npm"] as const
-export type PackageManager = typeof packageManagerOptions[number]
+export type PackageManager = (typeof packageManagerOptions)[number]
 export const writablePackageManagerOptions = packageManagerOptions as Writable<
   typeof packageManagerOptions
 >
@@ -40,7 +42,7 @@ export const stylingOptions = [
   "css-modules",
   "css-modules-with-sass",
 ] as const
-export type StylingOption = typeof stylingOptions[number]
+export type StylingOption = (typeof stylingOptions)[number]
 export const writableStylingOptions = stylingOptions as Writable<
   typeof stylingOptions
 >

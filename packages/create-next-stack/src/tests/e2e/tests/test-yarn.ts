@@ -1,5 +1,5 @@
 import { prettyCommand } from "../../../main/helpers/pretty-command"
-import { runCommand } from "../../../main/run-command"
+import { runCommand } from "../../../main/helpers/run-command"
 import { checkFormattingLintingBuild } from "../helpers/check-formatting-linting-build"
 import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../helpers/prepare-e2e-test"
@@ -8,9 +8,7 @@ import { logTestInfo } from "../test-logging"
 export const testYarn = async (createNextStackDir: string): Promise<void> => {
   logTestInfo(`Running test: ${testYarn.name}`)
 
-  const { pathToProdCLI, runDirectory } = await prepareE2eTest(
-    createNextStackDir
-  )
+  const { pathToCLI, runDirectory } = await prepareE2eTest(createNextStackDir)
 
   const args = [
     "--debug",
@@ -26,9 +24,14 @@ export const testYarn = async (createNextStackDir: string): Promise<void> => {
     ".",
   ]
 
-  logTestInfo("Running command:", prettyCommand(pathToProdCLI, args))
+  logTestInfo(
+    "Running command:",
+    prettyCommand(pathToCLI, args),
+    "in directory:",
+    runDirectory
+  )
 
-  await runCommand(pathToProdCLI, args, {
+  await runCommand(pathToCLI, args, {
     timeout: minutesToMilliseconds(10),
     cwd: runDirectory,
     stdout: "inherit",

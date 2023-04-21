@@ -1,9 +1,9 @@
 import { modifyJsonFile } from "../helpers/io"
 import { isGitInitialized } from "../helpers/is-git-initialized"
 import { remove } from "../helpers/remove"
+import { runCommand } from "../helpers/run-command"
 import { logWarning } from "../logging"
 import { createPlugin } from "../plugin"
-import { runCommand } from "../run-command"
 
 export const formattingPreCommitHookPlugin = createPlugin({
   name: "formatting-pre-commit-hook",

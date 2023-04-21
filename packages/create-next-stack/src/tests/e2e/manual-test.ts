@@ -2,21 +2,24 @@ import chalk from "chalk"
 import endent from "endent"
 import { v4 as uuidv4 } from "uuid"
 import { prettyCommand } from "../../main/helpers/pretty-command"
-import { runCommand } from "../../main/run-command"
+import { runCommand } from "../../main/helpers/run-command"
 import { checkFormattingLintingBuild } from "./helpers/check-formatting-linting-build"
 import { exitWithError } from "./helpers/exit-with-error"
 import { logTestInfo } from "./test-logging"
 ;(async () => {
   try {
     const projectName = uuidv4()
-    const runDirectory = `../create-next-stack-tests/${projectName}`
+    const runDirectory = `../../../create-next-stack-tests/${projectName}`
 
-    const pathToProdCLI = "./bin-test/run-prod"
+    const pathToCLI = "./bin/dev"
     const args = [...process.argv.slice(2), runDirectory]
-
-    logTestInfo("Running command:", prettyCommand(pathToProdCLI, args))
-
-    await runCommand(pathToProdCLI, args, { stdio: "inherit" })
+    logTestInfo(
+      "Running command:",
+      prettyCommand(pathToCLI, args),
+      "in directory:",
+      runDirectory
+    )
+    await runCommand(pathToCLI, args, { stdio: "inherit" })
 
     await checkFormattingLintingBuild(runDirectory)
 

@@ -1,5 +1,5 @@
+import { runCommand } from "../helpers/run-command"
 import { createPlugin } from "../plugin"
-import { runCommand } from "../run-command"
 import { getNameVersionCombo } from "../setup/packages"
 
 export const pnpmPlugin = createPlugin({

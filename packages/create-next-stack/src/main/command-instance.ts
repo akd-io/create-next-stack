@@ -1,4 +1,4 @@
-import Command from "@oclif/command"
+import { Command } from "@oclif/core"
 
 type CommandInstance = {
   _instance: Command | null

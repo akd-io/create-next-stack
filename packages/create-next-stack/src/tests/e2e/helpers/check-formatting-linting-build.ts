@@ -1,5 +1,5 @@
 import { Options } from "execa"
-import { runCommand } from "../../../main/run-command"
+import { runCommand } from "../../../main/helpers/run-command"
 import { logTestInfo } from "../test-logging"
 
 export const checkFormattingLintingBuild = async (
