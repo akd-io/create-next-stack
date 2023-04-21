@@ -59,7 +59,7 @@
     "print:help": "pnpm build && ./bin/dev --help",
     "print:version": "pnpm build && ./bin/dev --help",
     "version": "oclif-dev readme && git add README.md",
-    "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=.gitignore ."
+    "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=../../.gitignore ."
   },
   "dependencies": {
     "@oclif/core": "^2.8.2",
