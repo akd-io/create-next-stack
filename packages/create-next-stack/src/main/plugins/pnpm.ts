@@ -6,7 +6,6 @@ export const pnpmPlugin = createPlugin({
   name: "pnpm",
   description: "Adds support for pnpm",
   active: ({ flags }) => Boolean(flags["package-manager"] === "pnpm"),
-  dependencies: { pnpm: { name: "pnpm", version: "latest" } },
   technologies: [
     {
       name: "pnpm",
@@ -26,7 +25,7 @@ export const pnpmPlugin = createPlugin({
         await runCommand("npm", [
           "i",
           "-g",
-          getNameVersionCombo(pnpmPlugin.dependencies.pnpm),
+          getNameVersionCombo({ name: "pnpm", version: "latest" }),
         ])
       },
     },
