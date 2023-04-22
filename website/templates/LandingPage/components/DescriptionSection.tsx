@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react"
 import { Anchor } from "../../../components/Anchor"
-import { ExternalLinkIcon } from "./ExternalLinkIcon"
+import { ExternalLinkIcon } from "./icons/ExternalLinkIcon"
 
 export const Description = () => {
   return (

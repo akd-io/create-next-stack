@@ -1,4 +1,3 @@
-import { CheckIcon } from "@chakra-ui/icons"
 import {
   Button,
   Code,
@@ -13,6 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react"
 import { ComponentProps, FC, useEffect, useState } from "react"
+import { CheckIcon } from "./icons/CheckIcon"
 
 type PopupProps = Omit<ComponentProps<typeof Modal>, "children"> & {
   command: string

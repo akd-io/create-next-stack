@@ -1,4 +1,3 @@
-import { ExternalLinkIcon } from "@chakra-ui/icons"
 import {
   Button,
   CheckboxGroup,
@@ -19,6 +18,7 @@ import { capitalizeFirstCharacter } from "../../../utils/capitalizeFirstCharacte
 import { objectToKeyToKeyMap } from "../../../utils/objectToKeyToKeyMap"
 import { validateProjectName } from "../../../utils/validateProjectName"
 import { CommandModal } from "./CommandModal"
+import { ExternalLinkIcon } from "./icons/ExternalLinkIcon"
 import { WithInfoIconAndTooltip } from "./InfoIconTooltip"
 
 const cssModulesValue = "css-modules"
