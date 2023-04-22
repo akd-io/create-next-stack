@@ -20,8 +20,6 @@ import { testVersionFlag } from "./tests/test-version-flag"
 import { testYarn } from "./tests/test-yarn"
 ;(async () => {
   // TODO: Find a way to run tests in parallel. Currently failing because simultaneous calls to `npm i -g yarn` or `npm install -g mrm@^3.0.0 mrm-task-lint-staged@^6.0.0` cause crashes.
-  // TODO: Switch all tests to use pnpm instead of npm. This will make tests faster and more reliable. Try running in parallel with pnpm, it might work.
-  // TODO: Add test with package-manager=yarn
 
   try {
     // If not done already, Set Git name and email so `git commit` doesn't fail during create-next-app
