@@ -21,6 +21,8 @@ import { testYarn } from "./tests/test-yarn"
 ;(async () => {
   // TODO: Find a way to run tests in parallel. Currently failing because simultaneous calls to `npm i -g yarn` or `npm install -g mrm@^3.0.0 mrm-task-lint-staged@^6.0.0` cause crashes.
 
+  process.env["TEST"] = "true"
+
   try {
     // If not done already, Set Git name and email so `git commit` doesn't fail during create-next-app
     await setGitNameAndEmail()

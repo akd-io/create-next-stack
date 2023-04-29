@@ -8,5 +8,6 @@ export const runCommand = (
   options?: Options
 ): ExecaChildProcess<string> => {
   logDebug("Running command:", prettyCommand(file, args))
+  logDebug("Running command in:", options?.cwd ?? process.cwd())
   return execa(file, args, options)
 }

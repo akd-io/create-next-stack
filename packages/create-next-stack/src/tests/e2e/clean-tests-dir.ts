@@ -1,6 +1,8 @@
 import fs from "fs/promises"
 import path from "path"
 ;(async () => {
+  process.env["TEST"] = "true"
+
   const testsDirectory = path.resolve(
     __dirname,
     "../../../../../../create-next-stack-tests"

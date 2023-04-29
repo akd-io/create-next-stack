@@ -1,14 +1,13 @@
-import { prettyCommand } from "../../../../main/helpers/pretty-command"
 import { runCommand } from "../../../../main/helpers/run-command"
 import { checkFormattingLintingBuild } from "../../helpers/check-formatting-linting-build"
+import { logTestMeta } from "../../helpers/log-test-meta"
 import { minutesToMilliseconds } from "../../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../../helpers/prepare-e2e-test"
-import { logTestInfo } from "../../test-logging"
 
 export const testCssModulesOnly = async (
   createNextStackDir: string
 ): Promise<void> => {
-  logTestInfo(`Running test: ${testCssModulesOnly.name}`)
+  logTestMeta(testCssModulesOnly.name, __filename)
 
   const { pathToCLI, runDirectory } = await prepareE2eTest(createNextStackDir)
 
@@ -18,13 +17,6 @@ export const testCssModulesOnly = async (
     "--styling=css-modules",
     ".",
   ]
-
-  logTestInfo(
-    "Running command:",
-    prettyCommand(pathToCLI, args),
-    "in directory:",
-    runDirectory
-  )
 
   await runCommand(pathToCLI, args, {
     timeout: minutesToMilliseconds(10),

@@ -1,24 +1,16 @@
-import { prettyCommand } from "../../../main/helpers/pretty-command"
 import { runCommand } from "../../../main/helpers/run-command"
+import { logTestMeta } from "../helpers/log-test-meta"
 import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../helpers/prepare-e2e-test"
-import { logTestInfo } from "../test-logging"
 
 export const testHelpFlag = async (
   createNextStackDir: string
 ): Promise<void> => {
-  logTestInfo(`Running test: ${testHelpFlag.name}`)
+  logTestMeta(testHelpFlag.name, __filename)
 
   const { pathToCLI, runDirectory } = await prepareE2eTest(createNextStackDir)
 
   const args = ["--help"]
-
-  logTestInfo(
-    "Running command:",
-    prettyCommand(pathToCLI, args),
-    "in directory:",
-    runDirectory
-  )
 
   await runCommand(pathToCLI, args, {
     timeout: minutesToMilliseconds(1),
