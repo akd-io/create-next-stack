@@ -31,16 +31,16 @@ import { testYarn } from "./tests/test-yarn"
     await testHelpFlag(createNextStackDir)
     await testVersionFlag(createNextStackDir)
 
-    // Package manager tests
-    // pnpm is used in all other tests, so not tested here.
-    await testNpm(createNextStackDir)
-    await testYarn(createNextStackDir)
-
     // Invalid inputs
     await testInvalidInputs(createNextStackDir)
 
     // No flags test
     await testNoFlags(createNextStackDir)
+
+    // Package manager tests
+    // pnpm is used in all other tests, so not tested here.
+    await testNpm(createNextStackDir)
+    await testYarn(createNextStackDir)
 
     // Styling only
     await testEmotionOnly(createNextStackDir)
