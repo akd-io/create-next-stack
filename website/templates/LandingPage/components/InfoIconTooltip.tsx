@@ -1,6 +1,6 @@
-import { InfoOutlineIcon } from "@chakra-ui/icons"
 import { Flex, Tooltip } from "@chakra-ui/react"
 import { FC } from "react"
+import { InfoOutlineIcon } from "./icons/InfoOutlineIcon"
 
 type WithInfoIconAndTooltipProps = {
   tooltip: string
