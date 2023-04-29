@@ -8,7 +8,16 @@ import path from "path"
     "../../../../../../create-next-stack-tests"
   )
 
-  if (!(await fs.stat(testsDirectory)).isDirectory()) {
+  try {
+    const stat = await fs.stat(testsDirectory)
+    if (!stat.isDirectory()) {
+      console.error(
+        "Path lead to a file instead of a directory. Path:",
+        testsDirectory
+      )
+      return
+    }
+  } catch (error) {
     console.log("Tests directory not found.")
     return
   }
