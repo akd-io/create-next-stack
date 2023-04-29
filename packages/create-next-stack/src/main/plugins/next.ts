@@ -80,22 +80,47 @@ export const nextPlugin = createPlugin({
           "--no-src-dir",
           "--import-alias=@/*",
         ]
+
+        /* TODO: When create-next-app supports --use-yarn, use that instead of the below environment variable hack.
         switch (flags["package-manager"]) {
           case "pnpm":
             createNextAppArgs.push("--use-pnpm")
             break
           case "yarn":
-            // default is yarn. And there's no flag for it.
+            // create-next-app doesn't support --use-yarn, so we have to use the below environment variable hack.
             break
           case "npm":
             createNextAppArgs.push("--use-npm")
             break
         }
+        */
+
+        // Below, we temporarily modify the npm_config_user_agent environment variable to make create-next-app use the correct package manager to install dependencies.
+        // This is done because create-next-app doesn't support --use-yarn.
+        // Instead, users of create-next-app are supposed to use `yarn create next-app` to use create-next-app with Yarn.
+        // This won't work for us though, as Yarn create doesn't support versioned package names, which we need to use to use the correct version of create-next-app.
+
+        const oldNpmConfigUserAgent = process.env["npm_config_user_agent"]
+        logDebug(
+          "Initial npm_config_user_agent:",
+          process.env["npm_config_user_agent"] ?? "undefined"
+        )
+
+        process.env[
+          "npm_config_user_agent"
+        ] = `${flags["package-manager"]}/? ${process.env["npm_config_user_agent"]}`
+        logDebug(
+          "Modified npm_config_user_agent:",
+          process.env["npm_config_user_agent"]
+        )
 
         await runCommand("npx", [
           getNameVersionCombo(createNextAppPackage),
           ...createNextAppArgs,
         ])
+
+        // Reset npm_config_user_agent
+        process.env["npm_config_user_agent"] = oldNpmConfigUserAgent
 
         logDebug("Changing directory to", args.appName)
         process.chdir(args.appName)
