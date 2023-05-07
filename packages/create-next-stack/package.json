@@ -1,0 +1,88 @@
+{
+  "name": "create-next-stack",
+  "description": "Create Next Stack is a website and CLI tool used to easily set up the boilerplate of new Next.js apps.",
+  "version": "0.2.1",
+  "author": "Anders Kjær Damgaard @akd-io",
+  "bugs": "https://github.com/akd-io/create-next-stack/issues",
+  "homepage": "https://github.com/akd-io/create-next-stack",
+  "repository": "akd-io/create-next-stack",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "cli",
+    "template",
+    "boilerplate",
+    "typescript",
+    "web",
+    "eslint",
+    "frontend",
+    "nextjs",
+    "prettier",
+    "starter",
+    "starter-kit",
+    "scaffolding"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "oclif": {
+    "bin": "create-next-stack",
+    "commands": "./lib/main/commands",
+    "default": "create-next-stack",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "bin": {
+    "create-next-stack": "./bin/run"
+  },
+  "files": [
+    "/bin",
+    "/lib/main",
+    "/prod-assets"
+  ],
+  "exports": {
+    "./package.json": "./package.json"
+  },
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "prepack": "pnpm build",
+    "check-types": "tsc --noEmit",
+    "build": "rimraf lib && tsc --build",
+    "clean": "rimraf lib && pnpm run clean-tests-dir",
+    "clean-tests-dir": "ts-node src/tests/e2e/clean-tests-dir.ts",
+    "test": "pnpm build && ts-node src/tests/e2e/test.ts",
+    "test:manual": "pnpm build && ts-node src/tests/e2e/test-manual.ts --debug",
+    "test:small": "pnpm build && ts-node src/tests/e2e/test-manual.ts --debug --package-manager=pnpm --styling=css-modules",
+    "test:large": "pnpm build && ts-node src/tests/e2e/test-manual.ts --debug --package-manager=pnpm --styling=emotion --react-hook-form --formik --prettier --formatting-pre-commit-hook --chakra --framer-motion --github-actions",
+    "test:cna": "pnpm build && ts-node src/tests/e2e/test-live-cna.ts",
+    "test:cns": "pnpm build && ts-node src/tests/e2e/test-live-cns.ts",
+    "print:help": "pnpm build && ./bin/dev --help",
+    "print:version": "pnpm build && ./bin/dev --help",
+    "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=../../.prettierignore ."
+  },
+  "dependencies": {
+    "@oclif/core": "^2.8.2",
+    "@oclif/plugin-help": "^5.2.9",
+    "chalk": "^4.1.2",
+    "endent": "^2.1.0",
+    "execa": "^5.1.1",
+    "inquirer": "^9.1.5",
+    "rimraf": "^5.0.0",
+    "tslib": "^2.5.0",
+    "validate-npm-package-name": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.3",
+    "@types/node": "^18.15.13",
+    "@types/uuid": "^9.0.1",
+    "@types/validate-npm-package-name": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "next": "^13.3.1",
+    "ts-node": "^10.9.1",
+    "uuid": "^9.0.0"
+  }
+}

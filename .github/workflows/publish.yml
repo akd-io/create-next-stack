@@ -1,4 +1,8 @@
-name: "Publish"
+name: "Global - Publish"
+
+# Publishes all packages in the monorepo.
+# Packages should specify `private: true` in their `package.json` files, if they shouldn't be published.
+# This workflow just installs and runs `pnpm publish`. Each package should add build scripts and similar to its `prepack` script in its `package.json` file.
 
 on:
   push:
@@ -9,27 +13,24 @@ jobs:
   publish:
     name: Publish
     runs-on: ubuntu-latest
+
     steps:
       - name: "Checkout repo"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: "Use latest Node LTS"
-        uses: actions/setup-node@v2
+      - name: "Set up pnpm"
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: "Set up latest Node LTS"
+        uses: actions/setup-node@v3
         with:
           node-version: "lts/*"
-          cache: yarn
+          cache: pnpm
 
       - name: "Install dependencies"
-        run: yarn install
+        run: pnpm install
 
-      - name: "Publish to npm"
-        id: npmPublish
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_AUTH_TOKEN }}
-
-      - name: "Add version tag"
-        if: steps.npmPublish.outputs.type != 'none'
-        run: |
-          git tag v${{ steps.npmPublish.outputs.version }}
-          git push origin v${{ steps.npmPublish.outputs.version }}
+      - name: "Publish packages"
+        run: pnpm publish -r
