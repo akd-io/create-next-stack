@@ -46,7 +46,7 @@
   },
   "types": "lib/index.d.ts",
   "scripts": {
-    "prepack": "pnpm build && oclif-dev readme",
+    "prepack": "pnpm build",
     "check-types": "tsc --noEmit",
     "build": "rimraf lib && tsc --build",
     "clean": "rimraf lib && pnpm run clean-tests-dir",
@@ -59,7 +59,6 @@
     "test:cns": "pnpm build && ts-node src/tests/e2e/test-live-cns.ts",
     "print:help": "pnpm build && ./bin/dev --help",
     "print:version": "pnpm build && ./bin/dev --help",
-    "version": "oclif-dev readme && git add README.md",
     "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=../../.prettierignore ."
   },
   "dependencies": {
@@ -74,7 +73,6 @@
     "validate-npm-package-name": "^5.0.0"
   },
   "devDependencies": {
-    "@oclif/dev-cli": "^1.26.10",
     "@types/inquirer": "^9.0.3",
     "@types/node": "^18.15.13",
     "@types/uuid": "^9.0.1",
