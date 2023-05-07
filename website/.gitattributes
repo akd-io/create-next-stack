@@ -1,0 +1,4 @@
+# Normalize end of line. Read more about why in the links below:
+# https://prettier.io/docs/en/options.html#end-of-line
+# https://git-scm.com/docs/gitattributes#_effects
+* text=auto eol=lf

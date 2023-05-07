@@ -1,96 +1,33 @@
 {
-  "name": "create-next-stack",
-  "description": "Create Next Stack is a website and CLI tool used to easily set up the boilerplate of new Next.js apps.",
-  "version": "0.2.1",
-  "author": "Anders Kjær Damgaard @akd-io",
-  "bugs": "https://github.com/akd-io/create-next-stack/issues",
-  "homepage": "https://github.com/akd-io/create-next-stack",
-  "repository": "akd-io/create-next-stack",
+  "name": "create-next-stack-root",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Create Next Stack monorepo",
+  "author": "Anders Kjær Damgaard",
   "license": "MIT",
-  "keywords": [
-    "react",
-    "cli",
-    "template",
-    "boilerplate",
-    "typescript",
-    "web",
-    "eslint",
-    "frontend",
-    "nextjs",
-    "prettier",
-    "starter",
-    "starter-kit",
-    "scaffolding"
-  ],
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "oclif": {
-    "bin": "create-next-stack"
-  },
-  "bin": {
-    "create-next-stack": "./bin/run"
-  },
-  "files": [
-    "/bin",
-    "/lib/main",
-    "/prod-assets"
-  ],
-  "exports": {
-    "./package.json": "./package.json"
-  },
-  "types": "lib/index.d.ts",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
-    "prepack": "yarn build && oclif-dev readme",
-    "check-types": "tsc --noEmit",
-    "build": "rimraf lib && tsc --build",
-    "test": "yarn build && yarn run test-only",
-    "test-only": "node lib/tests/e2e/test.js",
-    "test:manual": "yarn build && node lib/tests/e2e/manual-test.js --debug",
-    "test:small": "yarn build && node lib/tests/e2e/manual-test.js --debug --package-manager=pnpm --styling=css-modules",
-    "test:large": "yarn build && node lib/tests/e2e/manual-test.js --debug --package-manager=pnpm --styling=emotion --react-hook-form --formik --prettier --formatting-pre-commit-hook --chakra --framer-motion --github-actions",
-    "test:cna": "yarn build && node lib/tests/e2e/test-cna.js",
-    "print:help": "yarn build && ./bin-test/run-prod --help",
-    "print:version": "yarn build && ./bin-test/run-prod --help",
-    "version": "oclif-dev readme && git add README.md",
-    "format": "prettier --write --ignore-path=.prettierignore .",
-    "format:check": "prettier --check --ignore-path=.prettierignore .",
-    "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=.gitignore ."
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "build": "pnpm prr build",
+    "build:cli": "pnpm prr --filter create-next-stack build",
+    "build:web": "pnpm prr --filter create-next-stack-website build",
+    "lint": "pnpm prr lint",
+    "lint:cli": "pnpm prr --filter create-next-stack lint",
+    "lint:web": "pnpm prr --filter create-next-stack-website lint",
+    "test": "pnpm prr test",
+    "test:cli": "pnpm prr --filter create-next-stack test",
+    "test:web": "pnpm prr --filter create-next-stack-website test",
+    "prr": "pnpm recursive run"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
+    "prettier": "^2.8.7",
+    "typescript": "^4.9.5"
   },
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"
-  },
-  "dependencies": {
-    "@oclif/command": "^1.8.0",
-    "@oclif/config": "^1.17.0",
-    "@oclif/errors": "^1.3.4",
-    "@oclif/plugin-help": "^3.2.2",
-    "chalk": "^4.1.1",
-    "endent": "^2.1.0",
-    "execa": "^5.1.1",
-    "inquirer": "^8.1.1",
-    "rimraf": "^3.0.2",
-    "tslib": "^2.3.0",
-    "validate-npm-package-name": "^3.0.0"
-  },
-  "devDependencies": {
-    "@oclif/dev-cli": "^1.26.0",
-    "@types/inquirer": "^7.3.2",
-    "@types/node": "^16.4.7",
-    "@types/rimraf": "^3.0.1",
-    "@types/uuid": "^8.3.1",
-    "@types/validate-npm-package-name": "^3.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
-    "eslint": "^7.31.0",
-    "eslint-config-prettier": "^8.3.0",
-    "husky": "^7.0.1",
-    "lint-staged": "^11.0.0",
-    "next": "^13.2.4",
-    "prettier": "^2.3.2",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.9.0",
-    "uuid": "^8.3.2"
   }
 }
