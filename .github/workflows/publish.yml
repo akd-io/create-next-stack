@@ -27,6 +27,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "lts/*"
+          registry-url: "https://registry.npmjs.org"
           cache: pnpm
 
       - name: "Install dependencies"
@@ -34,3 +35,5 @@ jobs:
 
       - name: "Publish packages"
         run: pnpm publish -r
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
