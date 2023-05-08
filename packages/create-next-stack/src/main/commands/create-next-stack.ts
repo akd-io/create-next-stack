@@ -15,13 +15,10 @@ import { logInfo } from "../logging"
 import { performSetupSteps } from "../setup/setup"
 
 export default class CreateNextStack extends Command {
-  static description =
-    "Create Next Stack is a website and CLI tool used to easily set up the boilerplate of new Next.js apps."
-
   static usage = "[APP_NAME] [FLAGS]" // Without "create-next-stack" as OCLIF adds this, even though this is a single command CLI.
 
   static args = {
-    appName: Args.string({
+    app_name: Args.string({
       description: `The name of your app, optionally including a path prefix. Eg.: "my-app" or "path/to/my-app"`,
       required: false,
     }),

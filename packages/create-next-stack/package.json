@@ -58,7 +58,7 @@
     "test:cna": "pnpm build && ts-node src/tests/e2e/test-live-cna.ts",
     "test:cns": "pnpm build && ts-node src/tests/e2e/test-live-cns.ts",
     "print:help": "pnpm build && ./bin/dev --help",
-    "print:version": "pnpm build && ./bin/dev --help",
+    "print:version": "pnpm build && ./bin/dev --version",
     "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=../../.prettierignore ."
   },
   "dependencies": {
