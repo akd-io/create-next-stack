@@ -3,7 +3,6 @@ import chalk from "chalk"
 import endent from "endent"
 import { commandInstance } from "../command-instance"
 import {
-  CreateNextStackArgs,
   CreateNextStackFlags,
   validateArgs,
   validateFlags,
@@ -20,7 +19,7 @@ export default class CreateNextStack extends Command {
   static args = {
     app_name: Args.string({
       description: `The name of your app, optionally including a path prefix. Eg.: "my-app" or "path/to/my-app"`,
-      required: false,
+      required: true,
     }),
   }
 
@@ -40,6 +39,7 @@ export default class CreateNextStack extends Command {
 
     // Package manager:
     "package-manager": Flags.string({
+      required: true,
       options: writablePackageManagerOptions,
       description: "Sets the preferred package manager. (Required)",
     }),
@@ -51,6 +51,7 @@ export default class CreateNextStack extends Command {
 
     // Styling:
     styling: Flags.string({
+      required: true,
       options: writableStylingOptions,
       description: `Sets the preferred styling method. (Required) <styling-method> = ${writableStylingOptions.join(
         "|"
@@ -101,11 +102,7 @@ export default class CreateNextStack extends Command {
     commandInstance.set(this)
 
     try {
-      const { args: weaklyTypedArgs, flags: weaklyTypedFlags } =
-        await this.parse(CreateNextStack)
-
-      const args = weaklyTypedArgs as CreateNextStackArgs
-      const flags = weaklyTypedFlags as CreateNextStackFlags
+      const { args, flags } = await this.parse(CreateNextStack)
 
       if (flags.debug) process.env["DEBUG"] = "true"
 

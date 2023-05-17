@@ -19,7 +19,7 @@ export const generateLandingPageTemplate = (inputs: ValidCNSInputs): string => {
     const LandingPageTemplate = () => {
       const onConfettiLoad = () => {
         const key = "create-next-stack-hasShownConfetti-${encodeURI(
-          getProjectNameOfPath(inputs.args.appName)
+          getProjectNameOfPath(inputs.args.app_name)
         )}";
         const hasShownConfetti = localStorage.getItem(key);
         if (hasShownConfetti != null) return;
