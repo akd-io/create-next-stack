@@ -3,17 +3,18 @@ import { logTestMeta } from "../helpers/log-test-meta"
 import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../helpers/prepare-e2e-test"
 
-export const testNoFlags = async (
+export const testNoAppName = async (
   createNextStackDir: string
 ): Promise<void> => {
-  logTestMeta(testNoFlags.name, __filename)
+  logTestMeta(testNoAppName.name, __filename)
 
   const { pathToCLI, runDirectory } = await prepareE2eTest(createNextStackDir)
 
   const argsVariants: string[][] = [
     //
-    ["app-name"],
-    ["app-name --debug"],
+    [],
+    ["--debug"],
+    ["--package-manager=pnpm"],
   ]
 
   for (const args of argsVariants) {
@@ -22,11 +23,12 @@ export const testNoFlags = async (
       cwd: runDirectory,
     }).catch((error) => {
       if (
-        !error.stderr.includes("Missing required flag package-manager") ||
-        !error.stderr.includes("Missing required flag styling")
+        !error.stderr.includes("Missing 1 required arg") ||
+        !error.stderr.includes("app_name")
       ) {
-        console.log("throwing error")
-        throw new Error("Expected create-next-stack to error on missing flags.")
+        throw new Error(
+          "Expected create-next-stack to error on missing app_name argument."
+        )
       }
     })
   }

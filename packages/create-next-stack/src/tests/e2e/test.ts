@@ -14,6 +14,7 @@ import { testTailwindCssAllFlags } from "./tests/tailwind-css/tailwind-css-all-f
 import { testTailwindCssOnly } from "./tests/tailwind-css/tailwind-css-only"
 import { testHelpFlag } from "./tests/test-help-flag"
 import { testInvalidInputs } from "./tests/test-invalid-inputs"
+import { testNoAppName } from "./tests/test-no-app-name"
 import { testNoFlags } from "./tests/test-no-flags"
 import { testNpm } from "./tests/test-npm"
 import { testVersionFlag } from "./tests/test-version-flag"
@@ -36,8 +37,9 @@ import { testYarn } from "./tests/test-yarn"
     // Invalid inputs
     await testInvalidInputs(createNextStackDir)
 
-    // No flags test
+    // Missing args and flags
     await testNoFlags(createNextStackDir)
+    await testNoAppName(createNextStackDir)
 
     // Package manager tests
     // pnpm is used in all other tests, so not tested here.
