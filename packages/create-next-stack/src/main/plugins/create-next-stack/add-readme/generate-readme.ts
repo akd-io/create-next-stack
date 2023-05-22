@@ -13,7 +13,7 @@ export const generateReadme = async (
   const runCommand = runCommandMap[flags["package-manager"]]
 
   return endent`
-    # ${getProjectNameOfPath(args.appName)}
+    # ${getProjectNameOfPath(args.app_name)}
 
     🎉 Congratulations, your project was successfully generated with [Create Next Stack](https://www.create-next-stack.com/)!
 

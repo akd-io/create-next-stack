@@ -57,8 +57,9 @@
     "test:large": "pnpm build && ts-node src/tests/e2e/test-manual.ts --debug --package-manager=pnpm --styling=emotion --react-hook-form --formik --prettier --formatting-pre-commit-hook --chakra --framer-motion --github-actions",
     "test:cna": "pnpm build && ts-node src/tests/e2e/test-live-cna.ts",
     "test:cns": "pnpm build && ts-node src/tests/e2e/test-live-cns.ts",
+    "test:raw": "pnpm build && ./bin/dev",
     "print:help": "pnpm build && ./bin/dev --help",
-    "print:version": "pnpm build && ./bin/dev --help",
+    "print:version": "pnpm build && ./bin/dev --version",
     "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=../../.prettierignore ."
   },
   "dependencies": {
