@@ -57,7 +57,7 @@ export type Package = {
   version: string
 }
 
-type Technology = {
+export type Technology = {
   /** ID that uniquely identified the technology across all plugins' technologies. */
   id: string
   /** The name of the technology. */

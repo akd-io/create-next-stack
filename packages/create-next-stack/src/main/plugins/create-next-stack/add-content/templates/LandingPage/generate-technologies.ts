@@ -1,20 +1,21 @@
 import endent from "endent"
 import { ValidCNSInputs } from "../../../../../create-next-stack-types"
+import { DeeplyReadonly } from "../../../../../helpers/deeply-readonly"
 import { stringify } from "../../../../../helpers/stringify"
-import { getSortedFilteredTechnologies } from "../../../sort-orders/technologies"
+import { getTechnologies } from "../../../sort-orders/technologies"
 
 // This type should match the one in the template below.
-export type Technology = {
+export type Technology = DeeplyReadonly<{
   name: string
   description: string
   links: Array<{
     title: string
     url: string
   }>
-}
+}>
 
 export const generateTechnologies = (inputs: ValidCNSInputs): string => {
-  const technologies = getSortedFilteredTechnologies(inputs)
+  const technologies: Technology[] = getTechnologies(inputs)
 
   return endent`
     export type Technology = {
