@@ -51,7 +51,7 @@
     "build": "rimraf lib && tsc --build",
     "clean": "rimraf lib && pnpm run clean-tests-dir",
     "clean-tests-dir": "ts-node src/tests/e2e/clean-tests-dir.ts",
-    "test": "pnpm build && ts-node src/tests/e2e/test.ts",
+    "test": "pnpm build && pnpm run jest && ts-node src/tests/e2e/test.ts",
     "jest": "jest",
     "test:manual": "pnpm build && ts-node src/tests/e2e/test-manual.ts --debug",
     "test:small": "pnpm build && ts-node src/tests/e2e/test-manual.ts --debug --package-manager=pnpm --styling=css-modules",
