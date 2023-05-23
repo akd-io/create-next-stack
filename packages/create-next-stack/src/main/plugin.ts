@@ -3,6 +3,8 @@ import { ValidCNSInputs } from "./create-next-stack-types"
 import { DeeplyReadonly } from "./helpers/deeply-readonly"
 
 type PluginConfig = DeeplyReadonly<{
+  /** ID that uniquely identifies the plugin */
+  id: string
   /** Name of the plugin */
   name: string
   /** Description of the plugin */
@@ -91,6 +93,11 @@ type Script = {
 }
 
 type RawStep = {
+  /**
+   * `id` should be written in camelCase, and should be unique across all plugins' steps.
+   */
+  id: string
+
   /**
    * `description` should be written in present continuous tense, without punctuation, and with a lowercase first letter unless the description starts with a name or similar.
    *

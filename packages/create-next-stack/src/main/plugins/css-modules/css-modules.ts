@@ -3,6 +3,7 @@ import { createPlugin } from "../../plugin"
 import { generateGlobalStyles } from "./add-content/styles/global-styles"
 
 export const cssModulesPlugin = createPlugin({
+  id: "css-modules",
   name: "CSS Modules",
   description: "Adds relevant CSS Modules boilerplate and documentation",
   active: ({ flags }) => Boolean(flags.styling === "css-modules"),
@@ -22,7 +23,8 @@ export const cssModulesPlugin = createPlugin({
     },
   ],
   steps: {
-    setup: {
+    setUpCssModules: {
+      id: "setUpCssModules",
       description: "setting up CSS Modules",
       run: async () => {
         await makeDirectory("styles")

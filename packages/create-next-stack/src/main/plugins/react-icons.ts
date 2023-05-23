@@ -1,6 +1,7 @@
 import { createPlugin } from "../plugin"
 
 export const reactIconsPlugin = createPlugin({
+  id: "react-icons",
   name: "React Icons",
   description: "Adds support for React Icons",
   active: ({ flags }) => Boolean(flags["react-icons"]),

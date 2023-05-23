@@ -4,6 +4,7 @@ import { createPlugin } from "../../plugin"
 import { materialTheme } from "./setup/material-theme"
 
 export const materialUIPlugin = createPlugin({
+  id: "material-ui",
   name: "Material UI",
   description: "Adds support for Material UI",
   active: ({ flags }) => Boolean(flags["material-ui"]),
@@ -29,7 +30,8 @@ export const materialUIPlugin = createPlugin({
     },
   ],
   steps: {
-    setup: {
+    setUpMaterialUI: {
+      id: "setUpMaterialUI",
       description: "setting up Material UI",
       run: async () => {
         await writeFile("material-theme.ts", materialTheme)

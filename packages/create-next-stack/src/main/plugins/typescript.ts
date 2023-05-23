@@ -1,6 +1,7 @@
 import { createPlugin } from "../plugin"
 
 export const typescriptPlugin = createPlugin({
+  id: "typescript",
   name: "Typescript",
   description: "Adds relevant Typescript documentation",
   active: true,

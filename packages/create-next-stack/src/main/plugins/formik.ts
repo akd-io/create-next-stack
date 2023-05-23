@@ -1,6 +1,7 @@
 import { createPlugin } from "../plugin"
 
 export const formikPlugin = createPlugin({
+  id: "formik",
   name: "Formik",
   description: "Adds support for Formik",
   active: ({ flags }) => Boolean(flags["formik"]),

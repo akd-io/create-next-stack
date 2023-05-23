@@ -1,6 +1,7 @@
 import { createPlugin } from "../plugin"
 
 export const framerMotionPlugin = createPlugin({
+  id: "framer-motion",
   name: "Framer Motion",
   description: "Adds support for Framer Motion",
   active: ({ flags }) => Boolean(flags["framer-motion"]),

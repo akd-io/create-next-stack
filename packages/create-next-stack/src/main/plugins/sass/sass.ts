@@ -4,6 +4,7 @@ import { cssModulesPlugin } from "../css-modules/css-modules"
 import { generateGlobalStyles } from "./add-content/styles/global-styles"
 
 export const sassPlugin = createPlugin({
+  id: "sass",
   name: "Sass",
   description: "Adds support for Sass",
   active: ({ flags }) => flags.styling === "css-modules-with-sass",
@@ -25,7 +26,8 @@ export const sassPlugin = createPlugin({
     },
   ],
   steps: {
-    setup: {
+    setUpSass: {
+      id: "setUpSass",
       description: "setting up Sass",
       run: async () => {
         await makeDirectory("styles")

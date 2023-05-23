@@ -1,6 +1,7 @@
 import { createPlugin } from "../plugin"
 
 export const npmPlugin = createPlugin({
+  id: "npm",
   name: "npm",
   description: "Adds relevant npm documentation",
   active: ({ flags }) => Boolean(flags["package-manager"] === "npm"),

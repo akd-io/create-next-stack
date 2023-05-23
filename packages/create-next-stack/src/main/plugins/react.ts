@@ -1,6 +1,7 @@
 import { createPlugin } from "../plugin"
 
 export const reactPlugin = createPlugin({
+  id: "react",
   name: "React",
   description: "Adds relevant React documentation",
   active: true,

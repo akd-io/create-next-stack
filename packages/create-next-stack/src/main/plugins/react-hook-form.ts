@@ -1,6 +1,7 @@
 import { createPlugin } from "../plugin"
 
 export const reactHookFormPlugin = createPlugin({
+  id: "react-hook-form",
   name: "React Hook Form",
   description: "Adds support for React Hook Form",
   active: ({ flags }) => Boolean(flags["react-hook-form"]),

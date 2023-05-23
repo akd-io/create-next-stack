@@ -15,6 +15,7 @@ const createNextAppPackage: Package = {
 }
 
 export const nextPlugin = createPlugin({
+  id: "next",
   name: "Next.js",
   description: "Adds Next.js foundation",
   active: true,
@@ -58,6 +59,7 @@ export const nextPlugin = createPlugin({
   ],
   steps: {
     createNextApp: {
+      id: "createNextApp",
       description: "running Create Next App",
 
       run: async ({ args, flags }) => {
@@ -127,6 +129,7 @@ export const nextPlugin = createPlugin({
       },
     },
     removeOfficialCNAContent: {
+      id: "removeOfficialCNAContent",
       description: "removing content added by Create Next App",
       run: async () => {
         await Promise.all([
@@ -140,6 +143,7 @@ export const nextPlugin = createPlugin({
       },
     },
     addNextConfig: {
+      id: "addNextConfig",
       description: "adding next.config.js",
       run: async (inputs) => {
         const nextConfigFileName = "next.config.js"

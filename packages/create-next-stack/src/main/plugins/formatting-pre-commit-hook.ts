@@ -6,6 +6,7 @@ import { logWarning } from "../logging"
 import { createPlugin } from "../plugin"
 
 export const formattingPreCommitHookPlugin = createPlugin({
+  id: "formatting-pre-commit-hook",
   name: "formatting-pre-commit-hook",
   description:
     "Adds support for a formatting pre-commit hook by setting up Husky and lint-staged using mrm",
@@ -51,7 +52,8 @@ export const formattingPreCommitHookPlugin = createPlugin({
     },
   ],
   steps: {
-    setup: {
+    setUpFormattingPreCommitHook: {
+      id: "setUpFormattingPreCommitHook",
       description: "setting up formatting pre-commit hook",
       shouldRun: async () => {
         if (!(await isGitInitialized())) {

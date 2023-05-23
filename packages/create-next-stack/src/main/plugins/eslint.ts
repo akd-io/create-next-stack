@@ -1,6 +1,7 @@
 import { createPlugin } from "../plugin"
 
 export const eslintPlugin = createPlugin({
+  id: "eslint",
   name: "ESLint",
   description: "Adds relevant documentation for ESLint",
   active: true,

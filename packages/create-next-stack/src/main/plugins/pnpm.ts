@@ -3,6 +3,7 @@ import { createPlugin } from "../plugin"
 import { getNameVersionCombo } from "../setup/packages"
 
 export const pnpmPlugin = createPlugin({
+  id: "pnpm",
   name: "pnpm",
   description: "Adds support for pnpm",
   active: ({ flags }) => Boolean(flags["package-manager"] === "pnpm"),
@@ -20,6 +21,7 @@ export const pnpmPlugin = createPlugin({
   ],
   steps: {
     updatePnpm: {
+      id: "updatePnpm",
       description: "updating pnpm",
       run: async () => {
         await runCommand("npm", [

@@ -1,6 +1,7 @@
 import { createPlugin } from "../plugin"
 
 export const styledComponentsPlugin = createPlugin({
+  id: "styled-components",
   name: "Styled Components",
   description: "Adds support for Styled Components",
   active: ({ flags }) => Boolean(flags.styling === "styled-components"),

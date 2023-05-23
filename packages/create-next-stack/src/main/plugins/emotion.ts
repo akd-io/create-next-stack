@@ -2,6 +2,7 @@ import { modifyJsonFile, toObject } from "../helpers/io"
 import { createPlugin } from "../plugin"
 
 export const emotionPlugin = createPlugin({
+  id: "emotion",
   name: "Emotion",
   description: "Adds support for Emotion",
   active: ({ flags }) => flags.styling === "emotion",
@@ -22,7 +23,8 @@ export const emotionPlugin = createPlugin({
     },
   ],
   steps: {
-    setup: {
+    setUpEmotion: {
+      id: "setUpEmotion",
       description: "setting up Emotion",
       run: async () => {
         /*

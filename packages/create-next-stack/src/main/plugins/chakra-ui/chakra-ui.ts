@@ -4,6 +4,7 @@ import { createPlugin } from "../../plugin"
 import { chakraTheme } from "./setup/chakra-theme"
 
 export const chakraUIPlugin = createPlugin({
+  id: "chakra-ui",
   name: "Chakra UI",
   description: "Adds support for Chakra UI",
   active: ({ flags }) => Boolean(flags.chakra),
@@ -30,7 +31,8 @@ export const chakraUIPlugin = createPlugin({
     },
   ],
   steps: {
-    setup: {
+    setUpChakraUI: {
+      id: "setUpChakraUI",
       description: "setting up Chakra UI",
       run: async () => {
         await writeFile("chakra-theme.ts", chakraTheme)
