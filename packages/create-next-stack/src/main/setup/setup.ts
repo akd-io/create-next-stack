@@ -31,7 +31,9 @@ import { yarnPlugin } from "../plugins/yarn"
 import { steps } from "../steps"
 import { printFinalMessages } from "./print-final-messages"
 
-// Ordered by relevance to the user for use in technology lists // TODO: Fix this by having separate ordered lists of plugins where other sortings are needed.
+// Ordered by relevance to the user for use in technology lists
+// TODO: Fix this by having separate ordered lists of plugins where other sortings are needed.
+
 export const plugins: Plugin[] = [
   createNextStackPlugin,
   nextPlugin,

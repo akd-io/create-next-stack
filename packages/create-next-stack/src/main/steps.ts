@@ -13,16 +13,6 @@ import { sassPlugin } from "./plugins/sass/sass"
 import { tailwindCSSPlugin } from "./plugins/tailwind-css"
 import { yarnPlugin } from "./plugins/yarn"
 
-console.log("createNextApp", typeof nextPlugin?.steps?.createNextApp)
-console.log(
-  "removeOfficialCNAContent",
-  typeof nextPlugin?.steps?.removeOfficialCNAContent
-)
-console.log(
-  "installDependencies:",
-  typeof createNextStackPlugin?.steps?.installDependencies
-)
-
 export const steps: Step[] = [
   // Update package manager
   pnpmPlugin.steps.updatePnpm,

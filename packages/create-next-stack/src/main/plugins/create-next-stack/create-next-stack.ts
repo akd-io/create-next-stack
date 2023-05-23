@@ -22,6 +22,7 @@ import { generateIndexPage } from "./add-content/pages/generate-index"
 import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate"
 import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
 import { generateReadme } from "./add-readme/generate-readme"
+import { getSortedFilteredScripts } from "./scripts/sort-order"
 
 const gitAttributesFilename = ".gitattributes"
 
@@ -36,11 +37,7 @@ export const createNextStackPlugin = createPlugin({
       id: "addScripts",
       description: "adding scripts to package.json",
       run: async (inputs) => {
-        const scripts = filterPlugins(inputs).flatMap(
-          (plugin) => plugin.scripts ?? []
-        )
-
-        // TODO: Add a scripts sort order here. Use TypeScript to force setting all plugin scripts.
+        const scripts = getSortedFilteredScripts(inputs)
 
         await modifyJsonFile("package.json", (packageJson) => ({
           ...packageJson,
