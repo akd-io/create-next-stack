@@ -24,6 +24,7 @@ export const formattingPreCommitHookPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "husky",
       name: "Husky",
       description:
         "Husky uses git hooks to let you run code at specific times in your git workflow. It is mainly used to format and lint code in a pre-commit hook to ensure committed code is formatted and free of error.",
@@ -34,6 +35,7 @@ export const formattingPreCommitHookPlugin = createPlugin({
       ],
     },
     {
+      id: "lintStaged",
       name: "lint-staged",
       description:
         "lint-staged is a tool for running commands on staged files in a git repository. It is mainly used to filter out files that aren't staged during a formatting or linting pre-commit hook.",

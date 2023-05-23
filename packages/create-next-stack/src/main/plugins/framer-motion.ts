@@ -13,6 +13,7 @@ export const framerMotionPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "framerMotion",
       name: "Framer Motion",
       description:
         "Framer Motion is a popular React animation library. It allows users to create both simple animations and complex gesture-based interactions. The library implements a declarative API, otherwise known as spring animations, which lets the developer define the animation's end state, letting the library handle the rest.",

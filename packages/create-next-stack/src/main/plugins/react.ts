@@ -7,6 +7,7 @@ export const reactPlugin = createPlugin({
   active: true,
   technologies: [
     {
+      id: "react",
       name: "React",
       description:
         "React is a JavaScript library for building declarative and flexible user interfaces in a functional paradigm. Being the most popular front-end library in the world, it enables developers to create reusable UI components that can be composed to build complex web applications.",

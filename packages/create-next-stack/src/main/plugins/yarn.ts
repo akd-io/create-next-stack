@@ -9,6 +9,7 @@ export const yarnPlugin = createPlugin({
   active: ({ flags }) => Boolean(flags["package-manager"] === "yarn"),
   technologies: [
     {
+      id: "yarn",
       name: "Yarn",
       description:
         "Yarn is a JavaScript package manager compatible with the npm registry that helps developers automate the process around npm packages such as installing, updating, removing, and more.",

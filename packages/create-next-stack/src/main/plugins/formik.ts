@@ -13,6 +13,7 @@ export const formikPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "formik",
       name: "Formik",
       description:
         "Formik is a React library that helps simplify the process of building and working with forms in React. It is designed to take care of the repetitive and tedious parts of form building, validation, and submission, making it easier and faster for developers to create forms.",

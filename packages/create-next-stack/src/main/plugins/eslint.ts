@@ -7,6 +7,7 @@ export const eslintPlugin = createPlugin({
   active: true,
   technologies: [
     {
+      id: "eslint",
       name: "ESLint",
       description:
         "ESLint is a tool for linting JavaScript and TypeScript code. It is used to check for errors in code and to enforce coding conventions. It can be configured to use custom rule sets and is often run both by code editors during development as well as in CI/CD.",

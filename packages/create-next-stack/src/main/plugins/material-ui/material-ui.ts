@@ -16,6 +16,7 @@ export const materialUIPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "materialUI",
       name: "Material UI",
       description:
         "Material UI is a React UI component library that implements Google's material design guidelines. It features pre-built with components ranging from basic buttons and form input fields to tooltips and modals.",

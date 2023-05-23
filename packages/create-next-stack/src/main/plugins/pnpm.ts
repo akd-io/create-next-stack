@@ -9,6 +9,7 @@ export const pnpmPlugin = createPlugin({
   active: ({ flags }) => Boolean(flags["package-manager"] === "pnpm"),
   technologies: [
     {
+      id: "pnpm",
       name: "pnpm",
       description:
         "pnpm is a JavaScript package manager compatible with the npm registry that performs better than Yarn and npm by using hard links and symlinks to allow package caching across projects.",

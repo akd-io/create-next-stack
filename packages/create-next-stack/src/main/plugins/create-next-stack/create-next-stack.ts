@@ -22,7 +22,7 @@ import { generateIndexPage } from "./add-content/pages/generate-index"
 import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate"
 import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
 import { generateReadme } from "./add-readme/generate-readme"
-import { getSortedFilteredScripts } from "./scripts/sort-order"
+import { getSortedFilteredScripts } from "./sort-orders/scripts"
 
 const gitAttributesFilename = ".gitattributes"
 

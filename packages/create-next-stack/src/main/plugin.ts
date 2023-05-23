@@ -58,6 +58,8 @@ export type Package = {
 }
 
 type Technology = {
+  /** ID that uniquely identified the technology across all plugins' technologies. */
+  id: string
   /** The name of the technology. */
   name: string
   /** Description of a technology. This is displayed in the generated README.md file, as well as in the landing page's list of technologies. */
@@ -93,9 +95,7 @@ type Script = {
 }
 
 type RawStep = {
-  /**
-   * `id` should be written in camelCase, and should be unique across all plugins' steps.
-   */
+  /** ID that uniquely identified the technology across all plugins' steps. */
   id: string
 
   /**

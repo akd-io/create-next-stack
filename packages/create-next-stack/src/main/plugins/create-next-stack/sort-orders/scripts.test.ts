@@ -1,6 +1,6 @@
 import { test } from "@jest/globals"
 import { plugins } from "../../../setup/setup"
-import { scriptsSortOrder } from "./sort-order"
+import { scriptsSortOrder } from "./scripts"
 
 test("`scriptsSortOrder` contains no duplicates", () => {
   const seenScripts = new Set<string>()

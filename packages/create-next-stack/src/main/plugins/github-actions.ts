@@ -16,6 +16,7 @@ export const githubActionsPlugin = createPlugin({
   active: ({ flags }) => Boolean(flags["github-actions"]),
   technologies: [
     {
+      id: "githubActions",
       name: "GitHub Actions",
       description:
         "GitHub Actions is a tool for automating software development workflows. It is integrated with GitHub repositories and enables developers to automate tasks such as building, testing, and deploying their applications.",

@@ -21,6 +21,7 @@ export const nextPlugin = createPlugin({
   active: true,
   technologies: [
     {
+      id: "next",
       name: "Next.js",
       description:
         "Next.js is the leading framework in the React ecosystem, featuring server-side rendering and static site generation among other rendering techniques. Utilizing its file-based routing architecture and its zero-config design principle, it is designed to enhance both the user and developer experience.",

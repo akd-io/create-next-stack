@@ -12,6 +12,7 @@ export const sassPlugin = createPlugin({
   technologies: [
     cssModulesPlugin.technologies[0],
     {
+      id: "sass",
       name: "Sass",
       description:
         "Sass is a stylesheet language that is compiled to CSS. It is an extension of CSS that adds extra powers to the basic language. It allows developers to use variables, nested rules, mixins, inline imports, and more.",

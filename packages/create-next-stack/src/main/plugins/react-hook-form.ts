@@ -13,6 +13,7 @@ export const reactHookFormPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "reactHookForm",
       name: "React Hook Form",
       description:
         "React Hook Form is a React library that simplifies the process of implementing forms from state management to input validation and error handling. Unlike previous form libraries, it provides better performance by storing the form state in the dom by default.",

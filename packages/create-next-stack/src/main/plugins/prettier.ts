@@ -15,6 +15,7 @@ export const prettierPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "prettier",
       name: "Prettier",
       description:
         "Prettier is a tool for formatting code. It is optimized for readability and consistency, and its opinionated nature ensures developers won't spent time debating code formatting configurations. Prettier normally runs in a pre-commit hook to ensure code is formatted before it is committed.",

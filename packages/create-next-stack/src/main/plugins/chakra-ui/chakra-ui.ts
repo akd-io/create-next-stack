@@ -20,6 +20,7 @@ export const chakraUIPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "chakraUI",
       name: "Chakra UI",
       description:
         "Chakra UI is a simple, modular, and accessible React component library that provides all the building blocks needed to build React user interfaces. It uses Emotion under the hood and includes components ranging from basic buttons and form input fields to tooltips and modals.",
