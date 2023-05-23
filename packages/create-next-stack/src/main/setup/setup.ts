@@ -28,6 +28,7 @@ import { styledComponentsPlugin } from "../plugins/styled-components"
 import { tailwindCSSPlugin } from "../plugins/tailwind-css"
 import { typescriptPlugin } from "../plugins/typescript"
 import { yarnPlugin } from "../plugins/yarn"
+import { steps } from "../steps"
 import { printFinalMessages } from "./print-final-messages"
 
 // Ordered by relevance to the user for use in technology lists // TODO: Fix this by having separate ordered lists of plugins where other sortings are needed.
@@ -55,53 +56,6 @@ export const plugins: Plugin[] = [
   githubActionsPlugin,
   reactIconsPlugin,
 ]
-
-export const steps = [
-  // Update package manager
-  pnpmPlugin.steps.updatePnpm,
-  yarnPlugin.steps.updateYarn,
-
-  // Create Next App
-  nextPlugin.steps.createNextApp,
-  nextPlugin.steps.removeOfficialCNAContent,
-
-  // Install dependencies
-  createNextStackPlugin.steps.installDependencies,
-
-  // Configuration
-  createNextStackPlugin.steps.addScripts,
-  createNextStackPlugin.steps.addGitAttributes,
-  nextPlugin.steps.addNextConfig,
-
-  // Styling
-  tailwindCSSPlugin.steps.setUpTailwindCss,
-  cssModulesPlugin.steps.setUpCssModules,
-  sassPlugin.steps.setUpSass,
-  emotionPlugin.steps.setUpEmotion,
-
-  // Formatting
-  prettierPlugin.steps.setUpPrettier,
-  formattingPreCommitHookPlugin.steps.setUpFormattingPreCommitHook,
-
-  // Continuous integration
-  githubActionsPlugin.steps.addGithubWorkflowStep,
-
-  // Add/generate content
-  createNextStackPlugin.steps.copyAssets,
-  createNextStackPlugin.steps.addContent,
-  createNextStackPlugin.steps.addReadme,
-
-  // Component libraries
-  chakraUIPlugin.steps.setUpChakraUI,
-  materialUIPlugin.steps.setUpMaterialUI,
-
-  // Uninstall temporary dependencies
-  createNextStackPlugin.steps.uninstallTemporaryDependencies,
-
-  // Format & initial commit
-  createNextStackPlugin.steps.formatProject,
-  createNextStackPlugin.steps.initialCommit,
-] as const
 
 export const filterPlugins = (inputs: ValidCNSInputs): Plugin[] =>
   plugins.filter((plugin) => evalActive(plugin.active, inputs))
