@@ -56,59 +56,59 @@ export const plugins: Plugin[] = [
   reactIconsPlugin,
 ]
 
+export const steps = [
+  // Update package manager
+  pnpmPlugin.steps.updatePnpm,
+  yarnPlugin.steps.updateYarn,
+
+  // Create Next App
+  nextPlugin.steps.createNextApp,
+  nextPlugin.steps.removeOfficialCNAContent,
+
+  // Install dependencies
+  createNextStackPlugin.steps.installDependencies,
+
+  // Configuration
+  createNextStackPlugin.steps.addScripts,
+  createNextStackPlugin.steps.addGitAttributes,
+  nextPlugin.steps.addNextConfig,
+
+  // Styling
+  tailwindCSSPlugin.steps.setUpTailwindCss,
+  cssModulesPlugin.steps.setUpCssModules,
+  sassPlugin.steps.setUpSass,
+  emotionPlugin.steps.setUpEmotion,
+
+  // Formatting
+  prettierPlugin.steps.setUpPrettier,
+  formattingPreCommitHookPlugin.steps.setUpFormattingPreCommitHook,
+
+  // Continuous integration
+  githubActionsPlugin.steps.addGithubWorkflowStep,
+
+  // Add/generate content
+  createNextStackPlugin.steps.copyAssets,
+  createNextStackPlugin.steps.addContent,
+  createNextStackPlugin.steps.addReadme,
+
+  // Component libraries
+  chakraUIPlugin.steps.setUpChakraUI,
+  materialUIPlugin.steps.setUpMaterialUI,
+
+  // Uninstall temporary dependencies
+  createNextStackPlugin.steps.uninstallTemporaryDependencies,
+
+  // Format & initial commit
+  createNextStackPlugin.steps.formatProject,
+  createNextStackPlugin.steps.initialCommit,
+] as const
+
 export const filterPlugins = (inputs: ValidCNSInputs): Plugin[] =>
   plugins.filter((plugin) => evalActive(plugin.active, inputs))
 
 export const performSetupSteps = async (
   inputs: ValidCNSInputs
 ): Promise<void> => {
-  const steps = [
-    // Update package manager
-    pnpmPlugin.steps.updatePnpm,
-    yarnPlugin.steps.updateYarn,
-
-    // Create Next App
-    nextPlugin.steps.createNextApp,
-    nextPlugin.steps.removeOfficialCNAContent,
-
-    // Install dependencies
-    createNextStackPlugin.steps.installDependencies,
-
-    // Configuration
-    createNextStackPlugin.steps.addScripts,
-    createNextStackPlugin.steps.addGitAttributes,
-    nextPlugin.steps.addNextConfig,
-
-    // Styling
-    tailwindCSSPlugin.steps.setup,
-    cssModulesPlugin.steps.setup,
-    sassPlugin.steps.setup,
-    emotionPlugin.steps.setup,
-
-    // Formatting
-    prettierPlugin.steps.setup,
-    formattingPreCommitHookPlugin.steps.setup,
-
-    // Continuous integration
-    githubActionsPlugin.steps.addGithubWorkflowStep,
-
-    // Add/generate content
-    createNextStackPlugin.steps.copyAssets,
-    createNextStackPlugin.steps.addContent,
-    createNextStackPlugin.steps.addReadme,
-
-    // Component libraries
-    chakraUIPlugin.steps.setup,
-    materialUIPlugin.steps.setup,
-
-    // Uninstall temporary dependencies
-    createNextStackPlugin.steps.uninstallTemporaryDependencies,
-
-    // Format & initial commit
-    createNextStackPlugin.steps.formatProject,
-    createNextStackPlugin.steps.initialCommit,
-  ] as const
-
   const allStepsDiff = await time(async () => {
     for (const step of steps) {
       const pluginActive = evalActive(step.plugin.active, inputs)
