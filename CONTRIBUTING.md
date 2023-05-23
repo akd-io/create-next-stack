@@ -74,6 +74,7 @@ Make sure you are set up locally by following the [Getting Started](#getting-sta
 
    - `check-types:watch` - Runs TypeScript in watch mode to check types as you make changes. You can run this instead of `build:watch` while working on the CLI, as the e2e tests do just-in-time compilation via `ts-node`.
    - `jest:watch` - Runs Jest in watch mode to run unit tests as you make changes.
+     - These tests were specifically made to ease the plugin authoring process, so don't forget this one.
    - `test` - Runs e2e tests. Note that this will run all e2e tests, which can take quite a while.
    - `lint` - Runs ESLint to lint the project.
    - `test:manual`
