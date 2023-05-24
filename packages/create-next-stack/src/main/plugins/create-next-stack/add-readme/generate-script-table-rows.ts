@@ -1,16 +1,12 @@
 import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { filterPlugins } from "../../../setup/setup"
+import { getSortedFilteredScripts } from "../sort-orders/scripts"
 
 export const generateScriptTableRows = async (
   inputs: ValidCNSInputs
 ): Promise<string> => {
-  const pluginScripts = filterPlugins(inputs).flatMap(
-    (plugin) => plugin.scripts ?? []
-  )
-
-  const scriptRowsString = pluginScripts
+  const scripts = getSortedFilteredScripts(inputs)
+  const scriptRowsString = scripts
     .map((script) => `|\`${script.name}\`|${script.description}|`)
     .join("\n")
-
   return scriptRowsString
 }

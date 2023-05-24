@@ -22,23 +22,22 @@ import { generateIndexPage } from "./add-content/pages/generate-index"
 import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate"
 import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
 import { generateReadme } from "./add-readme/generate-readme"
+import { getSortedFilteredScripts } from "./sort-orders/scripts"
 
 const gitAttributesFilename = ".gitattributes"
 
 export const createNextStackPlugin = createPlugin({
+  id: "create-next-stack",
   name: "Create Next Stack",
   description:
     "Adds various miscellaneous steps. Some necessities, some niceties.",
   active: true,
   steps: {
     addScripts: {
+      id: "addScripts",
       description: "adding scripts to package.json",
       run: async (inputs) => {
-        const scripts = filterPlugins(inputs).flatMap(
-          (plugin) => plugin.scripts ?? []
-        )
-
-        // TODO: Add a scripts sort order here. Use TypeScript to force setting all plugin scripts.
+        const scripts = getSortedFilteredScripts(inputs)
 
         await modifyJsonFile("package.json", (packageJson) => ({
           ...packageJson,
@@ -56,6 +55,7 @@ export const createNextStackPlugin = createPlugin({
       },
     },
     copyAssets: {
+      id: "copyAssets",
       description: "copying static assets",
       run: async (): Promise<void> => {
         const createNextStackDir = getCreateNextStackDir()
@@ -65,6 +65,7 @@ export const createNextStackPlugin = createPlugin({
       },
     },
     addContent: {
+      id: "addContent",
       description: "adding content",
       run: async (inputs) => {
         await makeDirectory("components")
@@ -84,6 +85,7 @@ export const createNextStackPlugin = createPlugin({
       },
     },
     addReadme: {
+      id: "addReadme",
       description: "adding Readme",
       run: async (inputs) => {
         const readmeFileName = "README.md"
@@ -93,6 +95,7 @@ export const createNextStackPlugin = createPlugin({
       },
     },
     initialCommit: {
+      id: "initialCommit",
       description: "adding initial commit",
       shouldRun: async () => {
         if (!(await isGitInitialized())) {
@@ -113,6 +116,7 @@ export const createNextStackPlugin = createPlugin({
       },
     },
     installDependencies: {
+      id: "installDependencies",
       description: "installing dependencies",
       run: async (inputs) => {
         const { flags } = inputs
@@ -143,6 +147,7 @@ export const createNextStackPlugin = createPlugin({
       },
     },
     uninstallTemporaryDependencies: {
+      id: "uninstallTemporaryDependencies",
       description: "uninstalling temporary dependencies",
       run: async (inputs) => {
         const tmpDeps = filterPlugins(inputs).flatMap((plugin) => {
@@ -157,6 +162,7 @@ export const createNextStackPlugin = createPlugin({
       },
     },
     formatProject: {
+      id: "formatProject",
       description: "formatting project",
       run: async () => {
         await runCommand("npx", [
@@ -167,6 +173,7 @@ export const createNextStackPlugin = createPlugin({
       },
     },
     addGitAttributes: {
+      id: "addGitAttributes",
       description: `adding ${gitAttributesFilename}`,
       shouldRun: async () => {
         if (!(await isGitInitialized())) {

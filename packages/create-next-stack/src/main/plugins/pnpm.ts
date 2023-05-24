@@ -3,11 +3,13 @@ import { createPlugin } from "../plugin"
 import { getNameVersionCombo } from "../setup/packages"
 
 export const pnpmPlugin = createPlugin({
+  id: "pnpm",
   name: "pnpm",
   description: "Adds support for pnpm",
   active: ({ flags }) => Boolean(flags["package-manager"] === "pnpm"),
   technologies: [
     {
+      id: "pnpm",
       name: "pnpm",
       description:
         "pnpm is a JavaScript package manager compatible with the npm registry that performs better than Yarn and npm by using hard links and symlinks to allow package caching across projects.",
@@ -20,6 +22,7 @@ export const pnpmPlugin = createPlugin({
   ],
   steps: {
     updatePnpm: {
+      id: "updatePnpm",
       description: "updating pnpm",
       run: async () => {
         await runCommand("npm", [

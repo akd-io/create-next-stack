@@ -14,14 +14,14 @@ export const printFinalMessages = ({ args, flags }: ValidCNSInputs): void => {
   logInfo("")
   logInfo(
     chalk.green(
-      `Successfully created project ${getProjectNameOfPath(args.appName)}!`
+      `Successfully created project ${getProjectNameOfPath(args.app_name)}!`
     )
   )
   logInfo("")
   logInfo("To get started, run:")
   logInfo("")
-  if (args.appName !== ".") {
-    logInfo(chalk.cyan(`    cd ${args.appName}`))
+  if (args.app_name !== ".") {
+    logInfo(chalk.cyan(`    cd ${args.app_name}`))
   }
   logInfo(chalk.cyan(`    ${runCommandMap[flags["package-manager"]]} dev`))
   logInfo("")

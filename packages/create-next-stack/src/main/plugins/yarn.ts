@@ -3,11 +3,13 @@ import { createPlugin } from "../plugin"
 import { getNameVersionCombo } from "../setup/packages"
 
 export const yarnPlugin = createPlugin({
+  id: "yarn",
   name: "Yarn",
   description: "Adds support for Yarn",
   active: ({ flags }) => Boolean(flags["package-manager"] === "yarn"),
   technologies: [
     {
+      id: "yarn",
       name: "Yarn",
       description:
         "Yarn is a JavaScript package manager compatible with the npm registry that helps developers automate the process around npm packages such as installing, updating, removing, and more.",
@@ -20,6 +22,7 @@ export const yarnPlugin = createPlugin({
   ],
   steps: {
     updateYarn: {
+      id: "updateYarn",
       description: "updating Yarn",
       run: async () => {
         await runCommand("npm", [

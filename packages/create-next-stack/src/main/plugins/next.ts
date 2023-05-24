@@ -5,7 +5,7 @@ import { makeDirectory, writeFile } from "../helpers/io"
 import { remove } from "../helpers/remove"
 import { runCommand } from "../helpers/run-command"
 import { logDebug } from "../logging"
-import { createPlugin, Package } from "../plugin"
+import { Package, createPlugin } from "../plugin"
 import { getNameVersionCombo } from "../setup/packages"
 import { generateNextConfig } from "./create-next-stack/add-next-config/generate-next-config"
 
@@ -15,11 +15,13 @@ const createNextAppPackage: Package = {
 }
 
 export const nextPlugin = createPlugin({
+  id: "next",
   name: "Next.js",
   description: "Adds Next.js foundation",
   active: true,
   technologies: [
     {
+      id: "next",
       name: "Next.js",
       description:
         "Next.js is the leading framework in the React ecosystem, featuring server-side rendering and static site generation among other rendering techniques. Utilizing its file-based routing architecture and its zero-config design principle, it is designed to enhance both the user and developer experience.",
@@ -58,22 +60,23 @@ export const nextPlugin = createPlugin({
   ],
   steps: {
     createNextApp: {
+      id: "createNextApp",
       description: "running Create Next App",
 
       run: async ({ args, flags }) => {
         // Make sure directory exists to avoid error from create-next-app
-        await makeDirectory(args.appName)
+        await makeDirectory(args.app_name)
 
         logDebug(endent`
-          Directory created: ${args.appName}
+          Directory created: ${args.app_name}
     
           To open the project in vscode, run:
     
-              ${chalk.cyan(`code ${path.resolve(args.appName)}`)}
+              ${chalk.cyan(`code ${path.resolve(args.app_name)}`)}
         `)
 
         const createNextAppArgs = [
-          args.appName,
+          args.app_name,
           "--typescript",
           "--eslint",
           "--no-experimental-app",
@@ -122,11 +125,12 @@ export const nextPlugin = createPlugin({
         // Reset npm_config_user_agent
         process.env["npm_config_user_agent"] = oldNpmConfigUserAgent
 
-        logDebug("Changing directory to", args.appName)
-        process.chdir(args.appName)
+        logDebug("Changing directory to", args.app_name)
+        process.chdir(args.app_name)
       },
     },
     removeOfficialCNAContent: {
+      id: "removeOfficialCNAContent",
       description: "removing content added by Create Next App",
       run: async () => {
         await Promise.all([
@@ -140,6 +144,7 @@ export const nextPlugin = createPlugin({
       },
     },
     addNextConfig: {
+      id: "addNextConfig",
       description: "adding next.config.js",
       run: async (inputs) => {
         const nextConfigFileName = "next.config.js"

@@ -4,6 +4,7 @@ import { cssModulesPlugin } from "../css-modules/css-modules"
 import { generateGlobalStyles } from "./add-content/styles/global-styles"
 
 export const sassPlugin = createPlugin({
+  id: "sass",
   name: "Sass",
   description: "Adds support for Sass",
   active: ({ flags }) => flags.styling === "css-modules-with-sass",
@@ -11,6 +12,7 @@ export const sassPlugin = createPlugin({
   technologies: [
     cssModulesPlugin.technologies[0],
     {
+      id: "sass",
       name: "Sass",
       description:
         "Sass is a stylesheet language that is compiled to CSS. It is an extension of CSS that adds extra powers to the basic language. It allows developers to use variables, nested rules, mixins, inline imports, and more.",
@@ -25,7 +27,8 @@ export const sassPlugin = createPlugin({
     },
   ],
   steps: {
-    setup: {
+    setUpSass: {
+      id: "setUpSass",
       description: "setting up Sass",
       run: async () => {
         await makeDirectory("styles")

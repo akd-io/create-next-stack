@@ -1,6 +1,7 @@
 import { createPlugin } from "../plugin"
 
 export const styledComponentsPlugin = createPlugin({
+  id: "styled-components",
   name: "Styled Components",
   description: "Adds support for Styled Components",
   active: ({ flags }) => Boolean(flags.styling === "styled-components"),
@@ -15,6 +16,7 @@ export const styledComponentsPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "styledComponents",
       name: "Styled Components",
       description:
         "Styled Components is a React CSS-in-JS library designed for writing css styles inside JavaScript and TypeScript files. It provides powerful and predictable style composition in addition to a great developer experience. Developers can style their components using both string and object notation.",

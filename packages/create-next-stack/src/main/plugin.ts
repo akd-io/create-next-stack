@@ -3,6 +3,8 @@ import { ValidCNSInputs } from "./create-next-stack-types"
 import { DeeplyReadonly } from "./helpers/deeply-readonly"
 
 type PluginConfig = DeeplyReadonly<{
+  /** ID that uniquely identifies the plugin */
+  id: string
   /** Name of the plugin */
   name: string
   /** Description of the plugin */
@@ -55,7 +57,9 @@ export type Package = {
   version: string
 }
 
-type Technology = {
+export type Technology = {
+  /** ID that uniquely identified the technology across all plugins' technologies. */
+  id: string
   /** The name of the technology. */
   name: string
   /** Description of a technology. This is displayed in the generated README.md file, as well as in the landing page's list of technologies. */
@@ -91,6 +95,9 @@ type Script = {
 }
 
 type RawStep = {
+  /** ID that uniquely identified the technology across all plugins' steps. */
+  id: string
+
   /**
    * `description` should be written in present continuous tense, without punctuation, and with a lowercase first letter unless the description starts with a name or similar.
    *

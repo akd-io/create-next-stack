@@ -1,10 +1,14 @@
-import { Box, Flex } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 import { ComponentProps, FC } from "react"
 
 type SectionProps = ComponentProps<typeof Flex> & {
-  innerProps?: ComponentProps<typeof Box>
+  innerProps?: ComponentProps<typeof Flex>
 }
-export const Section: FC<SectionProps> = ({ boxProps, children, ...props }) => {
+export const Section: FC<SectionProps> = ({
+  innerProps,
+  children,
+  ...props
+}) => {
   return (
     <Flex
       direction="column"
@@ -19,7 +23,7 @@ export const Section: FC<SectionProps> = ({ boxProps, children, ...props }) => {
         width="100%"
         maxWidth="800"
         alignItems="center"
-        {...boxProps}
+        {...innerProps}
       >
         {children}
       </Flex>

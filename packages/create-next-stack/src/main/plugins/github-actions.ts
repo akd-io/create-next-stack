@@ -10,11 +10,13 @@ import { createPlugin, evalActive } from "../plugin"
 import { prettierPlugin } from "./prettier"
 
 export const githubActionsPlugin = createPlugin({
+  id: "github-actions",
   name: "GitHub Actions",
   description: "Adds support for GitHub Actions",
   active: ({ flags }) => Boolean(flags["github-actions"]),
   technologies: [
     {
+      id: "githubActions",
       name: "GitHub Actions",
       description:
         "GitHub Actions is a tool for automating software development workflows. It is integrated with GitHub repositories and enables developers to automate tasks such as building, testing, and deploying their applications.",
@@ -44,6 +46,7 @@ export const githubActionsPlugin = createPlugin({
   ],
   steps: {
     addGithubWorkflowStep: {
+      id: "addGithubWorkflowStep",
       description: "adding GitHub workflow",
       run: async (inputs) => {
         const directory = ".github/workflows"

@@ -2,6 +2,7 @@ import { modifyJsonFile, toArray, writeJsonFile } from "../helpers/io"
 import { createPlugin } from "../plugin"
 
 export const prettierPlugin = createPlugin({
+  id: "prettier",
   name: "Prettier",
   description: "Adds support for Prettier",
   active: ({ flags }) => Boolean(flags.prettier),
@@ -14,6 +15,7 @@ export const prettierPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "prettier",
       name: "Prettier",
       description:
         "Prettier is a tool for formatting code. It is optimized for readability and consistency, and its opinionated nature ensures developers won't spent time debating code formatting configurations. Prettier normally runs in a pre-commit hook to ensure code is formatted before it is committed.",
@@ -38,7 +40,8 @@ export const prettierPlugin = createPlugin({
     },
   ],
   steps: {
-    setup: {
+    setUpPrettier: {
+      id: "setUpPrettier",
       description: "setting up Prettier",
       run: async () => {
         await Promise.all([addPrettierConfig(), setUpEslintConfigPrettier()])

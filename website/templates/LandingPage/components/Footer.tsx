@@ -9,8 +9,7 @@ export const Footer: React.FC = () => {
     <Section
       as="footer"
       innerProps={{
-        alignItems: "left",
-        gap: "32px",
+        gap: "24px",
       }}
     >
       <SocialIcons />

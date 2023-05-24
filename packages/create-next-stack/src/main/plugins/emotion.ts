@@ -2,6 +2,7 @@ import { modifyJsonFile, toObject } from "../helpers/io"
 import { createPlugin } from "../plugin"
 
 export const emotionPlugin = createPlugin({
+  id: "emotion",
   name: "Emotion",
   description: "Adds support for Emotion",
   active: ({ flags }) => flags.styling === "emotion",
@@ -11,6 +12,7 @@ export const emotionPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "emotion",
       name: "Emotion",
       description:
         "Emotion is a React CSS-in-JS library designed for writing css styles inside JavaScript and TypeScript files. It provides powerful and predictable style composition in addition to a great developer experience. Developers can style their components using both string and object notation.",
@@ -22,7 +24,8 @@ export const emotionPlugin = createPlugin({
     },
   ],
   steps: {
-    setup: {
+    setUpEmotion: {
+      id: "setUpEmotion",
       description: "setting up Emotion",
       run: async () => {
         /*
