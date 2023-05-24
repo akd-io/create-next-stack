@@ -70,19 +70,33 @@ Make sure you are set up locally by following the [Getting Started](#getting-sta
 
    - `git checkout -b feature/support-my-favorite-technology`
 
-2. Add a new .ts file for your plugin in the plugins directory at `packages\create-next-stack\src\main\plugins`
+2. Useful npm scripts of `packages/create-next-stack` to run during development:
+
+   - `check-types:watch` - Runs TypeScript in watch mode to check types as you make changes. You can run this instead of `build:watch` while working on the CLI, as the e2e tests do just-in-time compilation via `ts-node`.
+   - `jest:watch` - Runs Jest in watch mode to run unit tests as you make changes.
+     - These tests were specifically made to ease the plugin authoring process, so don't forget this one.
+   - `test` - Runs e2e tests. Note that this will run all e2e tests, which can take quite a while.
+   - `lint` - Runs ESLint to lint the project.
+   - `test:manual`
+     - For example, `pnpm run test:manual --package-manager=pnpm --styling=emotion`.
+     - Sets up a new directory for a test run of the CLI, runs the CLI with the specified flags, and builds the generated Next app, and checks formatting and linting.
+     - This is useful for manually testing the CLI. Pass whatever flags to the CLI that you want to test. The `app_name` argument will be set automatically.
+   - `test:raw` - Runs the binary directly. Rarely used, but can be useful for manual tests where you want to be able to specify the `app_name` argument yourself.
+   - `clean` - Removes all generated files, including build files and the `create-next-stack-tests` directory created by the e2e tests.
+
+3. Add a new .ts file for your plugin in the plugins directory at `packages\create-next-stack\src\main\plugins`
 
    - See the [Writing a plugin section](#writing-a-plugin) below to learn how to write a Create Next Stack plugin.
 
-3. Add new flags to the `create-next-stack` command in [`create-next-stack.ts`](packages\create-next-stack\src\main\commands\create-next-stack.ts).
-4. Add the plugin to the `plugins` array in [`setup.ts`](packages/create-next-stack/src/main/setup/setup.ts).
-5. Add potential plugin steps to the `steps` array in [`setup.ts`](packages/create-next-stack/src/main/setup/setup.ts). Steps are run top-to-bottom.
-6. Update the [`README.md`](README.md):
+4. Add new flags to the `create-next-stack` command in [`create-next-stack.ts`](packages\create-next-stack\src\main\commands\create-next-stack.ts).
+5. Add the plugin to the `plugins` array in [`setup.ts`](packages/create-next-stack/src/main/setup/setup.ts).
+6. Add potential plugin steps to the `steps` array in [`setup.ts`](packages/create-next-stack/src/main/setup/setup.ts). Steps are run top-to-bottom.
+7. Update the [`README.md`](README.md):
    - Add the technology to the technology list
    - Update the `Usage` section by copy pasting the output of running `yarn print:help`
-7. Consider expanding some of the e2e tests to include the new technology. See [`test.ts`](packages\create-next-stack\src\tests\e2e\test.ts) for current tests.
-8. Run tests using `yarn test` to ensure they all pass.
-9. Submit a Pull Request on GitHub.
+8. Consider expanding some of the e2e tests to include the new technology. See [`test.ts`](packages\create-next-stack\src\tests\e2e\test.ts) for current tests.
+9. Run tests using `yarn test` to ensure they all pass.
+10. Submit a Pull Request on GitHub.
 
 ## Writing a Plugin
 
@@ -92,6 +106,7 @@ See the [Framer Motion plugin](packages/create-next-stack/src/main/plugins/emoti
 
 ```typescript
 export const framerMotionPlugin = createPlugin({
+  id: "framer-motion",
   name: "Framer Motion",
   description: "Adds support for Framer Motion",
   active: ({ flags }) => Boolean(flags["framer-motion"]),
@@ -103,6 +118,7 @@ export const framerMotionPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "framerMotion",
       name: "Framer Motion",
       description:
         "Framer Motion is a popular React animation library. It allows users to create both simple animations and complex gesture-based interactions. The library implements a declarative API, otherwise known as spring animations, which lets the developer define the animation's end state, letting the library handle the rest.",

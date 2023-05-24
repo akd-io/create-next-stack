@@ -4,6 +4,7 @@ import { createPlugin } from "../../plugin"
 import { materialTheme } from "./setup/material-theme"
 
 export const materialUIPlugin = createPlugin({
+  id: "material-ui",
   name: "Material UI",
   description: "Adds support for Material UI",
   active: ({ flags }) => Boolean(flags["material-ui"]),
@@ -15,6 +16,7 @@ export const materialUIPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "materialUI",
       name: "Material UI",
       description:
         "Material UI is a React UI component library that implements Google's material design guidelines. It features pre-built with components ranging from basic buttons and form input fields to tooltips and modals.",
@@ -29,7 +31,8 @@ export const materialUIPlugin = createPlugin({
     },
   ],
   steps: {
-    setup: {
+    setUpMaterialUI: {
+      id: "setUpMaterialUI",
       description: "setting up Material UI",
       run: async () => {
         await writeFile("material-theme.ts", materialTheme)

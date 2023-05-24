@@ -48,10 +48,14 @@
   "scripts": {
     "prepack": "pnpm build",
     "check-types": "tsc --noEmit",
+    "check-types:watch": "tsc --noEmit --watch",
     "build": "rimraf lib && tsc --build",
+    "build:watch": "rimraf lib && tsc --build --watch",
     "clean": "rimraf lib && pnpm run clean-tests-dir",
     "clean-tests-dir": "ts-node src/tests/e2e/clean-tests-dir.ts",
-    "test": "pnpm build && ts-node src/tests/e2e/test.ts",
+    "test": "pnpm build && pnpm run jest && ts-node src/tests/e2e/test.ts",
+    "jest": "jest",
+    "jest:watch": "jest --watch",
     "test:manual": "pnpm build && ts-node src/tests/e2e/test-manual.ts --debug",
     "test:small": "pnpm build && ts-node src/tests/e2e/test-manual.ts --debug --package-manager=pnpm --styling=css-modules",
     "test:large": "pnpm build && ts-node src/tests/e2e/test-manual.ts --debug --package-manager=pnpm --styling=emotion --react-hook-form --formik --prettier --formatting-pre-commit-hook --chakra --framer-motion --github-actions",
@@ -74,6 +78,7 @@
     "validate-npm-package-name": "^5.0.0"
   },
   "devDependencies": {
+    "@jest/globals": "^29.5.0",
     "@types/inquirer": "^9.0.3",
     "@types/node": "^18.15.13",
     "@types/uuid": "^9.0.1",
@@ -82,7 +87,9 @@
     "@typescript-eslint/parser": "^5.59.0",
     "eslint": "^8.39.0",
     "eslint-config-prettier": "^8.8.0",
+    "jest": "^29.5.0",
     "next": "^13.3.1",
+    "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "uuid": "^9.0.0"
   }

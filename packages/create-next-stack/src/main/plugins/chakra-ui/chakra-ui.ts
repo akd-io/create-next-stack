@@ -4,6 +4,7 @@ import { createPlugin } from "../../plugin"
 import { chakraTheme } from "./setup/chakra-theme"
 
 export const chakraUIPlugin = createPlugin({
+  id: "chakra-ui",
   name: "Chakra UI",
   description: "Adds support for Chakra UI",
   active: ({ flags }) => Boolean(flags.chakra),
@@ -19,6 +20,7 @@ export const chakraUIPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "chakraUI",
       name: "Chakra UI",
       description:
         "Chakra UI is a simple, modular, and accessible React component library that provides all the building blocks needed to build React user interfaces. It uses Emotion under the hood and includes components ranging from basic buttons and form input fields to tooltips and modals.",
@@ -30,7 +32,8 @@ export const chakraUIPlugin = createPlugin({
     },
   ],
   steps: {
-    setup: {
+    setUpChakraUI: {
+      id: "setUpChakraUI",
       description: "setting up Chakra UI",
       run: async () => {
         await writeFile("chakra-theme.ts", chakraTheme)

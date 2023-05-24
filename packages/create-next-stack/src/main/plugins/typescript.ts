@@ -1,11 +1,13 @@
 import { createPlugin } from "../plugin"
 
 export const typescriptPlugin = createPlugin({
+  id: "typescript",
   name: "Typescript",
   description: "Adds relevant Typescript documentation",
   active: true,
   technologies: [
     {
+      id: "typescript",
       name: "TypeScript",
       description:
         "TypeScript is a programming language developed and maintained by Microsoft. It is a syntactical superset of JavaScript, adding static typing to the language. TypeScript shows useful type errors to developers during development in modern IDEs, saving time developers would have otherwise spent debugging the software at runtime.",

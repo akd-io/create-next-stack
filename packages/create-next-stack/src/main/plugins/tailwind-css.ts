@@ -10,6 +10,7 @@ import { createPlugin } from "../plugin"
  */
 
 export const tailwindCSSPlugin = createPlugin({
+  id: "tailwind-css",
   name: "Tailwind CSS",
   description: "Adds support for Tailwind CSS",
   active: ({ flags }) => flags["styling"] === "tailwind-css",
@@ -29,6 +30,7 @@ export const tailwindCSSPlugin = createPlugin({
   },
   technologies: [
     {
+      id: "tailwindCSS",
       name: "Tailwind CSS",
       description:
         "Tailwind CSS is a utility-first CSS framework for rapidly building custom designs. Its utilities come as helper classes that function as shorthands for the most common CSS patterns that developers use all the time.",
@@ -40,7 +42,8 @@ export const tailwindCSSPlugin = createPlugin({
     },
   ],
   steps: {
-    setup: {
+    setUpTailwindCss: {
+      id: "setUpTailwindCss",
       description: "setting up Tailwind CSS",
       run: async () => {
         await Promise.all([
