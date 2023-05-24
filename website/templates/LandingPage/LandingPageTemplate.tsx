@@ -1,10 +1,11 @@
 import { Box, Flex } from "@chakra-ui/react"
-import { css, Global } from "@emotion/react"
+import { Global, css } from "@emotion/react"
 import { ComponentProps, FC } from "react"
 import { Section } from "../../components/Section"
-import { Description } from "./components/DescriptionSection"
+import { Description } from "./components/Description"
 import { Footer } from "./components/Footer"
 import { HeaderSection } from "./components/Header"
+import { Newsletter } from "./components/NewsletterSection"
 import { TechnologiesForm } from "./components/TechnologiesForm"
 
 const globalStyles = css`
@@ -46,6 +47,9 @@ const LandingPageTemplate = () => {
             </Card>
           </Section>
         </Flex>
+        <Section paddingTop="20px">
+          <Newsletter />
+        </Section>
         <Footer />
       </Flex>
     </>
