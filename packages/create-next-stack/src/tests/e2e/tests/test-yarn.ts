@@ -1,6 +1,6 @@
 import { exists } from "../../../main/helpers/exists"
 import { runCommand } from "../../../main/helpers/run-command"
-import { checkFormattingLintingBuild } from "../helpers/check-formatting-linting-build"
+import { performE2eChecks } from "../helpers/check-formatting-linting-build"
 import { logTestMeta } from "../helpers/log-test-meta"
 import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../helpers/prepare-e2e-test"
@@ -31,7 +31,7 @@ export const testYarn = async (createNextStackDir: string): Promise<void> => {
     stderr: "inherit",
   })
 
-  await checkFormattingLintingBuild(runDirectory)
+  await performE2eChecks(runDirectory, args)
 
   if (!(await exists(`${runDirectory}/yarn.lock`))) {
     throw new Error(`yarn.lock not found.`)
