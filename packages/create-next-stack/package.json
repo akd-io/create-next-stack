@@ -1,7 +1,7 @@
 {
   "name": "create-next-stack",
   "description": "Create Next Stack is a website and CLI tool used to easily set up the boilerplate of new Next.js apps.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "Anders Kjær Damgaard @akd-io",
   "bugs": "https://github.com/akd-io/create-next-stack/issues",
   "homepage": "https://github.com/akd-io/create-next-stack",
