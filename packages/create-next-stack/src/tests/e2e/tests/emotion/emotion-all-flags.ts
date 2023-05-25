@@ -1,5 +1,5 @@
 import { runCommand } from "../../../../main/helpers/run-command"
-import { checkFormattingLintingBuild } from "../../helpers/check-formatting-linting-build"
+import { performE2eChecks } from "../../helpers/check-formatting-linting-build"
 import { logTestMeta } from "../../helpers/log-test-meta"
 import { minutesToMilliseconds } from "../../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../../helpers/prepare-e2e-test"
@@ -33,5 +33,5 @@ export const testEmotionAllFlags = async (
     stderr: "inherit",
   })
 
-  await checkFormattingLintingBuild(runDirectory)
+  await performE2eChecks(runDirectory, args)
 }

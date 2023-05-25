@@ -18,8 +18,8 @@ import { capitalizeFirstCharacter } from "../../../utils/capitalizeFirstCharacte
 import { objectToKeyToKeyMap } from "../../../utils/objectToKeyToKeyMap"
 import { validateProjectName } from "../../../utils/validateProjectName"
 import { CommandModal } from "./CommandModal"
-import { WithInfoIconAndTooltip } from "./InfoIconTooltip"
 import { ExternalLinkIcon } from "./icons/ExternalLinkIcon"
+import { WithInfoIconAndTooltip } from "./InfoIconTooltip"
 
 const cssModulesValue = "css-modules"
 
@@ -203,7 +203,7 @@ export const TechnologiesForm: React.FC = () => {
     formData
   ) => {
     const calculateCommand = (formData: TechnologiesFormData) => {
-      const args = ["npx", "create-next-stack@0.2.3"]
+      const args = ["npx", "create-next-stack@0.2.4"]
 
       args.push(`--package-manager=${options[formData.packageManager].value}`)
       args.push(`--styling=${options[formData.styling].value}`)

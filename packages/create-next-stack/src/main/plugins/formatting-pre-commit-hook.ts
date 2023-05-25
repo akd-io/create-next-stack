@@ -22,6 +22,16 @@ export const formattingPreCommitHookPlugin = createPlugin({
       version: "^7.0.0",
     },
   },
+  devDependencies: {
+    "lint-staged": {
+      name: "lint-staged",
+      version: ">=10",
+    },
+    husky: {
+      name: "husky",
+      version: ">=7",
+    },
+  },
   technologies: [
     {
       id: "husky",

@@ -2,7 +2,7 @@ import chalk from "chalk"
 import endent from "endent"
 import { v4 as uuidv4 } from "uuid"
 import { runCommand } from "../../main/helpers/run-command"
-import { checkFormattingLintingBuild } from "./helpers/check-formatting-linting-build"
+import { performE2eChecks } from "./helpers/check-formatting-linting-build"
 import { exitWithError } from "./helpers/exit-with-error"
 import { logTestInfo } from "./test-logging"
 ;(async () => {
@@ -16,7 +16,7 @@ import { logTestInfo } from "./test-logging"
     const args = [...process.argv.slice(2), runDirectory]
     await runCommand(pathToCLI, args, { stdio: "inherit" })
 
-    await checkFormattingLintingBuild(runDirectory)
+    await performE2eChecks(runDirectory, args)
 
     logTestInfo("")
     logTestInfo(endent`
