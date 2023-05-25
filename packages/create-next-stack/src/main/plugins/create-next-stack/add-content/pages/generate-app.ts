@@ -30,9 +30,9 @@ export const generateApp = (inputs: ValidCNSInputs): string => {
     const App = ({ Component, pageProps }: AppProps) => {
       return (
         <>
-          ${componentsStart}
+          ${componentsStart.join("\n")}
             <Component {...pageProps} />
-          ${componentsEnd}
+          ${componentsEnd.join("\n")}
         </>
       )
     };
