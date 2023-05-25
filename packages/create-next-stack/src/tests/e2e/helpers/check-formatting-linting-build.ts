@@ -2,8 +2,9 @@ import { Options } from "execa"
 import { runCommand } from "../../../main/helpers/run-command"
 import { logTestInfo } from "../test-logging"
 
-export const checkFormattingLintingBuild = async (
-  runDirectory: string
+export const performE2eChecks = async (
+  runDirectory: string,
+  args: string[]
 ): Promise<void> => {
   const options: Options = {
     cwd: runDirectory,
@@ -21,4 +22,12 @@ export const checkFormattingLintingBuild = async (
 
   logTestInfo("Running build...")
   await runCommand("npm", ["run", "build"], options)
+
+  const packageManager = args
+    .find((arg) => arg.startsWith("--package-manager="))
+    ?.split("=")[1]
+  if (packageManager) {
+    logTestInfo("Installing dependencies...")
+    await runCommand(packageManager, ["install"], options)
+  }
 }
