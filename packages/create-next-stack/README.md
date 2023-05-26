@@ -44,6 +44,7 @@ The table below provides an overview of the technologies currently supported by 
 | Sass              | [Website](https://sass-lang.com/) - [Docs](https://sass-lang.com/documentation) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support)                                          |
 | CSS Modules       | [Website](https://github.com/css-modules/css-modules) - [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
 | CSS Modules       | [Website](https://github.com/css-modules/css-modules) - [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
+| Mantine           | [Website](https://mantine.dev/) - [Docs](https://mantine.dev/pages/getting-started/) - [GitHub](https://github.com/mantinedev/mantine)                                                                                       |
 | Chakra UI         | [Website](https://chakra-ui.com/) - [Docs](https://chakra-ui.com/docs/getting-started) - [GitHub](https://github.com/chakra-ui/chakra-ui)                                                                                    |
 | Material UI       | [Website](https://material-ui.com/) - [Docs](https://material-ui.com/getting-started/installation/) - [GitHub](https://github.com/mui-org/material-ui)                                                                       |
 | Framer Motion     | [Website](https://www.framer.com/motion/) - [Docs](https://www.framer.com/docs/) - [GitHub](https://github.com/framer/motion)                                                                                                |
@@ -89,7 +90,10 @@ FLAGS
   --framer-motion               Adds Framer Motion. (Animation library)
   --github-actions              Adds a GitHub Actions continuous integration
                                 workflow.
-  --material-ui                 Adds Material UI. (Component library)
+  --mantine                     Adds Mantine. (Component library) (Requires
+                                Emotion)
+  --material-ui                 Adds Material UI. (Component library) (Requires
+                                Emotion)
   --package-manager=<option>    (required) Sets the preferred package manager.
                                 (Required)
                                 <options: pnpm|yarn|npm>

@@ -13,6 +13,7 @@ export const technologiesSortOrder: string[] = [
   "tailwindCSS",
   "sass",
   "cssModules",
+  "mantine",
   "chakraUI",
   "materialUI",
   "framerMotion",

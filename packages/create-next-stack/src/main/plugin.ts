@@ -87,6 +87,12 @@ type PluginConfig = DeeplyReadonly<{
     document?: {
       /** Code to add to the imports section of the _document.tsx file. */
       imports?: string
+      /** Code to add after the imports section of the _document.tsx file. */
+      afterImports?: string
+      /** Code to add to the class members of the Document class in _document.tsx file. */
+      classMembers?: string
+      /** Code to add before the return statement of the Document render function in _document.tsx file. */
+      renderLogic?: string
       /** Code to add to the attributes of the <Html> tag of the _document.tsx file. */
       htmlAttributes?: string
       /** Code to add to the <Head> tag of the _document.tsx file. */

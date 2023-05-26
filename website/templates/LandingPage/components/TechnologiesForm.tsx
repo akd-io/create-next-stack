@@ -36,6 +36,7 @@ type OptionKey =
   | "reactHookForm"
   | "formik"
   | "prettier"
+  | "mantine"
   | "chakra"
   | "materialUi"
   | "reactIcons"
@@ -81,6 +82,7 @@ const options = {
   },
   formik: { key: "formik", value: "formik", label: "Formik" },
   prettier: { key: "prettier", value: "prettier", label: "Prettier" },
+  mantine: { key: "mantine", value: "mantine", label: "Mantine" },
   chakra: { key: "chakra", value: "chakra", label: "Chakra UI" },
   materialUi: { key: "materialUi", value: "material-ui", label: "Material UI" },
   reactIcons: { key: "reactIcons", value: "react-icons", label: "React Icons" },
@@ -136,6 +138,7 @@ const formattingOptionKeys = [
   optionKeys.formattingPreCommitHook,
 ] satisfies OptionKey[]
 const componentLibraryOptionKeys = [
+  optionKeys.mantine,
   optionKeys.chakra,
   optionKeys.materialUi,
 ] satisfies OptionKey[]
@@ -177,7 +180,7 @@ const defaultFormData: TechnologiesFormData = {
   styling: optionKeys.emotion,
   formStateManagement: [optionKeys.reactHookForm],
   formatting: [optionKeys.prettier, optionKeys.formattingPreCommitHook],
-  componentLibraries: [optionKeys.chakra],
+  componentLibraries: [optionKeys.mantine],
   iconLibraries: [],
   animation: [optionKeys.framerMotion],
   continuousIntegration: [optionKeys.githubActions],

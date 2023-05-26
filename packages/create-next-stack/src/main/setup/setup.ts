@@ -15,6 +15,7 @@ import { formattingPreCommitHookPlugin } from "../plugins/formatting-pre-commit-
 import { formikPlugin } from "../plugins/formik"
 import { framerMotionPlugin } from "../plugins/framer-motion"
 import { githubActionsPlugin } from "../plugins/github-actions"
+import { mantinePlugin } from "../plugins/mantine/mantine"
 import { materialUIPlugin } from "../plugins/material-ui/material-ui"
 import { nextPlugin } from "../plugins/next"
 import { npmPlugin } from "../plugins/npm"
@@ -42,6 +43,7 @@ export const plugins: Plugin[] = [
   tailwindCSSPlugin,
   cssModulesPlugin,
   sassPlugin,
+  mantinePlugin,
   chakraUIPlugin,
   materialUIPlugin,
   reactHookFormPlugin,
