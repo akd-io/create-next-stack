@@ -31,59 +31,80 @@ To get started, go to [create-next-stack.com](https://www.create-next-stack.com)
 
 The table below provides an overview of the technologies currently supported by Create Next Stack.
 
-| Name                                                      | Links                                                                                                                                                                |
-| --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Next.js](https://nextjs.org/) (Mandatory)                | [Docs](https://nextjs.org/docs) - [Learn Next.js](https://nextjs.org/learn) - [GitHub repo](https://github.com/vercel/next.js)                                       |
-| [React](https://reactjs.org/) (Mandatory)                 | [Docs](https://reactjs.org/docs/getting-started.html) - [GitHub repo](https://github.com/facebook/react)                                                             |
-| [TypeScript](https://www.typescriptlang.org/) (Mandatory) | [Docs](https://www.typescriptlang.org/docs/) - [GitHub repo](https://github.com/microsoft/TypeScript)                                                                |
-| [ESLint](https://eslint.org/) (Mandatory)                 | [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub Repo](https://github.com/eslint/eslint)         |
-| [pnpm](https://pnpm.io/)                                  | [Docs](https://pnpm.io/motivation) - [GitHub repo](https://github.com/pnpm/pnpm)                                                                                     |
-| [Yarn](https://yarnpkg.com/)                              | [CLI Docs](https://yarnpkg.com/cli) - [GitHub repo](https://github.com/yarnpkg/berry)                                                                                |
-| [npm](https://www.npmjs.com/)                             | [CLI Docs](https://docs.npmjs.com/cli/)                                                                                                                              |
-| [Emotion](https://emotion.sh/docs/introduction)           | [Docs](https://emotion.sh/docs/introduction) - [GitHub repo](https://github.com/emotion-js/emotion)                                                                  |
-| [Styled Components](https://styled-components.com/)       | [Docs](https://styled-components.com/docs) - [GitHub repo](https://github.com/styled-components/styled-components)                                                   |
-| [Tailwind CSS](https://tailwindcss.com/)                  | [Docs](https://tailwindcss.com/docs) - [GitHub repo](https://github.com/tailwindlabs/tailwindcss)                                                                    |
-| [CSS Modules](https://github.com/css-modules/css-modules) | [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
-| [Sass](https://sass-lang.com/)                            | [Docs](https://sass-lang.com/documentation) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support)                      |
-| [Chakra UI](https://chakra-ui.com/)                       | [Docs](https://chakra-ui.com/docs/getting-started) - [GitHub repo](https://github.com/chakra-ui/chakra-ui)                                                           |
-| [Material UI](https://material-ui.com/)                   | [Docs](https://material-ui.com/getting-started/installation/) - [GitHub repo](https://github.com/mui-org/material-ui)                                                |
-| [React Hook Form](https://react-hook-form.com/)           | [Docs](https://react-hook-form.com/get-started) - [GitHub repo](https://github.com/react-hook-form/react-hook-form)                                                  |
-| [Formik](https://formik.org/)                             | [Docs](https://formik.org/docs/overview) - [GitHub repo](https://github.com/formium/formik)                                                                          |
-| [Framer Motion](https://www.framer.com/motion/)           | [Docs](https://www.framer.com/docs/) - [GitHub repo](https://github.com/framer/motion)                                                                               |
-| [Prettier](https://prettier.io/)                          | [Docs](https://prettier.io/docs/en/index.html) - [Options](https://prettier.io/docs/en/options.html) - [GitHub repo](https://github.com/prettier/prettier)           |
-| [Husky](https://typicode.github.io/husky/)                | [Docs](https://typicode.github.io/husky/) - [GitHub repo](https://github.com/typicode/husky)                                                                         |
-| [lint-staged](https://github.com/okonet/lint-staged)      | [GitHub repo](https://github.com/okonet/lint-staged)                                                                                                                 |
-| [GitHub Actions](https://github.com/features/actions)     | [Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)                      |
-| [React Icons](https://react-icons.github.io/react-icons/) | [GitHub repo](https://github.com/react-icons/react-icons)                                                                                                            |
+<!-- CNS-START-OF-TECHNOLOGIES-TABLE -->
+
+| Name              | Links                                                                                                                                                                                                                        |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Next.js           | [Website](https://nextjs.org/) - [Docs](https://nextjs.org/docs) - [Learn Next.js](https://nextjs.org/learn) - [GitHub](https://github.com/vercel/next.js) - [Wikipedia](https://en.wikipedia.org/wiki/Next.js)              |
+| React             | [Website](https://reactjs.org/) - [Docs](https://reactjs.org/docs/getting-started.html) - [GitHub](https://github.com/facebook/react) - [Wikipedia](<https://en.wikipedia.org/wiki/React_(JavaScript_library)>)              |
+| TypeScript        | [Website](https://www.typescriptlang.org/) - [Docs](https://www.typescriptlang.org/docs/) - [GitHub](https://github.com/microsoft/TypeScript) - [Wikipedia](https://en.wikipedia.org/wiki/TypeScript)                        |
+| Emotion           | [Website](https://emotion.sh/) - [Docs](https://emotion.sh/docs/introduction) - [GitHub](https://github.com/emotion-js/emotion)                                                                                              |
+| Styled Components | [Website](https://styled-components.com/) - [Docs](https://styled-components.com/docs) - [GitHub](https://github.com/styled-components/styled-components)                                                                    |
+| Tailwind CSS      | [Website](https://tailwindcss.com/) - [Docs](https://tailwindcss.com/docs) - [GitHub](https://github.com/tailwindlabs/tailwindcss)                                                                                           |
+| Sass              | [Website](https://sass-lang.com/) - [Docs](https://sass-lang.com/documentation) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support)                                          |
+| CSS Modules       | [Website](https://github.com/css-modules/css-modules) - [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
+| CSS Modules       | [Website](https://github.com/css-modules/css-modules) - [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
+| Chakra UI         | [Website](https://chakra-ui.com/) - [Docs](https://chakra-ui.com/docs/getting-started) - [GitHub](https://github.com/chakra-ui/chakra-ui)                                                                                    |
+| Material UI       | [Website](https://material-ui.com/) - [Docs](https://material-ui.com/getting-started/installation/) - [GitHub](https://github.com/mui-org/material-ui)                                                                       |
+| Framer Motion     | [Website](https://www.framer.com/motion/) - [Docs](https://www.framer.com/docs/) - [GitHub](https://github.com/framer/motion)                                                                                                |
+| React Hook Form   | [Website](https://react-hook-form.com/) - [Docs](https://react-hook-form.com/get-started) - [GitHub](https://github.com/react-hook-form/react-hook-form)                                                                     |
+| Formik            | [Website](https://formik.org/) - [Docs](https://formik.org/docs/overview) - [GitHub](https://github.com/formium/formik)                                                                                                      |
+| React Query       | [Website](https://tanstack.com/query/latest) - [Docs](https://tanstack.com/query/latest/docs/react/overview) - [GitHub](https://github.com/tanstack/query)                                                                   |
+| React Icons       | [Website](https://react-icons.github.io/react-icons/) - [GitHub](https://github.com/react-icons/react-icons)                                                                                                                 |
+| ESLint            | [Website](https://eslint.org/) - [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub](https://github.com/eslint/eslint)                                     |
+| Prettier          | [Website](https://prettier.io/) - [Docs](https://prettier.io/docs/en/index.html) - [Options](https://prettier.io/docs/en/options.html) - [GitHub](https://github.com/prettier/prettier)                                      |
+| Husky             | [Website](https://typicode.github.io/husky/) - [Docs](https://typicode.github.io/husky/) - [GitHub](https://github.com/typicode/husky)                                                                                       |
+| lint-staged       | [Website](https://github.com/okonet/lint-staged) - [GitHub](https://github.com/okonet/lint-staged)                                                                                                                           |
+| pnpm              | [Website](https://pnpm.io/) - [Docs](https://pnpm.io/motivation) - [GitHub](https://github.com/pnpm/pnpm)                                                                                                                    |
+| Yarn              | [Website](https://yarnpkg.com/) - [CLI Docs](https://yarnpkg.com/cli) - [GitHub](https://github.com/yarnpkg/berry)                                                                                                           |
+| npm               | [Website](https://www.npmjs.com/) - [CLI Docs](https://docs.npmjs.com/cli/)                                                                                                                                                  |
+| GitHub Actions    | [Website](https://github.com/features/actions) - [Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)                             |
+
+<!-- CNS-END-OF-TECHNOLOGIES-TABLE -->
 
 ## Usage
 
 Below you see an overview of Create Next Stack's usage, including detailed information about arguments and options. The overview is the result of running `create-next-stack --help`
+
+<!-- CNS-START-OF-HELP-OUTPUT -->
 
 ```
 USAGE
   $ create-next-stack [APP_NAME] [FLAGS]
 
 ARGUMENTS
-  APP_NAME  The name of your app, optionally including a path prefix. Eg.: "my-app" or "path/to/my-app"
+  APP_NAME  The name of your app, optionally including a path prefix. Eg.:
+            "my-app" or "path/to/my-app"
 
 FLAGS
   -h, --help                    Shows the CLI help information.
   -v, --version                 Shows the CLI version information.
-  --chakra                      Adds Chakra UI. (Component library) (Requires Emotion and Framer Motion)
-  --debug                       Show verbose error messages for debugging purposes.
-  --formatting-pre-commit-hook  Adds a formatting pre-commit hook. (Requires Prettier)
+  --chakra                      Adds Chakra UI. (Component library) (Requires
+                                Emotion and Framer Motion)
+  --debug                       Show verbose error messages for debugging
+                                purposes.
+  --formatting-pre-commit-hook  Adds a formatting pre-commit hook. (Requires
+                                Prettier)
   --formik                      Adds Formik. (Form library)
   --framer-motion               Adds Framer Motion. (Animation library)
-  --github-actions              Adds a GitHub Actions continuous integration workflow.
+  --github-actions              Adds a GitHub Actions continuous integration
+                                workflow.
   --material-ui                 Adds Material UI. (Component library)
-  --package-manager=<option>    Sets the preferred package manager. (Required)
+  --package-manager=<option>    (required) Sets the preferred package manager.
+                                (Required)
                                 <options: pnpm|yarn|npm>
   --prettier                    Adds Prettier. (Code formatting)
   --react-hook-form             Adds React Hook Form. (Form library)
   --react-icons                 Adds React Icons. (Icon library)
-  --styling=<styling-method>    Sets the preferred styling method. (Required) <styling-method> = emotion|styled-components|tailwind-css|css-modules|css-modules-with-sass
+  --react-query                 Adds React Query. (Server state management
+                                library)
+  --styling=<styling-method>    (required) Sets the preferred styling method.
+                                (Required) <styling-method> =
+                                emotion|styled-components|tailwind-css|css-modul
+                                es|css-modules-with-sass
 ```
+
+<!-- CNS-END-OF-HELP-OUTPUT -->
 
 ## Contributing
 
