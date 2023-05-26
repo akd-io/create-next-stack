@@ -19,6 +19,7 @@
     "test": "pnpm prr test",
     "test:cli": "pnpm prr --filter create-next-stack test",
     "test:web": "pnpm prr --filter create-next-stack-website test",
+    "update-readmes": "pnpm prr update-readme",
     "prr": "pnpm recursive run"
   },
   "devDependencies": {

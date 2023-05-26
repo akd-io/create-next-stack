@@ -2,6 +2,7 @@ import endent from "endent"
 import { ValidCNSInputs } from "../../../create-next-stack-types"
 import { getProjectNameOfPath } from "../../../helpers/get-project-name-of-path"
 import { runCommandMap } from "../../../helpers/package-manager-utils"
+import { getTechnologies } from "../sort-orders/technologies"
 import { generateScriptTableRows } from "./generate-script-table-rows"
 import { generateTechnologyTableRows } from "./generate-technology-table-rows"
 
@@ -11,6 +12,8 @@ export const generateReadme = async (
   const { args, flags } = inputs
 
   const runCommand = runCommandMap[flags["package-manager"]]
+
+  const technologies = getTechnologies(inputs)
 
   return endent`
     # ${getProjectNameOfPath(args.app_name)}
@@ -39,6 +42,6 @@ export const generateReadme = async (
 
     | Name | Links |
     | ---- | ----- |
-    ${await generateTechnologyTableRows(inputs)}
+    ${await generateTechnologyTableRows(technologies)}
   `
 }
