@@ -473,6 +473,15 @@ export const TechnologiesForm: React.FC = () => {
                   formDataKeys.componentLibraries,
                   componentLibraryOptionKeys,
                   {
+                    [optionKeys.mantine]: [
+                      {
+                        isInvalid:
+                          formValues.componentLibraries.includes(
+                            optionKeys.mantine
+                          ) && !formValues.styling.includes(optionKeys.emotion),
+                        errorMessage: "Mantine requires Emotion",
+                      },
+                    ],
                     [optionKeys.chakra]: [
                       {
                         isInvalid:
