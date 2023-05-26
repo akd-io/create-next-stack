@@ -18,10 +18,15 @@ export const testInvalidInputs = async (
     ],
     noStyling: ["--package-manager=npm"],
     noPackageManager: ["--styling=css-modules"],
-    preCommitHookRequiresPrettier: [
+    preCommitHookWithoutPrettier: [
       "--package-manager=pnpm",
       "--styling=css-modules",
       "--formatting-pre-commit-hook",
+    ],
+    mantineWithoutEmotion: [
+      "--package-manager=pnpm",
+      "--styling=css-modules",
+      "--mantine",
     ],
     chakraWithoutEmotion: [
       "--package-manager=pnpm",
