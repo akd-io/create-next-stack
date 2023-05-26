@@ -4,17 +4,26 @@ import { nonNull } from "../../../../helpers/non-null"
 import { filterPlugins } from "../../../../setup/setup"
 
 export const generateApp = (inputs: ValidCNSInputs): string => {
-  const appImports = filterPlugins(inputs)
+  const imports = filterPlugins(inputs)
     .map((plugin) => {
       return plugin.slots?.app?.imports
     })
     .filter(nonNull)
+    .join("\n")
+
+  const logic = filterPlugins(inputs)
+    .map((plugin) => {
+      return plugin.slots?.app?.logic
+    })
+    .filter(nonNull)
+    .join("\n\n") // Double new line to separate plugin logic
 
   const componentsStart = filterPlugins(inputs)
     .map((plugin) => {
       return plugin.slots?.app?.componentsStart
     })
     .filter(nonNull)
+    .join("\n")
 
   const componentsEnd = filterPlugins(inputs)
     .map((plugin) => {
@@ -22,17 +31,19 @@ export const generateApp = (inputs: ValidCNSInputs): string => {
     })
     .reverse()
     .filter(nonNull)
+    .join("\n")
 
   return endent`
     import { AppProps } from "next/app";
-    ${appImports.join("\n")}
+    ${imports}
 
     const App = ({ Component, pageProps }: AppProps) => {
+      ${logic}
       return (
         <>
-          ${componentsStart.join("\n")}
+          ${componentsStart}
             <Component {...pageProps} />
-          ${componentsEnd.join("\n")}
+          ${componentsEnd}
         </>
       )
     };

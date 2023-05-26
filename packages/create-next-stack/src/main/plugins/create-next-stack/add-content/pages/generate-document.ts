@@ -4,32 +4,36 @@ import { nonNull } from "../../../../helpers/non-null"
 import { filterPlugins } from "../../../../setup/setup"
 
 export const generateDocument = (inputs: ValidCNSInputs): string => {
-  const documentImports = filterPlugins(inputs)
+  const imports = filterPlugins(inputs)
     .map((plugin) => plugin.slots?.document?.imports)
     .filter(nonNull)
+    .join("\n")
   const htmlAttributes = filterPlugins(inputs)
     .map((plugin) => plugin.slots?.document?.htmlAttributes)
     .filter(nonNull)
+    .join(" ")
   const headTags = filterPlugins(inputs)
     .map((plugin) => plugin.slots?.document?.headTags)
     .filter(nonNull)
-  const bodyComponents = filterPlugins(inputs)
+    .join("\n")
+  const body = filterPlugins(inputs)
     .map((plugin) => plugin.slots?.document?.body)
     .filter(nonNull)
+    .join("\n")
 
   return endent`
     import NextDocument, { Html, Head, Main, NextScript } from "next/document";
-    ${documentImports.join("\n")}
+    ${imports}
 
     export default class Document extends NextDocument {
       render() {
         return (
-          <Html lang="en" ${htmlAttributes.join(" ")}>
+          <Html lang="en" ${htmlAttributes}>
             <Head>
-              ${headTags.join("\n")}
+              ${headTags}
             </Head>
             <body>
-              ${bodyComponents.join("\n")}
+              ${body}
               <Main />
               <NextScript />
             </body>
