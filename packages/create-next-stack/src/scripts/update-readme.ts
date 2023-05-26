@@ -56,11 +56,8 @@ const endOfHelpOutputString = "<!-- CNS-END-OF-HELP-OUTPUT -->"
       `
     )
 
-  if (readme !== updatedReadme) {
-    console.log(`README.md out of date!`)
-    console.log(`Updating README.md...`)
-    await fs.writeFile(readmePath, updatedReadme)
-    console.log(`Staging README.md...`)
-    await execa("git", ["add", readmePath])
-  }
+  console.log(`Writing README.md...`)
+  await fs.writeFile(readmePath, updatedReadme)
+  console.log(`Staging README.md...`)
+  await execa("git", ["add", readmePath])
 })()
