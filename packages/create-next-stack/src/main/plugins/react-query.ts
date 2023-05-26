@@ -21,7 +21,7 @@ export const reactQueryPlugin = createPlugin({
       id: "reactQuery",
       name: "React Query",
       description:
-        "React Query is a data fetching library for React. It provides hooks for fetching, caching, and updating asynchronous data in React. It is designed to be flexible and composable, and can be used with any data source.",
+        "React Query, aka. TanStack Query, is a data fetching library that provides hooks for fetching, caching, and updating, remote data. It has a declarative API that makes working with asynchronous data much easier than with previous solutions.",
       links: [
         { title: "Website", url: "https://tanstack.com/query/latest" },
         {
