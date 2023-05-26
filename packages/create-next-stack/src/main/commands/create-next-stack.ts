@@ -92,6 +92,11 @@ export default class CreateNextStack extends Command {
     "react-icons": Flags.boolean({
       description: "Adds React Icons. (Icon library)",
     }),
+
+    // Server state management libraries
+    "react-query": Flags.boolean({
+      description: "Adds React Query. (Server state management library)",
+    }),
   }
 
   async run(): Promise<void> {

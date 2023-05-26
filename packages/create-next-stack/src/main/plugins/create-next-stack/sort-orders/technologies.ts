@@ -15,9 +15,11 @@ export const technologiesSortOrder: string[] = [
   "cssModules",
   "chakraUI",
   "materialUI",
+  "framerMotion",
   "reactHookForm",
   "formik",
-  "framerMotion",
+  "reactQuery",
+  "reactIcons",
   "eslint",
   "prettier",
   "husky",
@@ -26,7 +28,6 @@ export const technologiesSortOrder: string[] = [
   "yarn",
   "npm",
   "githubActions",
-  "reactIcons",
 ]
 
 export const getTechnologies = (

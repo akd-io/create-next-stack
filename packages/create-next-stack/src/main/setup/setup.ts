@@ -5,7 +5,7 @@ import { getDiffString } from "../helpers/diff-string"
 import { inDebugMode } from "../helpers/in-debug-mode"
 import { time } from "../helpers/time"
 import { logDebug, logInfo } from "../logging"
-import { Plugin, evalActive, evalShouldRun } from "../plugin"
+import { evalActive, evalShouldRun, Plugin } from "../plugin"
 import { chakraUIPlugin } from "../plugins/chakra-ui/chakra-ui"
 import { createNextStackPlugin } from "../plugins/create-next-stack/create-next-stack"
 import { cssModulesPlugin } from "../plugins/css-modules/css-modules"
@@ -23,6 +23,7 @@ import { prettierPlugin } from "../plugins/prettier"
 import { reactPlugin } from "../plugins/react"
 import { reactHookFormPlugin } from "../plugins/react-hook-form"
 import { reactIconsPlugin } from "../plugins/react-icons"
+import { reactQueryPlugin } from "../plugins/react-query"
 import { sassPlugin } from "../plugins/sass/sass"
 import { styledComponentsPlugin } from "../plugins/styled-components"
 import { tailwindCSSPlugin } from "../plugins/tailwind-css"
@@ -54,6 +55,7 @@ export const plugins: Plugin[] = [
   npmPlugin,
   githubActionsPlugin,
   reactIconsPlugin,
+  reactQueryPlugin,
 ]
 
 export const filterPlugins = (inputs: ValidCNSInputs): Plugin[] =>

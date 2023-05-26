@@ -5,7 +5,7 @@ import { makeDirectory, writeFile } from "../helpers/io"
 import { remove } from "../helpers/remove"
 import { runCommand } from "../helpers/run-command"
 import { logDebug } from "../logging"
-import { Package, createPlugin } from "../plugin"
+import { createPlugin, Package } from "../plugin"
 import { getNameVersionCombo } from "../setup/packages"
 import { generateNextConfig } from "./create-next-stack/add-next-config/generate-next-config"
 
