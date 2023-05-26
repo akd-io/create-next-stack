@@ -84,17 +84,17 @@ Make sure you are set up locally by following the [Getting Started](#getting-sta
    - `test:raw` - Runs the binary directly. Rarely used, but can be useful for manual tests where you want to be able to specify the `app_name` argument yourself.
    - `clean` - Removes all generated files, including build files and the `create-next-stack-tests` directory created by the e2e tests.
 
-3. Add a new .ts file for your plugin in the plugins directory at `packages\create-next-stack\src\main\plugins`
+3. Add a new .ts file for your plugin in the plugins directory at [`packages/create-next-stack/src/main/plugins`](packages/create-next-stack/src/main/plugins)
 
    - See the [Writing a plugin section](#writing-a-plugin) below to learn how to write a Create Next Stack plugin.
 
-4. Add new flags to the `create-next-stack` command in [`create-next-stack.ts`](packages\create-next-stack\src\main\commands\create-next-stack.ts).
+4. Add new flags to the `create-next-stack` command in [`create-next-stack.ts`](packages/create-next-stack/src/main/commands/create-next-stack.ts).
 5. Add the plugin to the `plugins` array in [`setup.ts`](packages/create-next-stack/src/main/setup/setup.ts).
-6. Add potential plugin steps to the `steps` array in [`setup.ts`](packages/create-next-stack/src/main/setup/setup.ts). Steps are run top-to-bottom.
-7. Update the [`README.md`](README.md):
-   - Add the technology to the technology list
-   - Update the `Usage` section by copy pasting the output of running `yarn print:help`
-8. Consider expanding some of the e2e tests to include the new technology. See [`test.ts`](packages\create-next-stack\src\tests\e2e\test.ts) for current tests.
+6. Add potential plugin steps to the `steps` array in [`steps.ts`](packages/create-next-stack/src/main/steps.ts). Steps are run top-to-bottom.
+7. Consider expanding some of the e2e tests to include the new technology. See [`test.ts`](packages/create-next-stack/src/tests/e2e/test.ts) for current tests.
+8. Go and add the technology to the technology selection form of the website.
+   - See the [TechnologiesForm](website/templates/LandingPage/components/TechnologiesForm.tsx) component.
+   - This component is currently pretty hideous, and updating it will be automated in the future. See [issue #188](https://github.com/akd-io/create-next-stack/issues/188).
 9. Run tests using `yarn test` to ensure they all pass.
 10. Submit a Pull Request on GitHub.
 
@@ -102,7 +102,7 @@ Make sure you are set up locally by following the [Getting Started](#getting-sta
 
 Plugins aren't too scary. A Create Next Stack plugin consists of a simple TypeScript file that calls a `createPlugin()` function with JSON object.
 
-See the [Framer Motion plugin](packages/create-next-stack/src/main/plugins/emotion.ts) for example. This plugin adds the `framer-motion` npm dependency to the generated Next.js project, as well as adding some documentation about the technology.
+See the [Framer Motion plugin](packages/create-next-stack/src/main/plugins/framer-motion.ts) for example. This plugin adds the `framer-motion` npm dependency to the generated Next.js project, as well as adding some documentation about the technology.
 
 ```typescript
 export const framerMotionPlugin = createPlugin({
