@@ -60,9 +60,11 @@ export default class CreateNextStack extends Command {
       description:
         "Adds Chakra UI. (Component library) (Requires Emotion and Framer Motion)",
     }),
-
     "material-ui": Flags.boolean({
-      description: "Adds Material UI. (Component library)",
+      description: "Adds Material UI. (Component library) (Requires Emotion)",
+    }),
+    mantine: Flags.boolean({
+      description: "Adds Mantine. (Component library) (Requires Emotion)",
     }),
 
     // Form libraries:

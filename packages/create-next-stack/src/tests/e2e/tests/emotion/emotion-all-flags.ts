@@ -14,15 +14,17 @@ export const testEmotionAllFlags = async (
   const args = [
     "--debug",
     "--package-manager=pnpm",
-    "--prettier",
     "--styling=emotion",
+    "--mantine",
+    "--chakra",
     "--material-ui",
     "--react-hook-form",
     "--formik",
     "--framer-motion",
+    "--prettier",
     "--formatting-pre-commit-hook",
-    "--chakra",
     "--react-icons",
+    "--react-query",
     ".",
   ]
 
