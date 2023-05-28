@@ -68,6 +68,11 @@ export const validateFlags = (
       "Chakra UI (category: Component library, flag: --chakra) requires Emotion (category: Styling, flag: --styling=emotion)."
     )
   }
+  if (flags.mantine && flags.styling !== "emotion") {
+    throw new Error(
+      "Mantine (category: Component library, flag: --mantine) requires Emotion (category: Styling, flag: --styling=emotion)."
+    )
+  }
   if (flags["material-ui"] && flags.styling !== "emotion") {
     throw new Error(
       "Material UI (category: Component library, flag: --material-ui) requires Emotion (category: Styling, flag: --styling=emotion)."

@@ -13,14 +13,17 @@ export const testYarn = async (createNextStackDir: string): Promise<void> => {
   const args = [
     "--debug",
     "--package-manager=yarn",
-    "--prettier",
     "--styling=emotion",
+    "--mantine",
+    "--chakra",
     "--material-ui",
     "--react-hook-form",
     "--formik",
     "--framer-motion",
+    "--prettier",
     "--formatting-pre-commit-hook",
-    "--chakra",
+    "--react-icons",
+    "--react-query",
     ".",
   ]
 

@@ -36,12 +36,14 @@ type OptionKey =
   | "reactHookForm"
   | "formik"
   | "prettier"
+  | "mantine"
   | "chakra"
   | "materialUi"
   | "reactIcons"
   | "framerMotion"
   | "githubActions"
   | "formattingPreCommitHook"
+  | "reactQuery"
 
 const options = {
   pnpm: { key: "pnpm", value: "pnpm", label: "pnpm" },
@@ -80,6 +82,7 @@ const options = {
   },
   formik: { key: "formik", value: "formik", label: "Formik" },
   prettier: { key: "prettier", value: "prettier", label: "Prettier" },
+  mantine: { key: "mantine", value: "mantine", label: "Mantine" },
   chakra: { key: "chakra", value: "chakra", label: "Chakra UI" },
   materialUi: { key: "materialUi", value: "material-ui", label: "Material UI" },
   reactIcons: { key: "reactIcons", value: "react-icons", label: "React Icons" },
@@ -97,6 +100,11 @@ const options = {
     key: "formattingPreCommitHook",
     value: "formatting-pre-commit-hook",
     label: "Formatting Pre-Commit Hook",
+  },
+  reactQuery: {
+    key: "reactQuery",
+    value: "react-query",
+    label: "React Query",
   },
 } satisfies {
   [Key in OptionKey]: {
@@ -130,6 +138,7 @@ const formattingOptionKeys = [
   optionKeys.formattingPreCommitHook,
 ] satisfies OptionKey[]
 const componentLibraryOptionKeys = [
+  optionKeys.mantine,
   optionKeys.chakra,
   optionKeys.materialUi,
 ] satisfies OptionKey[]
@@ -137,6 +146,9 @@ const iconLibraryOptionKeys = [optionKeys.reactIcons] satisfies OptionKey[]
 const animationOptionKeys = [optionKeys.framerMotion] satisfies OptionKey[]
 const continuousIntegrationOptionKeys = [
   optionKeys.githubActions,
+] satisfies OptionKey[]
+const serverStateManagementLibraryOptionKeys = [
+  optionKeys.reactQuery,
 ] satisfies OptionKey[]
 
 type ProjectName = string
@@ -148,6 +160,8 @@ type ComponentLibrary = (typeof componentLibraryOptionKeys)[number]
 type IconLibrary = (typeof iconLibraryOptionKeys)[number]
 type Animation = (typeof animationOptionKeys)[number]
 type ContinuousIntegration = (typeof continuousIntegrationOptionKeys)[number]
+type ServerStateManagementLibrary =
+  (typeof serverStateManagementLibraryOptionKeys)[number]
 type TechnologiesFormData = {
   projectName: ProjectName
   packageManager: PackageManager
@@ -158,6 +172,7 @@ type TechnologiesFormData = {
   iconLibraries: IconLibrary[]
   animation: Animation[]
   continuousIntegration: ContinuousIntegration[]
+  serverStateManagementLibraries: ServerStateManagementLibrary[]
 }
 const defaultFormData: TechnologiesFormData = {
   projectName: "my-app",
@@ -165,10 +180,11 @@ const defaultFormData: TechnologiesFormData = {
   styling: optionKeys.emotion,
   formStateManagement: [optionKeys.reactHookForm],
   formatting: [optionKeys.prettier, optionKeys.formattingPreCommitHook],
-  componentLibraries: [optionKeys.chakra],
+  componentLibraries: [optionKeys.mantine],
   iconLibraries: [],
   animation: [optionKeys.framerMotion],
   continuousIntegration: [optionKeys.githubActions],
+  serverStateManagementLibraries: [optionKeys.reactQuery],
 }
 const formDataKeys = objectToKeyToKeyMap(defaultFormData)
 
@@ -184,6 +200,7 @@ const categoryLabels = {
   iconLibraries: "Icon Libraries",
   animation: "Animation",
   continuousIntegration: "Continuous Integration",
+  serverStateManagementLibraries: "Server State Management",
 } as const
 
 export const TechnologiesForm: React.FC = () => {
@@ -203,7 +220,7 @@ export const TechnologiesForm: React.FC = () => {
     formData
   ) => {
     const calculateCommand = (formData: TechnologiesFormData) => {
-      const args = ["npx", "create-next-stack@0.2.5"]
+      const args = ["npx", "create-next-stack@0.2.6"]
 
       args.push(`--package-manager=${options[formData.packageManager].value}`)
       args.push(`--styling=${options[formData.styling].value}`)
@@ -219,6 +236,7 @@ export const TechnologiesForm: React.FC = () => {
       pushArgs(formData.iconLibraries)
       pushArgs(formData.animation)
       pushArgs(formData.continuousIntegration)
+      pushArgs(formData.serverStateManagementLibraries)
 
       const projectNameSegments = formData.projectName.split("/")
       const lastPartOfProjectName = projectNameSegments.pop()!
@@ -238,7 +256,8 @@ export const TechnologiesForm: React.FC = () => {
       | "componentLibraries"
       | "iconLibraries"
       | "animation"
-      | "continuousIntegration",
+      | "continuousIntegration"
+      | "serverStateManagementLibraries",
     optionKeys: Array<keyof typeof options>,
     validators?: {
       [key in keyof typeof options]?: Array<{
@@ -380,6 +399,16 @@ export const TechnologiesForm: React.FC = () => {
                   formStateManagementOptionKeys
                 )}
               </Flex>
+
+              <Flex direction="column" gap="4">
+                <Heading as="h3" size="md">
+                  {categoryLabels.serverStateManagementLibraries}
+                </Heading>
+                {CheckboxesOfOptionKeys(
+                  formDataKeys.serverStateManagementLibraries,
+                  serverStateManagementLibraryOptionKeys
+                )}
+              </Flex>
             </Flex>
 
             <Flex direction="column" gap="8" flexBasis="100%">
@@ -444,6 +473,15 @@ export const TechnologiesForm: React.FC = () => {
                   formDataKeys.componentLibraries,
                   componentLibraryOptionKeys,
                   {
+                    [optionKeys.mantine]: [
+                      {
+                        isInvalid:
+                          formValues.componentLibraries.includes(
+                            optionKeys.mantine
+                          ) && !formValues.styling.includes(optionKeys.emotion),
+                        errorMessage: "Mantine requires Emotion",
+                      },
+                    ],
                     [optionKeys.chakra]: [
                       {
                         isInvalid:

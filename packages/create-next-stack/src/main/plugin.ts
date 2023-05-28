@@ -27,19 +27,72 @@ type PluginConfig = DeeplyReadonly<{
   compilerOptions?: NextConfig["compiler"]
   /** Slots to fill in the generated files. */
   slots?: {
-    /** Slots to fill in the _app.tsx file. */
+    /** Slots to fill in the _app.tsx file. The file is generated using the following template:
+     *
+     * ```ts
+     * `
+     * import { AppProps } from "next/app";
+     * ${imports}
+     *
+     * const App = ({ Component, pageProps }: AppProps) => {
+     *   ${logic}
+     *   return (
+     *     <>
+     *       ${componentsStart}
+     *         <Component {...pageProps} />
+     *       ${componentsEnd}
+     *     </>
+     *   )
+     * };
+     *
+     * export default App;
+     * `
+     * ```
+     */
     app?: {
       /** Code to add to the imports section of the _app.tsx file. */
       imports?: string
+      /** Code to add before the return statement of the App function in the _app.tsx file. */
+      logic?: string
       /** Code to add to the start of the components section of the _app.tsx file. */
       componentsStart?: string
       /** Code to add to the end of the components section of the _app.tsx file. */
       componentsEnd?: string
     }
-    /** Slots to fill in the _document.tsx file. */
+    /** Slots to fill in the _document.tsx file. The file is generated using the following template:
+     * ```ts
+     * `
+     * import NextDocument, { Html, Head, Main, NextScript } from "next/document";
+     * ${imports}
+     *
+     * export default class Document extends NextDocument {
+     *   render() {
+     *     return (
+     *       <Html lang="en" ${htmlAttributes}>
+     *         <Head>
+     *           ${headTags}
+     *         </Head>
+     *         <body>
+     *           ${body}
+     *           <Main />
+     *           <NextScript />
+     *         </body>
+     *       </Html>
+     *     );
+     *   }
+     * }
+     * `
+     * ```
+     */
     document?: {
       /** Code to add to the imports section of the _document.tsx file. */
       imports?: string
+      /** Code to add after the imports section of the _document.tsx file. */
+      afterImports?: string
+      /** Code to add to the class members of the Document class in _document.tsx file. */
+      classMembers?: string
+      /** Code to add before the return statement of the Document render function in _document.tsx file. */
+      renderLogic?: string
       /** Code to add to the attributes of the <Html> tag of the _document.tsx file. */
       htmlAttributes?: string
       /** Code to add to the <Head> tag of the _document.tsx file. */

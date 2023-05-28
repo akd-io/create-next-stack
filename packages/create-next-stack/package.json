@@ -1,7 +1,7 @@
 {
   "name": "create-next-stack",
   "description": "Create Next Stack is a website and CLI tool used to easily set up the boilerplate of new Next.js apps.",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "author": "Anders Kjær Damgaard @akd-io",
   "bugs": "https://github.com/akd-io/create-next-stack/issues",
   "homepage": "https://github.com/akd-io/create-next-stack",
@@ -62,8 +62,9 @@
     "test:cna": "pnpm build && ts-node src/tests/e2e/test-live-cna.ts",
     "test:cns": "pnpm build && ts-node src/tests/e2e/test-live-cns.ts",
     "test:raw": "pnpm build && ./bin/dev",
-    "print:help": "pnpm build && ./bin/dev --help",
-    "print:version": "pnpm build && ./bin/dev --version",
+    "print:help": "./bin/dev --help",
+    "print:version": "./bin/dev --version",
+    "update-readme": "ts-node ./src/scripts/update-readme.ts",
     "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=../../.prettierignore ."
   },
   "dependencies": {

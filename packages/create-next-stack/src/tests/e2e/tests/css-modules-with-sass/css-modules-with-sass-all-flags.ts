@@ -21,6 +21,7 @@ export const testCssModulesWithSassAllFlags = async (
     "--framer-motion",
     "--formatting-pre-commit-hook",
     "--react-icons",
+    "--react-query",
     ".",
   ]
 

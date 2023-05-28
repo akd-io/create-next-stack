@@ -21,6 +21,7 @@ export const testTailwindCssAllFlags = async (
     "--framer-motion",
     "--formatting-pre-commit-hook",
     "--react-icons",
+    "--react-query",
     ".",
   ]
 

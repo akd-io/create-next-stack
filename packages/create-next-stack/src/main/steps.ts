@@ -5,6 +5,7 @@ import { cssModulesPlugin } from "./plugins/css-modules/css-modules"
 import { emotionPlugin } from "./plugins/emotion"
 import { formattingPreCommitHookPlugin } from "./plugins/formatting-pre-commit-hook"
 import { githubActionsPlugin } from "./plugins/github-actions"
+import { mantinePlugin } from "./plugins/mantine/mantine"
 import { materialUIPlugin } from "./plugins/material-ui/material-ui"
 import { nextPlugin } from "./plugins/next"
 import { pnpmPlugin } from "./plugins/pnpm"
@@ -49,6 +50,7 @@ export const steps: Step[] = [
   createNextStackPlugin.steps.addReadme,
 
   // Component libraries
+  mantinePlugin.steps.setUpMantine,
   chakraUIPlugin.steps.setUpChakraUI,
   materialUIPlugin.steps.setUpMaterialUI,
 
