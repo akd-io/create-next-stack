@@ -1,14 +1,12 @@
+import { test } from "@jest/globals"
 import { exists } from "../../../main/helpers/exists"
 import { runCommand } from "../../../main/helpers/run-command"
 import { performE2eChecks } from "../helpers/check-formatting-linting-build"
-import { logTestMeta } from "../helpers/log-test-meta"
 import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../helpers/prepare-e2e-test"
 
-export const testYarn = async (createNextStackDir: string): Promise<void> => {
-  logTestMeta(testYarn.name, __filename)
-
-  const { pathToCLI, runDirectory } = await prepareE2eTest(createNextStackDir)
+test("testYarn", async () => {
+  const { pathToCLI, runDirectory } = await prepareE2eTest()
 
   const args = [
     "--debug",
@@ -45,4 +43,4 @@ export const testYarn = async (createNextStackDir: string): Promise<void> => {
   if (await exists(`${runDirectory}/pnpm-lock.yaml`)) {
     throw new Error(`pnpm-lock.yaml found.`)
   }
-}
+})

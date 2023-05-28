@@ -1,14 +1,10 @@
+import { test } from "@jest/globals"
 import { runCommand } from "../../../main/helpers/run-command"
-import { logTestMeta } from "../helpers/log-test-meta"
 import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../helpers/prepare-e2e-test"
 
-export const testHelpFlag = async (
-  createNextStackDir: string
-): Promise<void> => {
-  logTestMeta(testHelpFlag.name, __filename)
-
-  const { pathToCLI, runDirectory } = await prepareE2eTest(createNextStackDir)
+test("testHelpFlag", async () => {
+  const { pathToCLI, runDirectory } = await prepareE2eTest()
 
   const args = ["--help"]
 
@@ -18,4 +14,4 @@ export const testHelpFlag = async (
     stdout: "inherit",
     stderr: "inherit",
   })
-}
+})

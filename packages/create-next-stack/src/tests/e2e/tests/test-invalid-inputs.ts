@@ -1,14 +1,10 @@
+import { test } from "@jest/globals"
 import { runCommand } from "../../../main/helpers/run-command"
-import { logTestMeta } from "../helpers/log-test-meta"
 import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../helpers/prepare-e2e-test"
 
-export const testInvalidInputs = async (
-  createNextStackDir: string
-): Promise<void> => {
-  logTestMeta(testInvalidInputs.name, __filename)
-
-  const { pathToCLI, runDirectory } = await prepareE2eTest(createNextStackDir)
+test("testInvalidInputs", async () => {
+  const { pathToCLI, runDirectory } = await prepareE2eTest()
 
   const argsArrays = {
     invalidName: [
@@ -61,4 +57,4 @@ export const testInvalidInputs = async (
       throw new Error("Expected the command to throw an error.")
     }
   }
-}
+})

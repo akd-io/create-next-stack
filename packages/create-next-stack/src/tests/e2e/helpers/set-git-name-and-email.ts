@@ -1,7 +1,11 @@
 import { runCommand } from "../../../main/helpers/run-command"
 import { logTestError, logTestInfo } from "../test-logging"
 
-export const setGitNameAndEmail = async (): Promise<void> => {
+/**
+ * If not done already, sets Git name and email so `git commit` doesn't fail during create-next-app
+ * Missing git name and email is mainly a problem in CI/CD environments
+ */
+export const setGitNameAndEmailIfMissing = async (): Promise<void> => {
   try {
     await runCommand("git", ["config", "--global", "user.name"])
       .then((result) => {

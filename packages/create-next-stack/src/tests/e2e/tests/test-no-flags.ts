@@ -1,14 +1,10 @@
+import { test } from "@jest/globals"
 import { runCommand } from "../../../main/helpers/run-command"
-import { logTestMeta } from "../helpers/log-test-meta"
 import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
 import { prepareE2eTest } from "../helpers/prepare-e2e-test"
 
-export const testNoFlags = async (
-  createNextStackDir: string
-): Promise<void> => {
-  logTestMeta(testNoFlags.name, __filename)
-
-  const { pathToCLI, runDirectory } = await prepareE2eTest(createNextStackDir)
+test("testNoFlags", async () => {
+  const { pathToCLI, runDirectory } = await prepareE2eTest()
 
   const argsVariants: string[][] = [
     //
@@ -30,4 +26,4 @@ export const testNoFlags = async (
       }
     })
   }
-}
+})

@@ -3,13 +3,17 @@ import path from "path"
 import { v4 as uuidv4 } from "uuid"
 import { makeDirectory } from "../../../main/helpers/io"
 import { logTestInfo } from "../test-logging"
+import { setGitNameAndEmailIfMissing } from "./set-git-name-and-email"
 
-export const prepareE2eTest = async (
-  createNextStackDir: string
-): Promise<{
+export const prepareE2eTest = async (): Promise<{
   pathToCLI: string
   runDirectory: string
 }> => {
+  process.env["TEST"] = "true"
+  await setGitNameAndEmailIfMissing()
+
+  const createNextStackDir = path.resolve(process.cwd())
+
   const testRunId = uuidv4()
 
   const runDirectory = path.resolve(
