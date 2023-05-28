@@ -1,5 +1,6 @@
 import { test } from "@jest/globals"
 import { testArgsWithFinalChecks } from "../../helpers/test-args"
+import { defaultE2eTimeout } from "../../helpers/timeout"
 
 test(
   "testStyledComponentsAllFlags",
@@ -18,5 +19,5 @@ test(
       ".",
     ])
   },
-  10 * 60 * 1000
+  defaultE2eTimeout
 )

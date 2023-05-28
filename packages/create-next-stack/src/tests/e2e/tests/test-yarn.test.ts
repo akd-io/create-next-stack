@@ -1,6 +1,7 @@
 import { expect, test } from "@jest/globals"
 import { exists } from "../../../main/helpers/exists"
 import { testArgsWithFinalChecks } from "../helpers/test-args"
+import { defaultE2eTimeout } from "../helpers/timeout"
 
 test(
   "testYarn",
@@ -31,5 +32,5 @@ test(
     const pnpmLockExists = await exists(`${runDirectory}/pnpm-lock.yaml`)
     expect(pnpmLockExists).toBe(false)
   },
-  10 * 60 * 1000
+  defaultE2eTimeout
 )
