@@ -3,10 +3,10 @@ import { testArgsWithoutFinalChecks } from "../helpers/test-args"
 
 describe("testHelpAndVersionFlags", () => {
   test("testHelpFlag", async () => {
-    testArgsWithoutFinalChecks(["--help"])
+    await testArgsWithoutFinalChecks(["--help"])
   })
 
   test("testVersionFlag", async () => {
-    testArgsWithoutFinalChecks(["--version"])
+    await testArgsWithoutFinalChecks(["--version"])
   })
 })
