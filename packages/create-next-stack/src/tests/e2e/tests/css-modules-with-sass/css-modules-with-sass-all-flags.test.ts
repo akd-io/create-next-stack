@@ -5,7 +5,7 @@ import { defaultE2eTimeout } from "../../helpers/timeout"
 test(
   "testCssModulesWithSassAllFlags",
   async () => {
-    testArgsWithFinalChecks([
+    await testArgsWithFinalChecks([
       "--debug",
       "--package-manager=pnpm",
       "--prettier",

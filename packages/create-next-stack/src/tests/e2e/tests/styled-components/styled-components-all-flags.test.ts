@@ -5,7 +5,7 @@ import { defaultE2eTimeout } from "../../helpers/timeout"
 test(
   "testStyledComponentsAllFlags",
   async () => {
-    testArgsWithFinalChecks([
+    await testArgsWithFinalChecks([
       "--debug",
       "--package-manager=pnpm",
       "--prettier",

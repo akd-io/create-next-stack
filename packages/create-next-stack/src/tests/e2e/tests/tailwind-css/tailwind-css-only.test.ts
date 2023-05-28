@@ -5,7 +5,7 @@ import { defaultE2eTimeout } from "../../helpers/timeout"
 test(
   "testTailwindCssOnly",
   async () => {
-    testArgsWithFinalChecks([
+    await testArgsWithFinalChecks([
       "--debug",
       "--package-manager=pnpm",
       "--styling=tailwind-css",

@@ -5,7 +5,7 @@ import { defaultE2eTimeout } from "../../helpers/timeout"
 test(
   "testEmotionAllFlags",
   async () => {
-    testArgsWithFinalChecks([
+    await testArgsWithFinalChecks([
       "--debug",
       "--package-manager=pnpm",
       "--styling=emotion",
