@@ -1,13 +1,19 @@
 import { runCommand } from "../../../main/helpers/run-command"
-import { minutesToMilliseconds } from "./minutes-to-milliseconds"
 import { performFinalChecks } from "./perform-final-checks"
 import { prepareE2eTest } from "./prepare-e2e-test"
+import { defaultE2eTimeout } from "./timeout"
 
+/**
+ * Prepare an e2e test and run the CLI with the given arguments.
+ *
+ * @param args Arguments to pass to the CLI.
+ * @returns The directory where the CLI was run.
+ */
 export const testArgsWithoutFinalChecks = async (args: string[]) => {
   const { pathToCLI, runDirectory } = await prepareE2eTest()
 
   await runCommand(pathToCLI, args, {
-    timeout: minutesToMilliseconds(10),
+    timeout: defaultE2eTimeout,
     cwd: runDirectory,
     stdout: "inherit",
     stderr: "inherit",
@@ -16,6 +22,12 @@ export const testArgsWithoutFinalChecks = async (args: string[]) => {
   return { runDirectory }
 }
 
+/**
+ * Prepare an e2e test, run the CLI with the given arguments, and perform final checks.
+ *
+ * @param args Arguments to pass to the CLI.
+ * @returns The directory where the CLI was run.
+ */
 export const testArgsWithFinalChecks = async (args: string[]) => {
   const { runDirectory } = await testArgsWithoutFinalChecks(args)
 

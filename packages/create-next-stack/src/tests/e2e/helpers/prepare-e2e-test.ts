@@ -5,6 +5,11 @@ import { makeDirectory } from "../../../main/helpers/io"
 import { logTestInfo } from "../test-logging"
 import { setGitNameAndEmailIfMissing } from "./set-git-name-and-email"
 
+/**
+ * Prepare an e2e test by creating a directory to run the CLI in.
+ *
+ * @returns The path to the CLI and the directory where the CLI was run.
+ */
 export const prepareE2eTest = async (): Promise<{
   pathToCLI: string
   runDirectory: string
