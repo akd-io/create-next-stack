@@ -1,25 +1,11 @@
 import { test } from "@jest/globals"
-import { runCommand } from "../../../../main/helpers/run-command"
-import { performE2eChecks } from "../../helpers/check-formatting-linting-build"
-import { minutesToMilliseconds } from "../../helpers/minutes-to-milliseconds"
-import { prepareE2eTest } from "../../helpers/prepare-e2e-test"
+import { testArgsWithFinalChecks } from "../../helpers/test-args"
 
 test("testTailwindCssOnly", async () => {
-  const { pathToCLI, runDirectory } = await prepareE2eTest()
-
-  const args = [
+  testArgsWithFinalChecks([
     "--debug",
     "--package-manager=pnpm",
     "--styling=tailwind-css",
     ".",
-  ]
-
-  await runCommand(pathToCLI, args, {
-    timeout: minutesToMilliseconds(10),
-    cwd: runDirectory,
-    stdout: "inherit",
-    stderr: "inherit",
-  })
-
-  await performE2eChecks(runDirectory, args)
+  ])
 })

@@ -2,7 +2,7 @@ import { Options } from "execa"
 import { runCommand } from "../../../main/helpers/run-command"
 import { logTestInfo } from "../test-logging"
 
-export const performE2eChecks = async (
+export const performFinalChecks = async (
   runDirectory: string,
   args: string[]
 ): Promise<void> => {

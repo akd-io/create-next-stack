@@ -1,14 +1,9 @@
-import { test } from "@jest/globals"
+import { expect, test } from "@jest/globals"
 import { exists } from "../../../main/helpers/exists"
-import { runCommand } from "../../../main/helpers/run-command"
-import { performE2eChecks } from "../helpers/check-formatting-linting-build"
-import { minutesToMilliseconds } from "../helpers/minutes-to-milliseconds"
-import { prepareE2eTest } from "../helpers/prepare-e2e-test"
+import { testArgsWithFinalChecks } from "../helpers/test-args"
 
 test("testYarn", async () => {
-  const { pathToCLI, runDirectory } = await prepareE2eTest()
-
-  const args = [
+  const { runDirectory } = await testArgsWithFinalChecks([
     "--debug",
     "--package-manager=yarn",
     "--styling=emotion",
@@ -23,24 +18,14 @@ test("testYarn", async () => {
     "--react-icons",
     "--react-query",
     ".",
-  ]
+  ])
 
-  await runCommand(pathToCLI, args, {
-    timeout: minutesToMilliseconds(10),
-    cwd: runDirectory,
-    stdout: "inherit",
-    stderr: "inherit",
-  })
+  const yarnLockExists = await exists(`${runDirectory}/yarn.lock`)
+  expect(yarnLockExists).toBe(true)
 
-  await performE2eChecks(runDirectory, args)
+  const packageLockExists = await exists(`${runDirectory}/package-lock.json`)
+  expect(packageLockExists).toBe(false)
 
-  if (!(await exists(`${runDirectory}/yarn.lock`))) {
-    throw new Error(`yarn.lock not found.`)
-  }
-  if (await exists(`${runDirectory}/package-lock.json`)) {
-    throw new Error(`package-lock.json found.`)
-  }
-  if (await exists(`${runDirectory}/pnpm-lock.yaml`)) {
-    throw new Error(`pnpm-lock.yaml found.`)
-  }
+  const pnpmLockExists = await exists(`${runDirectory}/pnpm-lock.yaml`)
+  expect(pnpmLockExists).toBe(false)
 })

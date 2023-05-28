@@ -2,8 +2,8 @@ import chalk from "chalk"
 import endent from "endent"
 import { v4 as uuidv4 } from "uuid"
 import { runCommand } from "../../main/helpers/run-command"
-import { performE2eChecks } from "./helpers/check-formatting-linting-build"
 import { exitWithError } from "./helpers/exit-with-error"
+import { performFinalChecks } from "./helpers/perform-final-checks"
 import { logTestInfo } from "./test-logging"
 ;(async () => {
   process.env["TEST"] = "true"
@@ -21,7 +21,7 @@ import { logTestInfo } from "./test-logging"
 
     await runCommand(command, args, { stdio: "inherit" })
 
-    await performE2eChecks(runDirectory, args)
+    await performFinalChecks(runDirectory, args)
 
     logTestInfo("")
     logTestInfo(endent`
