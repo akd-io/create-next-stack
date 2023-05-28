@@ -6,7 +6,7 @@ process.stdin.on("data", (data) => {
   input += data.toString()
 })
 process.stdin.on("end", () => {
-  const filePaths = input.split("\n")
+  const filePaths = input.split("\n").filter(Boolean)
   const files = filePaths.map((filePath) => ({
     filePath: filePath,
     fileName: filePath.split("/").pop()?.split(".")[0] || filePath,
