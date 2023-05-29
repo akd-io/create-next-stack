@@ -36,7 +36,7 @@ jobs:
           echo "files=$(pnpm --silent get-e2e-test-files-array)" >> $GITHUB_OUTPUT
 
   build:
-    name: "Build, lint, test - ${{ matrix.os }} - ${{ matrix.test-file.fileName }}"
+    name: "Test - ${{ matrix.test-file.fileName }} - ${{ matrix.os }}"
 
     needs: get-test-files
 
