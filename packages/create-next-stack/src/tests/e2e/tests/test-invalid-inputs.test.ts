@@ -45,9 +45,9 @@ const invalidArgsArrays: Array<{ name: string; args: string[] }> = [
 ]
 
 describe("testInvalidInputs", () => {
-  test.each(invalidArgsArrays)("$name", ({ args }) => {
-    expect(async () => {
+  test.each(invalidArgsArrays)("$name", async ({ args }) => {
+    await expect(async () => {
       await testArgsWithoutFinalChecks(args)
-    }).toThrow()
+    }).rejects.toThrow()
   })
 })
