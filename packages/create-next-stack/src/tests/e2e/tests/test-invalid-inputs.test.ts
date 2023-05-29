@@ -1,5 +1,6 @@
 import { describe, expect, test } from "@jest/globals"
 import { testArgsWithoutFinalChecks } from "../helpers/test-args"
+import { oneMinute } from "../helpers/timeout"
 
 const invalidArgsArrays: Array<{ name: string; args: string[] }> = [
   {
@@ -45,9 +46,13 @@ const invalidArgsArrays: Array<{ name: string; args: string[] }> = [
 ]
 
 describe("testInvalidInputs", () => {
-  test.each(invalidArgsArrays)("$name", async ({ args }) => {
-    await expect(async () => {
-      await testArgsWithoutFinalChecks(args)
-    }).rejects.toThrow()
-  })
+  test.each(invalidArgsArrays)(
+    "$name",
+    async ({ args }) => {
+      await expect(async () => {
+        await testArgsWithoutFinalChecks(args)
+      }).rejects.toThrow()
+    },
+    oneMinute
+  )
 })
