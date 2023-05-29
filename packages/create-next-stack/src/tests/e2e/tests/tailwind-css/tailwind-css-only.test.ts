@@ -1,6 +1,6 @@
 import { test } from "@jest/globals"
 import { testArgsWithFinalChecks } from "../../helpers/test-args"
-import { defaultE2eTimeout } from "../../helpers/timeout"
+import { tenMinutes } from "../../helpers/timeout"
 
 test(
   "testTailwindCssOnly",
@@ -12,5 +12,5 @@ test(
       ".",
     ])
   },
-  defaultE2eTimeout
+  tenMinutes
 )
