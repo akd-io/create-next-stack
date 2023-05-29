@@ -3,13 +3,48 @@ name: "CLI - CI"
 on: [pull_request]
 
 jobs:
+  get-test-files:
+    name: "Gets all e2e Jest test files for use in a later job"
+
+    runs-on: ubuntu-latest
+
+    outputs:
+      test-files: ${{ steps.set-test-files.outputs.files }}
+
+    steps:
+      - name: "Checkout repo"
+        uses: actions/checkout@v3
+
+      - name: "Set up pnpm"
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: "Set up Node 18"
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+
+      - name: "Install dependencies"
+        run: pnpm install
+
+      - name: "Get test files"
+        id: set-test-files
+        working-directory: packages/create-next-stack
+        run: |
+          echo "files=$(pnpm --silent get-e2e-test-files-array)" >> $GITHUB_OUTPUT
+
   build:
-    name: "Build, lint, test - ${{ matrix.os }}"
+    name: "Test - ${{ matrix.test-file.fileName }} - ${{ matrix.os }}"
+
+    needs: get-test-files
 
     strategy:
       matrix:
         node: ["18"]
         os: [ubuntu-latest, windows-latest, macOS-latest]
+        test-file: ${{ fromJSON(needs.get-test-files.outputs.test-files) }}
 
     runs-on: ${{ matrix.os }}
 
@@ -38,4 +73,5 @@ jobs:
         run: pnpm lint:cli
 
       - name: "Test"
-        run: pnpm test:cli
+        working-directory: packages/create-next-stack
+        run: pnpm jest-e2e:ci ${{ matrix.test-file.filePath }}
