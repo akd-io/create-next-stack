@@ -30,6 +30,9 @@ jobs:
       - name: "Install dependencies"
         run: pnpm install
 
+      - name: "Check formatting"
+        run: npx turbo format:check
+
       - name: "Build"
         run: pnpm build
 
@@ -38,6 +41,3 @@ jobs:
 
       - name: "Test"
         run: pnpm test
-
-      - name: "Check formatting"
-        run: npx turbo format:check
