@@ -6,11 +6,11 @@ This website acts as the landing page, UI, and docs, for Create Next Stack.
 
 ## Contributing
 
-If you've found a bug or has an idea for an improvement, please [open an issue](https://github.com/akd-io/create-next-stack-website/issues/new) or consider [contributing](../CONTRIBUTING.md).
+If you've found a bug or has an idea for an improvement, please [open an issue](https://github.com/akd-io/create-next-stack/issues/new) or consider [contributing](../../CONTRIBUTING.md).
 
 ## Scripts
 
-The table below provides names and descriptions of the npm scripts available in this project.
+The table below provides names and descriptions of the npm scripts available in this project during development.
 
 Each script is run using `yarn <script-name>`. For example: `yarn dev`.
 
