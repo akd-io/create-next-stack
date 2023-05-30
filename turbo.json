@@ -3,7 +3,7 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**", "lib"]
+      "outputs": [".next/**", "!.next/cache/**", "lib", "lib/**"]
     },
     "test": {
       "dependsOn": ["build"],
