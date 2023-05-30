@@ -6,6 +6,7 @@ Hey there! We're excited that you're interested in contributing to Create Next S
 
 - [Getting Started](#getting-started)
 - [Repository Overview](#repository-overview)
+  - [Scripts](#scripts)
 - [Creating a pull request](#creating-a-pull-request)
 - [Adding support for a new technology](#adding-support-for-a-new-technology)
 - [Writing a plugin](#writing-a-plugin)
@@ -30,28 +31,37 @@ You can see where the monorepo looks for packages in the `pnpm-workspace.yaml` f
 ```yaml
 packages:
   - "packages/**"
-  - "website"
+  - "apps/**"
 ```
 
-Packages that are published to npm are located inside the [`packages`](packages) directory. A single [`website`](website) package is located outside of the `packages` directory, as it is not published to npm. The `website` package is used to build the [create-next-stack.com](https://create-next-stack.com/).
+### Scripts
 
-You can find a list of generally useful npm scripts available in the root by checking out the root [`package.json`](package.json) file.
+Each package's `package.json` file contains scripts useful during development. These scripts can be run using `pnpm <script>`, but we are also use [Turbo repo](https://turbo.build/repo) to speed up development. This means there is an array of scripts you can run using `turbo <script>` instead of `pnpm <script>`. `build`, `lint`, and `test` are examples of such scripts. You can see the configuration in the [`turbo.json`](../../turbo.json) file.
 
-A couple of notable scripts that allow you to build, lint, and test the entire repository, or specific packages are:
+Note that running scripts inside a specific package's directory will only run the script for that package. This is true for both `turbo` and `pnpm`. For example, running `turbo build` inside the `packages/create-next-stack` directory will build the `create-next-stack` package only.
 
-- `build`
-- `build:cli`
-- `build:web`
-- `lint`
-- `lint:cli`
-- `lint:web`
-- `test`
-- `test:cli`
-- `test:web`
+The table below provides names and descriptions of the npm scripts available in the `create-next-stack` package.
 
-Each package has its own `package.json` file, which contains scripts specific to that package. The above list are just wrapper scripts that call the underlying packages' `build`, `test`, and `test` scripts.
-
-Note that running scripts inside a specific package's directory will only run the script for that package. For example, running `pnpm run build` inside the `packages/create-next-stack` directory will run the `build` script specified in the `create-next-stack` package's `package.json` file.
+| Script                     | Description                                                                                                                                                                                                                                        |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `build`                    | Builds the project.                                                                                                                                                                                                                                |
+| `build:watch`              | Builds the project on every code change.                                                                                                                                                                                                           |
+| `lint`                     | Lints the project.                                                                                                                                                                                                                                 |
+| `test`                     | Alias for `unit` script.                                                                                                                                                                                                                           |
+| `unit`                     | Runs unit tests.                                                                                                                                                                                                                                   |
+| `unit:watch`               | Runs unit tests on every code change.                                                                                                                                                                                                              |
+| `unit:ci`                  | CI-specific unit test script.                                                                                                                                                                                                                      |
+| `get-e2e-test-files-array` | Gets a list of all e2e test files, for GitHub Actions to be able to run them in parallel.                                                                                                                                                          |
+| `e2e`                      | Runs all end-to-end tests in series.                                                                                                                                                                                                               |
+| `e2e:single`               | Runs a single e2e test. Usage: `pnpm e2e:single <file path filter>`.                                                                                                                                                                               |
+| `e2e:single:ci`            | CI-specific single e2e test script.                                                                                                                                                                                                                |
+| `e2e:manual`               | Runs `create-next-stack` in a test directory and runs simple tests on the result.<br/>Specify your own CLI flags, eg.: `pnpm run e2e:manual --package-manager=pnpm --styling=emotion`<br />Note that the `app_name` argument is set automatically. |
+| `e2e:cna`                  | Runs `npx create-next-app@latest` in a test directory. Specify your own CLI flags.                                                                                                                                                                 |
+| `e2e:cns`                  | Runs `npx create-next-stack@latest` in a test directory and runs simple tests on the result. Specify your own CLI flags.                                                                                                                           |
+| `e2e:raw`                  | Alias to the `create-next-stack` binary at `./bin/dev`. Specify your own CLI flags.                                                                                                                                                                |
+| `clean`                    | Cleans up the `lib` and `create-next-stack-tests` directories.                                                                                                                                                                                     |
+| `clean-tests-dir`          | Cleans up the `create-next-stack-tests` directory.                                                                                                                                                                                                 |
+| `update-readme`            | Updates the auto-generated sections of the readme. Automatically run on commit.                                                                                                                                                                    |
 
 ## Creating a Pull Request
 
@@ -70,18 +80,14 @@ Make sure you are set up locally by following the [Getting Started](#getting-sta
 
    - `git checkout -b feature/support-my-favorite-technology`
 
-2. Useful npm scripts of `packages/create-next-stack` to run during development:
+2. Make sure you check out the [scripts](#scripts) section above. Most notably:
 
-   - `check-types:watch` - Runs TypeScript in watch mode to check types as you make changes. You can run this instead of `build:watch` while working on the CLI, as the e2e tests do just-in-time compilation via `ts-node`.
-   - `jest:watch` - Runs Jest in watch mode to run unit tests as you make changes.
-     - These tests were specifically made to ease the plugin authoring process, so don't forget this one.
-   - `test` - Runs e2e tests. Note that this will run all e2e tests, which can take quite a while.
-   - `lint` - Runs ESLint to lint the project.
-   - `test:manual`
+   - `build:watch` - Make sure to have `build:watch` running if you are running tests, as tests are run on the built files.
+   - `unit:watch` - Some of these tests were specifically made to ease the plugin authoring process, so don't forget this one.
+   - `e2e` - Runs e2e tests. Note that this will run all e2e tests, which can take quite a while.
+   - `e2e:manual`
+     - This is performing a manual run of the CLI. Pass flags to the CLI that you want to test.
      - For example, `pnpm run test:manual --package-manager=pnpm --styling=emotion`.
-     - Sets up a new directory for a test run of the CLI, runs the CLI with the specified flags, and builds the generated Next app, and checks formatting and linting.
-     - This is useful for manually testing the CLI. Pass whatever flags to the CLI that you want to test. The `app_name` argument will be set automatically.
-   - `test:raw` - Runs the binary directly. Rarely used, but can be useful for manual tests where you want to be able to specify the `app_name` argument yourself.
    - `clean` - Removes all generated files, including build files and the `create-next-stack-tests` directory created by the e2e tests.
 
 3. Add a new .ts file for your plugin in the plugins directory at [`packages/create-next-stack/src/main/plugins`](packages/create-next-stack/src/main/plugins)
@@ -91,9 +97,9 @@ Make sure you are set up locally by following the [Getting Started](#getting-sta
 4. Add new flags to the `create-next-stack` command in [`create-next-stack.ts`](packages/create-next-stack/src/main/commands/create-next-stack.ts).
 5. Add the plugin to the `plugins` array in [`setup.ts`](packages/create-next-stack/src/main/setup/setup.ts).
 6. Add potential plugin steps to the `steps` array in [`steps.ts`](packages/create-next-stack/src/main/steps.ts). Steps are run top-to-bottom.
-7. Consider expanding some of the e2e tests to include the new technology. See [`test.ts`](packages/create-next-stack/src/tests/e2e/test.ts) for current tests.
+7. Consider expanding some of the e2e tests to include the new technology. See the [`tests`](packages/create-next-stack/src/tests/e2e/tests) directory for current e2e tests.
 8. Go and add the technology to the technology selection form of the website.
-   - See the [TechnologiesForm](website/templates/LandingPage/components/TechnologiesForm.tsx) component.
+   - See the [TechnologiesForm](apps/website/templates/LandingPage/components/TechnologiesForm.tsx) component.
    - This component is currently pretty hideous, and updating it will be automated in the future. See [issue #188](https://github.com/akd-io/create-next-stack/issues/188).
 9. Run tests using `yarn test` to ensure they all pass.
 10. Submit a Pull Request on GitHub.

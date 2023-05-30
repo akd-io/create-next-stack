@@ -4,9 +4,13 @@ on: [pull_request]
 
 jobs:
   build:
-    name: "Check formatting"
+    name: "CI"
 
     runs-on: ubuntu-latest
+
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
     steps:
       - name: "Checkout repo"
@@ -27,4 +31,13 @@ jobs:
         run: pnpm install
 
       - name: "Check formatting"
-        run: pnpm format:check
+        run: npx turbo format:check
+
+      - name: "Build"
+        run: pnpm build
+
+      - name: "Lint"
+        run: pnpm lint
+
+      - name: "Test"
+        run: pnpm test

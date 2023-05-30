@@ -1,0 +1,19 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**", "lib", "lib/**"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "inputs": ["**/*.ts", "**/*.js", "**/*.tsx", "**/*.jsx"]
+    },
+    "lint": {},
+    "update-readme": {
+      "dependsOn": ["build"],
+      "inputs": ["**/*.ts", "**/*.js", "**/*.tsx", "**/*.jsx"]
+    },
+    "//#format:check": {}
+  }
+}

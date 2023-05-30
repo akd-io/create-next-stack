@@ -4,7 +4,7 @@ on: [pull_request]
 
 jobs:
   get-test-files:
-    name: "Gets all e2e Jest test files for use in a later job"
+    name: "Get e2e test files"
 
     runs-on: ubuntu-latest
 
@@ -20,16 +20,21 @@ jobs:
         with:
           version: 8
 
-      - name: "Set up Node 18"
+      - name: "Set up latest Node LTS"
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: "lts/*"
           cache: pnpm
 
       - name: "Install dependencies"
         run: pnpm install
 
-      - name: "Get test files"
+      # Build is necessary, as the `get-e2e-test-files-array` script returns built files
+      - name: "Build"
+        working-directory: packages/create-next-stack
+        run: npx turbo build
+
+      - name: "Set test files"
         id: set-test-files
         working-directory: packages/create-next-stack
         run: |
@@ -42,11 +47,14 @@ jobs:
 
     strategy:
       matrix:
-        node: ["18"]
         os: [ubuntu-latest, windows-latest, macOS-latest]
         test-file: ${{ fromJSON(needs.get-test-files.outputs.test-files) }}
 
     runs-on: ${{ matrix.os }}
+
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
     steps:
       - name: "Checkout repo"
@@ -57,21 +65,19 @@ jobs:
         with:
           version: 8
 
-      - name: "Set up Node ${{ matrix.node }}"
+      - name: "Set up latest Node LTS"
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: "lts/*"
           cache: pnpm
 
       - name: "Install dependencies"
         run: pnpm install
 
       - name: "Build"
-        run: pnpm build:cli
-
-      - name: "Lint"
-        run: pnpm lint:cli
-
-      - name: "Test"
         working-directory: packages/create-next-stack
-        run: pnpm jest-e2e:ci ${{ matrix.test-file.filePath }}
+        run: npx turbo build
+
+      - name: "Run e2e test: ${{ matrix.test-file.fileName }}"
+        working-directory: packages/create-next-stack
+        run: pnpm e2e:single:ci ${{ matrix.test-file.filePath }}
