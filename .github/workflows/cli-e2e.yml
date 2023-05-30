@@ -72,4 +72,4 @@ jobs:
 
       - name: "Run e2e test: ${{ matrix.test-file.fileName }}"
         working-directory: packages/create-next-stack
-        run: pnpm test-e2e:ci ${{ matrix.test-file.filePath }}
+        run: pnpm test-e2e:single:ci ${{ matrix.test-file.filePath }}
