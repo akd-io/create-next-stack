@@ -4,7 +4,7 @@ on: [pull_request]
 
 jobs:
   get-test-files:
-    name: "Gets all e2e Jest test files for use in a later job"
+    name: "Get e2e test files"
 
     runs-on: ubuntu-latest
 
@@ -66,12 +66,6 @@ jobs:
       - name: "Install dependencies"
         run: pnpm install
 
-      - name: "Build"
-        run: pnpm build:cli
-
-      - name: "Lint"
-        run: pnpm lint:cli
-
-      - name: "Test"
+      - name: "Run e2e test: ${{ matrix.test-file.fileName }}"
         working-directory: packages/create-next-stack
-        run: pnpm jest-e2e:ci ${{ matrix.test-file.filePath }}
+        run: pnpm test-e2e:ci ${{ matrix.test-file.filePath }}
