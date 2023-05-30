@@ -74,6 +74,10 @@ jobs:
       - name: "Install dependencies"
         run: pnpm install
 
+      - name: "Build"
+        working-directory: packages/create-next-stack
+        run: npx turbo build
+
       - name: "Run e2e test: ${{ matrix.test-file.fileName }}"
         working-directory: packages/create-next-stack
-        run: pnpm test-e2e:single:ci ${{ matrix.test-file.filePath }}
+        run: pnpm e2e:single:ci ${{ matrix.test-file.filePath }}
