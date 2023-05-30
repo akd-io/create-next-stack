@@ -19,7 +19,7 @@
     "test": "turbo test",
     "test:cli": "turbo test --filter create-next-stack",
     "test:web": "turbo test --filter create-next-stack-website",
-    "update-readmes": "pnpm recursive run update-readme"
+    "update-readmes": "turbo update-readme"
   },
   "devDependencies": {
     "husky": "^8.0.3",
