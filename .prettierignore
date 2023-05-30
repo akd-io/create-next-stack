@@ -1,9 +1,14 @@
-# Prettier
+# These are extensions to .gitignore.
+# .gitignore is used alongside .prettierignore using both `--ignore-path=.prettierignore` and `--ignore-path=.gitignore` at the same time.
 **/prod-assets
+pnpm-lock.yaml
 
-##############################################
-### REST SHOULD BE IDENTICAL TO .gitignore ###
-##############################################
+#######################################################################################
+### REST SHOULD BE IDENTICAL TO .gitignore                                          ###
+### TODO: Fix this when https://github.com/prettier/prettier/pull/14332 is released ###
+#######################################################################################
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 **/node_modules
@@ -64,3 +69,5 @@
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
+
+.turbo
