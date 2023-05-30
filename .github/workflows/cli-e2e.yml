@@ -20,16 +20,21 @@ jobs:
         with:
           version: 8
 
-      - name: "Set up Node 18"
+      - name: "Set up latest Node LTS"
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: "lts/*"
           cache: pnpm
 
       - name: "Install dependencies"
         run: pnpm install
 
-      - name: "Get test files"
+      # Build is necessary, as the `get-e2e-test-files-array` script returns built files
+      - name: "Build"
+        working-directory: packages/create-next-stack
+        run: npx turbo build
+
+      - name: "Set test files"
         id: set-test-files
         working-directory: packages/create-next-stack
         run: |
