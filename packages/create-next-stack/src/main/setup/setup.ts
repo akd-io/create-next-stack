@@ -19,6 +19,7 @@ import { mantinePlugin } from "../plugins/mantine/mantine"
 import { materialUIPlugin } from "../plugins/material-ui/material-ui"
 import { nextPlugin } from "../plugins/next"
 import { npmPlugin } from "../plugins/npm"
+import { plausiblePlugin } from "../plugins/plausible"
 import { pnpmPlugin } from "../plugins/pnpm"
 import { prettierPlugin } from "../plugins/prettier"
 import { reactPlugin } from "../plugins/react"
@@ -58,6 +59,7 @@ export const plugins: Plugin[] = [
   githubActionsPlugin,
   reactIconsPlugin,
   reactQueryPlugin,
+  plausiblePlugin,
 ]
 
 export const filterPlugins = (inputs: ValidCNSInputs): Plugin[] =>

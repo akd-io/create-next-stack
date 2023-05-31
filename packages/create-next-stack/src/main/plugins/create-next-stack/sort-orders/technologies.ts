@@ -29,6 +29,8 @@ export const technologiesSortOrder: string[] = [
   "yarn",
   "npm",
   "githubActions",
+  "plausible",
+  "next-plausible",
 ]
 
 export const getTechnologies = (
