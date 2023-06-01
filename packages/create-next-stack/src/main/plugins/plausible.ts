@@ -1,3 +1,4 @@
+import endent from "endent"
 import { createPlugin } from "../plugin"
 
 export const plausiblePlugin = createPlugin({
@@ -24,7 +25,7 @@ export const plausiblePlugin = createPlugin({
       ],
     },
     {
-      id: "next-plausible",
+      id: "nextPlausible",
       name: "next-plausible",
       description:
         "next-plausible is a simple Next.js integration of Plausible Analytics. It will add the Plausible script for you, add a proxy to avoid ad-blockers, and let you send custom events.",
@@ -35,6 +36,26 @@ export const plausiblePlugin = createPlugin({
           url: "https://github.com/4lejandrito/next-plausible",
         },
       ],
+    },
+  ],
+  slots: {
+    app: {
+      imports: endent`
+        import PlausibleProvider from "next-plausible";
+      `,
+      componentsStart: endent`
+        <PlausibleProvider domain={process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}>
+      `,
+      componentsEnd: endent`
+        </PlausibleProvider>
+      `,
+    },
+  },
+  environmentVariables: [
+    {
+      name: "NEXT_PUBLIC_WEBSITE_DOMAIN",
+      description: "The domain of your website. Used by Plausible Analytics.",
+      defaultValue: "example.com",
     },
   ],
 } as const)

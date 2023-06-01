@@ -7,7 +7,7 @@ test("`technologiesSortOrder` contains no duplicates", () => {
   for (const technology of technologiesSortOrder) {
     if (seenTechnologies.has(technology)) {
       throw new Error(
-        `Duplicate technology with name "${technology}" found in sort-order.ts`
+        `Duplicate technology with name "${technology}" found in technologies.ts`
       )
     }
     seenTechnologies.add(technology)
@@ -21,10 +21,10 @@ test("`technologiesSortOrder` includes all plugins' technologies", () => {
       : []
   )
   const actualTechnologyIDs = new Set(technologiesSortOrder)
-  for (const requiredTechnology of requiredTechnologyIDs) {
-    if (!actualTechnologyIDs.has(requiredTechnology)) {
+  for (const requiredTechnologyID of requiredTechnologyIDs) {
+    if (!actualTechnologyIDs.has(requiredTechnologyID)) {
       throw new Error(
-        `Missing technology with name "${requiredTechnology}" in sort-order.ts`
+        `Missing technology with ID "${requiredTechnologyID}" in technologies.ts`
       )
     }
   }

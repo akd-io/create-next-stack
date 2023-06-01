@@ -25,6 +25,18 @@ type PluginConfig = DeeplyReadonly<{
   steps?: Record<string, RawStep>
   /** Compiler options to set. */
   compilerOptions?: NextConfig["compiler"]
+  /**
+   * Environment variables needed by the plugin.
+   * These variables are added to the generated .env and README.md files.
+   */
+  environmentVariables?: Array<{
+    /** Name of the environment variable. */
+    name: string
+    /** Description of the environment variable. */
+    description: string
+    /** Default value of the environment variable. */
+    defaultValue: string
+  }>
   /** Slots to fill in the generated files. */
   slots?: {
     /** Slots to fill in the _app.tsx file. The file is generated using the following template:

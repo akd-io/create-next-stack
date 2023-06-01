@@ -16,12 +16,14 @@ import { createPlugin } from "../../plugin"
 import { getNameVersionCombo, install, uninstall } from "../../setup/packages"
 import { filterPlugins } from "../../setup/setup"
 import { prettierPlugin } from "../prettier"
+import { generateEnv } from "./add-content/generate-env"
 import { generateApp } from "./add-content/pages/generate-app"
 import { generateDocument } from "./add-content/pages/generate-document"
 import { generateIndexPage } from "./add-content/pages/generate-index"
 import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate"
 import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
 import { generateReadme } from "./add-readme/generate-readme"
+import { getSortedFilteredEnvironmentVariables } from "./sort-orders/environment-variables"
 import { getSortedFilteredScripts } from "./sort-orders/scripts"
 
 const gitAttributesFilename = ".gitattributes"
@@ -69,10 +71,16 @@ export const createNextStackPlugin = createPlugin({
       description: "adding content",
       run: async (inputs) => {
         await makeDirectory("components")
+        const environmentVariables =
+          getSortedFilteredEnvironmentVariables(inputs)
+        if (environmentVariables.length > 0) {
+          await writeFile(".env", generateEnv(inputs))
+        }
         await Promise.all([
           writeFile("pages/index.tsx", generateIndexPage(inputs)),
           writeFile("pages/_app.tsx", generateApp(inputs)),
           writeFile("pages/_document.tsx", generateDocument(inputs)),
+
           writeFile(
             "templates/LandingPage/technologies.ts",
             generateTechnologies(inputs)
