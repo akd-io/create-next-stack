@@ -99,6 +99,11 @@ export default class CreateNextStack extends Command {
     "react-query": Flags.boolean({
       description: "Adds React Query. (Server state management library)",
     }),
+
+    // Analytics
+    plausible: Flags.boolean({
+      description: "Adds Plausible. (Analytics)",
+    }),
   }
 
   async run(): Promise<void> {

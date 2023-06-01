@@ -5,7 +5,7 @@ export const plausiblePlugin = createPlugin({
   id: "plausible",
   name: "Plausible",
   description: "Adds support for Plausible Analytics",
-  active: ({ flags }) => Boolean(flags["package-manager"] === "npm"),
+  active: ({ flags }) => flags["plausible"],
   dependencies: {
     "next-plausible": {
       name: "next-plausible",

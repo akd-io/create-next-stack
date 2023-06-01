@@ -99,6 +99,7 @@ FLAGS
   --package-manager=<option>    (required) Sets the preferred package manager.
                                 (Required)
                                 <options: pnpm|yarn|npm>
+  --plausible                   Adds Plausible. (Analytics)
   --prettier                    Adds Prettier. (Code formatting)
   --react-hook-form             Adds React Hook Form. (Form library)
   --react-icons                 Adds React Icons. (Icon library)
