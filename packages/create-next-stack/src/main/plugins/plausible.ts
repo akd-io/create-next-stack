@@ -1,6 +1,8 @@
 import endent from "endent"
 import { createPlugin } from "../plugin"
 
+const websiteDomainEnvVar = "NEXT_PUBLIC_WEBSITE_DOMAIN"
+
 export const plausiblePlugin = createPlugin({
   id: "plausible",
   name: "Plausible",
@@ -43,8 +45,14 @@ export const plausiblePlugin = createPlugin({
       imports: endent`
         import PlausibleProvider from "next-plausible";
       `,
+      postImports: endent`
+        const ${websiteDomainEnvVar} = process.env.${websiteDomainEnvVar};
+        if (${websiteDomainEnvVar} == null) {
+          throw new Error("${websiteDomainEnvVar} is not set");
+        }
+      `,
       componentsStart: endent`
-        <PlausibleProvider domain={process.env.NEXT_PUBLIC_WEBSITE_DOMAIN}>
+        <PlausibleProvider domain={${websiteDomainEnvVar}}>
       `,
       componentsEnd: endent`
         </PlausibleProvider>
@@ -53,7 +61,7 @@ export const plausiblePlugin = createPlugin({
   },
   environmentVariables: [
     {
-      name: "NEXT_PUBLIC_WEBSITE_DOMAIN",
+      name: websiteDomainEnvVar,
       description: "The domain of your website. Used by Plausible Analytics.",
       defaultValue: "example.com",
     },

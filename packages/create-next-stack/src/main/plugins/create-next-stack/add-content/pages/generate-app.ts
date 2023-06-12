@@ -11,6 +11,13 @@ export const generateApp = (inputs: ValidCNSInputs): string => {
     .filter(nonNull)
     .join("\n")
 
+  const postImports = filterPlugins(inputs)
+    .map((plugin) => {
+      return plugin.slots?.app?.postImports
+    })
+    .filter(nonNull)
+    .join("\n")
+
   const logic = filterPlugins(inputs)
     .map((plugin) => {
       return plugin.slots?.app?.logic
@@ -36,6 +43,8 @@ export const generateApp = (inputs: ValidCNSInputs): string => {
   return endent`
     import { AppProps } from "next/app";
     ${imports}
+
+    ${postImports}
 
     const App = ({ Component, pageProps }: AppProps) => {
       ${logic}

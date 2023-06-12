@@ -46,6 +46,8 @@ type PluginConfig = DeeplyReadonly<{
      * import { AppProps } from "next/app";
      * ${imports}
      *
+     * ${postImports}
+     *
      * const App = ({ Component, pageProps }: AppProps) => {
      *   ${logic}
      *   return (
@@ -64,6 +66,8 @@ type PluginConfig = DeeplyReadonly<{
     app?: {
       /** Code to add to the imports section of the _app.tsx file. */
       imports?: string
+      /** Code to add after the imports section of the _app.tsx file. */
+      postImports?: string
       /** Code to add before the return statement of the App function in the _app.tsx file. */
       logic?: string
       /** Code to add to the start of the components section of the _app.tsx file. */
