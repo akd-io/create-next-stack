@@ -20,6 +20,7 @@ test(
       "--formatting-pre-commit-hook",
       "--react-icons",
       "--react-query",
+      "--plausible",
       ".",
     ])
 
