@@ -1,5 +1,10 @@
 .landingPageTemplate {
   color: black;
+  background-color: white;
+  @media (prefers-color-scheme: dark) {
+    color: #eee;
+    background-color: hsl(0, 0%, 20%);
+  }
 }
 
 .textGradient {
