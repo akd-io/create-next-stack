@@ -60,7 +60,7 @@ export const plausiblePlugin = createPlugin({
     },
     nextConfigJs: {
       imports: endent`
-        import { withPlausibleProxy } from "next-plausible";
+        const { withPlausibleProxy } = require("next-plausible");
       `,
       wrappersStart: "withPlausibleProxy()(",
       wrappersEnd: ")",
