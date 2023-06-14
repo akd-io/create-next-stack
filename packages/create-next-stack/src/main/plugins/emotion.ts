@@ -41,7 +41,13 @@ export const emotionPlugin = createPlugin({
       },
     },
   },
-  compilerOptions: {
-    emotion: true,
+  slots: {
+    nextConfigJs: {
+      nextConfig: {
+        compiler: {
+          emotion: true,
+        },
+      },
+    },
   },
 } as const)

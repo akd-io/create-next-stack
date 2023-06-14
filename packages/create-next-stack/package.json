@@ -75,6 +75,7 @@
     "endent": "^2.1.0",
     "execa": "^5.1.1",
     "inquirer": "^9.1.5",
+    "lodash": "^4.17.21",
     "rimraf": "^5.0.0",
     "tslib": "^2.5.0",
     "validate-npm-package-name": "^5.0.0"
@@ -82,6 +83,7 @@
   "devDependencies": {
     "@jest/globals": "^29.5.0",
     "@types/inquirer": "^9.0.3",
+    "@types/lodash": "^4.14.195",
     "@types/node": "^18.15.13",
     "@types/uuid": "^9.0.1",
     "@types/validate-npm-package-name": "^4.0.0",

@@ -1,8 +1,12 @@
 import endent from "endent"
 import { ValidCNSInputs } from "../../../../../create-next-stack-types"
 import { getProjectNameOfPath } from "../../../../../helpers/get-project-name-of-path"
+import { filterPlugins } from "../../../../../setup/setup"
 
 export const generateLandingPageTemplate = (inputs: ValidCNSInputs): string => {
+  const todos = filterPlugins(inputs).flatMap((plugin) => plugin.todos ?? [])
+  const hasTodos = todos.length > 0
+
   return endent`
     import Script from "next/script";
     import styles from "./LandingPageTemplate.module.css";
@@ -100,6 +104,23 @@ export const generateLandingPageTemplate = (inputs: ValidCNSInputs): string => {
                 </Subtitle>
               </Container>
             </Section>
+            ${
+              hasTodos
+                ? endent`
+                  <Section>
+                    <Container className={styles.textContainer}>
+                      <H2>Final steps</H2>
+                      <Paragraph>
+                        There are a few final steps that we were not able to perform
+                        automatically. We have provided a complete list for you in the{" "}
+                        <InlineCode>README.md</InlineCode> file. You should take care of
+                        these before you can start developing your project.
+                      </Paragraph>
+                    </Container>
+                  </Section>
+                `
+                : ""
+            }
             <Section>
               <Container className={styles.technologyGridIntro}>
                 <H2>Technologies</H2>

@@ -58,6 +58,13 @@ export const plausiblePlugin = createPlugin({
         </PlausibleProvider>
       `,
     },
+    nextConfigJs: {
+      imports: endent`
+        import { withPlausibleProxy } from "next-plausible";
+      `,
+      wrappersStart: "withPlausibleProxy()(",
+      wrappersEnd: ")",
+    },
   },
   environmentVariables: [
     {
@@ -65,5 +72,9 @@ export const plausiblePlugin = createPlugin({
       description: "The domain of your website. Used by Plausible Analytics.",
       defaultValue: "example.com",
     },
+  ],
+  todos: [
+    `Set up an account in Plausible Analytics, and add your website in their dashboard.`,
+    `Update the ${websiteDomainEnvVar} environment variable to your website's domain to connect Plausible Analytics to your app.`,
   ],
 } as const)

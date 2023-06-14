@@ -23,8 +23,6 @@ type PluginConfig = DeeplyReadonly<{
   scripts?: Script[]
   /** A series of functions that are run by Create Next Stack. */
   steps?: Record<string, RawStep>
-  /** Compiler options to set. */
-  compilerOptions?: NextConfig["compiler"]
   /**
    * Environment variables needed by the plugin.
    * These variables are added to the generated .env and README.md files.
@@ -37,6 +35,11 @@ type PluginConfig = DeeplyReadonly<{
     /** Default value of the environment variable. */
     defaultValue: string
   }>
+  /**
+   * List of things to be done manually by the user after a project has been created.
+   * The list will be added to the generated landing page, the README.md file and written to the console.
+   */
+  todos?: string[]
   /** Slots to fill in the generated files. */
   slots?: {
     /** Slots to fill in the _app.tsx file. The file is generated using the following template:
@@ -81,8 +84,12 @@ type PluginConfig = DeeplyReadonly<{
      * import NextDocument, { Html, Head, Main, NextScript } from "next/document";
      * ${imports}
      *
+     * ${afterImports}
+     *
      * export default class Document extends NextDocument {
+     *   ${classMembers}
      *   render() {
+     *     ${renderLogic}
      *     return (
      *       <Html lang="en" ${htmlAttributes}>
      *         <Head>
@@ -101,20 +108,46 @@ type PluginConfig = DeeplyReadonly<{
      * ```
      */
     document?: {
-      /** Code to add to the imports section of the _document.tsx file. */
+      /** Code to add to the imports section of the `_document.tsx` file. */
       imports?: string
-      /** Code to add after the imports section of the _document.tsx file. */
+      /** Code to add after the imports section of the `_document.tsx` file. */
       afterImports?: string
-      /** Code to add to the class members of the Document class in _document.tsx file. */
+      /** Code to add to the class members of the `Document` class in `_document.tsx` file. */
       classMembers?: string
-      /** Code to add before the return statement of the Document render function in _document.tsx file. */
+      /** Code to add before the return statement of the `Document` render function in `_document.tsx` file. */
       renderLogic?: string
-      /** Code to add to the attributes of the <Html> tag of the _document.tsx file. */
+      /** Code to add to the attributes of the <Html> tag of the `_document.tsx` file. */
       htmlAttributes?: string
-      /** Code to add to the <Head> tag of the _document.tsx file. */
+      /** Code to add to the <Head> tag of the `_document.tsx` file. */
       headTags?: string
-      /** Code to add to the <body> tag of the _document.tsx file. */
+      /** Code to add to the <body> tag of the `_document.tsx` file. */
       body?: string
+    }
+    /**
+     * Slots to fill in the next.config.js file. The file is generated using the following template:
+     *
+     * ```js
+     * `
+     * ${imports}
+     *
+     * const nextConfig = {
+     *   reactStrictMode: true,
+     *   ${...nextConfig}
+     * };
+     *
+     * module.exports = ${wrappersStart}nextConfig${wrappersEnd};
+     * `
+     * ```
+     */
+    nextConfigJs?: {
+      /** Code to add to the imports section of the `next.config.js` file. */
+      imports?: string
+      /** JSON object to merge into the `nextConfig` object of the `next.config.js` file. */
+      nextConfig?: NextConfig
+      /** Code to add to the start of the export of the `nextConfig` object of the `next.config.js` file. */
+      wrappersStart?: string
+      /** Code to add to the end of the export of the `nextConfig` object of the `next.config.js` file. */
+      wrappersEnd?: string
     }
   }
 }>

@@ -30,7 +30,13 @@ export const styledComponentsPlugin = createPlugin({
       ],
     },
   ],
-  compilerOptions: {
-    styledComponents: true,
+  slots: {
+    nextConfigJs: {
+      nextConfig: {
+        compiler: {
+          styledComponents: true,
+        },
+      },
+    },
   },
 } as const)
