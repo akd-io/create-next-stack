@@ -140,11 +140,11 @@ export const createNextStackPlugin = createPlugin({
           ]
         })
 
-        const devDeps = filterPlugins(inputs).flatMap((plugin) => {
-          return plugin.devDependencies != null
+        const devDeps = filterPlugins(inputs).flatMap((plugin) =>
+          plugin.devDependencies != null
             ? Object.values(plugin.devDependencies)
             : []
-        })
+        )
 
         if (depsAndTmpDeps.length > 0) {
           await install(depsAndTmpDeps, flags["package-manager"])
@@ -158,11 +158,11 @@ export const createNextStackPlugin = createPlugin({
       id: "uninstallTemporaryDependencies",
       description: "uninstalling temporary dependencies",
       run: async (inputs) => {
-        const tmpDeps = filterPlugins(inputs).flatMap((plugin) => {
-          return plugin.tmpDependencies != null
+        const tmpDeps = filterPlugins(inputs).flatMap((plugin) =>
+          plugin.tmpDependencies != null
             ? Object.values(plugin.tmpDependencies)
             : []
-        })
+        )
 
         if (tmpDeps.length > 0) {
           await uninstall(tmpDeps, inputs.flags["package-manager"])

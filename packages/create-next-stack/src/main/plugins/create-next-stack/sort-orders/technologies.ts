@@ -1,5 +1,6 @@
 import { ValidCNSInputs } from "../../../create-next-stack-types"
 import { DeeplyReadonly } from "../../../helpers/deeply-readonly"
+import { nonNull } from "../../../helpers/non-null"
 import { compareByOrder } from "../../../helpers/sort-by-order"
 import { Technology } from "../../../plugin"
 import { filterPlugins, plugins } from "../../../setup/setup"
@@ -37,7 +38,8 @@ export const getTechnologies = (
   inputs: ValidCNSInputs
 ): Array<Omit<DeeplyReadonly<Technology>, "id">> => {
   return filterPlugins(inputs)
-    .flatMap((plugin) => plugin.technologies ?? [])
+    .flatMap((plugin) => plugin.technologies)
+    .filter(nonNull)
     .sort((a, b) => compareByOrder(a.id, b.id, technologiesSortOrder))
     .map(({ id, ...rest }) => ({
       ...rest,

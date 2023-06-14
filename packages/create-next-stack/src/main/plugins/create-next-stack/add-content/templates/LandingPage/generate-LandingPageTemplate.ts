@@ -1,10 +1,13 @@
 import endent from "endent"
 import { ValidCNSInputs } from "../../../../../create-next-stack-types"
 import { getProjectNameOfPath } from "../../../../../helpers/get-project-name-of-path"
+import { nonNull } from "../../../../../helpers/non-null"
 import { filterPlugins } from "../../../../../setup/setup"
 
 export const generateLandingPageTemplate = (inputs: ValidCNSInputs): string => {
-  const todos = filterPlugins(inputs).flatMap((plugin) => plugin.todos ?? [])
+  const todos = filterPlugins(inputs)
+    .flatMap((plugin) => plugin.todos)
+    .filter(nonNull)
   const hasTodos = todos.length > 0
 
   return endent`

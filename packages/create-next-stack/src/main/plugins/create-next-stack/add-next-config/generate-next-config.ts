@@ -29,6 +29,7 @@ export const generateNextConfig = async (
   const wrappersEnd = filterPlugins(inputs)
     .map((plugin) => plugin.slots?.nextConfigJs?.wrappersEnd)
     .filter(nonNull)
+    .reverse()
 
   return endent`
     ${imports}

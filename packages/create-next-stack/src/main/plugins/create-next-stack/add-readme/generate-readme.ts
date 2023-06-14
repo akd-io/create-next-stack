@@ -1,7 +1,9 @@
 import endent from "endent"
 import { ValidCNSInputs } from "../../../create-next-stack-types"
 import { getProjectNameOfPath } from "../../../helpers/get-project-name-of-path"
+import { nonNull } from "../../../helpers/non-null"
 import { runCommandMap } from "../../../helpers/package-manager-utils"
+import { filterPlugins } from "../../../setup/setup"
 import { getTechnologies } from "../sort-orders/technologies"
 import { generateEnvironmentVariableTableRows } from "./generate-env-table-rows copy"
 import { generateScriptTableRows } from "./generate-script-table-rows"
@@ -11,6 +13,10 @@ export const generateReadme = async (
   inputs: ValidCNSInputs
 ): Promise<string> => {
   const { args, flags } = inputs
+
+  const todos = filterPlugins(inputs)
+    .map((plugin) => plugin.todos)
+    .filter(nonNull)
 
   const runCommand = runCommandMap[flags["package-manager"]]
 

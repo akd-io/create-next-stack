@@ -5,39 +5,29 @@ import { filterPlugins } from "../../../../setup/setup"
 
 export const generateApp = (inputs: ValidCNSInputs): string => {
   const imports = filterPlugins(inputs)
-    .map((plugin) => {
-      return plugin.slots?.app?.imports
-    })
+    .map((plugin) => plugin.slots?.app?.imports)
     .filter(nonNull)
     .join("\n")
 
   const postImports = filterPlugins(inputs)
-    .map((plugin) => {
-      return plugin.slots?.app?.postImports
-    })
+    .map((plugin) => plugin.slots?.app?.postImports)
     .filter(nonNull)
     .join("\n")
 
   const logic = filterPlugins(inputs)
-    .map((plugin) => {
-      return plugin.slots?.app?.logic
-    })
+    .map((plugin) => plugin.slots?.app?.logic)
     .filter(nonNull)
     .join("\n\n") // Double new line to separate plugin logic
 
   const componentsStart = filterPlugins(inputs)
-    .map((plugin) => {
-      return plugin.slots?.app?.componentsStart
-    })
+    .map((plugin) => plugin.slots?.app?.componentsStart)
     .filter(nonNull)
     .join("\n")
 
   const componentsEnd = filterPlugins(inputs)
-    .map((plugin) => {
-      return plugin.slots?.app?.componentsEnd
-    })
-    .reverse()
+    .map((plugin) => plugin.slots?.app?.componentsEnd)
     .filter(nonNull)
+    .reverse()
     .join("\n")
 
   return endent`
