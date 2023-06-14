@@ -75,6 +75,6 @@ export const plausiblePlugin = createPlugin({
   ],
   todos: [
     `Set up an account in Plausible Analytics, and add your website in their dashboard.`,
-    `Update the ${websiteDomainEnvVar} environment variable to your website's domain to connect Plausible Analytics to your app.`,
+    `Update the \`${websiteDomainEnvVar}\` environment variable to your website's domain to connect Plausible Analytics to your app.`,
   ],
 } as const)
