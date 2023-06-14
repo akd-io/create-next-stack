@@ -104,6 +104,14 @@ export default class CreateNextStack extends Command {
     plausible: Flags.boolean({
       description: "Adds Plausible. (Analytics)",
     }),
+
+    // Hosting
+    netlify: Flags.boolean({
+      description: "Adds Netlify. (Hosting)",
+    }),
+    vercel: Flags.boolean({
+      description: "Adds Vercel. (Hosting)",
+    }),
   }
 
   async run(): Promise<void> {
