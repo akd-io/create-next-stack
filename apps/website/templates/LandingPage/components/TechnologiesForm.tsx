@@ -44,6 +44,7 @@ type OptionKey =
   | "githubActions"
   | "formattingPreCommitHook"
   | "reactQuery"
+  | "plausible"
 
 const options = {
   pnpm: { key: "pnpm", value: "pnpm", label: "pnpm" },
@@ -106,6 +107,11 @@ const options = {
     value: "react-query",
     label: "React Query",
   },
+  plausible: {
+    key: "plausible",
+    value: "plausible",
+    label: "Plausible",
+  },
 } satisfies {
   [Key in OptionKey]: {
     key: Key
@@ -150,6 +156,7 @@ const continuousIntegrationOptionKeys = [
 const serverStateManagementLibraryOptionKeys = [
   optionKeys.reactQuery,
 ] satisfies OptionKey[]
+const analyticsOptionKeys = [optionKeys.plausible] satisfies OptionKey[]
 
 type ProjectName = string
 type PackageManager = (typeof packageManagerOptionKeys)[number]
@@ -162,6 +169,8 @@ type Animation = (typeof animationOptionKeys)[number]
 type ContinuousIntegration = (typeof continuousIntegrationOptionKeys)[number]
 type ServerStateManagementLibrary =
   (typeof serverStateManagementLibraryOptionKeys)[number]
+type Analytics = (typeof analyticsOptionKeys)[number]
+
 type TechnologiesFormData = {
   projectName: ProjectName
   packageManager: PackageManager
@@ -173,6 +182,7 @@ type TechnologiesFormData = {
   animation: Animation[]
   continuousIntegration: ContinuousIntegration[]
   serverStateManagementLibraries: ServerStateManagementLibrary[]
+  analytics: Analytics[]
 }
 const defaultFormData: TechnologiesFormData = {
   projectName: "my-app",
@@ -185,6 +195,7 @@ const defaultFormData: TechnologiesFormData = {
   animation: [optionKeys.framerMotion],
   continuousIntegration: [optionKeys.githubActions],
   serverStateManagementLibraries: [optionKeys.reactQuery],
+  analytics: [],
 }
 const formDataKeys = objectToKeyToKeyMap(defaultFormData)
 
@@ -201,6 +212,7 @@ const categoryLabels = {
   animation: "Animation",
   continuousIntegration: "Continuous Integration",
   serverStateManagementLibraries: "Server State Management",
+  analytics: "Analytics",
 } as const
 
 export const TechnologiesForm: React.FC = () => {
@@ -237,6 +249,7 @@ export const TechnologiesForm: React.FC = () => {
       pushArgs(formData.animation)
       pushArgs(formData.continuousIntegration)
       pushArgs(formData.serverStateManagementLibraries)
+      pushArgs(formData.analytics)
 
       const projectNameSegments = formData.projectName.split("/")
       const lastPartOfProjectName = projectNameSegments.pop()!
@@ -257,7 +270,8 @@ export const TechnologiesForm: React.FC = () => {
       | "iconLibraries"
       | "animation"
       | "continuousIntegration"
-      | "serverStateManagementLibraries",
+      | "serverStateManagementLibraries"
+      | "analytics",
     optionKeys: Array<keyof typeof options>,
     validators?: {
       [key in keyof typeof options]?: Array<{
@@ -407,6 +421,16 @@ export const TechnologiesForm: React.FC = () => {
                 {CheckboxesOfOptionKeys(
                   formDataKeys.serverStateManagementLibraries,
                   serverStateManagementLibraryOptionKeys
+                )}
+              </Flex>
+
+              <Flex direction="column" gap="4">
+                <Heading as="h3" size="md">
+                  {categoryLabels.analytics}
+                </Heading>
+                {CheckboxesOfOptionKeys(
+                  formDataKeys.analytics,
+                  analyticsOptionKeys
                 )}
               </Flex>
             </Flex>
