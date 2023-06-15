@@ -62,6 +62,8 @@ The table below provides an overview of the technologies currently supported by 
 | GitHub Actions      | [Website](https://github.com/features/actions) - [Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)                             |
 | Plausible Analytics | [Website](https://plausible.io/) - [Docs](https://plausible.io/docs) - [GitHub](https://github.com/plausible/analytics)                                                                                                      |
 | next-plausible      | [Website](https://next-plausible.vercel.app/) - [GitHub](https://github.com/4lejandrito/next-plausible)                                                                                                                      |
+| Vercel              | [Website](https://vercel.com/) - [Docs](https://vercel.com/docs) - [CLI Docs](https://vercel.com/docs/cli)                                                                                                                   |
+| Netlify             | [Website](https://www.netlify.com/) - [Docs](https://docs.netlify.com/) - [CLI Docs](https://cli.netlify.com/)                                                                                                               |
 
 <!-- CNS-END-OF-TECHNOLOGIES-TABLE -->
 
@@ -96,6 +98,7 @@ FLAGS
                                 Emotion)
   --material-ui                 Adds Material UI. (Component library) (Requires
                                 Emotion)
+  --netlify                     Adds Netlify. (Hosting)
   --package-manager=<option>    (required) Sets the preferred package manager.
                                 (Required)
                                 <options: pnpm|yarn|npm>
@@ -109,6 +112,7 @@ FLAGS
                                 (Required) <styling-method> =
                                 emotion|styled-components|tailwind-css|css-modul
                                 es|css-modules-with-sass
+  --vercel                      Adds Vercel. (Hosting)
 ```
 
 <!-- CNS-END-OF-HELP-OUTPUT -->

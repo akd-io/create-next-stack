@@ -17,6 +17,8 @@ test(
       "--react-icons",
       "--react-query",
       "--plausible",
+      "--vercel",
+      "--netlify",
       ".",
     ])
   },
