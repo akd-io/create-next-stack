@@ -252,7 +252,7 @@ export const TechnologiesForm: React.FC = () => {
     formData
   ) => {
     const calculateCommand = (formData: TechnologiesFormData) => {
-      const args = ["npx", "create-next-stack@0.2.7"]
+      const args = ["npx", "create-next-stack@0.2.8"]
 
       args.push(`--package-manager=${options[formData.packageManager].value}`)
       args.push(`--styling=${options[formData.styling].value}`)
