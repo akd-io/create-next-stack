@@ -12,6 +12,8 @@ export const scriptsSortOrder: string[] = [
   "lint",
   "format",
   "format:check",
+  "deploy:vercel",
+  "deploy:netlify",
 ]
 
 export const getSortedFilteredScripts = (inputs: ValidCNSInputs) => {

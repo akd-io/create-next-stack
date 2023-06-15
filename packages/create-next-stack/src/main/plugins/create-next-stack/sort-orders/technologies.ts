@@ -32,6 +32,8 @@ export const technologiesSortOrder: string[] = [
   "githubActions",
   "plausible",
   "nextPlausible",
+  "vercel",
+  "netlify",
 ]
 
 export const getTechnologies = (
