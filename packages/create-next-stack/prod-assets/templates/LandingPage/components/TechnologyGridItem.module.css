@@ -7,6 +7,10 @@
   gap: 20px;
 
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(0, 0%, 25%);
+  }
 }
 
 .linksContainer {

@@ -1,6 +1,6 @@
 import { test } from "@jest/globals"
 import { testArgsWithFinalChecks } from "../../helpers/test-args"
-import { tenMinutes } from "../../helpers/timeout"
+import { fifteenMinutes } from "../../helpers/timeout"
 
 test(
   "testEmotionOnly",
@@ -12,5 +12,5 @@ test(
       ".",
     ])
   },
-  tenMinutes
+  fifteenMinutes
 )

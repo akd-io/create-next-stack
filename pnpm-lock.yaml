@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -105,6 +105,9 @@ importers:
       inquirer:
         specifier: ^9.1.5
         version: 9.1.5
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       rimraf:
         specifier: ^5.0.0
         version: 5.0.0
@@ -121,6 +124,9 @@ importers:
       '@types/inquirer':
         specifier: ^9.0.3
         version: 9.0.3
+      '@types/lodash':
+        specifier: ^4.14.195
+        version: 4.14.195
       '@types/node':
         specifier: ^18.15.13
         version: 18.15.13
@@ -2391,7 +2397,6 @@ packages:
 
   /@types/lodash@4.14.195:
     resolution: {integrity: sha512-Hwx9EUgdwf2GLarOjQp5ZH8ZmblzcbTBC2wtQWNKARBSxM9ezRIAUpeDTgoQRAFB0+8CNWXVA9+MaSOzOF3nPg==}
-    dev: false
 
   /@types/node@18.15.13:
     resolution: {integrity: sha512-N+0kuo9KgrUQ1Sn/ifDXsvg0TTleP7rIy4zOBGECxAljqvqfqpTfzx0Q1NUedOixRMBfe2Whhb056a42cWs26Q==}

@@ -6,4 +6,7 @@
     Bitstream Vera Sans Mono, Courier New, monospace;
   font-size: 0.8em;
   background-color: hsl(0, 0%, 95%);
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(0, 0%, 25%);
+  }
 }

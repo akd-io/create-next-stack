@@ -1,7 +1,7 @@
 import { expect, test } from "@jest/globals"
 import { exists } from "../../../main/helpers/exists"
 import { testArgsWithFinalChecks } from "../helpers/test-args"
-import { tenMinutes } from "../helpers/timeout"
+import { fifteenMinutes } from "../helpers/timeout"
 
 test(
   "testPnpm",
@@ -20,6 +20,9 @@ test(
       "--formatting-pre-commit-hook",
       "--react-icons",
       "--react-query",
+      "--plausible",
+      "--vercel",
+      "--netlify",
       ".",
     ])
 
@@ -32,5 +35,5 @@ test(
     const pnpmLockExists = await exists(`${runDirectory}/pnpm-lock.yaml`)
     expect(pnpmLockExists).toBe(true)
   },
-  tenMinutes
+  fifteenMinutes
 )

@@ -44,6 +44,9 @@ type OptionKey =
   | "githubActions"
   | "formattingPreCommitHook"
   | "reactQuery"
+  | "plausible"
+  | "vercel"
+  | "netlify"
 
 const options = {
   pnpm: { key: "pnpm", value: "pnpm", label: "pnpm" },
@@ -106,6 +109,21 @@ const options = {
     value: "react-query",
     label: "React Query",
   },
+  plausible: {
+    key: "plausible",
+    value: "plausible",
+    label: "Plausible",
+  },
+  vercel: {
+    key: "vercel",
+    value: "vercel",
+    label: "Vercel",
+  },
+  netlify: {
+    key: "netlify",
+    value: "netlify",
+    label: "Netlify",
+  },
 } satisfies {
   [Key in OptionKey]: {
     key: Key
@@ -150,6 +168,11 @@ const continuousIntegrationOptionKeys = [
 const serverStateManagementLibraryOptionKeys = [
   optionKeys.reactQuery,
 ] satisfies OptionKey[]
+const analyticsOptionKeys = [optionKeys.plausible] satisfies OptionKey[]
+const deploymentOptionKeys = [
+  optionKeys.vercel,
+  optionKeys.netlify,
+] satisfies OptionKey[]
 
 type ProjectName = string
 type PackageManager = (typeof packageManagerOptionKeys)[number]
@@ -162,6 +185,9 @@ type Animation = (typeof animationOptionKeys)[number]
 type ContinuousIntegration = (typeof continuousIntegrationOptionKeys)[number]
 type ServerStateManagementLibrary =
   (typeof serverStateManagementLibraryOptionKeys)[number]
+type Analytics = (typeof analyticsOptionKeys)[number]
+type Deployment = (typeof deploymentOptionKeys)[number]
+
 type TechnologiesFormData = {
   projectName: ProjectName
   packageManager: PackageManager
@@ -173,6 +199,8 @@ type TechnologiesFormData = {
   animation: Animation[]
   continuousIntegration: ContinuousIntegration[]
   serverStateManagementLibraries: ServerStateManagementLibrary[]
+  analytics: Analytics[]
+  deployment: Deployment[]
 }
 const defaultFormData: TechnologiesFormData = {
   projectName: "my-app",
@@ -185,6 +213,8 @@ const defaultFormData: TechnologiesFormData = {
   animation: [optionKeys.framerMotion],
   continuousIntegration: [optionKeys.githubActions],
   serverStateManagementLibraries: [optionKeys.reactQuery],
+  analytics: [],
+  deployment: [optionKeys.vercel],
 }
 const formDataKeys = objectToKeyToKeyMap(defaultFormData)
 
@@ -201,6 +231,8 @@ const categoryLabels = {
   animation: "Animation",
   continuousIntegration: "Continuous Integration",
   serverStateManagementLibraries: "Server State Management",
+  analytics: "Analytics",
+  deployment: "Deployment",
 } as const
 
 export const TechnologiesForm: React.FC = () => {
@@ -220,7 +252,7 @@ export const TechnologiesForm: React.FC = () => {
     formData
   ) => {
     const calculateCommand = (formData: TechnologiesFormData) => {
-      const args = ["npx", "create-next-stack@0.2.7"]
+      const args = ["npx", "create-next-stack@0.2.8"]
 
       args.push(`--package-manager=${options[formData.packageManager].value}`)
       args.push(`--styling=${options[formData.styling].value}`)
@@ -237,6 +269,8 @@ export const TechnologiesForm: React.FC = () => {
       pushArgs(formData.animation)
       pushArgs(formData.continuousIntegration)
       pushArgs(formData.serverStateManagementLibraries)
+      pushArgs(formData.analytics)
+      pushArgs(formData.deployment)
 
       const projectNameSegments = formData.projectName.split("/")
       const lastPartOfProjectName = projectNameSegments.pop()!
@@ -257,7 +291,9 @@ export const TechnologiesForm: React.FC = () => {
       | "iconLibraries"
       | "animation"
       | "continuousIntegration"
-      | "serverStateManagementLibraries",
+      | "serverStateManagementLibraries"
+      | "analytics"
+      | "deployment",
     optionKeys: Array<keyof typeof options>,
     validators?: {
       [key in keyof typeof options]?: Array<{
@@ -409,6 +445,16 @@ export const TechnologiesForm: React.FC = () => {
                   serverStateManagementLibraryOptionKeys
                 )}
               </Flex>
+
+              <Flex direction="column" gap="4">
+                <Heading as="h3" size="md">
+                  {categoryLabels.analytics}
+                </Heading>
+                {CheckboxesOfOptionKeys(
+                  formDataKeys.analytics,
+                  analyticsOptionKeys
+                )}
+              </Flex>
             </Flex>
 
             <Flex direction="column" gap="8" flexBasis="100%">
@@ -541,6 +587,16 @@ export const TechnologiesForm: React.FC = () => {
                 {CheckboxesOfOptionKeys(
                   formDataKeys.continuousIntegration,
                   continuousIntegrationOptionKeys
+                )}
+              </Flex>
+
+              <Flex direction="column" gap="4">
+                <Heading as="h3" size="md">
+                  {categoryLabels.deployment}
+                </Heading>
+                {CheckboxesOfOptionKeys(
+                  formDataKeys.deployment,
+                  deploymentOptionKeys
                 )}
               </Flex>
             </Flex>

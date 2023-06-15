@@ -17,8 +17,10 @@ import { framerMotionPlugin } from "../plugins/framer-motion"
 import { githubActionsPlugin } from "../plugins/github-actions"
 import { mantinePlugin } from "../plugins/mantine/mantine"
 import { materialUIPlugin } from "../plugins/material-ui/material-ui"
+import { netlifyPlugin } from "../plugins/netlify"
 import { nextPlugin } from "../plugins/next"
 import { npmPlugin } from "../plugins/npm"
+import { plausiblePlugin } from "../plugins/plausible"
 import { pnpmPlugin } from "../plugins/pnpm"
 import { prettierPlugin } from "../plugins/prettier"
 import { reactPlugin } from "../plugins/react"
@@ -29,6 +31,7 @@ import { sassPlugin } from "../plugins/sass/sass"
 import { styledComponentsPlugin } from "../plugins/styled-components"
 import { tailwindCSSPlugin } from "../plugins/tailwind-css"
 import { typescriptPlugin } from "../plugins/typescript"
+import { vercelPlugin } from "../plugins/vercel"
 import { yarnPlugin } from "../plugins/yarn"
 import { steps } from "../steps"
 import { printFinalMessages } from "./print-final-messages"
@@ -58,6 +61,9 @@ export const plugins: Plugin[] = [
   githubActionsPlugin,
   reactIconsPlugin,
   reactQueryPlugin,
+  plausiblePlugin,
+  vercelPlugin,
+  netlifyPlugin,
 ]
 
 export const filterPlugins = (inputs: ValidCNSInputs): Plugin[] =>

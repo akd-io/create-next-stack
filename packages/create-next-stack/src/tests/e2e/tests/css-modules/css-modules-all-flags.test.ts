@@ -1,6 +1,6 @@
 import { test } from "@jest/globals"
 import { testArgsWithFinalChecks } from "../../helpers/test-args"
-import { tenMinutes } from "../../helpers/timeout"
+import { fifteenMinutes } from "../../helpers/timeout"
 
 test(
   "testCssModulesAllFlags",
@@ -16,8 +16,11 @@ test(
       "--formatting-pre-commit-hook",
       "--react-icons",
       "--react-query",
+      "--plausible",
+      "--vercel",
+      "--netlify",
       ".",
     ])
   },
-  tenMinutes
+  fifteenMinutes
 )

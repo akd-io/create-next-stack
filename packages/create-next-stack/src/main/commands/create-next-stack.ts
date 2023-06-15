@@ -99,6 +99,19 @@ export default class CreateNextStack extends Command {
     "react-query": Flags.boolean({
       description: "Adds React Query. (Server state management library)",
     }),
+
+    // Analytics
+    plausible: Flags.boolean({
+      description: "Adds Plausible. (Analytics)",
+    }),
+
+    // Hosting
+    netlify: Flags.boolean({
+      description: "Adds Netlify. (Hosting)",
+    }),
+    vercel: Flags.boolean({
+      description: "Adds Vercel. (Hosting)",
+    }),
   }
 
   async run(): Promise<void> {
