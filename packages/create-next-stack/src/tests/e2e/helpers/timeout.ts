@@ -1,2 +1,2 @@
-export const fifteenMinutes = 1000 * 60 * 15
+export const twentyMinutes = 1000 * 60 * 20
 export const oneMinute = 1000 * 60
