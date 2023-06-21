@@ -117,9 +117,13 @@ FLAGS
 
 <!-- CNS-END-OF-HELP-OUTPUT -->
 
-## Contributing
+## All contributors
 
 Contributions are welcome! Please see the [contributing guidelines](CONTRIBUTING.md) for more information.
+
+<a href="https://github.com/akd-io/create-next-stack/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=akd-io/create-next-stack" />
+</a>
 
 ## License
 
