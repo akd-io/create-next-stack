@@ -16,7 +16,7 @@ export const scriptsSortOrder: string[] = [
   "deploy:netlify",
 ]
 
-export const getSortedFilteredScripts = (inputs: ValidCNSInputs) => {
+export const getScripts = (inputs: ValidCNSInputs) => {
   const pluginScripts = filterPlugins(inputs)
     .flatMap((plugin) => plugin.scripts)
     .filter(nonNull)

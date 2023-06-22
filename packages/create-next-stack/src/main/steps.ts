@@ -1,49 +1,39 @@
+import { ValidCNSInputs } from "./create-next-stack-types"
+import { nonNull } from "./helpers/non-null"
+import { compareByOrder } from "./helpers/sort-by-order"
 import { Step } from "./plugin"
-import { createNextStackPlugin } from "./plugins/create-next-stack/create-next-stack"
-import { emotionPlugin } from "./plugins/emotion"
-import { formattingPreCommitHookPlugin } from "./plugins/formatting-pre-commit-hook"
-import { githubActionsPlugin } from "./plugins/github-actions"
-import { nextPlugin } from "./plugins/next"
-import { pnpmPlugin } from "./plugins/pnpm"
-import { prettierPlugin } from "./plugins/prettier"
-import { yarnPlugin } from "./plugins/yarn"
+import { filterPlugins } from "./setup/setup"
 
-export const steps: Step[] = [
+export const stepsOrder: string[] = [
   // Update package manager
-  pnpmPlugin.steps.updatePnpm,
-  yarnPlugin.steps.updateYarn,
-
+  "updatePnpm",
+  "updateYarn",
   // Create Next App
-  nextPlugin.steps.createNextApp,
-  nextPlugin.steps.removeOfficialCNAContent,
-
+  "createNextApp",
+  "removeOfficialCNAContent",
   // Install dependencies
-  createNextStackPlugin.steps.installDependencies,
-
+  "installDependencies",
   // Configuration
-  createNextStackPlugin.steps.addScripts,
-  createNextStackPlugin.steps.addGitAttributes,
-  nextPlugin.steps.addNextConfig,
-
+  "addScripts",
+  "addGitAttributes",
   // Styling
-  emotionPlugin.steps.setUpEmotion,
-
+  "setUpEmotion",
   // Formatting
-  prettierPlugin.steps.setUpPrettier,
-  formattingPreCommitHookPlugin.steps.setUpFormattingPreCommitHook,
-
-  // Continuous integration
-  githubActionsPlugin.steps.addGithubWorkflowStep,
-
+  "setUpPrettier",
+  "setUpFormattingPreCommitHook",
   // Add/generate content
-  createNextStackPlugin.steps.copyAssets,
-  createNextStackPlugin.steps.addContent,
-  createNextStackPlugin.steps.addReadme,
-
+  "copyAssets",
+  "addContent",
   // Uninstall temporary dependencies
-  createNextStackPlugin.steps.uninstallTemporaryDependencies,
-
+  "uninstallTemporaryDependencies",
   // Format & initial commit
-  createNextStackPlugin.steps.formatProject,
-  createNextStackPlugin.steps.initialCommit,
+  "formatProject",
+  "initialCommit",
 ]
+
+export const getSteps = (inputs: ValidCNSInputs): Step[] => {
+  return filterPlugins(inputs)
+    .flatMap((plugin) => plugin.steps)
+    .filter(nonNull)
+    .sort((a, b) => compareByOrder(a.id, b.id, stepsOrder))
+}

@@ -1,7 +1,7 @@
 import endent from "endent"
-import { createPlugin } from "../../plugin"
+import { Plugin } from "../../plugin"
 
-export const chakraUIPlugin = createPlugin({
+export const chakraUIPlugin: Plugin = {
   id: "chakra-ui",
   name: "Chakra UI",
   description: "Adds support for Chakra UI",
@@ -59,4 +59,4 @@ export const chakraUIPlugin = createPlugin({
       `,
     },
   ],
-} as const)
+} as const

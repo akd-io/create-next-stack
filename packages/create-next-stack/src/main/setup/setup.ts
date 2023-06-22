@@ -5,7 +5,7 @@ import { getDiffString } from "../helpers/diff-string"
 import { inDebugMode } from "../helpers/in-debug-mode"
 import { time } from "../helpers/time"
 import { logDebug, logInfo } from "../logging"
-import { evalActive, evalShouldRun, Plugin } from "../plugin"
+import { evalOptionalProperty, evalProperty, Plugin } from "../plugin"
 import { chakraUIPlugin } from "../plugins/chakra-ui/chakra-ui"
 import { createNextStackPlugin } from "../plugins/create-next-stack/create-next-stack"
 import { cssModulesPlugin } from "../plugins/css-modules/css-modules"
@@ -33,7 +33,7 @@ import { tailwindCSSPlugin } from "../plugins/tailwind-css"
 import { typescriptPlugin } from "../plugins/typescript"
 import { vercelPlugin } from "../plugins/vercel"
 import { yarnPlugin } from "../plugins/yarn"
-import { steps } from "../steps"
+import { getSteps } from "../steps"
 import { printFinalMessages } from "./print-final-messages"
 
 export const plugins: Plugin[] = [
@@ -67,16 +67,21 @@ export const plugins: Plugin[] = [
 ]
 
 export const filterPlugins = (inputs: ValidCNSInputs): Plugin[] =>
-  plugins.filter((plugin) => evalActive(plugin.active, inputs))
+  plugins.filter(async (plugin) => await evalProperty(plugin.active, inputs))
 
 export const performSetupSteps = async (
   inputs: ValidCNSInputs
 ): Promise<void> => {
+  const steps = getSteps(inputs)
+
   const allStepsDiff = await time(async () => {
     for (const step of steps) {
-      const pluginActive = evalActive(step.plugin.active, inputs)
-      const stepShouldRun = await evalShouldRun(step.shouldRun, inputs)
-      if (!pluginActive || !stepShouldRun) {
+      const stepShouldRun = await evalOptionalProperty(
+        step.shouldRun,
+        inputs,
+        true
+      )
+      if (!stepShouldRun) {
         continue
       }
 

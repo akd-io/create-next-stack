@@ -1,7 +1,7 @@
 import endent from "endent"
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const reactQueryPlugin = createPlugin({
+export const reactQueryPlugin: Plugin = {
   id: "react-query",
   name: "React Query",
   description: "Adds support for React Query",
@@ -48,4 +48,4 @@ export const reactQueryPlugin = createPlugin({
       `,
     },
   },
-} as const)
+} as const

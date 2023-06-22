@@ -1,6 +1,6 @@
 import endent from "endent"
-import { createPlugin } from "../../plugin"
-import { cssModulesPlugin } from "../css-modules/css-modules"
+import { Plugin } from "../../plugin"
+import { cssModuleTechnology } from "../css-modules/css-modules"
 
 const globalStyles = endent`
   * {
@@ -28,14 +28,14 @@ const globalStyles = endent`
   }
 `
 
-export const sassPlugin = createPlugin({
+export const sassPlugin: Plugin = {
   id: "sass",
   name: "Sass",
   description: "Adds support for Sass",
   active: ({ flags }) => flags.styling === "css-modules-with-sass",
   dependencies: [{ name: "sass", version: "^1.0.0" }],
   technologies: [
-    cssModulesPlugin.technologies[0],
+    cssModuleTechnology,
     {
       id: "sass",
       name: "Sass",
@@ -62,4 +62,4 @@ export const sassPlugin = createPlugin({
       content: globalStyles,
     },
   ],
-} as const)
+} as const

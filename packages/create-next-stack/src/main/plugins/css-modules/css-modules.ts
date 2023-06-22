@@ -1,5 +1,5 @@
 import endent from "endent"
-import { createPlugin } from "../../plugin"
+import { Plugin } from "../../plugin"
 
 const globalStyles = endent`
   * {
@@ -27,27 +27,27 @@ const globalStyles = endent`
   }
 `
 
-export const cssModulesPlugin = createPlugin({
+export const cssModuleTechnology = {
+  id: "cssModules",
+  name: "CSS Modules",
+  description:
+    "CSS Modules are CSS files in which all class names are scoped locally to the component importing them. This means that developers can use the same CSS class name in different files without worrying about naming conflicts. Gone are the days of writing BEM class names!",
+  links: [
+    { title: "Website", url: "https://github.com/css-modules/css-modules" },
+    { title: "Docs", url: "https://github.com/css-modules/css-modules" },
+    {
+      title: "Next.js-specific docs",
+      url: "https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css",
+    },
+  ],
+}
+
+export const cssModulesPlugin: Plugin = {
   id: "css-modules",
   name: "CSS Modules",
   description: "Adds relevant CSS Modules boilerplate and documentation",
   active: ({ flags }) => Boolean(flags.styling === "css-modules"),
-  technologies: [
-    {
-      id: "cssModules",
-      name: "CSS Modules",
-      description:
-        "CSS Modules are CSS files in which all class names are scoped locally to the component importing them. This means that developers can use the same CSS class name in different files without worrying about naming conflicts. Gone are the days of writing BEM class names!",
-      links: [
-        { title: "Website", url: "https://github.com/css-modules/css-modules" },
-        { title: "Docs", url: "https://github.com/css-modules/css-modules" },
-        {
-          title: "Next.js-specific docs",
-          url: "https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css",
-        },
-      ],
-    },
-  ],
+  technologies: [cssModuleTechnology],
   slots: {
     app: {
       imports: `import "../styles/global-styles.css";`,
@@ -59,4 +59,4 @@ export const cssModulesPlugin = createPlugin({
       content: globalStyles,
     },
   ],
-} as const)
+} as const

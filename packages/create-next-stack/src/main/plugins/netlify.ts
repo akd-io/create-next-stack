@@ -1,6 +1,6 @@
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const netlifyPlugin = createPlugin({
+export const netlifyPlugin: Plugin = {
   id: "netlify",
   name: "Netlify",
   description: "Adds support for Netlify",
@@ -29,4 +29,4 @@ export const netlifyPlugin = createPlugin({
   todos: [
     "Integrate Netlify with your repository host for continuous deployments at https://app.netlify.com/start. The Netlify CLI, mainly used for preview deployments, won't auto-detect Next.js until you do.",
   ],
-} as const)
+} as const

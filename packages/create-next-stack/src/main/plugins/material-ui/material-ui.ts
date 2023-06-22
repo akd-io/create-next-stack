@@ -1,5 +1,5 @@
 import endent from "endent"
-import { createPlugin } from "../../plugin"
+import { Plugin } from "../../plugin"
 
 const materialTheme = endent`
   import { Roboto } from 'next/font/google';
@@ -32,7 +32,7 @@ const materialTheme = endent`
   });
 `
 
-export const materialUIPlugin = createPlugin({
+export const materialUIPlugin: Plugin = {
   id: "material-ui",
   name: "Material UI",
   description: "Adds support for Material UI",
@@ -79,4 +79,4 @@ export const materialUIPlugin = createPlugin({
       content: materialTheme,
     },
   ],
-} as const)
+} as const

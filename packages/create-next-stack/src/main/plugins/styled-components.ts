@@ -1,6 +1,6 @@
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const styledComponentsPlugin = createPlugin({
+export const styledComponentsPlugin: Plugin = {
   id: "styled-components",
   name: "Styled Components",
   description: "Adds support for Styled Components",
@@ -32,4 +32,4 @@ export const styledComponentsPlugin = createPlugin({
       },
     },
   },
-} as const)
+} as const

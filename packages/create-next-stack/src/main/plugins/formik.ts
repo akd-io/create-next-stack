@@ -1,6 +1,6 @@
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const formikPlugin = createPlugin({
+export const formikPlugin: Plugin = {
   id: "formik",
   name: "Formik",
   description: "Adds support for Formik",
@@ -19,4 +19,4 @@ export const formikPlugin = createPlugin({
       ],
     },
   ],
-} as const)
+} as const

@@ -7,9 +7,7 @@ export const environmentVariablesSortOrder: string[] = [
   "NEXT_PUBLIC_WEBSITE_DOMAIN",
 ]
 
-export const getSortedFilteredEnvironmentVariables = (
-  inputs: ValidCNSInputs
-) => {
+export const getEnvironmentVariables = (inputs: ValidCNSInputs) => {
   const pluginEnvironmentVariables = filterPlugins(inputs)
     .flatMap((plugin) => plugin.environmentVariables)
     .filter(nonNull)

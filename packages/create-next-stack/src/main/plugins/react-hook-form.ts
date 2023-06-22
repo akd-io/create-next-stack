@@ -1,6 +1,6 @@
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const reactHookFormPlugin = createPlugin({
+export const reactHookFormPlugin: Plugin = {
   id: "react-hook-form",
   name: "React Hook Form",
   description: "Adds support for React Hook Form",
@@ -22,4 +22,4 @@ export const reactHookFormPlugin = createPlugin({
       ],
     },
   ],
-} as const)
+} as const

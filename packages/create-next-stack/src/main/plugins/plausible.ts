@@ -1,9 +1,9 @@
 import endent from "endent"
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
 const websiteDomainEnvVar = "NEXT_PUBLIC_WEBSITE_DOMAIN"
 
-export const plausiblePlugin = createPlugin({
+export const plausiblePlugin: Plugin = {
   id: "plausible",
   name: "Plausible",
   description: "Adds support for Plausible Analytics",
@@ -72,4 +72,4 @@ export const plausiblePlugin = createPlugin({
     `Set up an account in Plausible Analytics, and add your website in their dashboard.`,
     `Update the \`${websiteDomainEnvVar}\` environment variable to your website's domain to connect Plausible Analytics to your app.`,
   ],
-} as const)
+} as const

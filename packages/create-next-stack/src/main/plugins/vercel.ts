@@ -1,6 +1,6 @@
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const vercelPlugin = createPlugin({
+export const vercelPlugin: Plugin = {
   id: "vercel",
   name: "Vercel",
   description: "Adds support for Vercel",
@@ -29,4 +29,4 @@ export const vercelPlugin = createPlugin({
   todos: [
     "Integrate Vercel with your repository host for continuous deployments at https://vercel.com/new",
   ],
-} as const)
+} as const

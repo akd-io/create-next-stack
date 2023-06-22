@@ -7,7 +7,7 @@ import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { nonNull } from "../../helpers/non-null"
 import { runCommand } from "../../helpers/run-command"
 import { logWarning } from "../../logging"
-import { createPlugin } from "../../plugin"
+import { evalProperty, Plugin } from "../../plugin"
 import { getNameVersionCombo, install, uninstall } from "../../setup/packages"
 import { filterPlugins } from "../../setup/setup"
 import { prettierPackage } from "../prettier"
@@ -17,24 +17,60 @@ import { generateDocument } from "./add-content/pages/generate-document"
 import { generateIndexPage } from "./add-content/pages/generate-index"
 import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate"
 import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
+import { generateNextConfig } from "./add-next-config/generate-next-config"
 import { generateReadme } from "./add-readme/generate-readme"
-import { getSortedFilteredEnvironmentVariables } from "./sort-orders/environment-variables"
-import { getSortedFilteredScripts } from "./sort-orders/scripts"
+import { getEnvironmentVariables } from "./sort-orders/environment-variables"
+import { getScripts } from "./sort-orders/scripts"
 
 const gitAttributesFilename = ".gitattributes"
 
-export const createNextStackPlugin = createPlugin({
+export const createNextStackPlugin: Plugin = {
   id: "create-next-stack",
   name: "Create Next Stack",
   description:
     "Adds various miscellaneous steps. Some necessities, some niceties.",
   active: true,
-  steps: {
-    addScripts: {
+  addFiles: [
+    {
+      destination: ".env",
+      condition: (inputs) => getEnvironmentVariables(inputs).length > 0,
+      content: (inputs) => generateEnv(inputs),
+    },
+    {
+      destination: "next.config.js",
+      content: (inputs) => generateNextConfig(inputs),
+    },
+    {
+      destination: "pages/index.tsx",
+      content: (inputs) => generateIndexPage(inputs),
+    },
+    {
+      destination: "pages/_app.tsx",
+      content: (inputs) => generateApp(inputs),
+    },
+    {
+      destination: "pages/_document.tsx",
+      content: (inputs) => generateDocument(inputs),
+    },
+    {
+      destination: "templates/LandingPage/technologies.ts",
+      content: (inputs) => generateTechnologies(inputs),
+    },
+    {
+      destination: "templates/LandingPage/LandingPageTemplate.tsx",
+      content: (inputs) => generateLandingPageTemplate(inputs),
+    },
+    {
+      destination: "README.md",
+      content: (inputs) => generateReadme(inputs),
+    },
+  ],
+  steps: [
+    {
       id: "addScripts",
       description: "adding scripts to package.json",
       run: async (inputs) => {
-        const scripts = getSortedFilteredScripts(inputs)
+        const scripts = getScripts(inputs)
 
         await modifyJsonFile("package.json", (packageJson) => ({
           ...packageJson,
@@ -51,7 +87,7 @@ export const createNextStackPlugin = createPlugin({
         }))
       },
     },
-    copyAssets: {
+    {
       id: "copyAssets",
       description: "copying static assets",
       run: async (): Promise<void> => {
@@ -61,61 +97,22 @@ export const createNextStackPlugin = createPlugin({
         await copyDirectory(source, destination)
       },
     },
-    addContent: {
+    {
       id: "addContent",
       description: "adding content",
       run: async (inputs) => {
-        const environmentVariables =
-          getSortedFilteredEnvironmentVariables(inputs)
-        if (environmentVariables.length > 0) {
-          await writeFile(".env", generateEnv(inputs))
-        }
-
-        const filesToWrite = [
-          {
-            destination: "pages/index.tsx",
-            content: generateIndexPage(inputs),
-          },
-          {
-            destination: "pages/_app.tsx",
-            content: generateApp(inputs),
-          },
-          {
-            destination: "pages/_document.tsx",
-            content: generateDocument(inputs),
-          },
-          {
-            destination: "templates/LandingPage/technologies.ts",
-            content: generateTechnologies(inputs),
-          },
-          {
-            destination: "templates/LandingPage/LandingPageTemplate.tsx",
-            content: generateLandingPageTemplate(inputs),
-          },
-        ]
-
         const pluginFilesToWrite = filterPlugins(inputs)
           .flatMap((plugin) => plugin.addFiles)
           .filter(nonNull)
 
-        filesToWrite.push(...pluginFilesToWrite)
-
         await Promise.all(
-          filesToWrite.map(({ destination, content }) =>
-            writeFile(destination, content)
+          pluginFilesToWrite.map(async ({ destination, content }) =>
+            writeFile(destination, await evalProperty(content, inputs))
           )
         )
       },
     },
-    addReadme: {
-      id: "addReadme",
-      description: "adding Readme",
-      run: async (inputs) => {
-        const readmeString = await generateReadme(inputs)
-        await writeFile("README.md", readmeString)
-      },
-    },
-    initialCommit: {
+    {
       id: "initialCommit",
       description: "adding initial commit",
       shouldRun: async () => {
@@ -136,7 +133,7 @@ export const createNextStackPlugin = createPlugin({
         ])
       },
     },
-    installDependencies: {
+    {
       id: "installDependencies",
       description: "installing dependencies",
       run: async (inputs) => {
@@ -167,7 +164,7 @@ export const createNextStackPlugin = createPlugin({
         }
       },
     },
-    uninstallTemporaryDependencies: {
+    {
       id: "uninstallTemporaryDependencies",
       description: "uninstalling temporary dependencies",
       run: async (inputs) => {
@@ -182,7 +179,7 @@ export const createNextStackPlugin = createPlugin({
         }
       },
     },
-    formatProject: {
+    {
       id: "formatProject",
       description: "formatting project",
       run: async () => {
@@ -193,7 +190,7 @@ export const createNextStackPlugin = createPlugin({
         ])
       },
     },
-    addGitAttributes: {
+    {
       id: "addGitAttributes",
       description: `adding ${gitAttributesFilename}`,
       shouldRun: async () => {
@@ -217,5 +214,5 @@ export const createNextStackPlugin = createPlugin({
         )
       },
     },
-  },
-} as const)
+  ],
+} as const

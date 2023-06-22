@@ -1,7 +1,7 @@
 import endent from "endent"
-import { createPlugin } from "../../plugin"
+import { Plugin } from "../../plugin"
 
-export const mantinePlugin = createPlugin({
+export const mantinePlugin: Plugin = {
   id: "mantine",
   name: "Mantine",
   description: "Adds support for Mantine",
@@ -66,4 +66,4 @@ export const mantinePlugin = createPlugin({
       `,
     },
   ],
-} as const)
+} as const

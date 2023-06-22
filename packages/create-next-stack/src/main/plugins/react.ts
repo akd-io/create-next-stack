@@ -1,6 +1,6 @@
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const reactPlugin = createPlugin({
+export const reactPlugin: Plugin = {
   id: "react",
   name: "React",
   description: "Adds relevant React documentation",
@@ -22,4 +22,4 @@ export const reactPlugin = createPlugin({
       ],
     },
   ],
-} as const)
+} as const

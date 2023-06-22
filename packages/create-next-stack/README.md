@@ -64,7 +64,6 @@ The table below provides an overview of the technologies currently supported by 
 | next-plausible      | [Website](https://next-plausible.vercel.app/) - [GitHub](https://github.com/4lejandrito/next-plausible)                                                                                                                      |
 | Vercel              | [Website](https://vercel.com/) - [Docs](https://vercel.com/docs) - [CLI Docs](https://vercel.com/docs/cli)                                                                                                                   |
 | Netlify             | [Website](https://www.netlify.com/) - [Docs](https://docs.netlify.com/) - [CLI Docs](https://cli.netlify.com/)                                                                                                               |
-| Prisma              | [Website](https://www.prisma.io/) - [Docs](https://www.prisma.io/docs) - [GitHub](https://github.com/prisma/prisma)                                                                                                          |
 
 <!-- CNS-END-OF-TECHNOLOGIES-TABLE -->
 
@@ -105,7 +104,6 @@ FLAGS
                                 <options: pnpm|yarn|npm>
   --plausible                   Adds Plausible. (Analytics)
   --prettier                    Adds Prettier. (Code formatting)
-  --prisma                      Adds Prisma. (ORM)
   --react-hook-form             Adds React Hook Form. (Form library)
   --react-icons                 Adds React Icons. (Icon library)
   --react-query                 Adds React Query. (Server state management

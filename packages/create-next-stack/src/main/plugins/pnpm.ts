@@ -1,8 +1,8 @@
 import { runCommand } from "../helpers/run-command"
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 import { getNameVersionCombo } from "../setup/packages"
 
-export const pnpmPlugin = createPlugin({
+export const pnpmPlugin: Plugin = {
   id: "pnpm",
   name: "pnpm",
   description: "Adds support for pnpm",
@@ -20,8 +20,8 @@ export const pnpmPlugin = createPlugin({
       ],
     },
   ],
-  steps: {
-    updatePnpm: {
+  steps: [
+    {
       id: "updatePnpm",
       description: "updating pnpm",
       run: async () => {
@@ -32,5 +32,5 @@ export const pnpmPlugin = createPlugin({
         ])
       },
     },
-  },
-} as const)
+  ],
+} as const

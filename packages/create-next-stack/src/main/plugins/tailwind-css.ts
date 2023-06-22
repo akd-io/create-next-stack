@@ -1,5 +1,5 @@
 import endent from "endent"
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
 /**
  * Follows a combination of the official Next.js template:
@@ -8,7 +8,7 @@ import { createPlugin } from "../plugin"
  * https://tailwindcss.com/docs/guides/nextjs
  */
 
-export const tailwindCSSPlugin = createPlugin({
+export const tailwindCSSPlugin: Plugin = {
   id: "tailwind-css",
   name: "Tailwind CSS",
   description: "Adds support for Tailwind CSS",
@@ -78,4 +78,4 @@ export const tailwindCSSPlugin = createPlugin({
       `,
     },
   ],
-} as const)
+} as const

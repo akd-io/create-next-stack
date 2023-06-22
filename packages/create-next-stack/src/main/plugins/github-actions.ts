@@ -1,14 +1,13 @@
 import endent from "endent"
 import { ValidCNSInputs } from "../create-next-stack-types"
-import { writeFile } from "../helpers/io"
 import {
   cleanInstallCommandMap,
   runCommandMap,
 } from "../helpers/package-manager-utils"
-import { createPlugin, evalActive } from "../plugin"
+import { evalProperty, Plugin } from "../plugin"
 import { prettierPlugin } from "./prettier"
 
-export const githubActionsPlugin = createPlugin({
+export const githubActionsPlugin: Plugin = {
   id: "github-actions",
   name: "GitHub Actions",
   description: "Adds support for GitHub Actions",
@@ -37,21 +36,22 @@ export const githubActionsPlugin = createPlugin({
       command: "echo No tests found.",
     },
   ],
-  steps: {
-    addGithubWorkflowStep: {
-      id: "addGithubWorkflowStep",
-      description: "adding GitHub workflow",
-      run: async (inputs) => {
-        const filename = ".github/workflows/ci.yml"
-        await writeFile(filename, generateCiYml(inputs))
-      },
+  addFiles: [
+    {
+      destination: ".github/workflows/ci.yml",
+      content: (inputs) => generateCiYml(inputs),
     },
-  },
-} as const)
+  ],
+} as const
 
-const generateCiYml = (inputs: ValidCNSInputs): string => {
+const generateCiYml = async (inputs: ValidCNSInputs): Promise<string> => {
   const { flags } = inputs
   const packageManager = flags["package-manager"]
+
+  const isPrettierPluginActive = await evalProperty(
+    prettierPlugin.active,
+    inputs
+  )
 
   return endent`
     name: "CI"
@@ -89,7 +89,7 @@ const generateCiYml = (inputs: ValidCNSInputs): string => {
             run: ${cleanInstallCommandMap[packageManager]}
 
           ${
-            evalActive(prettierPlugin.active, inputs)
+            isPrettierPluginActive
               ? endent`
                   - name: "Check format"
                     run: ${runCommandMap[packageManager]} format:check

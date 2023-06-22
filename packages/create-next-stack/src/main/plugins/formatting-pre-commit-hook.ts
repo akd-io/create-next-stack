@@ -3,9 +3,9 @@ import { isGitInitialized } from "../helpers/is-git-initialized"
 import { remove } from "../helpers/remove"
 import { runCommand } from "../helpers/run-command"
 import { logWarning } from "../logging"
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const formattingPreCommitHookPlugin = createPlugin({
+export const formattingPreCommitHookPlugin: Plugin = {
   id: "formatting-pre-commit-hook",
   name: "formatting-pre-commit-hook",
   description:
@@ -51,8 +51,8 @@ export const formattingPreCommitHookPlugin = createPlugin({
       command: "husky install",
     },
   ],
-  steps: {
-    setUpFormattingPreCommitHook: {
+  steps: [
+    {
       id: "setUpFormattingPreCommitHook",
       description: "setting up formatting pre-commit hook",
       shouldRun: async () => {
@@ -75,5 +75,5 @@ export const formattingPreCommitHookPlugin = createPlugin({
         }))
       },
     },
-  },
-} as const)
+  ],
+} as const
