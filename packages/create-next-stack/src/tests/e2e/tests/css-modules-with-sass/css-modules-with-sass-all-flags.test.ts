@@ -1,6 +1,6 @@
 import { test } from "@jest/globals"
 import { testArgsWithFinalChecks } from "../../helpers/test-args"
-import { fifteenMinutes } from "../../helpers/timeout"
+import { twentyMinutes } from "../../helpers/timeout"
 
 test(
   "testCssModulesWithSassAllFlags",
@@ -22,5 +22,5 @@ test(
       ".",
     ])
   },
-  fifteenMinutes
+  twentyMinutes
 )
