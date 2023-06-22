@@ -14,20 +14,11 @@ export const tailwindCSSPlugin = createPlugin({
   name: "Tailwind CSS",
   description: "Adds support for Tailwind CSS",
   active: ({ flags }) => flags["styling"] === "tailwind-css",
-  devDependencies: {
-    tailwindcss: {
-      name: "tailwindcss",
-      version: "^3.0.0",
-    },
-    autoprefixer: {
-      name: "autoprefixer",
-      version: "^10.0.0",
-    },
-    postcss: {
-      name: "postcss",
-      version: "^8.0.0",
-    },
-  },
+  devDependencies: [
+    { name: "tailwindcss", version: "^3.0.0" },
+    { name: "autoprefixer", version: "^10.0.0" },
+    { name: "postcss", version: "^8.0.0" },
+  ],
   technologies: [
     {
       id: "tailwindCSS",

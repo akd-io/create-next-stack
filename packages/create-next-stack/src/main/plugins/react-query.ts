@@ -6,16 +6,10 @@ export const reactQueryPlugin = createPlugin({
   name: "React Query",
   description: "Adds support for React Query",
   active: ({ flags }) => Boolean(flags["react-query"]),
-  devDependencies: {
-    "@tanstack/react-query": {
-      name: "@tanstack/react-query",
-      version: "^4.0.0",
-    },
-    "@tanstack/react-query-devtools": {
-      name: "@tanstack/react-query-devtools",
-      version: "^4.0.0",
-    },
-  },
+  devDependencies: [
+    { name: "@tanstack/react-query", version: "^4.0.0" },
+    { name: "@tanstack/react-query-devtools", version: "^4.0.0" },
+  ],
   technologies: [
     {
       id: "reactQuery",

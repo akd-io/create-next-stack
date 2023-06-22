@@ -1,18 +1,20 @@
 import { modifyJsonFile, toArray, writeJsonFile } from "../helpers/io"
-import { createPlugin } from "../plugin"
+import { createPlugin, Package } from "../plugin"
+
+export const prettierPackage = {
+  name: "prettier",
+  version: "^2.0.0",
+} satisfies Package
 
 export const prettierPlugin = createPlugin({
   id: "prettier",
   name: "Prettier",
   description: "Adds support for Prettier",
   active: ({ flags }) => Boolean(flags.prettier),
-  devDependencies: {
-    prettier: { name: "prettier", version: "^2.0.0" },
-    "eslint-config-prettier": {
-      name: "eslint-config-prettier",
-      version: "^8.0.0",
-    },
-  },
+  devDependencies: [
+    prettierPackage,
+    { name: "eslint-config-prettier", version: "^8.0.0" },
+  ],
   technologies: [
     {
       id: "prettier",

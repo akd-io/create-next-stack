@@ -5,15 +5,8 @@ export const styledComponentsPlugin = createPlugin({
   name: "Styled Components",
   description: "Adds support for Styled Components",
   active: ({ flags }) => Boolean(flags.styling === "styled-components"),
-  dependencies: {
-    "styled-components": { name: "styled-components", version: "^5.0.0" },
-  },
-  devDependencies: {
-    "@types/styled-components": {
-      name: "@types/styled-components",
-      version: "^5.0.0",
-    },
-  },
+  dependencies: [{ name: "styled-components", version: "^5.0.0" }],
+  devDependencies: [{ name: "@types/styled-components", version: "^5.0.0" }],
   technologies: [
     {
       id: "styledComponents",

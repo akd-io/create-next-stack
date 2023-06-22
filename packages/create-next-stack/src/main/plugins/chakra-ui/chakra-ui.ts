@@ -8,16 +8,10 @@ export const chakraUIPlugin = createPlugin({
   name: "Chakra UI",
   description: "Adds support for Chakra UI",
   active: ({ flags }) => Boolean(flags.chakra),
-  dependencies: {
-    "@chakra-ui/icons": {
-      name: "@chakra-ui/icons",
-      version: "^2.0.0",
-    },
-    "@chakra-ui/react": {
-      name: "@chakra-ui/react",
-      version: "^2.0.0",
-    },
-  },
+  dependencies: [
+    { name: "@chakra-ui/react", version: "^2.0.0" },
+    { name: "@chakra-ui/icons", version: "^2.0.0" },
+  ],
   technologies: [
     {
       id: "chakraUI",

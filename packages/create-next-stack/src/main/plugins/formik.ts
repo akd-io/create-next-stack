@@ -5,12 +5,7 @@ export const formikPlugin = createPlugin({
   name: "Formik",
   description: "Adds support for Formik",
   active: ({ flags }) => Boolean(flags["formik"]),
-  dependencies: {
-    formik: {
-      name: "formik",
-      version: "^2.0.0",
-    },
-  },
+  dependencies: [{ name: "formik", version: "^2.0.0" }],
   technologies: [
     {
       id: "formik",

@@ -5,12 +5,7 @@ export const framerMotionPlugin = createPlugin({
   name: "Framer Motion",
   description: "Adds support for Framer Motion",
   active: ({ flags }) => Boolean(flags["framer-motion"]),
-  dependencies: {
-    "framer-motion": {
-      name: "framer-motion",
-      version: "^9.0.0",
-    },
-  },
+  dependencies: [{ name: "framer-motion", version: "^9.0.0" }],
   technologies: [
     {
       id: "framerMotion",

@@ -8,12 +8,7 @@ export const plausiblePlugin = createPlugin({
   name: "Plausible",
   description: "Adds support for Plausible Analytics",
   active: ({ flags }) => flags["plausible"],
-  dependencies: {
-    "next-plausible": {
-      name: "next-plausible",
-      version: "^3.0.0",
-    },
-  },
+  dependencies: [{ name: "next-plausible", version: "^3.0.0" }],
   technologies: [
     {
       id: "plausible",

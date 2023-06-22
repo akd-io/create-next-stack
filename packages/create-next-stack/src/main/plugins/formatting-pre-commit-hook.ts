@@ -12,26 +12,14 @@ export const formattingPreCommitHookPlugin = createPlugin({
     "Adds support for a formatting pre-commit hook by setting up Husky and lint-staged using mrm",
   active: ({ flags }) =>
     Boolean(flags.prettier && flags["formatting-pre-commit-hook"]),
-  tmpDependencies: {
-    mrm: {
-      name: "mrm",
-      version: "^4.0.0",
-    },
-    "mrm-task-lint-staged": {
-      name: "mrm-task-lint-staged",
-      version: "^7.0.0",
-    },
-  },
-  devDependencies: {
-    "lint-staged": {
-      name: "lint-staged",
-      version: ">=10",
-    },
-    husky: {
-      name: "husky",
-      version: ">=7",
-    },
-  },
+  tmpDependencies: [
+    { name: "mrm", version: "^4.0.0" },
+    { name: "mrm-task-lint-staged", version: "^7.0.0" },
+  ],
+  devDependencies: [
+    { name: "lint-staged", version: ">=10" },
+    { name: "husky", version: ">=7" },
+  ],
   technologies: [
     {
       id: "husky",

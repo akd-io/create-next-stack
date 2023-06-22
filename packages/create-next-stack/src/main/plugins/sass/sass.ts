@@ -8,7 +8,7 @@ export const sassPlugin = createPlugin({
   name: "Sass",
   description: "Adds support for Sass",
   active: ({ flags }) => flags.styling === "css-modules-with-sass",
-  dependencies: { sass: { name: "sass", version: "^1.0.0" } },
+  dependencies: [{ name: "sass", version: "^1.0.0" }],
   technologies: [
     cssModulesPlugin.technologies[0],
     {

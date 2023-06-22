@@ -5,12 +5,7 @@ export const reactHookFormPlugin = createPlugin({
   name: "React Hook Form",
   description: "Adds support for React Hook Form",
   active: ({ flags }) => Boolean(flags["react-hook-form"]),
-  dependencies: {
-    "react-hook-form": {
-      name: "react-hook-form",
-      version: "^7.0.0",
-    },
-  },
+  dependencies: [{ name: "react-hook-form", version: "^7.0.0" }],
   technologies: [
     {
       id: "reactHookForm",

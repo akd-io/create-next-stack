@@ -12,11 +12,11 @@ type PluginConfig = DeeplyReadonly<{
   /** Whether the plugin is active or not. This determines if dependencies are installed, technologies and scripts added, steps run, and more. */
   active: boolean | ((inputs: ValidCNSInputs) => boolean)
   /** Dependencies that are added to the package.json file. */
-  dependencies?: Record<string, Package>
+  dependencies?: Package[]
   /** Dev dependencies that are added to the package.json file. */
-  devDependencies?: Record<string, Package>
+  devDependencies?: Package[]
   /** Temporary dependencies uninstalled when Create Next Stack is done. */
-  tmpDependencies?: Record<string, Package>
+  tmpDependencies?: Package[]
   /** Descriptions of the technologies supported by the plugin. */
   technologies?: Technology[]
   /** Scripts that are added to the package.json file. */

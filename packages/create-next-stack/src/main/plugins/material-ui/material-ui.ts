@@ -8,12 +8,7 @@ export const materialUIPlugin = createPlugin({
   name: "Material UI",
   description: "Adds support for Material UI",
   active: ({ flags }) => Boolean(flags["material-ui"]),
-  dependencies: {
-    "@mui/material": {
-      name: "@mui/material",
-      version: "^5.0.0",
-    },
-  },
+  dependencies: [{ name: "@mui/material", version: "^5.0.0" }],
   technologies: [
     {
       id: "materialUI",

@@ -8,24 +8,12 @@ export const mantinePlugin = createPlugin({
   name: "Mantine",
   description: "Adds support for Mantine",
   active: ({ flags }) => Boolean(flags.mantine),
-  dependencies: {
-    "@mantine/core": {
-      name: "@mantine/core",
-      version: "^6.0.0",
-    },
-    "@mantine/hooks": {
-      name: "@mantine/hooks",
-      version: "^6.0.0",
-    },
-    "@mantine/next": {
-      name: "@mantine/next",
-      version: "^6.0.0",
-    },
-    "@emotion/server": {
-      name: "@emotion/server",
-      version: "^11.0.0",
-    },
-  },
+  dependencies: [
+    { name: "@mantine/core", version: "^6.0.0" },
+    { name: "@mantine/hooks", version: "^6.0.0" },
+    { name: "@mantine/next", version: "^6.0.0" },
+    { name: "@emotion/server", version: "^11.0.0" },
+  ],
   technologies: [
     {
       id: "mantine",

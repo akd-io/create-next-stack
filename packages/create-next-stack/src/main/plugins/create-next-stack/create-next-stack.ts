@@ -15,7 +15,7 @@ import { logWarning } from "../../logging"
 import { createPlugin } from "../../plugin"
 import { getNameVersionCombo, install, uninstall } from "../../setup/packages"
 import { filterPlugins } from "../../setup/setup"
-import { prettierPlugin } from "../prettier"
+import { prettierPackage } from "../prettier"
 import { generateEnv } from "./add-content/generate-env"
 import { generateApp } from "./add-content/pages/generate-app"
 import { generateDocument } from "./add-content/pages/generate-document"
@@ -174,7 +174,7 @@ export const createNextStackPlugin = createPlugin({
       description: "formatting project",
       run: async () => {
         await runCommand("npx", [
-          getNameVersionCombo(prettierPlugin.devDependencies.prettier),
+          getNameVersionCombo(prettierPackage),
           "--write",
           ".",
         ])

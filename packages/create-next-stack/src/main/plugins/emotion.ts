@@ -6,10 +6,10 @@ export const emotionPlugin = createPlugin({
   name: "Emotion",
   description: "Adds support for Emotion",
   active: ({ flags }) => flags.styling === "emotion",
-  dependencies: {
-    "@emotion/react": { name: "@emotion/react", version: "^11.0.0" },
-    "@emotion/styled": { name: "@emotion/styled", version: "^11.0.0" },
-  },
+  dependencies: [
+    { name: "@emotion/react", version: "^11.0.0" },
+    { name: "@emotion/styled", version: "^11.0.0" },
+  ],
   technologies: [
     {
       id: "emotion",
