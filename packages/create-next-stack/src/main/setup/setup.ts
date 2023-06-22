@@ -23,6 +23,7 @@ import { npmPlugin } from "../plugins/npm"
 import { plausiblePlugin } from "../plugins/plausible"
 import { pnpmPlugin } from "../plugins/pnpm"
 import { prettierPlugin } from "../plugins/prettier"
+import { prismaPlugin } from "../plugins/prisma"
 import { reactPlugin } from "../plugins/react"
 import { reactHookFormPlugin } from "../plugins/react-hook-form"
 import { reactIconsPlugin } from "../plugins/react-icons"
@@ -64,6 +65,7 @@ export const plugins: Plugin[] = [
   plausiblePlugin,
   vercelPlugin,
   netlifyPlugin,
+  prismaPlugin,
 ]
 
 export const filterPlugins = (inputs: ValidCNSInputs): Plugin[] =>

@@ -26,6 +26,8 @@ export const stepsOrder: string[] = [
   "addContent",
   // Uninstall temporary dependencies
   "uninstallTemporaryDependencies",
+  // ORMs
+  "setUpPrisma",
   // Format & initial commit
   "formatProject",
   "initialCommit",
