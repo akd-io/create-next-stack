@@ -9,7 +9,7 @@ import {
   writeFile,
 } from "../../helpers/io"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
-import { remove } from "../../helpers/remove"
+import { nonNull } from "../../helpers/non-null"
 import { runCommand } from "../../helpers/run-command"
 import { logWarning } from "../../logging"
 import { createPlugin } from "../../plugin"
@@ -75,20 +75,41 @@ export const createNextStackPlugin = createPlugin({
         if (environmentVariables.length > 0) {
           await writeFile(".env", generateEnv(inputs))
         }
-        await Promise.all([
-          writeFile("pages/index.tsx", generateIndexPage(inputs)),
-          writeFile("pages/_app.tsx", generateApp(inputs)),
-          writeFile("pages/_document.tsx", generateDocument(inputs)),
 
-          writeFile(
-            "templates/LandingPage/technologies.ts",
-            generateTechnologies(inputs)
-          ),
-          writeFile(
-            "templates/LandingPage/LandingPageTemplate.tsx",
-            generateLandingPageTemplate(inputs)
-          ),
-        ])
+        const filesToWrite = [
+          {
+            destination: "pages/index.tsx",
+            content: generateIndexPage(inputs),
+          },
+          {
+            destination: "pages/_app.tsx",
+            content: generateApp(inputs),
+          },
+          {
+            destination: "pages/_document.tsx",
+            content: generateDocument(inputs),
+          },
+          {
+            destination: "templates/LandingPage/technologies.ts",
+            content: generateTechnologies(inputs),
+          },
+          {
+            destination: "templates/LandingPage/LandingPageTemplate.tsx",
+            content: generateLandingPageTemplate(inputs),
+          },
+        ]
+
+        const pluginFilesToWrite = filterPlugins(inputs)
+          .flatMap((plugin) => plugin.addFiles)
+          .filter(nonNull)
+
+        filesToWrite.push(...pluginFilesToWrite)
+
+        await Promise.all(
+          filesToWrite.map(({ destination, content }) =>
+            writeFile(destination, content)
+          )
+        )
       },
     },
     addReadme: {

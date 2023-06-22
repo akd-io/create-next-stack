@@ -1,7 +1,6 @@
 import endent from "endent"
-import path from "path"
 import { ValidCNSInputs } from "../create-next-stack-types"
-import { makeDirectory, writeFile } from "../helpers/io"
+import { writeFile } from "../helpers/io"
 import {
   cleanInstallCommandMap,
   runCommandMap,
@@ -43,11 +42,8 @@ export const githubActionsPlugin = createPlugin({
       id: "addGithubWorkflowStep",
       description: "adding GitHub workflow",
       run: async (inputs) => {
-        const directory = ".github/workflows"
-        const filename = "ci.yml"
-        await makeDirectory(directory)
-        const filePath = path.resolve(`${directory}/${filename}`)
-        await writeFile(filePath, generateCiYml(inputs))
+        const filename = ".github/workflows/ci.yml"
+        await writeFile(filename, generateCiYml(inputs))
       },
     },
   },

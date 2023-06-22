@@ -1,4 +1,4 @@
-import { makeDirectory, writeFile } from "../../helpers/io"
+import { writeFile } from "../../helpers/io"
 import { createPlugin } from "../../plugin"
 import { cssModulesPlugin } from "../css-modules/css-modules"
 import { generateGlobalStyles } from "./add-content/styles/global-styles"
@@ -31,7 +31,6 @@ export const sassPlugin = createPlugin({
       id: "setUpSass",
       description: "setting up Sass",
       run: async () => {
-        await makeDirectory("styles")
         await writeFile("styles/global-styles.scss", generateGlobalStyles())
       },
     },

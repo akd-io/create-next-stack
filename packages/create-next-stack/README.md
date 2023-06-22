@@ -105,6 +105,7 @@ FLAGS
                                 <options: pnpm|yarn|npm>
   --plausible                   Adds Plausible. (Analytics)
   --prettier                    Adds Prettier. (Code formatting)
+  --prisma                      Adds Prisma. (ORM)
   --react-hook-form             Adds React Hook Form. (Form library)
   --react-icons                 Adds React Icons. (Icon library)
   --react-query                 Adds React Query. (Server state management

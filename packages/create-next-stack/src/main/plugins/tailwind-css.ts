@@ -1,5 +1,5 @@
 import endent from "endent"
-import { makeDirectory, writeFile } from "../helpers/io"
+import { writeFile } from "../helpers/io"
 import { createPlugin } from "../plugin"
 
 /**
@@ -92,6 +92,5 @@ const addStylesGlobalsCss = async () => {
     @tailwind components;
     @tailwind utilities;
   `
-  await makeDirectory("styles")
   await writeFile("styles/globals.css", stylesGlobalsCssString)
 }

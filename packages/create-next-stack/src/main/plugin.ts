@@ -40,6 +40,13 @@ type PluginConfig = DeeplyReadonly<{
    * The list will be added to the generated landing page, the README.md file and written to the console.
    */
   todos?: string[]
+  /** Files to be added by the plugin. */
+  addFiles?: Array<{
+    /** Destination of the file to add. */
+    destination: string
+    /** Content of the file. */
+    content: string
+  }>
   /** Slots to fill in the generated files. */
   slots?: {
     /** Slots to fill in the _app.tsx file. The file is generated using the following template:
