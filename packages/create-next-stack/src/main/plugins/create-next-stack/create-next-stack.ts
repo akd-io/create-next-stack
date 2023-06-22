@@ -70,7 +70,6 @@ export const createNextStackPlugin = createPlugin({
       id: "addContent",
       description: "adding content",
       run: async (inputs) => {
-        await makeDirectory("components")
         const environmentVariables =
           getSortedFilteredEnvironmentVariables(inputs)
         if (environmentVariables.length > 0) {
@@ -96,10 +95,8 @@ export const createNextStackPlugin = createPlugin({
       id: "addReadme",
       description: "adding Readme",
       run: async (inputs) => {
-        const readmeFileName = "README.md"
-        await remove(readmeFileName)
         const readmeString = await generateReadme(inputs)
-        await writeFile(readmeFileName, readmeString)
+        await writeFile("README.md", readmeString)
       },
     },
     initialCommit: {

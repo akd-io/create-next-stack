@@ -139,18 +139,17 @@ export const nextPlugin = createPlugin({
           remove("public/next.svg"),
           remove("public/thirteen.svg"),
           remove("public/vercel.svg"),
+          remove("README.md"),
+          remove("next.config.js"),
         ])
-        await makeDirectory("pages")
       },
     },
     addNextConfig: {
       id: "addNextConfig",
       description: "adding next.config.js",
       run: async (inputs) => {
-        const nextConfigFileName = "next.config.js"
-        await remove(nextConfigFileName)
         const nextConfigString = await generateNextConfig(inputs)
-        await writeFile(nextConfigFileName, nextConfigString)
+        await writeFile("next.config.js", nextConfigString)
       },
     },
   },
