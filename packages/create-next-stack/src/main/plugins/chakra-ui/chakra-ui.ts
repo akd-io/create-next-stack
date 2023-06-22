@@ -1,7 +1,5 @@
 import endent from "endent"
-import { writeFile } from "../../helpers/io"
 import { createPlugin } from "../../plugin"
-import { chakraTheme } from "./setup/chakra-theme"
 
 export const chakraUIPlugin = createPlugin({
   id: "chakra-ui",
@@ -25,15 +23,6 @@ export const chakraUIPlugin = createPlugin({
       ],
     },
   ],
-  steps: {
-    setUpChakraUI: {
-      id: "setUpChakraUI",
-      description: "setting up Chakra UI",
-      run: async () => {
-        await writeFile("chakra-theme.ts", chakraTheme)
-      },
-    },
-  },
   slots: {
     app: {
       imports: endent`
@@ -55,4 +44,19 @@ export const chakraUIPlugin = createPlugin({
       body: `<ColorModeScript initialColorMode={chakraTheme.config.initialColorMode} />`,
     },
   },
+  addFiles: [
+    {
+      destination: "chakra-theme.ts",
+      content: endent`
+        import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+      
+        const config: ThemeConfig = {
+          initialColorMode: "light",
+          useSystemColorMode: false,
+        };
+      
+        export const chakraTheme = extendTheme({ config });
+      `,
+    },
+  ],
 } as const)

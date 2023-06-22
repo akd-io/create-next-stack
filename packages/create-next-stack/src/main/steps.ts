@@ -1,17 +1,11 @@
 import { Step } from "./plugin"
-import { chakraUIPlugin } from "./plugins/chakra-ui/chakra-ui"
 import { createNextStackPlugin } from "./plugins/create-next-stack/create-next-stack"
-import { cssModulesPlugin } from "./plugins/css-modules/css-modules"
 import { emotionPlugin } from "./plugins/emotion"
 import { formattingPreCommitHookPlugin } from "./plugins/formatting-pre-commit-hook"
 import { githubActionsPlugin } from "./plugins/github-actions"
-import { mantinePlugin } from "./plugins/mantine/mantine"
-import { materialUIPlugin } from "./plugins/material-ui/material-ui"
 import { nextPlugin } from "./plugins/next"
 import { pnpmPlugin } from "./plugins/pnpm"
 import { prettierPlugin } from "./plugins/prettier"
-import { sassPlugin } from "./plugins/sass/sass"
-import { tailwindCSSPlugin } from "./plugins/tailwind-css"
 import { yarnPlugin } from "./plugins/yarn"
 
 export const steps: Step[] = [
@@ -32,9 +26,6 @@ export const steps: Step[] = [
   nextPlugin.steps.addNextConfig,
 
   // Styling
-  tailwindCSSPlugin.steps.setUpTailwindCss,
-  cssModulesPlugin.steps.setUpCssModules,
-  sassPlugin.steps.setUpSass,
   emotionPlugin.steps.setUpEmotion,
 
   // Formatting
@@ -48,11 +39,6 @@ export const steps: Step[] = [
   createNextStackPlugin.steps.copyAssets,
   createNextStackPlugin.steps.addContent,
   createNextStackPlugin.steps.addReadme,
-
-  // Component libraries
-  mantinePlugin.steps.setUpMantine,
-  chakraUIPlugin.steps.setUpChakraUI,
-  materialUIPlugin.steps.setUpMaterialUI,
 
   // Uninstall temporary dependencies
   createNextStackPlugin.steps.uninstallTemporaryDependencies,

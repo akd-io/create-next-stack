@@ -1,7 +1,32 @@
-import { writeFile } from "../../helpers/io"
+import endent from "endent"
 import { createPlugin } from "../../plugin"
 import { cssModulesPlugin } from "../css-modules/css-modules"
-import { generateGlobalStyles } from "./add-content/styles/global-styles"
+
+const globalStyles = endent`
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    line-height: 1.5;
+  }
+
+  code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+      Bitstream Vera Sans Mono, Courier New, monospace;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+  }
+`
 
 export const sassPlugin = createPlugin({
   id: "sass",
@@ -26,18 +51,15 @@ export const sassPlugin = createPlugin({
       ],
     },
   ],
-  steps: {
-    setUpSass: {
-      id: "setUpSass",
-      description: "setting up Sass",
-      run: async () => {
-        await writeFile("styles/global-styles.scss", generateGlobalStyles())
-      },
-    },
-  },
   slots: {
     app: {
       imports: `import "../styles/global-styles.scss";`,
     },
   },
+  addFiles: [
+    {
+      destination: "styles/global-styles.scss",
+      content: globalStyles,
+    },
+  ],
 } as const)

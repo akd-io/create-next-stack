@@ -2,12 +2,7 @@ import endent from "endent"
 import path from "path"
 import { copyDirectory } from "../../helpers/copy-directory"
 import { getCreateNextStackDir } from "../../helpers/get-create-next-stack-dir"
-import {
-  makeDirectory,
-  modifyJsonFile,
-  toObject,
-  writeFile,
-} from "../../helpers/io"
+import { modifyJsonFile, toObject, writeFile } from "../../helpers/io"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { nonNull } from "../../helpers/non-null"
 import { runCommand } from "../../helpers/run-command"

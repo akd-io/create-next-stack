@@ -1,6 +1,31 @@
-import { writeFile } from "../../helpers/io"
+import endent from "endent"
 import { createPlugin } from "../../plugin"
-import { generateGlobalStyles } from "./add-content/styles/global-styles"
+
+const globalStyles = endent`
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    line-height: 1.5;
+  }
+
+  code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+      Bitstream Vera Sans Mono, Courier New, monospace;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+  }
+`
 
 export const cssModulesPlugin = createPlugin({
   id: "css-modules",
@@ -23,18 +48,15 @@ export const cssModulesPlugin = createPlugin({
       ],
     },
   ],
-  steps: {
-    setUpCssModules: {
-      id: "setUpCssModules",
-      description: "setting up CSS Modules",
-      run: async () => {
-        await writeFile("styles/global-styles.css", generateGlobalStyles())
-      },
-    },
-  },
   slots: {
     app: {
       imports: `import "../styles/global-styles.css";`,
     },
   },
+  addFiles: [
+    {
+      destination: "styles/global-styles.css",
+      content: globalStyles,
+    },
+  ],
 } as const)

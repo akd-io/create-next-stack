@@ -6,9 +6,7 @@ import { nonNull } from "../../../helpers/non-null"
 import { stringify } from "../../../helpers/stringify"
 import { filterPlugins } from "../../../setup/setup"
 
-export const generateNextConfig = async (
-  inputs: ValidCNSInputs
-): Promise<string> => {
+export const generateNextConfig = (inputs: ValidCNSInputs): string => {
   const defaultNextConfig: NextConfig = {
     reactStrictMode: true,
   }

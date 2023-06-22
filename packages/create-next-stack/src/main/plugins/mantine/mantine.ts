@@ -1,7 +1,5 @@
 import endent from "endent"
-import { writeFile } from "../../helpers/io"
 import { createPlugin } from "../../plugin"
-import { mantineTheme } from "./setup/mantine-theme"
 
 export const mantinePlugin = createPlugin({
   id: "mantine",
@@ -27,15 +25,6 @@ export const mantinePlugin = createPlugin({
       ],
     },
   ],
-  steps: {
-    setUpMantine: {
-      id: "setUpMantine",
-      description: "setting up Mantine",
-      run: async () => {
-        await writeFile("mantine-theme.ts", mantineTheme)
-      },
-    },
-  },
   slots: {
     app: {
       imports: endent`
@@ -65,4 +54,16 @@ export const mantinePlugin = createPlugin({
       `,
     },
   },
+  addFiles: [
+    {
+      destination: "mantine-theme.ts",
+      content: endent`
+        import { MantineThemeOverride } from "@mantine/core";
+      
+        export const mantineTheme: MantineThemeOverride = {
+          colorScheme: "light",
+        };
+      `,
+    },
+  ],
 } as const)

@@ -1,5 +1,4 @@
 import endent from "endent"
-import { writeFile } from "../helpers/io"
 import { createPlugin } from "../plugin"
 
 /**
@@ -32,65 +31,51 @@ export const tailwindCSSPlugin = createPlugin({
       ],
     },
   ],
-  steps: {
-    setUpTailwindCss: {
-      id: "setUpTailwindCss",
-      description: "setting up Tailwind CSS",
-      run: async () => {
-        await Promise.all([
-          addTailwindConfig(),
-          addPostcssConfig(),
-          addStylesGlobalsCss(),
-        ])
-      },
-    },
-  },
   slots: {
     app: {
       imports: `import "../styles/globals.css";`,
     },
   },
+  addFiles: [
+    {
+      // From https://github.com/vercel/next.js/blob/canary/examples/with-tailwindcss/styles/globals.css`
+      destination: "styles/globals.css",
+      content: endent`
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;  
+      `,
+    },
+    {
+      // From running `npx tailwind init -p --types` and adding globs to the content array according to https://tailwindcss.com/docs/guides/nextjs
+      destination: "tailwind.config.js",
+      content: endent`
+        /** @type {import('tailwindcss/types').Config} */
+        const config = {
+          content: [
+            './pages/**/*.{js,ts,jsx,tsx}',
+            './components/**/*.{js,ts,jsx,tsx}',
+          ],
+          theme: {
+            extend: {},
+          },
+          plugins: [],
+        }
+
+        module.exports = config;
+      `,
+    },
+    {
+      // From https://github.com/vercel/next.js/blob/canary/examples/with-tailwindcss/postcss.config.js
+      destination: "postcss.config.js",
+      content: endent`
+        module.exports = {
+          plugins: {
+            tailwindcss: {},
+            autoprefixer: {},
+          },
+        }
+      `,
+    },
+  ],
 } as const)
-
-const addTailwindConfig = async () => {
-  // From running `npx tailwind init -p --types` and adding globs to the content array according to https://tailwindcss.com/docs/guides/nextjs
-  const tailwindConfigString = endent`
-    /** @type {import('tailwindcss/types').Config} */
-    const config = {
-      content: [
-        './pages/**/*.{js,ts,jsx,tsx}',
-        './components/**/*.{js,ts,jsx,tsx}',
-      ],
-      theme: {
-        extend: {},
-      },
-      plugins: [],
-    }
-
-    module.exports = config;
-  `
-  await writeFile("tailwind.config.js", tailwindConfigString)
-}
-
-const addPostcssConfig = async () => {
-  // From https://github.com/vercel/next.js/blob/canary/examples/with-tailwindcss/postcss.config.js
-  const postcssConfigString = endent`
-    module.exports = {
-      plugins: {
-        tailwindcss: {},
-        autoprefixer: {},
-      },
-    }
-  `
-  await writeFile("postcss.config.js", postcssConfigString)
-}
-
-const addStylesGlobalsCss = async () => {
-  // From https://github.com/vercel/next.js/blob/canary/examples/with-tailwindcss/styles/globals.css
-  const stylesGlobalsCssString = endent`
-    @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
-  `
-  await writeFile("styles/globals.css", stylesGlobalsCssString)
-}
