@@ -1,6 +1,6 @@
 import endent from "endent"
-import { Plugin } from "../../plugin"
-import { cssModuleTechnology } from "../css-modules/css-modules"
+import { Plugin } from "../plugin"
+import { cssModuleTechnology } from "./css-modules"
 
 const globalStyles = endent`
   * {

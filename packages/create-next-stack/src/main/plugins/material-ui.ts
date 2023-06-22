@@ -1,5 +1,5 @@
 import endent from "endent"
-import { Plugin } from "../../plugin"
+import { Plugin } from "../plugin"
 
 const materialTheme = endent`
   import { Roboto } from 'next/font/google';
