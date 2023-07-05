@@ -76,4 +76,4 @@ export const formattingPreCommitHookPlugin: Plugin = {
       },
     },
   ],
-} as const
+}

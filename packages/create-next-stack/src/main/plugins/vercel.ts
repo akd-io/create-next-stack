@@ -29,4 +29,4 @@ export const vercelPlugin: Plugin = {
   todos: [
     "Integrate Vercel with your repository host for continuous deployments at https://vercel.com/new",
   ],
-} as const
+}

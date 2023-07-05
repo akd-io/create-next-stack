@@ -144,4 +144,4 @@ export const nextPlugin: Plugin = {
       },
     },
   ],
-} as const
+}

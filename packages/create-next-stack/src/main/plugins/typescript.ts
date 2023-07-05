@@ -19,4 +19,4 @@ export const typescriptPlugin: Plugin = {
       ],
     },
   ],
-} as const
+}

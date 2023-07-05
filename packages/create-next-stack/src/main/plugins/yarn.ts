@@ -33,4 +33,4 @@ export const yarnPlugin: Plugin = {
       },
     },
   ],
-} as const
+}

@@ -1,8 +1,7 @@
 import { NextConfig } from "next"
 import { ValidCNSInputs } from "./create-next-stack-types"
-import { DeeplyReadonly } from "./helpers/deeply-readonly"
 
-export type Plugin = DeeplyReadonly<{
+export type Plugin = {
   /** ID that uniquely identifies the plugin */
   id: string
   /** Name of the plugin */
@@ -164,7 +163,7 @@ export type Plugin = DeeplyReadonly<{
       wrappersEnd?: string
     }
   }
-}>
+}
 
 export type Package = {
   /** Name of the package. */

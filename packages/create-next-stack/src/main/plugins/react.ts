@@ -22,4 +22,4 @@ export const reactPlugin: Plugin = {
       ],
     },
   ],
-} as const
+}

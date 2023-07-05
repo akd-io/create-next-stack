@@ -18,4 +18,4 @@ export const npmPlugin: Plugin = {
       ],
     },
   ],
-} as const
+}

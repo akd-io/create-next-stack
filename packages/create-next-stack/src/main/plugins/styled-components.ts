@@ -32,4 +32,4 @@ export const styledComponentsPlugin: Plugin = {
       },
     },
   },
-} as const
+}

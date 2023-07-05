@@ -79,4 +79,4 @@ export const materialUIPlugin: Plugin = {
       content: materialTheme,
     },
   ],
-} as const
+}

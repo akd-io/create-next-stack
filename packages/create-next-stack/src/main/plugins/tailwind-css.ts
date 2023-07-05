@@ -78,4 +78,4 @@ export const tailwindCSSPlugin: Plugin = {
       `,
     },
   ],
-} as const
+}

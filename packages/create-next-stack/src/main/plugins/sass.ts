@@ -62,4 +62,4 @@ export const sassPlugin: Plugin = {
       content: globalStyles,
     },
   ],
-} as const
+}

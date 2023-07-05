@@ -22,4 +22,4 @@ export const eslintPlugin: Plugin = {
       ],
     },
   ],
-} as const
+}

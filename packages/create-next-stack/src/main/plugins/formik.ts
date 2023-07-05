@@ -19,4 +19,4 @@ export const formikPlugin: Plugin = {
       ],
     },
   ],
-} as const
+}

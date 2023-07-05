@@ -18,4 +18,4 @@ export const reactIconsPlugin: Plugin = {
       ],
     },
   ],
-} as const
+}

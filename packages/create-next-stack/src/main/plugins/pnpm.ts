@@ -33,4 +33,4 @@ export const pnpmPlugin: Plugin = {
       },
     },
   ],
-} as const
+}

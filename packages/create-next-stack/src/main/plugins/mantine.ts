@@ -66,4 +66,4 @@ export const mantinePlugin: Plugin = {
       `,
     },
   ],
-} as const
+}

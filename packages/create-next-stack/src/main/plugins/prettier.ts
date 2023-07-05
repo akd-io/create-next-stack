@@ -63,4 +63,4 @@ export const prettierPlugin: Plugin = {
       },
     },
   ],
-} as const
+}

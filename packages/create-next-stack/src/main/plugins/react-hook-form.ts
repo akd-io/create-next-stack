@@ -22,4 +22,4 @@ export const reactHookFormPlugin: Plugin = {
       ],
     },
   ],
-} as const
+}

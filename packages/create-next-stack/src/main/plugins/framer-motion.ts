@@ -19,4 +19,4 @@ export const framerMotionPlugin: Plugin = {
       ],
     },
   ],
-} as const
+}

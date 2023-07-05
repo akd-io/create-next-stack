@@ -48,4 +48,4 @@ export const reactQueryPlugin: Plugin = {
       `,
     },
   },
-} as const
+}

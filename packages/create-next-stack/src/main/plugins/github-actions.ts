@@ -42,7 +42,7 @@ export const githubActionsPlugin: Plugin = {
       content: (inputs) => generateCiYml(inputs),
     },
   ],
-} as const
+}
 
 const generateCiYml = async (inputs: ValidCNSInputs): Promise<string> => {
   const { flags } = inputs

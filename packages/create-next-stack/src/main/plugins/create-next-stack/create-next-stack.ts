@@ -215,4 +215,4 @@ export const createNextStackPlugin: Plugin = {
       },
     },
   ],
-} as const
+}

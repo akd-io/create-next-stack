@@ -86,4 +86,4 @@ export const prismaPlugin: Plugin = {
       `,
     },
   ],
-} as const
+}

@@ -50,4 +50,4 @@ export const emotionPlugin: Plugin = {
       },
     },
   },
-} as const
+}

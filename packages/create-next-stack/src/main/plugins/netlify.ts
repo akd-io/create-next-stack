@@ -29,4 +29,4 @@ export const netlifyPlugin: Plugin = {
   todos: [
     "Integrate Netlify with your repository host for continuous deployments at https://app.netlify.com/start. The Netlify CLI, mainly used for preview deployments, won't auto-detect Next.js until you do.",
   ],
-} as const
+}

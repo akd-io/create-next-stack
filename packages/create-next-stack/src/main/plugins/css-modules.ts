@@ -59,4 +59,4 @@ export const cssModulesPlugin: Plugin = {
       content: globalStyles,
     },
   ],
-} as const
+}
