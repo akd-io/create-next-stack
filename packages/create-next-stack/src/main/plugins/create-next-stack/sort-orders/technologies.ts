@@ -1,5 +1,4 @@
 import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { DeeplyReadonly } from "../../../helpers/deeply-readonly"
 import { nonNull } from "../../../helpers/non-null"
 import { compareByOrder } from "../../../helpers/sort-by-order"
 import { Technology } from "../../../plugin"
@@ -34,12 +33,13 @@ export const technologiesSortOrder: string[] = [
   "nextPlausible",
   "vercel",
   "netlify",
+  "prisma",
 ]
 
-export const getTechnologies = (
+export const getTechnologies = async (
   inputs: ValidCNSInputs
-): Array<Omit<DeeplyReadonly<Technology>, "id">> => {
-  return filterPlugins(inputs)
+): Promise<Array<Omit<Technology, "id">>> => {
+  return (await filterPlugins(inputs))
     .flatMap((plugin) => plugin.technologies)
     .filter(nonNull)
     .sort((a, b) => compareByOrder(a.id, b.id, technologiesSortOrder))
@@ -48,9 +48,7 @@ export const getTechnologies = (
     }))
 }
 
-export const getAllTechnologies = (): Array<
-  Omit<DeeplyReadonly<Technology>, "id">
-> => {
+export const getAllTechnologies = (): Array<Omit<Technology, "id">> => {
   return plugins
     .flatMap((plugin) => plugin.technologies ?? [])
     .sort((a, b) => compareByOrder(a.id, b.id, technologiesSortOrder))

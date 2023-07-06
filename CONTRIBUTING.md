@@ -106,22 +106,17 @@ Make sure you are set up locally by following the [Getting Started](#getting-sta
 
 ## Writing a Plugin
 
-Plugins aren't too scary. A Create Next Stack plugin consists of a simple TypeScript file that calls a `createPlugin()` function with JSON object.
+Plugins aren't too scary. A Create Next Stack plugin consists of a simple TypeScript file that exports an object of type [`Plugin`](./packages/create-next-stack/src/main/plugin.ts).
 
 See the [Framer Motion plugin](packages/create-next-stack/src/main/plugins/framer-motion.ts) for example. This plugin adds the `framer-motion` npm dependency to the generated Next.js project, as well as adding some documentation about the technology.
 
 ```typescript
-export const framerMotionPlugin = createPlugin({
+export const framerMotionPlugin: Plugin = {
   id: "framer-motion",
   name: "Framer Motion",
   description: "Adds support for Framer Motion",
   active: ({ flags }) => Boolean(flags["framer-motion"]),
-  dependencies: {
-    "framer-motion": {
-      name: "framer-motion",
-      version: "^9.0.0",
-    },
-  },
+  dependencies: [{ name: "framer-motion", version: "^9.0.0" }],
   technologies: [
     {
       id: "framerMotion",
@@ -135,19 +130,20 @@ export const framerMotionPlugin = createPlugin({
       ],
     },
   ],
-} as const)
+} as const
 ```
 
-Below is a breakdown of the `createPlugin()` function's JSON object:
+Below is a small breakdown of the properties of the above plugin object:
 
+- The `id` property is a unique identifier for the plugin.
 - The `name` property is the name of the plugin.
 - The `description` property is a short description of the plugin.
-- The `active` property is a function that returns a boolean indicating whether the plugin should be active. This function is passed the `flags` object, which contains all the flags passed to the `create-next-stack` command.
-- The `dependencies` property is an object containing the npm dependencies that should be added to the generated Next.js project. The key and `name` property is the name of the dependency, and the `version` property is version of the dependency.
-- The `technologies` property is an array of objects containing information about the technology. The `name` property is the name of the technology. The `description` property is a short description of the technology. The `links` property is an array of objects containing links to the technology's website, documentation, and GitHub repository.
+- The `active` property is a function that returns a boolean indicating whether the plugin should be active. This function is passed the flags and arguments passed by users to the `create-next-stack` command.
+- The `dependencies` property is an array of npm dependencies that should be added to the generated Next.js project.
+- The `technologies` property is an array of objects containing documentation about the technologies supported by the plugin.
 
-Some of these properties are optional, and some are required. Some properties are used by the CLI, some are used by the website, and some both. It's not too important to know everywhere these properties are used. As long as we specify as many properties as possible, the CLI and website is going to find out how to use it.
+Some of these properties are optional, and some are required. Some properties are used by the CLI, some are used by the website, and some both. It's not too important to know exactly where these properties are used. As long as we specify all relevant properties, the CLI and website is going to find out how to use it.
 
-For a complete list of properties that can be passed to the `createPlugin()` function, their explanations, and usage, see the [`Plugin` type definition](packages/create-next-stack/src/main/plugin.ts). You should find all the documentation you need there. If not, please [open an issue](https://github.com/akd-io/create-next-stack/issues/new).
+For a complete list of properties of the `Plugin` type, their explanations, and usage, see the [`Plugin` type definition](packages/create-next-stack/src/main/plugin.ts). You should find all the documentation you need there. If not, please [open an issue](https://github.com/akd-io/create-next-stack/issues/new).
 
 For more examples, please take a look at the [existing plugins](packages/create-next-stack/src/main/plugins).

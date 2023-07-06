@@ -1,15 +1,13 @@
 import endent from "endent"
-import path from "path"
 import { ValidCNSInputs } from "../create-next-stack-types"
-import { makeDirectory, writeFile } from "../helpers/io"
 import {
   cleanInstallCommandMap,
   runCommandMap,
 } from "../helpers/package-manager-utils"
-import { createPlugin, evalActive } from "../plugin"
+import { evalProperty, Plugin } from "../plugin"
 import { prettierPlugin } from "./prettier"
 
-export const githubActionsPlugin = createPlugin({
+export const githubActionsPlugin: Plugin = {
   id: "github-actions",
   name: "GitHub Actions",
   description: "Adds support for GitHub Actions",
@@ -21,14 +19,8 @@ export const githubActionsPlugin = createPlugin({
       description:
         "GitHub Actions is a tool for automating software development workflows. It is integrated with GitHub repositories and enables developers to automate tasks such as building, testing, and deploying their applications.",
       links: [
-        {
-          title: "Website",
-          url: "https://github.com/features/actions",
-        },
-        {
-          title: "Docs",
-          url: "https://docs.github.com/en/actions",
-        },
+        { title: "Website", url: "https://github.com/features/actions" },
+        { title: "Docs", url: "https://docs.github.com/en/actions" },
         {
           title: "Workflow syntax",
           url: "https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions",
@@ -44,24 +36,22 @@ export const githubActionsPlugin = createPlugin({
       command: "echo No tests found.",
     },
   ],
-  steps: {
-    addGithubWorkflowStep: {
-      id: "addGithubWorkflowStep",
-      description: "adding GitHub workflow",
-      run: async (inputs) => {
-        const directory = ".github/workflows"
-        const filename = "ci.yml"
-        await makeDirectory(directory)
-        const filePath = path.resolve(`${directory}/${filename}`)
-        await writeFile(filePath, generateCiYml(inputs))
-      },
+  addFiles: [
+    {
+      destination: ".github/workflows/ci.yml",
+      content: (inputs) => generateCiYml(inputs),
     },
-  },
-} as const)
+  ],
+}
 
-const generateCiYml = (inputs: ValidCNSInputs): string => {
+const generateCiYml = async (inputs: ValidCNSInputs): Promise<string> => {
   const { flags } = inputs
   const packageManager = flags["package-manager"]
+
+  const isPrettierPluginActive = await evalProperty(
+    prettierPlugin.active,
+    inputs
+  )
 
   return endent`
     name: "CI"
@@ -99,7 +89,7 @@ const generateCiYml = (inputs: ValidCNSInputs): string => {
             run: ${cleanInstallCommandMap[packageManager]}
 
           ${
-            evalActive(prettierPlugin.active, inputs)
+            isPrettierPluginActive
               ? endent`
                   - name: "Check format"
                     run: ${runCommandMap[packageManager]} format:check

@@ -1,15 +1,15 @@
 import { modifyJsonFile, toObject } from "../helpers/io"
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const emotionPlugin = createPlugin({
+export const emotionPlugin: Plugin = {
   id: "emotion",
   name: "Emotion",
   description: "Adds support for Emotion",
   active: ({ flags }) => flags.styling === "emotion",
-  dependencies: {
-    "@emotion/react": { name: "@emotion/react", version: "^11.0.0" },
-    "@emotion/styled": { name: "@emotion/styled", version: "^11.0.0" },
-  },
+  dependencies: [
+    { name: "@emotion/react", version: "^11.0.0" },
+    { name: "@emotion/styled", version: "^11.0.0" },
+  ],
   technologies: [
     {
       id: "emotion",
@@ -23,8 +23,8 @@ export const emotionPlugin = createPlugin({
       ],
     },
   ],
-  steps: {
-    setUpEmotion: {
+  steps: [
+    {
       id: "setUpEmotion",
       description: "setting up Emotion",
       run: async () => {
@@ -40,7 +40,7 @@ export const emotionPlugin = createPlugin({
         }))
       },
     },
-  },
+  ],
   slots: {
     nextConfigJs: {
       nextConfig: {
@@ -50,4 +50,4 @@ export const emotionPlugin = createPlugin({
       },
     },
   },
-} as const)
+}

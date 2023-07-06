@@ -1,20 +1,19 @@
 import chalk from "chalk"
 import endent from "endent"
 import path from "path"
-import { makeDirectory, writeFile } from "../helpers/io"
+import { makeDirectory } from "../helpers/io"
 import { remove } from "../helpers/remove"
 import { runCommand } from "../helpers/run-command"
 import { logDebug } from "../logging"
-import { createPlugin, Package } from "../plugin"
+import { Package, Plugin } from "../plugin"
 import { getNameVersionCombo } from "../setup/packages"
-import { generateNextConfig } from "./create-next-stack/add-next-config/generate-next-config"
 
 const createNextAppPackage: Package = {
   name: "create-next-app",
   version: "13.2.3",
 }
 
-export const nextPlugin = createPlugin({
+export const nextPlugin: Plugin = {
   id: "next",
   name: "Next.js",
   description: "Adds Next.js foundation",
@@ -58,8 +57,8 @@ export const nextPlugin = createPlugin({
       command: "next lint",
     },
   ],
-  steps: {
-    createNextApp: {
+  steps: [
+    {
       id: "createNextApp",
       description: "running Create Next App",
 
@@ -129,7 +128,7 @@ export const nextPlugin = createPlugin({
         process.chdir(args.app_name)
       },
     },
-    removeOfficialCNAContent: {
+    {
       id: "removeOfficialCNAContent",
       description: "removing content added by Create Next App",
       run: async () => {
@@ -139,19 +138,10 @@ export const nextPlugin = createPlugin({
           remove("public/next.svg"),
           remove("public/thirteen.svg"),
           remove("public/vercel.svg"),
+          remove("README.md"),
+          remove("next.config.js"),
         ])
-        await makeDirectory("pages")
       },
     },
-    addNextConfig: {
-      id: "addNextConfig",
-      description: "adding next.config.js",
-      run: async (inputs) => {
-        const nextConfigFileName = "next.config.js"
-        await remove(nextConfigFileName)
-        const nextConfigString = await generateNextConfig(inputs)
-        await writeFile(nextConfigFileName, nextConfigString)
-      },
-    },
-  },
-} as const)
+  ],
+}

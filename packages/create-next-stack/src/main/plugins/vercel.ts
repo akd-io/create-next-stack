@@ -1,16 +1,11 @@
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const vercelPlugin = createPlugin({
+export const vercelPlugin: Plugin = {
   id: "vercel",
   name: "Vercel",
   description: "Adds support for Vercel",
   active: ({ flags }) => Boolean(flags["vercel"]),
-  devDependencies: {
-    vercel: {
-      name: "vercel",
-      version: "^30.2.2",
-    },
-  },
+  devDependencies: [{ name: "vercel", version: "^30.2.2" }],
   scripts: [
     {
       name: "deploy:vercel",
@@ -34,4 +29,4 @@ export const vercelPlugin = createPlugin({
   todos: [
     "Integrate Vercel with your repository host for continuous deployments at https://vercel.com/new",
   ],
-} as const)
+}

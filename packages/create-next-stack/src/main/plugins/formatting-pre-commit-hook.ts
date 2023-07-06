@@ -3,35 +3,23 @@ import { isGitInitialized } from "../helpers/is-git-initialized"
 import { remove } from "../helpers/remove"
 import { runCommand } from "../helpers/run-command"
 import { logWarning } from "../logging"
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const formattingPreCommitHookPlugin = createPlugin({
+export const formattingPreCommitHookPlugin: Plugin = {
   id: "formatting-pre-commit-hook",
   name: "formatting-pre-commit-hook",
   description:
     "Adds support for a formatting pre-commit hook by setting up Husky and lint-staged using mrm",
   active: ({ flags }) =>
     Boolean(flags.prettier && flags["formatting-pre-commit-hook"]),
-  tmpDependencies: {
-    mrm: {
-      name: "mrm",
-      version: "^4.0.0",
-    },
-    "mrm-task-lint-staged": {
-      name: "mrm-task-lint-staged",
-      version: "^7.0.0",
-    },
-  },
-  devDependencies: {
-    "lint-staged": {
-      name: "lint-staged",
-      version: ">=10",
-    },
-    husky: {
-      name: "husky",
-      version: ">=7",
-    },
-  },
+  tmpDependencies: [
+    { name: "mrm", version: "^4.0.0" },
+    { name: "mrm-task-lint-staged", version: "^7.0.0" },
+  ],
+  devDependencies: [
+    { name: "lint-staged", version: ">=10" },
+    { name: "husky", version: ">=7" },
+  ],
   technologies: [
     {
       id: "husky",
@@ -63,8 +51,8 @@ export const formattingPreCommitHookPlugin = createPlugin({
       command: "husky install",
     },
   ],
-  steps: {
-    setUpFormattingPreCommitHook: {
+  steps: [
+    {
       id: "setUpFormattingPreCommitHook",
       description: "setting up formatting pre-commit hook",
       shouldRun: async () => {
@@ -87,5 +75,5 @@ export const formattingPreCommitHookPlugin = createPlugin({
         }))
       },
     },
-  },
-} as const)
+  ],
+}

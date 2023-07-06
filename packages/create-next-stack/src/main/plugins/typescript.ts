@@ -1,6 +1,6 @@
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const typescriptPlugin = createPlugin({
+export const typescriptPlugin: Plugin = {
   id: "typescript",
   name: "Typescript",
   description: "Adds relevant Typescript documentation",
@@ -19,4 +19,4 @@ export const typescriptPlugin = createPlugin({
       ],
     },
   ],
-} as const)
+}

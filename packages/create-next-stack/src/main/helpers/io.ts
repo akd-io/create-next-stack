@@ -1,5 +1,6 @@
 import { existsSync } from "fs"
 import fs from "fs/promises"
+import path from "path"
 import { logDebug, logError } from "../logging"
 import { isUnknownArray } from "./is-unknown-array"
 import { isUnknownObject } from "./is-unknown-object"
@@ -13,7 +14,10 @@ export const makeDirectory = async (path: string): Promise<void> => {
 }
 
 export const writeFile: typeof fs.writeFile = async (file, data, options) => {
-  logDebug("Writing file:", file.toString())
+  const fileString = file.toString()
+  const directory = path.dirname(fileString)
+  await makeDirectory(directory)
+  logDebug("Writing file:", fileString)
   return fs.writeFile(file, data, options)
 }
 

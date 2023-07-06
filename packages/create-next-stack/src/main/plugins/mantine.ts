@@ -1,31 +1,17 @@
 import endent from "endent"
-import { writeFile } from "../../helpers/io"
-import { createPlugin } from "../../plugin"
-import { mantineTheme } from "./setup/mantine-theme"
+import { Plugin } from "../plugin"
 
-export const mantinePlugin = createPlugin({
+export const mantinePlugin: Plugin = {
   id: "mantine",
   name: "Mantine",
   description: "Adds support for Mantine",
   active: ({ flags }) => Boolean(flags.mantine),
-  dependencies: {
-    "@mantine/core": {
-      name: "@mantine/core",
-      version: "^6.0.0",
-    },
-    "@mantine/hooks": {
-      name: "@mantine/hooks",
-      version: "^6.0.0",
-    },
-    "@mantine/next": {
-      name: "@mantine/next",
-      version: "^6.0.0",
-    },
-    "@emotion/server": {
-      name: "@emotion/server",
-      version: "^11.0.0",
-    },
-  },
+  dependencies: [
+    { name: "@mantine/core", version: "^6.0.0" },
+    { name: "@mantine/hooks", version: "^6.0.0" },
+    { name: "@mantine/next", version: "^6.0.0" },
+    { name: "@emotion/server", version: "^11.0.0" },
+  ],
   technologies: [
     {
       id: "mantine",
@@ -39,15 +25,6 @@ export const mantinePlugin = createPlugin({
       ],
     },
   ],
-  steps: {
-    setUpMantine: {
-      id: "setUpMantine",
-      description: "setting up Mantine",
-      run: async () => {
-        await writeFile("mantine-theme.ts", mantineTheme)
-      },
-    },
-  },
   slots: {
     app: {
       imports: endent`
@@ -77,4 +54,16 @@ export const mantinePlugin = createPlugin({
       `,
     },
   },
-} as const)
+  addFiles: [
+    {
+      destination: "mantine-theme.ts",
+      content: endent`
+        import { MantineThemeOverride } from "@mantine/core";
+      
+        export const mantineTheme: MantineThemeOverride = {
+          colorScheme: "light",
+        };
+      `,
+    },
+  ],
+}
