@@ -36,10 +36,10 @@ export const technologiesSortOrder: string[] = [
   "prisma",
 ]
 
-export const getTechnologies = (
+export const getTechnologies = async (
   inputs: ValidCNSInputs
-): Array<Omit<Technology, "id">> => {
-  return filterPlugins(inputs)
+): Promise<Array<Omit<Technology, "id">>> => {
+  return (await filterPlugins(inputs))
     .flatMap((plugin) => plugin.technologies)
     .filter(nonNull)
     .sort((a, b) => compareByOrder(a.id, b.id, technologiesSortOrder))

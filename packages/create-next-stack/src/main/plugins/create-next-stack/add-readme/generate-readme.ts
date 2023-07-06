@@ -14,13 +14,13 @@ export const generateReadme = async (
 ): Promise<string> => {
   const { args, flags } = inputs
 
-  const todos = filterPlugins(inputs)
+  const todos = (await filterPlugins(inputs))
     .flatMap((plugin) => plugin.todos)
     .filter(nonNull)
 
   const runCommand = runCommandMap[flags["package-manager"]]
 
-  const technologies = getTechnologies(inputs)
+  const technologies = await getTechnologies(inputs)
 
   const scriptTableRows = await generateScriptTableRows(inputs)
   const environmentVariableTableRows =

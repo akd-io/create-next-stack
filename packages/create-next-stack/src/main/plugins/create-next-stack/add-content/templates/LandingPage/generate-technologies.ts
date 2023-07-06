@@ -13,8 +13,10 @@ export type Technology = {
   }>
 }
 
-export const generateTechnologies = (inputs: ValidCNSInputs): string => {
-  const technologies: Technology[] = getTechnologies(inputs)
+export const generateTechnologies = async (
+  inputs: ValidCNSInputs
+): Promise<string> => {
+  const technologies: Technology[] = await getTechnologies(inputs)
 
   return endent`
     export type Technology = {

@@ -33,8 +33,8 @@ export const stepsOrder: string[] = [
   "initialCommit",
 ]
 
-export const getSteps = (inputs: ValidCNSInputs): Step[] => {
-  return filterPlugins(inputs)
+export const getSteps = async (inputs: ValidCNSInputs): Promise<Step[]> => {
+  return (await filterPlugins(inputs))
     .flatMap((plugin) => plugin.steps)
     .filter(nonNull)
     .sort((a, b) => compareByOrder(a.id, b.id, stepsOrder))

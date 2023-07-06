@@ -2,6 +2,7 @@ import chalk from "chalk"
 import { ValidCNSInputs } from "../create-next-stack-types"
 import { capitalizeFirstLetter } from "../helpers/capitalize-first-letter"
 import { getDiffString } from "../helpers/diff-string"
+import { filterAsync } from "../helpers/filterAsync"
 import { inDebugMode } from "../helpers/in-debug-mode"
 import { time } from "../helpers/time"
 import { logDebug, logInfo } from "../logging"
@@ -68,13 +69,19 @@ export const plugins: Plugin[] = [
   prismaPlugin,
 ]
 
-export const filterPlugins = (inputs: ValidCNSInputs): Plugin[] =>
-  plugins.filter(async (plugin) => await evalProperty(plugin.active, inputs))
+export const filterPlugins = async (
+  inputs: ValidCNSInputs
+): Promise<Plugin[]> => {
+  return await filterAsync(
+    plugins,
+    async (plugin) => await evalProperty(plugin.active, inputs)
+  )
+}
 
 export const performSetupSteps = async (
   inputs: ValidCNSInputs
 ): Promise<void> => {
-  const steps = getSteps(inputs)
+  const steps = await getSteps(inputs)
 
   const allStepsDiff = await time(async () => {
     for (const step of steps) {

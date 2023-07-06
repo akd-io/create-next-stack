@@ -33,7 +33,8 @@ export const createNextStackPlugin: Plugin = {
   addFiles: [
     {
       destination: ".env",
-      condition: (inputs) => getEnvironmentVariables(inputs).length > 0,
+      condition: async (inputs) =>
+        (await getEnvironmentVariables(inputs)).length > 0,
       content: (inputs) => generateEnv(inputs),
     },
     {
@@ -70,7 +71,7 @@ export const createNextStackPlugin: Plugin = {
       id: "addScripts",
       description: "adding scripts to package.json",
       run: async (inputs) => {
-        const scripts = getScripts(inputs)
+        const scripts = await getScripts(inputs)
 
         await modifyJsonFile("package.json", (packageJson) => ({
           ...packageJson,
@@ -101,7 +102,7 @@ export const createNextStackPlugin: Plugin = {
       id: "addContent",
       description: "adding content",
       run: async (inputs) => {
-        const pluginFilesToWrite = filterPlugins(inputs)
+        const pluginFilesToWrite = (await filterPlugins(inputs))
           .flatMap((plugin) => plugin.addFiles)
           .filter(nonNull)
 
@@ -139,18 +140,20 @@ export const createNextStackPlugin: Plugin = {
       run: async (inputs) => {
         const { flags } = inputs
 
-        const depsAndTmpDeps = filterPlugins(inputs).flatMap((plugin) => {
-          return [
-            ...(plugin.dependencies != null
-              ? Object.values(plugin.dependencies)
-              : []),
-            ...(plugin.tmpDependencies != null
-              ? Object.values(plugin.tmpDependencies)
-              : []),
-          ]
-        })
+        const depsAndTmpDeps = (await filterPlugins(inputs)).flatMap(
+          (plugin) => {
+            return [
+              ...(plugin.dependencies != null
+                ? Object.values(plugin.dependencies)
+                : []),
+              ...(plugin.tmpDependencies != null
+                ? Object.values(plugin.tmpDependencies)
+                : []),
+            ]
+          }
+        )
 
-        const devDeps = filterPlugins(inputs).flatMap((plugin) =>
+        const devDeps = (await filterPlugins(inputs)).flatMap((plugin) =>
           plugin.devDependencies != null
             ? Object.values(plugin.devDependencies)
             : []
@@ -168,7 +171,7 @@ export const createNextStackPlugin: Plugin = {
       id: "uninstallTemporaryDependencies",
       description: "uninstalling temporary dependencies",
       run: async (inputs) => {
-        const tmpDeps = filterPlugins(inputs).flatMap((plugin) =>
+        const tmpDeps = (await filterPlugins(inputs)).flatMap((plugin) =>
           plugin.tmpDependencies != null
             ? Object.values(plugin.tmpDependencies)
             : []
