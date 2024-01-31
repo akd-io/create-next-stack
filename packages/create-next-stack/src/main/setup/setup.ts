@@ -35,6 +35,7 @@ import { vercelPlugin } from "../plugins/vercel"
 import { yarnPlugin } from "../plugins/yarn"
 import { steps } from "../steps"
 import { printFinalMessages } from "./print-final-messages"
+import { pandaCSSPlugin } from "../plugins/panda-css/panda-css"
 
 export const plugins: Plugin[] = [
   createNextStackPlugin,
@@ -46,6 +47,7 @@ export const plugins: Plugin[] = [
   tailwindCSSPlugin,
   cssModulesPlugin,
   sassPlugin,
+  pandaCSSPlugin,
   mantinePlugin,
   chakraUIPlugin,
   materialUIPlugin,

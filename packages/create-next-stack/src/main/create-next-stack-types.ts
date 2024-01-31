@@ -37,6 +37,7 @@ export const stylingOptions = [
   "tailwind-css",
   "css-modules",
   "css-modules-with-sass",
+  "panda-css",
 ] as const
 export type StylingOption = (typeof stylingOptions)[number]
 export const writableStylingOptions = stylingOptions as Writable<
