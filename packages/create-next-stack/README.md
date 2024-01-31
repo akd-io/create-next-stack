@@ -44,6 +44,7 @@ The table below provides an overview of the technologies currently supported by 
 | Sass                | [Website](https://sass-lang.com/) - [Docs](https://sass-lang.com/documentation) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support)                                          |
 | CSS Modules         | [Website](https://github.com/css-modules/css-modules) - [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
 | CSS Modules         | [Website](https://github.com/css-modules/css-modules) - [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
+| Panda CSS           | [Website](https://panda-css.com) - [Docs](https://panda-css.com/docs) - [GitHub](https://github.com/chakra-ui/panda)                                                                                                         |
 | Mantine             | [Website](https://mantine.dev/) - [Docs](https://mantine.dev/pages/getting-started/) - [GitHub](https://github.com/mantinedev/mantine)                                                                                       |
 | Chakra UI           | [Website](https://chakra-ui.com/) - [Docs](https://chakra-ui.com/docs/getting-started) - [GitHub](https://github.com/chakra-ui/chakra-ui)                                                                                    |
 | Material UI         | [Website](https://material-ui.com/) - [Docs](https://material-ui.com/getting-started/installation/) - [GitHub](https://github.com/mui-org/material-ui)                                                                       |
@@ -111,7 +112,7 @@ FLAGS
   --styling=<styling-method>    (required) Sets the preferred styling method.
                                 (Required) <styling-method> =
                                 emotion|styled-components|tailwind-css|css-modul
-                                es|css-modules-with-sass
+                                es|css-modules-with-sass|panda-css
   --vercel                      Adds Vercel. (Hosting)
 ```
 

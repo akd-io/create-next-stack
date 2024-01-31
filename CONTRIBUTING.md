@@ -87,7 +87,7 @@ Make sure you are set up locally by following the [Getting Started](#getting-sta
    - `e2e` - Runs e2e tests. Note that this will run all e2e tests, which can take quite a while.
    - `e2e:manual`
      - This is performing a manual run of the CLI. Pass flags to the CLI that you want to test.
-     - For example, `pnpm run test:manual --package-manager=pnpm --styling=emotion`.
+     - For example, `pnpm run e2e:manual --package-manager=pnpm --styling=emotion`.
    - `clean` - Removes all generated files, including build files and the `create-next-stack-tests` directory created by the e2e tests.
 
 3. Add a new .ts file for your plugin in the plugins directory at [`packages/create-next-stack/src/main/plugins`](packages/create-next-stack/src/main/plugins)

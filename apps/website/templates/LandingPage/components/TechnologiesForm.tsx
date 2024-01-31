@@ -32,6 +32,7 @@ type OptionKey =
   | "cssModules"
   | "tailwindCss"
   | "cssModulesWithSass"
+  | "pandaCss"
   | "noStyling"
   | "reactHookForm"
   | "formik"
@@ -72,6 +73,11 @@ const options = {
     key: "cssModulesWithSass",
     value: "css-modules-with-sass",
     label: "CSS Modules with Sass",
+  },
+  pandaCss: {
+    key: "pandaCss",
+    value: "panda-css",
+    label: "Panda CSS",
   },
   noStyling: {
     key: "noStyling",
@@ -145,6 +151,7 @@ const stylingOptionKeys = [
   optionKeys.tailwindCss,
   optionKeys.cssModules,
   optionKeys.cssModulesWithSass,
+  optionKeys.pandaCss,
   optionKeys.noStyling,
 ] satisfies OptionKey[]
 const formStateManagementOptionKeys = [

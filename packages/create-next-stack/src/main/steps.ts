@@ -8,6 +8,7 @@ import { githubActionsPlugin } from "./plugins/github-actions"
 import { mantinePlugin } from "./plugins/mantine/mantine"
 import { materialUIPlugin } from "./plugins/material-ui/material-ui"
 import { nextPlugin } from "./plugins/next"
+import { pandaCSSPlugin } from "./plugins/panda-css/panda-css"
 import { pnpmPlugin } from "./plugins/pnpm"
 import { prettierPlugin } from "./plugins/prettier"
 import { sassPlugin } from "./plugins/sass/sass"
@@ -36,6 +37,7 @@ export const steps: Step[] = [
   cssModulesPlugin.steps.setUpCssModules,
   sassPlugin.steps.setUpSass,
   emotionPlugin.steps.setUpEmotion,
+  pandaCSSPlugin.steps.setUpPandaCss,
 
   // Formatting
   prettierPlugin.steps.setUpPrettier,
