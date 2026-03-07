@@ -2,32 +2,33 @@ import endent from "endent"
 import { Plugin } from "../plugin"
 
 const materialTheme = endent`
-  import { Roboto } from 'next/font/google';
-  import { createTheme } from '@mui/material/styles';
-  import { red } from '@mui/material/colors';
+  "use client";
+  import { Roboto } from "next/font/google";
+  import { createTheme } from "@mui/material/styles";
+  import { red } from "@mui/material/colors";
 
   export const roboto = Roboto({
-    weight: ['300', '400', '500', '700'],
-    subsets: ['latin'],
-    display: 'swap',
-    fallback: ['Helvetica', 'Arial', 'sans-serif'],
+    weight: ["300", "400", "500", "700"],
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-roboto",
   });
 
-  // Create a theme instance.
   export default createTheme({
+    cssVariables: true,
     palette: {
       primary: {
-        main: '#556cd6',
+        main: "#556cd6",
       },
       secondary: {
-        main: '#19857b',
+        main: "#19857b",
       },
       error: {
         main: red.A400,
       },
     },
     typography: {
-      fontFamily: roboto.style.fontFamily,
+      fontFamily: "var(--font-roboto)",
     },
   });
 `
@@ -37,7 +38,11 @@ export const materialUIPlugin: Plugin = {
   name: "Material UI",
   description: "Adds support for Material UI",
   active: ({ flags }) => Boolean(flags["material-ui"]),
-  dependencies: [{ name: "@mui/material", version: "^5.0.0" }],
+  dependencies: [
+    { name: "@mui/material", version: "^7.0.0" },
+    { name: "@mui/material-nextjs", version: "^7.0.0" },
+    { name: "@emotion/cache", version: "^11.0.0" },
+  ],
   technologies: [
     {
       id: "materialUI",
@@ -45,12 +50,12 @@ export const materialUIPlugin: Plugin = {
       description:
         "Material UI is a React UI component library that implements Google's material design guidelines. It features pre-built with components ranging from basic buttons and form input fields to tooltips and modals.",
       links: [
-        { title: "Website", url: "https://material-ui.com/" },
+        { title: "Website", url: "https://mui.com/material-ui/" },
         {
           title: "Docs",
-          url: "https://material-ui.com/getting-started/installation/",
+          url: "https://mui.com/material-ui/getting-started/",
         },
-        { title: "GitHub", url: "https://github.com/mui-org/material-ui" },
+        { title: "GitHub", url: "https://github.com/mui/material-ui" },
       ],
     },
   ],
@@ -58,7 +63,7 @@ export const materialUIPlugin: Plugin = {
     pagesApp: {
       imports: endent`
         import { ThemeProvider } from "@mui/material/styles";
-        import CssBaseline from '@mui/material/CssBaseline';
+        import CssBaseline from "@mui/material/CssBaseline";
         import materialTheme from "../material-theme";
       `,
       componentsStart: endent`
@@ -68,9 +73,31 @@ export const materialUIPlugin: Plugin = {
       componentsEnd: `</ThemeProvider>`,
     },
     pagesDocument: {
-      imports: `import materialTheme, { roboto } from "../material-theme";`,
-      htmlAttributes: `className={roboto.className}`,
-      headTags: `<meta name="theme-color" content={materialTheme.palette.primary.main} />`,
+      imports: `import { roboto } from "../material-theme";`,
+      htmlAttributes: `className={roboto.variable}`,
+      headTags: `<meta name="theme-color" content="#556cd6" />`,
+    },
+    appLayout: {
+      imports: endent`
+        import { roboto } from "../material-theme";
+      `,
+      htmlAttributes: `className={roboto.variable}`,
+      headContent: `<meta name="theme-color" content="#556cd6" />`,
+      providerImports: endent`
+        import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+        import { ThemeProvider } from "@mui/material/styles";
+        import CssBaseline from "@mui/material/CssBaseline";
+        import materialTheme from "../material-theme";
+      `,
+      providersStart: endent`
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={materialTheme}>
+            <CssBaseline />
+      `,
+      providersEnd: endent`
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      `,
     },
   },
   addFiles: [

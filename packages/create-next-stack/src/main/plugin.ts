@@ -167,29 +167,38 @@ export type Plugin = {
       providersEnd?: string
     }
     /**
-     * Slots to fill in the next.config.js file.
+     * Slots to fill in the generated postcss.config.mjs file.
+     * PostCSS config is only generated if any plugin contributes postcssConfig slots.
+     */
+    postcssConfig?: {
+      /** Plugin entries to add to the PostCSS config plugins object. Key is plugin name, value is options. */
+      plugins?: Record<string, string>
+    }
+    /**
+     * Slots to fill in the next.config.ts file.
      *
-     * ```js
+     * ```ts
      * `
+     * import type { NextConfig } from "next";
      * ${imports}
      *
-     * const nextConfig = {
+     * const nextConfig: NextConfig = {
      *   reactStrictMode: true,
      *   ${...nextConfig}
      * };
      *
-     * module.exports = ${wrappersStart}nextConfig${wrappersEnd};
+     * export default ${wrappersStart}nextConfig${wrappersEnd};
      * `
      * ```
      */
     nextConfig?: {
-      /** Code to add to the imports section of the `next.config.js` file. */
+      /** Code to add to the imports section of the `next.config.ts` file. */
       imports?: string
-      /** JSON object to merge into the `nextConfig` object of the `next.config.js` file. */
+      /** JSON object to merge into the `nextConfig` object of the `next.config.ts` file. */
       nextConfig?: NextConfig
-      /** Code to add to the start of the export of the `nextConfig` object of the `next.config.js` file. */
+      /** Code to add to the start of the export of the `nextConfig` object of the `next.config.ts` file. */
       wrappersStart?: string
-      /** Code to add to the end of the export of the `nextConfig` object of the `next.config.js` file. */
+      /** Code to add to the end of the export of the `nextConfig` object of the `next.config.ts` file. */
       wrappersEnd?: string
     }
   }

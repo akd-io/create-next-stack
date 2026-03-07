@@ -32,11 +32,11 @@ export const generateNextConfig = async (
     .reverse()
 
   return endent`
+    import type { NextConfig } from "next";
     ${imports}
 
-    /** @type {import('next').NextConfig} */
-    const nextConfig = ${stringify(mergedNextConfig)};
-    
-    module.exports = ${wrappersStart}nextConfig${wrappersEnd};
+    const nextConfig: NextConfig = ${stringify(mergedNextConfig)};
+
+    export default ${wrappersStart}nextConfig${wrappersEnd};
   `
 }

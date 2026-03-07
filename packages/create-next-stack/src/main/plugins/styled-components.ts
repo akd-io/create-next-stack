@@ -1,3 +1,4 @@
+import endent from "endent"
 import { Plugin } from "../plugin"
 
 export const styledComponentsPlugin: Plugin = {
@@ -5,8 +6,7 @@ export const styledComponentsPlugin: Plugin = {
   name: "Styled Components",
   description: "Adds support for Styled Components",
   active: ({ flags }) => Boolean(flags.styling === "styled-components"),
-  dependencies: [{ name: "styled-components", version: "^5.0.0" }],
-  devDependencies: [{ name: "@types/styled-components", version: "^5.0.0" }],
+  dependencies: [{ name: "styled-components", version: "^6.0.0" }],
   technologies: [
     {
       id: "styledComponents",
@@ -31,5 +31,32 @@ export const styledComponentsPlugin: Plugin = {
         },
       },
     },
+    appLayout: {
+      providerImports: endent`
+        import React from "react";
+        import { useServerInsertedHTML } from "next/navigation";
+        import { ServerStyleSheet, StyleSheetManager } from "styled-components";
+      `,
+      providerLogic: endent`
+        const [styledComponentsStyleSheet] = React.useState(() => new ServerStyleSheet());
+
+        useServerInsertedHTML(() => {
+          const styles = styledComponentsStyleSheet.getStyleElement();
+          styledComponentsStyleSheet.instance.clearTag();
+          return <>{styles}</>;
+        });
+
+        if (typeof window !== "undefined") return <>{children}</>;
+      `,
+      providersStart: endent`
+        <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+      `,
+      providersEnd: endent`
+        </StyleSheetManager>
+      `,
+    },
   },
+  todos: [
+    "Note: Styled Components styles only apply in Client Components. Add the `'use client'` directive to components that use CSS-in-JS styling.",
+  ],
 }

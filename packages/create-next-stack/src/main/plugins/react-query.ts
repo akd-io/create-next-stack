@@ -7,8 +7,8 @@ export const reactQueryPlugin: Plugin = {
   description: "Adds support for React Query",
   active: ({ flags }) => Boolean(flags["react-query"]),
   devDependencies: [
-    { name: "@tanstack/react-query", version: "^4.0.0" },
-    { name: "@tanstack/react-query-devtools", version: "^4.0.0" },
+    { name: "@tanstack/react-query", version: "^5.0.0" },
+    { name: "@tanstack/react-query-devtools", version: "^5.0.0" },
   ],
   technologies: [
     {
@@ -20,7 +20,7 @@ export const reactQueryPlugin: Plugin = {
         { title: "Website", url: "https://tanstack.com/query/latest" },
         {
           title: "Docs",
-          url: "https://tanstack.com/query/latest/docs/react/overview",
+          url: "https://tanstack.com/query/latest/docs/framework/react/overview",
         },
         { title: "GitHub", url: "https://github.com/tanstack/query" },
       ],
@@ -44,6 +44,26 @@ export const reactQueryPlugin: Plugin = {
           <ReactQueryDevtools />
       `,
       componentsEnd: endent`
+        </QueryClientProvider>
+      `,
+    },
+    appLayout: {
+      providerImports: endent`
+        import React from "react";
+        import {
+          QueryClient,
+          QueryClientProvider,
+        } from "@tanstack/react-query";
+        import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+      `,
+      providerLogic: endent`
+        const [queryClient] = React.useState(() => new QueryClient());
+      `,
+      providersStart: endent`
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools />
+      `,
+      providersEnd: endent`
         </QueryClientProvider>
       `,
     },

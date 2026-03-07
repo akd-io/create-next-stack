@@ -5,7 +5,7 @@ export const netlifyPlugin: Plugin = {
   name: "Netlify",
   description: "Adds support for Netlify",
   active: ({ flags }) => Boolean(flags["netlify"]),
-  devDependencies: [{ name: "netlify-cli", version: "^15.6.0" }],
+  devDependencies: [{ name: "netlify-cli", version: "^24.0.0" }],
   scripts: [
     {
       name: "deploy:netlify",

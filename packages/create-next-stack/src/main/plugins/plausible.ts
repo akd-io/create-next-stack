@@ -53,9 +53,26 @@ export const plausiblePlugin: Plugin = {
         </PlausibleProvider>
       `,
     },
+    appLayout: {
+      providerImports: endent`
+        import PlausibleProvider from "next-plausible";
+      `,
+      providerAfterImports: endent`
+        const ${websiteDomainEnvVar} = process.env.${websiteDomainEnvVar};
+        if (${websiteDomainEnvVar} == null) {
+          throw new Error("${websiteDomainEnvVar} is not set");
+        }
+      `,
+      providersStart: endent`
+        <PlausibleProvider domain={${websiteDomainEnvVar}}>
+      `,
+      providersEnd: endent`
+        </PlausibleProvider>
+      `,
+    },
     nextConfig: {
       imports: endent`
-        const { withPlausibleProxy } = require("next-plausible");
+        import { withPlausibleProxy } from "next-plausible";
       `,
       wrappersStart: "withPlausibleProxy()(",
       wrappersEnd: ")",

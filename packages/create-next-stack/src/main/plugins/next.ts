@@ -109,11 +109,7 @@ export const nextPlugin: Plugin = {
       id: "removeOfficialCNAContent",
       description: "removing content added by Create Next App",
       run: async ({ flags }) => {
-        const removals: string[] = [
-          "README.md",
-          "next.config.ts",
-          "next.config.mjs",
-        ]
+        const removals: string[] = ["README.md", "next.config.ts"]
 
         if (flags.router === "app") {
           removals.push(

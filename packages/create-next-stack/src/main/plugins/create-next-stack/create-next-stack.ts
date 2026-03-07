@@ -24,6 +24,10 @@ import { generateIndexPage } from "./add-content/pages/generate-index"
 import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate"
 import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
 import { generateNextConfig } from "./add-next-config/generate-next-config"
+import {
+  generatePostcssConfig,
+  hasPostcssConfig,
+} from "./add-postcss-config/generate-postcss-config"
 import { generateReadme } from "./add-readme/generate-readme"
 import { getEnvironmentVariables } from "./sort-orders/environment-variables"
 import { getScripts } from "./sort-orders/scripts"
@@ -44,8 +48,13 @@ export const createNextStackPlugin: Plugin = {
       content: (inputs) => generateEnv(inputs),
     },
     {
-      destination: "next.config.js",
+      destination: "next.config.ts",
       content: (inputs) => generateNextConfig(inputs),
+    },
+    {
+      destination: "postcss.config.mjs",
+      condition: (inputs) => hasPostcssConfig(inputs),
+      content: (inputs) => generatePostcssConfig(inputs),
     },
     // Pages Router files
     {

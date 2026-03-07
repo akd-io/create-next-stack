@@ -50,7 +50,7 @@ const generateCiYml = async (inputs: ValidCNSInputs): Promise<string> => {
 
   const isPrettierPluginActive = await evalProperty(
     prettierPlugin.active,
-    inputs
+    inputs,
   )
 
   return endent`
@@ -66,21 +66,19 @@ const generateCiYml = async (inputs: ValidCNSInputs): Promise<string> => {
 
         steps:
           - name: "Checkout repo"
-            uses: actions/checkout@v3
+            uses: actions/checkout@v4
 
           ${
             packageManager === "pnpm"
               ? endent`
                   - name: "Set up pnpm"
-                    uses: pnpm/action-setup@v2
-                    with:
-                      version: 8
+                    uses: pnpm/action-setup@v4
                 `
               : ""
           }
 
           - name: "Set up latest Node LTS"
-            uses: actions/setup-node@v2
+            uses: actions/setup-node@v4
             with:
               node-version: "lts/*"
               cache: "${packageManager}"

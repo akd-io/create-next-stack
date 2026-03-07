@@ -7,8 +7,8 @@ export const prismaPlugin: Plugin = {
   name: "Prisma",
   description: "Adds support for Prisma",
   active: ({ flags }) => Boolean(flags["prisma"]),
-  dependencies: [{ name: "@prisma/client", version: "^4.16.0" }],
-  devDependencies: [{ name: "prisma", version: "^4.16.0" }],
+  dependencies: [{ name: "@prisma/client", version: "^6.0.0" }],
+  devDependencies: [{ name: "prisma", version: "^6.0.0" }],
   technologies: [
     {
       id: "prisma",

@@ -1,3 +1,4 @@
+import endent from "endent"
 import { modifyJsonFile, toObject } from "../helpers/io"
 import { Plugin } from "../plugin"
 
@@ -9,6 +10,7 @@ export const emotionPlugin: Plugin = {
   dependencies: [
     { name: "@emotion/react", version: "^11.0.0" },
     { name: "@emotion/styled", version: "^11.0.0" },
+    { name: "@emotion/cache", version: "^11.0.0" },
   ],
   technologies: [
     {
@@ -28,9 +30,6 @@ export const emotionPlugin: Plugin = {
       id: "setUpEmotion",
       description: "setting up Emotion",
       run: async () => {
-        /*
-         *  Add TypeScript support for the css-prop as per the Emotion docs: https://emotion.sh/docs/typescript#css-prop
-         */
         await modifyJsonFile("tsconfig.json", (tsConfig) => ({
           ...tsConfig,
           compilerOptions: {
@@ -49,5 +48,40 @@ export const emotionPlugin: Plugin = {
         },
       },
     },
+    appLayout: {
+      providerImports: endent`
+        import React from "react";
+        import { useServerInsertedHTML } from "next/navigation";
+        import createCache from "@emotion/cache";
+        import { CacheProvider } from "@emotion/react";
+      `,
+      providerLogic: endent`
+        const [cache] = React.useState(() => {
+          const cache = createCache({ key: "css" });
+          cache.compat = true;
+          return cache;
+        });
+
+        useServerInsertedHTML(() => {
+          const entries = (cache as any).inserted;
+          if (Object.keys(entries).length === 0) return null;
+          const names = Object.keys(entries);
+          let styles = "";
+          for (const name of names) {
+            styles += entries[name];
+          }
+          return <style data-emotion={\`\${cache.key} \${names.join(" ")}\`} dangerouslySetInnerHTML={{ __html: styles }} />;
+        });
+      `,
+      providersStart: endent`
+        <CacheProvider value={cache}>
+      `,
+      providersEnd: endent`
+        </CacheProvider>
+      `,
+    },
   },
+  todos: [
+    "Note: Emotion styles only apply in Client Components. Add the `'use client'` directive to components that use CSS-in-JS styling.",
+  ],
 }

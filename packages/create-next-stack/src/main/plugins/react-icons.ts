@@ -5,7 +5,7 @@ export const reactIconsPlugin: Plugin = {
   name: "React Icons",
   description: "Adds support for React Icons",
   active: ({ flags }) => Boolean(flags["react-icons"]),
-  devDependencies: [{ name: "react-icons", version: "^4.8.0" }],
+  devDependencies: [{ name: "react-icons", version: "^5.0.0" }],
   technologies: [
     {
       id: "reactIcons",

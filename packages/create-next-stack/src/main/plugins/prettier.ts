@@ -3,7 +3,7 @@ import { Package, Plugin } from "../plugin"
 
 export const prettierPackage = {
   name: "prettier",
-  version: "^2.0.0",
+  version: "^3.0.0",
 } satisfies Package
 
 export const prettierPlugin: Plugin = {
@@ -13,7 +13,7 @@ export const prettierPlugin: Plugin = {
   active: ({ flags }) => Boolean(flags.prettier),
   devDependencies: [
     prettierPackage,
-    { name: "eslint-config-prettier", version: "^8.0.0" },
+    { name: "eslint-config-prettier", version: "^10.0.0" },
   ],
   technologies: [
     {
