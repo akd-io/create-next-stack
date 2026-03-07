@@ -8,6 +8,7 @@ import { Writable } from "./helpers/writable"
  *
  * **Do NOT call this function!**
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const temporaryWrapperForTypeSafety = () => {
   const createNextStackInstance = new CreateNextStack(
     [],

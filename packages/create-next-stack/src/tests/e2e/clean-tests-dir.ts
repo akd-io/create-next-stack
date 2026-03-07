@@ -17,7 +17,7 @@ import path from "path"
       )
       return
     }
-  } catch (error) {
+  } catch {
     console.log("Tests directory not found.")
     return
   }
