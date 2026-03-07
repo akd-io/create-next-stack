@@ -18,15 +18,15 @@ export const generateLandingPageTemplate = async (
     "use client";
 
     import Script from "next/script";
-    import styles from "./LandingPageTemplate.module.css.ts";
-    import { Container } from "./components/Container.ts";
-    import { InlineCode } from "./components/InlineCode.ts";
-    import { Link } from "./components/Link.ts";
-    import { Paragraph } from "./components/Paragraph.ts";
-    import { Section } from "./components/Section.ts";
-    import { Subtitle } from "./components/Subtitle.ts";
-    import { TechnologyGrid } from "./components/TechnologyGrid.ts";
-    import { H1, H2 } from "./components/headings.ts";
+    import styles from "./LandingPageTemplate.module.css";
+    import { Container } from "./components/Container.tsx";
+    import { InlineCode } from "./components/InlineCode.tsx";
+    import { Link } from "./components/Link.tsx";
+    import { Paragraph } from "./components/Paragraph.tsx";
+    import { Section } from "./components/Section.tsx";
+    import { Subtitle } from "./components/Subtitle.tsx";
+    import { TechnologyGrid } from "./components/TechnologyGrid.tsx";
+    import { H1, H2 } from "./components/headings.tsx";
     import { technologies } from "./technologies.ts";
     
     const LandingPageTemplate = () => {
