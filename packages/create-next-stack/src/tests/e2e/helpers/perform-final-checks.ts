@@ -6,13 +6,8 @@ export const performFinalChecks = async (
   runDirectory: string,
   args: string[],
 ): Promise<void> => {
-  const env = { ...process.env }
-  delete env["CI"]
-  delete env["GITHUB_ACTIONS"]
-
   const options: Options = {
     cwd: runDirectory,
-    env,
   }
 
   logTestInfo("Checking formatting...")
@@ -33,6 +28,10 @@ export const performFinalChecks = async (
     ?.split("=")[1]
   if (packageManager) {
     logTestInfo("Installing dependencies...")
-    await runCommand(packageManager, ["install"], options)
+    const installArgs =
+      packageManager === "pnpm"
+        ? ["install", "--no-frozen-lockfile"]
+        : ["install"]
+    await runCommand(packageManager, installArgs, options)
   }
 }
