@@ -1,4 +1,4 @@
-import { Plugin } from "../plugin"
+import { Plugin } from "../plugin.ts"
 
 export const reactIconsPlugin: Plugin = {
   id: "react-icons",

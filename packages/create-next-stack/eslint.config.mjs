@@ -13,6 +13,12 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ["lib/**", "node_modules/**", "prod-assets/**", "**/*.js"],
+    ignores: [
+      "lib/**",
+      "node_modules/**",
+      "prod-assets/**",
+      "**/*.js",
+      "**/*.cjs",
+    ],
   },
 )

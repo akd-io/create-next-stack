@@ -1,5 +1,5 @@
-import endent from "endent"
-import { ValidCNSInputs } from "../../../create-next-stack-types"
+import aldent from "aldent"
+import { ValidCNSInputs } from "../../../create-next-stack-types.ts"
 
 export const generateEslintConfig = async ({
   flags,
@@ -19,7 +19,7 @@ export const generateEslintConfig = async ({
 
   const configEntries = configs.map((c) => `    ${c},`).join("\n")
 
-  return endent`
+  return aldent`
     ${imports.join("\n")}
 
     const eslintConfig = defineConfig([

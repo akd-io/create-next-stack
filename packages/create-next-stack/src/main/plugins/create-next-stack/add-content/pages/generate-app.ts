@@ -1,7 +1,7 @@
-import endent from "endent"
-import { ValidCNSInputs } from "../../../../create-next-stack-types"
-import { nonNull } from "../../../../helpers/non-null"
-import { filterPlugins } from "../../../../setup/setup"
+import aldent from "aldent"
+import { ValidCNSInputs } from "../../../../create-next-stack-types.ts"
+import { nonNull } from "../../../../helpers/non-null.ts"
+import { filterPlugins } from "../../../../setup/setup.ts"
 
 export const generateApp = async (inputs: ValidCNSInputs): Promise<string> => {
   const imports = (await filterPlugins(inputs))
@@ -30,7 +30,7 @@ export const generateApp = async (inputs: ValidCNSInputs): Promise<string> => {
     .reverse()
     .join("\n")
 
-  return endent`
+  return aldent`
     import { AppProps } from "next/app";
     ${imports}
 

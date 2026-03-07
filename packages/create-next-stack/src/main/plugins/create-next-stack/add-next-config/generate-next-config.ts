@@ -1,10 +1,11 @@
-import endent from "endent"
-import { merge } from "lodash"
+import aldent from "aldent"
+import lodash from "lodash"
+const { merge } = lodash
 import { NextConfig } from "next"
-import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { nonNull } from "../../../helpers/non-null"
-import { stringify } from "../../../helpers/stringify"
-import { filterPlugins } from "../../../setup/setup"
+import { ValidCNSInputs } from "../../../create-next-stack-types.ts"
+import { nonNull } from "../../../helpers/non-null.ts"
+import { stringify } from "../../../helpers/stringify.ts"
+import { filterPlugins } from "../../../setup/setup.ts"
 
 export const generateNextConfig = async (
   inputs: ValidCNSInputs,
@@ -31,12 +32,12 @@ export const generateNextConfig = async (
     .filter(nonNull)
     .reverse()
 
-  return endent`
+  return aldent`
     import type { NextConfig } from "next";
     ${imports}
 
     const nextConfig: NextConfig = ${stringify(mergedNextConfig)};
 
-    export default ${wrappersStart}nextConfig${wrappersEnd};
+    export default ${wrappersStart.join("")}nextConfig${wrappersEnd.join("")};
   `
 }

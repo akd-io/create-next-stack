@@ -1,7 +1,7 @@
-import endent from "endent"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import { Plugin } from "../plugin.ts"
 
-const globalStyles = endent`
+const globalStyles = aldent`
   * {
     box-sizing: border-box;
   }

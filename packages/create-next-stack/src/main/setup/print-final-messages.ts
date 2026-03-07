@@ -1,9 +1,9 @@
 import chalk from "chalk"
-import { ValidCNSInputs } from "../create-next-stack-types"
-import { getProjectNameOfPath } from "../helpers/get-project-name-of-path"
-import { isGitInitialized } from "../helpers/is-git-initialized"
-import { runCommandMap } from "../helpers/package-manager-utils"
-import { logInfo, logWarning } from "../logging"
+import { ValidCNSInputs } from "../create-next-stack-types.ts"
+import { getProjectNameOfPath } from "../helpers/get-project-name-of-path.ts"
+import { isGitInitialized } from "../helpers/is-git-initialized.ts"
+import { runCommandMap } from "../helpers/package-manager-utils.ts"
+import { logInfo, logWarning } from "../logging.ts"
 
 export const printFinalMessages = ({ args, flags }: ValidCNSInputs): void => {
   if (!isGitInitialized()) {

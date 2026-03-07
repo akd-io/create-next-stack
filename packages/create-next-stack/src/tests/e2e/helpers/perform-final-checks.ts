@@ -1,6 +1,6 @@
-import { Options } from "execa"
-import { runCommand } from "../../../main/helpers/run-command"
-import { logTestInfo } from "../test-logging"
+import type { Options } from "execa"
+import { runCommand } from "../../../main/helpers/run-command.ts"
+import { logTestInfo } from "../test-logging.ts"
 
 export const performFinalChecks = async (
   runDirectory: string,

@@ -1,5 +1,5 @@
-import endent from "endent"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import { Plugin } from "../plugin.ts"
 
 export const tailwindCSSPlugin: Plugin = {
   id: "tailwind-css",
@@ -38,7 +38,7 @@ export const tailwindCSSPlugin: Plugin = {
   addFiles: [
     {
       destination: "styles/globals.css",
-      content: endent`
+      content: aldent`
         @import "tailwindcss";
       `,
     },

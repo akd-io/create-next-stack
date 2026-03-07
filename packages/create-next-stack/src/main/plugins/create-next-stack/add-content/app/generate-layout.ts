@@ -1,8 +1,8 @@
-import endent from "endent"
-import { ValidCNSInputs } from "../../../../create-next-stack-types"
-import { getProjectNameOfPath } from "../../../../helpers/get-project-name-of-path"
-import { nonNull } from "../../../../helpers/non-null"
-import { filterPlugins } from "../../../../setup/setup"
+import aldent from "aldent"
+import { ValidCNSInputs } from "../../../../create-next-stack-types.ts"
+import { getProjectNameOfPath } from "../../../../helpers/get-project-name-of-path.ts"
+import { nonNull } from "../../../../helpers/non-null.ts"
+import { filterPlugins } from "../../../../setup/setup.ts"
 
 export const generateLayout = async (
   inputs: ValidCNSInputs,
@@ -44,17 +44,17 @@ export const generateLayout = async (
   const projectName = getProjectNameOfPath(inputs.args.app_name)
 
   const providerImport = hasProviders
-    ? `import { Providers } from "./providers";`
+    ? `import { Providers } from "./providers.ts";`
     : ""
   const childrenWithProviders = hasProviders
-    ? endent`
+    ? aldent`
         <Providers>
           {children}
         </Providers>
       `
     : "{children}"
 
-  return endent`
+  return aldent`
     import type { Metadata } from "next";
     ${providerImport}
     ${imports}
@@ -73,7 +73,7 @@ export const generateLayout = async (
     }>) {
       return (
         <html lang="en" ${htmlAttributes}>
-          ${headContent ? endent`<head>${headContent}</head>` : ""}
+          ${headContent ? aldent`<head>${headContent}</head>` : ""}
           <body ${bodyAttributes}>
             ${childrenWithProviders}
           </body>

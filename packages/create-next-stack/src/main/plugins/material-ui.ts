@@ -1,7 +1,7 @@
-import endent from "endent"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import { Plugin } from "../plugin.ts"
 
-const materialTheme = endent`
+const materialTheme = aldent`
   "use client";
   import { Roboto } from "next/font/google";
   import { createTheme } from "@mui/material/styles";
@@ -61,40 +61,40 @@ export const materialUIPlugin: Plugin = {
   ],
   slots: {
     pagesApp: {
-      imports: endent`
+      imports: aldent`
         import { ThemeProvider } from "@mui/material/styles";
         import CssBaseline from "@mui/material/CssBaseline";
-        import materialTheme from "../material-theme";
+        import materialTheme from "../material-theme.ts";
       `,
-      componentsStart: endent`
+      componentsStart: aldent`
         <ThemeProvider theme={materialTheme}>
           <CssBaseline />
       `,
       componentsEnd: `</ThemeProvider>`,
     },
     pagesDocument: {
-      imports: `import { roboto } from "../material-theme";`,
+      imports: `import { roboto } from "../material-theme.ts";`,
       htmlAttributes: `className={roboto.variable}`,
       headTags: `<meta name="theme-color" content="#556cd6" />`,
     },
     appLayout: {
-      imports: endent`
-        import { roboto } from "../material-theme";
+      imports: aldent`
+        import { roboto } from "../material-theme.ts";
       `,
       htmlAttributes: `className={roboto.variable}`,
       headContent: `<meta name="theme-color" content="#556cd6" />`,
-      providerImports: endent`
+      providerImports: aldent`
         import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
         import { ThemeProvider } from "@mui/material/styles";
         import CssBaseline from "@mui/material/CssBaseline";
-        import materialTheme from "../material-theme";
+        import materialTheme from "../material-theme.ts";
       `,
-      providersStart: endent`
+      providersStart: aldent`
         <AppRouterCacheProvider>
           <ThemeProvider theme={materialTheme}>
             <CssBaseline />
       `,
-      providersEnd: endent`
+      providersEnd: aldent`
           </ThemeProvider>
         </AppRouterCacheProvider>
       `,

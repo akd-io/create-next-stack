@@ -1,7 +1,7 @@
-import endent from "endent"
-import type { ValidCNSInputs } from "../../../../create-next-stack-types"
-import { nonNull } from "../../../../helpers/non-null"
-import { filterPlugins } from "../../../../setup/setup"
+import aldent from "aldent"
+import type { ValidCNSInputs } from "../../../../create-next-stack-types.ts"
+import { nonNull } from "../../../../helpers/non-null.ts"
+import { filterPlugins } from "../../../../setup/setup.ts"
 
 export const generateDocument = async (
   inputs: ValidCNSInputs,
@@ -35,7 +35,7 @@ export const generateDocument = async (
     .filter(nonNull)
     .join("\n")
 
-  return endent`
+  return aldent`
     import NextDocument, { Html, Head, Main, NextScript } from "next/document";
     ${imports}
 

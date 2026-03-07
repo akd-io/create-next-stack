@@ -1,5 +1,5 @@
-import endent from "endent"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import { Plugin } from "../plugin.ts"
 
 export const mantinePlugin: Plugin = {
   id: "mantine",
@@ -30,41 +30,41 @@ export const mantinePlugin: Plugin = {
   ],
   slots: {
     pagesApp: {
-      imports: endent`
+      imports: aldent`
         import { MantineProvider } from "@mantine/core";
         import "@mantine/core/styles.css";
       `,
-      componentsStart: endent`
+      componentsStart: aldent`
         <MantineProvider>
       `,
-      componentsEnd: endent`
+      componentsEnd: aldent`
         </MantineProvider>
       `,
     },
     pagesDocument: {
-      imports: endent`
+      imports: aldent`
         import { ColorSchemeScript } from "@mantine/core";
       `,
-      headTags: endent`
+      headTags: aldent`
         <ColorSchemeScript />
       `,
     },
     appLayout: {
-      imports: endent`
+      imports: aldent`
         import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
         import "@mantine/core/styles.css";
       `,
       htmlAttributes: `{...mantineHtmlProps}`,
-      headContent: endent`
+      headContent: aldent`
         <ColorSchemeScript />
       `,
-      providerImports: endent`
+      providerImports: aldent`
         import { MantineProvider } from "@mantine/core";
       `,
-      providersStart: endent`
+      providersStart: aldent`
         <MantineProvider>
       `,
-      providersEnd: endent`
+      providersEnd: aldent`
         </MantineProvider>
       `,
     },

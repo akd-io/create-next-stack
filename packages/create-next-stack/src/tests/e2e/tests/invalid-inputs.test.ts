@@ -1,6 +1,5 @@
-import { describe, expect, test } from "@jest/globals"
-import { testArgsWithoutFinalChecks } from "../helpers/test-args"
-import { oneMinute } from "../helpers/timeout"
+import { testArgsWithoutFinalChecks } from "../helpers/test-args.ts"
+import { oneMinute } from "../helpers/timeout.ts"
 
 const invalidArgsArrays: Array<{ name: string; args: string[] }> = [
   {

@@ -1,8 +1,8 @@
-import endent from "endent"
-import { ValidCNSInputs } from "../../../../../create-next-stack-types"
-import { getProjectNameOfPath } from "../../../../../helpers/get-project-name-of-path"
-import { nonNull } from "../../../../../helpers/non-null"
-import { filterPlugins } from "../../../../../setup/setup"
+import aldent from "aldent"
+import { ValidCNSInputs } from "../../../../../create-next-stack-types.ts"
+import { getProjectNameOfPath } from "../../../../../helpers/get-project-name-of-path.ts"
+import { nonNull } from "../../../../../helpers/non-null.ts"
+import { filterPlugins } from "../../../../../setup/setup.ts"
 
 export const generateLandingPageTemplate = async (
   inputs: ValidCNSInputs,
@@ -14,20 +14,20 @@ export const generateLandingPageTemplate = async (
   const editFile =
     inputs.flags.router === "app" ? "app/page.tsx" : "pages/index.tsx"
 
-  return endent`
+  return aldent`
     "use client";
 
     import Script from "next/script";
-    import styles from "./LandingPageTemplate.module.css";
-    import { Container } from "./components/Container";
-    import { InlineCode } from "./components/InlineCode";
-    import { Link } from "./components/Link";
-    import { Paragraph } from "./components/Paragraph";
-    import { Section } from "./components/Section";
-    import { Subtitle } from "./components/Subtitle";
-    import { TechnologyGrid } from "./components/TechnologyGrid";
-    import { H1, H2 } from "./components/headings";
-    import { technologies } from "./technologies";
+    import styles from "./LandingPageTemplate.module.css.ts";
+    import { Container } from "./components/Container.ts";
+    import { InlineCode } from "./components/InlineCode.ts";
+    import { Link } from "./components/Link.ts";
+    import { Paragraph } from "./components/Paragraph.ts";
+    import { Section } from "./components/Section.ts";
+    import { Subtitle } from "./components/Subtitle.ts";
+    import { TechnologyGrid } from "./components/TechnologyGrid.ts";
+    import { H1, H2 } from "./components/headings.ts";
+    import { technologies } from "./technologies.ts";
     
     const LandingPageTemplate = () => {
       const onConfettiLoad = () => {
@@ -115,7 +115,7 @@ export const generateLandingPageTemplate = async (
             </Section>
             ${
               hasTodos
-                ? endent`
+                ? aldent`
                   <Section>
                     <Container className={styles.textContainer}>
                       <H2>Final steps</H2>

@@ -1,12 +1,12 @@
 import chalk from "chalk"
-import endent from "endent"
+import aldent from "aldent"
 import path from "path"
-import { makeDirectory } from "../helpers/io"
-import { remove } from "../helpers/remove"
-import { runCommand } from "../helpers/run-command"
-import { logDebug } from "../logging"
-import { Package, Plugin } from "../plugin"
-import { getNameVersionCombo } from "../setup/packages"
+import { makeDirectory } from "../helpers/io.ts"
+import { remove } from "../helpers/remove.ts"
+import { runCommand } from "../helpers/run-command.ts"
+import { logDebug } from "../logging.ts"
+import { Package, Plugin } from "../plugin.ts"
+import { getNameVersionCombo } from "../setup/packages.ts"
 
 const createNextAppPackage: Package = {
   name: "create-next-app",
@@ -66,7 +66,7 @@ export const nextPlugin: Plugin = {
         // Make sure directory exists to avoid error from create-next-app
         await makeDirectory(args.app_name)
 
-        logDebug(endent`
+        logDebug(aldent`
           Directory created: ${args.app_name}
 
           To open the project in vscode, run:

@@ -1,6 +1,6 @@
 import fs from "fs/promises"
 import path from "path"
-import { makeDirectory } from "./io"
+import { makeDirectory } from "./io.ts"
 
 export const copyDirectory = async (
   src: string,

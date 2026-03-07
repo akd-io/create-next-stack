@@ -1,11 +1,11 @@
-import endent from "endent"
-import { ValidCNSInputs } from "../create-next-stack-types"
+import aldent from "aldent"
+import { ValidCNSInputs } from "../create-next-stack-types.ts"
 import {
   cleanInstallCommandMap,
   runCommandMap,
-} from "../helpers/package-manager-utils"
-import { evalProperty, Plugin } from "../plugin"
-import { prettierPlugin } from "./prettier"
+} from "../helpers/package-manager-utils.ts"
+import { evalProperty, Plugin } from "../plugin.ts"
+import { prettierPlugin } from "./prettier.ts"
 
 export const githubActionsPlugin: Plugin = {
   id: "github-actions",
@@ -53,7 +53,7 @@ const generateCiYml = async (inputs: ValidCNSInputs): Promise<string> => {
     inputs,
   )
 
-  return endent`
+  return aldent`
     name: "CI"
 
     on: [pull_request]
@@ -70,7 +70,7 @@ const generateCiYml = async (inputs: ValidCNSInputs): Promise<string> => {
 
           ${
             packageManager === "pnpm"
-              ? endent`
+              ? aldent`
                   - name: "Set up pnpm"
                     uses: pnpm/action-setup@v4
                 `
@@ -88,7 +88,7 @@ const generateCiYml = async (inputs: ValidCNSInputs): Promise<string> => {
 
           ${
             isPrettierPluginActive
-              ? endent`
+              ? aldent`
                   - name: "Check format"
                     run: ${runCommandMap[packageManager]} format:check
                 `

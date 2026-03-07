@@ -1,7 +1,6 @@
-import { test } from "@jest/globals"
-import endent from "endent"
-import { plugins } from "../../../setup/setup"
-import { environmentVariablesSortOrder } from "./environment-variables"
+import aldent from "aldent"
+import { plugins } from "../../../setup/setup.ts"
+import { environmentVariablesSortOrder } from "./environment-variables.ts"
 
 test("`environmentVariablesSortOrder` contains no duplicates", () => {
   const seenEnvironmentVariables = new Set<string>()
@@ -27,7 +26,7 @@ test("`environmentVariablesSortOrder` includes all plugins' environment variable
   for (const requiredEnvironmentVariable of requiredEnvironmentVariables) {
     if (!actualEnvironmentVariables.has(requiredEnvironmentVariable)) {
       throw new Error(
-        endent`
+        aldent`
           Missing environment variable with name "${requiredEnvironmentVariable}" in environment-variables.ts
           environment-variables.ts can be found here:
             src/main/plugins/create-next-stack/sort-orders/environment-variables.ts

@@ -1,37 +1,41 @@
-import endent from "endent"
+import aldent from "aldent"
 import path from "path"
-import { copyDirectory } from "../../helpers/copy-directory"
-import { getCreateNextStackDir } from "../../helpers/get-create-next-stack-dir"
-import { modifyJsonFile, toObject, writeFile } from "../../helpers/io"
-import { isGitInitialized } from "../../helpers/is-git-initialized"
-import { nonNull } from "../../helpers/non-null"
-import { runCommand } from "../../helpers/run-command"
-import { logWarning } from "../../logging"
-import { evalOptionalProperty, evalProperty, Plugin } from "../../plugin"
-import { getNameVersionCombo, install, uninstall } from "../../setup/packages"
-import { filterPlugins } from "../../setup/setup"
-import { prettierPackage } from "../prettier"
-import { generateAppPage } from "./add-content/app/generate-page"
-import { generateLayout } from "./add-content/app/generate-layout"
+import { copyDirectory } from "../../helpers/copy-directory.ts"
+import { getCreateNextStackDir } from "../../helpers/get-create-next-stack-dir.ts"
+import { modifyJsonFile, toObject, writeFile } from "../../helpers/io.ts"
+import { isGitInitialized } from "../../helpers/is-git-initialized.ts"
+import { nonNull } from "../../helpers/non-null.ts"
+import { runCommand } from "../../helpers/run-command.ts"
+import { logWarning } from "../../logging.ts"
+import { evalOptionalProperty, evalProperty, Plugin } from "../../plugin.ts"
+import {
+  getNameVersionCombo,
+  install,
+  uninstall,
+} from "../../setup/packages.ts"
+import { filterPlugins } from "../../setup/setup.ts"
+import { prettierPackage } from "../prettier.ts"
+import { generateAppPage } from "./add-content/app/generate-page.ts"
+import { generateLayout } from "./add-content/app/generate-layout.ts"
 import {
   generateProviders,
   hasProviderSlots,
-} from "./add-content/app/generate-providers"
-import { generateEnv } from "./add-content/generate-env"
-import { generateApp } from "./add-content/pages/generate-app"
-import { generateDocument } from "./add-content/pages/generate-document"
-import { generateIndexPage } from "./add-content/pages/generate-index"
-import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate"
-import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
-import { generateEslintConfig } from "./add-eslint-config/generate-eslint-config"
-import { generateNextConfig } from "./add-next-config/generate-next-config"
+} from "./add-content/app/generate-providers.ts"
+import { generateEnv } from "./add-content/generate-env.ts"
+import { generateApp } from "./add-content/pages/generate-app.ts"
+import { generateDocument } from "./add-content/pages/generate-document.ts"
+import { generateIndexPage } from "./add-content/pages/generate-index.ts"
+import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate.ts"
+import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies.ts"
+import { generateEslintConfig } from "./add-eslint-config/generate-eslint-config.ts"
+import { generateNextConfig } from "./add-next-config/generate-next-config.ts"
 import {
   generatePostcssConfig,
   hasPostcssConfig,
-} from "./add-postcss-config/generate-postcss-config"
-import { generateReadme } from "./add-readme/generate-readme"
-import { getEnvironmentVariables } from "./sort-orders/environment-variables"
-import { getScripts } from "./sort-orders/scripts"
+} from "./add-postcss-config/generate-postcss-config.ts"
+import { generateReadme } from "./add-readme/generate-readme.ts"
+import { getEnvironmentVariables } from "./sort-orders/environment-variables.ts"
+import { getScripts } from "./sort-orders/scripts.ts"
 
 const gitAttributesFilename = ".gitattributes"
 
@@ -258,7 +262,7 @@ export const createNextStackPlugin: Plugin = {
       run: async () => {
         await writeFile(
           gitAttributesFilename,
-          endent`
+          aldent`
             # Normalize end of line. Read more about why in the links below:
             # https://prettier.io/docs/en/options.html#end-of-line
             # https://git-scm.com/docs/gitattributes#_effects

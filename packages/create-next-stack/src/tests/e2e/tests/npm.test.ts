@@ -1,7 +1,6 @@
-import { expect, test } from "@jest/globals"
-import { exists } from "../../../main/helpers/exists"
-import { testArgsWithFinalChecks } from "../helpers/test-args"
-import { twentyMinutes } from "../helpers/timeout"
+import { exists } from "../../../main/helpers/exists.ts"
+import { testArgsWithFinalChecks } from "../helpers/test-args.ts"
+import { twentyMinutes } from "../helpers/timeout.ts"
 
 test(
   "testNpm",

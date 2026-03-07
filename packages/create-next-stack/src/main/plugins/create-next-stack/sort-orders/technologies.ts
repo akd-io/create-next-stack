@@ -1,8 +1,8 @@
-import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { nonNull } from "../../../helpers/non-null"
-import { compareByOrder } from "../../../helpers/sort-by-order"
-import { Technology } from "../../../plugin"
-import { filterPlugins, plugins } from "../../../setup/setup"
+import { ValidCNSInputs } from "../../../create-next-stack-types.ts"
+import { nonNull } from "../../../helpers/non-null.ts"
+import { compareByOrder } from "../../../helpers/sort-by-order.ts"
+import { Technology } from "../../../plugin.ts"
+import { filterPlugins, plugins } from "../../../setup/setup.ts"
 
 export const technologiesSortOrder: string[] = [
   "next",

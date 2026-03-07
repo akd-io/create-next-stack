@@ -1,6 +1,6 @@
-import endent from "endent"
-import { runCommand } from "../helpers/run-command"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import { runCommand } from "../helpers/run-command.ts"
+import { Plugin } from "../plugin.ts"
 
 export const prismaPlugin: Plugin = {
   id: "prisma",
@@ -34,7 +34,7 @@ export const prismaPlugin: Plugin = {
   addFiles: [
     {
       destination: "prisma/schema.prisma",
-      content: endent`
+      content: aldent`
         generator client {
           provider = "prisma-client-js"
         }
@@ -53,7 +53,7 @@ export const prismaPlugin: Plugin = {
     },
     {
       destination: "prisma/seed.ts",
-      content: endent`
+      content: aldent`
         import { Prisma, PrismaClient } from "@prisma/client";
 
         const prisma = new PrismaClient();

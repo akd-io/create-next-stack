@@ -1,7 +1,7 @@
-import endent from "endent"
+import aldent from "aldent"
 
-export const generateAppPage = (): string => endent`
-  import LandingPageTemplate from "../templates/LandingPage/LandingPageTemplate";
+export const generateAppPage = (): string => aldent`
+  import LandingPageTemplate from "../templates/LandingPage/LandingPageTemplate.ts";
 
   export default function Home() {
     return <LandingPageTemplate />;

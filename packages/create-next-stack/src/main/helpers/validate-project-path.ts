@@ -1,5 +1,5 @@
 import validateNpmPackageName from "validate-npm-package-name"
-import { getProjectNameOfPath } from "./get-project-name-of-path"
+import { getProjectNameOfPath } from "./get-project-name-of-path.ts"
 
 /**
  * Validates a project path.

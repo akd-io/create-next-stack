@@ -1,5 +1,5 @@
-import endent from "endent"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import { Plugin } from "../plugin.ts"
 
 export const reactQueryPlugin: Plugin = {
   id: "react-query",
@@ -28,7 +28,7 @@ export const reactQueryPlugin: Plugin = {
   ],
   slots: {
     pagesApp: {
-      imports: endent`
+      imports: aldent`
         import React from "react";
         import {
           QueryClient,
@@ -36,19 +36,19 @@ export const reactQueryPlugin: Plugin = {
         } from "@tanstack/react-query";
         import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
       `,
-      logic: endent`
+      logic: aldent`
         const [queryClient] = React.useState(() => new QueryClient());
       `,
-      componentsStart: endent`
+      componentsStart: aldent`
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools />
       `,
-      componentsEnd: endent`
+      componentsEnd: aldent`
         </QueryClientProvider>
       `,
     },
     appLayout: {
-      providerImports: endent`
+      providerImports: aldent`
         import React from "react";
         import {
           QueryClient,
@@ -56,14 +56,14 @@ export const reactQueryPlugin: Plugin = {
         } from "@tanstack/react-query";
         import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
       `,
-      providerLogic: endent`
+      providerLogic: aldent`
         const [queryClient] = React.useState(() => new QueryClient());
       `,
-      providersStart: endent`
+      providersStart: aldent`
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools />
       `,
-      providersEnd: endent`
+      providersEnd: aldent`
         </QueryClientProvider>
       `,
     },

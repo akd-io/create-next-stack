@@ -1,5 +1,5 @@
 import chalk from "chalk"
-import { prefixLines } from "../../main/helpers/prefix-lines"
+import { prefixLines } from "../../main/helpers/prefix-lines.ts"
 
 const testPrefix = chalk.magenta("test ")
 

@@ -1,11 +1,11 @@
-import endent from "endent"
-import { ValidCNSInputs } from "../../../../create-next-stack-types"
-import { getProjectNameOfPath } from "../../../../helpers/get-project-name-of-path"
+import aldent from "aldent"
+import { ValidCNSInputs } from "../../../../create-next-stack-types.ts"
+import { getProjectNameOfPath } from "../../../../helpers/get-project-name-of-path.ts"
 
-export const generateIndexPage = ({ args }: ValidCNSInputs): string => endent`
+export const generateIndexPage = ({ args }: ValidCNSInputs): string => aldent`
   import { NextPage } from "next";
   import Head from "next/head";
-  import LandingPageTemplate from "../templates/LandingPage/LandingPageTemplate";
+  import LandingPageTemplate from "../templates/LandingPage/LandingPageTemplate.ts";
 
   const Index: NextPage = () => {
     return (

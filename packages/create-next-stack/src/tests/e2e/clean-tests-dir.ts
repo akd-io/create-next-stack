@@ -4,7 +4,7 @@ import path from "path"
   process.env["TEST"] = "true"
 
   const testsDirectory = path.resolve(
-    __dirname,
+    import.meta.dirname,
     "../../../../../../create-next-stack-tests",
   )
 

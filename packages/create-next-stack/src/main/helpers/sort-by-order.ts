@@ -1,4 +1,4 @@
-import { logDebug } from "../logging"
+import { logDebug } from "../logging.ts"
 
 /**
  * Compares two string values by their order in an array.

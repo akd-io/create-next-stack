@@ -1,6 +1,6 @@
-import endent from "endent"
-import { modifyJsonFile, toObject } from "../helpers/io"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import { modifyJsonFile, toObject } from "../helpers/io.ts"
+import { Plugin } from "../plugin.ts"
 
 export const emotionPlugin: Plugin = {
   id: "emotion",
@@ -50,13 +50,13 @@ export const emotionPlugin: Plugin = {
       },
     },
     appLayout: {
-      providerImports: endent`
+      providerImports: aldent`
         import React from "react";
         import { useServerInsertedHTML } from "next/navigation";
         import createCache from "@emotion/cache";
         import { CacheProvider } from "@emotion/react";
       `,
-      providerLogic: endent`
+      providerLogic: aldent`
         const [cache] = React.useState(() => {
           const cache = createCache({ key: "css" });
           cache.compat = true;
@@ -78,10 +78,10 @@ export const emotionPlugin: Plugin = {
           return <style data-emotion={\`\${cache.key} \${names.join(" ")}\`} dangerouslySetInnerHTML={{ __html: styles }} />;
         });
       `,
-      providersStart: endent`
+      providersStart: aldent`
         <CacheProvider value={cache}>
       `,
-      providersEnd: endent`
+      providersEnd: aldent`
         </CacheProvider>
       `,
     },

@@ -1,9 +1,9 @@
-import endent from "endent"
-import execa from "execa"
+import aldent from "aldent"
+import { execa } from "execa"
 import { promises as fs } from "fs"
 import { join, resolve } from "path"
-import { generateTechnologyTableRows } from "../main/plugins/create-next-stack/add-readme/generate-technology-table-rows"
-import { getAllTechnologies } from "../main/plugins/create-next-stack/sort-orders/technologies"
+import { generateTechnologyTableRows } from "../main/plugins/create-next-stack/add-readme/generate-technology-table-rows.ts"
+import { getAllTechnologies } from "../main/plugins/create-next-stack/sort-orders/technologies.ts"
 
 const startOfTechnologiesTableString =
   "<!-- CNS-START-OF-TECHNOLOGIES-TABLE -->"
@@ -12,7 +12,7 @@ const startOfHelpOutputString = "<!-- CNS-START-OF-HELP-OUTPUT -->"
 const endOfHelpOutputString = "<!-- CNS-END-OF-HELP-OUTPUT -->"
 
 ;(async () => {
-  const readmePath = resolve(join(__dirname, "..", "..", "README.md"))
+  const readmePath = resolve(join(import.meta.dirname, "..", "..", "README.md"))
   console.log(`README.md found at ${readmePath}`)
 
   console.log(`Reading README.md...`)
@@ -32,19 +32,19 @@ const endOfHelpOutputString = "<!-- CNS-END-OF-HELP-OUTPUT -->"
       new RegExp(
         `${startOfTechnologiesTableString}[\\s\\S]*${endOfTechnologiesTableString}`,
       ),
-      endent`
+      aldent`
         ${startOfTechnologiesTableString}
 
         | Name | Links |
         | ---- | ----- |
-        ${technologyTableRows}
+        ${technologyTableRows ?? ""}
 
         ${endOfTechnologiesTableString}
       `,
     )
     .replace(
       new RegExp(`${startOfHelpOutputString}[\\s\\S]*${endOfHelpOutputString}`),
-      endent`
+      aldent`
         ${startOfHelpOutputString}
 
         \`\`\`

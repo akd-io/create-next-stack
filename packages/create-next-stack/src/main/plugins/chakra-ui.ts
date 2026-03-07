@@ -1,5 +1,5 @@
-import endent from "endent"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import { Plugin } from "../plugin.ts"
 
 export const chakraUIPlugin: Plugin = {
   id: "chakra-ui",
@@ -32,29 +32,29 @@ export const chakraUIPlugin: Plugin = {
       },
     },
     pagesApp: {
-      imports: endent`
+      imports: aldent`
         import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
         import { ThemeProvider } from "next-themes";
       `,
-      componentsStart: endent`
+      componentsStart: aldent`
         <ChakraProvider value={defaultSystem}>
           <ThemeProvider attribute="class" disableTransitionOnChange>
       `,
-      componentsEnd: endent`
+      componentsEnd: aldent`
           </ThemeProvider>
         </ChakraProvider>
       `,
     },
     appLayout: {
-      providerImports: endent`
+      providerImports: aldent`
         import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
         import { ThemeProvider } from "next-themes";
       `,
-      providersStart: endent`
+      providersStart: aldent`
         <ChakraProvider value={defaultSystem}>
           <ThemeProvider attribute="class" disableTransitionOnChange>
       `,
-      providersEnd: endent`
+      providersEnd: aldent`
           </ThemeProvider>
         </ChakraProvider>
       `,

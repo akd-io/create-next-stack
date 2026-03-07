@@ -1,4 +1,4 @@
-import { Package, Plugin } from "../plugin"
+import { Package, Plugin } from "../plugin.ts"
 
 export const prettierPackage = {
   name: "prettier",

@@ -1,7 +1,6 @@
-import { test } from "@jest/globals"
-import endent from "endent"
-import { plugins } from "../../../setup/setup"
-import { technologiesSortOrder } from "./technologies"
+import aldent from "aldent"
+import { plugins } from "../../../setup/setup.ts"
+import { technologiesSortOrder } from "./technologies.ts"
 
 test("`technologiesSortOrder` contains no duplicates", () => {
   const seenTechnologies = new Set<string>()
@@ -25,7 +24,7 @@ test("`technologiesSortOrder` includes all plugins' technologies", () => {
   for (const requiredTechnologyID of requiredTechnologyIDs) {
     if (!actualTechnologyIDs.has(requiredTechnologyID)) {
       throw new Error(
-        endent`
+        aldent`
           Missing technology with ID "${requiredTechnologyID}" in technologies.ts
           technologies.ts can be found here:
             src/main/plugins/create-next-stack/sort-orders/technologies.ts

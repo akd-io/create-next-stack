@@ -1,5 +1,5 @@
-import endent from "endent"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import { Plugin } from "../plugin.ts"
 
 export const styledComponentsPlugin: Plugin = {
   id: "styled-components",
@@ -32,12 +32,12 @@ export const styledComponentsPlugin: Plugin = {
       },
     },
     appLayout: {
-      providerImports: endent`
+      providerImports: aldent`
         import React from "react";
         import { useServerInsertedHTML } from "next/navigation";
         import { ServerStyleSheet, StyleSheetManager } from "styled-components";
       `,
-      providerLogic: endent`
+      providerLogic: aldent`
         const [styledComponentsStyleSheet] = React.useState(() => new ServerStyleSheet());
 
         useServerInsertedHTML(() => {
@@ -48,10 +48,10 @@ export const styledComponentsPlugin: Plugin = {
 
         if (typeof window !== "undefined") return <>{children}</>;
       `,
-      providersStart: endent`
+      providersStart: aldent`
         <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
       `,
-      providersEnd: endent`
+      providersEnd: aldent`
         </StyleSheetManager>
       `,
     },

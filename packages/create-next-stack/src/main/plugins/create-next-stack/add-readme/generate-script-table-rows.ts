@@ -1,5 +1,5 @@
-import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { getScripts } from "../sort-orders/scripts"
+import { ValidCNSInputs } from "../../../create-next-stack-types.ts"
+import { getScripts } from "../sort-orders/scripts.ts"
 
 export const generateScriptTableRows = async (
   inputs: ValidCNSInputs,

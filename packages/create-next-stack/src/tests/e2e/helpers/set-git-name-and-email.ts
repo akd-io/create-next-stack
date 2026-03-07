@@ -1,5 +1,5 @@
-import { runCommand } from "../../../main/helpers/run-command"
-import { logTestError, logTestInfo } from "../test-logging"
+import { runCommand } from "../../../main/helpers/run-command.ts"
+import { logTestError, logTestInfo } from "../test-logging.ts"
 
 /**
  * If not set already, sets Git name and email so `git commit` doesn't fail during create-next-app

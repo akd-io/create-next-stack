@@ -1,12 +1,12 @@
-import { PackageManager } from "../create-next-stack-types"
+import { PackageManager } from "../create-next-stack-types.ts"
 import {
   installSubCommandMap,
   saveDevModifierMap,
   uninstallSubCommandMap,
-} from "../helpers/package-manager-utils"
-import { prettyCommand } from "../helpers/pretty-command"
-import { runCommand } from "../helpers/run-command"
-import { logDebug } from "../logging"
+} from "../helpers/package-manager-utils.ts"
+import { prettyCommand } from "../helpers/pretty-command.ts"
+import { runCommand } from "../helpers/run-command.ts"
+import { logDebug } from "../logging.ts"
 
 type Package<T = string> = Readonly<{
   name: T

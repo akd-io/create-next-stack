@@ -1,8 +1,8 @@
-import { writeFile } from "../helpers/io"
-import { isGitInitialized } from "../helpers/is-git-initialized"
-import { runCommand } from "../helpers/run-command"
-import { logWarning } from "../logging"
-import { Plugin } from "../plugin"
+import { writeFile } from "../helpers/io.ts"
+import { isGitInitialized } from "../helpers/is-git-initialized.ts"
+import { runCommand } from "../helpers/run-command.ts"
+import { logWarning } from "../logging.ts"
+import { Plugin } from "../plugin.ts"
 
 export const formattingPreCommitHookPlugin: Plugin = {
   id: "formatting-pre-commit-hook",

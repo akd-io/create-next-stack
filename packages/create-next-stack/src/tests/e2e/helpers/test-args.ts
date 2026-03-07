@@ -1,7 +1,7 @@
-import { runCommand } from "../../../main/helpers/run-command"
-import { performFinalChecks } from "./perform-final-checks"
-import { prepareE2eTest } from "./prepare-e2e-test"
-import { twentyMinutes } from "./timeout"
+import { runCommand } from "../../../main/helpers/run-command.ts"
+import { performFinalChecks } from "./perform-final-checks.ts"
+import { prepareE2eTest } from "./prepare-e2e-test.ts"
+import { twentyMinutes } from "./timeout.ts"
 
 /**
  * Prepare an e2e test and run the CLI with the given arguments.

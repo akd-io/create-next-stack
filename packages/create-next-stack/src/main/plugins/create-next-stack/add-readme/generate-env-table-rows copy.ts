@@ -1,5 +1,5 @@
-import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { getEnvironmentVariables } from "../sort-orders/environment-variables"
+import { ValidCNSInputs } from "../../../create-next-stack-types.ts"
+import { getEnvironmentVariables } from "../sort-orders/environment-variables.ts"
 
 export const generateEnvironmentVariableTableRows = async (
   inputs: ValidCNSInputs,

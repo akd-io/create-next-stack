@@ -1,10 +1,10 @@
 import { existsSync } from "fs"
 import fs from "fs/promises"
 import path from "path"
-import { logDebug, logError } from "../logging"
-import { isUnknownArray } from "./is-unknown-array"
-import { isUnknownObject } from "./is-unknown-object"
-import { stringify } from "./stringify"
+import { logDebug, logError } from "../logging.ts"
+import { isUnknownArray } from "./is-unknown-array.ts"
+import { isUnknownObject } from "./is-unknown-object.ts"
+import { stringify } from "./stringify.ts"
 
 export const makeDirectory = async (path: string): Promise<void> => {
   logDebug("Making directory:", path)

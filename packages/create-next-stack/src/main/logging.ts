@@ -1,6 +1,6 @@
 import chalk from "chalk"
-import { inDebugMode, inTestMode } from "./helpers/in-debug-mode"
-import { prefixLines } from "./helpers/prefix-lines"
+import { inDebugMode, inTestMode } from "./helpers/in-debug-mode.ts"
+import { prefixLines } from "./helpers/prefix-lines.ts"
 
 const infoPrefix = chalk.cyan("info ")
 const debugPrefix = chalk.white("debug ")

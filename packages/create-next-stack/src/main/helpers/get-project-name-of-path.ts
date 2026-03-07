@@ -1,5 +1,5 @@
 import path from "path"
-import { logError } from "../logging"
+import { logError } from "../logging.ts"
 
 export const getProjectNameOfPath = (projectPath: string): string => {
   try {
