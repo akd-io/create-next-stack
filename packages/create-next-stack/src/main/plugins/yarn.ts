@@ -1,8 +1,8 @@
 import { runCommand } from "../helpers/run-command"
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 import { getNameVersionCombo } from "../setup/packages"
 
-export const yarnPlugin = createPlugin({
+export const yarnPlugin: Plugin = {
   id: "yarn",
   name: "Yarn",
   description: "Adds support for Yarn",
@@ -20,8 +20,8 @@ export const yarnPlugin = createPlugin({
       ],
     },
   ],
-  steps: {
-    updateYarn: {
+  steps: [
+    {
       id: "updateYarn",
       description: "updating Yarn",
       run: async () => {
@@ -32,5 +32,5 @@ export const yarnPlugin = createPlugin({
         ])
       },
     },
-  },
-} as const)
+  ],
+}

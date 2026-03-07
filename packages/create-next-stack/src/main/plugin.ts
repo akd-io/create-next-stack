@@ -1,8 +1,7 @@
 import { NextConfig } from "next"
 import { ValidCNSInputs } from "./create-next-stack-types"
-import { DeeplyReadonly } from "./helpers/deeply-readonly"
 
-type PluginConfig = DeeplyReadonly<{
+export type Plugin = {
   /** ID that uniquely identifies the plugin */
   id: string
   /** Name of the plugin */
@@ -10,19 +9,19 @@ type PluginConfig = DeeplyReadonly<{
   /** Description of the plugin */
   description: string
   /** Whether the plugin is active or not. This determines if dependencies are installed, technologies and scripts added, steps run, and more. */
-  active: boolean | ((inputs: ValidCNSInputs) => boolean)
+  active: boolean | ((inputs: ValidCNSInputs) => boolean | Promise<boolean>)
   /** Dependencies that are added to the package.json file. */
-  dependencies?: Record<string, Package>
+  dependencies?: Package[]
   /** Dev dependencies that are added to the package.json file. */
-  devDependencies?: Record<string, Package>
+  devDependencies?: Package[]
   /** Temporary dependencies uninstalled when Create Next Stack is done. */
-  tmpDependencies?: Record<string, Package>
+  tmpDependencies?: Package[]
   /** Descriptions of the technologies supported by the plugin. */
   technologies?: Technology[]
   /** Scripts that are added to the package.json file. */
   scripts?: Script[]
   /** A series of functions that are run by Create Next Stack. */
-  steps?: Record<string, RawStep>
+  steps?: Step[]
   /**
    * Environment variables needed by the plugin.
    * These variables are added to the generated .env and README.md files.
@@ -40,6 +39,20 @@ type PluginConfig = DeeplyReadonly<{
    * The list will be added to the generated landing page, the README.md file and written to the console.
    */
   todos?: string[]
+  /** Files to be added by the plugin. */
+  addFiles?: Array<{
+    /** Destination of the file to add. */
+    destination: string
+    /** Content of the file. */
+    content: string | ((inputs: ValidCNSInputs) => string | Promise<string>)
+    /**
+     * Condition to determine if the file should be added.
+     *
+     */
+    condition?:
+      | boolean
+      | ((inputs: ValidCNSInputs) => boolean | Promise<boolean>)
+  }>
   /** Slots to fill in the generated files. */
   slots?: {
     /** Slots to fill in the _app.tsx file. The file is generated using the following template:
@@ -150,7 +163,7 @@ type PluginConfig = DeeplyReadonly<{
       wrappersEnd?: string
     }
   }
-}>
+}
 
 export type Package = {
   /** Name of the package. */
@@ -196,97 +209,30 @@ type Script = {
   command: string
 }
 
-type RawStep = {
+export type Step = {
   /** ID that uniquely identified the technology across all plugins' steps. */
   id: string
-
-  /**
-   * `description` should be written in present continuous tense, without punctuation, and with a lowercase first letter unless the description starts with a name or similar.
-   *
-   * Eg. "setting up Prettier" or "adding ESLint"
-   */
+  /** A description of the step. It should be written in present continuous tense, without punctuation, and with a lowercase first letter unless the description starts with a name or similar. */
   description: string
-
-  /**
-   * A boolean or function that determines whether the custom run function should run.
-   *
-   * Default is true
-   */
+  /** A boolean or function that determines whether the custom run function should run. Default is true. */
   shouldRun?: boolean | ((inputs: ValidCNSInputs) => Promise<boolean> | boolean)
-
   /** Custom run function. */
   run: (inputs: ValidCNSInputs) => Promise<void>
 }
 
-export const createPlugin = <TPluginConfig extends PluginConfig>(
-  pluginConfig: TPluginConfig
-): Plugin<TPluginConfig> => {
-  const plugin = {
-    ...pluginConfig,
-  }
-  const enhancements = {
-    steps:
-      pluginConfig.steps != null
-        ? Object.entries(pluginConfig.steps).reduce(
-            (acc, [key, value]) => ({
-              ...acc,
-              [key]: createStep(value, plugin as Plugin<TPluginConfig>),
-            }),
-            {} as Record<string, Step>
-          )
-        : undefined,
-  }
-  for (const [key, value] of Object.entries(enhancements)) {
-    Object.defineProperty(plugin, key, {
-      value,
-      enumerable: true,
-    })
-  }
-  return plugin as Plugin<TPluginConfig>
-}
-
-export const createStep = <TRawStep extends RawStep = RawStep>(
-  step: TRawStep,
-  plugin: Plugin
-): Step<TRawStep> => {
-  return {
-    // defaults
-    shouldRun: true,
-
-    // TODO: Consider memoizing shouldRun, as it is sometimes called multiple times. See the lint-staged setup step.
-
-    // step
-    ...step,
-
-    // enhancements
-    plugin,
-  }
-}
-
-export type Plugin<TPluginConfig extends PluginConfig = PluginConfig> =
-  TPluginConfig & {
-    steps?: {
-      [key in keyof TPluginConfig["steps"]]: Step<RawStep> // TODO: Fix type. This should be Step<TPluginConfig["steps"][key]>, but that doesn't work.
-    }
-  }
-
-export type Step<TStep extends RawStep = RawStep> = TStep & {
-  shouldRun: NonNullable<RawStep["shouldRun"]>
-  plugin: Plugin
-}
-
-export const evalActive = (
-  active: PluginConfig["active"],
+export const evalProperty = async <T extends boolean | string>(
+  value: T | ((inputs: ValidCNSInputs) => T | Promise<T>),
   inputs: ValidCNSInputs
-): boolean => {
-  if (typeof active === "function") return active(inputs)
-  return active
+): Promise<T> => {
+  if (typeof value === "function") return await value(inputs)
+  return value
 }
 
-export const evalShouldRun = async (
-  shouldRun: Step["shouldRun"],
-  inputs: ValidCNSInputs
-): Promise<boolean> => {
-  if (typeof shouldRun === "function") return await shouldRun(inputs)
-  return shouldRun
+export const evalOptionalProperty = async <T extends boolean | string>(
+  value: T | ((inputs: ValidCNSInputs) => T | Promise<T>) | undefined,
+  inputs: ValidCNSInputs,
+  defaultValue: Exclude<T, undefined>
+): Promise<T> => {
+  if (typeof value === "undefined") return defaultValue
+  return await evalProperty(value, inputs)
 }

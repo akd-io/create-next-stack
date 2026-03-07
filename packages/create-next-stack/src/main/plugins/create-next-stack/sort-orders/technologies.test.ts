@@ -1,4 +1,5 @@
 import { test } from "@jest/globals"
+import endent from "endent"
 import { plugins } from "../../../setup/setup"
 import { technologiesSortOrder } from "./technologies"
 
@@ -24,7 +25,11 @@ test("`technologiesSortOrder` includes all plugins' technologies", () => {
   for (const requiredTechnologyID of requiredTechnologyIDs) {
     if (!actualTechnologyIDs.has(requiredTechnologyID)) {
       throw new Error(
-        `Missing technology with ID "${requiredTechnologyID}" in technologies.ts`
+        endent`
+          Missing technology with ID "${requiredTechnologyID}" in technologies.ts
+          technologies.ts can be found here:
+            src/main/plugins/create-next-stack/sort-orders/technologies.ts
+        `
       )
     }
   }

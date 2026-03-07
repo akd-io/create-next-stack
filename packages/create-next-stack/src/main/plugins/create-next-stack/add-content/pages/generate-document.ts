@@ -3,32 +3,34 @@ import type { ValidCNSInputs } from "../../../../create-next-stack-types"
 import { nonNull } from "../../../../helpers/non-null"
 import { filterPlugins } from "../../../../setup/setup"
 
-export const generateDocument = (inputs: ValidCNSInputs): string => {
-  const imports = filterPlugins(inputs)
+export const generateDocument = async (
+  inputs: ValidCNSInputs
+): Promise<string> => {
+  const imports = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.document?.imports)
     .filter(nonNull)
     .join("\n")
-  const afterImports = filterPlugins(inputs)
+  const afterImports = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.document?.afterImports)
     .filter(nonNull)
     .join("\n")
-  const classMembers = filterPlugins(inputs)
+  const classMembers = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.document?.classMembers)
     .filter(nonNull)
     .join("\n")
-  const renderLogic = filterPlugins(inputs)
+  const renderLogic = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.document?.renderLogic)
     .filter(nonNull)
     .join("\n")
-  const htmlAttributes = filterPlugins(inputs)
+  const htmlAttributes = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.document?.htmlAttributes)
     .filter(nonNull)
     .join(" ")
-  const headTags = filterPlugins(inputs)
+  const headTags = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.document?.headTags)
     .filter(nonNull)
     .join("\n")
-  const body = filterPlugins(inputs)
+  const body = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.document?.body)
     .filter(nonNull)
     .join("\n")

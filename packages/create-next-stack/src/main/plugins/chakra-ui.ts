@@ -1,23 +1,15 @@
 import endent from "endent"
-import { writeFile } from "../../helpers/io"
-import { createPlugin } from "../../plugin"
-import { chakraTheme } from "./setup/chakra-theme"
+import { Plugin } from "../plugin"
 
-export const chakraUIPlugin = createPlugin({
+export const chakraUIPlugin: Plugin = {
   id: "chakra-ui",
   name: "Chakra UI",
   description: "Adds support for Chakra UI",
   active: ({ flags }) => Boolean(flags.chakra),
-  dependencies: {
-    "@chakra-ui/icons": {
-      name: "@chakra-ui/icons",
-      version: "^2.0.0",
-    },
-    "@chakra-ui/react": {
-      name: "@chakra-ui/react",
-      version: "^2.0.0",
-    },
-  },
+  dependencies: [
+    { name: "@chakra-ui/react", version: "^2.0.0" },
+    { name: "@chakra-ui/icons", version: "^2.0.0" },
+  ],
   technologies: [
     {
       id: "chakraUI",
@@ -31,15 +23,6 @@ export const chakraUIPlugin = createPlugin({
       ],
     },
   ],
-  steps: {
-    setUpChakraUI: {
-      id: "setUpChakraUI",
-      description: "setting up Chakra UI",
-      run: async () => {
-        await writeFile("chakra-theme.ts", chakraTheme)
-      },
-    },
-  },
   slots: {
     app: {
       imports: endent`
@@ -61,4 +44,19 @@ export const chakraUIPlugin = createPlugin({
       body: `<ColorModeScript initialColorMode={chakraTheme.config.initialColorMode} />`,
     },
   },
-} as const)
+  addFiles: [
+    {
+      destination: "chakra-theme.ts",
+      content: endent`
+        import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+      
+        const config: ThemeConfig = {
+          initialColorMode: "light",
+          useSystemColorMode: false,
+        };
+      
+        export const chakraTheme = extendTheme({ config });
+      `,
+    },
+  ],
+}

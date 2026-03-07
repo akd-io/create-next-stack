@@ -3,28 +3,28 @@ import { ValidCNSInputs } from "../../../../create-next-stack-types"
 import { nonNull } from "../../../../helpers/non-null"
 import { filterPlugins } from "../../../../setup/setup"
 
-export const generateApp = (inputs: ValidCNSInputs): string => {
-  const imports = filterPlugins(inputs)
+export const generateApp = async (inputs: ValidCNSInputs): Promise<string> => {
+  const imports = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.app?.imports)
     .filter(nonNull)
     .join("\n")
 
-  const postImports = filterPlugins(inputs)
+  const postImports = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.app?.postImports)
     .filter(nonNull)
     .join("\n")
 
-  const logic = filterPlugins(inputs)
+  const logic = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.app?.logic)
     .filter(nonNull)
     .join("\n\n") // Double new line to separate plugin logic
 
-  const componentsStart = filterPlugins(inputs)
+  const componentsStart = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.app?.componentsStart)
     .filter(nonNull)
     .join("\n")
 
-  const componentsEnd = filterPlugins(inputs)
+  const componentsEnd = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.app?.componentsEnd)
     .filter(nonNull)
     .reverse()

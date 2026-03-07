@@ -12,21 +12,21 @@ export const generateNextConfig = async (
   const defaultNextConfig: NextConfig = {
     reactStrictMode: true,
   }
-  const nextConfigs = filterPlugins(inputs)
+  const nextConfigs = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.nextConfigJs?.nextConfig)
     .filter(nonNull)
   const mergedNextConfig = merge(defaultNextConfig, ...nextConfigs)
 
-  const imports = filterPlugins(inputs)
+  const imports = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.nextConfigJs?.imports)
     .filter(nonNull)
     .join("\n")
 
-  const wrappersStart = filterPlugins(inputs)
+  const wrappersStart = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.nextConfigJs?.wrappersStart)
     .filter(nonNull)
 
-  const wrappersEnd = filterPlugins(inputs)
+  const wrappersEnd = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.nextConfigJs?.wrappersEnd)
     .filter(nonNull)
     .reverse()

@@ -1,16 +1,11 @@
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const framerMotionPlugin = createPlugin({
+export const framerMotionPlugin: Plugin = {
   id: "framer-motion",
   name: "Framer Motion",
   description: "Adds support for Framer Motion",
   active: ({ flags }) => Boolean(flags["framer-motion"]),
-  dependencies: {
-    "framer-motion": {
-      name: "framer-motion",
-      version: "^9.0.0",
-    },
-  },
+  dependencies: [{ name: "framer-motion", version: "^9.0.0" }],
   technologies: [
     {
       id: "framerMotion",
@@ -24,4 +19,4 @@ export const framerMotionPlugin = createPlugin({
       ],
     },
   ],
-} as const)
+}

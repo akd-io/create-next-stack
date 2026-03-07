@@ -1,13 +1,11 @@
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const reactIconsPlugin = createPlugin({
+export const reactIconsPlugin: Plugin = {
   id: "react-icons",
   name: "React Icons",
   description: "Adds support for React Icons",
   active: ({ flags }) => Boolean(flags["react-icons"]),
-  devDependencies: {
-    "react-icons": { name: "react-icons", version: "^4.8.0" },
-  },
+  devDependencies: [{ name: "react-icons", version: "^4.8.0" }],
   technologies: [
     {
       id: "reactIcons",
@@ -20,4 +18,4 @@ export const reactIconsPlugin = createPlugin({
       ],
     },
   ],
-} as const)
+}

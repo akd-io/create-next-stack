@@ -47,6 +47,7 @@ type OptionKey =
   | "plausible"
   | "vercel"
   | "netlify"
+  | "prisma"
 
 const options = {
   pnpm: { key: "pnpm", value: "pnpm", label: "pnpm" },
@@ -124,6 +125,11 @@ const options = {
     value: "netlify",
     label: "Netlify",
   },
+  prisma: {
+    key: "prisma",
+    value: "prisma",
+    label: "Prisma",
+  },
 } satisfies {
   [Key in OptionKey]: {
     key: Key
@@ -173,6 +179,7 @@ const deploymentOptionKeys = [
   optionKeys.vercel,
   optionKeys.netlify,
 ] satisfies OptionKey[]
+const ormOptionKeys = [optionKeys.prisma] satisfies OptionKey[]
 
 type ProjectName = string
 type PackageManager = (typeof packageManagerOptionKeys)[number]
@@ -187,6 +194,7 @@ type ServerStateManagementLibrary =
   (typeof serverStateManagementLibraryOptionKeys)[number]
 type Analytics = (typeof analyticsOptionKeys)[number]
 type Deployment = (typeof deploymentOptionKeys)[number]
+type ORM = (typeof ormOptionKeys)[number]
 
 type TechnologiesFormData = {
   projectName: ProjectName
@@ -201,6 +209,7 @@ type TechnologiesFormData = {
   serverStateManagementLibraries: ServerStateManagementLibrary[]
   analytics: Analytics[]
   deployment: Deployment[]
+  orm: ORM[]
 }
 const defaultFormData: TechnologiesFormData = {
   projectName: "my-app",
@@ -215,6 +224,7 @@ const defaultFormData: TechnologiesFormData = {
   serverStateManagementLibraries: [optionKeys.reactQuery],
   analytics: [],
   deployment: [optionKeys.vercel],
+  orm: [],
 }
 const formDataKeys = objectToKeyToKeyMap(defaultFormData)
 
@@ -233,6 +243,7 @@ const categoryLabels = {
   serverStateManagementLibraries: "Server State Management",
   analytics: "Analytics",
   deployment: "Deployment",
+  orm: "ORMs",
 } as const
 
 export const TechnologiesForm: React.FC = () => {
@@ -271,6 +282,7 @@ export const TechnologiesForm: React.FC = () => {
       pushArgs(formData.serverStateManagementLibraries)
       pushArgs(formData.analytics)
       pushArgs(formData.deployment)
+      pushArgs(formData.orm)
 
       const projectNameSegments = formData.projectName.split("/")
       const lastPartOfProjectName = projectNameSegments.pop()!
@@ -293,7 +305,8 @@ export const TechnologiesForm: React.FC = () => {
       | "continuousIntegration"
       | "serverStateManagementLibraries"
       | "analytics"
-      | "deployment",
+      | "deployment"
+      | "orm",
     optionKeys: Array<keyof typeof options>,
     validators?: {
       [key in keyof typeof options]?: Array<{
@@ -454,6 +467,13 @@ export const TechnologiesForm: React.FC = () => {
                   formDataKeys.analytics,
                   analyticsOptionKeys
                 )}
+              </Flex>
+
+              <Flex direction="column" gap="4">
+                <Heading as="h3" size="md">
+                  {categoryLabels.orm}
+                </Heading>
+                {CheckboxesOfOptionKeys(formDataKeys.orm, ormOptionKeys)}
               </Flex>
             </Flex>
 

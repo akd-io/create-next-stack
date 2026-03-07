@@ -4,8 +4,10 @@ import { getProjectNameOfPath } from "../../../../../helpers/get-project-name-of
 import { nonNull } from "../../../../../helpers/non-null"
 import { filterPlugins } from "../../../../../setup/setup"
 
-export const generateLandingPageTemplate = (inputs: ValidCNSInputs): string => {
-  const todos = filterPlugins(inputs)
+export const generateLandingPageTemplate = async (
+  inputs: ValidCNSInputs
+): Promise<string> => {
+  const todos = (await filterPlugins(inputs))
     .flatMap((plugin) => plugin.todos)
     .filter(nonNull)
   const hasTodos = todos.length > 0

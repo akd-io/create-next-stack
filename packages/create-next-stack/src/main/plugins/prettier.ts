@@ -1,18 +1,20 @@
-import { modifyJsonFile, toArray, writeJsonFile } from "../helpers/io"
-import { createPlugin } from "../plugin"
+import { modifyJsonFile, toArray } from "../helpers/io"
+import { Package, Plugin } from "../plugin"
 
-export const prettierPlugin = createPlugin({
+export const prettierPackage = {
+  name: "prettier",
+  version: "^2.0.0",
+} satisfies Package
+
+export const prettierPlugin: Plugin = {
   id: "prettier",
   name: "Prettier",
   description: "Adds support for Prettier",
   active: ({ flags }) => Boolean(flags.prettier),
-  devDependencies: {
-    prettier: { name: "prettier", version: "^2.0.0" },
-    "eslint-config-prettier": {
-      name: "eslint-config-prettier",
-      version: "^8.0.0",
-    },
-  },
+  devDependencies: [
+    prettierPackage,
+    { name: "eslint-config-prettier", version: "^8.0.0" },
+  ],
   technologies: [
     {
       id: "prettier",
@@ -39,30 +41,26 @@ export const prettierPlugin = createPlugin({
       command: "prettier --check --ignore-path=.gitignore .",
     },
   ],
-  steps: {
-    setUpPrettier: {
+  addFiles: [
+    {
+      destination: ".prettierrc",
+      content: `{}`,
+    },
+  ],
+  steps: [
+    {
       id: "setUpPrettier",
       description: "setting up Prettier",
       run: async () => {
-        await Promise.all([addPrettierConfig(), setUpEslintConfigPrettier()])
+        await modifyJsonFile(".eslintrc.json", (eslintrc) => ({
+          ...eslintrc,
+          extends: [
+            //
+            ...toArray(eslintrc["extends"]),
+            "eslint-config-prettier",
+          ],
+        }))
       },
     },
-  },
-} as const)
-
-const addPrettierConfig = async () => {
-  const prettierConfig = {} // Only provide overrides in this config. Not setting Prettier's defaults explicitly is preferred, so our rules will follow Prettier's defaults as much as possible.
-
-  await writeJsonFile(".prettierrc", prettierConfig)
-}
-
-const setUpEslintConfigPrettier = async () => {
-  await modifyJsonFile(".eslintrc.json", (eslintrc) => ({
-    ...eslintrc,
-    extends: [
-      //
-      ...toArray(eslintrc["extends"]),
-      "eslint-config-prettier",
-    ],
-  }))
+  ],
 }

@@ -2,44 +2,76 @@ import endent from "endent"
 import path from "path"
 import { copyDirectory } from "../../helpers/copy-directory"
 import { getCreateNextStackDir } from "../../helpers/get-create-next-stack-dir"
-import {
-  makeDirectory,
-  modifyJsonFile,
-  toObject,
-  writeFile,
-} from "../../helpers/io"
+import { modifyJsonFile, toObject, writeFile } from "../../helpers/io"
 import { isGitInitialized } from "../../helpers/is-git-initialized"
-import { remove } from "../../helpers/remove"
+import { nonNull } from "../../helpers/non-null"
 import { runCommand } from "../../helpers/run-command"
 import { logWarning } from "../../logging"
-import { createPlugin } from "../../plugin"
+import { evalProperty, Plugin } from "../../plugin"
 import { getNameVersionCombo, install, uninstall } from "../../setup/packages"
 import { filterPlugins } from "../../setup/setup"
-import { prettierPlugin } from "../prettier"
+import { prettierPackage } from "../prettier"
 import { generateEnv } from "./add-content/generate-env"
 import { generateApp } from "./add-content/pages/generate-app"
 import { generateDocument } from "./add-content/pages/generate-document"
 import { generateIndexPage } from "./add-content/pages/generate-index"
 import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate"
 import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
+import { generateNextConfig } from "./add-next-config/generate-next-config"
 import { generateReadme } from "./add-readme/generate-readme"
-import { getSortedFilteredEnvironmentVariables } from "./sort-orders/environment-variables"
-import { getSortedFilteredScripts } from "./sort-orders/scripts"
+import { getEnvironmentVariables } from "./sort-orders/environment-variables"
+import { getScripts } from "./sort-orders/scripts"
 
 const gitAttributesFilename = ".gitattributes"
 
-export const createNextStackPlugin = createPlugin({
+export const createNextStackPlugin: Plugin = {
   id: "create-next-stack",
   name: "Create Next Stack",
   description:
     "Adds various miscellaneous steps. Some necessities, some niceties.",
   active: true,
-  steps: {
-    addScripts: {
+  addFiles: [
+    {
+      destination: ".env",
+      condition: async (inputs) =>
+        (await getEnvironmentVariables(inputs)).length > 0,
+      content: (inputs) => generateEnv(inputs),
+    },
+    {
+      destination: "next.config.js",
+      content: (inputs) => generateNextConfig(inputs),
+    },
+    {
+      destination: "pages/index.tsx",
+      content: (inputs) => generateIndexPage(inputs),
+    },
+    {
+      destination: "pages/_app.tsx",
+      content: (inputs) => generateApp(inputs),
+    },
+    {
+      destination: "pages/_document.tsx",
+      content: (inputs) => generateDocument(inputs),
+    },
+    {
+      destination: "templates/LandingPage/technologies.ts",
+      content: (inputs) => generateTechnologies(inputs),
+    },
+    {
+      destination: "templates/LandingPage/LandingPageTemplate.tsx",
+      content: (inputs) => generateLandingPageTemplate(inputs),
+    },
+    {
+      destination: "README.md",
+      content: (inputs) => generateReadme(inputs),
+    },
+  ],
+  steps: [
+    {
       id: "addScripts",
       description: "adding scripts to package.json",
       run: async (inputs) => {
-        const scripts = getSortedFilteredScripts(inputs)
+        const scripts = await getScripts(inputs)
 
         await modifyJsonFile("package.json", (packageJson) => ({
           ...packageJson,
@@ -56,7 +88,7 @@ export const createNextStackPlugin = createPlugin({
         }))
       },
     },
-    copyAssets: {
+    {
       id: "copyAssets",
       description: "copying static assets",
       run: async (): Promise<void> => {
@@ -66,43 +98,22 @@ export const createNextStackPlugin = createPlugin({
         await copyDirectory(source, destination)
       },
     },
-    addContent: {
+    {
       id: "addContent",
       description: "adding content",
       run: async (inputs) => {
-        await makeDirectory("components")
-        const environmentVariables =
-          getSortedFilteredEnvironmentVariables(inputs)
-        if (environmentVariables.length > 0) {
-          await writeFile(".env", generateEnv(inputs))
-        }
-        await Promise.all([
-          writeFile("pages/index.tsx", generateIndexPage(inputs)),
-          writeFile("pages/_app.tsx", generateApp(inputs)),
-          writeFile("pages/_document.tsx", generateDocument(inputs)),
+        const pluginFilesToWrite = (await filterPlugins(inputs))
+          .flatMap((plugin) => plugin.addFiles)
+          .filter(nonNull)
 
-          writeFile(
-            "templates/LandingPage/technologies.ts",
-            generateTechnologies(inputs)
-          ),
-          writeFile(
-            "templates/LandingPage/LandingPageTemplate.tsx",
-            generateLandingPageTemplate(inputs)
-          ),
-        ])
+        await Promise.all(
+          pluginFilesToWrite.map(async ({ destination, content }) =>
+            writeFile(destination, await evalProperty(content, inputs))
+          )
+        )
       },
     },
-    addReadme: {
-      id: "addReadme",
-      description: "adding Readme",
-      run: async (inputs) => {
-        const readmeFileName = "README.md"
-        await remove(readmeFileName)
-        const readmeString = await generateReadme(inputs)
-        await writeFile(readmeFileName, readmeString)
-      },
-    },
-    initialCommit: {
+    {
       id: "initialCommit",
       description: "adding initial commit",
       shouldRun: async () => {
@@ -123,24 +134,26 @@ export const createNextStackPlugin = createPlugin({
         ])
       },
     },
-    installDependencies: {
+    {
       id: "installDependencies",
       description: "installing dependencies",
       run: async (inputs) => {
         const { flags } = inputs
 
-        const depsAndTmpDeps = filterPlugins(inputs).flatMap((plugin) => {
-          return [
-            ...(plugin.dependencies != null
-              ? Object.values(plugin.dependencies)
-              : []),
-            ...(plugin.tmpDependencies != null
-              ? Object.values(plugin.tmpDependencies)
-              : []),
-          ]
-        })
+        const depsAndTmpDeps = (await filterPlugins(inputs)).flatMap(
+          (plugin) => {
+            return [
+              ...(plugin.dependencies != null
+                ? Object.values(plugin.dependencies)
+                : []),
+              ...(plugin.tmpDependencies != null
+                ? Object.values(plugin.tmpDependencies)
+                : []),
+            ]
+          }
+        )
 
-        const devDeps = filterPlugins(inputs).flatMap((plugin) =>
+        const devDeps = (await filterPlugins(inputs)).flatMap((plugin) =>
           plugin.devDependencies != null
             ? Object.values(plugin.devDependencies)
             : []
@@ -154,11 +167,11 @@ export const createNextStackPlugin = createPlugin({
         }
       },
     },
-    uninstallTemporaryDependencies: {
+    {
       id: "uninstallTemporaryDependencies",
       description: "uninstalling temporary dependencies",
       run: async (inputs) => {
-        const tmpDeps = filterPlugins(inputs).flatMap((plugin) =>
+        const tmpDeps = (await filterPlugins(inputs)).flatMap((plugin) =>
           plugin.tmpDependencies != null
             ? Object.values(plugin.tmpDependencies)
             : []
@@ -169,18 +182,18 @@ export const createNextStackPlugin = createPlugin({
         }
       },
     },
-    formatProject: {
+    {
       id: "formatProject",
       description: "formatting project",
       run: async () => {
         await runCommand("npx", [
-          getNameVersionCombo(prettierPlugin.devDependencies.prettier),
+          getNameVersionCombo(prettierPackage),
           "--write",
           ".",
         ])
       },
     },
-    addGitAttributes: {
+    {
       id: "addGitAttributes",
       description: `adding ${gitAttributesFilename}`,
       shouldRun: async () => {
@@ -204,5 +217,5 @@ export const createNextStackPlugin = createPlugin({
         )
       },
     },
-  },
-} as const)
+  ],
+}

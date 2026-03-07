@@ -112,6 +112,11 @@ export default class CreateNextStack extends Command {
     vercel: Flags.boolean({
       description: "Adds Vercel. (Hosting)",
     }),
+
+    // ORMs
+    prisma: Flags.boolean({
+      description: "Adds Prisma. (ORM)",
+    }),
   }
 
   async run(): Promise<void> {

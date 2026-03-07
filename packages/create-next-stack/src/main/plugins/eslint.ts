@@ -1,6 +1,6 @@
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const eslintPlugin = createPlugin({
+export const eslintPlugin: Plugin = {
   id: "eslint",
   name: "ESLint",
   description: "Adds relevant documentation for ESLint",
@@ -22,4 +22,4 @@ export const eslintPlugin = createPlugin({
       ],
     },
   ],
-} as const)
+}

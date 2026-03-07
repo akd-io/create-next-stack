@@ -1,19 +1,43 @@
 import endent from "endent"
-import { writeFile } from "../../helpers/io"
-import { createPlugin } from "../../plugin"
-import { materialTheme } from "./setup/material-theme"
+import { Plugin } from "../plugin"
 
-export const materialUIPlugin = createPlugin({
+const materialTheme = endent`
+  import { Roboto } from 'next/font/google';
+  import { createTheme } from '@mui/material/styles';
+  import { red } from '@mui/material/colors';
+
+  export const roboto = Roboto({
+    weight: ['300', '400', '500', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+    fallback: ['Helvetica', 'Arial', 'sans-serif'],
+  });
+
+  // Create a theme instance.
+  export default createTheme({
+    palette: {
+      primary: {
+        main: '#556cd6',
+      },
+      secondary: {
+        main: '#19857b',
+      },
+      error: {
+        main: red.A400,
+      },
+    },
+    typography: {
+      fontFamily: roboto.style.fontFamily,
+    },
+  });
+`
+
+export const materialUIPlugin: Plugin = {
   id: "material-ui",
   name: "Material UI",
   description: "Adds support for Material UI",
   active: ({ flags }) => Boolean(flags["material-ui"]),
-  dependencies: {
-    "@mui/material": {
-      name: "@mui/material",
-      version: "^5.0.0",
-    },
-  },
+  dependencies: [{ name: "@mui/material", version: "^5.0.0" }],
   technologies: [
     {
       id: "materialUI",
@@ -30,15 +54,6 @@ export const materialUIPlugin = createPlugin({
       ],
     },
   ],
-  steps: {
-    setUpMaterialUI: {
-      id: "setUpMaterialUI",
-      description: "setting up Material UI",
-      run: async () => {
-        await writeFile("material-theme.ts", materialTheme)
-      },
-    },
-  },
   slots: {
     app: {
       imports: endent`
@@ -58,4 +73,10 @@ export const materialUIPlugin = createPlugin({
       headTags: `<meta name="theme-color" content={materialTheme.palette.primary.main} />`,
     },
   },
-} as const)
+  addFiles: [
+    {
+      destination: "material-theme.ts",
+      content: materialTheme,
+    },
+  ],
+}

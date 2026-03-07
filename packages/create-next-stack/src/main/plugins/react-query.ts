@@ -1,21 +1,15 @@
 import endent from "endent"
-import { createPlugin } from "../plugin"
+import { Plugin } from "../plugin"
 
-export const reactQueryPlugin = createPlugin({
+export const reactQueryPlugin: Plugin = {
   id: "react-query",
   name: "React Query",
   description: "Adds support for React Query",
   active: ({ flags }) => Boolean(flags["react-query"]),
-  devDependencies: {
-    "@tanstack/react-query": {
-      name: "@tanstack/react-query",
-      version: "^4.0.0",
-    },
-    "@tanstack/react-query-devtools": {
-      name: "@tanstack/react-query-devtools",
-      version: "^4.0.0",
-    },
-  },
+  devDependencies: [
+    { name: "@tanstack/react-query", version: "^4.0.0" },
+    { name: "@tanstack/react-query-devtools", version: "^4.0.0" },
+  ],
   technologies: [
     {
       id: "reactQuery",
@@ -54,4 +48,4 @@ export const reactQueryPlugin = createPlugin({
       `,
     },
   },
-} as const)
+}

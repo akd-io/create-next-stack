@@ -1,8 +1,7 @@
-import { DeeplyReadonly } from "../../../helpers/deeply-readonly"
 import { Technology } from "../../../plugin"
 
 export const generateTechnologyTableRows = async (
-  technologies: Array<Omit<DeeplyReadonly<Technology>, "id">>
+  technologies: Array<Omit<Technology, "id">>
 ): Promise<string | null> => {
   if (technologies.length === 0) {
     return null
