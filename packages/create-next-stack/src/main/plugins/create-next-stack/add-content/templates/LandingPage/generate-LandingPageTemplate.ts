@@ -47,6 +47,7 @@ export const generateLandingPageTemplate = async (
         (function frame() {
           const timeLeft = animationEnd - Date.now();
     
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (window as any).confetti({
             particleCount: 1,
             startVelocity: 0,

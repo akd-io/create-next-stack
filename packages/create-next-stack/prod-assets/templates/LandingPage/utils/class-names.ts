@@ -1,5 +1,5 @@
 export const classNames = (
-  ...classNames: Array<string | undefined | [string, any]>
+  ...classNames: Array<string | undefined | [string, unknown]>
 ): string => {
   return classNames
     .filter((className) => {
