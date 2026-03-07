@@ -57,7 +57,7 @@ export const plausiblePlugin: Plugin = {
       providerImports: aldent`
         import PlausibleProvider from "next-plausible";
       `,
-      providerAfterImports: aldent`
+      providerLogic: aldent`
         const ${websiteDomainEnvVar} = process.env.${websiteDomainEnvVar};
         if (${websiteDomainEnvVar} == null) {
           throw new Error("${websiteDomainEnvVar} is not set");
