@@ -1,5 +1,5 @@
 import aldent from "aldent"
-import { ValidCNSInputs } from "../../../create-next-stack-types.ts"
+import type { ValidCNSInputs } from "../../../create-next-stack-types.ts"
 
 export const generateEslintConfig = async ({
   flags,

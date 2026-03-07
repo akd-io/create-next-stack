@@ -1,6 +1,6 @@
 import aldent from "aldent"
 import { modifyJsonFile, toObject } from "../helpers/io.ts"
-import { Plugin } from "../plugin.ts"
+import type { Plugin } from "../plugin.ts"
 
 export const emotionPlugin: Plugin = {
   id: "emotion",

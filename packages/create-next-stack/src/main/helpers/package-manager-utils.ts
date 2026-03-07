@@ -1,4 +1,4 @@
-import { PackageManager } from "../create-next-stack-types.ts"
+import type { PackageManager } from "../create-next-stack-types.ts"
 
 export const installCommandMap: Record<PackageManager, string> = {
   pnpm: "pnpm install",

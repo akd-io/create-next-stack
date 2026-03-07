@@ -1,7 +1,7 @@
 import { Config } from "@oclif/core"
 import CreateNextStack from "./commands/create-next-stack.ts"
 import { validateProjectPathInput } from "./helpers/validate-project-path.ts"
-import { Writable } from "./helpers/writable.ts"
+import type { Writable } from "./helpers/writable.ts"
 
 /**
  * This function is only used to retrieve the ReturnType of a call to `createNextStackInstance.parse(CreateNextStack)`.

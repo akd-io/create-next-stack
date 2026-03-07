@@ -5,7 +5,7 @@ import { makeDirectory } from "../helpers/io.ts"
 import { remove } from "../helpers/remove.ts"
 import { runCommand } from "../helpers/run-command.ts"
 import { logDebug } from "../logging.ts"
-import { Package, Plugin } from "../plugin.ts"
+import type { Package, Plugin } from "../plugin.ts"
 import { getNameVersionCombo } from "../setup/packages.ts"
 
 const createNextAppPackage: Package = {

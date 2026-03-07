@@ -1,5 +1,5 @@
 import { runCommand } from "../helpers/run-command.ts"
-import { Plugin } from "../plugin.ts"
+import type { Plugin } from "../plugin.ts"
 import { getNameVersionCombo } from "../setup/packages.ts"
 
 export const yarnPlugin: Plugin = {

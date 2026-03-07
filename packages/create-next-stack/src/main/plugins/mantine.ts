@@ -1,5 +1,5 @@
 import aldent from "aldent"
-import { Plugin } from "../plugin.ts"
+import type { Plugin } from "../plugin.ts"
 
 export const mantinePlugin: Plugin = {
   id: "mantine",

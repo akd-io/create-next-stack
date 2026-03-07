@@ -1,10 +1,10 @@
 import aldent from "aldent"
-import { ValidCNSInputs } from "../create-next-stack-types.ts"
+import type { ValidCNSInputs } from "../create-next-stack-types.ts"
 import {
   cleanInstallCommandMap,
   runCommandMap,
 } from "../helpers/package-manager-utils.ts"
-import { evalProperty, Plugin } from "../plugin.ts"
+import { evalProperty, type Plugin } from "../plugin.ts"
 import { prettierPlugin } from "./prettier.ts"
 
 export const githubActionsPlugin: Plugin = {

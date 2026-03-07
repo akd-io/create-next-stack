@@ -1,5 +1,5 @@
 import chalk from "chalk"
-import { ValidCNSInputs } from "../create-next-stack-types.ts"
+import type { ValidCNSInputs } from "../create-next-stack-types.ts"
 import { getProjectNameOfPath } from "../helpers/get-project-name-of-path.ts"
 import { isGitInitialized } from "../helpers/is-git-initialized.ts"
 import { runCommandMap } from "../helpers/package-manager-utils.ts"

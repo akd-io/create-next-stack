@@ -1,5 +1,5 @@
-import { NextConfig } from "next"
-import { ValidCNSInputs } from "./create-next-stack-types.ts"
+import type { NextConfig } from "next"
+import type { ValidCNSInputs } from "./create-next-stack-types.ts"
 
 export type Plugin = {
   /** ID that uniquely identifies the plugin */

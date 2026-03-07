@@ -1,4 +1,4 @@
-import { Plugin } from "../plugin.ts"
+import type { Plugin } from "../plugin.ts"
 
 export const vercelPlugin: Plugin = {
   id: "vercel",

@@ -1,8 +1,8 @@
 import aldent from "aldent"
 import lodash from "lodash"
 const { merge } = lodash
-import { NextConfig } from "next"
-import { ValidCNSInputs } from "../../../create-next-stack-types.ts"
+import type { NextConfig } from "next"
+import type { ValidCNSInputs } from "../../../create-next-stack-types.ts"
 import { nonNull } from "../../../helpers/non-null.ts"
 import { stringify } from "../../../helpers/stringify.ts"
 import { filterPlugins } from "../../../setup/setup.ts"

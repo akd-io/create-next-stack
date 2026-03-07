@@ -1,5 +1,5 @@
 import aldent from "aldent"
-import { ValidCNSInputs } from "../../../../create-next-stack-types.ts"
+import type { ValidCNSInputs } from "../../../../create-next-stack-types.ts"
 import { getProjectNameOfPath } from "../../../../helpers/get-project-name-of-path.ts"
 import { nonNull } from "../../../../helpers/non-null.ts"
 import { filterPlugins } from "../../../../setup/setup.ts"

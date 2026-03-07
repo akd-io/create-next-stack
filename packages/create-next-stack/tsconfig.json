@@ -4,6 +4,7 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "rewriteRelativeImportExtensions": true,
+    "verbatimModuleSyntax": true,
     "outDir": "lib",
     "rootDir": "src",
     "strict": true,

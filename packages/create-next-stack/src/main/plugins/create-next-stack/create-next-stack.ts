@@ -7,7 +7,11 @@ import { isGitInitialized } from "../../helpers/is-git-initialized.ts"
 import { nonNull } from "../../helpers/non-null.ts"
 import { runCommand } from "../../helpers/run-command.ts"
 import { logWarning } from "../../logging.ts"
-import { evalOptionalProperty, evalProperty, Plugin } from "../../plugin.ts"
+import {
+  evalOptionalProperty,
+  evalProperty,
+  type Plugin,
+} from "../../plugin.ts"
 import {
   getNameVersionCombo,
   install,

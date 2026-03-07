@@ -1,7 +1,7 @@
-import { ValidCNSInputs } from "./create-next-stack-types.ts"
+import type { ValidCNSInputs } from "./create-next-stack-types.ts"
 import { nonNull } from "./helpers/non-null.ts"
 import { compareByOrder } from "./helpers/sort-by-order.ts"
-import { Step } from "./plugin.ts"
+import type { Step } from "./plugin.ts"
 import { filterPlugins } from "./setup/setup.ts"
 
 export const stepsOrder: string[] = [

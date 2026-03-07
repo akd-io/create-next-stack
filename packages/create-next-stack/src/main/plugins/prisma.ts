@@ -1,6 +1,6 @@
 import aldent from "aldent"
 import { runCommand } from "../helpers/run-command.ts"
-import { Plugin } from "../plugin.ts"
+import type { Plugin } from "../plugin.ts"
 
 export const prismaPlugin: Plugin = {
   id: "prisma",

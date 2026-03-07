@@ -1,5 +1,5 @@
 import aldent from "aldent"
-import { ValidCNSInputs } from "../../../../../create-next-stack-types.ts"
+import type { ValidCNSInputs } from "../../../../../create-next-stack-types.ts"
 import { stringify } from "../../../../../helpers/stringify.ts"
 import { getTechnologies } from "../../../sort-orders/technologies.ts"
 

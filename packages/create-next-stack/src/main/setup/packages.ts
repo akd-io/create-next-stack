@@ -1,4 +1,4 @@
-import { PackageManager } from "../create-next-stack-types.ts"
+import type { PackageManager } from "../create-next-stack-types.ts"
 import {
   installSubCommandMap,
   saveDevModifierMap,
