@@ -5,7 +5,7 @@ import { getProjectNameOfPath } from "../../../../helpers/get-project-name-of-pa
 export const generateIndexPage = ({ args }: ValidCNSInputs): string => aldent`
   import { NextPage } from "next";
   import Head from "next/head";
-  import LandingPageTemplate from "../templates/LandingPage/LandingPageTemplate.tsx";
+  import LandingPageTemplate from "../templates/LandingPage/LandingPageTemplate";
 
   const Index: NextPage = () => {
     return (

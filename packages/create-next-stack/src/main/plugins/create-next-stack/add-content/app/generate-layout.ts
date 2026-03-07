@@ -44,7 +44,7 @@ export const generateLayout = async (
   const projectName = getProjectNameOfPath(inputs.args.app_name)
 
   const providerImport = hasProviders
-    ? `import { Providers } from "./providers.tsx";`
+    ? `import { Providers } from "./providers";`
     : ""
   const childrenWithProviders = hasProviders
     ? aldent`

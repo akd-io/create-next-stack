@@ -19,15 +19,15 @@ export const generateLandingPageTemplate = async (
 
     import Script from "next/script";
     import styles from "./LandingPageTemplate.module.css";
-    import { Container } from "./components/Container.tsx";
-    import { InlineCode } from "./components/InlineCode.tsx";
-    import { Link } from "./components/Link.tsx";
-    import { Paragraph } from "./components/Paragraph.tsx";
-    import { Section } from "./components/Section.tsx";
-    import { Subtitle } from "./components/Subtitle.tsx";
-    import { TechnologyGrid } from "./components/TechnologyGrid.tsx";
-    import { H1, H2 } from "./components/headings.tsx";
-    import { technologies } from "./technologies.ts";
+    import { Container } from "./components/Container";
+    import { InlineCode } from "./components/InlineCode";
+    import { Link } from "./components/Link";
+    import { Paragraph } from "./components/Paragraph";
+    import { Section } from "./components/Section";
+    import { Subtitle } from "./components/Subtitle";
+    import { TechnologyGrid } from "./components/TechnologyGrid";
+    import { H1, H2 } from "./components/headings";
+    import { technologies } from "./technologies";
     
     const LandingPageTemplate = () => {
       const onConfettiLoad = () => {
