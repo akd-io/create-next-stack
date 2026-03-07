@@ -5,6 +5,9 @@
   "description": "Create Next Stack monorepo",
   "author": "Anders Kjær Damgaard",
   "license": "MIT",
+  "engines": {
+    "node": "24.x"
+  },
   "packageManager": "pnpm@10.17.1",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
