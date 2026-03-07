@@ -1,14 +1,14 @@
+"use client"
+
 import {
   Button,
-  CheckboxGroup,
+  Checkbox as MantineCheckbox,
   Flex,
-  FormControl,
-  FormErrorMessage,
-  Heading,
-  Input,
-  RadioGroup,
+  Radio as MantineRadio,
   Text,
-} from "@chakra-ui/react"
+  TextInput,
+  Title,
+} from "@mantine/core"
 import React from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { Anchor } from "../../../components/Anchor"
@@ -18,7 +18,6 @@ import { capitalizeFirstCharacter } from "../../../utils/capitalizeFirstCharacte
 import { objectToKeyToKeyMap } from "../../../utils/objectToKeyToKeyMap"
 import { validateProjectName } from "../../../utils/validateProjectName"
 import { CommandModal } from "./CommandModal"
-import { ExternalLinkIcon } from "./icons/ExternalLinkIcon"
 import { WithInfoIconAndTooltip } from "./InfoIconTooltip"
 
 const cssModulesValue = "css-modules"
@@ -181,6 +180,8 @@ const deploymentOptionKeys = [
 ] satisfies OptionKey[]
 const ormOptionKeys = [optionKeys.prisma] satisfies OptionKey[]
 
+type RouterOption = "app" | "pages"
+
 type ProjectName = string
 type PackageManager = (typeof packageManagerOptionKeys)[number]
 type Styling = (typeof stylingOptionKeys)[number]
@@ -198,6 +199,7 @@ type ORM = (typeof ormOptionKeys)[number]
 
 type TechnologiesFormData = {
   projectName: ProjectName
+  router: RouterOption
   packageManager: PackageManager
   styling: Styling
   formStateManagement: FormStateManagement[]
@@ -213,8 +215,9 @@ type TechnologiesFormData = {
 }
 const defaultFormData: TechnologiesFormData = {
   projectName: "my-app",
+  router: "app",
   packageManager: optionKeys.pnpm,
-  styling: optionKeys.emotion,
+  styling: optionKeys.tailwindCss,
   formStateManagement: [optionKeys.reactHookForm],
   formatting: [optionKeys.prettier, optionKeys.formattingPreCommitHook],
   componentLibraries: [optionKeys.mantine],
@@ -230,6 +233,7 @@ const formDataKeys = objectToKeyToKeyMap(defaultFormData)
 
 const categoryLabels = {
   projectName: "Project Name",
+  router: "Router",
   packageManager: "Package Manager",
   styling: "Styling",
   formStateManagement: "Form State Management",
@@ -256,15 +260,16 @@ export const TechnologiesForm: React.FC = () => {
 
   const formValues = watch()
 
-  const [isCommandModalShow, setIsModalShown] = React.useState(false)
+  const [isCommandModalShown, setIsModalShown] = React.useState(false)
   const [command, setCommand] = React.useState("")
 
   const handleSuccessfulSubmit: SubmitHandler<TechnologiesFormData> = (
-    formData
+    formData,
   ) => {
     const calculateCommand = (formData: TechnologiesFormData) => {
-      const args = ["npx", "create-next-stack@0.2.8"]
+      const args = ["npx", "create-next-stack@latest"]
 
+      args.push(`--router=${formData.router}`)
       args.push(`--package-manager=${options[formData.packageManager].value}`)
       args.push(`--styling=${options[formData.styling].value}`)
 
@@ -313,7 +318,7 @@ export const TechnologiesForm: React.FC = () => {
         isInvalid: boolean
         errorMessage: string
       }>
-    }
+    },
   ) => {
     return (
       <Controller
@@ -322,34 +327,40 @@ export const TechnologiesForm: React.FC = () => {
         rules={{
           validate: () =>
             !optionKeys.some((optionKey) =>
-              validators?.[optionKey]?.some((validator) => validator.isInvalid)
+              validators?.[optionKey]?.some((validator) => validator.isInvalid),
             ),
         }}
         render={({ field: { ref, ...rest } }) => (
-          <CheckboxGroup {...rest}>
-            <Flex direction="column" gap="3">
-              {optionKeys.map((optionKey) => (
-                <FormControl
-                  key={optionKey}
-                  isInvalid={validators?.[optionKey]?.some(
-                    (validator) => validator.isInvalid
-                  )}
-                >
-                  <Checkbox value={optionKey}>
-                    {options[optionKey].label}
-                  </Checkbox>
-                  {validators?.[optionKey]?.map(
-                    (validator) =>
-                      validator.isInvalid && (
-                        <FormErrorMessage key={validator.errorMessage}>
-                          {validator.errorMessage}
-                        </FormErrorMessage>
-                      )
-                  )}
-                </FormControl>
-              ))}
+          <MantineCheckbox.Group {...rest}>
+            <Flex direction="column" gap="12">
+              {optionKeys.map((optionKey) => {
+                const hasError = validators?.[optionKey]?.some(
+                  (v) => v.isInvalid,
+                )
+                return (
+                  <div key={optionKey}>
+                    <Checkbox
+                      value={optionKey}
+                      label={options[optionKey].label}
+                    />
+                    {validators?.[optionKey]?.map(
+                      (validator) =>
+                        validator.isInvalid && (
+                          <Text
+                            key={validator.errorMessage}
+                            c="red"
+                            fz="sm"
+                            mt="4"
+                          >
+                            {validator.errorMessage}
+                          </Text>
+                        ),
+                    )}
+                  </div>
+                )
+              })}
             </Flex>
-          </CheckboxGroup>
+          </MantineCheckbox.Group>
         )}
       />
     )
@@ -357,11 +368,13 @@ export const TechnologiesForm: React.FC = () => {
 
   const RadiosOfOptionKeys = (optionKeys: Array<keyof typeof options>) => {
     return (
-      <Flex direction="column" gap="3">
+      <Flex direction="column" gap="12">
         {optionKeys.map((optionKey) => (
-          <Radio key={optionKey} value={optionKey}>
-            {options[optionKey].label}
-          </Radio>
+          <Radio
+            key={optionKey}
+            value={optionKey}
+            label={options[optionKey].label}
+          />
         ))}
       </Flex>
     )
@@ -370,148 +383,178 @@ export const TechnologiesForm: React.FC = () => {
   return (
     <>
       <CommandModal
-        isOpen={isCommandModalShow}
+        opened={isCommandModalShown}
         command={command}
         onClose={() => {
           setIsModalShown(false)
         }}
       />
       <form onSubmit={handleSubmit(handleSuccessfulSubmit)}>
-        <Heading as="h2" size="lg" marginBottom="6">
+        <Title order={2} fz="xl" mb="24">
           Pick your technologies
-        </Heading>
+        </Title>
 
-        <Flex direction="column" gap="16">
-          <Flex direction={["column", "column", "row"]} gap={["8", "8", "16"]}>
-            <Flex direction="column" gap="8" flexBasis="100%">
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md" gap="8px">
+        <Flex direction="column" gap="64">
+          <Flex
+            direction={{ base: "column", md: "row" }}
+            gap={{ base: "32", md: "64" }}
+          >
+            <Flex direction="column" gap="32" style={{ flexBasis: "100%" }}>
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   <WithInfoIconAndTooltip
                     tooltip={`Project names must be valid npm package names.`}
                   >
                     {categoryLabels.projectName}
                   </WithInfoIconAndTooltip>
-                </Heading>
-                <FormControl isInvalid={errors?.projectName?.message != null}>
-                  <Input
-                    {...register(formDataKeys.projectName, {
-                      validate: validateProjectName,
-                    })}
-                  />
-                  {errors.projectName?.message != null ? (
-                    <FormErrorMessage>
-                      {capitalizeFirstCharacter(errors.projectName.message) +
-                        "."}
-                    </FormErrorMessage>
-                  ) : null}
-                </FormControl>
+                </Title>
+                <TextInput
+                  {...register(formDataKeys.projectName, {
+                    validate: validateProjectName,
+                  })}
+                  error={
+                    errors.projectName?.message != null
+                      ? capitalizeFirstCharacter(errors.projectName.message) +
+                        "."
+                      : undefined
+                  }
+                />
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
+                  <WithInfoIconAndTooltip tooltip="App Router is the default and recommended choice for new Next.js projects. Pages Router is the legacy routing system.">
+                    {categoryLabels.router}
+                  </WithInfoIconAndTooltip>
+                </Title>
+                <Controller
+                  name={formDataKeys.router}
+                  control={control}
+                  rules={{ required: true }}
+                  render={({ field: { ref, ...rest } }) => (
+                    <MantineRadio.Group {...rest}>
+                      <Flex direction="column" gap="12">
+                        <Radio value="app" label="App Router" />
+                        <Radio value="pages" label="Pages Router" />
+                      </Flex>
+                    </MantineRadio.Group>
+                  )}
+                />
+              </Flex>
+
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.packageManager}
-                </Heading>
+                </Title>
                 <Controller
                   name={formDataKeys.packageManager}
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { ref, ...rest } }) => (
-                    <RadioGroup {...rest}>
+                    <MantineRadio.Group {...rest}>
                       {RadiosOfOptionKeys(packageManagerOptionKeys)}
-                    </RadioGroup>
+                    </MantineRadio.Group>
                   )}
                 />
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.styling}
-                </Heading>
+                </Title>
                 <Controller
                   name={formDataKeys.styling}
                   control={control}
                   rules={{ required: true }}
                   render={({ field: { ref, ...rest } }) => (
-                    <RadioGroup {...rest}>
+                    <MantineRadio.Group {...rest}>
                       {RadiosOfOptionKeys(stylingOptionKeys)}
-                    </RadioGroup>
+                    </MantineRadio.Group>
                   )}
                 />
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.formStateManagement}
-                </Heading>
+                </Title>
                 {CheckboxesOfOptionKeys(
                   formDataKeys.formStateManagement,
-                  formStateManagementOptionKeys
+                  formStateManagementOptionKeys,
                 )}
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.serverStateManagementLibraries}
-                </Heading>
+                </Title>
                 {CheckboxesOfOptionKeys(
                   formDataKeys.serverStateManagementLibraries,
-                  serverStateManagementLibraryOptionKeys
+                  serverStateManagementLibraryOptionKeys,
                 )}
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.analytics}
-                </Heading>
+                </Title>
                 {CheckboxesOfOptionKeys(
                   formDataKeys.analytics,
-                  analyticsOptionKeys
+                  analyticsOptionKeys,
                 )}
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.orm}
-                </Heading>
+                </Title>
                 {CheckboxesOfOptionKeys(formDataKeys.orm, ormOptionKeys)}
               </Flex>
             </Flex>
 
-            <Flex direction="column" gap="8" flexBasis="100%">
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+            <Flex direction="column" gap="32" style={{ flexBasis: "100%" }}>
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.language}
-                </Heading>
-                <CheckboxGroup value={["TypeScript"]}>
-                  <Flex direction="column" gap="3">
-                    <Checkbox value="TypeScript" isDisabled>
-                      <WithInfoIconAndTooltip tooltip="TypeScript is currently required.">
-                        TypeScript
-                      </WithInfoIconAndTooltip>
-                    </Checkbox>
+                </Title>
+                <MantineCheckbox.Group value={["TypeScript"]}>
+                  <Flex direction="column" gap="12">
+                    <Checkbox
+                      value="TypeScript"
+                      disabled
+                      label={
+                        <WithInfoIconAndTooltip tooltip="TypeScript is currently required.">
+                          TypeScript
+                        </WithInfoIconAndTooltip>
+                      }
+                    />
                   </Flex>
-                </CheckboxGroup>
+                </MantineCheckbox.Group>
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.linting}
-                </Heading>
-                <CheckboxGroup value={["ESLint"]}>
-                  <Flex direction="column" gap="3">
-                    <Checkbox value="ESLint" isDisabled>
-                      <WithInfoIconAndTooltip tooltip="ESLint is currently required.">
-                        ESLint
-                      </WithInfoIconAndTooltip>
-                    </Checkbox>
+                </Title>
+                <MantineCheckbox.Group value={["ESLint"]}>
+                  <Flex direction="column" gap="12">
+                    <Checkbox
+                      value="ESLint"
+                      disabled
+                      label={
+                        <WithInfoIconAndTooltip tooltip="ESLint is currently required.">
+                          ESLint
+                        </WithInfoIconAndTooltip>
+                      }
+                    />
                   </Flex>
-                </CheckboxGroup>
+                </MantineCheckbox.Group>
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.formatting}
-                </Heading>
+                </Title>
                 {CheckboxesOfOptionKeys(
                   formDataKeys.formatting,
                   formattingOptionKeys,
@@ -520,121 +563,102 @@ export const TechnologiesForm: React.FC = () => {
                       {
                         isInvalid:
                           formValues.formatting.includes(
-                            optionKeys.formattingPreCommitHook
+                            optionKeys.formattingPreCommitHook,
                           ) &&
                           !formValues.formatting.includes(optionKeys.prettier),
                         errorMessage:
                           "Formatting pre-commit hook requires Prettier.",
                       },
                     ],
-                  }
+                  },
                 )}
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.componentLibraries}
-                </Heading>
+                </Title>
                 {CheckboxesOfOptionKeys(
                   formDataKeys.componentLibraries,
                   componentLibraryOptionKeys,
                   {
-                    [optionKeys.mantine]: [
-                      {
-                        isInvalid:
-                          formValues.componentLibraries.includes(
-                            optionKeys.mantine
-                          ) && !formValues.styling.includes(optionKeys.emotion),
-                        errorMessage: "Mantine requires Emotion",
-                      },
-                    ],
                     [optionKeys.chakra]: [
                       {
                         isInvalid:
                           formValues.componentLibraries.includes(
-                            optionKeys.chakra
+                            optionKeys.chakra,
                           ) && formValues.styling !== optionKeys.emotion,
                         errorMessage: "Chakra UI requires Emotion",
-                      },
-                      {
-                        isInvalid:
-                          formValues.componentLibraries.includes(
-                            optionKeys.chakra
-                          ) &&
-                          !formValues.animation.includes(
-                            optionKeys.framerMotion
-                          ),
-                        errorMessage: "Chakra UI requires Framer Motion",
                       },
                     ],
                     [optionKeys.materialUi]: [
                       {
                         isInvalid:
                           formValues.componentLibraries.includes(
-                            optionKeys.materialUi
-                          ) && !formValues.styling.includes(optionKeys.emotion),
+                            optionKeys.materialUi,
+                          ) && formValues.styling !== optionKeys.emotion,
                         errorMessage: "Material UI requires Emotion",
                       },
                     ],
-                  }
+                  },
                 )}
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.iconLibraries}
-                </Heading>
+                </Title>
                 {CheckboxesOfOptionKeys(
                   formDataKeys.iconLibraries,
-                  iconLibraryOptionKeys
+                  iconLibraryOptionKeys,
                 )}
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.animation}
-                </Heading>
+                </Title>
                 {CheckboxesOfOptionKeys(
                   formDataKeys.animation,
-                  animationOptionKeys
+                  animationOptionKeys,
                 )}
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.continuousIntegration}
-                </Heading>
+                </Title>
                 {CheckboxesOfOptionKeys(
                   formDataKeys.continuousIntegration,
-                  continuousIntegrationOptionKeys
+                  continuousIntegrationOptionKeys,
                 )}
               </Flex>
 
-              <Flex direction="column" gap="4">
-                <Heading as="h3" size="md">
+              <Flex direction="column" gap="16">
+                <Title order={3} fz="md">
                   {categoryLabels.deployment}
-                </Heading>
+                </Title>
                 {CheckboxesOfOptionKeys(
                   formDataKeys.deployment,
-                  deploymentOptionKeys
+                  deploymentOptionKeys,
                 )}
               </Flex>
             </Flex>
           </Flex>
 
-          <Flex direction="row" justifyContent={["left", "center"]}>
-            <Button type="submit" colorScheme="purple">
+          <Flex direction="row" justify={{ base: "flex-start", sm: "center" }}>
+            <Button type="submit" color="violet">
               Create Next Stack
             </Button>
           </Flex>
 
-          <Text align={["left", "center"]}>
+          <Text ta={{ base: "left", sm: "center" }}>
             Missing your favorite technology or encountering a bug? <br />
             <Anchor
               href="https://github.com/akd-io/create-next-stack/issues"
-              isExternal
+              target="_blank"
             >
-              Open an issue on GitHub <ExternalLinkIcon mx="2px" />
+              Open an issue on GitHub
             </Anchor>
           </Text>
         </Flex>

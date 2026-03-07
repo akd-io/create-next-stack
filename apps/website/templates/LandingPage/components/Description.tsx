@@ -1,15 +1,14 @@
-import { Flex, Text } from "@chakra-ui/react"
+import { Flex, Text } from "@mantine/core"
 import { Anchor } from "../../../components/Anchor"
-import { ExternalLinkIcon } from "./icons/ExternalLinkIcon"
 
 export const Description = () => {
   return (
-    <Flex direction="column" maxWidth="600" gap="4">
+    <Flex direction="column" maw="600" gap="16">
       <Text>
         <b>Create Next Stack</b> is a website and CLI tool used to easily set up
         the boilerplate of new{" "}
-        <Anchor href="https://nextjs.org" isExternal>
-          Next.js <ExternalLinkIcon mx="2px" />
+        <Anchor href="https://nextjs.org" target="_blank">
+          Next.js
         </Anchor>{" "}
         apps.
       </Text>
@@ -17,9 +16,9 @@ export const Description = () => {
         Where{" "}
         <Anchor
           href="https://nextjs.org/docs/api-reference/create-next-app"
-          isExternal
+          target="_blank"
         >
-          Create Next App <ExternalLinkIcon mx="2px" />
+          Create Next App
         </Anchor>{" "}
         lets you choose a single template only, Create Next Stack lets you pick
         and choose an array of technologies often used alongside Next.js,

@@ -9,24 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.18",
-    "@chakra-ui/react": "^2.10.9",
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "framer-motion": "^10.12.4",
-    "next": "^13.3.0",
-    "next-plausible": "^3.7.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.9",
-    "react-icons": "^4.8.0"
+    "@mantine/core": "^8.0.0",
+    "@mantine/hooks": "^8.0.0",
+    "next": "^15.0.0",
+    "next-plausible": "^3.12.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.0",
+    "react-icons": "^5.4.0"
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "^11.10.6",
-    "@types/node": "^18.15.13",
-    "@types/react": "^18.0.37",
-    "eslint": "^8.38.0",
-    "eslint-config-next": "^13.3.0",
-    "eslint-config-prettier": "^8.8.0"
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^15.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "postcss": "^8.0.0",
+    "postcss-preset-mantine": "^1.0.0",
+    "postcss-simple-vars": "^7.0.0"
   }
 }

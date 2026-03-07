@@ -1,33 +1,24 @@
-import {
-  Button,
-  Code,
-  Flex,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Text,
-} from "@chakra-ui/react"
-import { ComponentProps, FC, useEffect, useState } from "react"
-import { CheckIcon } from "./icons/CheckIcon"
+"use client"
 
-type PopupProps = Omit<ComponentProps<typeof Modal>, "children"> & {
+import { Button, Code, Flex, Modal, Text } from "@mantine/core"
+import { FC, useEffect, useState } from "react"
+import { FiCheck } from "react-icons/fi"
+
+type CommandModalProps = {
+  opened: boolean
   command: string
+  onClose: () => void
 }
-export const CommandModal: FC<PopupProps> = ({
+export const CommandModal: FC<CommandModalProps> = ({
   command,
-  isOpen,
+  opened,
   onClose,
-  ...rest
 }) => {
   const [hasCopied, setHasCopied] = useState(false)
 
   useEffect(() => {
     setHasCopied(false)
-  }, [isOpen])
+  }, [opened])
 
   const [copyFailed, setCopyFailed] = useState(false)
 
@@ -35,42 +26,29 @@ export const CommandModal: FC<PopupProps> = ({
     try {
       await navigator.clipboard.writeText(command)
       setHasCopied(true)
-    } catch (error) {
+    } catch {
       setCopyFailed(true)
     }
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} {...rest}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Almost there...</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <Flex direction="column" gap="4">
-            <Text>Run the following command in your terminal:</Text>
-            <Code padding="4" background="gray.100">
-              {command}
-            </Code>
-          </Flex>
-        </ModalBody>
-        <ModalFooter>
-          {!copyFailed && (
-            <Button
-              colorScheme={"purple"}
-              flexGrow={1}
-              onClick={handleCopyClick}
-            >
-              {hasCopied ? <CheckIcon /> : <>Copy</>}
-            </Button>
-          )}
-          {copyFailed && (
-            <Text color="red.500" fontSize="sm">
-              Failed to copy to clipboard. You will need to copy it manually.
-            </Text>
-          )}
-        </ModalFooter>
-      </ModalContent>
+    <Modal opened={opened} onClose={onClose} title="Almost there...">
+      <Flex direction="column" gap="16">
+        <Text>Run the following command in your terminal:</Text>
+        <Code p="16" bg="gray.1" block>
+          {command}
+        </Code>
+        {!copyFailed && (
+          <Button color="violet" fullWidth onClick={handleCopyClick}>
+            {hasCopied ? <FiCheck /> : <>Copy</>}
+          </Button>
+        )}
+        {copyFailed && (
+          <Text c="red.5" fz="sm">
+            Failed to copy to clipboard. You will need to copy it manually.
+          </Text>
+        )}
+      </Flex>
     </Modal>
   )
 }

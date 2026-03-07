@@ -1,24 +1,15 @@
-import { extendTheme, ThemeConfig } from "@chakra-ui/react"
+"use client"
 
-const colors = {
-  brand: {
-    600: "#6838F1",
-    500: "#A746F2",
-    400: "#DC51F2",
+import { createTheme } from "@mantine/core"
+
+export const theme = createTheme({
+  primaryColor: "violet",
+  fontFamily: '"Inter", sans-serif',
+  headings: {
+    fontFamily: '"Inter", sans-serif',
   },
-}
-
-const config: ThemeConfig = {
-  initialColorMode: "light",
-  useSystemColorMode: false,
-}
-
-export const theme = extendTheme({
-  colors,
-  config,
-  fonts: {
-    heading: `"Inter", sans-serif`,
-    body: `"Inter", sans-serif`,
-    mono: `"Roboto Mono", monospace`,
+  other: {
+    fontFamilyMono: '"Roboto Mono", monospace',
+    brandGradient: { from: "#6838F1", to: "#DC51F2", deg: 135 },
   },
 })

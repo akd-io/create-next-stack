@@ -1,6 +1,8 @@
-import { Checkbox as ChakraCheckbox } from "@chakra-ui/react"
-import { ComponentProps, FC } from "react"
+"use client"
 
-export const Checkbox: FC<ComponentProps<typeof ChakraCheckbox>> = (props) => {
-  return <ChakraCheckbox size="md" colorScheme="purple" {...props} />
+import { Checkbox as MantineCheckbox, CheckboxProps } from "@mantine/core"
+import { FC } from "react"
+
+export const Checkbox: FC<CheckboxProps> = (props) => {
+  return <MantineCheckbox size="md" color="violet" {...props} />
 }

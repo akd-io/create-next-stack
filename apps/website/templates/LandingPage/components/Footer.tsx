@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/react"
+import { Text } from "@mantine/core"
 import React from "react"
 import { Anchor } from "../../../components/Anchor"
 import { Section } from "../../../components/Section"
@@ -13,9 +13,9 @@ export const Footer: React.FC = () => {
       }}
     >
       <SocialIcons />
-      <Text align={["left", "center"]}>
+      <Text ta={{ base: "left", sm: "center" }}>
         Created by{" "}
-        <Anchor href="https://akd.io/" isExternal>
+        <Anchor href="https://akd.io/" target="_blank">
           Anders Damgaard
         </Anchor>{" "}
       </Text>

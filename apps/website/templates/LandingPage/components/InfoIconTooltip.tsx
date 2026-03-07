@@ -1,6 +1,8 @@
-import { Flex, Tooltip } from "@chakra-ui/react"
+"use client"
+
+import { Flex, Tooltip } from "@mantine/core"
 import { FC } from "react"
-import { InfoOutlineIcon } from "./icons/InfoOutlineIcon"
+import { FiInfo } from "react-icons/fi"
 
 type WithInfoIconAndTooltipProps = {
   tooltip: string
@@ -11,10 +13,10 @@ export const WithInfoIconAndTooltip: FC<WithInfoIconAndTooltipProps> = ({
   children,
 }) => {
   return (
-    <Tooltip placement="top" label={tooltip} hasArrow shouldWrapChildren>
-      <Flex display={"inline-flex"} direction="row" gap="6px">
+    <Tooltip position="top" label={tooltip} withArrow>
+      <Flex display="inline-flex" direction="row" gap="6px" align="center">
         {children}
-        <InfoOutlineIcon w={"16px"} h={"16px"} alignSelf="center" />
+        <FiInfo size="16px" />
       </Flex>
     </Tooltip>
   )

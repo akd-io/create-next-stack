@@ -1,32 +1,30 @@
-import { Flex } from "@chakra-ui/react"
-import { ComponentProps, FC } from "react"
+import { Box, Flex, FlexProps } from "@mantine/core"
+import { FC, ReactNode } from "react"
 
-type SectionProps = ComponentProps<typeof Flex> & {
-  innerProps?: ComponentProps<typeof Flex>
+type SectionProps = Omit<FlexProps, "component"> & {
+  innerProps?: FlexProps
+  children?: ReactNode
+  as?: "section" | "header" | "footer"
 }
 export const Section: FC<SectionProps> = ({
   innerProps,
   children,
+  as: Element = "section",
   ...props
 }) => {
   return (
-    <Flex
-      direction="column"
-      width="100%"
-      px="30px"
-      alignItems="center"
-      as="section"
-      {...props}
-    >
-      <Flex
-        direction="column"
-        width="100%"
-        maxWidth="800"
-        alignItems="center"
-        {...innerProps}
-      >
-        {children}
+    <Box component={Element}>
+      <Flex direction="column" w="100%" px="30px" align="center" {...props}>
+        <Flex
+          direction="column"
+          w="100%"
+          maw="800"
+          align="center"
+          {...innerProps}
+        >
+          {children}
+        </Flex>
       </Flex>
-    </Flex>
+    </Box>
   )
 }
