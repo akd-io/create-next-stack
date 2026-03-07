@@ -12,12 +12,16 @@ import { twentyMinutes } from "./timeout.ts"
 export const testArgsWithoutFinalChecks = async (args: string[]) => {
   const { pathToCLI, runDirectory } = await prepareE2eTest()
 
+  const env = { ...process.env }
+  delete env["CI"]
+  delete env["GITHUB_ACTIONS"]
+
   await runCommand(pathToCLI, args, {
     timeout: twentyMinutes,
     cwd: runDirectory,
     stdout: "inherit",
     stderr: "inherit",
-    env: { ...process.env, CI: "" },
+    env,
   })
 
   return { runDirectory }

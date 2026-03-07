@@ -6,9 +6,13 @@ export const performFinalChecks = async (
   runDirectory: string,
   args: string[],
 ): Promise<void> => {
+  const env = { ...process.env }
+  delete env["CI"]
+  delete env["GITHUB_ACTIONS"]
+
   const options: Options = {
     cwd: runDirectory,
-    env: { ...process.env, CI: "" },
+    env,
   }
 
   logTestInfo("Checking formatting...")
