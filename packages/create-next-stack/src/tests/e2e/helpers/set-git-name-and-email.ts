@@ -26,7 +26,7 @@ export const setGitNameAndEmailIfMissing = async (): Promise<void> => {
       })
       .catch(async () => {
         logTestInfo(
-          `user.email didn't exist. Setting user.email="test-user@create-next-stack.com"`
+          `user.email didn't exist. Setting user.email="test-user@create-next-stack.com"`,
         )
         await runCommand("git", [
           "config",

@@ -12,5 +12,5 @@ test(
       ".",
     ])
   },
-  twentyMinutes
+  twentyMinutes,
 )

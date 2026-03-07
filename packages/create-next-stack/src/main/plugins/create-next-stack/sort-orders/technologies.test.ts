@@ -8,7 +8,7 @@ test("`technologiesSortOrder` contains no duplicates", () => {
   for (const technology of technologiesSortOrder) {
     if (seenTechnologies.has(technology)) {
       throw new Error(
-        `Duplicate technology with name "${technology}" found in technologies.ts`
+        `Duplicate technology with name "${technology}" found in technologies.ts`,
       )
     }
     seenTechnologies.add(technology)
@@ -19,7 +19,7 @@ test("`technologiesSortOrder` includes all plugins' technologies", () => {
   const requiredTechnologyIDs = plugins.flatMap((plugin) =>
     plugin.technologies //
       ? Object.values(plugin.technologies).map((technology) => technology.id)
-      : []
+      : [],
   )
   const actualTechnologyIDs = new Set(technologiesSortOrder)
   for (const requiredTechnologyID of requiredTechnologyIDs) {
@@ -29,7 +29,7 @@ test("`technologiesSortOrder` includes all plugins' technologies", () => {
           Missing technology with ID "${requiredTechnologyID}" in technologies.ts
           technologies.ts can be found here:
             src/main/plugins/create-next-stack/sort-orders/technologies.ts
-        `
+        `,
       )
     }
   }

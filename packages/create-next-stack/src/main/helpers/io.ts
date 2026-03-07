@@ -23,7 +23,7 @@ export const writeFile: typeof fs.writeFile = async (file, data, options) => {
 
 export const modifyJsonFile = async (
   path: string,
-  callback: (oldObject: Record<string, unknown>) => Record<string, unknown>
+  callback: (oldObject: Record<string, unknown>) => Record<string, unknown>,
 ): Promise<void> => {
   const oldObject = await readJsonFile(path)
   const newObject = callback(oldObject)
@@ -31,7 +31,7 @@ export const modifyJsonFile = async (
 }
 
 export const readJsonFile = async (
-  path: string
+  path: string,
 ): Promise<Record<string, unknown>> => {
   logDebug("Reading json file:", path)
   const jsonString = await fs.readFile(path, "utf8")
@@ -55,7 +55,7 @@ export const readJsonFile = async (
 
 export const writeJsonFile = async (
   fileName: string,
-  object: Record<string, unknown>
+  object: Record<string, unknown>,
 ): Promise<void> => {
   logDebug("Writing json file:", fileName)
   const objectString = stringify(object)

@@ -8,7 +8,7 @@ describe("testHelpAndVersionFlags", () => {
     async () => {
       await testArgsWithoutFinalChecks(["--help"])
     },
-    oneMinute
+    oneMinute,
   )
 
   test(
@@ -16,6 +16,6 @@ describe("testHelpAndVersionFlags", () => {
     async () => {
       await testArgsWithoutFinalChecks(["--version"])
     },
-    oneMinute
+    oneMinute,
   )
 })

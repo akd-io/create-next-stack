@@ -24,14 +24,13 @@ const endOfHelpOutputString = "<!-- CNS-END-OF-HELP-OUTPUT -->"
     "run",
     "print:help",
   ])
-  const technologyTableRows = await generateTechnologyTableRows(
-    getAllTechnologies()
-  )
+  const technologyTableRows =
+    await generateTechnologyTableRows(getAllTechnologies())
 
   const updatedReadme = readme
     .replace(
       new RegExp(
-        `${startOfTechnologiesTableString}[\\s\\S]*${endOfTechnologiesTableString}`
+        `${startOfTechnologiesTableString}[\\s\\S]*${endOfTechnologiesTableString}`,
       ),
       endent`
         ${startOfTechnologiesTableString}
@@ -41,7 +40,7 @@ const endOfHelpOutputString = "<!-- CNS-END-OF-HELP-OUTPUT -->"
         ${technologyTableRows}
 
         ${endOfTechnologiesTableString}
-      `
+      `,
     )
     .replace(
       new RegExp(`${startOfHelpOutputString}[\\s\\S]*${endOfHelpOutputString}`),
@@ -53,7 +52,7 @@ const endOfHelpOutputString = "<!-- CNS-END-OF-HELP-OUTPUT -->"
         \`\`\`
 
         ${endOfHelpOutputString}
-      `
+      `,
     )
 
   console.log(`Writing README.md...`)

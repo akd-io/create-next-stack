@@ -10,7 +10,7 @@ import { getNameVersionCombo } from "../setup/packages"
 
 const createNextAppPackage: Package = {
   name: "create-next-app",
-  version: "15",
+  version: "16",
 }
 
 export const nextPlugin: Plugin = {
@@ -54,7 +54,7 @@ export const nextPlugin: Plugin = {
       name: "lint",
       description:
         "Runs [ESLint](https://eslint.org/) to catch linting errors in the source code.",
-      command: "next lint",
+      command: "eslint",
     },
   ],
   steps: [
@@ -82,6 +82,7 @@ export const nextPlugin: Plugin = {
           "--no-src-dir",
           "--import-alias=@/*",
           "--turbopack",
+          "--yes",
           flags.router === "app" ? "--app" : "--no-app",
         ]
 
@@ -110,24 +111,22 @@ export const nextPlugin: Plugin = {
       id: "removeOfficialCNAContent",
       description: "removing content added by Create Next App",
       run: async ({ flags }) => {
-        const removals: string[] = ["README.md", "next.config.ts"]
+        const removals: string[] = [
+          "README.md",
+          "next.config.ts",
+          "eslint.config.mjs",
+          "pnpm-workspace.yaml",
+          "public/file.svg",
+          "public/globe.svg",
+          "public/next.svg",
+          "public/vercel.svg",
+          "public/window.svg",
+        ]
 
         if (flags.router === "app") {
-          removals.push(
-            "app",
-            "public/file.svg",
-            "public/globe.svg",
-            "public/next.svg",
-            "public/vercel.svg",
-            "public/window.svg",
-          )
+          removals.push("app")
         } else {
-          removals.push(
-            "pages",
-            "styles",
-            "public/next.svg",
-            "public/vercel.svg",
-          )
+          removals.push("pages", "styles")
         }
 
         await Promise.all(removals.map((file) => remove(file)))

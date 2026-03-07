@@ -8,7 +8,7 @@ import { getProjectNameOfPath } from "./get-project-name-of-path"
  * @returns `true` if valid. Otherwise, an error message explaining the invalidity.
  */
 export const validateProjectPathInput = (
-  projectPath: string
+  projectPath: string,
 ): string | true => {
   const projectName = getProjectNameOfPath(projectPath)
   const problems = getProblemsInNpmPackageName(projectName)

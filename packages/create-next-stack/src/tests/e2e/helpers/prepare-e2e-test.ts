@@ -23,7 +23,7 @@ export const prepareE2eTest = async (): Promise<{
 
   const runDirectory = path.resolve(
     createNextStackDir,
-    `../../../create-next-stack-tests/run-${testRunId}`
+    `../../../create-next-stack-tests/run-${testRunId}`,
   )
   logTestInfo(`Creating test run directory at ${runDirectory}`)
   await makeDirectory(runDirectory)

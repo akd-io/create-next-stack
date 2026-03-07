@@ -21,6 +21,6 @@ export const getScripts = async (inputs: ValidCNSInputs) => {
     .flatMap((plugin) => plugin.scripts)
     .filter(nonNull)
   return pluginScripts.sort((a, b) =>
-    compareByOrder(a.name, b.name, scriptsSortOrder)
+    compareByOrder(a.name, b.name, scriptsSortOrder),
   )
 }

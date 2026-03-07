@@ -330,13 +330,10 @@ export const TechnologiesForm: React.FC = () => {
               validators?.[optionKey]?.some((validator) => validator.isInvalid),
             ),
         }}
-        render={({ field: { ref, ...rest } }) => (
+        render={({ field: { ref: _, ...rest } }) => (
           <MantineCheckbox.Group {...rest}>
             <Flex direction="column" gap="12">
               {optionKeys.map((optionKey) => {
-                const hasError = validators?.[optionKey]?.some(
-                  (v) => v.isInvalid,
-                )
                 return (
                   <div key={optionKey}>
                     <Checkbox
@@ -431,7 +428,7 @@ export const TechnologiesForm: React.FC = () => {
                   name={formDataKeys.router}
                   control={control}
                   rules={{ required: true }}
-                  render={({ field: { ref, ...rest } }) => (
+                  render={({ field: { ref: _, ...rest } }) => (
                     <MantineRadio.Group {...rest}>
                       <Flex direction="column" gap="12">
                         <Radio value="app" label="App Router" />
@@ -450,7 +447,7 @@ export const TechnologiesForm: React.FC = () => {
                   name={formDataKeys.packageManager}
                   control={control}
                   rules={{ required: true }}
-                  render={({ field: { ref, ...rest } }) => (
+                  render={({ field: { ref: _, ...rest } }) => (
                     <MantineRadio.Group {...rest}>
                       {RadiosOfOptionKeys(packageManagerOptionKeys)}
                     </MantineRadio.Group>
@@ -466,7 +463,7 @@ export const TechnologiesForm: React.FC = () => {
                   name={formDataKeys.styling}
                   control={control}
                   rules={{ required: true }}
-                  render={({ field: { ref, ...rest } }) => (
+                  render={({ field: { ref: _, ...rest } }) => (
                     <MantineRadio.Group {...rest}>
                       {RadiosOfOptionKeys(stylingOptionKeys)}
                     </MantineRadio.Group>

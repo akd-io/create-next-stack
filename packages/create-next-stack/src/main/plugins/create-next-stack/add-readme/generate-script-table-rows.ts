@@ -2,7 +2,7 @@ import { ValidCNSInputs } from "../../../create-next-stack-types"
 import { getScripts } from "../sort-orders/scripts"
 
 export const generateScriptTableRows = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<string | null> => {
   const scripts = await getScripts(inputs)
   if (scripts.length === 0) {

@@ -77,11 +77,9 @@ Make sure you are set up locally by following the [Getting Started](#getting-sta
 Make sure you are set up locally by following the [Getting Started](#getting-started) section above.
 
 1. Create a new branch from `develop` with a descriptive name.
-
    - `git checkout -b feature/support-my-favorite-technology`
 
 2. Make sure you check out the [scripts](#scripts) section above. Most notably:
-
    - `build:watch` - Make sure to have `build:watch` running if you are running tests, as tests are run on the built files.
    - `unit:watch` - Some of these tests were specifically made to ease the plugin authoring process, so don't forget this one.
    - `e2e` - Runs e2e tests. Note that this will run all e2e tests, which can take quite a while.
@@ -91,7 +89,6 @@ Make sure you are set up locally by following the [Getting Started](#getting-sta
    - `clean` - Removes all generated files, including build files and the `create-next-stack-tests` directory created by the e2e tests.
 
 3. Add a new .ts file for your plugin in the plugins directory at [`packages/create-next-stack/src/main/plugins`](packages/create-next-stack/src/main/plugins)
-
    - See the [Writing a plugin section](#writing-a-plugin) below to learn how to write a Create Next Stack plugin.
 
 4. Add new flags to the `create-next-stack` command in [`create-next-stack.ts`](packages/create-next-stack/src/main/commands/create-next-stack.ts).

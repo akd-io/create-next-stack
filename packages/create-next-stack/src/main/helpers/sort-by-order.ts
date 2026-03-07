@@ -12,7 +12,7 @@ export const compareByOrder = (a: string, b: string, order: string[]) => {
   const bIndex = order.indexOf(b)
   if (aIndex === -1 || bIndex === -1) {
     logDebug(
-      `WARNING: One or both of the values being compared are not in the order array. This should be caught by a test.`
+      `WARNING: One or both of the values being compared are not in the order array. This should be caught by a test.`,
     )
     return 0
   }

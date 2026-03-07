@@ -23,6 +23,7 @@ import { generateDocument } from "./add-content/pages/generate-document"
 import { generateIndexPage } from "./add-content/pages/generate-index"
 import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate"
 import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
+import { generateEslintConfig } from "./add-eslint-config/generate-eslint-config"
 import { generateNextConfig } from "./add-next-config/generate-next-config"
 import {
   generatePostcssConfig,
@@ -55,6 +56,10 @@ export const createNextStackPlugin: Plugin = {
       destination: "postcss.config.mjs",
       condition: (inputs) => hasPostcssConfig(inputs),
       content: (inputs) => generatePostcssConfig(inputs),
+    },
+    {
+      destination: "eslint.config.mjs",
+      content: (inputs) => generateEslintConfig(inputs),
     },
     // Pages Router files
     {

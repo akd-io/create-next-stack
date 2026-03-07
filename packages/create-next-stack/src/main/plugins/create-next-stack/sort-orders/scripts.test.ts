@@ -8,7 +8,7 @@ test("`scriptsSortOrder` contains no duplicates", () => {
   for (const script of scriptsSortOrder) {
     if (seenScripts.has(script)) {
       throw new Error(
-        `Duplicate script with name "${script}" found in scripts.ts`
+        `Duplicate script with name "${script}" found in scripts.ts`,
       )
     }
     seenScripts.add(script)
@@ -19,7 +19,7 @@ test("`scriptsSortOrder` includes all plugins' scripts", () => {
   const requiredScripts = plugins.flatMap((plugin) =>
     plugin.scripts //
       ? Object.values(plugin.scripts).map((script) => script.name)
-      : []
+      : [],
   )
   const actualScripts = new Set(scriptsSortOrder)
   for (const requiredScript of requiredScripts) {
@@ -29,7 +29,7 @@ test("`scriptsSortOrder` includes all plugins' scripts", () => {
           Missing script with name "${requiredScript}" in scripts.ts
           scripts.ts can be found here:
             src/main/plugins/create-next-stack/sort-orders/scripts.ts
-        `
+        `,
       )
     }
   }

@@ -4,7 +4,7 @@ import { makeDirectory } from "./io"
 
 export const copyDirectory = async (
   src: string,
-  dest: string
+  dest: string,
 ): Promise<void> => {
   const [entries] = await Promise.all([
     fs.readdir(src, { withFileTypes: true }),
@@ -18,6 +18,6 @@ export const copyDirectory = async (
       return entry.isDirectory()
         ? copyDirectory(srcPath, destPath)
         : fs.copyFile(srcPath, destPath)
-    })
+    }),
   )
 }

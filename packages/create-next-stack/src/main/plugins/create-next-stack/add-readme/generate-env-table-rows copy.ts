@@ -2,7 +2,7 @@ import { ValidCNSInputs } from "../../../create-next-stack-types"
 import { getEnvironmentVariables } from "../sort-orders/environment-variables"
 
 export const generateEnvironmentVariableTableRows = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<string | null> => {
   const environmentVariables = await getEnvironmentVariables(inputs)
   if (environmentVariables.length === 0) {
@@ -11,7 +11,7 @@ export const generateEnvironmentVariableTableRows = async (
   const environmentVariableRowsString = environmentVariables
     .map(
       (environmentVariable) =>
-        `|\`${environmentVariable.name}\`|${environmentVariable.description}|`
+        `|\`${environmentVariable.name}\`|${environmentVariable.description}|`,
     )
     .join("\n")
   return environmentVariableRowsString

@@ -19,14 +19,14 @@ type InstallPackageOptions = {
 export const install = async (
   npmPackage: Package | Package[],
   packageManager: PackageManager,
-  options?: InstallPackageOptions
+  options?: InstallPackageOptions,
 ): Promise<void> => {
   const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]
 
   if (packageArray.length < 1) return
 
   const packagesWithVersions = packageArray.map((pkg) =>
-    getNameVersionCombo(pkg)
+    getNameVersionCombo(pkg),
   )
 
   const installCommandArgs = [installSubCommandMap[packageManager]]
@@ -39,14 +39,14 @@ export const install = async (
 
   logDebug(
     `Installing dependencies with command:`,
-    prettyCommand(packageManager, installCommandArgs)
+    prettyCommand(packageManager, installCommandArgs),
   )
   await runCommand(packageManager, installCommandArgs)
 }
 
 export const uninstall = async (
   npmPackage: Package | Package[],
-  packageManager: PackageManager
+  packageManager: PackageManager,
 ): Promise<void> => {
   const packageArray = Array.isArray(npmPackage) ? npmPackage : [npmPackage]
 
@@ -61,7 +61,7 @@ export const uninstall = async (
 
   logDebug(
     `Uninstalling dependencies with command:`,
-    prettyCommand(packageManager, uninstallCommandArgs)
+    prettyCommand(packageManager, uninstallCommandArgs),
   )
   await runCommand(packageManager, uninstallCommandArgs)
 }

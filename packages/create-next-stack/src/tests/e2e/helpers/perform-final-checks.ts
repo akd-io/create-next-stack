@@ -4,7 +4,7 @@ import { logTestInfo } from "../test-logging"
 
 export const performFinalChecks = async (
   runDirectory: string,
-  args: string[]
+  args: string[],
 ): Promise<void> => {
   const options: Options = {
     cwd: runDirectory,
@@ -14,7 +14,7 @@ export const performFinalChecks = async (
   await runCommand(
     "npx",
     ["prettier", "--check", "--ignore-path=.gitignore", "."],
-    options
+    options,
   )
 
   logTestInfo("Checking linting...")

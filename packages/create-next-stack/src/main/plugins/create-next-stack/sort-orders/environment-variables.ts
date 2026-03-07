@@ -12,6 +12,6 @@ export const getEnvironmentVariables = async (inputs: ValidCNSInputs) => {
     .flatMap((plugin) => plugin.environmentVariables)
     .filter(nonNull)
   return pluginEnvironmentVariables.sort((a, b) =>
-    compareByOrder(a.name, b.name, environmentVariablesSortOrder)
+    compareByOrder(a.name, b.name, environmentVariablesSortOrder),
   )
 }

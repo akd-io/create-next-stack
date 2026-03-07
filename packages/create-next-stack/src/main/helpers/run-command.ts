@@ -5,7 +5,7 @@ import { prettyCommand } from "./pretty-command"
 export const runCommand = (
   file: string,
   args: string[],
-  options?: Options
+  options?: Options,
 ): ExecaChildProcess<string> => {
   logDebug("Running command:", prettyCommand(file, args))
   logDebug("Running command in:", options?.cwd ?? process.cwd())

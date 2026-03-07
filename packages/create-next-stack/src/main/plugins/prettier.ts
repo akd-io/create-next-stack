@@ -1,4 +1,3 @@
-import { modifyJsonFile, toArray } from "../helpers/io"
 import { Package, Plugin } from "../plugin"
 
 export const prettierPackage = {
@@ -45,22 +44,6 @@ export const prettierPlugin: Plugin = {
     {
       destination: ".prettierrc",
       content: `{}`,
-    },
-  ],
-  steps: [
-    {
-      id: "setUpPrettier",
-      description: "setting up Prettier",
-      run: async () => {
-        await modifyJsonFile(".eslintrc.json", (eslintrc) => ({
-          ...eslintrc,
-          extends: [
-            //
-            ...toArray(eslintrc["extends"]),
-            "eslint-config-prettier",
-          ],
-        }))
-      },
     },
   ],
 }

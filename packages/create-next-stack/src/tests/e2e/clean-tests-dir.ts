@@ -5,7 +5,7 @@ import path from "path"
 
   const testsDirectory = path.resolve(
     __dirname,
-    "../../../../../../create-next-stack-tests"
+    "../../../../../../create-next-stack-tests",
   )
 
   try {
@@ -13,7 +13,7 @@ import path from "path"
     if (!stat.isDirectory()) {
       console.error(
         "Path lead to a file instead of a directory. Path:",
-        testsDirectory
+        testsDirectory,
       )
       return
     }

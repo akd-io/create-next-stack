@@ -10,7 +10,7 @@ import { generateScriptTableRows } from "./generate-script-table-rows"
 import { generateTechnologyTableRows } from "./generate-technology-table-rows"
 
 export const generateReadme = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<string> => {
   const { args, flags } = inputs
 

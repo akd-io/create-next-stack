@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Code, Flex, Modal, Text } from "@mantine/core"
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import { FiCheck } from "react-icons/fi"
 
 type CommandModalProps = {
@@ -15,12 +15,13 @@ export const CommandModal: FC<CommandModalProps> = ({
   onClose,
 }) => {
   const [hasCopied, setHasCopied] = useState(false)
-
-  useEffect(() => {
-    setHasCopied(false)
-  }, [opened])
-
   const [copyFailed, setCopyFailed] = useState(false)
+
+  const handleClose = () => {
+    setHasCopied(false)
+    setCopyFailed(false)
+    onClose()
+  }
 
   const handleCopyClick = async () => {
     try {
@@ -32,7 +33,7 @@ export const CommandModal: FC<CommandModalProps> = ({
   }
 
   return (
-    <Modal opened={opened} onClose={onClose} title="Almost there...">
+    <Modal opened={opened} onClose={handleClose} title="Almost there...">
       <Flex direction="column" gap="16">
         <Text>Run the following command in your terminal:</Text>
         <Code p="16" bg="gray.1" block>

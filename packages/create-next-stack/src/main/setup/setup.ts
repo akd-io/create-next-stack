@@ -70,16 +70,16 @@ export const plugins: Plugin[] = [
 ]
 
 export const filterPlugins = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<Plugin[]> => {
   return await filterAsync(
     plugins,
-    async (plugin) => await evalProperty(plugin.active, inputs)
+    async (plugin) => await evalProperty(plugin.active, inputs),
   )
 }
 
 export const performSetupSteps = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<void> => {
   const steps = await getSteps(inputs)
 
@@ -88,7 +88,7 @@ export const performSetupSteps = async (
       const stepShouldRun = await evalOptionalProperty(
         step.shouldRun,
         inputs,
-        true
+        true,
       )
       if (!stepShouldRun) {
         continue
@@ -102,7 +102,9 @@ export const performSetupSteps = async (
 
       if (inDebugMode() && diff > 1000) {
         logDebug(
-          chalk.yellow(`Step took ${getDiffString(diff)} (${step.description})`)
+          chalk.yellow(
+            `Step took ${getDiffString(diff)} (${step.description})`,
+          ),
         )
       }
     }
