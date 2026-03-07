@@ -17,6 +17,7 @@ export const testArgsWithoutFinalChecks = async (args: string[]) => {
     cwd: runDirectory,
     stdout: "inherit",
     stderr: "inherit",
+    env: { ...process.env, CI: "" },
   })
 
   return { runDirectory }

@@ -8,6 +8,7 @@ export const performFinalChecks = async (
 ): Promise<void> => {
   const options: Options = {
     cwd: runDirectory,
+    env: { ...process.env, CI: "" },
   }
 
   logTestInfo("Checking formatting...")
