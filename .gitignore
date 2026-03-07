@@ -18,6 +18,8 @@
 **/lib
 **/tmp
 
+# typescript
+*.tsbuildinfo
 
 # misc
 .DS_Store
