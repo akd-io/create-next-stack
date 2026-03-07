@@ -57,7 +57,7 @@
     "unit": "vitest run src/main/",
     "unit:watch": "vitest src/main/",
     "unit:ci": "vitest run src/main/ --reporter=verbose",
-    "get-e2e-test-files-array": "vitest list src/tests/e2e/ --json | node lib/scripts/file-list-to-array.js",
+    "get-e2e-test-files-array": "vitest list --filesOnly src/tests/e2e/ | node lib/scripts/file-list-to-array.js",
     "e2e": "vitest run --pool=forks --poolOptions.forks.singleFork src/tests/e2e/",
     "e2e:single": "vitest run --pool=forks --poolOptions.forks.singleFork",
     "e2e:single:ci": "vitest run --pool=forks --poolOptions.forks.singleFork --reporter=verbose",
