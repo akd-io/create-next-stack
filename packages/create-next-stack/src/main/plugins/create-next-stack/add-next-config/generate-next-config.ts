@@ -7,27 +7,27 @@ import { stringify } from "../../../helpers/stringify"
 import { filterPlugins } from "../../../setup/setup"
 
 export const generateNextConfig = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<string> => {
   const defaultNextConfig: NextConfig = {
     reactStrictMode: true,
   }
   const nextConfigs = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.nextConfigJs?.nextConfig)
+    .map((plugin) => plugin.slots?.nextConfig?.nextConfig)
     .filter(nonNull)
   const mergedNextConfig = merge(defaultNextConfig, ...nextConfigs)
 
   const imports = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.nextConfigJs?.imports)
+    .map((plugin) => plugin.slots?.nextConfig?.imports)
     .filter(nonNull)
     .join("\n")
 
   const wrappersStart = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.nextConfigJs?.wrappersStart)
+    .map((plugin) => plugin.slots?.nextConfig?.wrappersStart)
     .filter(nonNull)
 
   const wrappersEnd = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.nextConfigJs?.wrappersEnd)
+    .map((plugin) => plugin.slots?.nextConfig?.wrappersEnd)
     .filter(nonNull)
     .reverse()
 

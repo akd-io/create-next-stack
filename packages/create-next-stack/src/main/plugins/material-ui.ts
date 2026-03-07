@@ -55,7 +55,7 @@ export const materialUIPlugin: Plugin = {
     },
   ],
   slots: {
-    app: {
+    pagesApp: {
       imports: endent`
         import { ThemeProvider } from "@mui/material/styles";
         import CssBaseline from '@mui/material/CssBaseline';
@@ -67,7 +67,7 @@ export const materialUIPlugin: Plugin = {
       `,
       componentsEnd: `</ThemeProvider>`,
     },
-    document: {
+    pagesDocument: {
       imports: `import materialTheme, { roboto } from "../material-theme";`,
       htmlAttributes: `className={roboto.className}`,
       headTags: `<meta name="theme-color" content={materialTheme.palette.primary.main} />`,

@@ -27,7 +27,7 @@ export const reactQueryPlugin: Plugin = {
     },
   ],
   slots: {
-    app: {
+    pagesApp: {
       imports: endent`
         import React from "react";
         import {

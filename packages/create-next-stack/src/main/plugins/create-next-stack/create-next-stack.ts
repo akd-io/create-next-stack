@@ -7,10 +7,16 @@ import { isGitInitialized } from "../../helpers/is-git-initialized"
 import { nonNull } from "../../helpers/non-null"
 import { runCommand } from "../../helpers/run-command"
 import { logWarning } from "../../logging"
-import { evalProperty, Plugin } from "../../plugin"
+import { evalOptionalProperty, evalProperty, Plugin } from "../../plugin"
 import { getNameVersionCombo, install, uninstall } from "../../setup/packages"
 import { filterPlugins } from "../../setup/setup"
 import { prettierPackage } from "../prettier"
+import { generateAppPage } from "./add-content/app/generate-page"
+import { generateLayout } from "./add-content/app/generate-layout"
+import {
+  generateProviders,
+  hasProviderSlots,
+} from "./add-content/app/generate-providers"
 import { generateEnv } from "./add-content/generate-env"
 import { generateApp } from "./add-content/pages/generate-app"
 import { generateDocument } from "./add-content/pages/generate-document"
@@ -41,18 +47,40 @@ export const createNextStackPlugin: Plugin = {
       destination: "next.config.js",
       content: (inputs) => generateNextConfig(inputs),
     },
+    // Pages Router files
     {
       destination: "pages/index.tsx",
+      condition: (inputs) => inputs.flags.router === "pages",
       content: (inputs) => generateIndexPage(inputs),
     },
     {
       destination: "pages/_app.tsx",
+      condition: (inputs) => inputs.flags.router === "pages",
       content: (inputs) => generateApp(inputs),
     },
     {
       destination: "pages/_document.tsx",
+      condition: (inputs) => inputs.flags.router === "pages",
       content: (inputs) => generateDocument(inputs),
     },
+    // App Router files
+    {
+      destination: "app/layout.tsx",
+      condition: (inputs) => inputs.flags.router === "app",
+      content: (inputs) => generateLayout(inputs),
+    },
+    {
+      destination: "app/providers.tsx",
+      condition: async (inputs) =>
+        inputs.flags.router === "app" && (await hasProviderSlots(inputs)),
+      content: (inputs) => generateProviders(inputs),
+    },
+    {
+      destination: "app/page.tsx",
+      condition: (inputs) => inputs.flags.router === "app",
+      content: () => generateAppPage(),
+    },
+    // Shared files
     {
       destination: "templates/LandingPage/technologies.ts",
       content: (inputs) => generateTechnologies(inputs),
@@ -82,7 +110,7 @@ export const createNextStackPlugin: Plugin = {
                 ...acc,
                 [script.name]: script.command,
               }),
-              {}
+              {},
             ),
           },
         }))
@@ -107,9 +135,17 @@ export const createNextStackPlugin: Plugin = {
           .filter(nonNull)
 
         await Promise.all(
-          pluginFilesToWrite.map(async ({ destination, content }) =>
-            writeFile(destination, await evalProperty(content, inputs))
-          )
+          pluginFilesToWrite.map(
+            async ({ destination, content, condition }) => {
+              const shouldWrite = await evalOptionalProperty(
+                condition,
+                inputs,
+                true,
+              )
+              if (!shouldWrite) return
+              await writeFile(destination, await evalProperty(content, inputs))
+            },
+          ),
         )
       },
     },
@@ -150,13 +186,13 @@ export const createNextStackPlugin: Plugin = {
                 ? Object.values(plugin.tmpDependencies)
                 : []),
             ]
-          }
+          },
         )
 
         const devDeps = (await filterPlugins(inputs)).flatMap((plugin) =>
           plugin.devDependencies != null
             ? Object.values(plugin.devDependencies)
-            : []
+            : [],
         )
 
         if (depsAndTmpDeps.length > 0) {
@@ -174,7 +210,7 @@ export const createNextStackPlugin: Plugin = {
         const tmpDeps = (await filterPlugins(inputs)).flatMap((plugin) =>
           plugin.tmpDependencies != null
             ? Object.values(plugin.tmpDependencies)
-            : []
+            : [],
         )
 
         if (tmpDeps.length > 0) {
@@ -199,7 +235,7 @@ export const createNextStackPlugin: Plugin = {
       shouldRun: async () => {
         if (!(await isGitInitialized())) {
           logWarning(
-            `Skipping ${gitAttributesFilename} setup, as Git was not initialized.`
+            `Skipping ${gitAttributesFilename} setup, as Git was not initialized.`,
           )
           return false
         }
@@ -213,7 +249,7 @@ export const createNextStackPlugin: Plugin = {
             # https://prettier.io/docs/en/options.html#end-of-line
             # https://git-scm.com/docs/gitattributes#_effects
             * text=auto eol=lf
-          `
+          `,
         )
       },
     },

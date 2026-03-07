@@ -26,7 +26,7 @@ export const mantinePlugin: Plugin = {
     },
   ],
   slots: {
-    app: {
+    pagesApp: {
       imports: endent`
         import { MantineProvider } from '@mantine/core';
         import { mantineTheme } from "../mantine-theme";
@@ -42,7 +42,7 @@ export const mantinePlugin: Plugin = {
         </MantineProvider>
       `,
     },
-    document: {
+    pagesDocument: {
       imports: endent`
         import { createGetInitialProps } from '@mantine/next';
       `,

@@ -42,7 +42,7 @@ export const emotionPlugin: Plugin = {
     },
   ],
   slots: {
-    nextConfigJs: {
+    nextConfig: {
       nextConfig: {
         compiler: {
           emotion: true,

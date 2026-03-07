@@ -36,7 +36,7 @@ export const plausiblePlugin: Plugin = {
     },
   ],
   slots: {
-    app: {
+    pagesApp: {
       imports: endent`
         import PlausibleProvider from "next-plausible";
       `,
@@ -53,7 +53,7 @@ export const plausiblePlugin: Plugin = {
         </PlausibleProvider>
       `,
     },
-    nextConfigJs: {
+    nextConfig: {
       imports: endent`
         const { withPlausibleProxy } = require("next-plausible");
       `,

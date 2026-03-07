@@ -5,27 +5,27 @@ import { filterPlugins } from "../../../../setup/setup"
 
 export const generateApp = async (inputs: ValidCNSInputs): Promise<string> => {
   const imports = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.app?.imports)
+    .map((plugin) => plugin.slots?.pagesApp?.imports)
     .filter(nonNull)
     .join("\n")
 
   const postImports = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.app?.postImports)
+    .map((plugin) => plugin.slots?.pagesApp?.postImports)
     .filter(nonNull)
     .join("\n")
 
   const logic = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.app?.logic)
+    .map((plugin) => plugin.slots?.pagesApp?.logic)
     .filter(nonNull)
     .join("\n\n") // Double new line to separate plugin logic
 
   const componentsStart = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.app?.componentsStart)
+    .map((plugin) => plugin.slots?.pagesApp?.componentsStart)
     .filter(nonNull)
     .join("\n")
 
   const componentsEnd = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.app?.componentsEnd)
+    .map((plugin) => plugin.slots?.pagesApp?.componentsEnd)
     .filter(nonNull)
     .reverse()
     .join("\n")

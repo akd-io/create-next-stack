@@ -24,7 +24,7 @@ export const chakraUIPlugin: Plugin = {
     },
   ],
   slots: {
-    app: {
+    pagesApp: {
       imports: endent`
         import { ChakraProvider } from "@chakra-ui/react";
         import { chakraTheme } from "../chakra-theme";
@@ -36,7 +36,7 @@ export const chakraUIPlugin: Plugin = {
         </ChakraProvider>
       `,
     },
-    document: {
+    pagesDocument: {
       imports: endent`
         import { ColorModeScript } from "@chakra-ui/react";
         import { chakraTheme } from "../chakra-theme";

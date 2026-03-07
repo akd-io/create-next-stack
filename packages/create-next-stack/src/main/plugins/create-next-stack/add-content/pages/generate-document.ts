@@ -4,34 +4,34 @@ import { nonNull } from "../../../../helpers/non-null"
 import { filterPlugins } from "../../../../setup/setup"
 
 export const generateDocument = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<string> => {
   const imports = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.document?.imports)
+    .map((plugin) => plugin.slots?.pagesDocument?.imports)
     .filter(nonNull)
     .join("\n")
   const afterImports = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.document?.afterImports)
+    .map((plugin) => plugin.slots?.pagesDocument?.afterImports)
     .filter(nonNull)
     .join("\n")
   const classMembers = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.document?.classMembers)
+    .map((plugin) => plugin.slots?.pagesDocument?.classMembers)
     .filter(nonNull)
     .join("\n")
   const renderLogic = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.document?.renderLogic)
+    .map((plugin) => plugin.slots?.pagesDocument?.renderLogic)
     .filter(nonNull)
     .join("\n")
   const htmlAttributes = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.document?.htmlAttributes)
+    .map((plugin) => plugin.slots?.pagesDocument?.htmlAttributes)
     .filter(nonNull)
     .join(" ")
   const headTags = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.document?.headTags)
+    .map((plugin) => plugin.slots?.pagesDocument?.headTags)
     .filter(nonNull)
     .join("\n")
   const body = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.document?.body)
+    .map((plugin) => plugin.slots?.pagesDocument?.body)
     .filter(nonNull)
     .join("\n")
 

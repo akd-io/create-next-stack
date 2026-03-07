@@ -32,7 +32,10 @@ export const tailwindCSSPlugin: Plugin = {
     },
   ],
   slots: {
-    app: {
+    pagesApp: {
+      imports: `import "../styles/globals.css";`,
+    },
+    appLayout: {
       imports: `import "../styles/globals.css";`,
     },
   },
@@ -53,8 +56,10 @@ export const tailwindCSSPlugin: Plugin = {
         /** @type {import('tailwindcss/types').Config} */
         const config = {
           content: [
+            './app/**/*.{js,ts,jsx,tsx}',
             './pages/**/*.{js,ts,jsx,tsx}',
             './components/**/*.{js,ts,jsx,tsx}',
+            './templates/**/*.{js,ts,jsx,tsx}',
           ],
           theme: {
             extend: {},

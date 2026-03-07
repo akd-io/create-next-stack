@@ -5,12 +5,14 @@ import { nonNull } from "../../../../../helpers/non-null"
 import { filterPlugins } from "../../../../../setup/setup"
 
 export const generateLandingPageTemplate = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<string> => {
   const todos = (await filterPlugins(inputs))
     .flatMap((plugin) => plugin.todos)
     .filter(nonNull)
   const hasTodos = todos.length > 0
+  const editFile =
+    inputs.flags.router === "app" ? "app/page.tsx" : "pages/index.tsx"
 
   return endent`
     import Script from "next/script";
@@ -28,7 +30,7 @@ export const generateLandingPageTemplate = async (
     const LandingPageTemplate = () => {
       const onConfettiLoad = () => {
         const key = "create-next-stack-hasShownConfetti-${encodeURI(
-          getProjectNameOfPath(inputs.args.app_name)
+          getProjectNameOfPath(inputs.args.app_name),
         )}";
         const hasShownConfetti = localStorage.getItem(key);
         if (hasShownConfetti != null) return;
@@ -105,7 +107,7 @@ export const generateLandingPageTemplate = async (
                   🎉
                 </H1>
                 <Subtitle>
-                  Get started by editing <InlineCode>pages/index.tsx</InlineCode>
+                  Get started by editing <InlineCode>${editFile}</InlineCode>
                 </Subtitle>
               </Container>
             </Section>

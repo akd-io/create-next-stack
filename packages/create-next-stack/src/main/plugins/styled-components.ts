@@ -24,7 +24,7 @@ export const styledComponentsPlugin: Plugin = {
     },
   ],
   slots: {
-    nextConfigJs: {
+    nextConfig: {
       nextConfig: {
         compiler: {
           styledComponents: true,

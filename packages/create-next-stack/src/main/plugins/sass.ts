@@ -52,7 +52,10 @@ export const sassPlugin: Plugin = {
     },
   ],
   slots: {
-    app: {
+    pagesApp: {
+      imports: `import "../styles/global-styles.scss";`,
+    },
+    appLayout: {
       imports: `import "../styles/global-styles.scss";`,
     },
   },

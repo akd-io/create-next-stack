@@ -4,6 +4,7 @@ import {
   validateArgs,
   validateFlags,
   writablePackageManagerOptions,
+  writableRouterOptions,
   writableStylingOptions,
 } from "../create-next-stack-types"
 import { exitWithError } from "../helpers/exit-with-error"
@@ -33,6 +34,14 @@ export default class CreateNextStack extends Command {
       description: "Show verbose error messages for debugging purposes.",
     }),
 
+    // Router:
+    router: Flags.string({
+      options: writableRouterOptions,
+      default: "app",
+      description:
+        "Sets the React framework router to use. App Router is the default and recommended option.",
+    }),
+
     // Package manager:
     "package-manager": Flags.string({
       required: true,
@@ -50,7 +59,7 @@ export default class CreateNextStack extends Command {
       required: true,
       options: writableStylingOptions,
       description: `Sets the preferred styling method. (Required) <styling-method> = ${writableStylingOptions.join(
-        "|"
+        "|",
       )}`,
       helpValue: "<styling-method>",
     }),

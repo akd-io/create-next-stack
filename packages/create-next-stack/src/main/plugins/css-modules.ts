@@ -49,7 +49,10 @@ export const cssModulesPlugin: Plugin = {
   active: ({ flags }) => Boolean(flags.styling === "css-modules"),
   technologies: [cssModuleTechnology],
   slots: {
-    app: {
+    pagesApp: {
+      imports: `import "../styles/global-styles.css";`,
+    },
+    appLayout: {
       imports: `import "../styles/global-styles.css";`,
     },
   },
