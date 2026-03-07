@@ -62,15 +62,15 @@ export const materialUIPlugin: Plugin = {
   slots: {
     pagesApp: {
       imports: aldent`
-        import { ThemeProvider } from "@mui/material/styles";
+        import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
         import CssBaseline from "@mui/material/CssBaseline";
         import materialTheme from "../material-theme.ts";
       `,
       componentsStart: aldent`
-        <ThemeProvider theme={materialTheme}>
+        <MuiThemeProvider theme={materialTheme}>
           <CssBaseline />
       `,
-      componentsEnd: `</ThemeProvider>`,
+      componentsEnd: `</MuiThemeProvider>`,
     },
     pagesDocument: {
       imports: `import { roboto } from "../material-theme.ts";`,
@@ -85,17 +85,17 @@ export const materialUIPlugin: Plugin = {
       headContent: `<meta name="theme-color" content="#556cd6" />`,
       providerImports: aldent`
         import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
-        import { ThemeProvider } from "@mui/material/styles";
+        import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
         import CssBaseline from "@mui/material/CssBaseline";
         import materialTheme from "../material-theme.ts";
       `,
       providersStart: aldent`
         <AppRouterCacheProvider>
-          <ThemeProvider theme={materialTheme}>
+          <MuiThemeProvider theme={materialTheme}>
             <CssBaseline />
       `,
       providersEnd: aldent`
-          </ThemeProvider>
+          </MuiThemeProvider>
         </AppRouterCacheProvider>
       `,
     },
