@@ -28,10 +28,10 @@ importers:
     dependencies:
       '@chakra-ui/icons':
         specifier: ^2.0.18
-        version: 2.2.4(@chakra-ui/react@2.3.6(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: 2.2.4(@chakra-ui/react@2.10.9(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@chakra-ui/react':
-        specifier: 2.3.6
-        version: 2.3.6(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^2.10.9
+        version: 2.10.9(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@emotion/react':
         specifier: ^11.10.6
         version: 11.14.0(@types/react@18.3.28)(react@18.3.1)
@@ -59,9 +59,6 @@ importers:
       react-icons:
         specifier: ^4.8.0
         version: 4.12.0(react@18.3.1)
-      validate-npm-package-name:
-        specifier: ^5.0.0
-        version: 5.0.1
     devDependencies:
       '@emotion/babel-plugin':
         specifier: ^11.10.6
@@ -72,9 +69,6 @@ importers:
       '@types/react':
         specifier: ^18.0.37
         version: 18.3.28
-      '@types/validate-npm-package-name':
-        specifier: ^4.0.0
-        version: 4.0.2
       eslint:
         specifier: ^8.38.0
         version: 8.57.1
@@ -338,120 +332,12 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
-  '@chakra-ui/accordion@2.1.2':
-    resolution: {integrity: sha512-Jf7A6I0eIGk34zO5TiTW8orJOFQb5A/D1ekNYbaukNccoUPKJg/xdQ/b00oIR6LT93nJxggkoP/vszfmmTHuFg==}
+  '@chakra-ui/anatomy@2.3.6':
+    resolution: {integrity: sha512-TjmjyQouIZzha/l8JxdBZN1pKZTj7sLpJ0YkFnQFyqHcbfWggW9jKWzY1E0VBnhtFz/xF3KC6UAVuZVSJx+y0g==}
+
+  '@chakra-ui/hooks@2.4.5':
+    resolution: {integrity: sha512-601fWfHE2i7UjaxK/9lDLlOni6vk/I+04YDbM0BrelJy+eqxdlOmoN8Z6MZ3PzFh7ofERUASor+vL+/HaCaZ7w==}
     peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      framer-motion: '>=4.0.0'
-      react: '>=18'
-
-  '@chakra-ui/alert@2.0.11':
-    resolution: {integrity: sha512-n40KHU3j1H6EbIdgptjEad92V7Fpv7YD++ZBjy2g1h4w9ay9nw4kGHib3gaIkBupLf52CfLqySEc8w0taoIlXQ==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/anatomy@2.0.7':
-    resolution: {integrity: sha512-vzcB2gcsGCxhrKbldQQV6LnBPys4eSSsH2UA2mLsT+J3WlXw0aodZw0eE/nH7yLxe4zaQ4Gnc0KjkFW4EWNKSg==}
-
-  '@chakra-ui/avatar@2.2.0':
-    resolution: {integrity: sha512-mpAkfr/JG+BNBw2WvU55CSRFYKeFBUyAQAu3YulznLzi2U3e7k3IA0J8ofbrDYlSH/9KqkDuuSrxqGZgct+Nug==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/breadcrumb@2.1.0':
-    resolution: {integrity: sha512-khBR579SLDEo6Wuo3tETRY6m0yJD/WCvSR7Res2g1B6OJgc9OQGM7yIMu4OdLUTwfXsCnlHTDoSQPUxFOVAMIQ==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/breakpoint-utils@2.0.4':
-    resolution: {integrity: sha512-SUUEYnA/FCIKYDHMuEXcnBMwet+6RAAjQ+CqGD1hlwKPTfh7EK9fS8FoVAJa9KpRKAc/AawzPkgwvorzPj8NSg==}
-
-  '@chakra-ui/button@2.0.11':
-    resolution: {integrity: sha512-J6iMRITqxTxa0JexHUY9c7BXUrTZtSkl3jZ2hxiFybB4MQL8J2wZ24O846B6M+WTYqy7XVuHRuVURnH4czWesw==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/checkbox@2.2.2':
-    resolution: {integrity: sha512-Y6Zbkkk5VNoe0RzqU6F+rKlFVPlubz1KIgYcb7CCNHGOM97dLtRm78eAvJ+7Xmpitr+7zZ4hJLLjfAz+e1X7rA==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      framer-motion: '>=4.0.0'
-      react: '>=18'
-
-  '@chakra-ui/clickable@2.0.10':
-    resolution: {integrity: sha512-G6JdR6yAMlXpfjOJ70W2FL7aUwNuomiMFtkneeTpk7Q42bJ5iGHfYlbZEx5nJd8iB+UluXVM4xlhMv2MyytjGw==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/close-button@2.0.11':
-    resolution: {integrity: sha512-9WF/nwwK9BldS89WQ5PtXK2nFS4r8QOgKls2BOwXfE+rGmOUZtOsu8ne/drXRjgkiBRETR6CxdyUjm7EPzXllw==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/color-mode@2.1.9':
-    resolution: {integrity: sha512-0kx0I+AQon8oS23/X+qMtnhsv/1BUulyJvU56p3Uh8CRaBfgJ7Ly9CerShoUL+5kadu6hN1M9oty4cugaCwv2w==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/control-box@2.0.10':
-    resolution: {integrity: sha512-sHmZanFLEv4IDATl19ZTxq8Bi8PtjfvnsN6xF4k7JGSYUnk1YXUf1coyW7WKdcsczOASrMikfsLc3iEVAzx4Ng==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/counter@2.0.10':
-    resolution: {integrity: sha512-MZK8UKUZp4nFMd+GlV/cq0NIARS7UdlubTuCx+wockw9j2JI5OHzsyK0XiWuJiq5psegSTzpbtT99QfAUm3Yiw==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/css-reset@2.0.8':
-    resolution: {integrity: sha512-VuDD1rk1pFc+dItk4yUcstyoC9D2B35hatHDBtlPMqTczFAzpbgVJJYgEHANatXGfulM5SdckmYEIJ3Tac1Rtg==}
-    peerDependencies:
-      '@emotion/react': '>=10.0.35'
-      react: '>=18'
-
-  '@chakra-ui/descendant@3.0.10':
-    resolution: {integrity: sha512-MHH0Qdm0fGllGP2xgx4WOycmrpctyyEdGw6zxcfs2VqZNlrwmjG3Yb9eVY+Q7UmEv5rwAq6qRn7BhQxgSPn3Cg==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/dom-utils@2.0.3':
-    resolution: {integrity: sha512-aeGlRmTxcv0cvW44DyeZHru1i68ZDQsXpfX2dnG1I1yBlT6GlVx1xYjCULis9mjhgvd2O3NfcYPRTkjNWTDUbA==}
-
-  '@chakra-ui/editable@2.0.13':
-    resolution: {integrity: sha512-GM3n8t3/TOFFcDOWF/tuKsnqn66isZLsU+FkMRY2o0E8XjLBGjCKuXInPW5SRBqhje7EHC+kwViLE780PfwXbw==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/event-utils@2.0.5':
-    resolution: {integrity: sha512-VXoOAIsM0PFKDlhm+EZxkWlUXd5UFTb/LTux3y3A+S9G5fDxLRvpiLWByPUgTFTCDFcgTCF+YnQtdWJB4DLyxg==}
-
-  '@chakra-ui/focus-lock@2.0.12':
-    resolution: {integrity: sha512-NvIP59A11ZNbxXZ3qwxSiQ5npjABkpSbTIjK0uZ9bZm5LMfepRnuuA19VsVlq31/BYV9nHFAy6xzIuG+Qf9xMA==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/form-control@2.0.11':
-    resolution: {integrity: sha512-MVhIe0xY4Zn06IXRXFmS9tCa93snppK1SdUQb1P99Ipo424RrL5ykzLnJ8CAkQrhoVP3sxF7z3eOSzk8/iRfow==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/hooks@2.1.0':
-    resolution: {integrity: sha512-4H6BDITq/YrStW99LXurgPkcz4qHSVy9V/QWXCvt1pCuiDTqNztiW4r508H3ApAOsL9NEbyXcM/zWYD7r5VDjA==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/icon@3.0.11':
-    resolution: {integrity: sha512-RG4jf/XmBdaxOYI5J5QstEtTCPoVlmrQ/XiWhvN0LTgAnmZIqVwFl3Uw+satArdStHAs0GmJZg/E/soFTWuFmw==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
       react: '>=18'
 
   '@chakra-ui/icons@2.2.4':
@@ -460,353 +346,36 @@ packages:
       '@chakra-ui/react': '>=2.0.0'
       react: '>=18'
 
-  '@chakra-ui/image@2.0.11':
-    resolution: {integrity: sha512-S6NqAprPcbHnck/J+2wg06r9SSol62v5A01O8Kke2PnAyjalMcS+6P59lDRO7wvPqsdxq4PPbSTZP6Dww2CvcA==}
+  '@chakra-ui/react@2.10.9':
+    resolution: {integrity: sha512-lhdcgoocOiURwBNR3L8OioCNIaGCZqRfuKioLyaQLjOanl4jr0PQclsGb+w0cmito252vEWpsz2xRqF7y+Flrw==}
     peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/input@2.0.12':
-    resolution: {integrity: sha512-lJ5necu+Wt698HdCTC7L/ErA2nNVJAra7+knPe0qMR+AizGEL7LKCV/bdQe7eggjvKsDGD4alJIEczUvm3JVUQ==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/layout@2.1.9':
-    resolution: {integrity: sha512-ztsavtirtdtjxdqIkGR6fVcrffHp6hs1twRFO/dK14FGXrX3Nn9mi3J1fr1ITBHJq6y5B3yFEj0LHN2fO8dYyw==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/lazy-utils@2.0.2':
-    resolution: {integrity: sha512-MTxutBJZvqNNqrrS0722cI7qrnGu0yUQpIebmTxYwI+F3cOnPEKf5Ni+hrA8hKcw4XJhSY4npAPPYu1zJbOV4w==}
-
-  '@chakra-ui/live-region@2.0.10':
-    resolution: {integrity: sha512-eQ2ZIreR/plzi/KGszDYTi1TvIyGEBcPiWP52BQOS7xwpzb1vsoR1FgFAIELxAGJvKnMUs+9qVogfyRBX8PdOg==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/media-query@3.2.7':
-    resolution: {integrity: sha512-hbgm6JCe0kYU3PAhxASYYDopFQI26cW9kZnbp+5tRL1fykkVWNMPwoGC8FEZPur9JjXp7aoL6H4Jk7nrxY/XWw==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/menu@2.1.2':
-    resolution: {integrity: sha512-6Z7ecXjp6BtZ1ExbFggfxsAj1hwtcathXekmCTxHpXOD+BdjAC/13+oLclwXeuBO85aoTmQrQ2ovfTkO31bzRQ==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      framer-motion: '>=4.0.0'
-      react: '>=18'
-
-  '@chakra-ui/modal@2.2.2':
-    resolution: {integrity: sha512-cCYuqLZO4QqFUI1H+uEqixDk6UiCP3yC+sxkhFTXHIApSG9Z44v5np7BVTd6LKdmAN8pAWcc8Oxf14RvD6LWLw==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
+      '@emotion/react': '>=11'
+      '@emotion/styled': '>=11'
       framer-motion: '>=4.0.0'
       react: '>=18'
       react-dom: '>=18'
 
-  '@chakra-ui/number-input@2.0.12':
-    resolution: {integrity: sha512-3owLjl01sCYpTd3xbq//fJo9QJ0Q3PVYSx9JeOzlXnnTW8ws+yHPrqQzPe7G+tO4yOYynWuUT+NJ9oyCeAJIxA==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
+  '@chakra-ui/styled-system@2.12.4':
+    resolution: {integrity: sha512-oa07UG7Lic5hHSQtGRiMEnYjuhIa8lszyuVhZjZqR2Ap3VMF688y1MVPJ1pK+8OwY5uhXBgVd5c0+rI8aBZlwg==}
 
-  '@chakra-ui/number-utils@2.0.4':
-    resolution: {integrity: sha512-MdYd29GboBoKaXY9jhbY0Wl+0NxG1t/fa32ZSIbU6VrfMsZuAMl4NEJsz7Xvhy50fummLdKn5J6HFS7o5iyIgw==}
-
-  '@chakra-ui/object-utils@2.0.4':
-    resolution: {integrity: sha512-sY98L4v2wcjpwRX8GCXqT+WzpL0i5FHVxT1Okxw0360T2tGnZt7toAwpMfIOR3dzkemP9LfXMCyBmWR5Hi2zpQ==}
-
-  '@chakra-ui/pin-input@2.0.15':
-    resolution: {integrity: sha512-Ha8siSZm9gyjHHBK8ejwhKT6+75U12I/hNiYFvl2JHhc+Uh8tdi7+N+9SILO5vqbIv9kb+WGitvZ67I0cHjSfw==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/popover@2.1.1':
-    resolution: {integrity: sha512-j09NsesfT+eaYITkITYJXDlRcPoOeQUM80neJZKOBgul2iHkVsEoii8dwS5Ip5ONeu4ane1b6zEOlYvYj2SrkA==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      framer-motion: '>=4.0.0'
-      react: '>=18'
-
-  '@chakra-ui/popper@3.0.8':
-    resolution: {integrity: sha512-246eUwuCRsLpTPxn5T8D8T9/6ODqmmz6pRRJAjGnLlUB0gNHgjisBn0UDBic5Gbxcg0sqKvxOMY3uurbW5lXTA==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/portal@2.0.10':
-    resolution: {integrity: sha512-VRYvVAggIuqIZ3IQ6XZ1b5ujjjOUgPk9PPdc9jssUngZa7RG+5NXNhgoM8a5TsXv6aPEolBOlDNWuxzRQ4RSSg==}
-    peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
-
-  '@chakra-ui/progress@2.0.12':
-    resolution: {integrity: sha512-9qtZimZosTliI7siAZkLeCVdCpXCTxmSETCudHcCUsC+FtcFacmA65+We8qij1nOIqmsbm+NYU6PP89TU2n4Hg==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/provider@2.0.20':
-    resolution: {integrity: sha512-mNNfsgm05G4x1VzvHVR9+PNEiuxNnn9xUKDuEwoaO7+IHCMzCRMtPbSJjwmv0xvHUGB9+JChjPpZI5RuHQziJQ==}
-    peerDependencies:
-      '@emotion/react': ^11.0.0
-      '@emotion/styled': ^11.0.0
-      react: '>=18'
-      react-dom: '>=18'
-
-  '@chakra-ui/radio@2.0.12':
-    resolution: {integrity: sha512-871hqAGQaufxyUzPP3aautPBIRZQmpi3fw5XPZ6SbY62dV61M4sjcttd46HfCf5SrAonoOADFQLMGQafznjhaA==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/react-children-utils@2.0.3':
-    resolution: {integrity: sha512-tPQjLEEuAw/DYLRw0cNs/g8tcdhZ3r21Sr9dTAzoyvfk0vbZ24gCXRElltW2GZLiFA63mAidzhPmc+yQF3Wtgg==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-context@2.0.4':
-    resolution: {integrity: sha512-eBITFkf7fLSiMZrSdhweK4fYr41WUNMEeIEOP2dCWolE7WgKxNYaYleC+iRGY0GeXkFM2KYywUtixjJe29NuVA==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-env@2.0.10':
-    resolution: {integrity: sha512-3Yab5EbFcCGYzEsoijy4eA3354Z/JoXyk9chYIuW7Uwd+K6g/R8C0mUSAHeTmfp6Fix9kzDgerO5MWNM87b8cA==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-types@2.0.3':
-    resolution: {integrity: sha512-1mJYOQldFTALE0Wr3j6tk/MYvgQIp6CKkJulNzZrI8QN+ox/bJOh8OVP4vhwqvfigdLTui0g0k8M9h+j2ub/Mw==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-animation-state@2.0.5':
-    resolution: {integrity: sha512-8gZIqZpMS5yTGlC+IqYoSrV13joiAYoeI0YR2t68WuDagcZ459OrjE57+gF04NLxfdV7eUgwqnpuv7IOLbJX/A==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-callback-ref@2.0.4':
-    resolution: {integrity: sha512-he7EQfwMA4mwiDDKvX7cHIJaboCqf7UD3KYHGUcIjsF4dSc2Y8X5Ze4w+hmVZoJWIe4DWUzb3ili2SUm8eTgPg==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-controllable-state@2.0.5':
-    resolution: {integrity: sha512-JrZZpMX24CUyfDuyqDczw9Z9IMvjH8ujETHK0Zu4M0SIsX/q4EqOwwngUFL03I2gx/O38HfSdeX8hMu4zbTAGA==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-disclosure@2.0.5':
-    resolution: {integrity: sha512-kPLB9oxImASRhAbKfvfc03/lbAJbsXndEVRzd+nvvL+QZm2RRfnel3k6OIkWvGFOXXYOPE2+slLe8ZPwbTGg9g==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-event-listener@2.0.4':
-    resolution: {integrity: sha512-VqmalfKWMO8D21XuZO19WUtcP5xhbHXKzkggApTChZUN02UC5TC4pe0pYbDygoeUuNBhY+9lJKHeS08vYsljRg==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-focus-effect@2.0.5':
-    resolution: {integrity: sha512-sbe1QnsXXfjukM+laxbKnT0UnMpHe/7kTzEPG/BYM6/ZDUUmrC1Nz+8l+3H/52iWIaruikDBdif/Xd37Yvu3Kg==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-focus-on-pointer-down@2.0.3':
-    resolution: {integrity: sha512-8cKmpv26JnblexNaekWxEDI7M+MZnJcp1PJUz6lByjfQ1m4YjFr1cdbdhG4moaqzzYs7vTmO/qL8KVq8ZLUwyQ==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-interval@2.0.2':
-    resolution: {integrity: sha512-5U1c0pEB5n0Yri0E4RdFXWx2RVBZBBhD8Uu49dM33jkIguCbIPmZ+YgVry5DDzCHyz4RgDg4yZKOPK0PI8lEUg==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-latest-ref@2.0.2':
-    resolution: {integrity: sha512-Ra/NMV+DSQ3n0AdKsyIqdgnFzls5UntabtIRfDXLrqmJ4tI0a1tDdop2qop0Ue87AcqD9P1KtQue4KPx7wCElw==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-merge-refs@2.0.4':
-    resolution: {integrity: sha512-aoWvtE5tDQNaLCiNUI6WV+MA2zVcCLR5mHSCISmowlTXyXOqOU5Fo9ZoUftzrmgCJpDu5x1jfUOivxuHUueb0g==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-outside-click@2.0.4':
-    resolution: {integrity: sha512-uerJKS8dqg2kHs1xozA5vcCqW0UInuwrfCPb+rDWBTpu7aEqxABMw9W3e4gfOABrAjhKz2I0a/bu2i8zbVwdLw==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-pan-event@2.0.5':
-    resolution: {integrity: sha512-nhE3b85++EEmBD2v6m46TLoA4LehSCZ349P8kvEjw/RC0K6XDOZndaBucIeAlnpEENSSUpczFfMSOLxSHdu0oA==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-previous@2.0.2':
-    resolution: {integrity: sha512-ap/teLRPKopaHYD80fnf0TR/NpTWHJO5VdKg6sPyF1y5ediYLAzPT1G2OqMCj4QfJsYDctioT142URDYe0Nn7w==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-safe-layout-effect@2.0.2':
-    resolution: {integrity: sha512-gl5HDq9RVeDJiT8udtpx12KRV8JPLJHDIUX8f/yZcKpXow0C7FFGg5Yy5I9397NQog5ZjKMuOg+AUq9TLJxsyQ==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-size@2.0.4':
-    resolution: {integrity: sha512-W6rgTLuoSC4ovZtqYco8cG+yBadH3bhlg92T5lgpKDakSDr0mXcZdbGx6g0AOkgxXm0V1jWNGO1743wudtF7ew==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-timeout@2.0.2':
-    resolution: {integrity: sha512-n6zb3OmxtDmRMxYkDgILqKh15aDOa8jNLHBlqHzmlL6mEGNKmMFPW9j/KvpAqSgKjUTDRnnXcpneprTMKy/yrw==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-use-update-effect@2.0.4':
-    resolution: {integrity: sha512-F/I9LVnGAQyvww+x7tQb47wCwjhMYjpxtM1dTg1U3oCEXY0yF1Ts3NJLUAlsr3nAW6epJIwWx61niC7KWpam1w==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react-utils@2.0.8':
-    resolution: {integrity: sha512-OSHHBKZlJWTi2NZcPnBx1PyZvLQY+n5RPBtcri7/89EDdAwz2NdEhp2Dz1yQRctOSCF1kB/rnCYDP1U0oRk9RQ==}
-    peerDependencies:
-      react: '>=18'
-
-  '@chakra-ui/react@2.3.6':
-    resolution: {integrity: sha512-xo43UU+yMqRGHZLU4fSgzojeRl5stlIfT+GLbT9CUVEm0HMJCt2m8RsNPBvGOMzANdC+bzwSiOm+MNzQBi9IBQ==}
-    peerDependencies:
-      '@emotion/react': ^11.0.0
-      '@emotion/styled': ^11.0.0
-      framer-motion: '>=4.0.0'
-      react: '>=18'
-      react-dom: '>=18'
-
-  '@chakra-ui/select@2.0.12':
-    resolution: {integrity: sha512-NCDMb0w48GYCHmazVSQ7/ysEpbnri+Up6n+v7yytf6g43TPRkikvK5CsVgLnAEj0lIdCJhWXTcZer5wG5KOEgA==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/shared-utils@2.0.2':
-    resolution: {integrity: sha512-wC58Fh6wCnFFQyiebVZ0NI7PFW9+Vch0QE6qN7iR+bLseOzQY9miYuzPJ1kMYiFd6QTOmPJkI39M3wHqrPYiOg==}
-
-  '@chakra-ui/skeleton@2.0.17':
-    resolution: {integrity: sha512-dL7viXEKDEzmAJGbHMj+QbGl9PAd0VWztEcWcz5wOGfmAcJllA0lVh6NmG/yqLb6iXPCX4Y1Y0Yurm459TEYWg==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/slider@2.0.12':
-    resolution: {integrity: sha512-Cna04J7e4+F3tJNb7tRNfPP+koicbDsKJBp+f1NpR32JbRzIfrf2Vdr4hfD5/uOfC4RGxnVInNZzZLGBelLtLw==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/spinner@2.0.10':
-    resolution: {integrity: sha512-SwId1xPaaFAaEYrR9eHkQHAuB66CbxwjWaQonEjeEUSh9ecxkd5WbXlsQSyf2hVRIqXJg0m3HIYblcKUsQt9Rw==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/stat@2.0.11':
-    resolution: {integrity: sha512-ZPFK2fKufDSHD8bp/KhO3jLgW/b3PzdG4zV+7iTO7OYjxm5pkBfBAeMqfXGx4cl51rtWUKzsY0HV4vLLjcSjHw==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/styled-system@2.3.4':
-    resolution: {integrity: sha512-Lozbedu+GBj4EbHB/eGv475SFDLApsIEN9gNKiZJBJAE1HIhHn3Seh1iZQSrHC/Beq+D5cQq3Z+yPn3bXtFU7w==}
-
-  '@chakra-ui/switch@2.0.14':
-    resolution: {integrity: sha512-6lzhCkJq7vbD3yGaorGLp0ZZU4ewdKwAu0e62qR8TfYZwbcbpkXbBKloIHbA2XKOduISzS2WYqjmoP6jSKIxrA==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      framer-motion: '>=4.0.0'
-      react: '>=18'
-
-  '@chakra-ui/system@2.3.0':
-    resolution: {integrity: sha512-BxikahglBI0uU8FE3anEorDTU5oKTUuBIEKVcQrEVnrbNuRJEy1OVYyCNXfqW3MpruRO9ypYV2bWt02AZZWEaQ==}
-    peerDependencies:
-      '@emotion/react': ^11.0.0
-      '@emotion/styled': ^11.0.0
-      react: '>=18'
-
-  '@chakra-ui/table@2.0.11':
-    resolution: {integrity: sha512-zQTiqPKEgjdeO/PG0FByn0fH4sPF7dLJF+YszrIzDc6wvpD96iY6MYLeV+CSelbH1g0/uibcJ10PSaFStfGUZg==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/tabs@2.1.4':
-    resolution: {integrity: sha512-/CQGj1lC9lvruT5BCYZH6Ok64W4CDSysDXuR2XPZXIih9kVOdXQEMXxG8+3vc63WqTBjHuURtZI0g8ouOy84ew==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/tag@2.0.11':
-    resolution: {integrity: sha512-iJJcX+4hl+6Se/8eCRzG+xxDwZfiYgc4Ly/8s93M0uW2GLb+ybbfSE2DjeKSyk3mQVeGzuxGkBfDHH2c2v26ew==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/textarea@2.0.12':
-    resolution: {integrity: sha512-msR9YMynRXwZIqR6DgjQ2MogA/cW1syBx/R0v3es+9Zx8zlbuKdoLhYqajHteCup8dUzTeIH2Vs2vAwgq4wu5A==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
-
-  '@chakra-ui/theme-tools@2.0.12':
-    resolution: {integrity: sha512-mnMlKSmXkCjHUJsKWmJbgBTGF2vnLaMLv1ihkBn5eQcCubMQrBLTiMAEFl5pZdzuHItU6QdnLGA10smcXbNl0g==}
+  '@chakra-ui/theme-tools@2.2.9':
+    resolution: {integrity: sha512-PcbYL19lrVvEc7Oydy//jsy/MO/rZz1DvLyO6AoI+bI/+Kwz9WfOKsspbulEhRg5COayE0R/IZPsskXZ7Mp4bA==}
     peerDependencies:
       '@chakra-ui/styled-system': '>=2.0.0'
 
-  '@chakra-ui/theme-utils@2.0.1':
-    resolution: {integrity: sha512-NDwzgTPxm+v3PAJlSSU1MORHLMqO9vsRJ+ObELD5wpvE9aEyRziN/AZSoK2oLwCQMPEiU7R99K5ij1E6ptMt7w==}
-
-  '@chakra-ui/theme@2.1.14':
-    resolution: {integrity: sha512-6EYJCQlrjSjNAJvZmw1un50F8+sQDFsdwu/7UzWe+TeANpKlz4ZcHbh0gkl3PD62lGis+ehITUwqRm8htvDOjw==}
+  '@chakra-ui/theme@3.4.9':
+    resolution: {integrity: sha512-GAom2SjSdRWTcX76/2yJOFJsOWHQeBgaynCUNBsHq62OafzvELrsSHDUw0bBqBb1c2ww0CclIvGilPup8kXBFA==}
     peerDependencies:
-      '@chakra-ui/styled-system': '>=2.0.0'
+      '@chakra-ui/styled-system': '>=2.8.0'
 
-  '@chakra-ui/toast@4.0.0':
-    resolution: {integrity: sha512-abeeloJac5T9WK2IN76fEM5FSRH+erNXln2HqDf5wLBn33avSBXWyTiUL8riVSUqto0lrIn6FuK/MmKo0DH4og==}
+  '@chakra-ui/utils@2.2.5':
+    resolution: {integrity: sha512-KTBCK+M5KtXH6p54XS39ImQUMVtAx65BoZDoEms3LuObyTo1+civ1sMm4h3nRT320U6H5H7D35WnABVQjqU/4g==}
     peerDependencies:
-      '@chakra-ui/system': 2.3.0
-      framer-motion: '>=4.0.0'
-      react: '>=18'
-      react-dom: '>=18'
-
-  '@chakra-ui/tooltip@2.2.0':
-    resolution: {integrity: sha512-oB97aQJBW+U3rRIt1ct7NaDRMnbW16JQ5ZBCl3BzN1VJWO3djiNuscpjVdZSceb+FdGSFo+GoDozp1ZwqdfFeQ==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      framer-motion: '>=4.0.0'
-      react: '>=18'
-      react-dom: '>=18'
-
-  '@chakra-ui/transition@2.0.11':
-    resolution: {integrity: sha512-O0grc162LARPurjz1R+J+zr4AAKsVwN5+gaqLfZLMWg6TpvczJhwEA2fLCNAdkC/gomere390bJsy52xfUacUw==}
-    peerDependencies:
-      framer-motion: '>=4.0.0'
-      react: '>=18'
-
-  '@chakra-ui/utils@2.0.11':
-    resolution: {integrity: sha512-4ZQdK6tbOuTrUCsAQBHWo7tw5/Q6pBV93ZbVpats61cSWMFGv32AIQw9/hA4un2zDeSWN9ZMVLNjAY2Dq/KQOA==}
-
-  '@chakra-ui/visually-hidden@2.0.11':
-    resolution: {integrity: sha512-e+5amYvnsmEQdiWH4XMyvrtGTdwz//+48vwj5CsNWWcselzkwqodmciy5rIrT71/SCQDOtmgnL7ZWAUOffxfsQ==}
-    peerDependencies:
-      '@chakra-ui/system': '>=2.0.0'
-      react: '>=18'
+      react: '>=16.8.0'
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
-
-  '@ctrl/tinycolor@3.6.1':
-    resolution: {integrity: sha512-SITSV6aIXsuVNV3f3O0f2n/cgyEDWoSqtZMYiAmcsYHydcKrOz3gUxB/iXd/Qf08+IZX4KpgNbvUdMBmWz+kcA==}
-    engines: {node: '>=10'}
 
   '@emnapi/core@1.8.1':
     resolution: {integrity: sha512-AvT9QFpxK0Zd8J0jopedNm+w/2fIzvtPKPjqyw9jwvBaReTTqPBk9Hixaz7KbjimP+QNz605/XnjFcDAL2pqBg==}
@@ -1390,8 +959,8 @@ packages:
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
-  '@types/lodash.mergewith@4.6.6':
-    resolution: {integrity: sha512-RY/8IaVENjG19rxTZu9Nukqh0W2UrYgmBj5sdns4hWRZaV8PqR7wIKHFKzvOTjo4zVRV7sVI+yFhAJql12Kfqg==}
+  '@types/lodash.mergewith@4.6.9':
+    resolution: {integrity: sha512-fgkoCAOF47K7sxrQ7Mlud2TH023itugZs2bUg8h/KzT+BnZNrR2jAOmaokbLunHNnobXVWOezAeNn/lZqwxkcw==}
 
   '@types/lodash@4.17.24':
     resolution: {integrity: sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ==}
@@ -1624,11 +1193,14 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@zag-js/element-size@0.1.0':
-    resolution: {integrity: sha512-QF8wp0+V8++z+FHXiIw93+zudtubYszOtYbNgK39fg3pi+nCZtuSm4L1jC5QZMatNZ83MfOzyNCfgUubapagJQ==}
+  '@zag-js/dom-query@0.31.1':
+    resolution: {integrity: sha512-oiuohEXAXhBxpzzNm9k2VHGEOLC1SXlXSbRPcfBZ9so5NRQUA++zCE7cyQJqGLTZR0t3itFLlZqDbYEXRrefwg==}
 
-  '@zag-js/focus-visible@0.1.0':
-    resolution: {integrity: sha512-PeaBcTmdZWcFf7n1aM+oiOdZc+sy14qi0emPIeUuGMTjbP0xLGrZu43kdpHnWSXy7/r4Ubp/vlg50MCV8+9Isg==}
+  '@zag-js/element-size@0.31.1':
+    resolution: {integrity: sha512-4T3yvn5NqqAjhlP326Fv+w9RqMIBbNN9H72g5q2ohwzhSgSfZzrKtjL4rs9axY/cw9UfMfXjRjEE98e5CMq7WQ==}
+
+  '@zag-js/focus-visible@0.31.1':
+    resolution: {integrity: sha512-dbLksz7FEwyFoANbpIlNnd3bVm0clQSUsnP8yUVQucStZPsuWjCrhL2jlAbGNrTrahX96ntUMXHb/sM68TibFg==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1939,15 +1511,15 @@ packages:
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
+  color2k@2.0.3:
+    resolution: {integrity: sha512-zW190nQTIoXcGCaU08DvVNFTmQhUpnJfVuAKfWqUQkflXKpaDdpaYoM0iluLS9lgJNHyBF58KKA2FBEwkD7wog==}
+
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
 
   commander@13.1.0:
     resolution: {integrity: sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw==}
     engines: {node: '>=18'}
-
-  compute-scroll-into-view@1.0.14:
-    resolution: {integrity: sha512-mKDjINe3tc6hGelUMNDzuhorIUZ7kS7BwyY0r2wQd2HOH2tRuJykiC06iSEX8y1TuhNzvz4GcJnK16mM2J1NMQ==}
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
@@ -1958,8 +1530,8 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
-  copy-to-clipboard@3.3.1:
-    resolution: {integrity: sha512-i13qo6kIHTTpCm8/Wup+0b1mVWETvu2kIMzKoK8FpkLkFxlt0znUAHcMzox+T8sPlqtZXq3CulEjQHsYiGFJUw==}
+  copy-to-clipboard@3.3.3:
+    resolution: {integrity: sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==}
 
   cosmiconfig@7.1.0:
     resolution: {integrity: sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==}
@@ -1976,9 +1548,6 @@ packages:
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
-
-  css-box-model@1.2.1:
-    resolution: {integrity: sha512-a7Vr4Q/kd/aw96bnJG332W9V9LkJO69JRcaCYDUqjp6/z0w6VcZjgAcTbgFxEPfBgdnAwlh3iwu+hLopa+flJw==}
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
@@ -2384,8 +1953,8 @@ packages:
       react-dom:
         optional: true
 
-  framesync@5.3.0:
-    resolution: {integrity: sha512-oc5m68HDO/tuK2blj7ZcdEBRx3p1PjrgHazL8GYEpvULhrtGIFbQArN6cQS2QhW8mitffaB+VYzMjDqBxxQeoA==}
+  framesync@6.1.2:
+    resolution: {integrity: sha512-jBTqhX6KaQVDyus8muwZbBeGGP0XgujBRbQ7gM7BRdS3CadCZIHiawyzYLnafYcvZIh5j8WE7cxZKFn7dXhu9g==}
 
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
@@ -3370,8 +2939,8 @@ packages:
     peerDependencies:
       react: ^18.3.1
 
-  react-fast-compare@3.2.0:
-    resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
+  react-fast-compare@3.2.2:
+    resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
 
   react-focus-lock@2.13.7:
     resolution: {integrity: sha512-20lpZHEQrXPb+pp1tzd4ULL6DyO5D2KnR0G69tTDdydrmNhU7pdFmbQUYVyHUgp+xN29IuFR0PVuhOmvaZL9Og==}
@@ -3759,9 +3328,6 @@ packages:
   text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
 
-  tiny-invariant@1.3.3:
-    resolution: {integrity: sha512-+FbBPE1o9QAYvviau/qC5SE3caw21q3xkvWKBtja5vgqOWIHHJ3ioaq1VPfn/Szqctz2bU/oYeKd9/z5BL+PVg==}
-
   tinyglobby@0.2.15:
     resolution: {integrity: sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ==}
     engines: {node: '>=12.0.0'}
@@ -3828,6 +3394,9 @@ packages:
 
   tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+
+  tslib@2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
@@ -4272,656 +3841,75 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@chakra-ui/accordion@2.1.2(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@chakra-ui/anatomy@2.3.6': {}
+
+  '@chakra-ui/hooks@2.4.5(react@18.3.1)':
     dependencies:
-      '@chakra-ui/descendant': 3.0.10(react@18.3.1)
-      '@chakra-ui/icon': 3.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-controllable-state': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/transition': 2.0.11(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@chakra-ui/utils': 2.2.5(react@18.3.1)
+      '@zag-js/element-size': 0.31.1
+      copy-to-clipboard: 3.3.3
+      framesync: 6.1.2
       react: 18.3.1
 
-  '@chakra-ui/alert@2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@chakra-ui/icons@2.2.4(@chakra-ui/react@2.10.9(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@chakra-ui/icon': 3.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/spinner': 2.0.10(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
+      '@chakra-ui/react': 2.10.9(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
 
-  '@chakra-ui/anatomy@2.0.7': {}
-
-  '@chakra-ui/avatar@2.2.0(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@chakra-ui/react@2.10.9(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@chakra-ui/image': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-children-utils': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/breadcrumb@2.1.0(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-children-utils': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/breakpoint-utils@2.0.4': {}
-
-  '@chakra-ui/button@2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/spinner': 2.0.10(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/checkbox@2.2.2(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/form-control': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-types': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-use-callback-ref': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-controllable-state': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-safe-layout-effect': 2.0.2(react@18.3.1)
-      '@chakra-ui/react-use-update-effect': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/visually-hidden': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@zag-js/focus-visible': 0.1.0
-      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/clickable@2.0.10(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/close-button@2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/icon': 3.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/color-mode@2.1.9(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-use-safe-layout-effect': 2.0.2(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/control-box@2.0.10(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/counter@2.0.10(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/number-utils': 2.0.4
-      '@chakra-ui/react-use-callback-ref': 2.0.4(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/css-reset@2.0.8(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)':
-    dependencies:
+      '@chakra-ui/hooks': 2.4.5(react@18.3.1)
+      '@chakra-ui/styled-system': 2.12.4(react@18.3.1)
+      '@chakra-ui/theme': 3.4.9(@chakra-ui/styled-system@2.12.4(react@18.3.1))(react@18.3.1)
+      '@chakra-ui/utils': 2.2.5(react@18.3.1)
       '@emotion/react': 11.14.0(@types/react@18.3.28)(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/descendant@3.0.10(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/dom-utils@2.0.3': {}
-
-  '@chakra-ui/editable@2.0.13(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-types': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-use-callback-ref': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-controllable-state': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-focus-on-pointer-down': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-safe-layout-effect': 2.0.2(react@18.3.1)
-      '@chakra-ui/react-use-update-effect': 2.0.4(react@18.3.1)
-      '@chakra-ui/shared-utils': 2.0.2
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/event-utils@2.0.5': {}
-
-  '@chakra-ui/focus-lock@2.0.12(@types/react@18.3.28)(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/dom-utils': 2.0.3
-      react: 18.3.1
-      react-focus-lock: 2.13.7(@types/react@18.3.28)(react@18.3.1)
-    transitivePeerDependencies:
-      - '@types/react'
-
-  '@chakra-ui/form-control@2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/icon': 3.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-types': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/hooks@2.1.0(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-utils': 2.0.8(react@18.3.1)
-      '@chakra-ui/utils': 2.0.11
-      compute-scroll-into-view: 1.0.14
-      copy-to-clipboard: 3.3.1
-      react: 18.3.1
-
-  '@chakra-ui/icon@3.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/shared-utils': 2.0.2
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/icons@2.2.4(@chakra-ui/react@2.3.6(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react': 2.3.6(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/image@2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-use-safe-layout-effect': 2.0.2(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/input@2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/form-control': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/object-utils': 2.0.4
-      '@chakra-ui/react-children-utils': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/shared-utils': 2.0.2
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/layout@2.1.9(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/breakpoint-utils': 2.0.4
-      '@chakra-ui/icon': 3.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/object-utils': 2.0.4
-      '@chakra-ui/react-children-utils': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/shared-utils': 2.0.2
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/lazy-utils@2.0.2': {}
-
-  '@chakra-ui/live-region@2.0.10(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
-  '@chakra-ui/media-query@3.2.7(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/breakpoint-utils': 2.0.4
-      '@chakra-ui/react-env': 2.0.10(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/menu@2.1.2(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/clickable': 2.0.10(react@18.3.1)
-      '@chakra-ui/descendant': 3.0.10(react@18.3.1)
-      '@chakra-ui/lazy-utils': 2.0.2
-      '@chakra-ui/popper': 3.0.8(react@18.3.1)
-      '@chakra-ui/react-children-utils': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-animation-state': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-controllable-state': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-disclosure': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-focus-effect': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-outside-click': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-update-effect': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/transition': 2.0.11(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/modal@2.2.2(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(@types/react@18.3.28)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/close-button': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/focus-lock': 2.0.12(@types/react@18.3.28)(react@18.3.1)
-      '@chakra-ui/portal': 2.0.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-types': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/transition': 2.0.11(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1)
+      '@popperjs/core': 2.11.8
+      '@zag-js/focus-visible': 0.31.1
       aria-hidden: 1.2.6
       framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+      react-fast-compare: 3.2.2
+      react-focus-lock: 2.13.7(@types/react@18.3.28)(react@18.3.1)
       react-remove-scroll: 2.7.2(@types/react@18.3.28)(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
 
-  '@chakra-ui/number-input@2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@chakra-ui/styled-system@2.12.4(react@18.3.1)':
     dependencies:
-      '@chakra-ui/counter': 2.0.10(react@18.3.1)
-      '@chakra-ui/form-control': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/icon': 3.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-types': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-use-callback-ref': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-event-listener': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-interval': 2.0.2(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-safe-layout-effect': 2.0.2(react@18.3.1)
-      '@chakra-ui/react-use-update-effect': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/number-utils@2.0.4': {}
-
-  '@chakra-ui/object-utils@2.0.4': {}
-
-  '@chakra-ui/pin-input@2.0.15(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/descendant': 3.0.10(react@18.3.1)
-      '@chakra-ui/react-children-utils': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-controllable-state': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/popover@2.1.1(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/close-button': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/lazy-utils': 2.0.2
-      '@chakra-ui/popper': 3.0.8(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-types': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-use-animation-state': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-disclosure': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-focus-effect': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-focus-on-pointer-down': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/popper@3.0.8(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-types': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@popperjs/core': 2.11.8
-      react: 18.3.1
-
-  '@chakra-ui/portal@2.0.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-safe-layout-effect': 2.0.2(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@chakra-ui/progress@2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/provider@2.0.20(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/css-reset': 2.0.8(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/portal': 2.0.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-env': 2.0.10(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/utils': 2.0.11
-      '@emotion/react': 11.14.0(@types/react@18.3.28)(react@18.3.1)
-      '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@chakra-ui/radio@2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/form-control': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-types': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      '@zag-js/focus-visible': 0.1.0
-      react: 18.3.1
-
-  '@chakra-ui/react-children-utils@2.0.3(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
-  '@chakra-ui/react-context@2.0.4(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
-  '@chakra-ui/react-env@2.0.10(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
-  '@chakra-ui/react-types@2.0.3(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
-  '@chakra-ui/react-use-animation-state@2.0.5(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/dom-utils': 2.0.3
-      '@chakra-ui/react-use-event-listener': 2.0.4(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/react-use-callback-ref@2.0.4(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
-  '@chakra-ui/react-use-controllable-state@2.0.5(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-use-callback-ref': 2.0.4(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/react-use-disclosure@2.0.5(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-use-callback-ref': 2.0.4(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/react-use-event-listener@2.0.4(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-use-callback-ref': 2.0.4(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/react-use-focus-effect@2.0.5(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/dom-utils': 2.0.3
-      '@chakra-ui/react-use-event-listener': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-update-effect': 2.0.4(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/react-use-focus-on-pointer-down@2.0.3(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-use-event-listener': 2.0.4(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/react-use-interval@2.0.2(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-use-callback-ref': 2.0.4(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/react-use-latest-ref@2.0.2(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
-  '@chakra-ui/react-use-merge-refs@2.0.4(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
-  '@chakra-ui/react-use-outside-click@2.0.4(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-use-callback-ref': 2.0.4(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/react-use-pan-event@2.0.5(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/event-utils': 2.0.5
-      '@chakra-ui/react-use-latest-ref': 2.0.2(react@18.3.1)
-      framesync: 5.3.0
-      react: 18.3.1
-
-  '@chakra-ui/react-use-previous@2.0.2(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
-  '@chakra-ui/react-use-safe-layout-effect@2.0.2(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
-  '@chakra-ui/react-use-size@2.0.4(react@18.3.1)':
-    dependencies:
-      '@zag-js/element-size': 0.1.0
-      react: 18.3.1
-
-  '@chakra-ui/react-use-timeout@2.0.2(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-use-callback-ref': 2.0.4(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/react-use-update-effect@2.0.4(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
-  '@chakra-ui/react-utils@2.0.8(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/utils': 2.0.11
-      react: 18.3.1
-
-  '@chakra-ui/react@2.3.6(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/accordion': 2.1.2(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/alert': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/avatar': 2.2.0(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/breadcrumb': 2.1.0(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/button': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/checkbox': 2.2.2(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/close-button': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/control-box': 2.0.10(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/counter': 2.0.10(react@18.3.1)
-      '@chakra-ui/css-reset': 2.0.8(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/editable': 2.0.13(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/form-control': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/hooks': 2.1.0(react@18.3.1)
-      '@chakra-ui/icon': 3.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/image': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/input': 2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/layout': 2.1.9(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/live-region': 2.0.10(react@18.3.1)
-      '@chakra-ui/media-query': 3.2.7(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/menu': 2.1.2(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/modal': 2.2.2(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(@types/react@18.3.28)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/number-input': 2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/pin-input': 2.0.15(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/popover': 2.1.1(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/popper': 3.0.8(react@18.3.1)
-      '@chakra-ui/portal': 2.0.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/progress': 2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/provider': 2.0.20(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/radio': 2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-env': 2.0.10(react@18.3.1)
-      '@chakra-ui/select': 2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/skeleton': 2.0.17(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/slider': 2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/spinner': 2.0.10(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/stat': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/styled-system': 2.3.4
-      '@chakra-ui/switch': 2.0.14(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/table': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/tabs': 2.1.4(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/tag': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/textarea': 2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/theme': 2.1.14(@chakra-ui/styled-system@2.3.4)
-      '@chakra-ui/theme-utils': 2.0.1
-      '@chakra-ui/toast': 4.0.0(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/tooltip': 2.2.0(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/transition': 2.0.11(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/utils': 2.0.11
-      '@chakra-ui/visually-hidden': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@emotion/react': 11.14.0(@types/react@18.3.28)(react@18.3.1)
-      '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1)
-      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    transitivePeerDependencies:
-      - '@types/react'
-
-  '@chakra-ui/select@2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/form-control': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/shared-utils@2.0.2': {}
-
-  '@chakra-ui/skeleton@2.0.17(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/media-query': 3.2.7(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-use-previous': 2.0.2(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/slider@2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/number-utils': 2.0.4
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-types': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-use-callback-ref': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-controllable-state': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-latest-ref': 2.0.2(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-pan-event': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-size': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-update-effect': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/spinner@2.0.10(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/stat@2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/icon': 3.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/styled-system@2.3.4':
-    dependencies:
+      '@chakra-ui/utils': 2.2.5(react@18.3.1)
       csstype: 3.2.3
+    transitivePeerDependencies:
+      - react
+
+  '@chakra-ui/theme-tools@2.2.9(@chakra-ui/styled-system@2.12.4(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@chakra-ui/anatomy': 2.3.6
+      '@chakra-ui/styled-system': 2.12.4(react@18.3.1)
+      '@chakra-ui/utils': 2.2.5(react@18.3.1)
+      color2k: 2.0.3
+    transitivePeerDependencies:
+      - react
+
+  '@chakra-ui/theme@3.4.9(@chakra-ui/styled-system@2.12.4(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@chakra-ui/anatomy': 2.3.6
+      '@chakra-ui/styled-system': 2.12.4(react@18.3.1)
+      '@chakra-ui/theme-tools': 2.2.9(@chakra-ui/styled-system@2.12.4(react@18.3.1))(react@18.3.1)
+      '@chakra-ui/utils': 2.2.5(react@18.3.1)
+    transitivePeerDependencies:
+      - react
+
+  '@chakra-ui/utils@2.2.5(react@18.3.1)':
+    dependencies:
+      '@types/lodash.mergewith': 4.6.9
       lodash.mergewith: 4.6.2
-
-  '@chakra-ui/switch@2.0.14(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/checkbox': 2.2.2(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/color-mode': 2.1.9(react@18.3.1)
-      '@chakra-ui/react-utils': 2.0.8(react@18.3.1)
-      '@chakra-ui/styled-system': 2.3.4
-      '@chakra-ui/theme-utils': 2.0.1
-      '@chakra-ui/utils': 2.0.11
-      '@emotion/react': 11.14.0(@types/react@18.3.28)(react@18.3.1)
-      '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1)
-      react: 18.3.1
-      react-fast-compare: 3.2.0
-
-  '@chakra-ui/table@2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/tabs@2.1.4(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/clickable': 2.0.10(react@18.3.1)
-      '@chakra-ui/descendant': 3.0.10(react@18.3.1)
-      '@chakra-ui/lazy-utils': 2.0.2
-      '@chakra-ui/react-children-utils': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-controllable-state': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-safe-layout-effect': 2.0.2(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/tag@2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/icon': 3.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-context': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/textarea@2.0.12(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/form-control': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/theme-tools@2.0.12(@chakra-ui/styled-system@2.3.4)':
-    dependencies:
-      '@chakra-ui/anatomy': 2.0.7
-      '@chakra-ui/styled-system': 2.3.4
-      '@ctrl/tinycolor': 3.6.1
-
-  '@chakra-ui/theme-utils@2.0.1':
-    dependencies:
-      '@chakra-ui/styled-system': 2.3.4
-      '@chakra-ui/theme': 2.1.14(@chakra-ui/styled-system@2.3.4)
-      lodash.mergewith: 4.6.2
-
-  '@chakra-ui/theme@2.1.14(@chakra-ui/styled-system@2.3.4)':
-    dependencies:
-      '@chakra-ui/anatomy': 2.0.7
-      '@chakra-ui/styled-system': 2.3.4
-      '@chakra-ui/theme-tools': 2.0.12(@chakra-ui/styled-system@2.3.4)
-
-  '@chakra-ui/toast@4.0.0(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/alert': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/close-button': 2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/portal': 2.0.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-use-timeout': 2.0.2(react@18.3.1)
-      '@chakra-ui/react-use-update-effect': 2.0.4(react@18.3.1)
-      '@chakra-ui/styled-system': 2.3.4
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/theme': 2.1.14(@chakra-ui/styled-system@2.3.4)
-      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@chakra-ui/tooltip@2.2.0(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/popper': 3.0.8(react@18.3.1)
-      '@chakra-ui/portal': 2.0.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@chakra-ui/react-types': 2.0.3(react@18.3.1)
-      '@chakra-ui/react-use-disclosure': 2.0.5(react@18.3.1)
-      '@chakra-ui/react-use-event-listener': 2.0.4(react@18.3.1)
-      '@chakra-ui/react-use-merge-refs': 2.0.4(react@18.3.1)
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
-      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@chakra-ui/transition@2.0.11(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      framer-motion: 10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-
-  '@chakra-ui/utils@2.0.11':
-    dependencies:
-      '@types/lodash.mergewith': 4.6.6
-      css-box-model: 1.2.1
-      framesync: 5.3.0
-      lodash.mergewith: 4.6.2
-
-  '@chakra-ui/visually-hidden@2.0.11(@chakra-ui/system@2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@chakra-ui/system': 2.3.0(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.28)(react@18.3.1))(@types/react@18.3.28)(react@18.3.1))(react@18.3.1)
       react: 18.3.1
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
-
-  '@ctrl/tinycolor@3.6.1': {}
 
   '@emnapi/core@1.8.1':
     dependencies:
@@ -5563,7 +4551,7 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
-  '@types/lodash.mergewith@4.6.6':
+  '@types/lodash.mergewith@4.6.9':
     dependencies:
       '@types/lodash': 4.17.24
 
@@ -5782,9 +4770,13 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@zag-js/element-size@0.1.0': {}
+  '@zag-js/dom-query@0.31.1': {}
 
-  '@zag-js/focus-visible@0.1.0': {}
+  '@zag-js/element-size@0.31.1': {}
+
+  '@zag-js/focus-visible@0.31.1':
+    dependencies:
+      '@zag-js/dom-query': 0.31.1
 
   acorn-jsx@5.3.2(acorn@8.16.0):
     dependencies:
@@ -6127,11 +5119,11 @@ snapshots:
 
   color-name@1.1.4: {}
 
+  color2k@2.0.3: {}
+
   colorette@2.0.20: {}
 
   commander@13.1.0: {}
-
-  compute-scroll-into-view@1.0.14: {}
 
   concat-map@0.0.1: {}
 
@@ -6139,7 +5131,7 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  copy-to-clipboard@3.3.1:
+  copy-to-clipboard@3.3.3:
     dependencies:
       toggle-selection: 1.0.6
 
@@ -6173,10 +5165,6 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
-
-  css-box-model@1.2.1:
-    dependencies:
-      tiny-invariant: 1.3.3
 
   csstype@3.2.3: {}
 
@@ -6722,9 +5710,9 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  framesync@5.3.0:
+  framesync@6.1.2:
     dependencies:
-      tslib: 2.8.1
+      tslib: 2.4.0
 
   fs.realpath@1.0.0: {}
 
@@ -7908,7 +6896,7 @@ snapshots:
       react: 18.3.1
       scheduler: 0.23.2
 
-  react-fast-compare@3.2.0: {}
+  react-fast-compare@3.2.2: {}
 
   react-focus-lock@2.13.7(@types/react@18.3.28)(react@18.3.1):
     dependencies:
@@ -8345,8 +7333,6 @@ snapshots:
 
   text-table@0.2.0: {}
 
-  tiny-invariant@1.3.3: {}
-
   tinyglobby@0.2.15:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.3)
@@ -8410,6 +7396,8 @@ snapshots:
       strip-bom: 3.0.0
 
   tslib@1.14.1: {}
+
+  tslib@2.4.0: {}
 
   tslib@2.8.1: {}
 

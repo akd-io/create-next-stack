@@ -20,7 +20,7 @@
     "test": "turbo test",
     "test:cli": "turbo test --filter create-next-stack",
     "test:web": "turbo test --filter create-next-stack-website",
-    "update-readmes": "turbo update-readme --filter create-next-stack"
+    "update-readmes": "turbo update-readme"
   },
   "devDependencies": {
     "husky": "^9.1.7",
