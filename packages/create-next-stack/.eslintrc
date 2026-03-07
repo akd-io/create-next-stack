@@ -6,5 +6,11 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "eslint-config-prettier"
-  ]
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "destructuredArrayIgnorePattern": "^_" }
+    ]
+  }
 }

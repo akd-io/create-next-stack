@@ -75,46 +75,17 @@ Below you see an overview of Create Next Stack's usage, including detailed infor
 <!-- CNS-START-OF-HELP-OUTPUT -->
 
 ```
+Create Next Stack is a website and CLI tool used to easily set up the boilerplate of new Next.js apps.
+
+VERSION
+  create-next-stack/0.2.8 darwin-arm64 node-v22.20.0
+
 USAGE
-  $ create-next-stack [APP_NAME] [FLAGS]
+  $ create-next-stack [COMMAND]
 
-ARGUMENTS
-  APP_NAME  The name of your app, optionally including a path prefix. Eg.:
-            "my-app" or "path/to/my-app"
-
-FLAGS
-  -h, --help                    Shows the CLI help information.
-  -v, --version                 Shows the CLI version information.
-  --chakra                      Adds Chakra UI. (Component library) (Requires
-                                Emotion and Framer Motion)
-  --debug                       Show verbose error messages for debugging
-                                purposes.
-  --formatting-pre-commit-hook  Adds a formatting pre-commit hook. (Requires
-                                Prettier)
-  --formik                      Adds Formik. (Form library)
-  --framer-motion               Adds Framer Motion. (Animation library)
-  --github-actions              Adds a GitHub Actions continuous integration
-                                workflow.
-  --mantine                     Adds Mantine. (Component library) (Requires
-                                Emotion)
-  --material-ui                 Adds Material UI. (Component library) (Requires
-                                Emotion)
-  --netlify                     Adds Netlify. (Hosting)
-  --package-manager=<option>    (required) Sets the preferred package manager.
-                                (Required)
-                                <options: pnpm|yarn|npm>
-  --plausible                   Adds Plausible. (Analytics)
-  --prettier                    Adds Prettier. (Code formatting)
-  --prisma                      Adds Prisma. (ORM)
-  --react-hook-form             Adds React Hook Form. (Form library)
-  --react-icons                 Adds React Icons. (Icon library)
-  --react-query                 Adds React Query. (Server state management
-                                library)
-  --styling=<styling-method>    (required) Sets the preferred styling method.
-                                (Required) <styling-method> =
-                                emotion|styled-components|tailwind-css|css-modul
-                                es|css-modules-with-sass
-  --vercel                      Adds Vercel. (Hosting)
+COMMANDS
+  create-next-stack
+  help               Display help for create-next-stack.
 ```
 
 <!-- CNS-END-OF-HELP-OUTPUT -->

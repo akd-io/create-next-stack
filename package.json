@@ -5,9 +5,10 @@
   "description": "Create Next Stack monorepo",
   "author": "Anders Kjær Damgaard",
   "license": "MIT",
+  "packageManager": "pnpm@10.17.1",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "prepare": "husky install",
+    "prepare": "husky",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "build": "turbo build",
@@ -19,14 +20,14 @@
     "test": "turbo test",
     "test:cli": "turbo test --filter create-next-stack",
     "test:web": "turbo test --filter create-next-stack-website",
-    "update-readmes": "turbo update-readme"
+    "update-readmes": "turbo update-readme --filter create-next-stack"
   },
   "devDependencies": {
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.1",
-    "prettier": "^2.8.8",
-    "turbo": "^1.9.9",
-    "typescript": "^4.9.5"
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.5.3",
+    "turbo": "^2.4.4",
+    "typescript": "^5.8.2"
   },
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"

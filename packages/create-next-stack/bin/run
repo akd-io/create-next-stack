@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-const oclif = require("@oclif/core")
+const { execute } = require("@oclif/core")
 
-oclif
-  .run()
-  .then(require("@oclif/core/flush"))
-  .catch(require("@oclif/core/handle"))
+execute({ dir: __dirname })
