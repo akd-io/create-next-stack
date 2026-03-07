@@ -81,6 +81,7 @@ export const nextPlugin: Plugin = {
           "--no-tailwind",
           "--no-src-dir",
           "--import-alias=@/*",
+          "--turbopack",
           flags.router === "app" ? "--app" : "--no-app",
         ]
 

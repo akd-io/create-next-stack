@@ -15,6 +15,8 @@ export const generateLandingPageTemplate = async (
     inputs.flags.router === "app" ? "app/page.tsx" : "pages/index.tsx"
 
   return endent`
+    "use client";
+
     import Script from "next/script";
     import styles from "./LandingPageTemplate.module.css";
     import { Container } from "./components/Container";

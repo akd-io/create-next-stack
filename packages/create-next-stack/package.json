@@ -27,8 +27,10 @@
   },
   "oclif": {
     "bin": "create-next-stack",
-    "commands": "./lib/main/commands",
-    "default": "create-next-stack",
+    "commands": {
+      "strategy": "single",
+      "target": "./lib/main/commands/create-next-stack.js"
+    },
     "plugins": [
       "@oclif/plugin-help"
     ]

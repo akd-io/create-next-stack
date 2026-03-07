@@ -17,10 +17,12 @@ test(
       "--react-icons",
       "--react-query",
       "--plausible",
+      "--github-actions",
+      "--prisma",
       "--vercel",
       "--netlify",
       ".",
     ])
   },
-  twentyMinutes
+  twentyMinutes,
 )

@@ -23,21 +23,8 @@ const invalidArgsArrays: Array<{ name: string; args: string[] }> = [
     ],
   },
   {
-    name: "mantineWithoutEmotion",
-    args: ["--package-manager=pnpm", "--styling=css-modules", "--mantine"],
-  },
-  {
     name: "chakraWithoutEmotion",
-    args: [
-      "--package-manager=pnpm",
-      "--styling=css-modules",
-      "--chakra",
-      "--framer-motion",
-    ],
-  },
-  {
-    name: "chakraWithoutFramerMotion",
-    args: ["--package-manager=pnpm", "--styling=emotion", "--chakra"],
+    args: ["--package-manager=pnpm", "--styling=css-modules", "--chakra"],
   },
   {
     name: "materialUiWithoutEmotion",
@@ -53,6 +40,6 @@ describe("testInvalidInputs", () => {
         await testArgsWithoutFinalChecks(args)
       }).rejects.toThrow()
     },
-    oneMinute
+    oneMinute,
   )
 })

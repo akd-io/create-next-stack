@@ -21,6 +21,8 @@ test(
       "--react-icons",
       "--react-query",
       "--plausible",
+      "--github-actions",
+      "--prisma",
       "--vercel",
       "--netlify",
       ".",
@@ -35,5 +37,5 @@ test(
     const pnpmLockExists = await exists(`${runDirectory}/pnpm-lock.yaml`)
     expect(pnpmLockExists).toBe(true)
   },
-  twentyMinutes
+  twentyMinutes,
 )

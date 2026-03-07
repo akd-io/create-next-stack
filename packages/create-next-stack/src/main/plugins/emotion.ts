@@ -29,6 +29,7 @@ export const emotionPlugin: Plugin = {
     {
       id: "setUpEmotion",
       description: "setting up Emotion",
+      shouldRun: async ({ flags }) => flags.router === "pages",
       run: async () => {
         await modifyJsonFile("tsconfig.json", (tsConfig) => ({
           ...tsConfig,
@@ -63,13 +64,17 @@ export const emotionPlugin: Plugin = {
         });
 
         useServerInsertedHTML(() => {
-          const entries = (cache as any).inserted;
+          const entries = cache.inserted;
           if (Object.keys(entries).length === 0) return null;
-          const names = Object.keys(entries);
           let styles = "";
-          for (const name of names) {
-            styles += entries[name];
+          const names: string[] = [];
+          for (const [name, value] of Object.entries(entries)) {
+            if (typeof value === "string") {
+              names.push(name);
+              styles += value;
+            }
           }
+          if (names.length === 0) return null;
           return <style data-emotion={\`\${cache.key} \${names.join(" ")}\`} dangerouslySetInnerHTML={{ __html: styles }} />;
         });
       `,
@@ -82,6 +87,6 @@ export const emotionPlugin: Plugin = {
     },
   },
   todos: [
-    "Note: Emotion styles only apply in Client Components. Add the `'use client'` directive to components that use CSS-in-JS styling.",
+    "Note: Emotion styles only apply in Client Components. Add `'use client'` to components that use CSS-in-JS styling.",
   ],
 }
