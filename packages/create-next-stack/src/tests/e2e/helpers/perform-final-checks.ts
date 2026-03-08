@@ -11,11 +11,7 @@ export const performFinalChecks = async (
   }
 
   logTestInfo("Checking formatting...")
-  await runCommand(
-    "npx",
-    ["prettier", "--check", "--ignore-path=.gitignore", "."],
-    options,
-  )
+  await runCommand("npx", ["prettier", "--check", "."], options)
 
   logTestInfo("Checking linting...")
   await runCommand("npm", ["run", "lint"], options)

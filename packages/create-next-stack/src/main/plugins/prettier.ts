@@ -32,18 +32,28 @@ export const prettierPlugin: Plugin = {
     {
       name: "format",
       description: "Formats all source code in the project.",
-      command: "prettier --write --ignore-path=.gitignore .",
+      command: "prettier --write .",
     },
     {
       name: "format:check",
       description: "Checks the formatting of all code in the project.",
-      command: "prettier --check --ignore-path=.gitignore .",
+      command: "prettier --check .",
     },
   ],
   addFiles: [
     {
       destination: ".prettierrc",
       content: `{}`,
+    },
+    {
+      destination: ".prettierignore",
+      content: [
+        ".next",
+        "pnpm-lock.yaml",
+        "package-lock.json",
+        "yarn.lock",
+        "",
+      ].join("\n"),
     },
   ],
 }
