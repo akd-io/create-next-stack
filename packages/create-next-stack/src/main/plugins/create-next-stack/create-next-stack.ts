@@ -54,6 +54,12 @@ export const createNextStackPlugin: Plugin = {
   ],
   addFiles: [
     {
+      destination: ".prettierignore",
+      content: ["pnpm-lock.yaml", "package-lock.json", "yarn.lock", ""].join(
+        "\n",
+      ),
+    },
+    {
       destination: ".env",
       condition: async (inputs) =>
         (await getEnvironmentVariables(inputs)).length > 0,

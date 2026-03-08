@@ -45,11 +45,5 @@ export const prettierPlugin: Plugin = {
       destination: ".prettierrc",
       content: `{}`,
     },
-    {
-      destination: ".prettierignore",
-      content: ["pnpm-lock.yaml", "package-lock.json", "yarn.lock", ""].join(
-        "\n",
-      ),
-    },
   ],
 }
