@@ -1,26 +1,45 @@
-import endent from "endent"
+import aldent from "aldent"
 import path from "path"
-import { copyDirectory } from "../../helpers/copy-directory"
-import { getCreateNextStackDir } from "../../helpers/get-create-next-stack-dir"
-import { modifyJsonFile, toObject, writeFile } from "../../helpers/io"
-import { isGitInitialized } from "../../helpers/is-git-initialized"
-import { nonNull } from "../../helpers/non-null"
-import { runCommand } from "../../helpers/run-command"
-import { logWarning } from "../../logging"
-import { evalProperty, Plugin } from "../../plugin"
-import { getNameVersionCombo, install, uninstall } from "../../setup/packages"
-import { filterPlugins } from "../../setup/setup"
-import { prettierPackage } from "../prettier"
-import { generateEnv } from "./add-content/generate-env"
-import { generateApp } from "./add-content/pages/generate-app"
-import { generateDocument } from "./add-content/pages/generate-document"
-import { generateIndexPage } from "./add-content/pages/generate-index"
-import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate"
-import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies"
-import { generateNextConfig } from "./add-next-config/generate-next-config"
-import { generateReadme } from "./add-readme/generate-readme"
-import { getEnvironmentVariables } from "./sort-orders/environment-variables"
-import { getScripts } from "./sort-orders/scripts"
+import { copyDirectory } from "../../helpers/copy-directory.ts"
+import { getCreateNextStackDir } from "../../helpers/get-create-next-stack-dir.ts"
+import { modifyJsonFile, toObject, writeFile } from "../../helpers/io.ts"
+import { isGitInitialized } from "../../helpers/is-git-initialized.ts"
+import { nonNull } from "../../helpers/non-null.ts"
+import { runCommand } from "../../helpers/run-command.ts"
+import { logWarning } from "../../logging.ts"
+import {
+  evalOptionalProperty,
+  evalProperty,
+  type Plugin,
+} from "../../plugin.ts"
+import {
+  getNameVersionCombo,
+  install,
+  uninstall,
+} from "../../setup/packages.ts"
+import { filterPlugins } from "../../setup/setup.ts"
+import { prettierPackage } from "../prettier.ts"
+import { generateAppPage } from "./add-content/app/generate-page.ts"
+import { generateLayout } from "./add-content/app/generate-layout.ts"
+import {
+  generateProviders,
+  hasProviderSlots,
+} from "./add-content/app/generate-providers.ts"
+import { generateEnv } from "./add-content/generate-env.ts"
+import { generateApp } from "./add-content/pages/generate-app.ts"
+import { generateDocument } from "./add-content/pages/generate-document.ts"
+import { generateIndexPage } from "./add-content/pages/generate-index.ts"
+import { generateLandingPageTemplate } from "./add-content/templates/LandingPage/generate-LandingPageTemplate.ts"
+import { generateTechnologies } from "./add-content/templates/LandingPage/generate-technologies.ts"
+import { generateEslintConfig } from "./add-eslint-config/generate-eslint-config.ts"
+import { generateNextConfig } from "./add-next-config/generate-next-config.ts"
+import {
+  generatePostcssConfig,
+  hasPostcssConfig,
+} from "./add-postcss-config/generate-postcss-config.ts"
+import { generateReadme } from "./add-readme/generate-readme.ts"
+import { getEnvironmentVariables } from "./sort-orders/environment-variables.ts"
+import { getScripts } from "./sort-orders/scripts.ts"
 
 const gitAttributesFilename = ".gitattributes"
 
@@ -30,6 +49,9 @@ export const createNextStackPlugin: Plugin = {
   description:
     "Adds various miscellaneous steps. Some necessities, some niceties.",
   active: true,
+  tmpDependencies: [
+    { name: "prettier-plugin-organize-imports", version: "^4.0.0" },
+  ],
   addFiles: [
     {
       destination: ".env",
@@ -38,21 +60,52 @@ export const createNextStackPlugin: Plugin = {
       content: (inputs) => generateEnv(inputs),
     },
     {
-      destination: "next.config.js",
+      destination: "next.config.ts",
       content: (inputs) => generateNextConfig(inputs),
     },
     {
+      destination: "postcss.config.mjs",
+      condition: (inputs) => hasPostcssConfig(inputs),
+      content: (inputs) => generatePostcssConfig(inputs),
+    },
+    {
+      destination: "eslint.config.mjs",
+      content: (inputs) => generateEslintConfig(inputs),
+    },
+    // Pages Router files
+    {
       destination: "pages/index.tsx",
+      condition: (inputs) => inputs.flags.router === "pages",
       content: (inputs) => generateIndexPage(inputs),
     },
     {
       destination: "pages/_app.tsx",
+      condition: (inputs) => inputs.flags.router === "pages",
       content: (inputs) => generateApp(inputs),
     },
     {
       destination: "pages/_document.tsx",
+      condition: (inputs) => inputs.flags.router === "pages",
       content: (inputs) => generateDocument(inputs),
     },
+    // App Router files
+    {
+      destination: "app/layout.tsx",
+      condition: (inputs) => inputs.flags.router === "app",
+      content: (inputs) => generateLayout(inputs),
+    },
+    {
+      destination: "app/providers.tsx",
+      condition: async (inputs) =>
+        inputs.flags.router === "app" && (await hasProviderSlots(inputs)),
+      content: (inputs) => generateProviders(inputs),
+    },
+    {
+      destination: "app/page.tsx",
+      condition: (inputs) => inputs.flags.router === "app",
+      content: () => generateAppPage(),
+    },
+    // Shared files
     {
       destination: "templates/LandingPage/technologies.ts",
       content: (inputs) => generateTechnologies(inputs),
@@ -82,7 +135,7 @@ export const createNextStackPlugin: Plugin = {
                 ...acc,
                 [script.name]: script.command,
               }),
-              {}
+              {},
             ),
           },
         }))
@@ -107,9 +160,17 @@ export const createNextStackPlugin: Plugin = {
           .filter(nonNull)
 
         await Promise.all(
-          pluginFilesToWrite.map(async ({ destination, content }) =>
-            writeFile(destination, await evalProperty(content, inputs))
-          )
+          pluginFilesToWrite.map(
+            async ({ destination, content, condition }) => {
+              const shouldWrite = await evalOptionalProperty(
+                condition,
+                inputs,
+                true,
+              )
+              if (!shouldWrite) return
+              await writeFile(destination, await evalProperty(content, inputs))
+            },
+          ),
         )
       },
     },
@@ -150,13 +211,13 @@ export const createNextStackPlugin: Plugin = {
                 ? Object.values(plugin.tmpDependencies)
                 : []),
             ]
-          }
+          },
         )
 
         const devDeps = (await filterPlugins(inputs)).flatMap((plugin) =>
           plugin.devDependencies != null
             ? Object.values(plugin.devDependencies)
-            : []
+            : [],
         )
 
         if (depsAndTmpDeps.length > 0) {
@@ -174,7 +235,7 @@ export const createNextStackPlugin: Plugin = {
         const tmpDeps = (await filterPlugins(inputs)).flatMap((plugin) =>
           plugin.tmpDependencies != null
             ? Object.values(plugin.tmpDependencies)
-            : []
+            : [],
         )
 
         if (tmpDeps.length > 0) {
@@ -188,6 +249,7 @@ export const createNextStackPlugin: Plugin = {
       run: async () => {
         await runCommand("npx", [
           getNameVersionCombo(prettierPackage),
+          "--plugin=prettier-plugin-organize-imports",
           "--write",
           ".",
         ])
@@ -199,7 +261,7 @@ export const createNextStackPlugin: Plugin = {
       shouldRun: async () => {
         if (!(await isGitInitialized())) {
           logWarning(
-            `Skipping ${gitAttributesFilename} setup, as Git was not initialized.`
+            `Skipping ${gitAttributesFilename} setup, as Git was not initialized.`,
           )
           return false
         }
@@ -208,12 +270,12 @@ export const createNextStackPlugin: Plugin = {
       run: async () => {
         await writeFile(
           gitAttributesFilename,
-          endent`
+          aldent`
             # Normalize end of line. Read more about why in the links below:
             # https://prettier.io/docs/en/options.html#end-of-line
             # https://git-scm.com/docs/gitattributes#_effects
             * text=auto eol=lf
-          `
+          `,
         )
       },
     },

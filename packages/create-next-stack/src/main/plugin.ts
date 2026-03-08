@@ -1,5 +1,5 @@
-import { NextConfig } from "next"
-import { ValidCNSInputs } from "./create-next-stack-types"
+import type { NextConfig } from "next"
+import type { ValidCNSInputs } from "./create-next-stack-types.ts"
 
 export type Plugin = {
   /** ID that uniquely identifies the plugin */
@@ -55,7 +55,7 @@ export type Plugin = {
   }>
   /** Slots to fill in the generated files. */
   slots?: {
-    /** Slots to fill in the _app.tsx file. The file is generated using the following template:
+    /** Slots to fill in the pages/_app.tsx file (Pages Router).
      *
      * ```ts
      * `
@@ -79,7 +79,7 @@ export type Plugin = {
      * `
      * ```
      */
-    app?: {
+    pagesApp?: {
       /** Code to add to the imports section of the _app.tsx file. */
       imports?: string
       /** Code to add after the imports section of the _app.tsx file. */
@@ -91,7 +91,8 @@ export type Plugin = {
       /** Code to add to the end of the components section of the _app.tsx file. */
       componentsEnd?: string
     }
-    /** Slots to fill in the _document.tsx file. The file is generated using the following template:
+    /** Slots to fill in the pages/_document.tsx file (Pages Router).
+     *
      * ```ts
      * `
      * import NextDocument, { Html, Head, Main, NextScript } from "next/document";
@@ -120,7 +121,7 @@ export type Plugin = {
      * `
      * ```
      */
-    document?: {
+    pagesDocument?: {
       /** Code to add to the imports section of the `_document.tsx` file. */
       imports?: string
       /** Code to add after the imports section of the `_document.tsx` file. */
@@ -136,30 +137,68 @@ export type Plugin = {
       /** Code to add to the <body> tag of the `_document.tsx` file. */
       body?: string
     }
-    /**
-     * Slots to fill in the next.config.js file. The file is generated using the following template:
+    /** Slots to fill in the app/layout.tsx and app/providers.tsx files (App Router).
      *
-     * ```js
+     * Layout slots are used in `app/layout.tsx` (a server component).
+     * Provider slots are used in `app/providers.tsx` (a client component).
+     * The providers.tsx file is only generated if any plugin contributes provider slots.
+     */
+    appLayout?: {
+      /** Code to add to the imports section of `app/layout.tsx`. */
+      imports?: string
+      /** Code to add after the imports section of `app/layout.tsx`. */
+      afterImports?: string
+      /** Code to add to the attributes of the <html> tag. */
+      htmlAttributes?: string
+      /** Code to add inside the <head> tag. */
+      headContent?: string
+      /** Code to add to the attributes of the <body> tag. */
+      bodyAttributes?: string
+
+      /** Code to add to the imports section of `app/providers.tsx`. */
+      providerImports?: string
+      /** Code to add after the imports section of `app/providers.tsx`. */
+      providerAfterImports?: string
+      /** Code to add before the return statement in the Providers component. */
+      providerLogic?: string
+      /** Code to add to the start of the providers wrapping in `app/providers.tsx`. */
+      providersStart?: string
+      /** Code to add to the end of the providers wrapping in `app/providers.tsx`. */
+      providersEnd?: string
+    }
+    /**
+     * Slots to fill in the generated postcss.config.mjs file.
+     * PostCSS config is only generated if any plugin contributes postcssConfig slots.
+     */
+    postcssConfig?: {
+      /** Plugin entries to add to the PostCSS config plugins object. Key is plugin name, value is options. */
+      plugins?: Record<string, string>
+    }
+    /**
+     * Slots to fill in the next.config.ts file.
+     *
+     * ```ts
      * `
+     * import type { NextConfig } from "next";
      * ${imports}
      *
-     * const nextConfig = {
+     * const nextConfig: NextConfig = {
      *   reactStrictMode: true,
      *   ${...nextConfig}
      * };
      *
-     * module.exports = ${wrappersStart}nextConfig${wrappersEnd};
+     * export default ${wrappersStart}nextConfig${wrappersEnd};
      * `
      * ```
      */
-    nextConfigJs?: {
-      /** Code to add to the imports section of the `next.config.js` file. */
+    nextConfig?: {
+      /** Code to add to the imports section of the `next.config.ts` file. */
       imports?: string
-      /** JSON object to merge into the `nextConfig` object of the `next.config.js` file. */
+      /** JSON object to merge into the `nextConfig` object of the `next.config.ts` file. */
       nextConfig?: NextConfig
-      /** Code to add to the start of the export of the `nextConfig` object of the `next.config.js` file. */
+      /** Code to add to the start of the export of the `nextConfig` object of the `next.config.ts` file. */
       wrappersStart?: string
-      /** Code to add to the end of the export of the `nextConfig` object of the `next.config.js` file. */
+      /** Code to add to the end of the export of the `nextConfig` object of the `next.config.ts` file. */
       wrappersEnd?: string
     }
   }
@@ -222,7 +261,7 @@ export type Step = {
 
 export const evalProperty = async <T extends boolean | string>(
   value: T | ((inputs: ValidCNSInputs) => T | Promise<T>),
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<T> => {
   if (typeof value === "function") return await value(inputs)
   return value
@@ -231,7 +270,7 @@ export const evalProperty = async <T extends boolean | string>(
 export const evalOptionalProperty = async <T extends boolean | string>(
   value: T | ((inputs: ValidCNSInputs) => T | Promise<T>) | undefined,
   inputs: ValidCNSInputs,
-  defaultValue: Exclude<T, undefined>
+  defaultValue: Exclude<T, undefined>,
 ): Promise<T> => {
   if (typeof value === "undefined") return defaultValue
   return await evalProperty(value, inputs)

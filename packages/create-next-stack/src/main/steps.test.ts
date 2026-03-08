@@ -1,7 +1,6 @@
-import { test } from "@jest/globals"
-import { nonNull } from "./helpers/non-null"
-import { plugins } from "./setup/setup"
-import { stepsOrder } from "./steps"
+import { nonNull } from "./helpers/non-null.ts"
+import { plugins } from "./setup/setup.ts"
+import { stepsOrder } from "./steps.ts"
 
 test("`steps` contains no duplicates", () => {
   const seenSteps = new Set<string>()

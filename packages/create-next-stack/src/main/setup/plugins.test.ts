@@ -1,5 +1,4 @@
-import { test } from "@jest/globals"
-import { plugins } from "./setup"
+import { plugins } from "./setup.ts"
 
 test("`plugins` contains no duplicates", () => {
   const seenPluginIDs = new Set<string>()

@@ -1,5 +1,6 @@
-import { modifyJsonFile, toObject } from "../helpers/io"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import { modifyJsonFile, toObject } from "../helpers/io.ts"
+import type { Plugin } from "../plugin.ts"
 
 export const emotionPlugin: Plugin = {
   id: "emotion",
@@ -9,6 +10,7 @@ export const emotionPlugin: Plugin = {
   dependencies: [
     { name: "@emotion/react", version: "^11.0.0" },
     { name: "@emotion/styled", version: "^11.0.0" },
+    { name: "@emotion/cache", version: "^11.0.0" },
   ],
   technologies: [
     {
@@ -27,10 +29,8 @@ export const emotionPlugin: Plugin = {
     {
       id: "setUpEmotion",
       description: "setting up Emotion",
+      shouldRun: async ({ flags }) => flags.router === "pages",
       run: async () => {
-        /*
-         *  Add TypeScript support for the css-prop as per the Emotion docs: https://emotion.sh/docs/typescript#css-prop
-         */
         await modifyJsonFile("tsconfig.json", (tsConfig) => ({
           ...tsConfig,
           compilerOptions: {
@@ -42,12 +42,51 @@ export const emotionPlugin: Plugin = {
     },
   ],
   slots: {
-    nextConfigJs: {
+    nextConfig: {
       nextConfig: {
         compiler: {
           emotion: true,
         },
       },
     },
+    appLayout: {
+      providerImports: aldent`
+        import React from "react";
+        import { useServerInsertedHTML } from "next/navigation";
+        import createCache from "@emotion/cache";
+        import { CacheProvider } from "@emotion/react";
+      `,
+      providerLogic: aldent`
+        const [cache] = React.useState(() => {
+          const cache = createCache({ key: "css" });
+          cache.compat = true;
+          return cache;
+        });
+
+        useServerInsertedHTML(() => {
+          const entries = cache.inserted;
+          if (Object.keys(entries).length === 0) return null;
+          let styles = "";
+          const names: string[] = [];
+          for (const [name, value] of Object.entries(entries)) {
+            if (typeof value === "string") {
+              names.push(name);
+              styles += value;
+            }
+          }
+          if (names.length === 0) return null;
+          return <style data-emotion={\`\${cache.key} \${names.join(" ")}\`} dangerouslySetInnerHTML={{ __html: styles }} />;
+        });
+      `,
+      providersStart: aldent`
+        <CacheProvider value={cache}>
+      `,
+      providersEnd: aldent`
+        </CacheProvider>
+      `,
+    },
   },
+  todos: [
+    "Note: Emotion styles only apply in Client Components. Add `'use client'` to components that use CSS-in-JS styling.",
+  ],
 }

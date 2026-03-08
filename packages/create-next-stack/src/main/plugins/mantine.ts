@@ -1,5 +1,5 @@
-import endent from "endent"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import type { Plugin } from "../plugin.ts"
 
 export const mantinePlugin: Plugin = {
   id: "mantine",
@@ -7,10 +7,13 @@ export const mantinePlugin: Plugin = {
   description: "Adds support for Mantine",
   active: ({ flags }) => Boolean(flags.mantine),
   dependencies: [
-    { name: "@mantine/core", version: "^6.0.0" },
-    { name: "@mantine/hooks", version: "^6.0.0" },
-    { name: "@mantine/next", version: "^6.0.0" },
-    { name: "@emotion/server", version: "^11.0.0" },
+    { name: "@mantine/core", version: "^8.0.0" },
+    { name: "@mantine/hooks", version: "^8.0.0" },
+  ],
+  devDependencies: [
+    { name: "postcss", version: "^8.0.0" },
+    { name: "postcss-preset-mantine", version: "^1.0.0" },
+    { name: "postcss-simple-vars", version: "^7.0.0" },
   ],
   technologies: [
     {
@@ -20,50 +23,64 @@ export const mantinePlugin: Plugin = {
         "Mantine is a fully featured React component library. Aside from the core package, Mantine also provides additional packages for utility hooks, form state management, date inputs and calendars, notifications, code highlighting, right text editor, and the list goes on.",
       links: [
         { title: "Website", url: "https://mantine.dev/" },
-        { title: "Docs", url: "https://mantine.dev/pages/getting-started/" },
+        { title: "Docs", url: "https://mantine.dev/getting-started/" },
         { title: "GitHub", url: "https://github.com/mantinedev/mantine" },
       ],
     },
   ],
   slots: {
-    app: {
-      imports: endent`
-        import { MantineProvider } from '@mantine/core';
-        import { mantineTheme } from "../mantine-theme";
+    pagesApp: {
+      imports: aldent`
+        import { MantineProvider } from "@mantine/core";
+        import "@mantine/core/styles.css";
       `,
-      componentsStart: endent`
-        <MantineProvider
-          withGlobalStyles
-          withNormalizeCSS
-          theme={mantineTheme}
-        >
+      componentsStart: aldent`
+        <MantineProvider>
       `,
-      componentsEnd: endent`
+      componentsEnd: aldent`
         </MantineProvider>
       `,
     },
-    document: {
-      imports: endent`
-        import { createGetInitialProps } from '@mantine/next';
+    pagesDocument: {
+      imports: aldent`
+        import { ColorSchemeScript } from "@mantine/core";
       `,
-      afterImports: endent`
-        const getInitialProps = createGetInitialProps();
+      headTags: aldent`
+        <ColorSchemeScript />
       `,
-      classMembers: endent`
-        static getInitialProps = getInitialProps;
+    },
+    appLayout: {
+      imports: aldent`
+        import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
+        import "@mantine/core/styles.css";
       `,
+      htmlAttributes: `{...mantineHtmlProps}`,
+      headContent: aldent`
+        <ColorSchemeScript />
+      `,
+      providerImports: aldent`
+        import { MantineProvider } from "@mantine/core";
+      `,
+      providersStart: aldent`
+        <MantineProvider>
+      `,
+      providersEnd: aldent`
+        </MantineProvider>
+      `,
+    },
+    postcssConfig: {
+      plugins: {
+        "postcss-preset-mantine": "{}",
+        "postcss-simple-vars": `{
+      variables: {
+        "mantine-breakpoint-xs": "36em",
+        "mantine-breakpoint-sm": "48em",
+        "mantine-breakpoint-md": "62em",
+        "mantine-breakpoint-lg": "75em",
+        "mantine-breakpoint-xl": "88em",
+      },
+    }`,
+      },
     },
   },
-  addFiles: [
-    {
-      destination: "mantine-theme.ts",
-      content: endent`
-        import { MantineThemeOverride } from "@mantine/core";
-      
-        export const mantineTheme: MantineThemeOverride = {
-          colorScheme: "light",
-        };
-      `,
-    },
-  ],
 }

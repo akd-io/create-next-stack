@@ -1,42 +1,43 @@
-import endent from "endent"
-import { merge } from "lodash"
-import { NextConfig } from "next"
-import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { nonNull } from "../../../helpers/non-null"
-import { stringify } from "../../../helpers/stringify"
-import { filterPlugins } from "../../../setup/setup"
+import aldent from "aldent"
+import lodash from "lodash"
+const { merge } = lodash
+import type { NextConfig } from "next"
+import type { ValidCNSInputs } from "../../../create-next-stack-types.ts"
+import { nonNull } from "../../../helpers/non-null.ts"
+import { stringify } from "../../../helpers/stringify.ts"
+import { filterPlugins } from "../../../setup/setup.ts"
 
 export const generateNextConfig = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<string> => {
   const defaultNextConfig: NextConfig = {
     reactStrictMode: true,
   }
   const nextConfigs = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.nextConfigJs?.nextConfig)
+    .map((plugin) => plugin.slots?.nextConfig?.nextConfig)
     .filter(nonNull)
   const mergedNextConfig = merge(defaultNextConfig, ...nextConfigs)
 
   const imports = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.nextConfigJs?.imports)
+    .map((plugin) => plugin.slots?.nextConfig?.imports)
     .filter(nonNull)
     .join("\n")
 
   const wrappersStart = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.nextConfigJs?.wrappersStart)
+    .map((plugin) => plugin.slots?.nextConfig?.wrappersStart)
     .filter(nonNull)
 
   const wrappersEnd = (await filterPlugins(inputs))
-    .map((plugin) => plugin.slots?.nextConfigJs?.wrappersEnd)
+    .map((plugin) => plugin.slots?.nextConfig?.wrappersEnd)
     .filter(nonNull)
     .reverse()
 
-  return endent`
+  return aldent`
+    import type { NextConfig } from "next";
     ${imports}
 
-    /** @type {import('next').NextConfig} */
-    const nextConfig = ${stringify(mergedNextConfig)};
-    
-    module.exports = ${wrappersStart}nextConfig${wrappersEnd};
+    const nextConfig: NextConfig = ${stringify(mergedNextConfig)};
+
+    export default ${wrappersStart.join("")}nextConfig${wrappersEnd.join("")};
   `
 }

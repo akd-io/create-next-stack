@@ -1,7 +1,7 @@
-import endent from "endent"
-import { ValidCNSInputs } from "../../../../../create-next-stack-types"
-import { stringify } from "../../../../../helpers/stringify"
-import { getTechnologies } from "../../../sort-orders/technologies"
+import aldent from "aldent"
+import type { ValidCNSInputs } from "../../../../../create-next-stack-types.ts"
+import { stringify } from "../../../../../helpers/stringify.ts"
+import { getTechnologies } from "../../../sort-orders/technologies.ts"
 
 // This type should match the one in the template below.
 export type Technology = {
@@ -14,11 +14,11 @@ export type Technology = {
 }
 
 export const generateTechnologies = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<string> => {
   const technologies: Technology[] = await getTechnologies(inputs)
 
-  return endent`
+  return aldent`
     export type Technology = {
       name: string;
       description: string;

@@ -1,28 +1,37 @@
-import { Flex, Heading, Text } from "@chakra-ui/react"
+import { Flex, Text } from "@mantine/core"
 import { Section } from "../../../components/Section"
 import { SocialIcons } from "../../../components/SocialIcons"
 
 export const HeaderSection = () => {
   return (
     <Section as="header">
-      <Flex direction="column" alignItems={["left", "center"]} gap="6">
-        <Flex direction="column" alignItems={["left", "center"]} gap="1">
-          <Heading
-            as="h1"
-            size="3xl"
-            bgGradient="linear(to-tr, brand.600, brand.400)"
-            bgClip="text"
-            textAlign={["left", "center"]}
-            fontWeight="800"
+      <Flex
+        direction="column"
+        align={{ base: "flex-start", sm: "center" }}
+        gap="24"
+      >
+        <Flex
+          direction="column"
+          align={{ base: "flex-start", sm: "center" }}
+          gap="4"
+        >
+          <Text
+            component="h1"
+            fz={{ base: "2.5rem", sm: "3rem" }}
+            fw={800}
+            ta={{ base: "left", sm: "center" }}
+            variant="gradient"
+            gradient={{ from: "#6838F1", to: "#DC51F2", deg: 135 }}
+            lh={1.2}
           >
             Create Next Stack
-          </Heading>
+          </Text>
           <Text
-            fontSize="1.25em"
-            fontWeight="bold"
-            bgGradient="linear(to-tr, brand.600, brand.400)"
-            bgClip="text"
-            textAlign={["left", "center"]}
+            fz="1.25em"
+            fw="bold"
+            ta={{ base: "left", sm: "center" }}
+            variant="gradient"
+            gradient={{ from: "#6838F1", to: "#DC51F2", deg: 135 }}
           >
             The ultimate starter kit for Next.js
           </Text>

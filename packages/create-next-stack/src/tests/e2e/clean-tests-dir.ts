@@ -4,8 +4,8 @@ import path from "path"
   process.env["TEST"] = "true"
 
   const testsDirectory = path.resolve(
-    __dirname,
-    "../../../../../../create-next-stack-tests"
+    import.meta.dirname,
+    "../../../../../../create-next-stack-tests",
   )
 
   try {
@@ -13,11 +13,11 @@ import path from "path"
     if (!stat.isDirectory()) {
       console.error(
         "Path lead to a file instead of a directory. Path:",
-        testsDirectory
+        testsDirectory,
       )
       return
     }
-  } catch (error) {
+  } catch {
     console.log("Tests directory not found.")
     return
   }

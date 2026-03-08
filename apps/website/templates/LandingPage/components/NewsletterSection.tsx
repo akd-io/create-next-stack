@@ -1,4 +1,6 @@
-import { Button, Flex, Heading, Input, Text } from "@chakra-ui/react"
+"use client"
+
+import { Button, Flex, Text, TextInput, Title } from "@mantine/core"
 import { FC, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 
@@ -41,7 +43,7 @@ export const Newsletter: FC = () => {
           "Content-Type": "application/json",
         },
         method: "POST",
-      }
+      },
     )
     if (response.status === 200) {
       setState("submitSuccess")
@@ -52,37 +54,36 @@ export const Newsletter: FC = () => {
 
   return (
     <Flex
-      width="100%"
+      w="100%"
       direction="column"
-      alignItems={["left", "center"]}
+      align={{ base: "flex-start", sm: "center" }}
       gap="10px"
     >
-      <Heading>Join the Newsletter</Heading>
+      <Title order={2}>Join the Newsletter</Title>
       <Text>Stay up to date with new feature releases!</Text>
       {state === "submitSuccess" && (
-        <Text padding="16px">Thank you for subscribing to the newsletter!</Text>
+        <Text p="16px">Thank you for subscribing to the newsletter!</Text>
       )}
       {state !== "submitSuccess" ? (
         <Flex
-          as="form"
+          component="form"
           onSubmit={handleSubmit(onSubmit)}
           gap="10px"
-          direction={["column", "row"]}
-          padding="12px 0"
+          direction={{ base: "column", sm: "row" }}
+          p="12px 0"
         >
-          <Input
+          <TextInput
             {...register("email")}
             type="email"
             placeholder="Email Address"
-            background="white"
+            styles={{ input: { background: "white" } }}
             disabled={state === "loading"}
           />
           <Button
             type="submit"
-            variant="solid"
-            colorScheme="purple"
-            minWidth=""
-            isLoading={state === "loading"}
+            variant="filled"
+            color="violet"
+            loading={state === "loading"}
           >
             Subscribe
           </Button>
@@ -91,7 +92,7 @@ export const Newsletter: FC = () => {
       {state === "submitError" && (
         <Text>Something went wrong. Please try again later.</Text>
       )}
-      <Text fontSize="0.8em">
+      <Text fz="0.8em">
         {"We won't send you spam. Unsubscribe at any time."}
       </Text>
     </Flex>

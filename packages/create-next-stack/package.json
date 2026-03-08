@@ -7,6 +7,7 @@
   "homepage": "https://github.com/akd-io/create-next-stack",
   "repository": "akd-io/create-next-stack",
   "license": "MIT",
+  "type": "module",
   "keywords": [
     "react",
     "cli",
@@ -23,12 +24,14 @@
     "scaffolding"
   ],
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "oclif": {
     "bin": "create-next-stack",
-    "commands": "./lib/main/commands",
-    "default": "create-next-stack",
+    "commands": {
+      "strategy": "single",
+      "target": "./lib/main/commands/create-next-stack.js"
+    },
     "plugins": [
       "@oclif/plugin-help"
     ]
@@ -49,15 +52,15 @@
     "prepack": "turbo build",
     "build": "rimraf lib && tsc --build",
     "build:watch": "rimraf lib && tsc --build --watch",
-    "lint": "eslint --ext=.ts --config=.eslintrc --ignore-path=../../.prettierignore .",
+    "lint": "eslint",
     "test": "pnpm unit",
-    "unit": "jest lib/main/",
-    "unit:watch": "jest lib/main/ --watch",
-    "unit:ci": "jest lib/main/ --ci",
-    "get-e2e-test-files-array": "jest --listTests lib/tests/e2e/ | node lib/scripts/file-list-to-array.js",
-    "e2e": "jest --runInBand lib/tests/e2e/",
-    "e2e:single": "jest --runInBand",
-    "e2e:single:ci": "jest --runInBand --ci",
+    "unit": "vitest run src/main/",
+    "unit:watch": "vitest src/main/",
+    "unit:ci": "vitest run src/main/ --reporter=verbose",
+    "get-e2e-test-files-array": "vitest list --filesOnly src/tests/e2e/ | node lib/scripts/file-list-to-array.js",
+    "e2e": "vitest run --pool=forks --no-fileParallelism src/tests/e2e/",
+    "e2e:single": "vitest run --pool=forks --no-fileParallelism",
+    "e2e:single:ci": "vitest run --pool=forks --no-fileParallelism --reporter=verbose",
     "e2e:manual": "node lib/tests/e2e/test-manual.js --debug",
     "e2e:cna": "node lib/tests/e2e/test-live-cna.js",
     "e2e:cns": "node lib/tests/e2e/test-live-cns.js",
@@ -69,11 +72,11 @@
     "update-readme": "node ./lib/scripts/update-readme.js"
   },
   "dependencies": {
-    "@oclif/core": "^2.8.2",
-    "@oclif/plugin-help": "^5.2.9",
-    "chalk": "^4.1.2",
-    "endent": "^2.1.0",
-    "execa": "^5.1.1",
+    "@oclif/core": "^4.8.2",
+    "@oclif/plugin-help": "^6.2.37",
+    "aldent": "^0.0.7",
+    "chalk": "^5.4.0",
+    "execa": "^9.6.0",
     "inquirer": "^9.1.5",
     "lodash": "^4.17.21",
     "rimraf": "^5.0.0",
@@ -81,21 +84,17 @@
     "validate-npm-package-name": "^5.0.0"
   },
   "devDependencies": {
-    "@jest/globals": "^29.5.0",
     "@types/inquirer": "^9.0.3",
     "@types/lodash": "^4.14.195",
-    "@types/node": "^18.15.13",
+    "@types/node": "^25.0.0",
     "@types/uuid": "^9.0.1",
     "@types/validate-npm-package-name": "^4.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "@typescript-eslint/parser": "^5.59.0",
-    "eslint": "^8.39.0",
-    "eslint-config-prettier": "^8.8.0",
-    "jest": "^29.5.0",
-    "next": "^13.3.1",
-    "ts-jest": "^29.1.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.5",
-    "uuid": "^9.0.0"
+    "eslint": "^10.0.0",
+    "eslint-config-prettier": "^10.1.1",
+    "next": "^16.0.0",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.56.0",
+    "uuid": "^9.0.0",
+    "vitest": "^4.0.18"
   }
 }

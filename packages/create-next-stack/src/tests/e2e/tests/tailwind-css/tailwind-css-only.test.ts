@@ -1,6 +1,5 @@
-import { test } from "@jest/globals"
-import { testArgsWithFinalChecks } from "../../helpers/test-args"
-import { twentyMinutes } from "../../helpers/timeout"
+import { testArgsWithFinalChecks } from "../../helpers/test-args.ts"
+import { twentyMinutes } from "../../helpers/timeout.ts"
 
 test(
   "testTailwindCssOnly",
@@ -12,5 +11,5 @@ test(
       ".",
     ])
   },
-  twentyMinutes
+  twentyMinutes,
 )

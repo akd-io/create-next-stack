@@ -1,6 +1,6 @@
 import { Errors } from "@oclif/core"
-import { logError } from "../logging"
-import { inDebugMode } from "./in-debug-mode"
+import { logError } from "../logging.ts"
+import { inDebugMode } from "./in-debug-mode.ts"
 
 export const exitWithError = (error: unknown): never => {
   if (error instanceof Errors.ExitError && error.oclif.exit === 0) {

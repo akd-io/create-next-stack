@@ -1,7 +1,7 @@
-import endent from "endent"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import type { Plugin } from "../plugin.ts"
 
-const globalStyles = endent`
+const globalStyles = aldent`
   * {
     box-sizing: border-box;
   }
@@ -49,7 +49,10 @@ export const cssModulesPlugin: Plugin = {
   active: ({ flags }) => Boolean(flags.styling === "css-modules"),
   technologies: [cssModuleTechnology],
   slots: {
-    app: {
+    pagesApp: {
+      imports: `import "../styles/global-styles.css";`,
+    },
+    appLayout: {
       imports: `import "../styles/global-styles.css";`,
     },
   },

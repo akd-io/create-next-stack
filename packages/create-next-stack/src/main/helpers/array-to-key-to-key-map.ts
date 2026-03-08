@@ -1,7 +1,7 @@
 type KeyToKeyMap<T extends string> = { [value in T]: value }
 
 export const arrayToKeyToKeyMap = <T extends string>(
-  array: readonly T[]
+  array: readonly T[],
 ): KeyToKeyMap<T> => {
   const keyToKeyMap: { [key: string]: string } = {}
 

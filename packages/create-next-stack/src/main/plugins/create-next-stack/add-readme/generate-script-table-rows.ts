@@ -1,8 +1,8 @@
-import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { getScripts } from "../sort-orders/scripts"
+import type { ValidCNSInputs } from "../../../create-next-stack-types.ts"
+import { getScripts } from "../sort-orders/scripts.ts"
 
 export const generateScriptTableRows = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<string | null> => {
   const scripts = await getScripts(inputs)
   if (scripts.length === 0) {

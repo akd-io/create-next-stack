@@ -1,7 +1,7 @@
-import { Technology } from "../../../plugin"
+import type { Technology } from "../../../plugin.ts"
 
 export const generateTechnologyTableRows = async (
-  technologies: Array<Omit<Technology, "id">>
+  technologies: Array<Omit<Technology, "id">>,
 ): Promise<string | null> => {
   if (technologies.length === 0) {
     return null

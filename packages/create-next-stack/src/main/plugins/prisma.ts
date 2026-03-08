@@ -1,14 +1,14 @@
-import endent from "endent"
-import { runCommand } from "../helpers/run-command"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import { runCommand } from "../helpers/run-command.ts"
+import type { Plugin } from "../plugin.ts"
 
 export const prismaPlugin: Plugin = {
   id: "prisma",
   name: "Prisma",
   description: "Adds support for Prisma",
   active: ({ flags }) => Boolean(flags["prisma"]),
-  dependencies: [{ name: "@prisma/client", version: "^4.16.0" }],
-  devDependencies: [{ name: "prisma", version: "^4.16.0" }],
+  dependencies: [{ name: "@prisma/client", version: "^6.0.0" }],
+  devDependencies: [{ name: "prisma", version: "^6.0.0" }],
   technologies: [
     {
       id: "prisma",
@@ -34,7 +34,7 @@ export const prismaPlugin: Plugin = {
   addFiles: [
     {
       destination: "prisma/schema.prisma",
-      content: endent`
+      content: aldent`
         generator client {
           provider = "prisma-client-js"
         }
@@ -53,7 +53,7 @@ export const prismaPlugin: Plugin = {
     },
     {
       destination: "prisma/seed.ts",
-      content: endent`
+      content: aldent`
         import { Prisma, PrismaClient } from "@prisma/client";
 
         const prisma = new PrismaClient();

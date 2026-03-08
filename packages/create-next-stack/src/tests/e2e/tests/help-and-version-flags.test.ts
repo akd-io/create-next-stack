@@ -1,6 +1,5 @@
-import { describe, test } from "@jest/globals"
-import { testArgsWithoutFinalChecks } from "../helpers/test-args"
-import { oneMinute } from "../helpers/timeout"
+import { testArgsWithoutFinalChecks } from "../helpers/test-args.ts"
+import { oneMinute } from "../helpers/timeout.ts"
 
 describe("testHelpAndVersionFlags", () => {
   test(
@@ -8,7 +7,7 @@ describe("testHelpAndVersionFlags", () => {
     async () => {
       await testArgsWithoutFinalChecks(["--help"])
     },
-    oneMinute
+    oneMinute,
   )
 
   test(
@@ -16,6 +15,6 @@ describe("testHelpAndVersionFlags", () => {
     async () => {
       await testArgsWithoutFinalChecks(["--version"])
     },
-    oneMinute
+    oneMinute,
   )
 })

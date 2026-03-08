@@ -1,18 +1,21 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "importHelpers": true,
-    "module": "commonjs",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "rewriteRelativeImportExtensions": true,
+    "verbatimModuleSyntax": true,
     "outDir": "lib",
     "rootDir": "src",
     "strict": true,
-    "target": "ES2019",
+    "target": "ES2022",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noUncheckedIndexedAccess": true,
     "noPropertyAccessFromIndexSignature": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "types": ["vitest/globals"]
   },
   "include": ["src"]
 }

@@ -1,16 +1,16 @@
-import endent from "endent"
-import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { getProjectNameOfPath } from "../../../helpers/get-project-name-of-path"
-import { nonNull } from "../../../helpers/non-null"
-import { runCommandMap } from "../../../helpers/package-manager-utils"
-import { filterPlugins } from "../../../setup/setup"
-import { getTechnologies } from "../sort-orders/technologies"
-import { generateEnvironmentVariableTableRows } from "./generate-env-table-rows copy"
-import { generateScriptTableRows } from "./generate-script-table-rows"
-import { generateTechnologyTableRows } from "./generate-technology-table-rows"
+import aldent from "aldent"
+import type { ValidCNSInputs } from "../../../create-next-stack-types.ts"
+import { getProjectNameOfPath } from "../../../helpers/get-project-name-of-path.ts"
+import { nonNull } from "../../../helpers/non-null.ts"
+import { runCommandMap } from "../../../helpers/package-manager-utils.ts"
+import { filterPlugins } from "../../../setup/setup.ts"
+import { getTechnologies } from "../sort-orders/technologies.ts"
+import { generateEnvironmentVariableTableRows } from "./generate-env-table-rows copy.ts"
+import { generateScriptTableRows } from "./generate-script-table-rows.ts"
+import { generateTechnologyTableRows } from "./generate-technology-table-rows.ts"
 
 export const generateReadme = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<string> => {
   const { args, flags } = inputs
 
@@ -27,7 +27,7 @@ export const generateReadme = async (
     await generateEnvironmentVariableTableRows(inputs)
   const technologyTableRows = await generateTechnologyTableRows(technologies)
 
-  return endent`
+  return aldent`
     # ${getProjectNameOfPath(args.app_name)}
 
     🎉 Congratulations, your project was successfully generated with [Create Next Stack](https://www.create-next-stack.com/)!
@@ -40,7 +40,7 @@ export const generateReadme = async (
 
     ${
       todos.length > 0
-        ? endent`
+        ? aldent`
             ## Final Steps
 
             There are a few final steps that we were not able to perform automatically. We have provided a complete list for you below. You should take care of these before you can start developing your project. You can delete each item from the list as you go along.
@@ -54,7 +54,7 @@ export const generateReadme = async (
 
     ${
       scriptTableRows != null
-        ? endent`
+        ? aldent`
           ## Scripts
 
           The table below provides names and descriptions of the npm scripts available in this project.
@@ -70,7 +70,7 @@ export const generateReadme = async (
 
     ${
       environmentVariableTableRows != null
-        ? endent`
+        ? aldent`
           ## Environment Variables
 
           The table below provides names and descriptions of the environment variables used in this project.
@@ -84,7 +84,7 @@ export const generateReadme = async (
 
     ${
       technologyTableRows != null
-        ? endent`
+        ? aldent`
           ## Technologies
 
           The table below gives an overview of the technologies used in this project, as well as places to learn more about them.

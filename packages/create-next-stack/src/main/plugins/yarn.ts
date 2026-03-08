@@ -1,6 +1,6 @@
-import { runCommand } from "../helpers/run-command"
-import { Plugin } from "../plugin"
-import { getNameVersionCombo } from "../setup/packages"
+import { runCommand } from "../helpers/run-command.ts"
+import type { Plugin } from "../plugin.ts"
+import { getNameVersionCombo } from "../setup/packages.ts"
 
 export const yarnPlugin: Plugin = {
   id: "yarn",

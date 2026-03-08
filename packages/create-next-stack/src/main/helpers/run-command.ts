@@ -1,13 +1,13 @@
-import execa, { ExecaChildProcess, Options } from "execa"
-import { logDebug } from "../logging"
-import { prettyCommand } from "./pretty-command"
+import { execa, type Options, type ResultPromise } from "execa"
+import { logDebug } from "../logging.ts"
+import { prettyCommand } from "./pretty-command.ts"
 
 export const runCommand = (
   file: string,
   args: string[],
-  options?: Options
-): ExecaChildProcess<string> => {
+  options?: Options,
+): ResultPromise => {
   logDebug("Running command:", prettyCommand(file, args))
-  logDebug("Running command in:", options?.cwd ?? process.cwd())
+  logDebug("Running command in:", options?.cwd?.toString() ?? process.cwd())
   return execa(file, args, options)
 }

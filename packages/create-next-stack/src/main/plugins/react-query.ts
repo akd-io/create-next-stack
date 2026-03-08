@@ -1,5 +1,5 @@
-import endent from "endent"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import type { Plugin } from "../plugin.ts"
 
 export const reactQueryPlugin: Plugin = {
   id: "react-query",
@@ -7,8 +7,8 @@ export const reactQueryPlugin: Plugin = {
   description: "Adds support for React Query",
   active: ({ flags }) => Boolean(flags["react-query"]),
   devDependencies: [
-    { name: "@tanstack/react-query", version: "^4.0.0" },
-    { name: "@tanstack/react-query-devtools", version: "^4.0.0" },
+    { name: "@tanstack/react-query", version: "^5.0.0" },
+    { name: "@tanstack/react-query-devtools", version: "^5.0.0" },
   ],
   technologies: [
     {
@@ -20,15 +20,15 @@ export const reactQueryPlugin: Plugin = {
         { title: "Website", url: "https://tanstack.com/query/latest" },
         {
           title: "Docs",
-          url: "https://tanstack.com/query/latest/docs/react/overview",
+          url: "https://tanstack.com/query/latest/docs/framework/react/overview",
         },
         { title: "GitHub", url: "https://github.com/tanstack/query" },
       ],
     },
   ],
   slots: {
-    app: {
-      imports: endent`
+    pagesApp: {
+      imports: aldent`
         import React from "react";
         import {
           QueryClient,
@@ -36,14 +36,34 @@ export const reactQueryPlugin: Plugin = {
         } from "@tanstack/react-query";
         import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
       `,
-      logic: endent`
+      logic: aldent`
         const [queryClient] = React.useState(() => new QueryClient());
       `,
-      componentsStart: endent`
+      componentsStart: aldent`
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools />
       `,
-      componentsEnd: endent`
+      componentsEnd: aldent`
+        </QueryClientProvider>
+      `,
+    },
+    appLayout: {
+      providerImports: aldent`
+        import React from "react";
+        import {
+          QueryClient,
+          QueryClientProvider,
+        } from "@tanstack/react-query";
+        import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+      `,
+      providerLogic: aldent`
+        const [queryClient] = React.useState(() => new QueryClient());
+      `,
+      providersStart: aldent`
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools />
+      `,
+      providersEnd: aldent`
         </QueryClientProvider>
       `,
     },

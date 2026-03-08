@@ -1,8 +1,8 @@
-import endent from "endent"
-import { Plugin } from "../plugin"
-import { cssModuleTechnology } from "./css-modules"
+import aldent from "aldent"
+import type { Plugin } from "../plugin.ts"
+import { cssModuleTechnology } from "./css-modules.ts"
 
-const globalStyles = endent`
+const globalStyles = aldent`
   * {
     box-sizing: border-box;
   }
@@ -52,7 +52,10 @@ export const sassPlugin: Plugin = {
     },
   ],
   slots: {
-    app: {
+    pagesApp: {
+      imports: `import "../styles/global-styles.scss";`,
+    },
+    appLayout: {
       imports: `import "../styles/global-styles.scss";`,
     },
   },

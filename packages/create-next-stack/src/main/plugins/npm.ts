@@ -1,4 +1,4 @@
-import { Plugin } from "../plugin"
+import type { Plugin } from "../plugin.ts"
 
 export const npmPlugin: Plugin = {
   id: "npm",

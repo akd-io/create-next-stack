@@ -1,6 +1,20 @@
-import { Link } from "@chakra-ui/react"
-import { ComponentProps, FC } from "react"
+"use client"
 
-export const Anchor: FC<ComponentProps<typeof Link>> = (props) => {
-  return <Link color="#319bff" fontWeight="bold" {...props} />
+import { Anchor as MantineAnchor } from "@mantine/core"
+import { ReactNode } from "react"
+
+type AnchorProps = {
+  href?: string
+  target?: string
+  children?: ReactNode
+  c?: string
+  fw?: string | number
+}
+
+export const Anchor = ({
+  c = "#319bff",
+  fw = "bold",
+  ...props
+}: AnchorProps) => {
+  return <MantineAnchor c={c} fw={fw} {...props} />
 }

@@ -1,13 +1,14 @@
 import { Args, Command, Flags } from "@oclif/core"
-import { commandInstance } from "../command-instance"
+import { commandInstance } from "../command-instance.ts"
 import {
   validateArgs,
   validateFlags,
   writablePackageManagerOptions,
+  writableRouterOptions,
   writableStylingOptions,
-} from "../create-next-stack-types"
-import { exitWithError } from "../helpers/exit-with-error"
-import { performSetupSteps } from "../setup/setup"
+} from "../create-next-stack-types.ts"
+import { exitWithError } from "../helpers/exit-with-error.ts"
+import { performSetupSteps } from "../setup/setup.ts"
 
 export default class CreateNextStack extends Command {
   static usage = "[APP_NAME] [FLAGS]" // Without "create-next-stack" as OCLIF adds this, even though this is a single command CLI.
@@ -33,6 +34,14 @@ export default class CreateNextStack extends Command {
       description: "Show verbose error messages for debugging purposes.",
     }),
 
+    // Router:
+    router: Flags.string({
+      options: writableRouterOptions,
+      default: "app",
+      description:
+        "Sets the React framework router to use. App Router is the default and recommended option.",
+    }),
+
     // Package manager:
     "package-manager": Flags.string({
       required: true,
@@ -50,21 +59,20 @@ export default class CreateNextStack extends Command {
       required: true,
       options: writableStylingOptions,
       description: `Sets the preferred styling method. (Required) <styling-method> = ${writableStylingOptions.join(
-        "|"
+        "|",
       )}`,
       helpValue: "<styling-method>",
     }),
 
     // Component libraries:
     chakra: Flags.boolean({
-      description:
-        "Adds Chakra UI. (Component library) (Requires Emotion and Framer Motion)",
+      description: "Adds Chakra UI. (Component library) (Requires Emotion)",
     }),
     "material-ui": Flags.boolean({
       description: "Adds Material UI. (Component library) (Requires Emotion)",
     }),
     mantine: Flags.boolean({
-      description: "Adds Mantine. (Component library) (Requires Emotion)",
+      description: "Adds Mantine. (Component library)",
     }),
 
     // Form libraries:

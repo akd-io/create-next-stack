@@ -1,4 +1,4 @@
-import { logTestError } from "../test-logging"
+import { logTestError } from "../test-logging.ts"
 
 export const exitWithError = async (error: unknown): Promise<never> => {
   if (error instanceof Error) {

@@ -1,5 +1,5 @@
-import endent from "endent"
-import { Plugin } from "../plugin"
+import aldent from "aldent"
+import type { Plugin } from "../plugin.ts"
 
 const websiteDomainEnvVar = "NEXT_PUBLIC_WEBSITE_DOMAIN"
 
@@ -36,26 +36,43 @@ export const plausiblePlugin: Plugin = {
     },
   ],
   slots: {
-    app: {
-      imports: endent`
+    pagesApp: {
+      imports: aldent`
         import PlausibleProvider from "next-plausible";
       `,
-      postImports: endent`
+      postImports: aldent`
         const ${websiteDomainEnvVar} = process.env.${websiteDomainEnvVar};
         if (${websiteDomainEnvVar} == null) {
           throw new Error("${websiteDomainEnvVar} is not set");
         }
       `,
-      componentsStart: endent`
+      componentsStart: aldent`
         <PlausibleProvider domain={${websiteDomainEnvVar}}>
       `,
-      componentsEnd: endent`
+      componentsEnd: aldent`
         </PlausibleProvider>
       `,
     },
-    nextConfigJs: {
-      imports: endent`
-        const { withPlausibleProxy } = require("next-plausible");
+    appLayout: {
+      providerImports: aldent`
+        import PlausibleProvider from "next-plausible";
+      `,
+      providerLogic: aldent`
+        const ${websiteDomainEnvVar} = process.env.${websiteDomainEnvVar};
+        if (${websiteDomainEnvVar} == null) {
+          throw new Error("${websiteDomainEnvVar} is not set");
+        }
+      `,
+      providersStart: aldent`
+        <PlausibleProvider domain={${websiteDomainEnvVar}}>
+      `,
+      providersEnd: aldent`
+        </PlausibleProvider>
+      `,
+    },
+    nextConfig: {
+      imports: aldent`
+        import { withPlausibleProxy } from "next-plausible";
       `,
       wrappersStart: "withPlausibleProxy()(",
       wrappersEnd: ")",

@@ -1,18 +1,22 @@
-import endent from "endent"
-import { ValidCNSInputs } from "../../../../../create-next-stack-types"
-import { getProjectNameOfPath } from "../../../../../helpers/get-project-name-of-path"
-import { nonNull } from "../../../../../helpers/non-null"
-import { filterPlugins } from "../../../../../setup/setup"
+import aldent from "aldent"
+import type { ValidCNSInputs } from "../../../../../create-next-stack-types.ts"
+import { getProjectNameOfPath } from "../../../../../helpers/get-project-name-of-path.ts"
+import { nonNull } from "../../../../../helpers/non-null.ts"
+import { filterPlugins } from "../../../../../setup/setup.ts"
 
 export const generateLandingPageTemplate = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<string> => {
   const todos = (await filterPlugins(inputs))
     .flatMap((plugin) => plugin.todos)
     .filter(nonNull)
   const hasTodos = todos.length > 0
+  const editFile =
+    inputs.flags.router === "app" ? "app/page.tsx" : "pages/index.tsx"
 
-  return endent`
+  return aldent`
+    "use client";
+
     import Script from "next/script";
     import styles from "./LandingPageTemplate.module.css";
     import { Container } from "./components/Container";
@@ -28,7 +32,7 @@ export const generateLandingPageTemplate = async (
     const LandingPageTemplate = () => {
       const onConfettiLoad = () => {
         const key = "create-next-stack-hasShownConfetti-${encodeURI(
-          getProjectNameOfPath(inputs.args.app_name)
+          getProjectNameOfPath(inputs.args.app_name),
         )}";
         const hasShownConfetti = localStorage.getItem(key);
         if (hasShownConfetti != null) return;
@@ -43,6 +47,7 @@ export const generateLandingPageTemplate = async (
         (function frame() {
           const timeLeft = animationEnd - Date.now();
     
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (window as any).confetti({
             particleCount: 1,
             startVelocity: 0,
@@ -105,13 +110,13 @@ export const generateLandingPageTemplate = async (
                   🎉
                 </H1>
                 <Subtitle>
-                  Get started by editing <InlineCode>pages/index.tsx</InlineCode>
+                  Get started by editing <InlineCode>${editFile}</InlineCode>
                 </Subtitle>
               </Container>
             </Section>
             ${
               hasTodos
-                ? endent`
+                ? aldent`
                   <Section>
                     <Container className={styles.textContainer}>
                       <H2>Final steps</H2>

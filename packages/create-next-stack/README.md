@@ -44,18 +44,18 @@ The table below provides an overview of the technologies currently supported by 
 | Sass                | [Website](https://sass-lang.com/) - [Docs](https://sass-lang.com/documentation) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support)                                          |
 | CSS Modules         | [Website](https://github.com/css-modules/css-modules) - [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
 | CSS Modules         | [Website](https://github.com/css-modules/css-modules) - [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
-| Mantine             | [Website](https://mantine.dev/) - [Docs](https://mantine.dev/pages/getting-started/) - [GitHub](https://github.com/mantinedev/mantine)                                                                                       |
-| Chakra UI           | [Website](https://chakra-ui.com/) - [Docs](https://chakra-ui.com/docs/getting-started) - [GitHub](https://github.com/chakra-ui/chakra-ui)                                                                                    |
-| Material UI         | [Website](https://material-ui.com/) - [Docs](https://material-ui.com/getting-started/installation/) - [GitHub](https://github.com/mui-org/material-ui)                                                                       |
-| Framer Motion       | [Website](https://www.framer.com/motion/) - [Docs](https://www.framer.com/docs/) - [GitHub](https://github.com/framer/motion)                                                                                                |
+| Mantine             | [Website](https://mantine.dev/) - [Docs](https://mantine.dev/getting-started/) - [GitHub](https://github.com/mantinedev/mantine)                                                                                             |
+| Chakra UI           | [Website](https://chakra-ui.com/) - [Docs](https://chakra-ui.com/docs/get-started) - [GitHub](https://github.com/chakra-ui/chakra-ui)                                                                                        |
+| Material UI         | [Website](https://mui.com/material-ui/) - [Docs](https://mui.com/material-ui/getting-started/) - [GitHub](https://github.com/mui/material-ui)                                                                                |
+| Motion              | [Website](https://motion.dev/) - [Docs](https://motion.dev/docs) - [GitHub](https://github.com/motiondivision/motion)                                                                                                        |
 | React Hook Form     | [Website](https://react-hook-form.com/) - [Docs](https://react-hook-form.com/get-started) - [GitHub](https://github.com/react-hook-form/react-hook-form)                                                                     |
 | Formik              | [Website](https://formik.org/) - [Docs](https://formik.org/docs/overview) - [GitHub](https://github.com/formium/formik)                                                                                                      |
-| React Query         | [Website](https://tanstack.com/query/latest) - [Docs](https://tanstack.com/query/latest/docs/react/overview) - [GitHub](https://github.com/tanstack/query)                                                                   |
+| React Query         | [Website](https://tanstack.com/query/latest) - [Docs](https://tanstack.com/query/latest/docs/framework/react/overview) - [GitHub](https://github.com/tanstack/query)                                                         |
 | React Icons         | [Website](https://react-icons.github.io/react-icons/) - [GitHub](https://github.com/react-icons/react-icons)                                                                                                                 |
 | ESLint              | [Website](https://eslint.org/) - [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub](https://github.com/eslint/eslint)                                     |
 | Prettier            | [Website](https://prettier.io/) - [Docs](https://prettier.io/docs/en/index.html) - [Options](https://prettier.io/docs/en/options.html) - [GitHub](https://github.com/prettier/prettier)                                      |
 | Husky               | [Website](https://typicode.github.io/husky/) - [Docs](https://typicode.github.io/husky/) - [GitHub](https://github.com/typicode/husky)                                                                                       |
-| lint-staged         | [Website](https://github.com/okonet/lint-staged) - [GitHub](https://github.com/okonet/lint-staged)                                                                                                                           |
+| lint-staged         | [Website](https://github.com/lint-staged/lint-staged) - [GitHub](https://github.com/lint-staged/lint-staged)                                                                                                                 |
 | pnpm                | [Website](https://pnpm.io/) - [Docs](https://pnpm.io/motivation) - [GitHub](https://github.com/pnpm/pnpm)                                                                                                                    |
 | Yarn                | [Website](https://yarnpkg.com/) - [CLI Docs](https://yarnpkg.com/cli) - [GitHub](https://github.com/yarnpkg/berry)                                                                                                           |
 | npm                 | [Website](https://www.npmjs.com/) - [Docs](https://docs.npmjs.com/) - [GitHub](https://github.com/npm/cli)                                                                                                                   |
@@ -76,45 +76,48 @@ Below you see an overview of Create Next Stack's usage, including detailed infor
 
 ```
 USAGE
-  $ create-next-stack [APP_NAME] [FLAGS]
+  $ create-next-stack  [APP_NAME] [FLAGS]
 
 ARGUMENTS
   APP_NAME  The name of your app, optionally including a path prefix. Eg.:
             "my-app" or "path/to/my-app"
 
 FLAGS
-  -h, --help                    Shows the CLI help information.
-  -v, --version                 Shows the CLI version information.
-  --chakra                      Adds Chakra UI. (Component library) (Requires
-                                Emotion and Framer Motion)
-  --debug                       Show verbose error messages for debugging
-                                purposes.
-  --formatting-pre-commit-hook  Adds a formatting pre-commit hook. (Requires
-                                Prettier)
-  --formik                      Adds Formik. (Form library)
-  --framer-motion               Adds Framer Motion. (Animation library)
-  --github-actions              Adds a GitHub Actions continuous integration
-                                workflow.
-  --mantine                     Adds Mantine. (Component library) (Requires
-                                Emotion)
-  --material-ui                 Adds Material UI. (Component library) (Requires
-                                Emotion)
-  --netlify                     Adds Netlify. (Hosting)
-  --package-manager=<option>    (required) Sets the preferred package manager.
-                                (Required)
-                                <options: pnpm|yarn|npm>
-  --plausible                   Adds Plausible. (Analytics)
-  --prettier                    Adds Prettier. (Code formatting)
-  --prisma                      Adds Prisma. (ORM)
-  --react-hook-form             Adds React Hook Form. (Form library)
-  --react-icons                 Adds React Icons. (Icon library)
-  --react-query                 Adds React Query. (Server state management
-                                library)
-  --styling=<styling-method>    (required) Sets the preferred styling method.
-                                (Required) <styling-method> =
-                                emotion|styled-components|tailwind-css|css-modul
-                                es|css-modules-with-sass
-  --vercel                      Adds Vercel. (Hosting)
+  -h, --help                        Shows the CLI help information.
+  -v, --version                     Shows the CLI version information.
+      --chakra                      Adds Chakra UI. (Component library)
+                                    (Requires Emotion)
+      --debug                       Show verbose error messages for debugging
+                                    purposes.
+      --formatting-pre-commit-hook  Adds a formatting pre-commit hook. (Requires
+                                    Prettier)
+      --formik                      Adds Formik. (Form library)
+      --framer-motion               Adds Framer Motion. (Animation library)
+      --github-actions              Adds a GitHub Actions continuous integration
+                                    workflow.
+      --mantine                     Adds Mantine. (Component library)
+      --material-ui                 Adds Material UI. (Component library)
+                                    (Requires Emotion)
+      --netlify                     Adds Netlify. (Hosting)
+      --package-manager=<option>    (required) Sets the preferred package
+                                    manager. (Required)
+                                    <options: pnpm|yarn|npm>
+      --plausible                   Adds Plausible. (Analytics)
+      --prettier                    Adds Prettier. (Code formatting)
+      --prisma                      Adds Prisma. (ORM)
+      --react-hook-form             Adds React Hook Form. (Form library)
+      --react-icons                 Adds React Icons. (Icon library)
+      --react-query                 Adds React Query. (Server state management
+                                    library)
+      --router=<option>             [default: app] Sets the React framework
+                                    router to use. App Router is the default and
+                                    recommended option.
+                                    <options: app|pages>
+      --styling=<styling-method>    (required) Sets the preferred styling
+                                    method. (Required) <styling-method> =
+                                    emotion|styled-components|tailwind-css|css-m
+                                    odules|css-modules-with-sass
+      --vercel                      Adds Vercel. (Hosting)
 ```
 
 <!-- CNS-END-OF-HELP-OUTPUT -->

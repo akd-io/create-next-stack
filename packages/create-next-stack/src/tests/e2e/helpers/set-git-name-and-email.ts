@@ -1,5 +1,5 @@
-import { runCommand } from "../../../main/helpers/run-command"
-import { logTestError, logTestInfo } from "../test-logging"
+import { runCommand } from "../../../main/helpers/run-command.ts"
+import { logTestError, logTestInfo } from "../test-logging.ts"
 
 /**
  * If not set already, sets Git name and email so `git commit` doesn't fail during create-next-app
@@ -26,7 +26,7 @@ export const setGitNameAndEmailIfMissing = async (): Promise<void> => {
       })
       .catch(async () => {
         logTestInfo(
-          `user.email didn't exist. Setting user.email="test-user@create-next-stack.com"`
+          `user.email didn't exist. Setting user.email="test-user@create-next-stack.com"`,
         )
         await runCommand("git", [
           "config",

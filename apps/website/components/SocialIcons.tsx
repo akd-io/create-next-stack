@@ -1,12 +1,12 @@
-import { Flex, Stack } from "@chakra-ui/react"
-import React, { ComponentProps } from "react"
+import { Flex, FlexProps } from "@mantine/core"
+import { FC } from "react"
 import { FaDiscord, FaGithub, FaTwitter } from "react-icons/fa"
 
-export const SocialIcons: React.FC<ComponentProps<typeof Flex>> = (props) => {
+export const SocialIcons: FC<FlexProps> = (props) => {
   return (
     <Flex
-      justifyContent={["left", "center"]}
-      alignItems="center"
+      justify={{ base: "left", sm: "center" }}
+      align="center"
       gap="12px"
       {...props}
     >

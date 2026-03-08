@@ -1,9 +1,9 @@
 import fs from "fs/promises"
 import path from "path"
 import { v4 as uuidv4 } from "uuid"
-import { makeDirectory } from "../../../main/helpers/io"
-import { logTestInfo } from "../test-logging"
-import { setGitNameAndEmailIfMissing } from "./set-git-name-and-email"
+import { makeDirectory } from "../../../main/helpers/io.ts"
+import { logTestInfo } from "../test-logging.ts"
+import { setGitNameAndEmailIfMissing } from "./set-git-name-and-email.ts"
 
 /**
  * Prepare an e2e test by creating a directory to run the CLI in.
@@ -23,7 +23,7 @@ export const prepareE2eTest = async (): Promise<{
 
   const runDirectory = path.resolve(
     createNextStackDir,
-    `../../../create-next-stack-tests/run-${testRunId}`
+    `../../../create-next-stack-tests/run-${testRunId}`,
   )
   logTestInfo(`Creating test run directory at ${runDirectory}`)
   await makeDirectory(runDirectory)

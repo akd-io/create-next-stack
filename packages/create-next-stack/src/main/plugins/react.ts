@@ -1,10 +1,17 @@
-import { Plugin } from "../plugin"
+import type { Plugin } from "../plugin.ts"
 
 export const reactPlugin: Plugin = {
   id: "react",
   name: "React",
   description: "Adds relevant React documentation",
   active: true,
+  devDependencies: [
+    // Explicitly set to prevent pnpm's auto-install-peers from corrupting
+    // the version when packages like @emotion/react list @types/react as
+    // an optional peer dep without a version constraint.
+    { name: "@types/react", version: "^19" },
+    { name: "@types/react-dom", version: "^19" },
+  ],
   technologies: [
     {
       id: "react",

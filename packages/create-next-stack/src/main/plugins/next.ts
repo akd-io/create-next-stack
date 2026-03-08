@@ -1,16 +1,16 @@
 import chalk from "chalk"
-import endent from "endent"
+import aldent from "aldent"
 import path from "path"
-import { makeDirectory } from "../helpers/io"
-import { remove } from "../helpers/remove"
-import { runCommand } from "../helpers/run-command"
-import { logDebug } from "../logging"
-import { Package, Plugin } from "../plugin"
-import { getNameVersionCombo } from "../setup/packages"
+import { makeDirectory } from "../helpers/io.ts"
+import { remove } from "../helpers/remove.ts"
+import { runCommand } from "../helpers/run-command.ts"
+import { logDebug } from "../logging.ts"
+import type { Package, Plugin } from "../plugin.ts"
+import { getNameVersionCombo } from "../setup/packages.ts"
 
 const createNextAppPackage: Package = {
   name: "create-next-app",
-  version: "13.2.3",
+  version: "16",
 }
 
 export const nextPlugin: Plugin = {
@@ -54,7 +54,7 @@ export const nextPlugin: Plugin = {
       name: "lint",
       description:
         "Runs [ESLint](https://eslint.org/) to catch linting errors in the source code.",
-      command: "next lint",
+      command: "eslint",
     },
   ],
   steps: [
@@ -66,11 +66,11 @@ export const nextPlugin: Plugin = {
         // Make sure directory exists to avoid error from create-next-app
         await makeDirectory(args.app_name)
 
-        logDebug(endent`
+        logDebug(aldent`
           Directory created: ${args.app_name}
-    
+
           To open the project in vscode, run:
-    
+
               ${chalk.cyan(`code ${path.resolve(args.app_name)}`)}
         `)
 
@@ -78,51 +78,30 @@ export const nextPlugin: Plugin = {
           args.app_name,
           "--typescript",
           "--eslint",
-          "--no-experimental-app",
+          "--no-tailwind",
           "--no-src-dir",
           "--import-alias=@/*",
+          "--turbopack",
+          "--yes",
+          flags.router === "app" ? "--app" : "--no-app",
         ]
 
-        /* TODO: When create-next-app supports --use-yarn, use that instead of the below environment variable hack.
         switch (flags["package-manager"]) {
           case "pnpm":
             createNextAppArgs.push("--use-pnpm")
             break
           case "yarn":
-            // create-next-app doesn't support --use-yarn, so we have to use the below environment variable hack.
+            createNextAppArgs.push("--use-yarn")
             break
           case "npm":
             createNextAppArgs.push("--use-npm")
             break
         }
-        */
-
-        // Below, we temporarily modify the npm_config_user_agent environment variable to make create-next-app use the correct package manager to install dependencies.
-        // This is done because create-next-app doesn't support --use-yarn.
-        // Instead, users of create-next-app are supposed to use `yarn create next-app` to use create-next-app with Yarn.
-        // This won't work for us though, as Yarn create doesn't support versioned package names, which we need to use to use the correct version of create-next-app.
-
-        const oldNpmConfigUserAgent = process.env["npm_config_user_agent"]
-        logDebug(
-          "Initial npm_config_user_agent:",
-          process.env["npm_config_user_agent"] ?? "undefined"
-        )
-
-        process.env[
-          "npm_config_user_agent"
-        ] = `${flags["package-manager"]}/? ${process.env["npm_config_user_agent"]}`
-        logDebug(
-          "Modified npm_config_user_agent:",
-          process.env["npm_config_user_agent"]
-        )
 
         await runCommand("npx", [
           getNameVersionCombo(createNextAppPackage),
           ...createNextAppArgs,
         ])
-
-        // Reset npm_config_user_agent
-        process.env["npm_config_user_agent"] = oldNpmConfigUserAgent
 
         logDebug("Changing directory to", args.app_name)
         process.chdir(args.app_name)
@@ -131,16 +110,26 @@ export const nextPlugin: Plugin = {
     {
       id: "removeOfficialCNAContent",
       description: "removing content added by Create Next App",
-      run: async () => {
-        await Promise.all([
-          remove("pages"),
-          remove("styles"),
-          remove("public/next.svg"),
-          remove("public/thirteen.svg"),
-          remove("public/vercel.svg"),
-          remove("README.md"),
-          remove("next.config.js"),
-        ])
+      run: async ({ flags }) => {
+        const removals: string[] = [
+          "README.md",
+          "next.config.ts",
+          "eslint.config.mjs",
+          "pnpm-workspace.yaml",
+          "public/file.svg",
+          "public/globe.svg",
+          "public/next.svg",
+          "public/vercel.svg",
+          "public/window.svg",
+        ]
+
+        if (flags.router === "app") {
+          removals.push("app")
+        } else {
+          removals.push("pages", "styles")
+        }
+
+        await Promise.all(removals.map((file) => remove(file)))
       },
     },
   ],

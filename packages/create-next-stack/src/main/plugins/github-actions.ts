@@ -1,11 +1,11 @@
-import endent from "endent"
-import { ValidCNSInputs } from "../create-next-stack-types"
+import aldent from "aldent"
+import type { ValidCNSInputs } from "../create-next-stack-types.ts"
 import {
   cleanInstallCommandMap,
   runCommandMap,
-} from "../helpers/package-manager-utils"
-import { evalProperty, Plugin } from "../plugin"
-import { prettierPlugin } from "./prettier"
+} from "../helpers/package-manager-utils.ts"
+import { evalProperty, type Plugin } from "../plugin.ts"
+import { prettierPlugin } from "./prettier.ts"
 
 export const githubActionsPlugin: Plugin = {
   id: "github-actions",
@@ -50,10 +50,10 @@ const generateCiYml = async (inputs: ValidCNSInputs): Promise<string> => {
 
   const isPrettierPluginActive = await evalProperty(
     prettierPlugin.active,
-    inputs
+    inputs,
   )
 
-  return endent`
+  return aldent`
     name: "CI"
 
     on: [pull_request]
@@ -66,21 +66,19 @@ const generateCiYml = async (inputs: ValidCNSInputs): Promise<string> => {
 
         steps:
           - name: "Checkout repo"
-            uses: actions/checkout@v3
+            uses: actions/checkout@v4
 
           ${
             packageManager === "pnpm"
-              ? endent`
+              ? aldent`
                   - name: "Set up pnpm"
-                    uses: pnpm/action-setup@v2
-                    with:
-                      version: 8
+                    uses: pnpm/action-setup@v4
                 `
               : ""
           }
 
           - name: "Set up latest Node LTS"
-            uses: actions/setup-node@v2
+            uses: actions/setup-node@v4
             with:
               node-version: "lts/*"
               cache: "${packageManager}"
@@ -90,7 +88,7 @@ const generateCiYml = async (inputs: ValidCNSInputs): Promise<string> => {
 
           ${
             isPrettierPluginActive
-              ? endent`
+              ? aldent`
                   - name: "Check format"
                     run: ${runCommandMap[packageManager]} format:check
                 `

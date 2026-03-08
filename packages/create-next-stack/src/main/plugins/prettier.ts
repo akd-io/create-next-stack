@@ -1,9 +1,8 @@
-import { modifyJsonFile, toArray } from "../helpers/io"
-import { Package, Plugin } from "../plugin"
+import type { Package, Plugin } from "../plugin.ts"
 
 export const prettierPackage = {
   name: "prettier",
-  version: "^2.0.0",
+  version: "^3.0.0",
 } satisfies Package
 
 export const prettierPlugin: Plugin = {
@@ -13,7 +12,7 @@ export const prettierPlugin: Plugin = {
   active: ({ flags }) => Boolean(flags.prettier),
   devDependencies: [
     prettierPackage,
-    { name: "eslint-config-prettier", version: "^8.0.0" },
+    { name: "eslint-config-prettier", version: "^10.0.0" },
   ],
   technologies: [
     {
@@ -33,12 +32,12 @@ export const prettierPlugin: Plugin = {
     {
       name: "format",
       description: "Formats all source code in the project.",
-      command: "prettier --write --ignore-path=.gitignore .",
+      command: "prettier --write .",
     },
     {
       name: "format:check",
       description: "Checks the formatting of all code in the project.",
-      command: "prettier --check --ignore-path=.gitignore .",
+      command: "prettier --check .",
     },
   ],
   addFiles: [
@@ -46,21 +45,11 @@ export const prettierPlugin: Plugin = {
       destination: ".prettierrc",
       content: `{}`,
     },
-  ],
-  steps: [
     {
-      id: "setUpPrettier",
-      description: "setting up Prettier",
-      run: async () => {
-        await modifyJsonFile(".eslintrc.json", (eslintrc) => ({
-          ...eslintrc,
-          extends: [
-            //
-            ...toArray(eslintrc["extends"]),
-            "eslint-config-prettier",
-          ],
-        }))
-      },
+      destination: ".prettierignore",
+      content: ["pnpm-lock.yaml", "package-lock.json", "yarn.lock", ""].join(
+        "\n",
+      ),
     },
   ],
 }

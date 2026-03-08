@@ -1,8 +1,8 @@
-import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { nonNull } from "../../../helpers/non-null"
-import { compareByOrder } from "../../../helpers/sort-by-order"
-import { Technology } from "../../../plugin"
-import { filterPlugins, plugins } from "../../../setup/setup"
+import type { ValidCNSInputs } from "../../../create-next-stack-types.ts"
+import { nonNull } from "../../../helpers/non-null.ts"
+import { compareByOrder } from "../../../helpers/sort-by-order.ts"
+import type { Technology } from "../../../plugin.ts"
+import { filterPlugins, plugins } from "../../../setup/setup.ts"
 
 export const technologiesSortOrder: string[] = [
   "next",
@@ -37,13 +37,13 @@ export const technologiesSortOrder: string[] = [
 ]
 
 export const getTechnologies = async (
-  inputs: ValidCNSInputs
+  inputs: ValidCNSInputs,
 ): Promise<Array<Omit<Technology, "id">>> => {
   return (await filterPlugins(inputs))
     .flatMap((plugin) => plugin.technologies)
     .filter(nonNull)
     .sort((a, b) => compareByOrder(a.id, b.id, technologiesSortOrder))
-    .map(({ id, ...rest }) => ({
+    .map(({ id: _, ...rest }) => ({
       ...rest,
     }))
 }
@@ -52,7 +52,7 @@ export const getAllTechnologies = (): Array<Omit<Technology, "id">> => {
   return plugins
     .flatMap((plugin) => plugin.technologies ?? [])
     .sort((a, b) => compareByOrder(a.id, b.id, technologiesSortOrder))
-    .map(({ id, ...rest }) => ({
+    .map(({ id: _, ...rest }) => ({
       ...rest,
     }))
 }

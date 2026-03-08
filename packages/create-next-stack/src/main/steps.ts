@@ -1,8 +1,8 @@
-import { ValidCNSInputs } from "./create-next-stack-types"
-import { nonNull } from "./helpers/non-null"
-import { compareByOrder } from "./helpers/sort-by-order"
-import { Step } from "./plugin"
-import { filterPlugins } from "./setup/setup"
+import type { ValidCNSInputs } from "./create-next-stack-types.ts"
+import { nonNull } from "./helpers/non-null.ts"
+import { compareByOrder } from "./helpers/sort-by-order.ts"
+import type { Step } from "./plugin.ts"
+import { filterPlugins } from "./setup/setup.ts"
 
 export const stepsOrder: string[] = [
   // Update package manager
@@ -24,12 +24,12 @@ export const stepsOrder: string[] = [
   // Add/generate content
   "copyAssets",
   "addContent",
-  // Uninstall temporary dependencies
-  "uninstallTemporaryDependencies",
   // ORMs
   "setUpPrisma",
   // Format & initial commit
   "formatProject",
+  // Uninstall temporary dependencies
+  "uninstallTemporaryDependencies",
   "initialCommit",
 ]
 

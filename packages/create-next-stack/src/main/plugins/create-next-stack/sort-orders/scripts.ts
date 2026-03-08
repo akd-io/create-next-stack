@@ -1,7 +1,7 @@
-import { ValidCNSInputs } from "../../../create-next-stack-types"
-import { nonNull } from "../../../helpers/non-null"
-import { compareByOrder } from "../../../helpers/sort-by-order"
-import { filterPlugins } from "../../../setup/setup"
+import type { ValidCNSInputs } from "../../../create-next-stack-types.ts"
+import { nonNull } from "../../../helpers/non-null.ts"
+import { compareByOrder } from "../../../helpers/sort-by-order.ts"
+import { filterPlugins } from "../../../setup/setup.ts"
 
 export const scriptsSortOrder: string[] = [
   "prepare",
@@ -21,6 +21,6 @@ export const getScripts = async (inputs: ValidCNSInputs) => {
     .flatMap((plugin) => plugin.scripts)
     .filter(nonNull)
   return pluginScripts.sort((a, b) =>
-    compareByOrder(a.name, b.name, scriptsSortOrder)
+    compareByOrder(a.name, b.name, scriptsSortOrder),
   )
 }
