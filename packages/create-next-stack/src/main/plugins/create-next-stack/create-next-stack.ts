@@ -49,6 +49,9 @@ export const createNextStackPlugin: Plugin = {
   description:
     "Adds various miscellaneous steps. Some necessities, some niceties.",
   active: true,
+  tmpDependencies: [
+    { name: "prettier-plugin-organize-imports", version: "^4.0.0" },
+  ],
   addFiles: [
     {
       destination: ".env",
@@ -246,6 +249,7 @@ export const createNextStackPlugin: Plugin = {
       run: async () => {
         await runCommand("npx", [
           getNameVersionCombo(prettierPackage),
+          "--plugin=prettier-plugin-organize-imports",
           "--write",
           ".",
         ])

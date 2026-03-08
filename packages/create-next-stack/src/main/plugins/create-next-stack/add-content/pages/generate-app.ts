@@ -4,14 +4,10 @@ import { nonNull } from "../../../../helpers/non-null.ts"
 import { filterPlugins } from "../../../../setup/setup.ts"
 
 export const generateApp = async (inputs: ValidCNSInputs): Promise<string> => {
-  const imports = [
-    ...new Set(
-      (await filterPlugins(inputs))
-        .map((plugin) => plugin.slots?.pagesApp?.imports)
-        .filter(nonNull)
-        .flatMap((s) => s.split("\n")),
-    ),
-  ].join("\n")
+  const imports = (await filterPlugins(inputs))
+    .map((plugin) => plugin.slots?.pagesApp?.imports)
+    .filter(nonNull)
+    .join("\n")
 
   const postImports = (await filterPlugins(inputs))
     .map((plugin) => plugin.slots?.pagesApp?.postImports)

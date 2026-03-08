@@ -20,14 +20,10 @@ export const generateProviders = async (
 ): Promise<string> => {
   const filteredPlugins = await filterPlugins(inputs)
 
-  const providerImports = [
-    ...new Set(
-      filteredPlugins
-        .map((plugin) => plugin.slots?.appLayout?.providerImports)
-        .filter(nonNull)
-        .flatMap((s) => s.split("\n")),
-    ),
-  ].join("\n")
+  const providerImports = filteredPlugins
+    .map((plugin) => plugin.slots?.appLayout?.providerImports)
+    .filter(nonNull)
+    .join("\n")
 
   const providerAfterImports = filteredPlugins
     .map((plugin) => plugin.slots?.appLayout?.providerAfterImports)

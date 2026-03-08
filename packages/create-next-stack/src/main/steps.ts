@@ -24,12 +24,12 @@ export const stepsOrder: string[] = [
   // Add/generate content
   "copyAssets",
   "addContent",
-  // Uninstall temporary dependencies
-  "uninstallTemporaryDependencies",
   // ORMs
   "setUpPrisma",
   // Format & initial commit
   "formatProject",
+  // Uninstall temporary dependencies
+  "uninstallTemporaryDependencies",
   "initialCommit",
 ]
 
