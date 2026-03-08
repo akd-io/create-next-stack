@@ -37,23 +37,27 @@ export const styledComponentsPlugin: Plugin = {
         import { useServerInsertedHTML } from "next/navigation";
         import { ServerStyleSheet, StyleSheetManager } from "styled-components";
       `,
-      providerLogic: aldent`
-        const [styledComponentsStyleSheet] = React.useState(() => new ServerStyleSheet());
+      providerAfterImports: aldent`
+        function StyledComponentsRegistry({ children }: { children: React.ReactNode }) {
+          const [styledComponentsStyleSheet] = React.useState(() => new ServerStyleSheet());
 
-        useServerInsertedHTML(() => {
-          const styles = styledComponentsStyleSheet.getStyleElement();
-          styledComponentsStyleSheet.instance.clearTag();
-          return <>{styles}</>;
-        });
+          useServerInsertedHTML(() => {
+            const styles = styledComponentsStyleSheet.getStyleElement();
+            styledComponentsStyleSheet.instance.clearTag();
+            return <>{styles}</>;
+          });
 
-        if (typeof window !== "undefined") return <>{children}</>;
+          if (typeof window !== "undefined") return <>{children}</>;
+
+          return (
+            <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+              {children}
+            </StyleSheetManager>
+          );
+        }
       `,
-      providersStart: aldent`
-        <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
-      `,
-      providersEnd: aldent`
-        </StyleSheetManager>
-      `,
+      providersStart: `<StyledComponentsRegistry>`,
+      providersEnd: `</StyledComponentsRegistry>`,
     },
   },
   todos: [
