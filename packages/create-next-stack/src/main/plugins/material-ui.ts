@@ -84,7 +84,7 @@ export const materialUIPlugin: Plugin = {
       htmlAttributes: `className={roboto.variable}`,
       headContent: `<meta name="theme-color" content="#556cd6" />`,
       providerImports: aldent`
-        import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+        import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
         import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
         import CssBaseline from "@mui/material/CssBaseline";
         import materialTheme from "../material-theme";
