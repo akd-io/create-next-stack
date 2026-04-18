@@ -1,11 +1,8 @@
 import { Flex, FlexProps, polymorphic } from "@mantine/core"
-import { ReactNode } from "react"
 
 type SectionProps = FlexProps & {
   innerProps?: FlexProps
-  children?: ReactNode
 }
-
 export const Section = polymorphic<"section", SectionProps>(
   ({ innerProps, children, ...props }: SectionProps) => {
     return (

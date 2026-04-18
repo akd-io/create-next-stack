@@ -1,8 +1,7 @@
 import { Flex, FlexProps } from "@mantine/core"
-import { FC } from "react"
 import { FaDiscord, FaGithub, FaTwitter } from "react-icons/fa"
 
-export const SocialIcons: FC<FlexProps> = (props) => {
+export const SocialIcons = (props: FlexProps) => {
   return (
     <Flex
       justify={{ base: "left", sm: "center" }}

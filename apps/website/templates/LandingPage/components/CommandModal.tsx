@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Code, Flex, Modal, Text } from "@mantine/core"
-import { FC, useState } from "react"
+import { useState } from "react"
 import { FiCheck } from "react-icons/fi"
 
 type CommandModalProps = {
@@ -9,11 +9,11 @@ type CommandModalProps = {
   command: string
   onClose: () => void
 }
-export const CommandModal: FC<CommandModalProps> = ({
+export const CommandModal = ({
   command,
   opened,
   onClose,
-}) => {
+}: CommandModalProps) => {
   const [hasCopied, setHasCopied] = useState(false)
   const [copyFailed, setCopyFailed] = useState(false)
 
