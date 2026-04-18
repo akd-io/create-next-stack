@@ -53,6 +53,7 @@
     "build": "rimraf lib && tsc --build",
     "build:watch": "rimraf lib && tsc --build --watch",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
     "test": "pnpm unit",
     "unit": "vitest run src/main/",
     "unit:watch": "vitest src/main/",

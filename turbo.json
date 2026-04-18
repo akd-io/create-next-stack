@@ -10,6 +10,7 @@
       "inputs": ["**/*.ts", "**/*.js", "**/*.tsx", "**/*.jsx"]
     },
     "lint": {},
+    "typecheck": {},
     "update-readme": {
       "dependsOn": ["build"],
       "inputs": ["**/*.ts", "**/*.js", "**/*.tsx", "**/*.jsx"]
