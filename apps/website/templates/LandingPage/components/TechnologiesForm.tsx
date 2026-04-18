@@ -11,6 +11,7 @@ import {
 } from "@mantine/core"
 import React from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import cnsPackageJson from "../../../../../packages/create-next-stack/package.json"
 import { Anchor } from "../../../components/Anchor"
 import { Checkbox } from "../../../components/Checkbox"
 import { Radio } from "../../../components/Radio"
@@ -267,7 +268,7 @@ export const TechnologiesForm: React.FC = () => {
     formData,
   ) => {
     const calculateCommand = (formData: TechnologiesFormData) => {
-      const args = ["npx", "create-next-stack@latest"]
+      const args = ["npx", `create-next-stack@${cnsPackageJson.version}`]
 
       args.push(`--router=${formData.router}`)
       args.push(`--package-manager=${options[formData.packageManager].value}`)
