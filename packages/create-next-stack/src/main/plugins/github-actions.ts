@@ -66,19 +66,19 @@ const generateCiYml = async (inputs: ValidCNSInputs): Promise<string> => {
 
         steps:
           - name: "Checkout repo"
-            uses: actions/checkout@v4
+            uses: actions/checkout@v6
 
           ${
             packageManager === "pnpm"
               ? aldent`
                   - name: "Set up pnpm"
-                    uses: pnpm/action-setup@v4
+                    uses: pnpm/action-setup@v5
                 `
               : ""
           }
 
           - name: "Set up latest Node LTS"
-            uses: actions/setup-node@v4
+            uses: actions/setup-node@v6
             with:
               node-version: "lts/*"
               cache: "${packageManager}"
