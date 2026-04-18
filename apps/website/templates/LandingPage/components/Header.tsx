@@ -4,7 +4,7 @@ import { SocialIcons } from "../../../components/SocialIcons"
 
 export const HeaderSection = () => {
   return (
-    <Section as="header">
+    <Section component="header">
       <Flex
         direction="column"
         align={{ base: "flex-start", sm: "center" }}
