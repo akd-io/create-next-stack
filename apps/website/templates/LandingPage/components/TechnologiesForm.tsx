@@ -10,7 +10,8 @@ import {
   Title,
 } from "@mantine/core"
 import React from "react"
-import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
+import type { SubmitHandler } from "react-hook-form"
 import cnsPackageJson from "../../../../../packages/create-next-stack/package.json"
 import { Anchor } from "../../../components/Anchor"
 import { Checkbox } from "../../../components/Checkbox"

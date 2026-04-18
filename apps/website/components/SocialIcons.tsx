@@ -1,4 +1,5 @@
-import { Flex, FlexProps } from "@mantine/core"
+import { Flex } from "@mantine/core"
+import type { FlexProps } from "@mantine/core"
 import { FaDiscord, FaGithub, FaTwitter } from "react-icons/fa"
 
 export const SocialIcons = (props: FlexProps) => {

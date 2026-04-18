@@ -1,7 +1,8 @@
 "use client"
 
 import { Flex, Tooltip } from "@mantine/core"
-import { ReactNode, useRef, useState } from "react"
+import { useRef, useState } from "react"
+import type { ReactNode } from "react"
 import { FiInfo } from "react-icons/fi"
 
 type WithInfoIconAndTooltipProps = {

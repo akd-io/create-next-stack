@@ -1,7 +1,7 @@
 "use client"
 
 import { Box, Flex } from "@mantine/core"
-import { PropsWithChildren } from "react"
+import type { PropsWithChildren } from "react"
 import { Section } from "../../components/Section"
 import { Description } from "./components/Description"
 import { Footer } from "./components/Footer"

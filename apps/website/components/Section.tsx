@@ -1,4 +1,5 @@
-import { Flex, FlexProps, polymorphic } from "@mantine/core"
+import { Flex, polymorphic } from "@mantine/core"
+import type { FlexProps } from "@mantine/core"
 
 type SectionProps = FlexProps & {
   innerProps?: FlexProps

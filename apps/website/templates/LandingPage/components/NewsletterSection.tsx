@@ -1,16 +1,18 @@
 "use client"
 
 import { Button, Flex, Text, TextInput, Title } from "@mantine/core"
-import { FC, useState } from "react"
-import { SubmitHandler, useForm } from "react-hook-form"
+import { useState } from "react"
+import type { FC } from "react"
+import { useForm } from "react-hook-form"
+import type { SubmitHandler } from "react-hook-form"
 
 const NEXT_PUBLIC_CONVERTKIT_API_KEY =
-  process.env.NEXT_PUBLIC_CONVERTKIT_API_KEY
+  process.env["NEXT_PUBLIC_CONVERTKIT_API_KEY"]
 if (!NEXT_PUBLIC_CONVERTKIT_API_KEY) {
   throw new Error("Missing NEXT_PUBLIC_CONVERTKIT_API_KEY environment variable")
 }
 const NEXT_PUBLIC_CONVERTKIT_FORM_ID =
-  process.env.NEXT_PUBLIC_CONVERTKIT_FORM_ID
+  process.env["NEXT_PUBLIC_CONVERTKIT_FORM_ID"]
 if (!NEXT_PUBLIC_CONVERTKIT_FORM_ID) {
   throw new Error("Missing NEXT_PUBLIC_CONVERTKIT_FORM_ID environment variable")
 }
