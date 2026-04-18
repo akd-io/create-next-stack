@@ -1,5 +1,3 @@
-"use client"
-
 import { Button, Code, Flex, Modal, Text } from "@mantine/core"
 import { useState } from "react"
 import { FiCheck } from "react-icons/fi"
