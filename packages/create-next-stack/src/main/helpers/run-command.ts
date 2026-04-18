@@ -1,4 +1,5 @@
 import { execa, type Options, type ResultPromise } from "execa"
+import { fileURLToPath } from "url"
 import { logDebug } from "../logging.ts"
 import { prettyCommand } from "./pretty-command.ts"
 
@@ -8,6 +9,10 @@ export const runCommand = (
   options?: Options,
 ): ResultPromise => {
   logDebug("Running command:", prettyCommand(file, args))
-  logDebug("Running command in:", options?.cwd?.toString() ?? process.cwd())
+  const cwd = options?.cwd ?? process.cwd()
+  logDebug(
+    "Running command in:",
+    typeof cwd === "string" ? cwd : fileURLToPath(cwd),
+  )
   return execa(file, args, options)
 }
