@@ -39,8 +39,8 @@ export const materialUIPlugin: Plugin = {
   description: "Adds support for Material UI",
   active: ({ flags }) => Boolean(flags["material-ui"]),
   dependencies: [
-    { name: "@mui/material", version: "^7.0.0" },
-    { name: "@mui/material-nextjs", version: "^7.0.0" },
+    { name: "@mui/material", version: "^9.0.0" },
+    { name: "@mui/material-nextjs", version: "^9.0.0" },
     { name: "@emotion/cache", version: "^11.0.0" },
   ],
   technologies: [
