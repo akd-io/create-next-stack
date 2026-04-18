@@ -1,16 +1,12 @@
 "use client"
 
-import { Anchor as MantineAnchor } from "@mantine/core"
-import { ReactNode } from "react"
+import {
+  Anchor as MantineAnchor,
+  AnchorProps as MantineAnchorProps,
+  PolymorphicComponentProps,
+} from "@mantine/core"
 
-type AnchorProps = {
-  href?: string
-  target?: string
-  children?: ReactNode
-  c?: string
-  fw?: string | number
-}
-
+type AnchorProps = PolymorphicComponentProps<"a", MantineAnchorProps>
 export const Anchor = ({
   c = "#319bff",
   fw = "bold",
