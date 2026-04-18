@@ -13,15 +13,21 @@ export const SocialIcons: FC<FlexProps> = (props) => {
       <a
         aria-label="GitHub Repository of Create Next Stack"
         href="https://github.com/akd-io/create-next-stack"
+        style={{ color: "inherit" }}
       >
         <FaGithub size="24px" />
       </a>
-      <a aria-label="Community Discord" href="https://discord.gg/7Ns5WwGjjZ">
+      <a
+        aria-label="Community Discord"
+        href="https://discord.gg/7Ns5WwGjjZ"
+        style={{ color: "inherit" }}
+      >
         <FaDiscord size="24px" />
       </a>
       <a
         aria-label="Twitter profile of the creator of Create Next Stack"
         href="https://twitter.com/akd_io"
+        style={{ color: "inherit" }}
       >
         <FaTwitter size="24px" />
       </a>
