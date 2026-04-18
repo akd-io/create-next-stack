@@ -7,10 +7,6 @@ import {
 } from "@mantine/core"
 
 type AnchorProps = PolymorphicComponentProps<"a", MantineAnchorProps>
-export const Anchor = ({
-  c = "#319bff",
-  fw = "bold",
-  ...props
-}: AnchorProps) => {
-  return <MantineAnchor c={c} fw={fw} {...props} />
+export const Anchor = (props: AnchorProps) => {
+  return <MantineAnchor c="#319bff" fw="bold" {...props} />
 }
