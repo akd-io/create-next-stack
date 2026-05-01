@@ -1,23 +1,40 @@
 "use client"
 
 import { Flex, Tooltip } from "@mantine/core"
-import { FC } from "react"
+import { useRef, useState } from "react"
+import type { ReactNode } from "react"
 import { FiInfo } from "react-icons/fi"
 
 type WithInfoIconAndTooltipProps = {
   tooltip: string
-  children: React.ReactNode
+  children: ReactNode
 }
-export const WithInfoIconAndTooltip: FC<WithInfoIconAndTooltipProps> = ({
+export const WithInfoIconAndTooltip = ({
   tooltip,
   children,
-}) => {
+}: WithInfoIconAndTooltipProps) => {
+  const iconRef = useRef<HTMLSpanElement>(null)
+  const [opened, setOpened] = useState(false)
   return (
-    <Tooltip position="top" label={tooltip} withArrow>
-      <Flex display="inline-flex" direction="row" gap="6px" align="center">
-        {children}
+    <Flex
+      display="inline-flex"
+      direction="row"
+      gap="6px"
+      align="center"
+      onMouseEnter={() => setOpened(true)}
+      onMouseLeave={() => setOpened(false)}
+    >
+      {children}
+      <span ref={iconRef} style={{ display: "inline-flex" }}>
         <FiInfo size="16px" />
-      </Flex>
-    </Tooltip>
+      </span>
+      <Tooltip
+        target={iconRef}
+        label={tooltip}
+        opened={opened}
+        position="top"
+        withArrow
+      />
+    </Flex>
   )
 }

@@ -10,7 +10,9 @@ import {
   Title,
 } from "@mantine/core"
 import React from "react"
-import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
+import type { SubmitHandler } from "react-hook-form"
+import cnsPackageJson from "../../../../../packages/create-next-stack/package.json"
 import { Anchor } from "../../../components/Anchor"
 import { Checkbox } from "../../../components/Checkbox"
 import { Radio } from "../../../components/Radio"
@@ -267,7 +269,7 @@ export const TechnologiesForm: React.FC = () => {
     formData,
   ) => {
     const calculateCommand = (formData: TechnologiesFormData) => {
-      const args = ["npx", "create-next-stack@latest"]
+      const args = ["npx", `create-next-stack@${cnsPackageJson.version}`]
 
       args.push(`--router=${formData.router}`)
       args.push(`--package-manager=${options[formData.packageManager].value}`)
@@ -334,24 +336,27 @@ export const TechnologiesForm: React.FC = () => {
           <MantineCheckbox.Group {...rest}>
             <Flex direction="column" gap="12">
               {optionKeys.map((optionKey) => {
+                const invalidValidators =
+                  validators?.[optionKey]?.filter((v) => v.isInvalid) ?? []
+                const hasError = invalidValidators.length > 0
+                const errorId = `${name}-${optionKey}-error`
                 return (
                   <div key={optionKey}>
                     <Checkbox
                       value={optionKey}
                       label={options[optionKey].label}
+                      error={hasError}
+                      aria-invalid={hasError || undefined}
+                      aria-describedby={hasError ? errorId : undefined}
                     />
-                    {validators?.[optionKey]?.map(
-                      (validator) =>
-                        validator.isInvalid && (
-                          <Text
-                            key={validator.errorMessage}
-                            c="red"
-                            fz="sm"
-                            mt="4"
-                          >
+                    {hasError && (
+                      <Flex id={errorId} direction="column" mt="4">
+                        {invalidValidators.map((validator) => (
+                          <Text key={validator.errorMessage} c="red" fz="sm">
                             {validator.errorMessage}
                           </Text>
-                        ),
+                        ))}
+                      </Flex>
                     )}
                   </div>
                 )

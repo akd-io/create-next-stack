@@ -4,7 +4,7 @@ import { SocialIcons } from "../../../components/SocialIcons"
 
 export const HeaderSection = () => {
   return (
-    <Section as="header">
+    <Section component="header">
       <Flex
         direction="column"
         align={{ base: "flex-start", sm: "center" }}
@@ -21,7 +21,6 @@ export const HeaderSection = () => {
             fw={800}
             ta={{ base: "left", sm: "center" }}
             variant="gradient"
-            gradient={{ from: "#6838F1", to: "#DC51F2", deg: 135 }}
             lh={1.2}
           >
             Create Next Stack
@@ -31,7 +30,6 @@ export const HeaderSection = () => {
             fw="bold"
             ta={{ base: "left", sm: "center" }}
             variant="gradient"
-            gradient={{ from: "#6838F1", to: "#DC51F2", deg: 135 }}
           >
             The ultimate starter kit for Next.js
           </Text>

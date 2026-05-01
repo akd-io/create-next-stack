@@ -1,20 +1,20 @@
-import { Box, Flex, FlexProps } from "@mantine/core"
-import { FC, ReactNode } from "react"
+import { Flex, polymorphic } from "@mantine/core"
+import type { FlexProps } from "@mantine/core"
 
-type SectionProps = Omit<FlexProps, "component"> & {
+type SectionProps = FlexProps & {
   innerProps?: FlexProps
-  children?: ReactNode
-  as?: "section" | "header" | "footer"
 }
-export const Section: FC<SectionProps> = ({
-  innerProps,
-  children,
-  as: Element = "section",
-  ...props
-}) => {
-  return (
-    <Box component={Element}>
-      <Flex direction="column" w="100%" px="30px" align="center" {...props}>
+export const Section = polymorphic<"section", SectionProps>(
+  ({ innerProps, children, ...props }: SectionProps) => {
+    return (
+      <Flex
+        component="section"
+        direction="column"
+        w="100%"
+        px="30px"
+        align="center"
+        {...props}
+      >
         <Flex
           direction="column"
           w="100%"
@@ -25,6 +25,6 @@ export const Section: FC<SectionProps> = ({
           {children}
         </Flex>
       </Flex>
-    </Box>
-  )
-}
+    )
+  },
+)

@@ -53,6 +53,7 @@
     "build": "rimraf lib && tsc --build",
     "build:watch": "rimraf lib && tsc --build --watch",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
     "test": "pnpm unit",
     "unit": "vitest run src/main/",
     "unit:watch": "vitest src/main/",
@@ -92,8 +93,8 @@
     "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.1.1",
     "next": "^16.0.0",
-    "typescript": "^5.8.2",
-    "typescript-eslint": "^8.56.0",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.1",
     "uuid": "^9.0.0",
     "vitest": "^4.0.18"
   }

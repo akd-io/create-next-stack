@@ -1,8 +1,8 @@
 "use client"
 
-import { Radio as MantineRadio, RadioProps } from "@mantine/core"
-import { FC } from "react"
+import { Radio as MantineRadio } from "@mantine/core"
+import type { RadioProps } from "@mantine/core"
 
-export const Radio: FC<RadioProps> = (props) => {
+export const Radio = (props: RadioProps) => {
   return <MantineRadio size="md" color="violet" {...props} />
 }

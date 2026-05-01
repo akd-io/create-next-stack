@@ -1,7 +1,7 @@
 "use client"
 
 import { Box, Flex } from "@mantine/core"
-import { FC, ReactNode } from "react"
+import type { PropsWithChildren } from "react"
 import { Section } from "../../components/Section"
 import { Description } from "./components/Description"
 import { Footer } from "./components/Footer"
@@ -9,7 +9,7 @@ import { HeaderSection } from "./components/Header"
 import { Newsletter } from "./components/NewsletterSection"
 import { TechnologiesForm } from "./components/TechnologiesForm"
 
-const Card: FC<{ children?: ReactNode }> = ({ children }) => (
+const Card = ({ children }: PropsWithChildren) => (
   <Box
     w="100%"
     style={{

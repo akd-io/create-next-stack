@@ -5,7 +5,7 @@ export const vercelPlugin: Plugin = {
   name: "Vercel",
   description: "Adds support for Vercel",
   active: ({ flags }) => Boolean(flags["vercel"]),
-  devDependencies: [{ name: "vercel", version: "^50.0.0" }],
+  devDependencies: [{ name: "vercel", version: "^51.0.0" }],
   scripts: [
     {
       name: "deploy:vercel",

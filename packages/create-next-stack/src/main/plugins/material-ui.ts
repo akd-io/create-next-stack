@@ -39,8 +39,8 @@ export const materialUIPlugin: Plugin = {
   description: "Adds support for Material UI",
   active: ({ flags }) => Boolean(flags["material-ui"]),
   dependencies: [
-    { name: "@mui/material", version: "^7.0.0" },
-    { name: "@mui/material-nextjs", version: "^7.0.0" },
+    { name: "@mui/material", version: "^9.0.0" },
+    { name: "@mui/material-nextjs", version: "^9.0.0" },
     { name: "@emotion/cache", version: "^11.0.0" },
   ],
   technologies: [
@@ -84,7 +84,7 @@ export const materialUIPlugin: Plugin = {
       htmlAttributes: `className={roboto.variable}`,
       headContent: `<meta name="theme-color" content="#556cd6" />`,
       providerImports: aldent`
-        import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+        import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
         import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
         import CssBaseline from "@mui/material/CssBaseline";
         import materialTheme from "../material-theme";

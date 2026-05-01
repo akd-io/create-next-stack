@@ -7,8 +7,8 @@ export const mantinePlugin: Plugin = {
   description: "Adds support for Mantine",
   active: ({ flags }) => Boolean(flags.mantine),
   dependencies: [
-    { name: "@mantine/core", version: "^8.0.0" },
-    { name: "@mantine/hooks", version: "^8.0.0" },
+    { name: "@mantine/core", version: "^9.0.0" },
+    { name: "@mantine/hooks", version: "^9.0.0" },
   ],
   devDependencies: [
     { name: "postcss", version: "^8.0.0" },

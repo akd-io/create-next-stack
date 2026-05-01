@@ -7,7 +7,7 @@ import { SocialIcons } from "../../../components/SocialIcons"
 export const Footer: React.FC = () => {
   return (
     <Section
-      as="footer"
+      component="footer"
       innerProps={{
         gap: "24px",
       }}

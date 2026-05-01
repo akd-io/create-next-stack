@@ -9,21 +9,24 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@mantine/core": "^8.0.0",
-    "@mantine/hooks": "^8.0.0",
+    "@mantine/core": "^9.0.0",
+    "@mantine/hooks": "^9.0.0",
     "next": "^16.0.0",
     "next-plausible": "^3.12.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.0",
-    "react-icons": "^5.4.0"
+    "react-icons": "^5.4.0",
+    "validate-npm-package-name": "^7.0.2"
   },
   "devDependencies": {
     "@types/node": "^25.0.0",
     "@types/react": "^19.0.0",
+    "@types/validate-npm-package-name": "^4.0.2",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.0.0",
     "eslint-config-prettier": "^10.0.0",
