@@ -28,6 +28,7 @@ export const technologiesSortOrder: string[] = [
   "pnpm",
   "yarn",
   "npm",
+  "bun",
   "githubActions",
   "plausible",
   "nextPlausible",

@@ -96,6 +96,9 @@ export const nextPlugin: Plugin = {
           case "npm":
             createNextAppArgs.push("--use-npm")
             break
+          case "bun":
+            createNextAppArgs.push("--use-bun")
+            break
         }
 
         await runCommand("npx", [

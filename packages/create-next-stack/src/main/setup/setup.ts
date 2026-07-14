@@ -7,6 +7,7 @@ import { inDebugMode } from "../helpers/in-debug-mode.ts"
 import { time } from "../helpers/time.ts"
 import { logDebug, logInfo } from "../logging.ts"
 import { evalOptionalProperty, evalProperty, type Plugin } from "../plugin.ts"
+import { bunPlugin } from "../plugins/bun.ts"
 import { chakraUIPlugin } from "../plugins/chakra-ui.ts"
 import { createNextStackPlugin } from "../plugins/create-next-stack/create-next-stack.ts"
 import { cssModulesPlugin } from "../plugins/css-modules.ts"
@@ -60,6 +61,7 @@ export const plugins: Plugin[] = [
   pnpmPlugin,
   yarnPlugin,
   npmPlugin,
+  bunPlugin,
   githubActionsPlugin,
   reactIconsPlugin,
   reactQueryPlugin,

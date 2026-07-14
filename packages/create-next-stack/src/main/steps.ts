@@ -8,6 +8,7 @@ export const stepsOrder: string[] = [
   // Update package manager
   "updatePnpm",
   "updateYarn",
+  "updateBun",
   // Create Next App
   "createNextApp",
   "removeOfficialCNAContent",

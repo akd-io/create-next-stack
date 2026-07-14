@@ -32,7 +32,7 @@ export const writableRouterOptions = routerOptions as Writable<
 >
 
 // Package manager flag:
-export const packageManagerOptions = ["pnpm", "yarn", "npm"] as const
+export const packageManagerOptions = ["pnpm", "yarn", "npm", "bun"] as const
 export type PackageManager = (typeof packageManagerOptions)[number]
 export const writablePackageManagerOptions = packageManagerOptions as Writable<
   typeof packageManagerOptions

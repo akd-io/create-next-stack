@@ -59,6 +59,7 @@ The table below provides an overview of the technologies currently supported by 
 | pnpm                | [Website](https://pnpm.io/) - [Docs](https://pnpm.io/motivation) - [GitHub](https://github.com/pnpm/pnpm)                                                                                                                    |
 | Yarn                | [Website](https://yarnpkg.com/) - [CLI Docs](https://yarnpkg.com/cli) - [GitHub](https://github.com/yarnpkg/berry)                                                                                                           |
 | npm                 | [Website](https://www.npmjs.com/) - [Docs](https://docs.npmjs.com/) - [GitHub](https://github.com/npm/cli)                                                                                                                   |
+| Bun                 | [Website](https://bun.sh/) - [Docs](https://bun.sh/docs) - [GitHub](https://github.com/oven-sh/bun)                                                                                                                          |
 | GitHub Actions      | [Website](https://github.com/features/actions) - [Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)                             |
 | Plausible Analytics | [Website](https://plausible.io/) - [Docs](https://plausible.io/docs) - [GitHub](https://github.com/plausible/analytics)                                                                                                      |
 | next-plausible      | [Website](https://next-plausible.vercel.app/) - [GitHub](https://github.com/4lejandrito/next-plausible)                                                                                                                      |
@@ -101,7 +102,7 @@ FLAGS
       --netlify                     Adds Netlify. (Hosting)
       --package-manager=<option>    (required) Sets the preferred package
                                     manager. (Required)
-                                    <options: pnpm|yarn|npm>
+                                    <options: pnpm|yarn|npm|bun>
       --plausible                   Adds Plausible. (Analytics)
       --prettier                    Adds Prettier. (Code formatting)
       --prisma                      Adds Prisma. (ORM)
