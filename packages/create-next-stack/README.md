@@ -33,38 +33,39 @@ The table below provides an overview of the technologies currently supported by 
 
 <!-- CNS-START-OF-TECHNOLOGIES-TABLE -->
 
-| Name                | Links                                                                                                                                                                                                                        |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Next.js             | [Website](https://nextjs.org/) - [Docs](https://nextjs.org/docs) - [Learn Next.js](https://nextjs.org/learn) - [GitHub](https://github.com/vercel/next.js) - [Wikipedia](https://en.wikipedia.org/wiki/Next.js)              |
-| React               | [Website](https://reactjs.org/) - [Docs](https://reactjs.org/docs/getting-started.html) - [GitHub](https://github.com/facebook/react) - [Wikipedia](<https://en.wikipedia.org/wiki/React_(JavaScript_library)>)              |
-| TypeScript          | [Website](https://www.typescriptlang.org/) - [Docs](https://www.typescriptlang.org/docs/) - [GitHub](https://github.com/microsoft/TypeScript) - [Wikipedia](https://en.wikipedia.org/wiki/TypeScript)                        |
-| Emotion             | [Website](https://emotion.sh/) - [Docs](https://emotion.sh/docs/introduction) - [GitHub](https://github.com/emotion-js/emotion)                                                                                              |
-| Styled Components   | [Website](https://styled-components.com/) - [Docs](https://styled-components.com/docs) - [GitHub](https://github.com/styled-components/styled-components)                                                                    |
-| Tailwind CSS        | [Website](https://tailwindcss.com/) - [Docs](https://tailwindcss.com/docs) - [GitHub](https://github.com/tailwindlabs/tailwindcss)                                                                                           |
-| Sass                | [Website](https://sass-lang.com/) - [Docs](https://sass-lang.com/documentation) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support)                                          |
-| CSS Modules         | [Website](https://github.com/css-modules/css-modules) - [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
-| CSS Modules         | [Website](https://github.com/css-modules/css-modules) - [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
-| Mantine             | [Website](https://mantine.dev/) - [Docs](https://mantine.dev/getting-started/) - [GitHub](https://github.com/mantinedev/mantine)                                                                                             |
-| Chakra UI           | [Website](https://chakra-ui.com/) - [Docs](https://chakra-ui.com/docs/get-started) - [GitHub](https://github.com/chakra-ui/chakra-ui)                                                                                        |
-| Material UI         | [Website](https://mui.com/material-ui/) - [Docs](https://mui.com/material-ui/getting-started/) - [GitHub](https://github.com/mui/material-ui)                                                                                |
-| Motion              | [Website](https://motion.dev/) - [Docs](https://motion.dev/docs) - [GitHub](https://github.com/motiondivision/motion)                                                                                                        |
-| React Hook Form     | [Website](https://react-hook-form.com/) - [Docs](https://react-hook-form.com/get-started) - [GitHub](https://github.com/react-hook-form/react-hook-form)                                                                     |
-| Formik              | [Website](https://formik.org/) - [Docs](https://formik.org/docs/overview) - [GitHub](https://github.com/formium/formik)                                                                                                      |
-| React Query         | [Website](https://tanstack.com/query/latest) - [Docs](https://tanstack.com/query/latest/docs/framework/react/overview) - [GitHub](https://github.com/tanstack/query)                                                         |
-| React Icons         | [Website](https://react-icons.github.io/react-icons/) - [GitHub](https://github.com/react-icons/react-icons)                                                                                                                 |
-| ESLint              | [Website](https://eslint.org/) - [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub](https://github.com/eslint/eslint)                                     |
-| Prettier            | [Website](https://prettier.io/) - [Docs](https://prettier.io/docs/en/index.html) - [Options](https://prettier.io/docs/en/options.html) - [GitHub](https://github.com/prettier/prettier)                                      |
-| Husky               | [Website](https://typicode.github.io/husky/) - [Docs](https://typicode.github.io/husky/) - [GitHub](https://github.com/typicode/husky)                                                                                       |
-| lint-staged         | [Website](https://github.com/lint-staged/lint-staged) - [GitHub](https://github.com/lint-staged/lint-staged)                                                                                                                 |
-| pnpm                | [Website](https://pnpm.io/) - [Docs](https://pnpm.io/motivation) - [GitHub](https://github.com/pnpm/pnpm)                                                                                                                    |
-| Yarn                | [Website](https://yarnpkg.com/) - [CLI Docs](https://yarnpkg.com/cli) - [GitHub](https://github.com/yarnpkg/berry)                                                                                                           |
-| npm                 | [Website](https://www.npmjs.com/) - [Docs](https://docs.npmjs.com/) - [GitHub](https://github.com/npm/cli)                                                                                                                   |
-| GitHub Actions      | [Website](https://github.com/features/actions) - [Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)                             |
-| Plausible Analytics | [Website](https://plausible.io/) - [Docs](https://plausible.io/docs) - [GitHub](https://github.com/plausible/analytics)                                                                                                      |
-| next-plausible      | [Website](https://next-plausible.vercel.app/) - [GitHub](https://github.com/4lejandrito/next-plausible)                                                                                                                      |
-| Vercel              | [Website](https://vercel.com/) - [Docs](https://vercel.com/docs) - [CLI Docs](https://vercel.com/docs/cli)                                                                                                                   |
-| Netlify             | [Website](https://www.netlify.com/) - [Docs](https://docs.netlify.com/) - [CLI Docs](https://cli.netlify.com/)                                                                                                               |
-| Prisma              | [Website](https://www.prisma.io/) - [Docs](https://www.prisma.io/docs) - [GitHub](https://github.com/prisma/prisma)                                                                                                          |
+| Name                             | Links                                                                                                                                                                                                                        |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Next.js                          | [Website](https://nextjs.org/) - [Docs](https://nextjs.org/docs) - [Learn Next.js](https://nextjs.org/learn) - [GitHub](https://github.com/vercel/next.js) - [Wikipedia](https://en.wikipedia.org/wiki/Next.js)              |
+| React                            | [Website](https://reactjs.org/) - [Docs](https://reactjs.org/docs/getting-started.html) - [GitHub](https://github.com/facebook/react) - [Wikipedia](<https://en.wikipedia.org/wiki/React_(JavaScript_library)>)              |
+| TypeScript                       | [Website](https://www.typescriptlang.org/) - [Docs](https://www.typescriptlang.org/docs/) - [GitHub](https://github.com/microsoft/TypeScript) - [Wikipedia](https://en.wikipedia.org/wiki/TypeScript)                        |
+| Emotion                          | [Website](https://emotion.sh/) - [Docs](https://emotion.sh/docs/introduction) - [GitHub](https://github.com/emotion-js/emotion)                                                                                              |
+| Styled Components                | [Website](https://styled-components.com/) - [Docs](https://styled-components.com/docs) - [GitHub](https://github.com/styled-components/styled-components)                                                                    |
+| Tailwind CSS                     | [Website](https://tailwindcss.com/) - [Docs](https://tailwindcss.com/docs) - [GitHub](https://github.com/tailwindlabs/tailwindcss)                                                                                           |
+| Sass                             | [Website](https://sass-lang.com/) - [Docs](https://sass-lang.com/documentation) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#sass-support)                                          |
+| CSS Modules                      | [Website](https://github.com/css-modules/css-modules) - [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
+| CSS Modules                      | [Website](https://github.com/css-modules/css-modules) - [Docs](https://github.com/css-modules/css-modules) - [Next.js-specific docs](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css) |
+| Mantine                          | [Website](https://mantine.dev/) - [Docs](https://mantine.dev/getting-started/) - [GitHub](https://github.com/mantinedev/mantine)                                                                                             |
+| Chakra UI                        | [Website](https://chakra-ui.com/) - [Docs](https://chakra-ui.com/docs/get-started) - [GitHub](https://github.com/chakra-ui/chakra-ui)                                                                                        |
+| Material UI                      | [Website](https://mui.com/material-ui/) - [Docs](https://mui.com/material-ui/getting-started/) - [GitHub](https://github.com/mui/material-ui)                                                                                |
+| Motion                           | [Website](https://motion.dev/) - [Docs](https://motion.dev/docs) - [GitHub](https://github.com/motiondivision/motion)                                                                                                        |
+| React Hook Form                  | [Website](https://react-hook-form.com/) - [Docs](https://react-hook-form.com/get-started) - [GitHub](https://github.com/react-hook-form/react-hook-form)                                                                     |
+| Formik                           | [Website](https://formik.org/) - [Docs](https://formik.org/docs/overview) - [GitHub](https://github.com/formium/formik)                                                                                                      |
+| React Query                      | [Website](https://tanstack.com/query/latest) - [Docs](https://tanstack.com/query/latest/docs/framework/react/overview) - [GitHub](https://github.com/tanstack/query)                                                         |
+| React Icons                      | [Website](https://react-icons.github.io/react-icons/) - [GitHub](https://github.com/react-icons/react-icons)                                                                                                                 |
+| ESLint                           | [Website](https://eslint.org/) - [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub](https://github.com/eslint/eslint)                                     |
+| Prettier                         | [Website](https://prettier.io/) - [Docs](https://prettier.io/docs/en/index.html) - [Options](https://prettier.io/docs/en/options.html) - [GitHub](https://github.com/prettier/prettier)                                      |
+| prettier-plugin-organize-imports | [Website](https://www.npmjs.com/package/prettier-plugin-organize-imports) - [GitHub](https://github.com/simonhaenisch/prettier-plugin-organize-imports)                                                                      |
+| Husky                            | [Website](https://typicode.github.io/husky/) - [Docs](https://typicode.github.io/husky/) - [GitHub](https://github.com/typicode/husky)                                                                                       |
+| lint-staged                      | [Website](https://github.com/lint-staged/lint-staged) - [GitHub](https://github.com/lint-staged/lint-staged)                                                                                                                 |
+| pnpm                             | [Website](https://pnpm.io/) - [Docs](https://pnpm.io/motivation) - [GitHub](https://github.com/pnpm/pnpm)                                                                                                                    |
+| Yarn                             | [Website](https://yarnpkg.com/) - [CLI Docs](https://yarnpkg.com/cli) - [GitHub](https://github.com/yarnpkg/berry)                                                                                                           |
+| npm                              | [Website](https://www.npmjs.com/) - [Docs](https://docs.npmjs.com/) - [GitHub](https://github.com/npm/cli)                                                                                                                   |
+| GitHub Actions                   | [Website](https://github.com/features/actions) - [Docs](https://docs.github.com/en/actions) - [Workflow syntax](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions)                             |
+| Plausible Analytics              | [Website](https://plausible.io/) - [Docs](https://plausible.io/docs) - [GitHub](https://github.com/plausible/analytics)                                                                                                      |
+| next-plausible                   | [Website](https://next-plausible.vercel.app/) - [GitHub](https://github.com/4lejandrito/next-plausible)                                                                                                                      |
+| Vercel                           | [Website](https://vercel.com/) - [Docs](https://vercel.com/docs) - [CLI Docs](https://vercel.com/docs/cli)                                                                                                                   |
+| Netlify                          | [Website](https://www.netlify.com/) - [Docs](https://docs.netlify.com/) - [CLI Docs](https://cli.netlify.com/)                                                                                                               |
+| Prisma                           | [Website](https://www.prisma.io/) - [Docs](https://www.prisma.io/docs) - [GitHub](https://github.com/prisma/prisma)                                                                                                          |
 
 <!-- CNS-END-OF-TECHNOLOGIES-TABLE -->
 
@@ -83,41 +84,44 @@ ARGUMENTS
             "my-app" or "path/to/my-app"
 
 FLAGS
-  -h, --help                        Shows the CLI help information.
-  -v, --version                     Shows the CLI version information.
-      --chakra                      Adds Chakra UI. (Component library)
-                                    (Requires Emotion)
-      --debug                       Show verbose error messages for debugging
-                                    purposes.
-      --formatting-pre-commit-hook  Adds a formatting pre-commit hook. (Requires
-                                    Prettier)
-      --formik                      Adds Formik. (Form library)
-      --framer-motion               Adds Framer Motion. (Animation library)
-      --github-actions              Adds a GitHub Actions continuous integration
-                                    workflow.
-      --mantine                     Adds Mantine. (Component library)
-      --material-ui                 Adds Material UI. (Component library)
-                                    (Requires Emotion)
-      --netlify                     Adds Netlify. (Hosting)
-      --package-manager=<option>    (required) Sets the preferred package
-                                    manager. (Required)
-                                    <options: pnpm|yarn|npm>
-      --plausible                   Adds Plausible. (Analytics)
-      --prettier                    Adds Prettier. (Code formatting)
-      --prisma                      Adds Prisma. (ORM)
-      --react-hook-form             Adds React Hook Form. (Form library)
-      --react-icons                 Adds React Icons. (Icon library)
-      --react-query                 Adds React Query. (Server state management
-                                    library)
-      --router=<option>             [default: app] Sets the React framework
-                                    router to use. App Router is the default and
-                                    recommended option.
-                                    <options: app|pages>
-      --styling=<styling-method>    (required) Sets the preferred styling
-                                    method. (Required) <styling-method> =
-                                    emotion|styled-components|tailwind-css|css-m
-                                    odules|css-modules-with-sass
-      --vercel                      Adds Vercel. (Hosting)
+  -h, --help                              Shows the CLI help information.
+  -v, --version                           Shows the CLI version information.
+      --chakra                            Adds Chakra UI. (Component library)
+                                          (Requires Emotion)
+      --debug                             Show verbose error messages for
+                                          debugging purposes.
+      --formatting-pre-commit-hook        Adds a formatting pre-commit hook.
+                                          (Requires Prettier)
+      --formik                            Adds Formik. (Form library)
+      --framer-motion                     Adds Framer Motion. (Animation
+                                          library)
+      --github-actions                    Adds a GitHub Actions continuous
+                                          integration workflow.
+      --mantine                           Adds Mantine. (Component library)
+      --material-ui                       Adds Material UI. (Component library)
+                                          (Requires Emotion)
+      --netlify                           Adds Netlify. (Hosting)
+      --package-manager=<option>          (required) Sets the preferred package
+                                          manager. (Required)
+                                          <options: pnpm|yarn|npm>
+      --plausible                         Adds Plausible. (Analytics)
+      --prettier                          Adds Prettier. (Code formatting)
+      --prettier-plugin-organize-imports  Adds prettier-plugin-organize-imports.
+                                          (Requires Prettier)
+      --prisma                            Adds Prisma. (ORM)
+      --react-hook-form                   Adds React Hook Form. (Form library)
+      --react-icons                       Adds React Icons. (Icon library)
+      --react-query                       Adds React Query. (Server state
+                                          management library)
+      --router=<option>                   [default: app] Sets the React
+                                          framework router to use. App Router is
+                                          the default and recommended option.
+                                          <options: app|pages>
+      --styling=<styling-method>          (required) Sets the preferred styling
+                                          method. (Required) <styling-method> =
+                                          emotion|styled-components|tailwind-css
+                                          |css-modules|css-modules-with-sass
+      --vercel                            Adds Vercel. (Hosting)
 ```
 
 <!-- CNS-END-OF-HELP-OUTPUT -->

@@ -87,6 +87,11 @@ export const validateFlags = (
       "Formatting pre-commit hook (category: Miscellaneous, flag: --formatting-pre-commit-hook) requires Prettier (category: Formatting, flag: --prettier).",
     )
   }
+  if (flags["prettier-plugin-organize-imports"] && !flags["prettier"]) {
+    throw new Error(
+      "prettier-plugin-organize-imports (category: Formatting, flag: --prettier-plugin-organize-imports) requires Prettier (category: Formatting, flag: --prettier).",
+    )
+  }
   return true
 }
 

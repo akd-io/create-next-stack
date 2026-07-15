@@ -23,6 +23,7 @@ export const technologiesSortOrder: string[] = [
   "reactIcons",
   "eslint",
   "prettier",
+  "prettier-plugin-organize-imports",
   "husky",
   "lintStaged",
   "pnpm",

@@ -24,6 +24,7 @@ import { npmPlugin } from "../plugins/npm.ts"
 import { plausiblePlugin } from "../plugins/plausible.ts"
 import { pnpmPlugin } from "../plugins/pnpm.ts"
 import { prettierPlugin } from "../plugins/prettier.ts"
+import { prettierPluginOrganizeImportsPlugin } from "../plugins/prettier-plugin-organize-imports.ts"
 import { prismaPlugin } from "../plugins/prisma.ts"
 import { reactPlugin } from "../plugins/react.ts"
 import { reactHookFormPlugin } from "../plugins/react-hook-form.ts"
@@ -56,6 +57,7 @@ export const plugins: Plugin[] = [
   framerMotionPlugin,
   eslintPlugin,
   prettierPlugin,
+  prettierPluginOrganizeImportsPlugin,
   formattingPreCommitHookPlugin,
   pnpmPlugin,
   yarnPlugin,

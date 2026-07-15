@@ -98,6 +98,11 @@ export default class CreateNextStack extends Command {
       description: "Adds a formatting pre-commit hook. (Requires Prettier)",
     }),
 
+    // Prettier plugin: organize imports
+    "prettier-plugin-organize-imports": Flags.boolean({
+      description: "Adds prettier-plugin-organize-imports. (Requires Prettier)",
+    }),
+
     // Icons
     "react-icons": Flags.boolean({
       description: "Adds React Icons. (Icon library)",

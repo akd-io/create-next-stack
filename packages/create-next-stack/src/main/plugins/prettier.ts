@@ -43,7 +43,14 @@ export const prettierPlugin: Plugin = {
   addFiles: [
     {
       destination: ".prettierrc",
-      content: `{}`,
+      content: ({ flags }) => {
+        if (flags["prettier-plugin-organize-imports"]) {
+          return `{
+  "plugins": ["prettier-plugin-organize-imports"]
+}`
+        }
+        return `{}`
+      },
     },
     {
       destination: ".prettierignore",
