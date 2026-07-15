@@ -3,6 +3,7 @@ import path from "path"
 import { copyDirectory } from "../../helpers/copy-directory.ts"
 import { getCreateNextStackDir } from "../../helpers/get-create-next-stack-dir.ts"
 import { modifyJsonFile, toObject, writeFile } from "../../helpers/io.ts"
+import { hasGitUserConfig } from "../../helpers/has-git-user-config.ts"
 import { isGitInitialized } from "../../helpers/is-git-initialized.ts"
 import { nonNull } from "../../helpers/non-null.ts"
 import { runCommand } from "../../helpers/run-command.ts"
@@ -180,6 +181,13 @@ export const createNextStackPlugin: Plugin = {
       shouldRun: async () => {
         if (!(await isGitInitialized())) {
           logWarning("Skipping initial commit, as Git was not initialized.")
+          return false
+        }
+        if (!(await hasGitUserConfig())) {
+          logWarning(
+            "Skipping initial commit, as Git user.name or user.email is not set. " +
+              'Configure them with `git config --global user.name "Your Name"` and `git config --global user.email "you@example.com"`.',
+          )
           return false
         }
         return true
