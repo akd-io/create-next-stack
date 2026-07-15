@@ -1,4 +1,4 @@
-import { ComponentProps, FC } from "react";
+import { ComponentProps } from "react";
 import { classNames } from "../utils/class-names";
 import styles from "./Container.module.css";
 
@@ -7,13 +7,13 @@ type ContainerProps = ComponentProps<"div"> & {
   center?: boolean;
 };
 
-export const Container: FC<ContainerProps> = ({
+export const Container = ({
   wide = false,
   center = false,
   className,
   children,
   ...props
-}) => {
+}: ContainerProps) => {
   return (
     <div
       className={classNames(

@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { H3 } from "./headings";
 import { Link } from "./Link";
 import { Paragraph } from "./Paragraph";
@@ -12,11 +11,11 @@ type TechnologyGridItemProps = {
     url: string;
   }>;
 };
-export const TechnologyGridItem: FC<TechnologyGridItemProps> = ({
+export const TechnologyGridItem = ({
   name,
   description,
   links,
-}) => {
+}: TechnologyGridItemProps) => {
   return (
     <div className={styles.technologyGridItem}>
       <H3>{name}</H3>

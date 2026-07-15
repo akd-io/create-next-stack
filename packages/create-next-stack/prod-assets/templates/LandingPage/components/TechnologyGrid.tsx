@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Technology } from "../technologies";
 import { classNames } from "../utils/class-names";
 import styles from "./TechnologyGrid.module.css";
@@ -8,10 +7,10 @@ type TechnologyGridProps = {
   technologies: Technology[];
   className: string;
 };
-export const TechnologyGrid: FC<TechnologyGridProps> = ({
+export const TechnologyGrid = ({
   technologies,
   className,
-}) => {
+}: TechnologyGridProps) => {
   return (
     <div className={classNames(styles.technologyGrid, className)}>
       {technologies.map((technology) => (
