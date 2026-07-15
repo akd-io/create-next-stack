@@ -4,6 +4,8 @@ import { compareByOrder } from "../../../helpers/sort-by-order.ts"
 import { filterPlugins } from "../../../setup/setup.ts"
 
 export const environmentVariablesSortOrder: string[] = [
+  "NEXT_PUBLIC_SUPABASE_URL",
+  "NEXT_PUBLIC_SUPABASE_ANON_KEY",
   "NEXT_PUBLIC_WEBSITE_DOMAIN",
 ]
 

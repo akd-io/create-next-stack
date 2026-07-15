@@ -125,6 +125,11 @@ export default class CreateNextStack extends Command {
     prisma: Flags.boolean({
       description: "Adds Prisma. (ORM)",
     }),
+
+    // Backend
+    supabase: Flags.boolean({
+      description: "Adds Supabase. (Backend as a Service)",
+    }),
   }
 
   async run(): Promise<void> {

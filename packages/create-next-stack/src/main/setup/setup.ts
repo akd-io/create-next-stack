@@ -31,6 +31,7 @@ import { reactIconsPlugin } from "../plugins/react-icons.ts"
 import { reactQueryPlugin } from "../plugins/react-query.ts"
 import { sassPlugin } from "../plugins/sass.ts"
 import { styledComponentsPlugin } from "../plugins/styled-components.ts"
+import { supabasePlugin } from "../plugins/supabase.ts"
 import { tailwindCSSPlugin } from "../plugins/tailwind-css.ts"
 import { typescriptPlugin } from "../plugins/typescript.ts"
 import { vercelPlugin } from "../plugins/vercel.ts"
@@ -67,6 +68,7 @@ export const plugins: Plugin[] = [
   vercelPlugin,
   netlifyPlugin,
   prismaPlugin,
+  supabasePlugin,
 ]
 
 export const filterPlugins = async (

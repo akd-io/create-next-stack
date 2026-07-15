@@ -65,6 +65,7 @@ The table below provides an overview of the technologies currently supported by 
 | Vercel              | [Website](https://vercel.com/) - [Docs](https://vercel.com/docs) - [CLI Docs](https://vercel.com/docs/cli)                                                                                                                   |
 | Netlify             | [Website](https://www.netlify.com/) - [Docs](https://docs.netlify.com/) - [CLI Docs](https://cli.netlify.com/)                                                                                                               |
 | Prisma              | [Website](https://www.prisma.io/) - [Docs](https://www.prisma.io/docs) - [GitHub](https://github.com/prisma/prisma)                                                                                                          |
+| Supabase            | [Website](https://supabase.com/) - [Docs](https://supabase.com/docs) - [GitHub](https://github.com/supabase/supabase)                                                                                                        |
 
 <!-- CNS-END-OF-TECHNOLOGIES-TABLE -->
 
@@ -117,6 +118,7 @@ FLAGS
                                     method. (Required) <styling-method> =
                                     emotion|styled-components|tailwind-css|css-m
                                     odules|css-modules-with-sass
+      --supabase                    Adds Supabase. (Backend as a Service)
       --vercel                      Adds Vercel. (Hosting)
 ```
 
