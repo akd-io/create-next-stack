@@ -12,6 +12,7 @@ import { createNextStackPlugin } from "../plugins/create-next-stack/create-next-
 import { cssModulesPlugin } from "../plugins/css-modules.ts"
 import { emotionPlugin } from "../plugins/emotion.ts"
 import { eslintPlugin } from "../plugins/eslint.ts"
+import { eslintStrictPlugin } from "../plugins/eslint-strict.ts"
 import { formattingPreCommitHookPlugin } from "../plugins/formatting-pre-commit-hook.ts"
 import { formikPlugin } from "../plugins/formik.ts"
 import { framerMotionPlugin } from "../plugins/framer-motion.ts"
@@ -55,6 +56,7 @@ export const plugins: Plugin[] = [
   formikPlugin,
   framerMotionPlugin,
   eslintPlugin,
+  eslintStrictPlugin,
   prettierPlugin,
   formattingPreCommitHookPlugin,
   pnpmPlugin,

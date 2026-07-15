@@ -98,6 +98,12 @@ export default class CreateNextStack extends Command {
       description: "Adds a formatting pre-commit hook. (Requires Prettier)",
     }),
 
+    // ESLint strict mode
+    "eslint-strict": Flags.boolean({
+      description:
+        "Adds strict type-checked linting via typescript-eslint (strict-type-checked + stylistic-type-checked).",
+    }),
+
     // Icons
     "react-icons": Flags.boolean({
       description: "Adds React Icons. (Icon library)",

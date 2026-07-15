@@ -53,6 +53,7 @@ The table below provides an overview of the technologies currently supported by 
 | React Query         | [Website](https://tanstack.com/query/latest) - [Docs](https://tanstack.com/query/latest/docs/framework/react/overview) - [GitHub](https://github.com/tanstack/query)                                                         |
 | React Icons         | [Website](https://react-icons.github.io/react-icons/) - [GitHub](https://github.com/react-icons/react-icons)                                                                                                                 |
 | ESLint              | [Website](https://eslint.org/) - [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub](https://github.com/eslint/eslint)                                     |
+| typescript-eslint   | [Website](https://typescript-eslint.io/) - [Configs](https://typescript-eslint.io/linting/configs) - [GitHub](https://github.com/typescript-eslint/typescript-eslint)                                                        |
 | Prettier            | [Website](https://prettier.io/) - [Docs](https://prettier.io/docs/en/index.html) - [Options](https://prettier.io/docs/en/options.html) - [GitHub](https://github.com/prettier/prettier)                                      |
 | Husky               | [Website](https://typicode.github.io/husky/) - [Docs](https://typicode.github.io/husky/) - [GitHub](https://github.com/typicode/husky)                                                                                       |
 | lint-staged         | [Website](https://github.com/lint-staged/lint-staged) - [GitHub](https://github.com/lint-staged/lint-staged)                                                                                                                 |
@@ -89,6 +90,9 @@ FLAGS
                                     (Requires Emotion)
       --debug                       Show verbose error messages for debugging
                                     purposes.
+      --eslint-strict               Adds strict type-checked linting via
+                                    typescript-eslint (strict-type-checked +
+                                    stylistic-type-checked).
       --formatting-pre-commit-hook  Adds a formatting pre-commit hook. (Requires
                                     Prettier)
       --formik                      Adds Formik. (Form library)

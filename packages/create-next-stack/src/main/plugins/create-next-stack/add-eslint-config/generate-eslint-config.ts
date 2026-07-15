@@ -12,6 +12,14 @@ export const generateEslintConfig = async ({
 
   const configs = [`...nextVitals`, `...nextTs`]
 
+  if (flags["eslint-strict"]) {
+    imports.push(`import tseslint from "typescript-eslint"`)
+    configs.unshift(
+      `...tseslint.configs.strictTypeChecked`,
+      `...tseslint.configs.stylisticTypeChecked`,
+    )
+  }
+
   if (flags.prettier) {
     imports.push(`import eslintConfigPrettier from "eslint-config-prettier"`)
     configs.push(`eslintConfigPrettier`)
@@ -19,12 +27,24 @@ export const generateEslintConfig = async ({
 
   const configEntries = configs.map((c) => `    ${c},`).join("\n")
 
+  const parserOptions = flags["eslint-strict"]
+    ? `    {
+      languageOptions: {
+        parserOptions: {
+          projectService: true,
+          tsconfigRootDir: import.meta.dirname,
+        },
+      },
+    },
+`
+    : ""
+
   return aldent`
     ${imports.join("\n")}
 
     const eslintConfig = defineConfig([
     ${configEntries}
-      globalIgnores([
+      ${parserOptions}globalIgnores([
         ".next/**",
         "out/**",
         "build/**",

@@ -22,6 +22,7 @@ export const technologiesSortOrder: string[] = [
   "reactQuery",
   "reactIcons",
   "eslint",
+  "typescript-eslint",
   "prettier",
   "husky",
   "lintStaged",
