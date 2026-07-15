@@ -125,6 +125,11 @@ export default class CreateNextStack extends Command {
     prisma: Flags.boolean({
       description: "Adds Prisma. (ORM)",
     }),
+
+    // Testing
+    vitest: Flags.boolean({
+      description: "Adds Vitest. (Testing framework)",
+    }),
   }
 
   async run(): Promise<void> {

@@ -6,6 +6,8 @@ import { filterPlugins } from "../../../setup/setup.ts"
 export const scriptsSortOrder: string[] = [
   "prepare",
   "test",
+  "test:watch",
+  "test:ci",
   "dev",
   "build",
   "start",

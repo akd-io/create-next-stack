@@ -34,6 +34,7 @@ import { styledComponentsPlugin } from "../plugins/styled-components.ts"
 import { tailwindCSSPlugin } from "../plugins/tailwind-css.ts"
 import { typescriptPlugin } from "../plugins/typescript.ts"
 import { vercelPlugin } from "../plugins/vercel.ts"
+import { vitestPlugin } from "../plugins/vitest.ts"
 import { yarnPlugin } from "../plugins/yarn.ts"
 import { getSteps } from "../steps.ts"
 import { printFinalMessages } from "./print-final-messages.ts"
@@ -67,6 +68,7 @@ export const plugins: Plugin[] = [
   vercelPlugin,
   netlifyPlugin,
   prismaPlugin,
+  vitestPlugin,
 ]
 
 export const filterPlugins = async (
