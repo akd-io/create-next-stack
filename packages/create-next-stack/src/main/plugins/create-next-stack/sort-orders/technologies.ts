@@ -20,6 +20,7 @@ export const technologiesSortOrder: string[] = [
   "reactHookForm",
   "formik",
   "reactQuery",
+  "playwright",
   "reactIcons",
   "eslint",
   "prettier",

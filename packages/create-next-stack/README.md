@@ -51,6 +51,7 @@ The table below provides an overview of the technologies currently supported by 
 | React Hook Form     | [Website](https://react-hook-form.com/) - [Docs](https://react-hook-form.com/get-started) - [GitHub](https://github.com/react-hook-form/react-hook-form)                                                                     |
 | Formik              | [Website](https://formik.org/) - [Docs](https://formik.org/docs/overview) - [GitHub](https://github.com/formium/formik)                                                                                                      |
 | React Query         | [Website](https://tanstack.com/query/latest) - [Docs](https://tanstack.com/query/latest/docs/framework/react/overview) - [GitHub](https://github.com/tanstack/query)                                                         |
+| Playwright          | [Website](https://playwright.dev/) - [Docs](https://playwright.dev/docs/intro) - [GitHub](https://github.com/microsoft/playwright)                                                                                           |
 | React Icons         | [Website](https://react-icons.github.io/react-icons/) - [GitHub](https://github.com/react-icons/react-icons)                                                                                                                 |
 | ESLint              | [Website](https://eslint.org/) - [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub](https://github.com/eslint/eslint)                                     |
 | Prettier            | [Website](https://prettier.io/) - [Docs](https://prettier.io/docs/en/index.html) - [Options](https://prettier.io/docs/en/options.html) - [GitHub](https://github.com/prettier/prettier)                                      |
@@ -103,6 +104,7 @@ FLAGS
                                     manager. (Required)
                                     <options: pnpm|yarn|npm>
       --plausible                   Adds Plausible. (Analytics)
+      --playwright                  Adds Playwright. (E2E testing framework)
       --prettier                    Adds Prettier. (Code formatting)
       --prisma                      Adds Prisma. (ORM)
       --react-hook-form             Adds React Hook Form. (Form library)

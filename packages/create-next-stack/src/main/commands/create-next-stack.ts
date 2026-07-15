@@ -113,6 +113,11 @@ export default class CreateNextStack extends Command {
       description: "Adds Plausible. (Analytics)",
     }),
 
+    // E2E testing
+    playwright: Flags.boolean({
+      description: "Adds Playwright. (E2E testing framework)",
+    }),
+
     // Hosting
     netlify: Flags.boolean({
       description: "Adds Netlify. (Hosting)",

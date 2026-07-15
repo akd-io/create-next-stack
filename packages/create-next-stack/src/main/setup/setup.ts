@@ -22,6 +22,7 @@ import { netlifyPlugin } from "../plugins/netlify.ts"
 import { nextPlugin } from "../plugins/next.ts"
 import { npmPlugin } from "../plugins/npm.ts"
 import { plausiblePlugin } from "../plugins/plausible.ts"
+import { playwrightPlugin } from "../plugins/playwright.ts"
 import { pnpmPlugin } from "../plugins/pnpm.ts"
 import { prettierPlugin } from "../plugins/prettier.ts"
 import { prismaPlugin } from "../plugins/prisma.ts"
@@ -64,6 +65,7 @@ export const plugins: Plugin[] = [
   reactIconsPlugin,
   reactQueryPlugin,
   plausiblePlugin,
+  playwrightPlugin,
   vercelPlugin,
   netlifyPlugin,
   prismaPlugin,
