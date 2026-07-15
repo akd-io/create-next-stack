@@ -34,6 +34,8 @@ export const technologiesSortOrder: string[] = [
   "vercel",
   "netlify",
   "prisma",
+  "authJs",
+  "shadcn",
 ]
 
 export const getTechnologies = async (

@@ -4,6 +4,7 @@ import { compareByOrder } from "../../../helpers/sort-by-order.ts"
 import { filterPlugins } from "../../../setup/setup.ts"
 
 export const environmentVariablesSortOrder: string[] = [
+  "AUTH_SECRET",
   "NEXT_PUBLIC_WEBSITE_DOMAIN",
 ]
 

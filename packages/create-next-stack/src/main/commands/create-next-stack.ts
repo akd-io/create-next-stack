@@ -125,6 +125,17 @@ export default class CreateNextStack extends Command {
     prisma: Flags.boolean({
       description: "Adds Prisma. (ORM)",
     }),
+
+    // Authentication
+    "auth-js": Flags.boolean({
+      description: "Adds Auth.js. (Authentication) (Requires App Router)",
+    }),
+
+    // Component library
+    shadcn: Flags.boolean({
+      description:
+        "Adds shadcn/ui. (Component library) (Requires Tailwind CSS)",
+    }),
   }
 
   async run(): Promise<void> {

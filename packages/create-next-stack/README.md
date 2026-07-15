@@ -65,6 +65,8 @@ The table below provides an overview of the technologies currently supported by 
 | Vercel              | [Website](https://vercel.com/) - [Docs](https://vercel.com/docs) - [CLI Docs](https://vercel.com/docs/cli)                                                                                                                   |
 | Netlify             | [Website](https://www.netlify.com/) - [Docs](https://docs.netlify.com/) - [CLI Docs](https://cli.netlify.com/)                                                                                                               |
 | Prisma              | [Website](https://www.prisma.io/) - [Docs](https://www.prisma.io/docs) - [GitHub](https://github.com/prisma/prisma)                                                                                                          |
+| Auth.js             | [Website](https://authjs.dev/) - [Docs](https://authjs.dev/getting-started) - [GitHub](https://github.com/nextauthjs/next-auth)                                                                                              |
+| shadcn/ui           | [Website](https://ui.shadcn.com/) - [Docs](https://ui.shadcn.com/docs) - [GitHub](https://github.com/shadcn-ui/ui)                                                                                                           |
 
 <!-- CNS-END-OF-TECHNOLOGIES-TABLE -->
 
@@ -85,6 +87,8 @@ ARGUMENTS
 FLAGS
   -h, --help                        Shows the CLI help information.
   -v, --version                     Shows the CLI version information.
+      --auth-js                     Adds Auth.js. (Authentication) (Requires App
+                                    Router)
       --chakra                      Adds Chakra UI. (Component library)
                                     (Requires Emotion)
       --debug                       Show verbose error messages for debugging
@@ -113,6 +117,8 @@ FLAGS
                                     router to use. App Router is the default and
                                     recommended option.
                                     <options: app|pages>
+      --shadcn                      Adds shadcn/ui. (Component library)
+                                    (Requires Tailwind CSS)
       --styling=<styling-method>    (required) Sets the preferred styling
                                     method. (Required) <styling-method> =
                                     emotion|styled-components|tailwind-css|css-m

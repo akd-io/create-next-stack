@@ -12,6 +12,7 @@ export const scriptsSortOrder: string[] = [
   "lint",
   "format",
   "format:check",
+  "ui:add",
   "deploy:vercel",
   "deploy:netlify",
 ]

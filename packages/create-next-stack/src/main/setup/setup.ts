@@ -7,6 +7,7 @@ import { inDebugMode } from "../helpers/in-debug-mode.ts"
 import { time } from "../helpers/time.ts"
 import { logDebug, logInfo } from "../logging.ts"
 import { evalOptionalProperty, evalProperty, type Plugin } from "../plugin.ts"
+import { authJsPlugin } from "../plugins/auth-js.ts"
 import { chakraUIPlugin } from "../plugins/chakra-ui.ts"
 import { createNextStackPlugin } from "../plugins/create-next-stack/create-next-stack.ts"
 import { cssModulesPlugin } from "../plugins/css-modules.ts"
@@ -29,6 +30,7 @@ import { reactPlugin } from "../plugins/react.ts"
 import { reactHookFormPlugin } from "../plugins/react-hook-form.ts"
 import { reactIconsPlugin } from "../plugins/react-icons.ts"
 import { reactQueryPlugin } from "../plugins/react-query.ts"
+import { shadcnPlugin } from "../plugins/shadcn.ts"
 import { sassPlugin } from "../plugins/sass.ts"
 import { styledComponentsPlugin } from "../plugins/styled-components.ts"
 import { tailwindCSSPlugin } from "../plugins/tailwind-css.ts"
@@ -67,6 +69,8 @@ export const plugins: Plugin[] = [
   vercelPlugin,
   netlifyPlugin,
   prismaPlugin,
+  authJsPlugin,
+  shadcnPlugin,
 ]
 
 export const filterPlugins = async (

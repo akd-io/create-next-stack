@@ -87,6 +87,16 @@ export const validateFlags = (
       "Formatting pre-commit hook (category: Miscellaneous, flag: --formatting-pre-commit-hook) requires Prettier (category: Formatting, flag: --prettier).",
     )
   }
+  if (flags["auth-js"] && flags.router !== "app") {
+    throw new Error(
+      "Auth.js (category: Authentication, flag: --auth-js) requires App Router (flag: --router=app).",
+    )
+  }
+  if (flags.shadcn && flags.styling !== "tailwind-css") {
+    throw new Error(
+      "shadcn/ui (category: Component library, flag: --shadcn) requires Tailwind CSS (category: Styling, flag: --styling=tailwind-css).",
+    )
+  }
   return true
 }
 
