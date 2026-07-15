@@ -35,6 +35,7 @@ import { tailwindCSSPlugin } from "../plugins/tailwind-css.ts"
 import { typescriptPlugin } from "../plugins/typescript.ts"
 import { vercelPlugin } from "../plugins/vercel.ts"
 import { yarnPlugin } from "../plugins/yarn.ts"
+import { zustandPlugin } from "../plugins/zustand.ts"
 import { getSteps } from "../steps.ts"
 import { printFinalMessages } from "./print-final-messages.ts"
 
@@ -59,6 +60,7 @@ export const plugins: Plugin[] = [
   formattingPreCommitHookPlugin,
   pnpmPlugin,
   yarnPlugin,
+  zustandPlugin,
   npmPlugin,
   githubActionsPlugin,
   reactIconsPlugin,

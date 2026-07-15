@@ -50,6 +50,7 @@ The table below provides an overview of the technologies currently supported by 
 | Motion              | [Website](https://motion.dev/) - [Docs](https://motion.dev/docs) - [GitHub](https://github.com/motiondivision/motion)                                                                                                        |
 | React Hook Form     | [Website](https://react-hook-form.com/) - [Docs](https://react-hook-form.com/get-started) - [GitHub](https://github.com/react-hook-form/react-hook-form)                                                                     |
 | Formik              | [Website](https://formik.org/) - [Docs](https://formik.org/docs/overview) - [GitHub](https://github.com/formium/formik)                                                                                                      |
+| Zustand             | [Website](https://zustand.docs.pmnd.rs/) - [Docs](https://zustand.docs.pmnd.rs/getting-started/introduction) - [GitHub](https://github.com/pmndrs/zustand)                                                                   |
 | React Query         | [Website](https://tanstack.com/query/latest) - [Docs](https://tanstack.com/query/latest/docs/framework/react/overview) - [GitHub](https://github.com/tanstack/query)                                                         |
 | React Icons         | [Website](https://react-icons.github.io/react-icons/) - [GitHub](https://github.com/react-icons/react-icons)                                                                                                                 |
 | ESLint              | [Website](https://eslint.org/) - [Configuration](https://eslint.org/docs/user-guide/configuring/) - [Rules](https://eslint.org/docs/rules/) - [GitHub](https://github.com/eslint/eslint)                                     |
@@ -118,6 +119,8 @@ FLAGS
                                     emotion|styled-components|tailwind-css|css-m
                                     odules|css-modules-with-sass
       --vercel                      Adds Vercel. (Hosting)
+      --zustand                     Adds Zustand. (Client state management
+                                    library)
 ```
 
 <!-- CNS-END-OF-HELP-OUTPUT -->

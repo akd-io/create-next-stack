@@ -108,6 +108,11 @@ export default class CreateNextStack extends Command {
       description: "Adds React Query. (Server state management library)",
     }),
 
+    // Client state management libraries
+    zustand: Flags.boolean({
+      description: "Adds Zustand. (Client state management library)",
+    }),
+
     // Analytics
     plausible: Flags.boolean({
       description: "Adds Plausible. (Analytics)",
